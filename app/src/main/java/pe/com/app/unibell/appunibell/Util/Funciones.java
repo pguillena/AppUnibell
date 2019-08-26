@@ -316,11 +316,26 @@ public class Funciones {
     }
 
     public static String LetraCapital(String str) {
+
         if (str == null || str.isEmpty()) {
             return str;
-        } else {
-            return str.substring(0, 1).toUpperCase() + str.toLowerCase().substring(1);
         }
+        else {
+            String nuevoStr = "";
+            String[] lista = str.split(" ");
+
+            if (lista != null && lista.length > 0) {
+                for (int i = 0; i < lista.length; i++) {
+
+                    nuevoStr = nuevoStr +" "+ lista[i].substring(0, 1).toUpperCase() + lista[i].toLowerCase().substring(1);
+
+                }
+
+            }
+
+            return  nuevoStr.trim();
+        }
+
     }
 
 }
