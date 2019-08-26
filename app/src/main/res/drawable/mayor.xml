@@ -1,0 +1,9 @@
+<!-- drawable/logout.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dp"
+    android:width="15dp"
+    android:viewportWidth="15"
+    android:viewportHeight="24">
+    <path android:fillColor="#b4a996" android:pathData="M.541 20.589a1.627 1.627 0 0 0 0 2.423c.722.67 1.887.67 2.609 0l10.812-10.045a1.627 1.627 0 0 0 0-2.423L3.15.504A1.922 1.922 0 0 0 1.848 0C1.35 0 .874.187.53.519c-.708.658-.703 1.74.016 2.408l9.501 8.83L.541 20.59z"/>
+</vector>
+

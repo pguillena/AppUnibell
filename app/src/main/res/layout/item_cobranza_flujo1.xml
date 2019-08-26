@@ -1,104 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout1"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/pad_20dp"
+    android:paddingRight="@dimen/pad_20dp"
+    android:paddingBottom="@dimen/pad_20dp"
+    android:background="@drawable/borderradius_menu_unibell"
     >
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/fj_item2Label"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/layout_height_title_grid"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:id="@+id/fj_item1"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text="CÓDIGO"
-            android:gravity="center"
-            android:textSize="@dimen/txt_5sp"
-            />
+        android:layout_height="wrap_content"
+        android:text="Cliente"
+        android:textSize="16dp"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        />
 
-        <TextView
-            android:id="@+id/fj_item2"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="CLIENTE"
-            android:gravity="center"
-            android:textSize="@dimen/txt_5sp"
-            />
-        <TextView
-            android:id="@+id/fj_item3"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="T.DOC"
-            android:gravity="center"
-            android:textSize="@dimen/txt_5sp"
-            />
-
-        <TextView
-            android:id="@+id/fj_item4"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="N°DOC"
-            android:gravity="center"
-            android:textSize="@dimen/txt_5sp"
-            />
-        <TextView
-            android:id="@+id/fj_item5"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="F.PAGO"
-            android:gravity="center"
-            android:textSize="@dimen/txt_5sp"
-            />
-
-        <TextView
-            android:id="@+id/fj_item6"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="BANCO/CC"
-            android:gravity="center"
-            android:textSize="@dimen/txt_5sp"
-            />
-
-        <TextView
-            android:id="@+id/fj_item7"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="F.TRASC"
-            android:gravity="center"
-            android:textSize="@dimen/txt_5sp"
-            />
-
-        <TextView
-            android:id="@+id/fj_item8"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="N°/N°CHEQ"
-            android:gravity="center"
-            android:textSize="@dimen/txt_5sp"
-            />
+    <TextView
+        android:id="@+id/fj_item2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Percy Giancarlo Guillen Alcantara"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/fj_item2Label"
+        />
 
 
-        <TextView
-            android:id="@+id/fj_item9"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="IMPORTE"
-            android:gravity="center"
-            android:textSize="@dimen/txt_5sp"
-            />
+    <TextView
+        android:id="@+id/fj_item3Label"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Documento"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:layout_below="@id/fj_item2"
+        />
 
-        <TextView
-            android:id="@+id/fj_item10"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="RECIBO"
-            android:gravity="center"
-            android:textSize="@dimen/txt_5sp"
-            />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/fj_item4Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forma de Pago"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:layout_below="@id/fj_item2"
+        android:layout_toRightOf="@id/fj_item3Label"
+        />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/fj_item3"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="Fac/F001-59652"
+        android:layout_below="@id/fj_item3Label"
+        />
+
+    <TextView
+        android:id="@+id/fj_item4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="Deposito"
+        android:layout_below="@id/fj_item4Label"
+        android:layout_toRightOf="@id/fj_item3"
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/fj_item5Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Banco / Cuenta Corriente"
+        android:textSize="16dp"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/fj_item3"
+        />
+
+    <TextView
+        android:id="@+id/fj_item5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Banco de BBVA"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/fj_item5Label"
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/fj_item7Label"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Fecha Operación"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:layout_below="@id/fj_item5"
+        />
+
+    <TextView
+        android:id="@+id/fj_item8Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="N° Op / N° Cheque"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:layout_below="@id/fj_item5"
+        android:layout_toRightOf="@id/fj_item7Label"
+        />
+
+
+
+    <TextView
+        android:id="@+id/fj_item7"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="23/08/2019"
+        android:layout_below="@id/fj_item7Label"
+        />
+
+    <TextView
+        android:id="@+id/fj_item8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="00215032"
+        android:layout_below="@id/fj_item8Label"
+        android:layout_toRightOf="@id/fj_item7"
+        />
+
+
+
+
+
+    <TextView
+        android:id="@+id/fj_item9Label"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Recibo"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:layout_below="@id/fj_item7"
+        />
+
+    <TextView
+        android:id="@+id/fj_item10Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Monto"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:layout_below="@id/fj_item8"
+        android:layout_toRightOf="@id/fj_item9Label"
+        />
+
+
+
+
+
+    <TextView
+        android:id="@+id/fj_item9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="S/ 135.67"
+        android:layout_below="@id/fj_item10Label"
+        android:layout_toRightOf="@id/fj_item10"
+        />
+
+    <TextView
+        android:id="@+id/fj_item10"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="0001-12562"
+        android:paddingRight="15dp"
+        android:drawableRight="@drawable/file_download_outline"
+        android:layout_below="@id/fj_item9Label"
+        />
+
+</RelativeLayout>

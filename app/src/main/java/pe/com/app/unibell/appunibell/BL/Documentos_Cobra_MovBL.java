@@ -126,7 +126,7 @@ public class Documentos_Cobra_MovBL {
                 for(int i=0;i<jsonObjectRest.getJSONArray("datos").length();i++) {
                     JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(i);
                     documentos_cobra_movBE = new Documentos_Cobra_MovBE();
-                    documentos_cobra_movBE.setORDEN(jsonObjectItem.getString("ORDEN"));
+                    documentos_cobra_movBE.setORDEN(jsonObjectItem.getInt("ORDEN"));
                     documentos_cobra_movBE.setID_DOCUMENTO_MOVIMIENTO(jsonObjectItem.getInt("ID_DOCUMENTO_MOVIMIENTO"));
                     documentos_cobra_movBE.setID_ROL_USUARIO_REGISTRO(jsonObjectItem.getInt("ID_ROL_USUARIO"));
                     documentos_cobra_movBE.setNOMBRE_ROL(jsonObjectItem.getString("NOMBRE_ROL"));
@@ -216,7 +216,7 @@ public class Documentos_Cobra_MovBL {
                 for(int i=0;i<jsonObjectRest.getJSONArray("datos").length();i++) {
                     JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(i);
                     documentos_cobra_movBE = new Documentos_Cobra_MovBE();
-                    documentos_cobra_movBE.setORDEN(jsonObjectItem.getString("ORDEN"));
+                    documentos_cobra_movBE.setORDEN(jsonObjectItem.getInt("ORDEN"));
                     documentos_cobra_movBE.setID_COBRANZA(jsonObjectItem.getString("ID_COBRANZA"));
                     documentos_cobra_movBE.setCOD_CLIENTE(jsonObjectItem.getString("COD_CLIENTE"));
                     documentos_cobra_movBE.setN_RECIBO(jsonObjectItem.getString("N_RECIBO"));
