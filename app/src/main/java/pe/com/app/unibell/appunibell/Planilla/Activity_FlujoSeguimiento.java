@@ -3,6 +3,8 @@ package pe.com.app.unibell.appunibell.Planilla;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -38,6 +40,7 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
     private Documentos_Cobra_CabBL documentos_cobra_cabBL = new Documentos_Cobra_CabBL();
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +63,13 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
             fp_lblnplanilla=(TextView)findViewById(R.id.fp_lblnplanilla);
 
             LayoutInflater inflater1 = getLayoutInflater();
-            ViewGroup header1 = (ViewGroup)inflater1.inflate(R.layout.item_cobranza_flujo1_header,fp_lvuno,false);
-            fp_lvuno.addHeaderView(header1);
+
+
+
+            //ViewGroup header1 = (ViewGroup)inflater1.inflate(R.layout.item_cobranza_flujo1_header,fp_lvuno,false);
+            //fp_lvuno.addHeaderView(header1);
+
+
 
             LayoutInflater inflater2 = getLayoutInflater();
             ViewGroup header2 = (ViewGroup)inflater2.inflate(R.layout.item_cobranza_flujo2_header,fp_lvdos,false);
@@ -76,12 +84,52 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
             dataBaseHelper.createDataBase();
             dataBaseHelper.openDataBase();
 
+            // Setear adaptador al viewpager.
+            //    mViewPager = (ViewPager) findViewById(R.id.pager);
+
+            // Preparar las pestañas
+            //   TabLayout tabs = (TabLayout) findViewById(R.id.tabSeguimiento);
+            //    tabs.setupWithViewPager(mViewPager);
+//
+          /*  //Tabs Seguimiento
+            TabLayout tabs = (TabLayout) findViewById(R.id.tabSeguimiento);
+            tabs.addTab(tabs.newTab().setText("Planilla"));
+            tabs.addTab(tabs.newTab().setText("Flujo"));
+            tabs.addTab(tabs.newTab().setText("Auditoria"));
+        */
+            //  mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
+            //tabs.TabLayoutOnPageChangeListener(OnTabSelectedListener_tabs);
+
+
+
             Cargar();
 
         } catch (Exception ex) {
 
         }
     }
+
+
+
+    TabLayout.OnTabSelectedListener OnTabSelectedListener_tabs = new TabLayout.OnTabSelectedListener()
+    {
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+
+            String asdad = "Hola";
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+
+        }
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+
+        }
+    };
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -104,22 +152,22 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
 
             new Load_Flujo1AsyncTask().execute(
                     ConstantsLibrary.RESTFUL_URL +
-                    ConstantsLibrary.bldocumentos_cobra_cab_flujo1 + "/"+
-                    "0/0/0/0/0/XXX/"+
-                      fInicio+ "/"+
-                      fFin+ "/XXX/XXX/XXX/XXX/"+
-                      sharedSettings.getString("iID_EMPRESA", "0").toString()+ "/"+
-                      sharedSettings.getString("iID_LOCAL", "0").toString()+ "/"+
-                      sharedSettings.getString("ROL", "0").toString()+ "/"+
-                      sharedSettings.getString("N_PLANILLA", "0").toString()+ "/0"
+                            ConstantsLibrary.bldocumentos_cobra_cab_flujo1 + "/"+
+                            "0/0/0/0/0/XXX/"+
+                            fInicio+ "/"+
+                            fFin+ "/XXX/XXX/XXX/XXX/"+
+                            sharedSettings.getString("iID_EMPRESA", "0").toString()+ "/"+
+                            sharedSettings.getString("iID_LOCAL", "0").toString()+ "/"+
+                            sharedSettings.getString("ROL", "0").toString()+ "/"+
+                            sharedSettings.getString("N_PLANILLA", "0").toString()+ "/0"
             );
 
 
             new Load_FlujoResumenAsyncTask().execute(
                     ConstantsLibrary.RESTFUL_URL +
-                    ConstantsLibrary.bldocumentos_cobra_mov_flujoresumen + "/"+
-                    sharedSettings.getString("SERIE_PLANILLA", "0").toString()+ "/"+
-                    sharedSettings.getString("N_PLANILLA", "0").toString()
+                            ConstantsLibrary.bldocumentos_cobra_mov_flujoresumen + "/"+
+                            sharedSettings.getString("SERIE_PLANILLA", "0").toString()+ "/"+
+                            sharedSettings.getString("N_PLANILLA", "0").toString()
             );
 
         /*
@@ -135,13 +183,13 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
 
             new Load_Flujo3AsyncTask().execute(
                     ConstantsLibrary.RESTFUL_URL +
-                    ConstantsLibrary.bldocumentos_cobra_mov_flujo3 + "/"+
-                    "0/10014/"+
-                    sharedSettings.getString("N_PLANILLA", "0").toString()+ "/"+
-                    sharedSettings.getString("SERIE_PLANILLA", "0").toString()+ "/"+
-                    sharedSettings.getString("N_PLANILLA", "0").toString()+ "/"+
-                    sharedSettings.getString("iID_EMPRESA", "0").toString()+ "/"+
-                    sharedSettings.getString("iID_LOCAL", "0").toString()
+                            ConstantsLibrary.bldocumentos_cobra_mov_flujo3 + "/"+
+                            "0/10014/"+
+                            sharedSettings.getString("N_PLANILLA", "0").toString()+ "/"+
+                            sharedSettings.getString("SERIE_PLANILLA", "0").toString()+ "/"+
+                            sharedSettings.getString("N_PLANILLA", "0").toString()+ "/"+
+                            sharedSettings.getString("iID_EMPRESA", "0").toString()+ "/"+
+                            sharedSettings.getString("iID_LOCAL", "0").toString()
             );
 
 

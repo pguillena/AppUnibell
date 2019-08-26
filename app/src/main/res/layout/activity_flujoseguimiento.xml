@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/LinearLayout1"
@@ -6,30 +7,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@color/background"
+    android:background="@color/background_main_unibell"
     >
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/fp_lvuno"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        >
-        <HorizontalScrollView
-            android:id="@+id/fp_sclvuno"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:background="@color/background"
-            >
-            <ListView
-                android:id="@+id/fp_lvuno"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:choiceMode="singleChoice"
-                android:listSelector="@color/list_seleccion"
-                />
-        </HorizontalScrollView>
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:dividerHeight="@dimen/pad_20dp"
+        />
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,25 +55,25 @@
         </HorizontalScrollView>
     </LinearLayout>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginBottom="5dp"
-    android:layout_marginTop="5dp"
-    >
-    <TextView
-        android:id="@+id/fp_lblnplanilla"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/txt_7sp"
-        android:text="Seguiemito de Planilla 00001"
-        android:background="@color/ubell_rojo"
-        android:textColor="@color/background"
-        />
-</LinearLayout>
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        >
+        <TextView
+            android:id="@+id/fp_lblnplanilla"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_7sp"
+            android:text="Seguiemito de Planilla 00001"
+            android:background="@color/ubell_rojo"
+            android:textColor="@color/background"
+            />
+    </LinearLayout>
 
-      <LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
