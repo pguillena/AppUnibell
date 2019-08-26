@@ -6,9 +6,9 @@ public interface ConstantsLibrary {
         public static final String DEBUG_TAG = "DRES_DEBUG";
 
         //LOCAL
-        //public static final String RESTFUL_URL = "http://172.16.1.78/ServiceUnibell";
+        public static final String RESTFUL_URL = "http://172.16.1.78/ServiceUnibell";
         //REMOTO
-        public static final String RESTFUL_URL ="http://181.65.215.174/ServiceUnibell";
+       // public static final String RESTFUL_URL ="http://181.65.215.174/ServiceUnibell";
         public static final String blcabfcob = "/blcabfcob";
         public static final String blcliente = "/blclientes";
         public static final String blctabnco = "/blctabnco";
