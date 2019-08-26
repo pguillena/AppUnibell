@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Main.MainActivityUnibell"
+    >
+    <item
+        android:id="@+id/action_ordenLista"
+        android:orderInCategory="200"
+        android:title="Administración"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:visible="false"
+        />
+
+    <item
+        android:id="@+id/action_ordenfresh"
+        android:icon="@mipmap/refresh"
+        android:orderInCategory="200"
+        android:title="Refresh"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
+</menu>

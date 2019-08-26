@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_height_title_grid"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/fj_item1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="CÓDIGO"
+            android:gravity="center"
+            android:textSize="@dimen/txt_5sp"
+            />
+
+        <TextView
+            android:id="@+id/fj_item2"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="CLIENTE"
+            android:gravity="center"
+            android:textSize="@dimen/txt_5sp"
+            />
+        <TextView
+            android:id="@+id/fj_item3"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="T.DOC"
+            android:gravity="center"
+            android:textSize="@dimen/txt_5sp"
+            />
+
+        <TextView
+            android:id="@+id/fj_item4"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="N°DOC"
+            android:gravity="center"
+            android:textSize="@dimen/txt_5sp"
+            />
+        <TextView
+            android:id="@+id/fj_item5"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="F.PAGO"
+            android:gravity="center"
+            android:textSize="@dimen/txt_5sp"
+            />
+
+        <TextView
+            android:id="@+id/fj_item6"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="BANCO/CC"
+            android:gravity="center"
+            android:textSize="@dimen/txt_5sp"
+            />
+
+        <TextView
+            android:id="@+id/fj_item7"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="F.TRASC"
+            android:gravity="center"
+            android:textSize="@dimen/txt_5sp"
+            />
+
+        <TextView
+            android:id="@+id/fj_item8"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="N°/N°CHEQ"
+            android:gravity="center"
+            android:textSize="@dimen/txt_5sp"
+            />
+
+
+        <TextView
+            android:id="@+id/fj_item9"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="IMPORTE"
+            android:gravity="center"
+            android:textSize="@dimen/txt_5sp"
+            />
+
+        <TextView
+            android:id="@+id/fj_item10"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="RECIBO"
+            android:gravity="center"
+            android:textSize="@dimen/txt_5sp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

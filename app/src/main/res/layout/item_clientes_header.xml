@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/ubell_color1"
+    >
+    <TextView
+        android:id="@+id/cl_col1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="CÓDIGO"
+        android:textColor="@color/background"
+        />
+
+    <TextView
+        android:id="@+id/cl_col2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="CLIENTE"
+        android:layout_weight="1"
+        android:textColor="@color/background"
+        />
+
+    <TextView
+        android:id="@+id/cl_col3"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="PAE"
+        android:textColor="@color/background"
+        />
+
+
+
+</LinearLayout>

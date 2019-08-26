@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pe.com.app.unibell.appunibell">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/favicon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/favicon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Liquidacion.Activity_Asignar"
+            android:label="@string/title_activity__asignar"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".Liquidacion.Activity_FiltroLiquidacion"
+            android:label="@string/title_activity__filtro_liquidacion"
+            android:parentActivityName=".Liquidacion.Activity_Liquidacion"
+            android:screenOrientation="portrait"
+           >
+        </activity>
+
+        <activity
+            android:name=".Liquidacion.Activity_Totales_Liquidacion"
+            android:label="@string/title_activity_totales_liquidacion"
+            android:parentActivityName=".Liquidacion.Activity_Liquidacion"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
+        <activity
+            android:name=".Planilla.Activity_Aprobacion_Planilla_Filtro"
+            android:parentActivityName=".Planilla.Activity_AprobacionPlanilla"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
+        <activity
+            android:name=".Planilla.Activity_Aprobacion_Totales"
+            android:parentActivityName=".Planilla.Activity_AprobacionPlanilla"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
+
+
+
+
+        <activity
+            android:name=".Liquidacion.Activity_Liquidacion"
+            android:parentActivityName=".Main.MainActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".Clientes.Activity_FiltroClientes"
+            android:parentActivityName=".Clientes.Activity_clientes"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Main.Activity_Login"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Main.Activity_Login_Local"
+            android:theme="@style/SplashTheme"
+            android:parentActivityName=".Main.Activity_Login"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".Main.MainActivity"
+            android:parentActivityName=".Main.Activity_Login"
+            android:screenOrientation="portrait"/>
+
+
+        <activity
+            android:name=".Cobranza.Activity_Cobranzas"
+            android:parentActivityName=".Liquidacion.Activity_Liquidacion"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Clientes.Activity_clientes"
+            android:parentActivityName=".Main.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Planilla.Activity_AprobacionPlanilla"
+            android:parentActivityName=".Main.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Main.Activity_Sincronizar"
+            android:parentActivityName=".Main.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Clientes.Activity_EstadoCuenta"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Cobranza.Activity_Cobranza_Recibo"
+            android:parentActivityName=".Clientes.Activity_clientes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Planilla.Activity_FlujoSeguimiento"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Cobranza.Activity_Cobranza_Agregar_Pago"
+            android:screenOrientation="portrait"
+            />
+
+        <activity
+            android:name=".Cobranza.Activity_Cobranza_Editar"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Cobranza.Activity_Cobranzas"
+            />
+
+        <activity
+            android:name=".Reportes.Activity_Cobranza_Recibo_Rep"
+            android:screenOrientation="portrait"
+            />
+
+        <activity
+            android:name=".Reportes.Activity_Cobranza_Liquidacion_Rep"
+            android:screenOrientation="portrait"
+            />
+
+        <service
+            android:name=".Servicio.ServiceBackground"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver android:name=".Servicio.AlarmReceiver" />
+        <receiver android:name=".Servicio.GpsTrackerBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

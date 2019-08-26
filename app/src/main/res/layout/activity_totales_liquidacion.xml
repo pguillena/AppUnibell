@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/label_login_titulo_unibell"
+    android:orientation="vertical"
+    android:padding="@dimen/pad_20dp"
+   >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+
+        <TextView
+            android:id="@+id/lblMontoCheque"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monto cheque"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            android:id="@+id/txtMontoCheque"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 153"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+
+        <View
+            android:id="@+id/dv1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Divider_color"
+            android:layout_below="@id/lblMontoCheque"
+            android:layout_marginTop="@dimen/pad_10dp"
+            android:layout_marginBottom="@dimen/pad_10dp"
+            />
+
+
+
+        <TextView
+            android:id="@+id/lblMontoTarjeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monto tarjetas"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_below="@id/dv1"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            android:id="@+id/txtMontoTarjeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 153"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_below="@id/dv1"
+            android:layout_alignParentRight="true"
+            />
+
+        <View
+            android:id="@+id/dv2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Divider_color"
+            android:layout_below="@id/lblMontoTarjeta"
+            android:layout_marginTop="@dimen/pad_10dp"
+            android:layout_marginBottom="@dimen/pad_10dp"
+            />
+
+        <TextView
+            android:id="@+id/lblNroOperacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="N° Operacion"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_below="@id/dv2"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            android:id="@+id/lblMontoOperacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monto"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_below="@id/dv2"
+            android:layout_alignParentRight="true"
+            />
+
+
+        <ListView
+            android:id="@+id/lstDepositosLiquidacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lblNroOperacion"
+            android:layout_marginTop="@dimen/pad_10dp"
+            android:layout_marginBottom="@dimen/pad_10dp"
+            android:divider="@null"
+            android:dividerHeight="10dp"
+            />
+
+        <TextView
+            android:id="@+id/lblMontoDepositoTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monto depósito"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_below="@id/lstDepositosLiquidacion"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            android:id="@+id/txtMontoDeposito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 153"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_below="@id/lstDepositosLiquidacion"
+            android:layout_alignParentRight="true"
+            />
+
+        <View
+            android:id="@+id/dv3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Divider_color"
+            android:layout_below="@id/lblMontoDepositoTotal"
+            android:layout_marginTop="@dimen/pad_10dp"
+            android:layout_marginBottom="@dimen/pad_10dp"
+            />
+
+
+
+        <TextView
+            android:id="@+id/lblMontoEfectivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monto efectivo"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_below="@id/dv3"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            android:id="@+id/txtMontoEfectivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 153"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_below="@id/dv3"
+            android:layout_alignParentRight="true"
+            />
+
+        <View
+            android:id="@+id/dv4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Divider_color"
+            android:layout_below="@id/lblMontoEfectivo"
+            android:layout_marginTop="@dimen/pad_10dp"
+            android:layout_marginBottom="@dimen/pad_10dp"
+            />
+
+
+        <TextView
+            android:id="@+id/lblMontoBancarizado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monto bancarizado"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_below="@id/dv4"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            android:id="@+id/txtMontoBancarizado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 153"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_below="@id/dv4"
+            android:layout_alignParentRight="true"
+            />
+
+        <View
+            android:id="@+id/dv5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Divider_color"
+            android:layout_below="@id/lblMontoBancarizado"
+            android:layout_marginTop="@dimen/pad_10dp"
+            android:layout_marginBottom="@dimen/pad_10dp"
+            />
+
+
+        <TextView
+            android:id="@+id/lblMontoTotalGeneral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total general"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_below="@id/dv5"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            android:id="@+id/txtMontoTotalGeneral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 153"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_below="@id/dv5"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

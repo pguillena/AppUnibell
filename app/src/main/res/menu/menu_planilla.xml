@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Main.MainActivityUnibell"
+    >
+    <item
+        android:id="@+id/action_enviar"
+        android:icon="@drawable/ic_action_mail"
+        android:orderInCategory="200"
+        android:title="ENVIAR"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
+
+    <item
+        android:id="@+id/action_pdf"
+        android:icon="@drawable/ic_action_pdf"
+        android:orderInCategory="200"
+        android:title="PDF"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
+
+</menu>

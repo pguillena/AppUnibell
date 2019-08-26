@@ -1,0 +1,178 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_login_unibell"
+    android:orientation="vertical"
+    >
+    <!--android:layout_height="240dp"-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/top_login_unibell"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lblTituloLogin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:paddingTop="30dp"
+            android:paddingBottom="10dp"
+            android:text="@string/info_empresa_unibell"
+            android:textColor="@color/label_login_titulo_unibell"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textSize="50dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        >
+        <TextView
+            android:id="@+id/lblSubtituloLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:paddingTop="8dp"
+            android:paddingBottom="10dp"
+            android:text="@string/info_text_unibell"
+            android:textColor="@color/Button_login_unibell"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/lblUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="Usuario"
+            android:layout_marginTop="@dimen/pad_20dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/label_login_unibell"
+
+       />
+        <!--android:drawableLeft="@drawable/ic_action_person"-->
+
+        <pe.com.app.unibell.appunibell.Util.CleanableEditText
+            android:id="@+id/LogEdtUserName"
+            style="@style/SkyTextViewStyleUnibell"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:drawableRight="@drawable/close_circle"
+            android:hint="@string/nombre_input_hint_unibell"
+            android:inputType="textCapCharacters"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:textColor="@color/label_color_menu"
+            android:textSize="@dimen/pad_16dp"
+            >
+
+            <requestFocus />
+        </pe.com.app.unibell.appunibell.Util.CleanableEditText>
+
+        <TextView
+            android:id="@+id/lblClave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="Contraseña"
+            android:layout_marginTop="@dimen/pad_20dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/label_login_unibell"
+            />
+        <!--android:drawableLeft="@drawable/ic_action_secure"-->
+
+        <pe.com.app.unibell.appunibell.Util.ShowableEditText
+            android:id="@+id/LogEdtUserPass"
+            style="@style/SkyTextViewStyleUnibell"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:drawableRight="@drawable/eye"
+            android:hint="@string/contrasena_input_hint_unibell"
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/label_color_menu"
+            android:textSize="@dimen/pad_16dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:id="@+id/btLogin"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="Ingresar"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="@dimen/txt_7sp"
+                android:background="@drawable/borderradiusbutton_inactivo"
+                android:textColor="@color/label_blanco_login_unibell"
+                android:layout_marginTop="@dimen/pad_20dp"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:gravity="bottom"
+            >
+            <Button
+                android:id="@+id/btnSincronizarLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/history"
+                android:background="@null"
+                android:text="Sincronizar datos"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:drawablePadding="5dp"
+                android:textColor="@color/Button_login_unibell"
+                />
+
+
+            <Button
+                android:id="@+id/btnInfoLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:drawableRight="@drawable/comment_question_outline"
+                android:textColor="@color/Button_login_unibell" />
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

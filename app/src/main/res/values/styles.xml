@@ -1,0 +1,163 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:itemTextAppearance">@android:style/TextAppearance.Widget.IconMenu.Item
+        </item>
+        <item name="android:typeface">normal</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAppearance">@style/MyText</item>
+        <item name="android:windowBackground">@color/background_main_unibell</item>
+    </style>
+
+    <style name="TrickMarket" parent="Base.AppTheme" />
+
+    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/ubell_color1</item>
+        <item name="colorPrimaryDark">@color/ubell_color1</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="TrickMarket2" parent="Base.AppTheme2" />
+
+    <style name="Base.AppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/ubell_color2</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MyText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#e75353</item>
+    </style>
+
+    <style name="dashboard_button">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/buttonselector</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <style name="dashboard_button_center" parent="@style/dashboard_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <item name="android:textColor">#424242</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="editext_graybg" parent="android:Widget.EditText">
+        <!--<item name="android:background">@drawable/editext_bg_gray</item>-->
+        <item name="android:drawablePadding">@dimen/pad_10dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:paddingLeft">@dimen/pad_10dp</item>
+        <item name="android:paddingRight">@dimen/pad_10dp</item>
+        <item name="android:textSize">@dimen/txt_7sp</item>
+    </style>
+
+    <style name="SkyTextViewStyle">
+        <item name="android:textColor">#000000</item>
+        <item name="android:background">@drawable/border_dotted</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:gravity">start|center_vertical</item>
+    </style>
+
+
+    <style name="SkyTextViewStyleUnibell">
+        <item name="android:textColor">#000000</item>
+        <item name="android:background">@drawable/borderradius</item>
+        <!--   <item name="android:textStyle">italic</item> -->
+        <item name="android:gravity">start|center_vertical</item>
+    </style>
+
+     <!-- background_main_unibell-->
+    <style name="SkyTextViewStyleUnibellBusquedaCliente">
+        <item name="android:textColor">@color/label_color_menu</item>
+        <item name="android:background">@drawable/borderradius_busqueda_cliente</item>
+        <item name="android:fontFamily">@font/sf_pro_display_light</item>
+        <!--   <item name="android:textStyle">italic</item> -->
+        <item name="android:gravity">start|center_vertical</item>
+    </style>
+
+    <style name="SkyTextViewStyleUnibellActivo">
+        <item name="android:textColor">#000000</item>
+        <item name="android:background">@drawable/borderradius_activo</item>
+        <item name="android:gravity">start|center_vertical</item>
+    </style>
+
+    <style name="SkyFilterViewStyle">
+        <item name="android:textColor">#000000</item>
+        <!--   <item name="android:textStyle">italic</item> -->
+        <item name="android:gravity">start|center_vertical</item>
+    </style>
+
+    <!-- STYLE TEXT SPINNER -->
+    <style name="SkyTextViewStyleSpinner">
+        <item name="android:drawableRight">@drawable/easy_to_find_24x24</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:background">@drawable/border_dotted</item>
+        <!--<item name="android:textStyle">italic|bold</item>-->
+        <item name="android:gravity">start|center_vertical</item>
+    </style>
+
+
+    <!-- STYLE TEXT SPINNER -->
+    <style name="SkyTextViewStyleSpinnerUnibell">
+        <item name="android:drawableRight">@drawable/chevron_down</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:background">@drawable/borderradius</item>
+        <!--<item name="android:background">@drawable/border_dotted</item>-->
+        <!--<item name="android:textStyle">italic|bold</item>-->
+        <item name="android:gravity">start|center_vertical</item>
+    </style>
+    <!--label_blanco_login_unibell-->
+    <style name="SkyTextViewStyleSpinnerUnibellMain">
+        <item name="android:drawableRight">@drawable/chevron_down</item>
+        <item name="android:textColor">@color/label_color_menu</item>
+        <item name="android:background">@drawable/borderradius_main</item>
+        <!--<item name="android:background">@drawable/border_dotted</item>-->
+        <!--<item name="android:textStyle">italic|bold</item>-->
+        <item name="android:gravity">start|center_vertical</item>
+    </style>
+    <!--label_login_unibell-->
+    <style name="SkyTextViewStyleSpinnerUnibellBusqueda">
+        <item name="android:drawableRight">@drawable/chevron_down</item>
+        <item name="android:textColor">@color/label_color_menu</item>
+        <item name="android:background">@drawable/borderradius_busqueda_cliente</item>
+        <!--<item name="android:background">@drawable/border_dotted</item>-->
+        <!--<item name="android:textStyle">italic|bold</item>-->
+        <item name="android:gravity">start|center_vertical</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
+    <style name="SkyComboBoxStyle">
+        <item name="android:background">@drawable/borderradius</item>
+    </style>
+
+
+    <style name="SkyBtnMenuUnibell">
+        <item name="android:textColor">@color/label_color_menu</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:background">@drawable/borderradius_menu_unibell</item>
+
+    </style>
+
+</resources>

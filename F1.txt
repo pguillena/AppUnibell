@@ -1,0 +1,3 @@
+   /* ViewGroup headerView = (ViewGroup)getLayoutInflater().inflate(R.layout.activity_header, rlp_lvrolpermisos,false);
+            // Add header view to the ListView
+            rlp_lvrolpermisos.addHeaderView(headerView);*/

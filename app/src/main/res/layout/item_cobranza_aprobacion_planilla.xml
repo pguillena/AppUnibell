@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/borderradius_sin_borde"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Código"
+        android:textSize="16dp"
+        android:textColor="@color/Button_login_unibell"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:layout_marginBottom="2dp"
+        />
+
+    <TextView
+        android:id="@+id/ap_item1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Código"
+        android:textSize="16dp"
+        android:drawableRight="@drawable/chevron_right"
+        android:focusable="false"
+        android:textColor="@color/label_color_menu"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:layout_marginBottom="10dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cliente"
+        android:textSize="16dp"
+        android:textColor="@color/Button_login_unibell"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:layout_marginBottom="2dp"
+        />
+
+    <TextView
+        android:id="@+id/ap_item2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cliente"
+        android:textSize="16dp"
+        android:focusable="false"
+        android:textColor="@color/label_color_menu"
+        android:layout_marginBottom="10dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cobrador"
+        android:textSize="16dp"
+        android:textColor="@color/Button_login_unibell"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:layout_marginBottom="2dp"
+        />
+
+    <TextView
+        android:id="@+id/ap_item3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cobrador"
+        android:textSize="16dp"
+        android:focusable="false"
+        android:textColor="@color/label_color_menu"
+        android:layout_marginBottom="10dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forma De pago"
+        android:textSize="16dp"
+        android:textColor="@color/Button_login_unibell"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:layout_marginBottom="2dp"
+        />
+
+    <TextView
+        android:id="@+id/ap_item4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Forma De pago"
+        android:textSize="16dp"
+        android:focusable="false"
+        android:textColor="@color/label_color_menu"
+        android:layout_marginBottom="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="2dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Fecha"
+            android:textSize="16dp"
+            android:textColor="@color/Button_login_unibell"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Monto"
+            android:textSize="16dp"
+            android:textColor="@color/Button_login_unibell"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:id="@+id/ap_item5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Fecha"
+            android:textSize="16dp"
+            android:textColor="@color/label_color_menu"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/ap_item6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Monto"
+            android:textSize="16dp"
+            android:textColor="@color/label_color_menu"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recibo"
+        android:textSize="16dp"
+        android:textColor="@color/Button_login_unibell"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:layout_marginBottom="2dp"
+        />
+
+    <TextView
+        android:id="@+id/ap_item7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Forma De pago"
+        android:textSize="16dp"
+        android:focusable="false"
+        android:textColor="@color/label_color_menu"
+        android:layout_marginBottom="10dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Documentos"
+        android:textSize="16dp"
+        android:textColor="@color/Button_login_unibell"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:layout_marginBottom="2dp"
+        />
+
+    <TextView
+        android:id="@+id/ap_item8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="0,0,0,0"
+        android:textSize="16dp"
+        android:focusable="false"
+        android:textColor="@color/label_color_menu"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:id="@+id/ap_itemreporte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Planilla"
+            android:textSize="16dp"
+            android:textColor="@color/Button_login_unibell"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:layout_marginBottom="2dp"
+            android:drawableRight="@drawable/file_download_outline"
+            android:focusable="false"
+            />
+
+        <TextView
+            android:id="@+id/ap_item9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Planilla"
+            android:textSize="16dp"
+            android:focusable="false"
+            android:textColor="@color/label_color_menu"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/ap_btnretornar"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:focusable="false"
+            android:text="RETORNAR"
+            android:textColor="@color/background"
+            android:background="@drawable/borderradiusbutton_recibo"
+            android:layout_marginRight="20dp"
+            />
+
+        <Button
+            android:id="@+id/ap_btnaprobar"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:focusable="false"
+            android:text="APROBAR"
+            android:background="@drawable/borderradiusbutton"
+            android:textColor="@color/background"
+            android:layout_marginRight="10dp"
+            />
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

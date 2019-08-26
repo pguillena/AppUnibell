@@ -1,0 +1,142 @@
+<resources>
+    <!-- <string name="app_name">UNIBELL</string>
+    <string name="UNIBELL_PREF">UNIBELL</string>
+-->
+    <string name="app_name">Cobranzas Unibell</string>
+    <string name="UNIBELL_PREF">UNIBELL</string>
+
+    <string name="orden_Ascendente">Ascendente</string>
+    <string name="orden_Descendente">Descendente</string>
+
+    <string name="agregar">Agregar</string>
+    <string name="guardar">Guardar</string>
+    <string name="buscar">Buscar</string>
+    <string name="refresh">Refresh</string>
+    <string name="sincronizar">Sincronizar</string>
+
+    <string name="cabfcobBL">Detalle de pagos Sincronizados,</string>
+    <string name="clientesBL">Clientes Sincronizados,</string>
+    <string name="ctaBncoBL">Cuentas corrientes Sincronizadas,</string>
+    <string name="documentos_Cobra_CabBL">Documentos de cobranzas Cab Sincronizados,</string>
+    <string name="documentos_Cobra_DetBL">Documentos de cobranzas Det Sincronizados,</string>
+    <string name="documentos_Cobra_MovBL">Movimientos de cobranzas Sincronizados,</string>
+    <string name="factCobBL">Facturas Sincronizadas,</string>
+    <string name="gem_bancoBL">Bancos Sincronizados,</string>
+    <string name="mvendedorBL">Vendedores Sincronizados,</string>
+    <string name="parTablaBL">Tablas de tablas Sincronizadas,</string>
+    <string name="recibos_ccobranzaBL">Recibos de Cobranzas Sincronizados,</string>
+    <string name="s_gem_clienteBL">Códigos de sistema cliente Sincronizados,</string>
+    <string name="s_gem_persona_direccionBL">Direcciones Sincronizados,</string>
+    <string name="s_gem_personaBL">Personas Sincronizados,</string>
+    <string name="s_gem_vendedorBL">Códigos de sistema Sincronizados,</string>
+    <string name="s_sea_accesosBL">Listado de accesos Sincronizados,</string>
+    <string name="s_sea_usuario_accionBL">Acciones de Usuarios Sincronizadas,</string>
+    <string name="s_sea_usuario_localBL">Locales por Usuario Sincronizados,</string>
+    <string name="s_sem_empresaBL">Empresas Sincronizados,</string>
+    <string name="s_sem_localBL">Locales Sincronizados,</string>
+    <string name="s_sem_perfilBL">Perfiles de usuario Sincronizados,</string>
+    <string name="s_sem_usuarioBL">Usuarios del sistema Sincronizados,</string>
+    <string name="sucursalesBL">Sucursales(Dirección) Sincronizados,</string>
+    <string name="tablas_auxiliaresBL">Tablas Auxiliares Sincronizadas,</string>
+    <string name="s_sem_menuBL">Opciones de Menú Sincronizados,</string>
+
+    <string name="s_gem_vendedor_codigo_antBL">Códigos antiguos Sincronizadas,</string>
+    <string name="s_gem_clientes_codigo_antBL">Códigos antiguos Sincronizadas,</string>
+
+    <string name="docuventBL">Documentos Sincronizados,</string>
+    <string name="dpm_packing_cabBL">Packing Cabecera Sincronizada,</string>
+    <string name="dpm_packing_detBL">Packing Detalle Sincronizados,</string>
+    <string name="s_gea_vendedor_supervisorBL">Vendedor Supervisor Sincronizados,</string>
+    <string name="s_vem_correlativoBL">Correlativos Sincronizados,</string>
+    <string name="vem_cobrador_zonaBL">Zonas de Cobrador Sincronizadas,</string>
+    <string name="s_gea_vendedor_clienteBL">Vendedor Cliente,</string>
+    <string name="S_gem_TipoCambioBL">Tipo de Cambio Sincronizado,</string>
+    <string name="dpm_personal_transporteBL">Personal de Transporte Sincronizado,</string>
+
+    <string name="reportepdf">Reporte PDF</string>
+    <string name="reporteexcel">Reporte Excel</string>
+
+    <string name="version_text">Version: %1$d</string>
+    <string name="imei_text">IMEI: %1$s </string><!-- 359291051065151 -->
+
+    <string name="lbl_configuracion">Configuraciones</string>
+    <string name="action_settings">Configuración</string>
+
+
+    <!--LOGIN -->
+    <string name="nombre_input">Usuario</string>
+    <string name="contrasena_input">Constraseña</string>
+
+    <string name="log_lbl_usuario">Usuario</string>
+    <string name="log_lbl_clave">Contraseña</string>
+    <string name="log_lbl_showclave">Mostrar Contraseña</string>
+
+    <string name="log_txt_usuario">Ingrese usuario</string>
+    <string name="log_txt_clave">Ingrese su contraseña</string>
+
+    <string name="log_btn_login">Login</string>
+    <string name="log_btn_salir">Salir</string>
+
+    <string name="login_title">Login</string>
+    <string name="login_mensage1">Usuario y/o contraseña incorrecta</string>
+    <string name="info_text">Necesitas tener creada una cuenta para iniciar la aplicación</string>
+
+    <!--GENERAL-->
+    <string name="gnr_lbl_cancelar">Cancelar</string>
+    <string name="gnr_lbl_confirmar">Confirmar</string>
+    <string name="gnr_lbl_aceptar">Aceptar</string>
+    <string name="gnr_lbl_limpiar">Limpiar</string>
+    <string name="gnr_msg_pregunta">Desea guardar los cambios</string>
+    <string name="fil_lbl_titulo_list">Filtros de fechas</string>
+
+    <string name="lco_lbl_titulo_list">Liquidación de cobranza</string>
+    <string name="apl_lbl_titulo_list">Aprobación de Planilla</string>
+    <string name="cli_lbl_titulo_list">Lista de Clientes</string>
+    <string name="ecta_lbl_titulo_list">Estado de cuenta de Clientes</string>
+    <!--LOGIN-->
+
+    <string name="lgn_msg_error">Usuario o clave incorrecta</string>
+    <!--CLIENTE-VALIDACIONES-->
+    <string name="cli_msg_nombre">Ingrese nombre</string>
+    <string name="cli_msg_nrodoc">Ingrese nro de documento</string>
+    <string name="cli_msg_telefono">Ingrese teléfono</string>
+    <string name="cli_msg_direccion">Ingrese dirección</string>
+
+    <!--USUARIOS-->
+    <string name="usu_lbl_titulo_list">Lista de Usuarios</string>
+    <string name="usu_lbl_titulo">Registro de usuarios</string>
+    <string name="usu_lbl_nombre">Nombre</string>
+    <string name="usu_lbl_rol">Perfil</string>
+    <string name="usu_lbl_clave">Clave</string>
+    <string name="usu_lbl_repetir">Repetir</string>
+    <string name="usu_lbl_activo">Activo</string>
+    <string name="usu_lbl_cancelar">Cancelar</string>
+    <string name="usu_lbl_guardar">Guardar</string>
+
+    <!--TIPOS DE USUARIOS-->
+    <string name="tus_lbl_titulo_list">Lista de perfiles</string>
+    <string name="tus_lbl_titulo">Registro de perfiles</string>
+    <string name="tus_lbl_descripcion">Descripción</string>
+    <string name="tus_lbl_activo">Activo</string>
+    <string name="tus_lbl_cancelar">Cancelar</string>
+    <string name="tus_lbl_guardar">Guardar</string>
+
+    <!--PERSMISOS-->
+    <string name="per_lbl_titulo_list">Permisos por perfil</string>
+    <string name="per_lbl_titulo">Permisos</string>
+    <string name="ncn_msg_descripcion">Ingrese descripción</string>
+    <string name="title_activity__filtro_clientes">Activity_FiltroClientes</string>
+    <string name="title_activity__filtro_liquidacion">Activity_FiltroLiquidacion</string>
+    <string name="title_activity_totales_liquidacion">Montos Cobrados</string>
+    <string name="title_activity__asignar">Activity_Asignar</string>
+
+
+    <!--LOGIN UNIBELL-->
+    <string name="nombre_input_hint_unibell">Ingresar usuario asignado</string>
+    <string name="contrasena_input_hint_unibell">Minimo 8 caracteres</string>
+    <string name="info_text_unibell">Inicia sesión</string>
+    <string name="info_text_local_unibell">Selecciona empresa y local</string>
+    <string name="info_empresa_unibell">UNIBELL</string>
+    <!--FIN LOGIN UNIBELL-->
+
+</resources>

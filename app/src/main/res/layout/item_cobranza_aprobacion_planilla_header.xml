@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:background="@color/ubell_color1"
+        >
+        <TextView
+            android:id="@+id/ap_item1"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="CÓDIGO"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/ap_item2"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:text="CLIENTE"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            style="@style/SkyTextViewStyle"
+            />
+        <TextView
+            android:id="@+id/ap_item3"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="F.PAGO"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/ap_item4"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:text="COBRADOR"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/ap_item5"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="FECHA"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/ap_item6"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="MONTO"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/ap_item7"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="RECIBO"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/ap_item8"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:text="DOCUMENTOS"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/ap_item9"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="PLANILLA"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+        android:id="@+id/ap_item10"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:text="EVENTO"
+        android:gravity="right"
+        android:textColor="@color/background"
+        android:textSize="@dimen/txt_5sp"
+        android:layout_marginRight="0dp"
+        />
+
+        <TextView
+            android:id="@+id/ap_item11"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            android:layout_marginRight="0dp"
+
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

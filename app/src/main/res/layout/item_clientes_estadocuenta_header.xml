@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:background="@color/ubell_color1"
+        >
+        <TextView
+            android:id="@+id/cp_item1"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="VEND ORIGEN"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            android:layout_marginRight="0dp"
+            style="@style/SkyTextViewStyle"
+            />
+        <TextView
+            android:id="@+id/cp_item2"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="VEND"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            android:layout_marginRight="0dp"
+            style="@style/SkyTextViewStyle"
+            />
+        <TextView
+            android:id="@+id/cp_item3"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="C.PAGO"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            android:layout_marginRight="0dp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/cp_item4"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="T.DOC"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            android:layout_marginRight="0dp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/cp_item5"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="SER"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            android:layout_marginRight="0dp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/cp_item6"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="NUMERO"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            android:layout_marginRight="0dp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/cp_item7"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="F.DOC"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            android:layout_marginRight="0dp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/cp_item8"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="F.VCTO"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            android:layout_marginRight="0dp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/cp_item9"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="DIAS"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_5sp"
+            android:layout_marginRight="0dp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/cp_item10"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="MN"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:layout_marginRight="0dp"
+            style="@style/SkyTextViewStyle"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/cp_item11"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:text="IMPORTE"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:layout_marginRight="0dp"
+            style="@style/SkyTextViewStyle"
+            />
+
+        <TextView
+            android:id="@+id/cp_item12"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:text="SALDO"
+            android:gravity="center"
+            android:textColor="@color/background"
+            android:layout_marginRight="0dp"
+            style="@style/SkyTextViewStyle"
+            />
+
+
+        <Button
+            android:id="@+id/cl_btnPDF"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="PDF"
+            android:background="@color/ubell_color1"
+            android:textColor="@color/background"
+            />
+
+        <Button
+            android:id="@+id/cl_btnXML"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="XML"
+            android:background="@color/ubell_color1"
+            android:textColor="@color/background"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

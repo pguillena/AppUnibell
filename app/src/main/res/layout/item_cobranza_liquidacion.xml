@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lyItemLiquidacion"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingRight="@dimen/pad_20dp"
+    android:paddingLeft="@dimen/pad_20dp"
+    android:paddingBottom="@dimen/pad_20dp"
+    android:orientation="vertical"
+    android:background="@drawable/borderradius_sin_borde"
+    >
+    <CheckBox
+        android:id="@+id/cl_itemchk"
+        android:layout_width="30dp"
+        android:layout_height="1dp"
+        android:focusable="false"
+        android:visibility="gone"
+        />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/cl_col1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cliente"
+            android:textSize="16dp"
+            android:layout_marginTop="@dimen/pad_20dp"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:textColor="@color/Button_login_unibell"
+            />
+
+        <TextView
+            android:id="@+id/cl_itemCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CLIENTE"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:layout_below="@id/cl_col1"
+            android:textColor="@color/label_color_menu"
+            />
+
+        <ImageView
+            android:id="@+id/ivMarkerConciliado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/marker_conciliacion"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
+
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="@dimen/pad_20dp"
+        >
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cl_col2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Documentos"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cl_col9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Monto"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/cl_itemDocumentos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FACT F001-25"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_light"
+                android:textColor="@color/label_color_menu"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/cl_itemMonto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="S/ 153"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_light"
+                android:textColor="@color/label_color_menu"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/cl_col3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forma de pago"
+        android:textSize="16dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        />
+
+    <TextView
+        android:id="@+id/cl_itemFormaPago"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Efectivo"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        />
+
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/lyRecibo"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="@dimen/pad_20dp"
+        >
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cl_lblRecibo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recibo"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cl_lblPlanilla"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Planilla"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/cl_itemRecibo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="001-124556"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_light"
+                android:paddingRight="15dp"
+                android:drawableRight="@drawable/file_download_outline"
+                android:textColor="@color/label_color_menu"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/cl_itemPlanilla"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="99-122465"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_light"
+                android:paddingRight="@dimen/pad_10dp"
+                android:drawableRight="@drawable/file_download_outline"
+                android:textColor="@color/label_color_menu"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/lyFondoBtnEditar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:background="@color/background_login_unibell"
+        >
+
+        <Button
+            android:id="@+id/cl_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:focusable="false"
+            android:text="EDITAR"
+            android:layout_weight="1"
+            android:textSize="@dimen/txt_7sp"
+            android:background="@drawable/borderradiusbutton"
+            android:textColor="@color/background"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+

@@ -1,0 +1,130 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_login_unibell"
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/lq_txttipopago"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_12sp"
+                android:layout_weight="1"
+                style="@style/SkyTextViewStyleSpinnerUnibell"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp"
+                android:hint="FORMA DE PAGO"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+
+
+        <TextView
+            android:id="@+id/lq_txtccbanco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_12sp"
+            android:layout_weight="1"
+            style="@style/SkyTextViewStyleSpinnerUnibell"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:hint="BANCO/CTA CTE"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:id="@+id/lq_txtnroope"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_12sp"
+            android:layout_weight="1"
+            style="@style/SkyTextViewStyleUnibell"
+            android:padding="20dp"
+            android:layout_marginBottom="10dp"
+            android:inputType="number"
+            android:hint="N° OP / CHEQUE / TARJETA"
+            android:maxLength="30"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/lq_txtfecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_12sp"
+            android:layout_weight="1"
+            style="@style/SkyTextViewStyleSpinnerUnibell"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:hint="FECHA"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+
+        <Button
+            android:id="@+id/lq_btnasignar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_buscar"
+            android:background="@drawable/borderradiusbutton"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_12sp"
+            android:text="ASIGNAR"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+
+            />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

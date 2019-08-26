@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ss_lbltitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="aca va el mensaje"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:textSize="@dimen/txt_7sp"
+            />
+
+        <Button
+            android:id="@+id/ss_btnaceptar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:text="Aceptar"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@color/ubell_color1"
+            android:textColor="@color/background"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

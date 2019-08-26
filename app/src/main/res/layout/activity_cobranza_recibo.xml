@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="#eaeaea"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/dw_top"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:gravity="left"
+                android:text="Cliente"
+                android:layout_marginTop="80dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_blanco_login_unibell"
+                />
+
+            <TextView
+                android:id="@+id/rc_lblcliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_bold"
+                android:gravity="left"
+                android:text="Elvis Galindo Leon"
+                android:layout_marginLeft="20dp"
+                android:textSize="18dp"
+                android:textColor="@color/label_blanco_login_unibell"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="Fecha de Planilla"
+                    android:textSize="@dimen/txt_5sp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <TextView
+                    android:id="@+id/rc_txtffecha"
+                    style="@style/SkyTextViewStyleSpinnerUnibell"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/txt_7sp"
+                    android:layout_weight="1"
+                    android:hint="01-01-2019"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dp"
+                    />
+
+                <TextView
+                    android:id="@+id/rc_lblborrar"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginRight="2dp"
+                    android:text="X"
+                    android:textSize="@dimen/txt_10sp"
+                    android:textColor="@color/background"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:background="@drawable/boton_redondo"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="16dp"
+        >
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:layout_weight="1"
+            >
+            <ListView
+                android:id="@+id/rc_lscobranza"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:choiceMode="singleChoice"
+                android:listSelector="@color/list_seleccion"
+                android:background="#f2f2f2"
+                android:divider="@null"
+                android:dividerHeight="20dp"
+                />
+        </HorizontalScrollView>
+    </LinearLayout>
+
+</LinearLayout>

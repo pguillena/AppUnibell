@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/is_item"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:textSize="@dimen/txt_7sp"
+        android:textColor="@color/Styletext_color"
+        android:text="MONEDA"
+        />
+
+    <TextView
+        android:id="@+id/is_valor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:textSize="@dimen/txt_7sp"
+        android:textColor="@color/ubell_color2"
+        android:text="S/."
+        android:gravity="right"
+        />
+</LinearLayout>

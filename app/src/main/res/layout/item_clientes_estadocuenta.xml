@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/pad_20dp"
+    android:paddingRight="@dimen/pad_20dp"
+    android:paddingBottom="@dimen/pad_20dp"
+    android:background="@color/label_login_titulo_unibell"
+    >
+
+
+    <TextView
+        android:id="@+id/lblVendOrigen"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Vend. Origen"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_marginTop="@dimen/pad_20dp"
+        />
+    <TextView
+        android:id="@+id/lblVendedor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vendedor"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_toRightOf="@id/lblVendOrigen"
+        android:layout_marginTop="@dimen/pad_20dp"
+        />
+
+    <TextView
+        android:id="@+id/cp_item1"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/lblVendOrigen"
+        android:hint="122"
+        />
+
+    <TextView
+        android:id="@+id/cp_item2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="135"
+        android:layout_below="@id/lblVendedor"
+        android:layout_toRightOf="@id/cp_item1"
+        />
+
+    <TextView
+        android:id="@+id/lblCpago"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="C. Pago"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/cp_item1"
+        android:layout_marginTop="@dimen/pad_20dp"
+        />
+
+
+    <TextView
+        android:id="@+id/cp_item3"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="Efectivo"
+        android:layout_below="@id/lblCpago"
+        />
+
+
+
+    <TextView
+        android:id="@+id/lblTipoDoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Documento"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/cp_item2"
+        android:layout_toRightOf="@id/lblCpago"
+        android:layout_marginTop="@dimen/pad_20dp"
+        />
+
+
+    <TextView
+        android:id="@+id/cp_item4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="01"
+        android:layout_below="@id/lblCpago"
+        android:layout_toRightOf="@id/cp_item3"
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/lblFechaDoc"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="F. Doc"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/cp_item3"
+        android:layout_marginTop="@dimen/pad_20dp"
+        />
+
+
+    <TextView
+        android:id="@+id/cp_item7"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="21/08/2019"
+        android:layout_below="@id/lblFechaDoc"
+        />
+
+
+
+
+
+    <TextView
+        android:id="@+id/lblFVcto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="F. Vcto"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/cp_item4"
+        android:layout_toRightOf="@id/lblFechaDoc"
+        android:layout_marginTop="@dimen/pad_20dp"
+        />
+
+
+    <TextView
+        android:id="@+id/cp_item8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="21/09/2019"
+        android:layout_below="@id/lblFVcto"
+        android:layout_toRightOf="@id/cp_item7"
+        />
+
+
+    <TextView
+        android:id="@+id/lblImporte"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Importe"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/cp_item7"
+        android:layout_marginTop="@dimen/pad_20dp"
+        />
+
+
+
+    <TextView
+        android:id="@+id/cp_itemSaldo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="S/ 19.9"
+        android:layout_below="@id/lblSaldo"
+        android:layout_toRightOf="@id/cp_item11"
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/cp_item11"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="S/ 165.35"
+        android:layout_below="@id/lblImporte"
+        />
+
+
+    <TextView
+        android:id="@+id/lblSaldo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Saldo"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/cp_item8"
+        android:layout_toRightOf="@id/lblImporte"
+        android:layout_marginTop="@dimen/pad_20dp"
+        />
+
+
+
+    <TextView
+        android:id="@+id/cl_btnPDF"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Descargar PDF"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:paddingRight="15dp"
+        android:drawableLeft="@drawable/pdf_small"
+        android:layout_below="@id/cp_item11"
+        android:textColor="@color/label_color_menu"
+        android:layout_marginTop="@dimen/pad_20dp"
+        android:drawablePadding="@dimen/pad_10dp"
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/cl_btnXML"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Descargar XML"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:paddingRight="15dp"
+        android:drawableLeft="@drawable/xml_small"
+        android:textColor="@color/label_color_menu"
+        android:layout_marginTop="@dimen/pad_20dp"
+        android:drawablePadding="@dimen/pad_10dp"
+        android:layout_below="@id/cp_itemSaldo"
+        android:layout_toRightOf="@id/cl_btnPDF"
+        />
+
+
+
+
+
+</RelativeLayout>
+
+
+
+
+

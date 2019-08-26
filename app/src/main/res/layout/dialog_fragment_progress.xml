@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="400dp"
+    android:layout_height="200dp"
+    android:padding="16dp"
+    >
+    <!--animationlist para crear animaciones-->
+    <ProgressBar
+        android:id="@+id/progres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:indeterminate="true"
+        />
+
+    <TextView
+        android:id="@+id/tvMensaje"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Cargando"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/progres"
+        android:textColor="@color/label_login_unibell"
+        android:paddingLeft="10dp"
+        />
+
+</RelativeLayout>

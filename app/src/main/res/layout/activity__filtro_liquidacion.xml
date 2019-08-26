@@ -1,0 +1,117 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_main_unibell"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/pad_20dp"
+        android:layout_marginRight="@dimen/pad_20dp"
+>
+
+    <TextView
+                android:id="@+id/lblBuscarLiquidacion1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estado"
+                android:paddingLeft="15dp"
+                android:paddingTop="20dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_login_unibell"
+                />
+
+            <TextView
+                android:id="@+id/lq_txtfestado"
+                style="@style/SkyTextViewStyleSpinnerUnibellBusqueda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Elija un estado"
+                android:textSize="16dp"
+                android:paddingLeft="15dp"
+                />
+
+
+
+    <TextView
+        android:id="@+id/lblBuscarLiquidacion2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha de planilla"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
+        android:textSize="14dp"
+        android:textColor="@color/label_login_unibell"
+        />
+            <TextView
+                android:id="@+id/lq_txtffechaFiltro"
+                style="@style/SkyTextViewStyleSpinnerUnibellBusqueda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Elija una fecha"
+                android:textSize="16dp"
+                android:paddingLeft="15dp"
+                />
+
+
+    <TextView
+        android:id="@+id/lblBuscarLiquidacion3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="N° de Planilla"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
+        android:textSize="14dp"
+        android:textColor="@color/label_login_unibell"
+        />
+
+
+    <EditText
+        android:id="@+id/lq_txtfplan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingresar número"
+        android:textSize="16dp"
+        android:padding="15dp"
+        style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+        android:layout_marginBottom="10dp"
+        />
+
+    <TextView
+        android:id="@+id/lblBuscarLiquidacion4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="N° de Planilla despacho"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
+        android:textSize="14dp"
+        android:textColor="@color/label_login_unibell"
+        />
+
+    <EditText
+        android:id="@+id/lq_txtpaking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingresar número"
+        android:textSize="16dp"
+        android:padding="15dp"
+        style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+        android:layout_marginBottom="10dp"
+        />
+
+            <Button
+                android:id="@+id/lq_lblbuscar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Buscar"
+                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:padding="10dp"
+                android:background="@drawable/borderradiusbutton"
+                android:textColor="@color/background"
+
+                />
+
+
+    </LinearLayout>
+

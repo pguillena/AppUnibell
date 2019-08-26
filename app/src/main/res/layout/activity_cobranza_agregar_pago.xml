@@ -1,0 +1,294 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_main_unibell"
+    android:orientation="vertical"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/dw_top"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:gravity="left"
+                android:text="Cliente"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_blanco_login_unibell"
+                />
+
+            <TextView
+                android:id="@+id/rp_lblcliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_bold"
+                android:gravity="left"
+                android:text="Elvis Galindo Leon"
+                android:layout_marginLeft="20dp"
+                android:textSize="18dp"
+                android:textColor="@color/label_blanco_login_unibell"
+                android:layout_marginBottom="10dp"
+                />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/pad_16dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:text="Recibo"
+                    android:gravity="left"
+                    android:fontFamily="@font/sf_pro_display_bold"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:text="T.C:"
+                    android:textColor="@color/Button_login_unibell"
+                    android:gravity="right"
+                    android:fontFamily="@font/sf_pro_display_bold"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/rp_txttipocambio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:text="3.25"
+                    android:textColor="@color/Button_login_unibell"
+                    android:gravity="right"
+                    android:fontFamily="@font/sf_pro_display_bold"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="2dp"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Serie"
+                    android:paddingLeft="15dp"
+                    android:textSize="14dp"
+                    android:textColor="@color/label_login_unibell"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Número"
+                    android:paddingLeft="15dp"
+                    android:textSize="14dp"
+                    android:textColor="@color/label_login_unibell"
+                    android:layout_weight="1"
+                    />
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <EditText
+                android:id="@+id/rp_txtserie"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Ingresar número"
+                android:textSize="16dp"
+                android:padding="15dp"
+                style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:maxLength="5"
+                android:inputType="number"
+                />
+
+            <EditText
+                android:id="@+id/rp_txtnumero"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Ingresar número"
+                android:textSize="16dp"
+                android:padding="15dp"
+                style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:maxLength="10"
+                android:inputType="number"
+                />
+        </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha Planilla"
+                android:paddingLeft="15dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_login_unibell"
+                android:layout_marginBottom="2dp"
+                />
+
+            <TextView
+                android:id="@+id/rp_lblfplanilla"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ejm:16-08-2019"
+                style="@style/SkyTextViewStyleSpinnerUnibellBusqueda"
+                android:textSize="16dp"
+                android:paddingLeft="15dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forma de Pago"
+                android:paddingLeft="15dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_login_unibell"
+                android:layout_marginBottom="2dp"
+                />
+
+            <TextView
+                android:id="@+id/rp_lblfpago"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ejm: Efectivo"
+                style="@style/SkyTextViewStyleSpinnerUnibellBusqueda"
+                android:textSize="16dp"
+                android:paddingLeft="15dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Banco CTA CTE"
+                android:paddingLeft="15dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_login_unibell"
+                android:layout_marginBottom="2dp"
+                />
+
+            <TextView
+                android:id="@+id/rp_lblbancoctacte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ejm: BCP"
+                style="@style/SkyTextViewStyleSpinnerUnibellBusqueda"
+                android:textSize="16dp"
+                android:paddingLeft="15dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingrese Monto"
+                android:paddingLeft="15dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_login_unibell"
+                android:layout_marginBottom="2dp"
+                />
+
+            <EditText
+                android:id="@+id/rp_txtmonto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ingresar número"
+                android:textSize="16dp"
+                android:padding="15dp"
+                style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:maxLength="10"
+                android:inputType="numberDecimal"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Seleccione Moneda"
+                    android:layout_weight="1"
+                    />
+
+                <Switch
+                    android:id="@+id/rp_swmoneda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Button_login_unibell"
+                    android:textColor="@color/background"
+                    android:textOn="Dolares"
+                    android:textOff="Soles"
+                    android:text="Soles"
+                   />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/rp_btnregistrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/ic_buscar"
+                android:textSize="@dimen/txt_12sp"
+                android:text="Registrar Pago"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:padding="20dp"
+                android:background="@drawable/borderradiusbutton"
+                android:textColor="@color/background"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,14 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="left"
+    android:padding="10dp"
+    android:textSize="18dp"
+    android:fontFamily="@font/sf_pro_display_light"
+    android:textColor="@color/label_color_menu"
+    android:background="@drawable/line"
+    />
+
+
+

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/borderradius"
+      >
+
+        <TextView
+            android:id="@+id/tba_lbltitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="500"
+            android:textSize="20dp"
+            android:text="Seleccione"
+            android:gravity="left"
+            android:padding="30dp"
+            android:textColor="@color/black"
+            />
+
+
+        <EditText
+            android:id="@+id/tba_edttitulo"
+            style="@style/SkyTextViewStyleUnibell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/pad_30dp"
+            android:layout_marginRight="@dimen/pad_30dp"
+            android:padding="@dimen/pad_10dp"
+            android:textSize="20dp"
+            android:hint="Filtro"
+            android:textColor="@color/label_login_unibell"
+            android:inputType="textCapCharacters"
+            />
+
+        <ListView
+            android:id="@+id/tab_lvauxiliar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:listSelector="@color/list_seleccion"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            />
+
+    </LinearLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/pad_10dp"
+    android:paddingBottom="@dimen/pad_10dp"
+    android:paddingLeft="@dimen/pad_20dp"
+    android:paddingRight="@dimen/pad_20dp"
+    android:background="@drawable/borderradius_menu_unibell"
+    >
+
+    <TextView
+        android:id="@+id/cl_col1Sincronizacion"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Proceso"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        />
+
+
+    <TextView
+        android:id="@+id/cl_col2Sincronizacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_toRightOf="@id/cl_col1Sincronizacion"
+
+        />
+
+
+    <TextView
+        android:id="@+id/sin_lblproceso"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="SINCRONIZACION"
+        android:focusable="false"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/cl_col1Sincronizacion"
+        />
+
+
+
+    <TextView
+        android:id="@+id/sin_lblFeha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="10/09/2017 11:20"
+        android:textSize="16dp"
+        android:focusable="false"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/cl_col2Sincronizacion"
+        android:layout_toRightOf="@id/sin_lblproceso"
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/sin_btntmpforward"
+        style="@style/SkyBtnMenuUnibell"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:text="Actualizar"
+        android:layout_gravity="center_horizontal"
+        android:drawableLeft="@drawable/list_sincronizar_small"
+        android:layout_weight="1"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:drawablePadding="10dp"
+        android:textSize="14dp"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/sin_lblproceso"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>
+

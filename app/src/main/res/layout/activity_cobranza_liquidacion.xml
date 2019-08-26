@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_main_unibell"
+    >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/label_blanco_login_unibell"
+            android:gravity="center_vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/label_blanco_login_unibell"
+
+             >
+            <CheckBox
+                android:id="@+id/lq_chktodos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Todo"
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/label_blanco_login_unibell"
+                android:gravity="right"
+                android:paddingRight="@dimen/pad_10dp"
+                android:layout_marginLeft="@dimen/pad_20dp"
+              >
+
+                <Button
+                    android:id="@+id/btnConciliar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/alpha_c_circle_outline"
+                    />
+
+                <Button
+                    android:id="@+id/btnAsignar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/alpha_a_circle_outline"
+                    />
+
+                <Button
+                    android:id="@+id/btnEnvio"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/email_send_outline"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/tools"
+        android:id="@+id/rlyCabeceraLiquidacion"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+
+
+            <ListView
+                android:id="@+id/lq_lsdetalle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbarStyle="insideInset"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:dividerHeight="20dp"
+                android:padding="10dp"
+                android:listSelector="@color/list_seleccion"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabBuscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            android:src="@drawable/filtro_small" />
+
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/lyTotalesLiquidacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/label_blanco_login_unibell"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/btnVerDetalle"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:padding="@dimen/pad_20dp"
+            android:text="Ver detalle"
+            android:textColor="@color/label_color_menu"
+            android:layout_gravity="bottom"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/lblTotalGeneral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:padding="@dimen/pad_20dp"
+            android:text="Total general"
+            android:textColor="@color/Button_login_unibell"
+            android:gravity="right"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/lq_lbltotalg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:padding="@dimen/pad_20dp"
+            android:text="S/ 1400.00"
+            android:gravity="right"
+            android:textColor="@color/label_color_menu"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

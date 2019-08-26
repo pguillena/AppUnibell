@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <!-- <color name="colorPrimary">#B81414</color>-->
+    <color name="colorPrimary">#b52e31</color>
+    <color name="colorPrimaryDark">#990000 </color>
+    <color name="colorAccent">#78ae6e</color>
+
+     <color name="background">#ffffff</color>
+     <color name="black">#000000</color>
+
+    <color name="buttonfocus">#f2edf2</color>
+    <color name="buttonpressed">#f2f2f2</color>
+    <color name="Styletext_color">#4b4848</color>
+    <color name="Styletext_green">#309f5e</color>
+    <color name="red_indicator">#EF6955</color>
+    <color name="list_seleccion">#cfd8dc</color>
+    <color name="ubell_rojo">#c93232</color>
+    <color name="ubell_blue">#b52e31</color>
+
+    <color name="ubell_color1">#b52e31</color>
+  <!--  <color name="ubell_color1">#B81414</color>-->
+    <color name="ubell_color2">#635F5F</color>
+    <color name="ubell_color11">#FFEB3B</color>
+
+    <color name="ubell_color3">#FFA500</color>
+    <color name="ubell_color4">#1f1f1f</color>
+    <color name="ubell_color5">#b0b0b0</color>
+    <color name="ubell_color6">#817e7e</color>
+    <color name="ubell_color7">#cfd8dc</color>
+    <color name="ubell_color8">#cfd8dc</color>
+    <color name="ubell_color9">#817e7e</color>
+    <color name="ubell_color10">#78ae6e</color>
+
+ <!-- LOGIN UNIBELL-->
+ <color name="label_login_titulo_unibell">#f4f4f4</color>
+ <color name="background_login_unibell">#f1f1f1</color>
+ <color name="background_cobranzacab_unibell">#d2d2d2</color>
+ <color name="background_cobranzadet1_unibell">#eaeaea</color>
+
+
+ <color name="background_main_unibell">#e2e2e3</color>
+ <color name="label_login_unibell">#858585</color>
+ <color name="label_blanco_login_unibell">#F2F2F2</color>
+ <color name="border_login_unibell">#737474</color>
+ <color name="Button_login_unibell">#b52e31</color>
+ <color name="Button_login_disable_unibell">#9f9fa3</color>
+ <color name="Spinner_main_unibell">#842628</color>
+ <color name="label_color_menu">#131415</color>
+ <color name="label_codigo_cliente">#a51f22</color>
+ <color name="Button_recibo_unibell">#b4a996</color>
+ <color name="Divider_color">#979797</color>
+ <color name="Shadow_boton">#D8D8D8</color>
+ <!-- FIN LOGIN UNIBELL-->
+
+</resources>

@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_main_unibell"
+    android:orientation="vertical"
+    >
+
+
+        <TextView
+            android:id="@+id/cl_lblregistros"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="0 Registros"
+            android:textColor="@color/Button_login_unibell"
+            android:gravity="left"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/pad_20dp"
+            android:layout_marginLeft="@dimen/pad_20dp"
+            android:layout_marginRight="@dimen/pad_20dp"
+            />
+
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:context="com.android_examples.fababovelistview_android_examplescom.MainActivityUnibell">
+
+
+
+    <ListView
+            android:id="@+id/cl_lvclientes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarStyle="insideInset"
+        android:divider="@null"
+        android:dividerHeight="20dp"
+        android:layout_margin="@dimen/pad_20dp"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:src="@mipmap/ic_magnify_white_36dp"
+            app:elevation="4dp" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

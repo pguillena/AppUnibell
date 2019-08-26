@@ -1,0 +1,318 @@
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@drawable/dw_top"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="left"
+                    android:text="Usuario"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="14dp"
+                    android:textColor="@color/label_blanco_login_unibell"
+                    />
+
+                <TextView
+                    android:id="@+id/lblNombreUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_bold"
+                    android:gravity="left"
+                    android:text="Percy Giancarlo Guillen Alcantara"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="18dp"
+                    android:textColor="@color/label_blanco_login_unibell"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lblEmpresa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="Empresa"
+                    android:layout_marginTop="@dimen/pad_10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:padding="@dimen/pad_5dp"
+                    android:textSize="14dp"
+                    android:textColor="@color/label_blanco_login_unibell"
+
+                    />
+
+                <TextView
+                    android:id="@+id/lblLocal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="Local"
+                    android:layout_marginTop="@dimen/pad_10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="20dp"
+                    android:padding="@dimen/pad_5dp"
+                    android:textSize="14dp"
+                    android:textColor="@color/label_blanco_login_unibell"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lo_txtempresa"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@color/Spinner_main_unibell"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="EMPRESA"
+                    android:textAllCaps="true"
+                    android:textColor="@color/background_login_unibell"
+                    android:textSize="@dimen/pad_16dp" />
+
+                <TextView
+                    android:id="@+id/lo_txtlocal"
+                    android:layout_weight="1"
+                    android:background="@color/Spinner_main_unibell"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:padding="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:paddingTop="10dp"
+                    android:textSize="@dimen/pad_16dp"
+                    android:textColor="@color/background_login_unibell"
+                    android:gravity="center"
+                    android:text="LOCAL"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:scrollbars="vertical"
+                android:paddingBottom="@dimen/pad_20dp"
+                >
+                <Button
+                    android:id="@+id/btnsincronizar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sincronizar registros"
+                    android:drawableLeft="@drawable/list_sincronizar"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/pad_20dp"
+                    android:background="@drawable/borderradius_menu_unibell"
+                    android:textColor="@color/label_color_menu"
+                    android:layout_marginLeft="@dimen/pad_20dp"
+                    android:layout_marginRight="@dimen/pad_20dp"
+                    android:layout_marginTop="@dimen/pad_20dp"
+                    android:gravity="left|center_vertical"
+                    android:drawablePadding="@dimen/pad_20dp"
+                    android:textAllCaps="false"
+                    android:paddingLeft="@dimen/pad_20dp"
+                    android:paddingTop="@dimen/pad_20dp"
+                    android:paddingBottom="@dimen/pad_20dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    />
+
+                <Button
+                    android:id="@+id/btncobranzas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cobranzas"
+                    android:drawableLeft="@drawable/list_cobranza"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/pad_20dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:background="@drawable/borderradius_menu_unibell"
+                    android:textColor="@color/label_color_menu"
+                    android:layout_marginLeft="@dimen/pad_20dp"
+                    android:layout_marginRight="@dimen/pad_20dp"
+                    android:layout_marginTop="@dimen/pad_20dp"
+                    android:gravity="left|center_vertical"
+                    android:drawablePadding="@dimen/pad_20dp"
+                    android:textAllCaps="false"
+                    android:paddingLeft="@dimen/pad_20dp"
+                    android:paddingTop="@dimen/pad_20dp"
+                    android:paddingBottom="@dimen/pad_20dp"
+                    />
+
+                <Button
+                    android:id="@+id/btnliquidacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Liquidación de cobranzas"
+                    android:drawableLeft="@drawable/list_liquidacion"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/pad_20dp"
+                    android:background="@drawable/borderradius_menu_unibell"
+                    android:textColor="@color/label_color_menu"
+                    android:layout_marginLeft="@dimen/pad_20dp"
+                    android:layout_marginRight="@dimen/pad_20dp"
+                    android:layout_marginTop="@dimen/pad_20dp"
+                    android:gravity="left|center_vertical"
+                    android:drawablePadding="@dimen/pad_20dp"
+                    android:textAllCaps="false"
+                    android:paddingLeft="@dimen/pad_20dp"
+                    android:paddingTop="@dimen/pad_20dp"
+                    android:paddingBottom="@dimen/pad_20dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+
+                    />
+
+
+                <Button
+                    android:id="@+id/btnaplanilla"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Aprobación de planillas"
+                    android:drawableLeft="@drawable/list_aprobacion"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/pad_20dp"
+                    android:background="@drawable/borderradius_menu_unibell"
+                    android:textColor="@color/label_color_menu"
+                    android:layout_marginLeft="@dimen/pad_20dp"
+                    android:layout_marginRight="@dimen/pad_20dp"
+                    android:layout_marginTop="@dimen/pad_20dp"
+                    android:gravity="left|center_vertical"
+                    android:drawablePadding="@dimen/pad_20dp"
+                    android:textAllCaps="false"
+                    android:paddingLeft="@dimen/pad_20dp"
+                    android:paddingTop="@dimen/pad_20dp"
+                    android:paddingBottom="@dimen/pad_20dp"
+                    />
+
+
+
+
+                <Button
+                    android:id="@+id/btnreportes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Reportes"
+                    android:drawableLeft="@drawable/list_report"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/pad_20dp"
+                    android:background="@drawable/borderradius_menu_unibell"
+                    android:textColor="@color/label_color_menu"
+                    android:layout_marginLeft="@dimen/pad_20dp"
+                    android:layout_marginRight="@dimen/pad_20dp"
+                    android:layout_marginTop="@dimen/pad_20dp"
+                    android:gravity="left|center_vertical"
+                    android:drawablePadding="@dimen/pad_20dp"
+                    android:textAllCaps="false"
+                    android:paddingLeft="@dimen/pad_20dp"
+                    android:paddingTop="@dimen/pad_20dp"
+                    android:paddingBottom="@dimen/pad_20dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    />
+
+
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+
+        android:background="@drawable/back_hamburguesa"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:gravity="left"
+            android:text="Usuario"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:textSize="14dp"
+            android:textColor="@color/label_blanco_login_unibell"
+            />
+
+        <TextView
+            android:id="@+id/lblNombreUsuario2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:gravity="left"
+            android:text="Percy Giancarlo Guillen Alcantara"
+            android:layout_marginLeft="30dp"
+            android:textSize="18dp"
+            android:textColor="@color/label_blanco_login_unibell"
+            />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/pad_30dp"
+            android:layout_marginRight="@dimen/pad_30dp"
+            android:layout_marginTop="@dimen/pad_20dp"
+            android:background="@color/label_blanco_login_unibell" />
+
+
+        <ListView
+            android:id="@+id/mnu_lvmenu"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:divider="@null"
+            android:listSelector="@color/list_seleccion"
+            />
+    </LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>
