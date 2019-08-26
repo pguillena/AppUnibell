@@ -18,42 +18,19 @@
         android:dividerHeight="@dimen/pad_20dp"
         />
 
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:orientation="vertical"
-        >
         <GridView
             android:id="@+id/fp_lvflujoresumen"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:choiceMode="singleChoice"
             android:listSelector="@color/list_seleccion"
             />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        >
-        <HorizontalScrollView
-            android:id="@+id/fp_scflujo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:background="@color/background"
-            >
             <ListView
                 android:id="@+id/fp_lvdos"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:choiceMode="singleChoice"
-                android:listSelector="@color/list_seleccion"
+                android:layout_height="wrap_content"
                 />
-        </HorizontalScrollView>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

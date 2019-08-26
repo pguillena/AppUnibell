@@ -28,7 +28,7 @@ import pe.com.app.unibell.appunibell.Util.ToastLibrary;
 
 public class Activity_FlujoSeguimiento extends AppCompatActivity {
 
-    private ListView fp_lvuno,fp_lvdos,fp_lvtres;
+    private ListView fp_lvuno,fp_lvtres;
     private GridView fp_lvflujoresumen;
     private TextView fp_lblnplanilla;
 
@@ -56,7 +56,6 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
             editor_Shared=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF),MODE_PRIVATE).edit();
 
             fp_lvuno=(ListView)findViewById(R.id.fp_lvuno);
-            fp_lvdos=(ListView)findViewById(R.id.fp_lvdos);
             fp_lvtres=(ListView)findViewById(R.id.fp_lvtres);
             fp_lvflujoresumen=(GridView)findViewById(R.id.fp_lvflujoresumen);
 
@@ -71,9 +70,9 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
 
 
 
-            LayoutInflater inflater2 = getLayoutInflater();
-            ViewGroup header2 = (ViewGroup)inflater2.inflate(R.layout.item_cobranza_flujo2_header,fp_lvdos,false);
-            fp_lvdos.addHeaderView(header2);
+            //LayoutInflater inflater2 = getLayoutInflater();
+            //ViewGroup header2 = (ViewGroup)inflater2.inflate(R.layout.item_cobranza_flujo2_header,fp_lvdos,false);
+            //fp_lvdos.addHeaderView(header2);
 
             LayoutInflater inflater3 = getLayoutInflater();
             ViewGroup header3 = (ViewGroup)inflater3.inflate(R.layout.item_cobranza_flujo3_header,fp_lvtres,false);
@@ -170,16 +169,9 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
                             sharedSettings.getString("N_PLANILLA", "0").toString()
             );
 
+/*
 
-            new Load_Flujo2AsyncTask().execute(
-                    ConstantsLibrary.RESTFUL_URL +
-                    ConstantsLibrary.bldocumentos_cobra_mov_flujo2 + "/"+
-                    sharedSettings.getString("SERIE_PLANILLA", "0").toString()+ "/"+
-                    sharedSettings.getString("N_PLANILLA", "0").toString()+ "/"+
-                    sharedSettings.getString("iID_EMPRESA", "0").toString()
-            );
-
-
+*/
 
             new Load_Flujo3AsyncTask().execute(
                     ConstantsLibrary.RESTFUL_URL +
@@ -262,14 +254,9 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
                     new ToastLibrary(Activity_FlujoSeguimiento.this, result.getString("message")).Show();
 
                 } else {
-                    cobranza_flujo_Resumen_seguimiento_adapter = new Cobranza_FlujoResumen_Seguimiento_Adapter(getBaseContext(), 0, documentos_cobra_movBL.lst);
+                    cobranza_flujo_Resumen_seguimiento_adapter = new Cobranza_FlujoResumen_Seguimiento_Adapter(Activity_FlujoSeguimiento.this, 0, documentos_cobra_movBL.lst);
                     cobranza_flujo_Resumen_seguimiento_adapter.notifyDataSetChanged();
                     fp_lvflujoresumen.setAdapter(cobranza_flujo_Resumen_seguimiento_adapter);
-
-                    cobranza_flujo_2SeguimientoAdapter = new Cobranza_Flujo2_Seguimiento_Adapter(Activity_FlujoSeguimiento.this, 0, documentos_cobra_movBL.lst);
-                    cobranza_flujo_2SeguimientoAdapter.notifyDataSetChanged();
-                    fp_lvdos.setAdapter(cobranza_flujo_2SeguimientoAdapter);
-
                 }
             }catch(Exception ex){
                 ex.printStackTrace();
@@ -277,45 +264,6 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
         }
     }
 
-    public class Load_Flujo2AsyncTask extends AsyncTask<String, String, JSONObject> {
-        /*DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
-        private volatile boolean running = true;
-
-        @Override
-        protected void onPreExecute() {
-        }
-
-        @Override
-        protected JSONObject doInBackground(String... p) {
-            return documentos_cobra_movBL.getFlujoResumen(p[0]);
-        }
-
-        @Override
-        protected void onProgressUpdate(String... prog) {
-            super.onProgressUpdate(prog);
-        }
-
-
-        @Override
-        protected void onPostExecute(JSONObject result) {
-            try {
-                if (result.getInt("status")!=1) {
-                    //MOSTRAMOS MESSAGE
-                    new ToastLibrary(Activity_FlujoSeguimiento.this, result.getString("message")).Show();
-
-                } else {
-
-
-
-                    cobranza_flujo_2SeguimientoAdapter = new Cobranza_Flujo2_Seguimiento_Adapter(Activity_FlujoSeguimiento.this, 0, documentos_cobra_movBL.lst);
-                    cobranza_flujo_2SeguimientoAdapter.notifyDataSetChanged();
-                    fp_lvdos.setAdapter(cobranza_flujo_2SeguimientoAdapter);
-                }
-            }catch(Exception ex){
-                ex.printStackTrace();
-            }
-        }
-    }
 
     public class Load_Flujo3AsyncTask extends AsyncTask<String, String, JSONObject> {
         /*DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/

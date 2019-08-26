@@ -74,13 +74,8 @@ public class Documentos_Cobra_MovBL {
                 for(int i=0;i<jsonObjectRest.getJSONArray("datos").length();i++) {
                     JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(i);
                     documentos_cobra_movBE = new Documentos_Cobra_MovBE();
-                    documentos_cobra_movBE.setORDEN(jsonObjectItem.getInt("ORDEN"));
                     documentos_cobra_movBE.setID_DOCUMENTO_MOVIMIENTO(jsonObjectItem.getInt("ID_DOCUMENTO_MOVIMIENTO"));
-                    documentos_cobra_movBE.setID_ROL_USUARIO_REGISTRO(jsonObjectItem.getInt("ID_ROL_USUARIO"));
-                    documentos_cobra_movBE.setNOMBRE_ROL(jsonObjectItem.getString("NOMBRE_ROL"));
-                    documentos_cobra_movBE.setNOMBRE_USUARIO(jsonObjectItem.getString("NOMBRE_USUARIO"));
-
-               /*     documentos_cobra_movBE.setSERIE_PLANILLA(jsonObjectItem.getString("SERIE_PLANILLA"));
+                    documentos_cobra_movBE.setSERIE_PLANILLA(jsonObjectItem.getString("SERIE_PLANILLA"));
                     documentos_cobra_movBE.setN_PLANILLA(jsonObjectItem.getString("N_PLANILLA"));
                     documentos_cobra_movBE.setID_USUARIO_REGISTRO(jsonObjectItem.getInt("ID_USUARIO_REGISTRO"));
                     documentos_cobra_movBE.setID_ROL_USUARIO_REGISTRO (jsonObjectItem.getInt("ID_ROL_USUARIO_REGISTRO"));
@@ -98,7 +93,7 @@ public class Documentos_Cobra_MovBL {
                     documentos_cobra_movBE.setNOM_ESTADO_MOVIMIENTO(jsonObjectItem.getString("NOM_ESTADO_MOVIMIENTO"));
                     documentos_cobra_movBE.setNOM_PERSONA_ORIGEN(jsonObjectItem.getString("NOM_PERSONA_ORIGEN"));
                     documentos_cobra_movBE.setNOM_PERSONA_DESTINO(jsonObjectItem.getString("NOM_PERSONA_DESTINO"));
-                */    lst.add(documentos_cobra_movBE);
+                    lst.add(documentos_cobra_movBE);
                 }
             }
             //CREAMOS UN JSON PARA MOSTRAR EL STATUS Y MESSAGE

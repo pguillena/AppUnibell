@@ -2,13 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/pad_20dp"
-    android:paddingRight="@dimen/pad_20dp"
-    android:paddingBottom="@dimen/pad_15dp"
-    android:paddingTop="@dimen/pad_15dp"
-    android:background="@color/label_login_titulo_unibell"
+    android:background="@color/background_main_unibell"
     >
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/lyTopFlujoResumen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/pad_20dp"
+        android:paddingRight="@dimen/pad_20dp"
+        android:paddingBottom="@dimen/pad_15dp"
+        android:paddingTop="@dimen/pad_15dp"
+        android:background="@color/label_login_titulo_unibell"
+    >
     <TextView
         android:id="@+id/fj_item1"
         android:layout_width="180dp"
@@ -60,4 +66,190 @@
         android:paddingLeft="@dimen/pad_20dp"
         />
 
+
+    </RelativeLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/pad_20dp"
+        android:paddingRight="@dimen/pad_20dp"
+        android:paddingBottom="@dimen/pad_15dp"
+        android:paddingTop="@dimen/pad_15dp"
+        android:layout_below="@id/lyTopFlujoResumen"
+  >
+
+
+
+    <TextView
+        android:id="@+id/fl_item1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vendedor - Creditos y Cobranzas"
+        android:gravity="center_horizontal"
+        android:textSize="14dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:textColor="@color/label_color_menu"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/f2_itemLabel"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Fecha envío"
+        android:textSize="14dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/fl_item1"
+        />
+
+
+    <TextView
+        android:id="@+id/f3_itemLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hora envío"
+        android:textSize="14dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/fl_item1"
+        android:layout_toRightOf="@id/f2_itemLabel"
+        />
+
+
+    <TextView
+        android:id="@+id/fl_item2"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="26/08/2019"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/f2_itemLabel"
+        />
+
+
+    <TextView
+        android:id="@+id/fl_item33"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="13:28:42"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/f3_itemLabel"
+        android:layout_toRightOf="@id/fl_item2"
+        />
+
+
+
+    <TextView
+        android:id="@+id/f4_itemLabel"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Fecha aceptado"
+        android:textSize="14dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/fl_item2"
+        android:paddingTop="@dimen/pad_20dp"
+        />
+
+
+    <TextView
+        android:id="@+id/fl_item3"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="26/08/2019"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/f4_itemLabel"
+        />
+
+    <TextView
+        android:id="@+id/f33_itemLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hora aceptado"
+        android:textSize="14dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/fl_item33"
+        android:layout_toRightOf="@id/fl_item3"
+        android:paddingTop="@dimen/pad_20dp"
+        />
+
+
+
+    <TextView
+        android:id="@+id/fl_itemHoraAceptado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="15:28:42"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/f33_itemLabel"
+        android:layout_toRightOf="@id/fl_item3"
+        />
+
+
+    <TextView
+        android:id="@+id/fl_item44"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Enviado a"
+        android:textSize="14dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/fl_item3"
+        android:paddingTop="@dimen/pad_20dp"
+        />
+
+
+    <TextView
+        android:id="@+id/fl_item4"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Elvis Galindo Leon"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/fl_item44"
+        />
+
+
+
+    <TextView
+        android:id="@+id/fl_item55"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Estado"
+        android:textSize="14dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/fl_item3"
+        android:layout_toRightOf="@id/fl_item44"
+        android:paddingTop="@dimen/pad_20dp"
+        />
+
+    <TextView
+        android:id="@+id/fl_item5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aceptado"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/fl_item44"
+        android:layout_toRightOf="@id/fl_item4"
+        />
+
+
+    </RelativeLayout>
+
 </RelativeLayout>
+
+

@@ -43,20 +43,35 @@ public class Cobranza_FlujoResumen_Seguimiento_Adapter extends ArrayAdapter<Docu
             mainHolder.fj_item2 = (TextView) convertView.findViewById(R.id.fj_item2);
             mainHolder.fj_item3 = (TextView) convertView.findViewById(R.id.fj_item3);
             mainHolder.fj_item4 = (TextView) convertView.findViewById(R.id.fj_item4);
+
+
+            mainHolder.fl_item2 = (TextView) convertView.findViewById(R.id.fl_item2);
+            mainHolder.fl_item3 = (TextView) convertView.findViewById(R.id.fl_item3);
+            mainHolder.fl_item4 = (TextView) convertView.findViewById(R.id.fl_item4);
+            mainHolder.fl_item5 = (TextView) convertView.findViewById(R.id.fl_item5);
+
             convertView.setTag(mainHolder);
         } else {
             mainHolder = (MainHolder) convertView.getTag();
         }
         final Documentos_Cobra_MovBE documentos_cobra_movBE = getItem(position);
-        mainHolder.fj_item1.setText(documentos_cobra_movBE.getNOM_ROL_ORIGEN());
+        mainHolder.fj_item1.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOM_ROL_ORIGEN()));
         mainHolder.fj_item2.setText(documentos_cobra_movBE.getNOM_PERSONA_ORIGEN());
-        mainHolder.fj_item3.setText(documentos_cobra_movBE.getNOM_ROL_DESTINO());
+        mainHolder.fj_item3.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOM_ROL_DESTINO()));
         mainHolder.fj_item4.setText(documentos_cobra_movBE.getNOM_PERSONA_DESTINO().toString() );
+
+        mainHolder.fl_item2.setText(documentos_cobra_movBE.getFECHA_MOVIMIENTO());
+        mainHolder.fl_item3.setText(documentos_cobra_movBE.getFECHA_RECEPCION());
+        mainHolder.fl_item4.setText(documentos_cobra_movBE.getNOM_PERSONA_DESTINO());
+        mainHolder.fl_item5.setText(documentos_cobra_movBE.getNOM_ESTADO_MOVIMIENTO());
+
+
         return convertView;
     }
 
     static class MainHolder {
         TextView fj_item1,fj_item2,fj_item3,fj_item4;
+        TextView fl_item5,fl_item2,fl_item3,fl_item4;
     }
 
     @Override

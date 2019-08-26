@@ -39,7 +39,7 @@ public class Cobranza_Flujo2_Seguimiento_Adapter extends ArrayAdapter<Documentos
         if (convertView == null || !(convertView.getTag() instanceof MainHolder)) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_cobranza_flujo2, parent, false);
             mainHolder = new MainHolder();
-            mainHolder.fl_item1 = (TextView) convertView.findViewById(R.id.fl_item1);
+           // mainHolder.fl_item1 = (TextView) convertView.findViewById(R.id.fl_item1);
             mainHolder.fl_item2 = (TextView) convertView.findViewById(R.id.fl_item2);
             mainHolder.fl_item3 = (TextView) convertView.findViewById(R.id.fl_item3);
             mainHolder.fl_item4 = (TextView) convertView.findViewById(R.id.fl_item4);
@@ -49,7 +49,7 @@ public class Cobranza_Flujo2_Seguimiento_Adapter extends ArrayAdapter<Documentos
             mainHolder = (MainHolder) convertView.getTag();
         }
         final Documentos_Cobra_MovBE documentos_cobra_movBE = getItem(position);
-        mainHolder.fl_item1.setText(documentos_cobra_movBE.getNOM_ROL_ORIGEN() + "-" + documentos_cobra_movBE.getNOM_ROL_DESTINO());
+        //mainHolder.fl_item1.setText(documentos_cobra_movBE.getNOM_ROL_ORIGEN() + "-" + documentos_cobra_movBE.getNOM_ROL_DESTINO());
         mainHolder.fl_item2.setText(documentos_cobra_movBE.getFECHA_MOVIMIENTO());
         mainHolder.fl_item3.setText(documentos_cobra_movBE.getFECHA_RECEPCION());
         mainHolder.fl_item4.setText(documentos_cobra_movBE.getNOM_PERSONA_DESTINO());
@@ -59,7 +59,7 @@ public class Cobranza_Flujo2_Seguimiento_Adapter extends ArrayAdapter<Documentos
     }
 
     static class MainHolder {
-        TextView fl_item1,fl_item2,fl_item3,fl_item4,fl_item5;
+        TextView fl_item2,fl_item3,fl_item4,fl_item5;
 
     }
 
