@@ -4,7 +4,6 @@ package pe.com.app.unibell.appunibell.Util;
  */
 public interface ConstantsLibrary {
         public static final String DEBUG_TAG = "DRES_DEBUG";
-//cyper100
         //LOCAL
         public static final String RESTFUL_URL = "http://172.16.1.78/ServiceUnibell";
         //REMOTO
