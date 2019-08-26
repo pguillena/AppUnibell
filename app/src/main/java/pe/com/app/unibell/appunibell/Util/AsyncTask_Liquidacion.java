@@ -156,7 +156,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                                 "<body>" +
                                 "<table width='100%'>" +
                                 "<tr width='100%'>" +
-                                "<td width='80%' style='font-weight:bold'>PLANILLA LIQUIDACIÓN DE COBRANZA " + documentos_cobra_cabDAO.lst.get(0).getPLANILLA().toString() + "</td><td width='20%'><b>Usuario:</b>" + sharedSettings.getString("Usuario", "").toString() + "</td></tr>" +
+                                "<td width='80%' style='font-weight:bold'>PLANILLA LIQUIDACIÓN DE COBRANZA " + documentos_cobra_cabDAO.lst.get(0).getPLANILLA().toString() + "</td><td width='20%'><b>Usuario:</b>" + sharedSettings.getString("USUARIO", "").toString() + "</td></tr>" +
                                 "<tr width='100%'>" +
                                 "<td width='80%'></td><td width='20%'><b>Fecha:</b>" + funciones.FechaActualNow() + "</td></tr>" +
                                 "<tr width='100%'>" +
@@ -228,7 +228,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
 
                 sHTML = htmToCab + htmToDet + htmPie + htmTotalGeneral + sResumen;
             }else{
-                sHTML="<html><head><body>ERROR AL GENERAR EL REPORTE</body>/head></html>";
+                sHTML="ERROR";
             }
         }catch (Exception e){
         }

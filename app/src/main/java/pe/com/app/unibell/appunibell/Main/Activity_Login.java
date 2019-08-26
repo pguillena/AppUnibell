@@ -137,7 +137,7 @@ public class Activity_Login extends AppCompatActivity
             btnSincronizarLogin = (Button)findViewById(R.id.btnSincronizarLogin);
             btnInfoLogin = (Button)findViewById(R.id.btnInfoLogin);
 
-            edtUserName.setText(sharedSettings.getString("Usuario", "AGRAUA").toString());
+            edtUserName.setText(sharedSettings.getString("USUARIO", "AGRAUA").toString());
             edtUserPass.setText("0");
             setOnFocusChangeListener(edtUserName,"edtUserName");
             setOnFocusChangeListener(edtUserPass,"edtUserPass");
@@ -146,7 +146,7 @@ public class Activity_Login extends AppCompatActivity
             btnSincronizarLogin.setOnClickListener(OnClickListener_btnSincronizarLogin);
             btnInfoLogin.setOnClickListener(OnClickListener_btnInfoLogin);
 
-            //SincronizarTipoCambio();
+            SincronizarTipoCambio();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -163,7 +163,7 @@ public class Activity_Login extends AppCompatActivity
 
                         //edtUserName.setTextAppearance(getApplicationContext(), R.style.SkyTextViewStyleUnibellActivo);
                         //edtUserName.setBackgroundDrawable(getResources().));
-                       // edtUserName.setTextAppearance(getBaseContext(), R.style.SkyTextViewStyleUnibellActivo);
+                        // edtUserName.setTextAppearance(getBaseContext(), R.style.SkyTextViewStyleUnibellActivo);
                         edtUserName.setBackgroundResource(R.drawable.borderradius_activo);
                         edtUserPass.setBackgroundResource(R.drawable.borderradius_activo);
                     }
@@ -321,7 +321,7 @@ public class Activity_Login extends AppCompatActivity
             new S_Sem_EmpresaBL_Sincronizar().execute(
                     ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_sem_empresa);
         } catch (Exception ex) {
-            new ToastLibrary(Activity_Login.this,"Error al Sincronizar Empresas.").Show();
+            new ToastLibrary(Activity_Login.this,"Error al sincronizar Empresas.").Show();
         }
 
 
@@ -332,7 +332,7 @@ public class Activity_Login extends AppCompatActivity
                             + sharedSettings.getString("iID_LOCAL", "0"));
 
         } catch (Exception ex) {
-            new ToastLibrary(Activity_Login.this,"Error al Sincronizar Locales.").Show();
+            new ToastLibrary(Activity_Login.this,"Error al sincronizar Locales.").Show();
         }
 
         try{
@@ -342,7 +342,7 @@ public class Activity_Login extends AppCompatActivity
                             + sharedSettings.getString("iID_LOCAL", "0")+ '/'
                             + sharedSettings.getString("iID_VENDEDOR", "0"));
         } catch (Exception ex) {
-            new ToastLibrary(Activity_Login.this,"Error al Sincronizar vendedores.").Show();
+            new ToastLibrary(Activity_Login.this,"Error al sincronizar vendedores.").Show();
         }
 
         try {
@@ -353,7 +353,7 @@ public class Activity_Login extends AppCompatActivity
                             + sharedSettings.getString("iID_LOCAL", "0")+ '/'
                             + sharedSettings.getString("iID_VENDEDOR", "0"));
         } catch (Exception ex) {
-            new ToastLibrary(Activity_Login.this,"Error al Sincronizar Usuarios.").Show();
+            new ToastLibrary(Activity_Login.this,"Error al sincronizar Usuarios.").Show();
         }
 
 
@@ -361,7 +361,7 @@ public class Activity_Login extends AppCompatActivity
             new S_Sem_MenuBL_Sincronizar().execute(
                     ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_sem_menu + "/0");
         } catch (Exception ex) {
-            new ToastLibrary(Activity_Login.this,"Error al Sincronizar opciones de menú.").Show();
+            new ToastLibrary(Activity_Login.this,"Error al sincronizar opciones de menú.").Show();
         }
 
         try {
@@ -371,7 +371,7 @@ public class Activity_Login extends AppCompatActivity
                             + sharedSettings.getString("iID_LOCAL", "0")+ '/'
                             + sharedSettings.getString("iID_VENDEDOR", "0"));
         } catch (Exception ex) {
-            new ToastLibrary(Activity_Login.this,"Error al Sincronizar accesos.").Show();
+            new ToastLibrary(Activity_Login.this,"Error al sincronizar accesos.").Show();
         }
 
         try{
@@ -381,7 +381,7 @@ public class Activity_Login extends AppCompatActivity
                             + sharedSettings.getString("iID_LOCAL", "0")+ '/'
                             + sharedSettings.getString("iID_VENDEDOR", "0"));
         } catch (Exception ex) {
-            new ToastLibrary(Activity_Login.this,"Error al Sincronizar perfiles de usuario.").Show();
+            new ToastLibrary(Activity_Login.this,"Error al sincronizar perfiles de usuario.").Show();
         }
         try{
             new S_Sea_Usuario_LocalBL_Sincronizar().execute(
@@ -390,7 +390,7 @@ public class Activity_Login extends AppCompatActivity
                             + sharedSettings.getString("iID_LOCAL", "0")+ '/'
                             + sharedSettings.getString("iID_VENDEDOR", "0"));
         } catch (Exception ex) {
-            new ToastLibrary(Activity_Login.this,"Error al Sincronizar usuarios x local.").Show();
+            new ToastLibrary(Activity_Login.this,"Error al sincronizar usuarios x local.").Show();
         }
 
         try{
@@ -400,7 +400,7 @@ public class Activity_Login extends AppCompatActivity
                             + sharedSettings.getString("iID_LOCAL", "0")+ '/'
                             + sharedSettings.getString("iID_VENDEDOR", "0"));
         } catch (Exception ex) {
-            new ToastLibrary(Activity_Login.this,"Error al Sincronizar acciones de usuario.").Show();
+            new ToastLibrary(Activity_Login.this,"Error al sincronizar acciones de usuario.").Show();
         }
 
         SincronizarTipoCambio();
@@ -411,9 +411,11 @@ public class Activity_Login extends AppCompatActivity
             new S_gem_TipoCambioBL_Sincronizar().execute(
                     ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_gem_tipocambio);
         } catch (Exception ex) {
-            new ToastLibrary(Activity_Login.this,"Error al Sincronizar tipo de cambio.").Show();
+            new ToastLibrary(Activity_Login.this,"Error al sincronizar tipo de cambio.").Show();
         }
     }
+
+
 
     /*
         CompoundButton.OnCheckedChangeListener cboShowPasswordChangeListener = new CompoundButton.OnCheckedChangeListener() {
@@ -955,6 +957,9 @@ public class Activity_Login extends AppCompatActivity
             }
         }
     }
+
+
+
 
 
     @Override
