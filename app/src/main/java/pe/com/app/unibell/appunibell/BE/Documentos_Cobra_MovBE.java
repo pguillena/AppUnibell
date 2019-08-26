@@ -20,7 +20,7 @@ public class Documentos_Cobra_MovBE {
     private Integer SINCRONIZADO;
     private String MSG;
 
-    private String ORDEN;
+    private Integer ORDEN;
     private String ID_COBRANZA;
     private String COD_CLIENTE;
     private String N_RECIBO;
@@ -194,11 +194,11 @@ public class Documentos_Cobra_MovBE {
         this.ID_LOCAL = ID_LOCAL;
     }
 
-    public String getORDEN() {
+    public Integer getORDEN() {
         return ORDEN;
     }
 
-    public void setORDEN(String ORDEN) {
+    public void setORDEN(Integer ORDEN) {
         this.ORDEN = ORDEN;
     }
 

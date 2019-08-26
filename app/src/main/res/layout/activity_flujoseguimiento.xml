@@ -13,7 +13,7 @@
     <ListView
         android:id="@+id/fp_lvuno"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:divider="@null"
         android:dividerHeight="@dimen/pad_20dp"
         />

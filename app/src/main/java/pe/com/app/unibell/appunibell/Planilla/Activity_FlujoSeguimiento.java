@@ -170,7 +170,7 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
                             sharedSettings.getString("N_PLANILLA", "0").toString()
             );
 
-        /*
+
             new Load_Flujo2AsyncTask().execute(
                     ConstantsLibrary.RESTFUL_URL +
                     ConstantsLibrary.bldocumentos_cobra_mov_flujo2 + "/"+
@@ -178,7 +178,7 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
                     sharedSettings.getString("N_PLANILLA", "0").toString()+ "/"+
                     sharedSettings.getString("iID_EMPRESA", "0").toString()
             );
-            */
+
 
 
             new Load_Flujo3AsyncTask().execute(
@@ -269,6 +269,7 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
                     cobranza_flujo_2SeguimientoAdapter = new Cobranza_Flujo2_Seguimiento_Adapter(Activity_FlujoSeguimiento.this, 0, documentos_cobra_movBL.lst);
                     cobranza_flujo_2SeguimientoAdapter.notifyDataSetChanged();
                     fp_lvdos.setAdapter(cobranza_flujo_2SeguimientoAdapter);
+
                 }
             }catch(Exception ex){
                 ex.printStackTrace();
@@ -303,6 +304,9 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
                     new ToastLibrary(Activity_FlujoSeguimiento.this, result.getString("message")).Show();
 
                 } else {
+
+
+
                     cobranza_flujo_2SeguimientoAdapter = new Cobranza_Flujo2_Seguimiento_Adapter(Activity_FlujoSeguimiento.this, 0, documentos_cobra_movBL.lst);
                     cobranza_flujo_2SeguimientoAdapter.notifyDataSetChanged();
                     fp_lvdos.setAdapter(cobranza_flujo_2SeguimientoAdapter);

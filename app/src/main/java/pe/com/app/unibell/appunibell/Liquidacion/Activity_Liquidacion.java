@@ -72,6 +72,7 @@ import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.ToastLibrary;
 
+
 public class Activity_Liquidacion extends AppCompatActivity
         implements Dialog_Fragment_Confirmar.Dialog_Fragment_ConfirmarListener,
         Dialogo_Fragment_Fecha.NoticeDialogoListener,
@@ -259,12 +260,34 @@ public class Activity_Liquidacion extends AppCompatActivity
         @Override
         public void onClick(View view) {
 
-            EnviarPlanilla();
+            iOpcionFecha = 3;//EnviarPlanilla
+
+            try {
+                dialogFragmentFecha = new Dialogo_Fragment_Fecha();
+                dialogFragmentFecha.show(getFragmentManager(), "");
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
 
         }
 
 
     };
+
+    @Override
+    public void setearFecha(String fecha) {
+        try {
+            if(iOpcionFecha==3){
+                EnviarPlanilla(fecha);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
 
     View.OnClickListener OnClickListener_btnVerDetalle = new View.OnClickListener() {
 
@@ -304,6 +327,7 @@ public class Activity_Liquidacion extends AppCompatActivity
     }
 
     private void VerDetalleTotales() {
+
         Intent intent = new Intent(Activity_Liquidacion.this, Activity_Totales_Liquidacion.class);
         intent.putExtra("txtMontoTotalGeneral", lq_lbltotalg.getText().toString().trim());
         intent.putExtra("txtMontoCheque", lq_lblmontoc);
@@ -318,10 +342,12 @@ public class Activity_Liquidacion extends AppCompatActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         // TODO Auto-generated method stub
         if ((requestCode == 1) && (resultCode == RESULT_OK)){
             Bundle   parametros = data.getExtras();
             if(parametros !=null){
+
                 lq_txtffecha = (parametros.getString("lq_txtffechaFiltro"));
                 sNroPlanilla =  parametros.getString("txtNroPlanilla");
                 sCPacking =  parametros.getString("txtCpacking");
@@ -330,8 +356,10 @@ public class Activity_Liquidacion extends AppCompatActivity
             }
 
         }
-        else if ((requestCode == 2) && (resultCode == RESULT_OK)){
+        else if ((requestCode == 2) && (resultCode == RESULT_OK))
+        {
             Bundle   parametros = data.getExtras();
+
             if(parametros !=null){
                 lq_txttipopago = (parametros.getString("hdfTipoPago"));
                 lq_txtccbanco = (parametros.getString("hdfCCBanco"));
@@ -341,6 +369,7 @@ public class Activity_Liquidacion extends AppCompatActivity
                     if (Validar()==false){return;}
                     iEvento=1;
                     Reasignar();
+
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -505,7 +534,7 @@ public class Activity_Liquidacion extends AppCompatActivity
                                         "<body>" +
                                         "<table width='100%'>" +
                                         "<tr width='100%'>" +
-                                        "<td width='80%' style='font-weight:bold'>PLANILLA LIQUIDACIÓN DE COBRANZA " + cobranza_liquidacion_adapter.lst.get(0).getPLANILLA().toString() + "</td><td width='20%'><b>Usuario:</b>" + sharedSettings.getString("Usuario", "").toString() + "</td></tr>" +
+                                        "<td width='80%' style='font-weight:bold'>PLANILLA LIQUIDACIÓN DE COBRANZA " + cobranza_liquidacion_adapter.lst.get(0).getPLANILLA().toString() + "</td><td width='20%'><b>Usuario:</b>" + sharedSettings.getString("USUARIO", "").toString() + "</td></tr>" +
                                         "<tr width='100%'>" +
                                         "<td width='80%'></td><td width='20%'><b>Fecha:</b>" + funciones.FechaActualNow() + "</td></tr>" +
                                         "<tr width='100%'>" +
@@ -884,11 +913,12 @@ public class Activity_Liquidacion extends AppCompatActivity
     }*/
 
 
-    private boolean EnviarPlanilla() {
+    private boolean EnviarPlanilla(String fecha) {
         iEvento = 3;
+        lq_txtffecha = fecha;
         if(sEstado.equals("40003")){
             if(lq_txtffecha != null && !lq_txtffecha.toString().trim().equals("")) {
-                String sMensaje = "¿Desea enviar la planilla?";
+                String sMensaje = "¿Desea enviar la planilla del " + lq_txtffecha.toString().trim();
                 dialog_fragment_confirmar = new Dialog_Fragment_Confirmar();
                 dialog_fragment_confirmar.setmConfirmarDialogfragmentListener(Activity_Liquidacion.this, sMensaje);
                 dialog_fragment_confirmar.show(getSupportFragmentManager(), dialog_fragment_confirmar.TAG);
@@ -1152,9 +1182,6 @@ public class Activity_Liquidacion extends AppCompatActivity
         }
     }
 
-    @Override
-    public void setearFecha(String fecha) {
-    }
 
     private void Mensaje(String msj){
         log_dialogaceptar = new Dialog_Fragment_Aceptar();
