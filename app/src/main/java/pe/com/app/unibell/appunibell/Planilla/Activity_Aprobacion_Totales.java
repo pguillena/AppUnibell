@@ -23,7 +23,6 @@ public class Activity_Aprobacion_Totales  extends AppCompatActivity {
         TextView lbltotalgeneral =(TextView)findViewById(R.id.lbltotalgeneral);
 
         Bundle   parametros = getIntent().getExtras();
-
         if(parametros !=null){
             lblmontocheque.setText(funciones.FormatSoles(parametros.getString("dMontoCheque")));
             lblmontotarjeta.setText(funciones.FormatSoles(parametros.getString("dMontoVisa")));
