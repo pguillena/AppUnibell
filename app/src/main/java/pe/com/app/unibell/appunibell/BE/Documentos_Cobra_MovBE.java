@@ -16,6 +16,7 @@ public class Documentos_Cobra_MovBE {
     private Integer ESTADO_MOVIMIENTO ;
     private Integer ID_EMPRESA ;
     private Integer ID_LOCAL;
+    private String HORA_ACCION ;
     private Integer GUARDADO;
     private Integer SINCRONIZADO;
     private String MSG;
@@ -658,7 +659,13 @@ public class Documentos_Cobra_MovBE {
         this.NOMBREACCION = NOMBREACCION;
     }
 
+    public String getHORA_ACCION() {
+        return HORA_ACCION;
+    }
 
+    public void setHORA_ACCION(String HORA_ACCION) {
+        this.HORA_ACCION = HORA_ACCION;
+    }
 
     public String getMSG() {
         return MSG;

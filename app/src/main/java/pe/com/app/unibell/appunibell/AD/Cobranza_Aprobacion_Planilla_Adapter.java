@@ -16,6 +16,7 @@ import java.util.List;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_MovBE;
 import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranza_Recibo;
 import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranzas;
+import pe.com.app.unibell.appunibell.Flujo_Seguimiento.Activity_Flujo_Seguimiento;
 import pe.com.app.unibell.appunibell.Planilla.Activity_AprobacionPlanilla;
 import pe.com.app.unibell.appunibell.Planilla.Activity_FlujoSeguimiento;
 import pe.com.app.unibell.appunibell.R;
@@ -97,10 +98,22 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
                 editor_Shared.putString("FECHA_MODIFICACION", documentos_cobra_movBE.getFECHA_MODIFICACION().toString());
                 editor_Shared.putString("ID_COBRANZA", documentos_cobra_movBE.getID_COBRANZA().toString());
                 editor_Shared.commit();
+
+                try {
+                    Intent intent = new Intent(getContext().getApplicationContext(), Activity_Flujo_Seguimiento.class);
+                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
+
+        /*
                 Intent intent = new Intent(getContext().getApplicationContext(), Activity_FlujoSeguimiento.class);
                 intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
                 getContext().startActivity(intent);
-
+*/
             }
         });
         //REPORTE DE PLANILLA

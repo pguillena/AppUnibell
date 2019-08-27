@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/background"
+    android:background="@color/background_main_unibell"
     >
-    <TextView
+    <ListView
+        android:id="@+id/fp_lvtres"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="FRAGMENTO SEGUIMIENTO"
-        />
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="@dimen/pad_20dp"
 
+        />
 </LinearLayout>

@@ -75,6 +75,7 @@ public class Activity_Flujo_Seguimiento  extends AppCompatActivity {
 
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(mViewPager);
+
     }
 
     private void setupViewPager(ViewPager viewPager) {

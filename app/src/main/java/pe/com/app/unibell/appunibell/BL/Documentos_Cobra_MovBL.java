@@ -171,6 +171,7 @@ public class Documentos_Cobra_MovBL {
                     documentos_cobra_movBE.setNRO_DOC(jsonObjectItem.getString("NRO_DOC"));
                     documentos_cobra_movBE.setACCION(jsonObjectItem.getString("ACCION"));
                     documentos_cobra_movBE.setFECHA_ACCION(jsonObjectItem.getString("FECHA_ACCION"));
+                    documentos_cobra_movBE.setHORA_ACCION(jsonObjectItem.getString("HORA_ACCION"));
                     documentos_cobra_movBE.setUSUARIO_REGISTRO (jsonObjectItem.getString("USUARIO_REGISTRO").trim().replace("null",""));
                     documentos_cobra_movBE.setFECHA_REGISTRO(jsonObjectItem.getString("FECHA_REGISTRO"));
                     documentos_cobra_movBE.setUSUARIO_MODIFICACION(jsonObjectItem.getString("USUARIO_MODIFICACION").trim().replace("null",""));

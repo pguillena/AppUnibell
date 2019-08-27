@@ -2,13 +2,18 @@ package pe.com.app.unibell.appunibell.AD;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.VectorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_MovBE;
@@ -43,22 +48,25 @@ public class Cobranza_Flujo3_Seguimiento_Adapter extends ArrayAdapter<Documentos
             mainHolder.fl_item2 = (TextView) convertView.findViewById(R.id.fl_item2);
             mainHolder.fl_item3 = (TextView) convertView.findViewById(R.id.fl_item3);
             mainHolder.fl_item4 = (TextView) convertView.findViewById(R.id.fl_item4);
-            mainHolder.fl_item5 = (TextView) convertView.findViewById(R.id.fl_item5);
+            mainHolder.fl_itemObservacion = (TextView) convertView.findViewById(R.id.fl_itemObservacion);
             convertView.setTag(mainHolder);
         } else {
             mainHolder = (MainHolder) convertView.getTag();
         }
         final Documentos_Cobra_MovBE documentos_cobra_movBE = getItem(position);
         mainHolder.fl_item1.setText(documentos_cobra_movBE.getFECHA_ACCION().toString());
-        mainHolder.fl_item2.setText("HORA");
+        mainHolder.fl_item2.setText(documentos_cobra_movBE.getHORA_ACCION().toString());
         mainHolder.fl_item3.setText(documentos_cobra_movBE.getUSUARIO_REGISTRO().toString());
-        mainHolder.fl_item4.setText(documentos_cobra_movBE.getNOMBREACCION().toString());
-        mainHolder.fl_item5.setText(documentos_cobra_movBE.getOBSERVACION().toString());
+        mainHolder.fl_item4.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOMBREACCION().toString()));
+        mainHolder.fl_itemObservacion.setText(funciones.LetraCapital(documentos_cobra_movBE.getOBSERVACION().toString()));
+
+
         return convertView;
     }
 
     static class MainHolder {
-        TextView fl_item1,fl_item2,fl_item3,fl_item4,fl_item5;
+        TextView fl_item1,fl_item2,fl_item3,fl_item4,fl_itemObservacion;
+
 
     }
 
