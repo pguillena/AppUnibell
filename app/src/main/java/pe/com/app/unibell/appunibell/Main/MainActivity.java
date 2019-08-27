@@ -38,6 +38,7 @@ import pe.com.app.unibell.appunibell.BL.MenuStringBL;
 import pe.com.app.unibell.appunibell.Clientes.Activity_clientes;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.Menu_StringDAO;
+import pe.com.app.unibell.appunibell.Flujo_Seguimiento.Activity_Flujo_Seguimiento;
 import pe.com.app.unibell.appunibell.Liquidacion.Activity_Liquidacion;
 import pe.com.app.unibell.appunibell.Planilla.Activity_AprobacionPlanilla;
 import pe.com.app.unibell.appunibell.R;
@@ -63,7 +64,7 @@ public class MainActivity  extends AppCompatActivity{
     private static final int REQUEST_CODE_1=1;
     private Integer  SMNU_ORDLIST=0,SMNU_OLOCAL=0;
     private static String DB_NAME = "REST_POS_BD.sqlite";
-    private Button sp_img1, btnsincronizar, btncobranzas,btnliquidacion,btnaplanilla;
+    private Button sp_img1, btnsincronizar, btncobranzas,btnliquidacion,btnaplanilla,btnreportes;
     //DIEZ MINUTOS
     private Integer iTiempoEjecuta=2;
 
@@ -115,6 +116,7 @@ protected void onCreate(Bundle savedInstanceState) {
         btncobranzas=(Button) findViewById(R.id.btncobranzas);
         btnliquidacion=(Button) findViewById(R.id.btnliquidacion);
         btnaplanilla=(Button) findViewById(R.id.btnaplanilla);
+            btnreportes=(Button) findViewById(R.id.btnreportes);
 
         lo_txtempresa=(TextView) findViewById(R.id.lo_txtempresa);
         lo_txtlocal=(TextView) findViewById(R.id.lo_txtlocal);
@@ -135,6 +137,10 @@ protected void onCreate(Bundle savedInstanceState) {
         btncobranzas.setOnClickListener(OnClickListenercl_btncobranzas);
         btnliquidacion.setOnClickListener(OnClickListenercl_btnliquidacion);
         btnaplanilla.setOnClickListener(OnClickListenercl_btnaplanilla);
+            btnreportes.setOnClickListener(OnClickListenercl_btnreportes);
+
+
+
 
        //EJECUTA EL SERVICIO
         Intent alarm = new Intent(MainActivity.this, AlarmReceiver.class);
@@ -320,6 +326,20 @@ protected void onCreate(Bundle savedInstanceState) {
             }
         }
     };
+
+    View.OnClickListener OnClickListenercl_btnreportes = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            try {
+                Intent SMNU_FLUJO = new Intent(getApplication(), Activity_Flujo_Seguimiento.class);
+                startActivity(SMNU_FLUJO);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    };
+
 
     private void Activar(Boolean valor){
         iActivado=valor;

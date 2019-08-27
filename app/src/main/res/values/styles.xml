@@ -22,13 +22,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="TrickMarket2" parent="Base.AppTheme2" />
+    <style name="TrickTab" parent="Base.AppThemeTab" />
 
-    <style name="Base.AppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.AppThemeTab" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/ubell_color2</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
 
     <style name="MyText" parent="@android:style/TextAppearance">
         <item name="android:textColor">#e75353</item>

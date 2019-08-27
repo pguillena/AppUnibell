@@ -59,9 +59,6 @@
         </activity>
 
 
-
-
-
         <activity
             android:name=".Liquidacion.Activity_Liquidacion"
             android:parentActivityName=".Main.MainActivity"
@@ -132,6 +129,13 @@
             android:screenOrientation="portrait"
             android:parentActivityName=".Cobranza.Activity_Cobranzas"
             />
+
+        <activity
+            android:theme="@style/TrickTab"
+            android:name=".Flujo_Seguimiento.Activity_Flujo_Seguimiento"
+            android:screenOrientation="portrait"
+            />
+
 
         <activity
             android:name=".Reportes.Activity_Cobranza_Recibo_Rep"
