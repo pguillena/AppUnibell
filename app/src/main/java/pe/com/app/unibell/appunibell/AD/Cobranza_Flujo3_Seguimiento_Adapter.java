@@ -58,7 +58,7 @@ public class Cobranza_Flujo3_Seguimiento_Adapter extends ArrayAdapter<Documentos
         mainHolder.fl_item2.setText(documentos_cobra_movBE.getHORA_ACCION().toString());
         mainHolder.fl_item3.setText(documentos_cobra_movBE.getUSUARIO_REGISTRO().toString());
         mainHolder.fl_item4.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOMBREACCION().toString()));
-        mainHolder.fl_itemObservacion.setText(funciones.LetraCapital(documentos_cobra_movBE.getOBSERVACION().toString()));
+        mainHolder.fl_itemObservacion.setText(documentos_cobra_movBE.getOBSERVACION().toString());
 
 
         return convertView;
