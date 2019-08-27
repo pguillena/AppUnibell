@@ -1,5 +1,6 @@
 package pe.com.app.unibell.appunibell.Main;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -98,6 +101,7 @@ public class Activity_Login extends AppCompatActivity
     private Integer  iTabla=0;
     private Dialog_Fragment_Auxiliar dialog_fragment_auxiliar = null;
     private Button btnSincronizarLogin, btnInfoLogin;
+    private Integer MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +129,22 @@ public class Activity_Login extends AppCompatActivity
                 editor_Shared.commit();
             }catch (Exception e){
 
+            }
+
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                } else {
+
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+                }
             }
 
             String version = pInfo.versionName;
