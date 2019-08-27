@@ -56,14 +56,14 @@ public class Cobranza_FlujoResumen_Seguimiento_Adapter extends ArrayAdapter<Docu
         }
         final Documentos_Cobra_MovBE documentos_cobra_movBE = getItem(position);
         mainHolder.fj_item1.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOM_ROL_ORIGEN()));
-        mainHolder.fj_item2.setText(documentos_cobra_movBE.getNOM_PERSONA_ORIGEN());
+        mainHolder.fj_item2.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOM_PERSONA_ORIGEN()));
         mainHolder.fj_item3.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOM_ROL_DESTINO()));
-        mainHolder.fj_item4.setText(documentos_cobra_movBE.getNOM_PERSONA_DESTINO().toString() );
+        mainHolder.fj_item4.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOM_PERSONA_DESTINO().toString()));
 
         mainHolder.fl_item2.setText(documentos_cobra_movBE.getFECHA_MOVIMIENTO());
         mainHolder.fl_item3.setText(documentos_cobra_movBE.getFECHA_RECEPCION());
-        mainHolder.fl_item4.setText(documentos_cobra_movBE.getNOM_PERSONA_DESTINO());
-        mainHolder.fl_item5.setText(documentos_cobra_movBE.getNOM_ESTADO_MOVIMIENTO());
+        mainHolder.fl_item4.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOM_PERSONA_DESTINO()));
+        mainHolder.fl_item5.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOM_ESTADO_MOVIMIENTO()));
 
 
         return convertView;

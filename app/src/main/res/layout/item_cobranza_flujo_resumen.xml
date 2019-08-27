@@ -34,7 +34,7 @@
         android:fontFamily="@font/sf_pro_display_bold"
         android:textColor="@color/label_color_menu"
         android:layout_toRightOf="@id/fj_item1"
-        android:paddingLeft="@dimen/pad_20dp"
+        android:paddingLeft="@dimen/pad_10dp"
         />
 
 
@@ -42,7 +42,7 @@
         android:id="@+id/fj_item2"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="Carlo Alberto Monzon Morales"
+        android:text="Carlo Alberto Monzon Moral"
         android:textSize="14dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/sf_pro_display_light"
@@ -56,14 +56,14 @@
         android:id="@+id/fj_item4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Irene Delgado Serrano"
+        android:text="Carlo Alberto Monzon Moral"
         android:textSize="14dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/sf_pro_display_light"
         android:textColor="@color/label_color_menu"
         android:layout_below="@id/fj_item3"
         android:layout_toRightOf="@id/fj_item2"
-        android:paddingLeft="@dimen/pad_20dp"
+        android:paddingLeft="@dimen/pad_10dp"
         />
 
 
@@ -95,7 +95,7 @@
 
     <TextView
         android:id="@+id/f2_itemLabel"
-        android:layout_width="180dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:text="Fecha envío"
         android:textSize="14dp"
@@ -120,7 +120,7 @@
 
     <TextView
         android:id="@+id/fl_item2"
-        android:layout_width="180dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:text="26/08/2019"
         android:textSize="16dp"
@@ -146,7 +146,7 @@
 
     <TextView
         android:id="@+id/f4_itemLabel"
-        android:layout_width="180dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:text="Fecha aceptado"
         android:textSize="14dp"
@@ -159,7 +159,7 @@
 
     <TextView
         android:id="@+id/fl_item3"
-        android:layout_width="180dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:text="26/08/2019"
         android:textSize="16dp"
@@ -198,7 +198,7 @@
 
     <TextView
         android:id="@+id/fl_item44"
-        android:layout_width="180dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:text="Enviado a"
         android:textSize="14dp"
@@ -211,7 +211,7 @@
 
     <TextView
         android:id="@+id/fl_item4"
-        android:layout_width="180dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:text="Elvis Galindo Leon"
         android:textSize="16dp"

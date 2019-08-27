@@ -52,8 +52,8 @@ public class Cobranza_Flujo2_Seguimiento_Adapter extends ArrayAdapter<Documentos
         //mainHolder.fl_item1.setText(documentos_cobra_movBE.getNOM_ROL_ORIGEN() + "-" + documentos_cobra_movBE.getNOM_ROL_DESTINO());
         mainHolder.fl_item2.setText(documentos_cobra_movBE.getFECHA_MOVIMIENTO());
         mainHolder.fl_item3.setText(documentos_cobra_movBE.getFECHA_RECEPCION());
-        mainHolder.fl_item4.setText(documentos_cobra_movBE.getNOM_PERSONA_DESTINO());
-        mainHolder.fl_item5.setText(documentos_cobra_movBE.getNOM_ESTADO_MOVIMIENTO());
+        mainHolder.fl_item4.setText( funciones.LetraCapital(documentos_cobra_movBE.getNOM_PERSONA_DESTINO()));
+        mainHolder.fl_item5.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOM_ESTADO_MOVIMIENTO()));
 
         return convertView;
     }
