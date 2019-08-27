@@ -18,10 +18,25 @@
         android:dividerHeight="@dimen/pad_20dp"
         />
 
+    <TextView
+        android:id="@+id/txtTotalPlanilla"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="Cobranza Total"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="@dimen/txt_7sp"
+        android:background="@drawable/borderradiusbutton_inac"
+        android:textColor="@color/label_blanco_login_unibell"
+        android:paddingTop="@dimen/pad_10dp"
+        android:paddingBottom="@dimen/pad_10dp"
+        />
+
+
+
         <GridView
             android:id="@+id/fp_lvflujoresumen"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:choiceMode="singleChoice"
             android:listSelector="@color/list_seleccion"
             />

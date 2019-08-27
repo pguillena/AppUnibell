@@ -30,7 +30,7 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
 
     private ListView fp_lvuno,fp_lvtres;
     private GridView fp_lvflujoresumen;
-    private TextView fp_lblnplanilla;
+    private TextView fp_lblnplanilla, txtTotalPlanilla;
 
     private Cobranza_FlujoResumen_Seguimiento_Adapter cobranza_flujo_Resumen_seguimiento_adapter = null;
     private Cobranza_Flujo1_Seguimiento_Adapter cobranza_flujo_1SeguimientoAdapter = null;
@@ -60,11 +60,9 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
             fp_lvflujoresumen=(GridView)findViewById(R.id.fp_lvflujoresumen);
 
             fp_lblnplanilla=(TextView)findViewById(R.id.fp_lblnplanilla);
+            txtTotalPlanilla=(TextView)findViewById(R.id.txtTotalPlanilla);
 
-            LayoutInflater inflater1 = getLayoutInflater();
-
-
-
+            //LayoutInflater inflater1 = getLayoutInflater();
             //ViewGroup header1 = (ViewGroup)inflater1.inflate(R.layout.item_cobranza_flujo1_header,fp_lvuno,false);
             //fp_lvuno.addHeaderView(header1);
 
@@ -74,9 +72,9 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
             //ViewGroup header2 = (ViewGroup)inflater2.inflate(R.layout.item_cobranza_flujo2_header,fp_lvdos,false);
             //fp_lvdos.addHeaderView(header2);
 
-            LayoutInflater inflater3 = getLayoutInflater();
-            ViewGroup header3 = (ViewGroup)inflater3.inflate(R.layout.item_cobranza_flujo3_header,fp_lvtres,false);
-            fp_lvtres.addHeaderView(header3);
+          //  LayoutInflater inflater3 = getLayoutInflater();
+          //  ViewGroup header3 = (ViewGroup)inflater3.inflate(R.layout.item_cobranza_flujo3_header,fp_lvtres,false);
+          //  fp_lvtres.addHeaderView(header3);
 
 
             DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplication());
@@ -220,6 +218,26 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
                     cobranza_flujo_1SeguimientoAdapter = new Cobranza_Flujo1_Seguimiento_Adapter(Activity_FlujoSeguimiento.this, 0, documentos_cobra_cabBL.lst);
                     cobranza_flujo_1SeguimientoAdapter.notifyDataSetChanged();
                     fp_lvuno.setAdapter(cobranza_flujo_1SeguimientoAdapter);
+
+                  /*  double montoTotalPlanillaSoles = 0.0;
+                    double montoTotalPlanillaDolares = 0.0;
+                    for (int i = 0; i<documentos_cobra_cabBL.lst.size();i++)
+                    {
+                        montoTotalPlanillaSoles = montoTotalPlanillaSoles + documentos_cobra_cabBL.lst.get(i).getM_COBRANZA() ;
+
+                    }
+
+                    if(montoTotalPlanillaSoles>0) {
+                        txtTotalPlanilla.setText("S/ " + String.valueOf(montoTotalPlanillaSoles));
+                    }
+
+                    if(montoTotalPlanillaDolares>0){
+
+
+                        txtTotalPlanilla.setText("U$D " + String.valueOf(montoTotalPlanillaDolares));
+                    }
+*/
+
                 }
             }catch(Exception ex){
                 ex.printStackTrace();
