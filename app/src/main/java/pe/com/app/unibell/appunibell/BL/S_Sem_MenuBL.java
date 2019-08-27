@@ -19,11 +19,12 @@ public class S_Sem_MenuBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_SEM_MENU", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_SEM_MENU", null, null);
 
                 String SQL="INSERT OR REPLACE INTO S_SEM_MENU(" +
                         "C_MENU,NOMBRE_MENU,NIVEL,COLUMNA,PARIENTE,ORDEN," +

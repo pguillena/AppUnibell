@@ -70,11 +70,12 @@ public class S_Vem_CorrelativoBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_VEM_CORRELATIVO", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_VEM_CORRELATIVO", null, null);
 
                 String SQL="INSERT OR REPLACE INTO S_VEM_CORRELATIVO(" +
                         "TIPO_COMPROBANTE,ID_CANAL,NRO_SERIE,NRO,ID_EMPRESA,ID_LOCAL," +

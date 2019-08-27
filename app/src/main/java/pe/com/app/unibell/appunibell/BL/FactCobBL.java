@@ -112,11 +112,13 @@ public class FactCobBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("FACTCOB", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("FACTCOB", null, null);
+
                 String SQL="INSERT OR REPLACE INTO FACTCOB( " +
                         "COD_CLIENTE,TIPDOC,SERIE_NUM,NUMERO,FECHA," +
                         "F_VENCTO,F_ACEPTACION,F_TRANSFE,ANO,MES," +

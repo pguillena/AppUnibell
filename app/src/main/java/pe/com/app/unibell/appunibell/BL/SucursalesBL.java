@@ -74,11 +74,12 @@ public class SucursalesBL {
 
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("SUCURSALES", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("SUCURSALES", null, null);
 
                 String SQL="INSERT OR REPLACE INTO SUCURSALES(" +
                         " COD_CLIENTE ,NRO_SUCUR,DIRECCION,TELEFONO,RESPONSABLE," +

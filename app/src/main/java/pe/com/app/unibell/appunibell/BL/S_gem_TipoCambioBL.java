@@ -20,11 +20,11 @@ public class S_gem_TipoCambioBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_GEM_TIPOCAMBIO", null, null);
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_GEM_TIPOCAMBIO", null, null);
 
                 String SQL="INSERT OR REPLACE INTO S_GEM_TIPOCAMBIO(" +
                         "FECHA,TIPO_CAMBIO,TIPO_MONEDA,IMPORT_CAM)"+
@@ -57,7 +57,6 @@ public class S_gem_TipoCambioBL {
             jsonObjectResult.accumulate("status", jsonObjectRest.getInt("status"));
             jsonObjectResult.accumulate("message", jsonObjectRest.getString("message"));
         } catch (Exception e) {
-            DataBaseHelper.myDataBase.endTransaction();
             e.printStackTrace();
             try {
                 jsonObjectResult.accumulate("status", 0);

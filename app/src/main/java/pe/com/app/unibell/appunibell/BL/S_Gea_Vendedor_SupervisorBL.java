@@ -54,11 +54,12 @@ public class S_Gea_Vendedor_SupervisorBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_GEA_VENDEDOR_SUPERVISOR", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_GEA_VENDEDOR_SUPERVISOR", null, null);
 
                 String SQL="INSERT OR REPLACE INTO S_GEA_VENDEDOR_SUPERVISOR(" +
                         "ID_VENDEDOR,ID_SUPERVISOR)"+

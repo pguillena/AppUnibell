@@ -81,11 +81,12 @@ public class Recibos_CcobranzaBL {
 
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("CCM_RECIBOS_COBRANZA", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("CCM_RECIBOS_COBRANZA", null, null);
 
                 String SQL="INSERT OR REPLACE INTO CCM_RECIBOS_COBRANZA(" +
                         "N_SERIE,N_NUMINI,N_NUMFIN,C_TIPO_REC,C_RECEPTOR," +

@@ -71,11 +71,13 @@ public class Tablas_AuxiliaresBL {
 
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("TABLAS_AUXILIARES", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("TABLAS_AUXILIARES", null, null);
+
                 String SQL="INSERT OR REPLACE INTO TABLAS_AUXILIARES(" +
                         "TIPO,CODIGO,DESCRIPCION,ABREVIADA,VALOR1," +
                         "VALOR2,VALOR3,INDICADOR1,INDICADOR2,INDICADOR3," +

@@ -91,11 +91,12 @@ public class Dpm_Personal_TransporteBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("DPM_PERSONAL_TRANSPORTE", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("DPM_PERSONAL_TRANSPORTE", null, null);
 
                 String SQL="INSERT OR REPLACE INTO DPM_PERSONAL_TRANSPORTE( " +
                         " C_PERTRANS, C_EMPTRANS, APE_PATERNO, APE_MATERNO, NOMBRES, RUC, TIPODOCID, DOCIDENT, NRO_BREVETE, DOMICILIO, FLG_CHOFER, FLG_REPART, C_USUARIO, C_PERFIL, C_CPU, FEC_REG, C_USUARIO_MOD, C_PERFIL_MOD, FEC_MOD, C_ESTADO, C_CPU_MOD, ANULADO, FLG_CHEQUEADOR, FLG_CONTROLADOR, FLG_DESPACHADOR, FLG_ARMADOR, TELEFONO, C_SUC_EMP, FNATAL, FLAG_SCTR, C_NIVEL_RIEZGO, ID_EMPRESA) "+

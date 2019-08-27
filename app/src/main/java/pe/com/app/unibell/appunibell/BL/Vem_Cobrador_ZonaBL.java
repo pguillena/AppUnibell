@@ -62,11 +62,11 @@ public class Vem_Cobrador_ZonaBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("VEM_COBRADOR_ZONA", null, null);
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+               //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("VEM_COBRADOR_ZONA", null, null);
 
                 String SQL="INSERT OR REPLACE INTO VEM_COBRADOR_ZONA(" +
                         "COBRADOR,COD_VENDE,DIA_VISITA,UBIGEO,ZONA,C_CANAL," +

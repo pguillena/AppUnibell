@@ -404,13 +404,15 @@ public class Documentos_Cobra_CabBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //SI SE REALIZA LA SINCO¿RONIZACIÓN DE LA OPCIÓN GENERAL, ELEIMINA TODO DEL LOCAL
-            if(sOpcionCobranza.equals("0")) {
-                DataBaseHelper.myDataBase.delete("S_CCM_DOCUMENTOS_COBRA_CAB", null, null);
-            }
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //SI SE REALIZA LA SINCO¿RONIZACIÓN DE LA OPCIÓN GENERAL, ELEIMINA TODO DEL LOCAL
+                if(sOpcionCobranza.equals("0")) {
+                    DataBaseHelper.myDataBase.delete("S_CCM_DOCUMENTOS_COBRA_CAB", null, null);
+                }
+
                 String SQL="INSERT OR REPLACE INTO S_CCM_DOCUMENTOS_COBRA_CAB(" +
                         "ID_COBRANZA,COD_CLIENTE,N_RECIBO,N_SERIE_RECIBO,FPAGO,ID_COBRADOR," +
                         "FECHA,M_COBRANZA,M_COBRANZA_D,SALDO,NUMCHEQ,FECCHEQ," +

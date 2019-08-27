@@ -83,11 +83,13 @@ public class S_Sem_EmpresaBL {
         try {
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_SEM_EMPRESA", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_SEM_EMPRESA", null, null);
+
                 String SQL="INSERT OR REPLACE INTO S_SEM_EMPRESA(" +
                         "ID_EMPRESA,NOMBRE,RAZON_SOCIAL,DIRECCION,RUC," +
                         "TELEFONO,FAX,REPRESENTANTE,ESTADO,FECHA_REGISTRO," +

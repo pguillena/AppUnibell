@@ -56,11 +56,12 @@ public class S_Gem_Vendedor_Codigo_AntBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_GEM_VENDEDOR_CODIGO_ANT", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_GEM_VENDEDOR_CODIGO_ANT", null, null);
 
                 String SQL="INSERT OR REPLACE INTO S_GEM_VENDEDOR_CODIGO_ANT(" +
                         "ID_VENDEDOR,CODIGO_ANTIGUO,FLAG_VIGENCIA)"+

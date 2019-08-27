@@ -66,11 +66,13 @@ public class S_Sem_PerfilBL {
 
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_SEM_PERFIL", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_SEM_PERFIL", null, null);
+
                 String SQL="INSERT OR REPLACE INTO S_SEM_PERFIL(" +
                         "C_PERFIL,NOMBRE_PERFIL,COMENTARIO,USUARIO_REGISTRO,USUARIO_MODIFICACION,PC_REGISTRO," +
                         "PC_MODIFICACION,IP_REGISTRO,IP_MODIFICACION,FECHA_REGISTRO,FECHA_MODIFICACION,ESTADO," +
