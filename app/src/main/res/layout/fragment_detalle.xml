@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:focusable="false"
         android:fontFamily="@font/sf_pro_display_light"
-        android:text="S/ 1400.00"
+        android:text="S/ 0.00"
         android:gravity="right"
         android:layout_weight="1"
         android:textColor="@color/label_color_menu"

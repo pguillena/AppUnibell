@@ -41,6 +41,7 @@ public class Fragment_Flujo extends Fragment {
 
             String myTag = getTag();
             ((Activity_Flujo_Seguimiento) getActivity()).setFragment_flujo(myTag);
+            ((Activity_Flujo_Seguimiento) getActivity()).FragFlujo();
 
 
         } catch (Exception ex) {

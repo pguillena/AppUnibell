@@ -19,7 +19,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/Button_login_unibell"
+            app:titleTextColor="@color/label_login_titulo_unibell"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             />
@@ -28,9 +29,13 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabSelectedTextColor="@color/ubell_color11"
-            app:tabIndicatorColor="@color/background"
+            app:tabSelectedTextColor="@color/Button_login_unibell"
+            app:tabIndicatorColor="@color/Button_login_unibell"
+            android:background="@color/label_login_titulo_unibell"
+            app:tabTextColor="@color/label_color_menu"
             app:tabIndicatorHeight="10dp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/sf_pro_display_medium"
             />
     </android.support.design.widget.AppBarLayout>
 

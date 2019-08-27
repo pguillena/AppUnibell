@@ -60,8 +60,7 @@ public class Activity_AprobacionPlanilla extends AppCompatActivity
         try {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.UNIBELL_PREF);
-            getSupportActionBar().setSubtitle("APROBACIÓN DE PLANILLA");
+            getSupportActionBar().setTitle("APROBACIÓN DE PLANILLA");
 
             sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
             editor_Shared=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF),MODE_PRIVATE).edit();

@@ -67,6 +67,7 @@ public class Activity_Flujo_Seguimiento  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flujo_seguimiento);
+        sharedSettings = this.getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
 
         setToolbar(); // Añadir la toolbar
 
@@ -94,7 +95,7 @@ public class Activity_Flujo_Seguimiento  extends AppCompatActivity {
             // Poner ícono del drawer toggle
             // ab.setHomeAsUpIndicator(R.drawable.ic_menu);
             ab.setDisplayHomeAsUpEnabled(true);
-            ab.setTitle("Planilla-N°99-22509");
+            ab.setTitle("Planilla N° "+sharedSettings.getString("SERIE_PLANILLA","0").toString()+"-" +sharedSettings.getString("N_PLANILLA","0").toString() );
         }
     }
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -142,21 +143,21 @@ public class Activity_Flujo_Seguimiento  extends AppCompatActivity {
         return true;
     }
 
-    private void FragDetalle(){
+    public void FragDetalle(){
         String TabFragment = getFragment_detalle();
         Fragment_Detalle fragment_detalle = (Fragment_Detalle)getSupportFragmentManager().findFragmentByTag(TabFragment);
         if (TabFragment != null ) {
             fragment_detalle.CargarData();
         }
     }
-    private void FragFlujo(){
+    public void FragFlujo(){
         String TabFragment = getFragment_flujo();
         Fragment_Flujo fragment_flujo = (Fragment_Flujo) getSupportFragmentManager().findFragmentByTag(TabFragment);
         if (TabFragment != null ) {
             fragment_flujo.CargarData();
         }
     }
-    private void FragSeguimiento(){
+    public void FragSeguimiento(){
         String TabFragment = getFragment_seguimiento();
         Fragment_Seguimiento fragment_seguimiento = (Fragment_Seguimiento)getSupportFragmentManager().findFragmentByTag(TabFragment);
         if (TabFragment != null ) {

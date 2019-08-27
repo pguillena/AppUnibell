@@ -42,6 +42,7 @@ public class Fragment_Seguimiento extends Fragment {
             ((Activity_Flujo_Seguimiento) getActivity()).setFragment_seguimiento(myTag);
 
 
+
         } catch (Exception ex) {
             Toast.makeText(getActivity(), ex.getMessage().toString(), Toast.LENGTH_SHORT).show();
         }finally {
@@ -63,6 +64,12 @@ public class Fragment_Seguimiento extends Fragment {
                         sharedSettings.getString("iID_LOCAL", "0").toString()
         );
 
+    }
+
+    @Override
+    public void onStart() {
+        ((Activity_Flujo_Seguimiento) getActivity()).FragSeguimiento();
+        super.onStart();
     }
 
     public class Load_FlujoSeguimientoAsyncTask extends AsyncTask<String, String, JSONObject> {

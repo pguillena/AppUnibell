@@ -76,7 +76,11 @@ public class Fragment_Detalle extends Fragment {
         }
     }
 
-
+    @Override
+    public void onStart() {
+        ((Activity_Flujo_Seguimiento) getActivity()).FragDetalle();
+        super.onStart();
+    }
 
     public class Load_FlujoDetalleAsyncTask extends AsyncTask<String, String, JSONObject> {
         /*DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
