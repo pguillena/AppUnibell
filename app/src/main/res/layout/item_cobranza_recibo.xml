@@ -1,173 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout1"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background"
-    >
-    <LinearLayout
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/pad_20dp"
+    android:paddingRight="@dimen/pad_20dp"
+    android:paddingBottom="@dimen/pad_20dp"
+    android:background="@drawable/borderradius_menu_unibell"
+  >
+
+    <TextView
+        android:id="@+id/fj_item2Label"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RECIBO"
-                android:textColor="@color/ubell_rojo"
-                android:textSize="@dimen/txt_7sp"
-                android:gravity="center|left"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                />
+        android:layout_height="wrap_content"
+        android:text="Recibo"
+        android:textSize="16dp"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        />
 
-            <TextView
-                android:id="@+id/rc_item1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SERIE-NUMERO"
-                android:gravity="center|left"
-                android:textColor="@color/black"
-                android:textSize="@dimen/txt_7sp"
-                android:focusable="false"
-                android:layout_marginLeft="15dp"
-                android:drawableRight="@drawable/file_download_outline"
-                android:fontFamily="@font/sf_pro_display_bold"
-                android:paddingRight="200dp"
-                />
+    <TextView
+        android:id="@+id/rc_item1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="0001-124581"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/fj_item2Label"
+        android:drawableRight="@drawable/share"
+        />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                >
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="FECHA"
-                    android:textColor="@color/ubell_rojo"
-                    android:textSize="@dimen/txt_7sp"
-                    android:gravity="center|left"
-                    android:layout_weight="1"
-                    />
+    <TextView
+        android:id="@+id/fj_item3Label"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Fecha"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:layout_below="@id/rc_item1"
+        />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="MONTO"
-                    android:textColor="@color/ubell_rojo"
-                    android:gravity="center|left"
-                    android:textSize="@dimen/txt_7sp"
-                    android:layout_weight="1"
-                    />
-            </LinearLayout>
+    <TextView
+        android:id="@+id/fj_item4Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Monto"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:layout_below="@id/rc_item1"
+        android:layout_toRightOf="@id/fj_item3Label"
+        />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="15dp"
-                >
-                <TextView
-                    android:id="@+id/rc_item2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="16 Agosto 2019"
-                    android:gravity="center|left"
-                    android:textSize="@dimen/txt_7sp"
-                    android:layout_weight="1"
-                    />
-                <TextView
-                    android:id="@+id/rc_item4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="S/1234"
-                    android:gravity="center|left"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/txt_7sp"
-                    android:layout_weight="1"
-                    />
-            </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="FORMA PAGO"
-                android:gravity="center|left"
-                android:textColor="@color/ubell_rojo"
-                android:textSize="@dimen/txt_7sp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                />
 
-            <TextView
-                android:id="@+id/rc_item3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="FORMA PAGO"
-                android:gravity="center|left"
-                android:textColor="@color/black"
-                android:textSize="@dimen/txt_7sp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="15dp"
-                />
+    <TextView
+        android:id="@+id/rc_item2"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="27/08/2019"
+        android:layout_below="@id/fj_item3Label"
+        />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="ESTADO"
-                android:gravity="center|left"
-                android:textColor="@color/ubell_rojo"
-                android:textSize="@dimen/txt_7sp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                />
+    <TextView
+        android:id="@+id/rc_item4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="S/ 20.09"
+        android:layout_below="@id/fj_item4Label"
+        android:layout_toRightOf="@id/rc_item2"
+        />
 
-            <TextView
-                android:id="@+id/rc_item5"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="ESTADO"
-                android:gravity="center|left"
-                android:textColor="@color/black"
-                android:textSize="@dimen/txt_7sp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="15dp"
-                />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:layout_marginBottom="20dp"
-                >
-                <Button
-                    android:id="@+id/cl_btneditar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="EDITAR"
-                    android:textSize="@dimen/txt_7sp"
-                    android:background="@drawable/borderradiusbutton_recibo"
-                    android:textColor="@color/label_blanco_login_unibell"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:focusable="false"
-                    />
-            </LinearLayout>
 
-        </LinearLayout>
+    <TextView
+        android:id="@+id/fj_item5Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forma de pago"
+        android:textSize="16dp"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/rc_item2"
+        />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/rc_item3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Deposito"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/fj_item5Label"
+        />
 
-</LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/fj_item7Label"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Estado"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:layout_below="@id/rc_item3"
+        />
+
+    <TextView
+        android:id="@+id/fj_item6Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Planilla"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:layout_below="@id/rc_item3"
+        android:layout_toRightOf="@id/fj_item7Label"
+        />
+
+
+
+    <TextView
+        android:id="@+id/rc_item5"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="Registrado"
+        android:layout_below="@id/fj_item7Label"
+        />
+
+
+
+    <TextView
+        android:id="@+id/rc_itemPlanilla"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="99-12547"
+        android:layout_below="@id/fj_item6Label"
+        android:layout_toRightOf="@id/rc_item5"
+        android:drawableRight="@drawable/file_download_outline"
+        />
+
+
+
+
+    <Button
+        android:id="@+id/cl_btneditar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        android:textSize="18dp"
+        android:background="@drawable/borderradiusbutton"
+        android:textColor="@color/label_blanco_login_unibell"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="@dimen/pad_20dp"
+        android:focusable="false"
+        android:layout_below="@id/rc_item5"
+        android:textAllCaps="false"
+        android:fontFamily="@font/sf_pro_display_medium"
+        />
+
+
+
+</RelativeLayout>

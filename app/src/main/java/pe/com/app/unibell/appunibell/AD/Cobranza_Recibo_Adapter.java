@@ -50,6 +50,8 @@ public class Cobranza_Recibo_Adapter  extends ArrayAdapter<Documentos_Cobra_CabB
             mainHolder.rc_item3 = (TextView) convertView.findViewById(R.id.rc_item3);
             mainHolder.rc_item4 = (TextView) convertView.findViewById(R.id.rc_item4);
             mainHolder.rc_item5 = (TextView) convertView.findViewById(R.id.rc_item5);
+            mainHolder.rc_itemPlanilla = (TextView) convertView.findViewById(R.id.rc_itemPlanilla);
+
             mainHolder.cl_btneditar = (Button) convertView.findViewById(R.id.cl_btneditar);
             convertView.setTag(mainHolder);
         } else {
@@ -58,17 +60,19 @@ public class Cobranza_Recibo_Adapter  extends ArrayAdapter<Documentos_Cobra_CabB
         final Documentos_Cobra_CabBE documentos_cobra_cabBE = getItem(position);
         mainHolder.rc_item1.setText(documentos_cobra_cabBE.getN_SERIE_RECIBO().toString() + "-" + documentos_cobra_cabBE.getN_RECIBO().toString());
         mainHolder.rc_item2.setText(documentos_cobra_cabBE.getFECHA().toString());
-        mainHolder.rc_item3.setText(documentos_cobra_cabBE.getFPAGODESC().toString());
+        mainHolder.rc_item3.setText(funciones.LetraCapital(documentos_cobra_cabBE.getFPAGODESC().toString()));
         if(Double.valueOf(documentos_cobra_cabBE.getM_COBRANZA().toString())>0.0) {
             mainHolder.rc_item4.setText(documentos_cobra_cabBE.getM_COBRANZA().toString());
         }else{
             mainHolder.rc_item4.setText(documentos_cobra_cabBE.getM_COBRANZA_D().toString());
         }
-        mainHolder.rc_item5.setText(documentos_cobra_cabBE.getESTADODESC().toString() + "-Planilla "+
-                documentos_cobra_cabBE.getSERIE_PLANILLA().toString() + "-" +  documentos_cobra_cabBE.getN_PLANILLA().toString());
+        mainHolder.rc_item5.setText(funciones.LetraCapital( documentos_cobra_cabBE.getESTADODESC().toString() ));
+
+        mainHolder.rc_itemPlanilla.setText(documentos_cobra_cabBE.getSERIE_PLANILLA().toString() + "-" +  documentos_cobra_cabBE.getN_PLANILLA().toString());
+
 
         if(!documentos_cobra_cabBE.getESTADO().toString().trim().equals("40003")) {
-            mainHolder.cl_btneditar.setVisibility(View.INVISIBLE);
+            mainHolder.cl_btneditar.setVisibility(View.GONE);
         }else{
             mainHolder.cl_btneditar.setVisibility(View.VISIBLE);
         }
@@ -133,7 +137,7 @@ public class Cobranza_Recibo_Adapter  extends ArrayAdapter<Documentos_Cobra_CabB
     }
 
     static class MainHolder {
-        TextView rc_item1,rc_item2,rc_item3,rc_item4,rc_item5;
+        TextView rc_item1,rc_item2,rc_item3,rc_item4,rc_item5, rc_itemPlanilla;
         Button cl_btneditar;
 
     }
