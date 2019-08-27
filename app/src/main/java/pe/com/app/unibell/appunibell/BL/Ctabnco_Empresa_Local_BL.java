@@ -56,11 +56,12 @@ public class Ctabnco_Empresa_Local_BL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("CTABNCO_EMPRESA_LOCAL", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("CTABNCO_EMPRESA_LOCAL", null, null);
 
                 String SQL="INSERT OR REPLACE INTO CTABNCO_EMPRESA_LOCAL(" +
                         "CODIGO,DESCRIPCION,ID_EMPRESA_ID_LOCAL)"+

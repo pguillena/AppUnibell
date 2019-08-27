@@ -73,11 +73,13 @@ public class Gem_BancoBL {
         try {
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_GEM_BANCO", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_GEM_BANCO", null, null);
+
                 String SQL="INSERT OR REPLACE INTO S_GEM_BANCO(" +
                         "ID_BANCO,BANCO,ESTADO,ID_EMPRESA,FECHA_REGISTRO," +
                         "FECHA_MODIFICACION,USUARIO_REGISTRO,USUARIO_MODIFICACION,PC_REGISTRO,PC_MODIFICACION," +

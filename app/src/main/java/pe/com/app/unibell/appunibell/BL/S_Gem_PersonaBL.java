@@ -75,11 +75,13 @@ public class S_Gem_PersonaBL {
         try {
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_GEM_PERSONA", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_GEM_PERSONA", null, null);
+
                 String SQL="INSERT OR REPLACE INTO S_GEM_PERSONA(" +
                         "ID_PERSONA,TIPO_PERSONA,APELLIDO_PATERNO,APELLIDO_MATERNO,NOMBRES,DIRECCION," +
                         "RUC,DISTRITO,TELEFONO,SEXO,FECHA_NATAL,ESTADO_CIVIL," +

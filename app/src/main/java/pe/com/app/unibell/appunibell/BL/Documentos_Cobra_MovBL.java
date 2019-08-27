@@ -289,11 +289,14 @@ public class Documentos_Cobra_MovBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_CCM_DOCUMENTOS_COBRA_MOV", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_CCM_DOCUMENTOS_COBRA_MOV", null, null);
+
                 String SQL="INSERT OR REPLACE INTO S_CCM_DOCUMENTOS_COBRA_MOV(" +
                         "ID_DOCUMENTO_MOVIMIENTO,SERIE_PLANILLA,N_PLANILLA,ID_USUARIO_REGISTRO,ID_ROL_USUARIO_REGISTRO,FECHA_RECEPCION ," +
                         "ID_USUARIO_DERIVAR,ID_ROL_USUARIO_DERIVAR,FECHA_DERIVAR,FECHA_MOVIMIENTO,FECHA_ACCION,ESTADO_MOVIMIENTO," +

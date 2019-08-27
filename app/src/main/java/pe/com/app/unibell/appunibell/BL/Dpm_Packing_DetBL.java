@@ -107,11 +107,12 @@ public class Dpm_Packing_DetBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("DPM_PACKING_DET", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("DPM_PACKING_DET", null, null);
 
                 String SQL="INSERT OR REPLACE INTO DPM_PACKING_DET(" +
                         "C_PACKING,F_PACKING,C_EMPRESA,TIPODOC,SERIE,NUMERO," +

@@ -83,11 +83,12 @@ public class MvendedorBL {
         try {
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("MVENDEDOR", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("MVENDEDOR", null, null);
 
                 String SQL="INSERT OR REPLACE INTO MVENDEDOR(" +
                         "C_VENDEDOR,APELLIDO_PATERNO,APELLIDO_MATERNO,NOMBRES,C_CANAL,C_SUBCANAL,"+

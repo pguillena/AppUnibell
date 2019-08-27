@@ -93,11 +93,12 @@ public class CabfcobBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("CABFCOB", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("CABFCOB", null, null);
 
                 String SQL="INSERT OR REPLACE INTO CABFCOB(" +
                         "TIPDOC,SERIE_NUM,NUMERO,FECHA,ANO,MES,"+

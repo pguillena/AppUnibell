@@ -75,11 +75,12 @@ public class S_Sea_Usuario_LocalBL {
 
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_SEA_USUARIO_LOCAL", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_SEA_USUARIO_LOCAL", null, null);
                 String SQL="INSERT OR REPLACE INTO S_SEA_USUARIO_LOCAL(" +
                         "ID_PERSONA,ID_EMPRESA,ID_LOCAL,C_PERFIL,ROL," +
                         "ESTADO,FECHA_REGISTRO,FECHA_MODIFICACION,USUARIO_REGISTRO,USUARIO_MODIFICACION," +

@@ -75,11 +75,13 @@ public class S_Sem_UsuarioBL {
         try {
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_SEM_USUARIO", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_SEM_USUARIO", null, null);
+
                 String SQL="INSERT OR REPLACE INTO S_SEM_USUARIO(" +
                         "ID_PERSONA ,CREDENCIAL,CLAVE,ESTADO,RESETEADO," +
                         " FECHA_REGISTRO,FECHA_MODIFICACION,USUARIO_REGISTRO, USUARIO_MODIFICACION,PC_REGISTRO," +

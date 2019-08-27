@@ -111,11 +111,12 @@ public class S_Gem_ClienteBL {
         try {
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_GEM_CLIENTE", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_GEM_CLIENTE", null, null);
 
                 String SQL="INSERT OR REPLACE INTO S_GEM_CLIENTE(" +
                         "ID_CLIENTE,CODIGO,RAZON_SOCIAL,ID_ZONA,TIPO_GIRO,TELEFONO," +

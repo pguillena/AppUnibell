@@ -117,11 +117,12 @@ public class DocuventBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("DOCUVENT", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("DOCUVENT", null, null);
 
                 String SQL="INSERT OR REPLACE INTO DOCUVENT(" +
                         "TIPODOC,SERIE,NUMERO,ESTADO,FECHA,COD_CLIENTE," +

@@ -91,11 +91,12 @@ public class Dpm_Packing_CabBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("DPM_PACKING_CAB", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("DPM_PACKING_CAB", null, null);
 
                 String SQL="INSERT OR REPLACE INTO DPM_PACKING_CAB(" +
                         "C_PACKING,F_PACKING,F_SALIDA,F_RETORNO,C_EMPTRANS,C_VEHICULO," +

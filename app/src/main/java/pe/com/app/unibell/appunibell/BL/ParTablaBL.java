@@ -73,11 +73,13 @@ public class ParTablaBL {
         try {
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("PARTABLA", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("PARTABLA", null, null);
+
                 String SQL="INSERT OR REPLACE INTO PARTABLA(" +
                         "IDTABLA,DESCRIPCION,ABREVIADO,VALOR1,VALOR2," +
                         "VALOR3,INDICADOR1,INDICADOR2,INDICADOR3,VALORSUNAT," +

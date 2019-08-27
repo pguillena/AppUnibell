@@ -164,11 +164,13 @@ public class ClientesBL {
             lst.clear();
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("CLIENTES", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("CLIENTES", null, null);
+
                 String sql = "INSERT OR REPLACE INTO CLIENTES" +
                         "(COD_CLIENTE,NOMBRE,DIRECCION,CIUDAD,DISTRITO,PAIS," +
                         "ZONA,VENDEDOR,COBRADOR,GIRO,TELEFONO,FAX," +

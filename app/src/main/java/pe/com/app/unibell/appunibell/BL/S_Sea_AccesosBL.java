@@ -87,11 +87,12 @@ public class S_Sea_AccesosBL {
         try {
             String aux = new RestClientLibrary().get(newURL);
             jsonObjectRest = new JSONObject(aux);
-            //Eliminamos los registros
-            DataBaseHelper.myDataBase.delete("S_SEA_ACCESOS", null, null);
+
             //EVALUAMOS EL STATUS
             if (jsonObjectRest.getInt("status")!=1) {
             } else{
+                //Eliminamos los registros
+                DataBaseHelper.myDataBase.delete("S_SEA_ACCESOS", null, null);
                 String SQL="INSERT OR REPLACE INTO S_SEA_ACCESOS(" +
                         "C_PERFIL,C_MENU,VISIBLE,NUEVO,EDITAR,GRABAR," +
                         "BUSCAR,ANULAR,ENVIAR,AGREGAR,ELIMINAR,EXPORTAR," +
