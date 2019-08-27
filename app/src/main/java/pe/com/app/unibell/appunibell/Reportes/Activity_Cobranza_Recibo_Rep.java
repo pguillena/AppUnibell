@@ -3,6 +3,7 @@ package pe.com.app.unibell.appunibell.Reportes;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.AsyncTask_Recibo;
@@ -21,6 +22,10 @@ public class Activity_Cobranza_Recibo_Rep extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle("REPORTE-RECIBO DE COBRANZA");
             getSupportActionBar().setSubtitle("");
+
+            //Permite abrir el archivo PDF
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
 
             sharedSettings = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
             editor_Shared = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();

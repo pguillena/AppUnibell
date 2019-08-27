@@ -113,39 +113,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/label_blanco_login_unibell"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:padding="16dp"
+        >
 
         <TextView
             android:id="@+id/btnVerDetalle"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            android:fontFamily="@font/sf_pro_display_medium"
-            android:padding="@dimen/pad_20dp"
-            android:text="Ver detalle"
-            android:textColor="@color/label_color_menu"
-            android:layout_gravity="bottom"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/lblTotalGeneral"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="false"
             android:fontFamily="@font/sf_pro_display_medium"
-            android:padding="@dimen/pad_20dp"
+            android:text="Ver detalle"
+            android:textColor="@color/label_color_menu"
+            android:layout_gravity="bottom"
+            android:textSize="16dp"
+            android:layout_marginRight="10dp"
+            />
+
+        <TextView
+            android:id="@+id/lblTotalGeneral"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:fontFamily="@font/sf_pro_display_medium"
             android:text="Total general"
             android:textColor="@color/Button_login_unibell"
             android:gravity="right"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            />
 
         <TextView
             android:id="@+id/lq_lbltotalg"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="false"
             android:fontFamily="@font/sf_pro_display_light"
-            android:padding="@dimen/pad_20dp"
+
             android:text="S/ 1400.00"
             android:gravity="right"
             android:textColor="@color/label_color_menu"
