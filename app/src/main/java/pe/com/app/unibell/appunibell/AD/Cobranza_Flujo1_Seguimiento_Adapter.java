@@ -49,7 +49,7 @@ public class Cobranza_Flujo1_Seguimiento_Adapter extends ArrayAdapter<Documentos
             mainHolder.fj_item3 = (TextView) convertView.findViewById(R.id.fj_item3);
             mainHolder.fj_item4 = (TextView) convertView.findViewById(R.id.fj_item4);
             mainHolder.fj_item5 = (TextView) convertView.findViewById(R.id.fj_item5);
-            mainHolder.fj_item6 = (TextView) convertView.findViewById(R.id.fj_item6);
+            //mainHolder.fj_item6 = (TextView) convertView.findViewById(R.id.fj_item6);
             mainHolder.fj_item7 = (TextView) convertView.findViewById(R.id.fj_item7);
             mainHolder.fj_item8 = (TextView) convertView.findViewById(R.id.fj_item8);
             mainHolder.fj_item9 = (TextView) convertView.findViewById(R.id.fj_item9);

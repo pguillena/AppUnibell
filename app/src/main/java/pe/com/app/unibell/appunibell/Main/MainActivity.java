@@ -137,10 +137,6 @@ protected void onCreate(Bundle savedInstanceState) {
         btncobranzas.setOnClickListener(OnClickListenercl_btncobranzas);
         btnliquidacion.setOnClickListener(OnClickListenercl_btnliquidacion);
         btnaplanilla.setOnClickListener(OnClickListenercl_btnaplanilla);
-            btnreportes.setOnClickListener(OnClickListenercl_btnreportes);
-
-
-
 
        //EJECUTA EL SERVICIO
         Intent alarm = new Intent(MainActivity.this, AlarmReceiver.class);
@@ -165,22 +161,6 @@ protected void onCreate(Bundle savedInstanceState) {
 
         dllp.width = display.getWidth();
 
-
-        /*if(display.getWidth()<730) {
-        dllp.width = displayMetrics.widthPixels - getResources().getDimensionPixelOffset(R.dimen.lvmenu_marginright);
-        }else{
-        if(orientation == Configuration.ORIENTATION_LANDSCAPE) {
-        //dllp.width = displayMetrics.widthPixels - getResources().getDimensionPixelOffset(R.dimen.lvmenu_marginright_lan);
-        dllp.width = displayMetrics.widthPixels - (displayMetrics.widthPixels/3);
-        } else {
-        if(display.getWidth()<=1080) {
-        dllp.width = displayMetrics.widthPixels -380;
-        }else{
-        dllp.width = displayMetrics.widthPixels - (displayMetrics.widthPixels/2);
-        }
-        //dllp.width = displayMetrics.widthPixels - getResources().getDimensionPixelOffset(R.dimen.lvmenu_marginrighttab_por);
-        }
-        }*/
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.app_name, R.string.app_name) {
@@ -327,18 +307,7 @@ protected void onCreate(Bundle savedInstanceState) {
         }
     };
 
-    View.OnClickListener OnClickListenercl_btnreportes = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            try {
-                Intent SMNU_FLUJO = new Intent(getApplication(), Activity_Flujo_Seguimiento.class);
-                startActivity(SMNU_FLUJO);
 
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
-    };
 
 
     private void Activar(Boolean valor){

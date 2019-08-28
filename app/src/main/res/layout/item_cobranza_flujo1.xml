@@ -79,9 +79,6 @@
         android:layout_toRightOf="@id/fj_item3"
         />
 
-
-
-
     <TextView
         android:id="@+id/fj_item5Label"
         android:layout_width="match_parent"
@@ -104,8 +101,6 @@
         android:textColor="@color/label_color_menu"
         android:layout_below="@id/fj_item5Label"
         />
-
-
 
 
     <TextView
@@ -157,9 +152,6 @@
         android:layout_below="@id/fj_item8Label"
         android:layout_toRightOf="@id/fj_item7"
         />
-
-
-
 
 
     <TextView

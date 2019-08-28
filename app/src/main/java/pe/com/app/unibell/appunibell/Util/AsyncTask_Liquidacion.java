@@ -20,6 +20,8 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,7 +29,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
 
+import pe.com.app.unibell.appunibell.AD.Cobranza_Aprobacion_Planilla_Adapter;
+import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_MovBL;
 import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
+import pe.com.app.unibell.appunibell.Planilla.Fragment_AprobacionPlanilla;
 import pe.com.app.unibell.appunibell.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -44,7 +49,9 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
     String SOPCION="0";
     String CONTENIDO = "";
 
-    private Documentos_Cobra_CabDAO documentos_cobra_cabDAO = new Documentos_Cobra_CabDAO();
+    //private Documentos_Cobra_CabDAO documentos_cobra_cabDAO = new Documentos_Cobra_CabDAO();
+    private Documentos_Cobra_MovBL documentos_cobra_movBL = new Documentos_Cobra_MovBL();
+
     private Funciones funciones=new Funciones();
 
     private SharedPreferences sharedSettings;
@@ -106,15 +113,32 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                 sharedSettings =context.getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
                 editor_Shared = context.getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
-                String iID_EMPRESA= sharedSettings.getString("iID_EMPRESA", "0").toString();
-                String iID_LOCAL= sharedSettings.getString("iID_LOCAL", "0").toString();
-                String LINQ_FECHA= sharedSettings.getString("LINQ_FECHA", "").toString();
-                String iID_VENDEDOR= sharedSettings.getString("iID_VENDEDOR", "0").toString();
-                String LINQ_ESTADO= sharedSettings.getString("LINQ_ESTADO", "").toString();
-                String LIQ_N_PLANILLA= sharedSettings.getString("LIQ_N_PLANILLA", "").toString();
-                String LIQ_C_PACKING= sharedSettings.getString("LIQ_C_PACKING", "").toString();
+                String cobranza="0", serie="0",recibo="0",fpago="0",codigoCliente="XXX",nomCliente="XXX",ruc="XXX",dni="XXX",noperacion="XXX",estado="40004",planilla="0";
+                String sFechaInicio="17530101",sFechaFin="17530101";
 
-                documentos_cobra_cabDAO.getLiquidacionBy(iID_EMPRESA,iID_LOCAL,LINQ_FECHA,iID_VENDEDOR,LINQ_ESTADO,LIQ_N_PLANILLA,LIQ_C_PACKING);
+                documentos_cobra_movBL.getAPlanillaRest(
+                        ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_mov_APlanilla + "/" +
+                                cobranza + "/" +
+                                recibo + "/" +
+                                serie + "/" +
+                                fpago  + "/" +
+                                sharedSettings.getString("iID_VENDEDOR", "0").toString() + "/" +
+                                codigoCliente+ "/" +
+                                sFechaInicio+ "/" +
+                                sFechaFin + "/" +
+                                nomCliente+ "/" +
+                                ruc+ "/" +
+                                dni+ "/" +
+                                noperacion+ "/" +
+                                sharedSettings.getString("iID_EMPRESA", "0").toString() + "/" +
+                                sharedSettings.getString("iID_LOCAL", "0").toString() + "/" +
+                                sharedSettings.getString("ROL", "0").toString() + "/" +
+                                sharedSettings.getString("REP_N_PLANILLA", "0").toString() + "/" +
+                                estado + "/" +
+                                "30" +
+                                "/0"
+                );
+
                 CONTENIDO=GeneraRecibo();
 
                 worker.parseXHtml(pdfWriter, document, new StringReader(CONTENIDO));
@@ -145,24 +169,58 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
         }
     }
 
+    public class Load_AsyncTask extends AsyncTask<String, String, JSONObject> {
+        /*DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
+        private volatile boolean running = true;
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            return documentos_cobra_movBL.getAPlanillaRest(p[0]);
+        }
+
+        @Override
+        protected void onProgressUpdate(String... prog) {
+            super.onProgressUpdate(prog);
+        }
+
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            try {
+                if (result.getInt("status")!=1) {
+                    //MOSTRAMOS MESSAGE
+                    //new ToastLibrary(getActivity(), result.getString("message")).Show();
+                } else {
+                    GeneraRecibo();
+                }
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+        }
+    }
+
     private String GeneraRecibo(){
         String sHTML="";
         try{
             String htmToCab="",htmToDet="",htmTotalGeneral="",sResumen="",htmPie="";
-            if(documentos_cobra_cabDAO!=null) {
+            if(documentos_cobra_movBL.lst!=null) {
                 htmToCab =
                         "<html>" +
                                 "<head>" +
                                 "<body>" +
                                 "<table width='100%'>" +
                                 "<tr width='100%'>" +
-                                "<td width='80%' style='font-weight:bold'>PLANILLA LIQUIDACIÓN DE COBRANZA " + documentos_cobra_cabDAO.lst.get(0).getPLANILLA().toString() + "</td><td width='20%'><b>Usuario:</b>" + sharedSettings.getString("USUARIO", "").toString() + "</td></tr>" +
+                                "<td width='80%' style='font-weight:bold'>PLANILLA LIQUIDACIÓN DE COBRANZA " + documentos_cobra_movBL.lst.get(0).getN_PLANILLA().toString() + "</td><td width='20%'><b>Usuario:</b>" + sharedSettings.getString("USUARIO", "").toString() + "</td></tr>" +
                                 "<tr width='100%'>" +
                                 "<td width='80%'></td><td width='20%'><b>Fecha:</b>" + funciones.FechaActualNow() + "</td></tr>" +
                                 "<tr width='100%'>" +
-                                "<td width='80%'><b>Fecha Cobranza:</b>" + documentos_cobra_cabDAO.lst.get(0).getFECHA().toString() +  "</td><td width='20%'><b>Cobrador:</b>" +  documentos_cobra_cabDAO.lst.get(0).getNOMCOBRADOR().toString() + "</td></tr>" +
+                                "<td width='80%'><b>Fecha Cobranza:</b>" + documentos_cobra_movBL.lst.get(0).getFECHA().toString() +  "</td><td width='20%'><b>Cobrador:</b>" +  documentos_cobra_movBL.lst.get(0).getNOMBRECOBRADOR().toString() + "</td></tr>" +
                                 "<tr width='100%' style='background:#FFDDDD'>" +
-                                "<td width='80%' ><b>PALNILLA:</b>" + documentos_cobra_cabDAO.lst.get(0).getPLANILLA().toString() + "</td><td width='20%'></td></tr>" +
+                                "<td width='80%' ><b>PALNILLA:</b>" + documentos_cobra_movBL.lst.get(0).getN_PLANILLA().toString() + "</td><td width='20%'></td></tr>" +
                                 "</table>" +
                                 "<table width='100%' border=0.01 cellspacing=0 cellpadding=5 bordercolor='666633'>" +
                                 "<tr><td width='7.5%' align='left' style='font-size:10px;font-weight:bold' >Código</td>" +
@@ -181,26 +239,26 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                                 "</tr>";
 
 
-
+                String RUC="10201010101",MONEDA="S/.",TIPO_DOC="XXX",NRO_DOC="XXXX";
                 Double dCobranza=0.0;
-                for (int j = 0; j < documentos_cobra_cabDAO.lst.size(); j++) {
-                    dCobranza +=documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA();
-                    htmToDet = htmToDet + "<tr><td width='7.5%' style='font-size:10px' align='left' >" + documentos_cobra_cabDAO.lst.get(j).getCOD_CLIENTE().toString() + "</td>" +
-                            "<td width='7.5%' style='font-size:10px'>" + documentos_cobra_cabDAO.lst.get(j).getRUC().toString() + "</td>" +
-                            "<td width='15%' style='font-size:10px'>" +  documentos_cobra_cabDAO.lst.get(j).getRAZON_SOCIAL().toString() + "</td>" +
-                            "<td width='5%' style='font-size:10px'>" +   documentos_cobra_cabDAO.lst.get(j).getTIPODOC().toString() + "</td>" +
-                            "<td width='10%' style='font-size:10px'>" +  documentos_cobra_cabDAO.lst.get(j).getNUMERO().toString() + "</td>" +
-                            "<td width='6%' style='font-size:10px'>" +   documentos_cobra_cabDAO.lst.get(j).getFPAGODESC().toString() + "</td>" +
-                            "<td width='10%' style='font-size:10px'>" +  documentos_cobra_cabDAO.lst.get(j).getNOMCTACORRIENTE().toString() + "</td>" +
-                            "<td width='10%' style='font-size:10px' >" + documentos_cobra_cabDAO.lst.get(j).getFECHA().toString() + "</td>" +
-                            "<td width='7.5%' style='font-size:10px'>" + documentos_cobra_cabDAO.lst.get(j).getNUMCHEQ().toString() + "</td>" +
-                            "<td width='4%' style='font-size:10px'>" +   documentos_cobra_cabDAO.lst.get(j).getMONEDA().toString() + "</td>" +
-                            "<td width='7.5%' style='font-size:10px'>" + funciones.FormatDecimal(documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA().toString()) + "</td>" +
-                            "<td width='5%' style='font-size:10px'>" +   documentos_cobra_cabDAO.lst.get(j).getRECIBO().toString() + "</td>" +
-                            "<td width='5%' style='font-size:10px'>" +   documentos_cobra_cabDAO.lst.get(j).getID_COBRADOR().toString() + "</td>" +
+                for (int j = 0; j < documentos_cobra_movBL.lst.size(); j++) {
+                    dCobranza +=Double.valueOf(documentos_cobra_movBL.lst.get(j).getM_COBRANZA());
+                    htmToDet = htmToDet + "<tr><td width='7.5%' style='font-size:10px' align='left' >" + documentos_cobra_movBL.lst.get(j).getCOD_CLIENTE().toString() + "</td>" +
+                           "<td width='7.5%' style='font-size:10px'>" + RUC + "</td>" +
+                            "<td width='15%' style='font-size:10px'>" +  documentos_cobra_movBL.lst.get(j).getNOMBRECLIENTE().toString() + "</td>" +
+                            "<td width='5%' style='font-size:10px'>" +  TIPO_DOC + "</td>" +
+                            "<td width='10%' style='font-size:10px'>" +  NRO_DOC + "</td>" +
+                            "<td width='6%' style='font-size:10px'>" +   documentos_cobra_movBL.lst.get(j).getFPAGO().toString() + "</td>" +
+                            "<td width='10%' style='font-size:10px'>" +  documentos_cobra_movBL.lst.get(j).getNOMBRECUENTACORRIENTE().toString() + "</td>" +
+                            "<td width='10%' style='font-size:10px' >" + documentos_cobra_movBL.lst.get(j).getFECHA().toString() + "</td>" +
+                            "<td width='7.5%' style='font-size:10px'>" + documentos_cobra_movBL.lst.get(j).getNUMCHEQ().toString() + "</td>" +
+                            "<td width='4%' style='font-size:10px'>" +   MONEDA + "</td>" +
+                            "<td width='7.5%' style='font-size:10px'>" + funciones.FormatDecimal(documentos_cobra_movBL.lst.get(j).getM_COBRANZA().toString()) + "</td>" +
+                            "<td width='5%' style='font-size:10px'>" +   documentos_cobra_movBL.lst.get(j).getN_RECIBO().toString() + "</td>" +
+                            "<td width='5%' style='font-size:10px'>" +   documentos_cobra_movBL.lst.get(j).getID_COBRADOR().toString() + "</td>" +
                             "</tr>";
                 }
-                htmToDet = htmToDet + "<tr><td colspan='10' style='font-weight:bold' align='right' >TOTAL DE PLANILLA" + documentos_cobra_cabDAO.lst.get(0).getPLANILLA().toString() + "</td>" + "<td width='7.5%' style='font-size:12px'>" +  funciones.FormatDecimal(dCobranza.toString()) + "</td>" + "</tr>";
+                htmToDet = htmToDet + "<tr><td colspan='10' style='font-weight:bold' align='right' >TOTAL DE PLANILLA" + documentos_cobra_movBL.lst.get(0).getN_PLANILLA().toString() + "</td>" + "<td width='7.5%' style='font-size:12px'>" +  funciones.FormatDecimal(dCobranza.toString()) + "</td>" + "</tr>";
 
                 htmTotalGeneral = "<table width='88.5%' border=0 cellspacing=0 bordercolor='666633'>" +
                         "<tr><td  style='font-weight:bold;background:#FFDDDD' align='center' >TOTAL GENERAL</td>" + "<td style='font-weight:bold;background:#FFDDDD' width='7.5%'>1600.20</td>" + "</tr></table>";
