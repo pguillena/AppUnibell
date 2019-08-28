@@ -150,7 +150,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                                 sharedSettings.getString("iID_EMPRESA", "0").toString() + "/" +
                                 sharedSettings.getString("iID_LOCAL", "0").toString() + "/" +
                                 "0"+ "/" + //Packing
-                                sharedSettings.getString("REP_N_PLANILLA", "0").toString() + "/"
+                                sharedSettings.getString("N_PLANILLA", "0").toString() + "/"
                 );
 
 
