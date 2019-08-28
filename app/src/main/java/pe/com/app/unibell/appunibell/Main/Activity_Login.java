@@ -181,9 +181,6 @@ public class Activity_Login extends AppCompatActivity
                     if(!edtUserName.getText().toString().trim().equals("") && !edtUserPass.getText().toString().trim().equals("")) {
                         btLogin.setBackgroundResource(R.drawable.borderradiusbutton);
 
-                        //edtUserName.setTextAppearance(getApplicationContext(), R.style.SkyTextViewStyleUnibellActivo);
-                        //edtUserName.setBackgroundDrawable(getResources().));
-                        // edtUserName.setTextAppearance(getBaseContext(), R.style.SkyTextViewStyleUnibellActivo);
                         edtUserName.setBackgroundResource(R.drawable.borderradius_activo);
                         edtUserPass.setBackgroundResource(R.drawable.borderradius_activo);
                     }

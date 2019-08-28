@@ -11,16 +11,18 @@ class bldocumentos_cobra_det {
         $this->request = \Slim\Slim::getInstance()->request();      
     }
    
-    public function SelectAll($p1,$p2,$p3){          
+    public function SelectAll($p1,$p2,$p3,$p4,$p5){          
         $this->response->header("Content-type", "application/json"); 
         try{
             $cnn = getConnectionOracle();
-            $stmt = oci_parse($cnn,"begin PKG_MS_COBRANZA.LISTAR_DOCUMENTOS_COBRA_DET(:p1,:p2,:p3,:data); end;");
+            $stmt = oci_parse($cnn,"begin PKG_MS_COBRANZA.LISTAR_DOCUMENTOS_COBRA_DET(:p1,:p2,:p3,:p4,:p5,:data); end;");
             $curs = oci_new_cursor($cnn);
             //Send parameters variable  value  lenght            
             oci_bind_by_name($stmt, ':p1', $p1); 
             oci_bind_by_name($stmt, ':p2', $p2); 
             oci_bind_by_name($stmt, ':p3', $p3); 
+            oci_bind_by_name($stmt, ':p4', $p4); 
+            oci_bind_by_name($stmt, ':p5', $p5);
             //Bind Cursor     put -1 
             oci_bind_by_name($stmt, ':data', $curs, -1, OCI_B_CURSOR);
             //Execute Statement

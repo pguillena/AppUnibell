@@ -83,6 +83,7 @@ public class Documentos_Cobra_MovBE {
     private String OBSERVACION;
     private String NOMBREACCION;
 
+
     public Integer getID_DOCUMENTO_MOVIMIENTO() {
         return ID_DOCUMENTO_MOVIMIENTO;
     }

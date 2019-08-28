@@ -39,8 +39,9 @@ require 'bl/bls_gea_vendedor_supervisor.php';
 require 'bl/bldocuvent.php';
 require 'bl/bldpm_packing_det.php';
 require 'bl/bldpm_packing_cab.php';
-require 'bl/bldpm_personal_transporte.php';
 require 'bl/bls_sem_menu.php';
+require 'bl/bls_gem_tipocambio.php';
+require 'bl/bldpm_personal_transporte.php';
 
 \Slim\Slim::registerAutoloader();
 
@@ -159,14 +160,19 @@ $app->get('/Query/User/Rol/:codusu', 'bluser:SelectRolByCodUsu');
 $app->get('/blcabfcob/:p1/:p2/:p3', 'blcabfcob:SelectAll');
 $app->get('/blclientes/:p1/:p2/:p3', 'blclientes:SelectAll');
 $app->get('/blctabnco/:p1/:p2/:p3/:p4', 'blctabnco:SelectAll');
-$app->get('/bldocumentos_cobra_cab/:p1/:p2/:p3', 'bldocumentos_cobra_cab:SelectAll');
+
+$app->get('/bldocumentos_cobra_cab/:p1/:p2/:p3/:p4/:p5', 'bldocumentos_cobra_cab:SelectAll');
 $app->get('/bldocumentos_cobra_cab_Flujo1/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8/:p9/:p10/:p11/:p12/:p13/:p14/:p15/:p16/:p17', 'bldocumentos_cobra_cab:CobranzaFlujo1');
+$app->get('/bldocumentos_cobra_cab_liquidacion_cobranza/:p1/:p2/:p3/:p4/:p5/:p6/:p7', 'bldocumentos_cobra_cab:LiquidacionCobranza');
+
+
 $app->get('/ConciliarDepositos/:p1/:p2/:p3/:p4/:p5/:p6/:p7', 'bldocumentos_cobra_cab:ConciliarDepositos');
 $app->get('/GenerarPlanillaCobranza/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8/:p9/:p10/:p11/:p12', 
     'bldocumentos_cobra_cab:GenerarPlanillaCobranza');
+
 $app->get('/InsertarPlanilla/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8/:p9/:p10/:p11/:p12/:p13/:p14', 'bldocumentos_cobra_cab:InsertarPlanilla');
 $app->get('/RetornarPlanilla/:p1/:p2/:p3/:p4/:p5/:p6', 'bldocumentos_cobra_cab:RetornarPlanilla');
-$app->get('/bldocumentos_cobra_det/:p1/:p2/:p3', 'bldocumentos_cobra_det:SelectAll');
+$app->get('/bldocumentos_cobra_det/:p1/:p2/:p3/:p4/:p5', 'bldocumentos_cobra_det:SelectAll');
  
 $app->get('/bldocumentos_cobra_mov/:p1/:p2/:p3', 'bldocumentos_cobra_mov:SelectAll');
 $app->get('/bldocumentos_cobra_mov_flujoresumen/:p1/:p2', 'bldocumentos_cobra_mov:CobranzaFlujoResumen');
@@ -176,6 +182,10 @@ $app->get('/bldocumentos_cobra_mov_flujo3/:p1/:p2/:p3/:p4/:p5/:p6/:p7', 'bldocum
 $app->get('/planilla_doccobramov/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8/:p9/:p10/:p11/:p12/:p13/:p14/:p15/:p16/:p17/:p18/:p19', 'bldocumentos_cobra_mov:SelectAPlailla'); 
 
 $app->post('/cobranza_insert', 'bldocumentos_cobra_cab:InsertCobranza');
+$app->post('/cobranza_insert_update', 'bldocumentos_cobra_cab:InsertUpdateCobranza');
+$app->post('/cobranza_update', 'bldocumentos_cobra_cab:UpdateCobranza');
+$app->post('/cobranza_delete', 'bldocumentos_cobra_cab:DeleteCobranza');
+
 $app->post('/documentos_insert', 'bldocumentos_cobra_mov:InsertDocumentosMov');
  
 $app->get('/blgem_banco/:p1/:p2/:p3', 'blgem_banco:SelectAll');
@@ -209,6 +219,7 @@ $app->get('/bls_gea_vendedor_supervisor/:p1/:p2/:p3', 'bls_gea_vendedor_supervis
 $app->get('/bls_vem_correlativo/:p1/:p2/:p3', 'bls_vem_correlativo:SelectAll');
 $app->get('/blvem_cobrador_zona/:p1/:p2/:p3', 'blvem_cobrador_zona:SelectAll');
 $app->get('/bls_sem_menu/:p1', 'bls_sem_menu:SelectAll');
+$app->get('/bls_gem_tipocambio', 'bls_gem_tipocambio:SelectAll');
 
 $app->get('/hello', function(){
 echo "hola";

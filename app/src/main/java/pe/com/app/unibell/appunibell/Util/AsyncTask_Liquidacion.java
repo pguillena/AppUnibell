@@ -31,6 +31,7 @@ import java.io.StringReader;
 
 import pe.com.app.unibell.appunibell.AD.Cobranza_Aprobacion_Planilla_Adapter;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_MovBL;
+import pe.com.app.unibell.appunibell.BL.PlanillaCobranzaBL;
 import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.Planilla.Fragment_AprobacionPlanilla;
 import pe.com.app.unibell.appunibell.R;
@@ -51,6 +52,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
 
     //private Documentos_Cobra_CabDAO documentos_cobra_cabDAO = new Documentos_Cobra_CabDAO();
     private Documentos_Cobra_MovBL documentos_cobra_movBL = new Documentos_Cobra_MovBL();
+    private PlanillaCobranzaBL planillaCobranzaBL = new PlanillaCobranzaBL();
 
     private Funciones funciones=new Funciones();
 
@@ -138,6 +140,19 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                                 "30" +
                                 "/0"
                 );
+
+
+                planillaCobranzaBL.getLiquidacionCobranza(
+                        ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_liquidacion_cobranza + "/" +
+                                sFechaInicio + "/"+
+                                sharedSettings.getString("iID_VENDEDOR", "0").toString() + "/" +
+                                "0"+ "/" + //Estado
+                                sharedSettings.getString("iID_EMPRESA", "0").toString() + "/" +
+                                sharedSettings.getString("iID_LOCAL", "0").toString() + "/" +
+                                "0"+ "/" + //Packing
+                                sharedSettings.getString("REP_N_PLANILLA", "0").toString() + "/"
+                );
+
 
                 CONTENIDO=GeneraRecibo();
 
