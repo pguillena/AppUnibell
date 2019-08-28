@@ -31,7 +31,7 @@ public interface ConstantsLibrary {
         public static final String bldocumentos_cobra_mov_flujoresumen = "/bldocumentos_cobra_mov_flujoresumen";
         public static final String bldocumentos_cobra_mov_flujo2 = "/bldocumentos_cobra_mov_flujo2";
         public static final String bldocumentos_cobra_mov_flujo3 = "/bldocumentos_cobra_mov_flujo3";
-        public static final String bldocumentos_cobra_cab_liquidacion_cobranza = "/bldocumentos_cobra_cab_liquidacion_cobranza";
+        public static final String bldocumentos_cobra_cab_liquidacion_cobranza = "/bldocumentos_cobra_cab_LiqCobranza";
 
         public static final String blfactcob = "/blfactcob";
         public static final String blgem_banco = "/blgem_banco";
