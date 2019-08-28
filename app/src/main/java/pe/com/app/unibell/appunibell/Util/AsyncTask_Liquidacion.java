@@ -141,7 +141,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                                 "/0"
                 );
 
-
+/*
                 planillaCobranzaBL.getLiquidacionCobranza(
                         ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_liquidacion_cobranza + "/" +
                                 sFechaInicio + "/"+
@@ -152,7 +152,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                                 "0"+ "/" + //Packing
                                 sharedSettings.getString("N_PLANILLA", "0").toString()
                 );
-
+*/
 
                 CONTENIDO=GeneraRecibo();
 
