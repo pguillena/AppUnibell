@@ -187,23 +187,31 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
 
 
             if(documentos_cobra_cabDAO.lst!=null && documentos_cobra_cabDAO.lst.size()>0) {
+
+                String Splanilla = "";
+
+                if(!documentos_cobra_cabDAO.lst.get(0).getPLANILLA().equals(""))
+                {
+                    Splanilla = "Planilla de cobranza N° "+documentos_cobra_cabDAO.lst.get(0).getPLANILLA();
+                }
+
                 htmToCab1 = "<table width='100%'>" +
                         "<tr width='100%'>" +
                         "<td valign='top' width='25%'>" +
                         "<table width='100%'>" +
                         "<tr><td><img src='"+sdPath+"' /></td></tr>" +
                         "<tr><td style='font-size: 10px'>PRODUCTOS DE BELLEZA</td></tr>" +
-                        "<tr><td style='font-size: 10px'>CAL GENERAL VARELA N° 352 BREÑA-LIMA</td></tr>" +
-                        "<tr><td style='font-size: 10px'>TELEFONO. 3307177</td></tr>" +
+                        "<tr><td style='font-size: 10px'>"+documentos_cobra_cabDAO.lst.get(0).getDIRECCION()+"</td></tr>" +
+                        "<tr><td style='font-size: 10px'>TELEFONO. "+documentos_cobra_cabDAO.lst.get(0).getTELEFONO()+"</td></tr>" +
                         "</table>" +
                         "</td>" +
-                        "<td valign='top' width='50%' style='font-size: 25px' align='center' >Planilla de cobranza N° 99-0021441</td>" +
+                        "<td valign='top' width='50%' style='font-size: 25px' align='center' >"+Splanilla+"</td>" +
                         "<td valign='top' width='25%'>" +
                         "<table width='100%' border='1' cellspacing='0' cellpadding='0' bordercolor='#000000'><tr><td>" +
                         "<table width='100%'>" +
-                        "<tr><td align='center' style='font-size: 25px'>RUC. 20511451354</td></tr>" +
+                        "<tr><td align='center' style='font-size: 25px'>RUC. "+documentos_cobra_cabDAO.lst.get(0).getRUC()+"</td></tr>" +
                         "<tr><td align='center' style='font-size: 25px; font-weight: bold;'>RECIBO</td></tr>" +
-                        "<tr><td align='center' style='font-size: 25px; color: #FF0000; font-weight: bold;'>01-819105</td></tr>" +
+                        "<tr><td align='center' style='font-size: 25px; color: #FF0000; font-weight: bold;'>"+"0"+documentos_cobra_cabDAO.lst.get(0).getN_SERIE_RECIBO() +"-" +documentos_cobra_cabDAO.lst.get(0).getN_RECIBO() +"</td></tr>" +
                         "</table>" +
                         "</td></tr></table>" +
                         "</td>" +

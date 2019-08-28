@@ -42,7 +42,7 @@ public class Activity_Cobranza_Recibo_Rep extends AppCompatActivity {
 
     public void CargarRecibo(){
         try {
-            new LoadReciboElectronicoSQLite_AsyncTask().execute( );
+            new LoadReciboElectronicoSQLite_AsyncTask().execute();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
