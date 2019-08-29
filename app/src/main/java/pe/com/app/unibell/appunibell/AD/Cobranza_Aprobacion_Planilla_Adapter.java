@@ -123,13 +123,10 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
                 sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
                 editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
-                editor_Shared.putString("SERIE_PLANILLA", documentos_cobra_movBE.getSERIE_PLANILLA().toString());
-                editor_Shared.putString("N_PLANILLA", documentos_cobra_movBE.getN_PLANILLA().toString());
-                editor_Shared.putString("ID_DOCUMENTO_MOVIMIENTO", documentos_cobra_movBE.getID_DOCUMENTO_MOVIMIENTO().toString());
-                editor_Shared.putString("FECHA_MODIFICACION", documentos_cobra_movBE.getFECHA_MODIFICACION().toString());
-                editor_Shared.putString("ID_COBRANZA", documentos_cobra_movBE.getID_COBRANZA().toString());
+                editor_Shared.putString("REP_N_PLANILLA", documentos_cobra_movBE.getN_PLANILLA().toString());
                 editor_Shared.putString("IOPCION_RECIBO", "0");
                 editor_Shared.commit();
+
                 Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Liquidacion_Rep.class);
                 intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
                 getContext().startActivity(intent);

@@ -168,7 +168,6 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                 FileOutputStream outStream;
 
                 outStream = new FileOutputStream(mFile2);
-
                 bitMap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
 
                 outStream.flush();
