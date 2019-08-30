@@ -55,6 +55,10 @@ public class Activity_Cobranzas
             sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
             editor_Shared= getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
+            editor_Shared.putString("iAmortizar_Dialog","1");
+            editor_Shared.commit();
+
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -178,8 +182,21 @@ public class Activity_Cobranzas
         String iFragment =getiFragmentCobranzas();
         Fragment_Cobranza fragment_cobranza = (Fragment_Cobranza)getSupportFragmentManager().findFragmentByTag(iFragment);
         fragment_cobranza.GuadarDetalle(factCobBE);
-
     }
+
+    //DIALOG AMORTIZAR
+    public void AmortizarDialogTemp(FactCobBE factCobBE){
+        String iFragment =getiFragmentCobranzas();
+        Fragment_Cobranza fragment_cobranza = (Fragment_Cobranza)getSupportFragmentManager().findFragmentByTag(iFragment);
+        fragment_cobranza.AmortizarDialogTemp(factCobBE);
+    }
+
+    public void AmortizarDialogDet(Documentos_Cobra_DetBE documentos_cobra_detBE,Integer iOpcion){
+        String iFragment =getiFragmentCobranzas();
+        Fragment_Cobranza fragment_cobranza = (Fragment_Cobranza)getSupportFragmentManager().findFragmentByTag(iFragment);
+        fragment_cobranza.AmortizarDialogDet(documentos_cobra_detBE,iOpcion);
+    }
+    //FIN DIALOG AMORTIZAR
 
     public void EliminarDetalle(FactCobBE factCobBE){
         String iFragment =getiFragmentCobranzas();

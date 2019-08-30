@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,7 +63,7 @@ import pe.com.app.unibell.appunibell.Util.RestResult;
 import pe.com.app.unibell.appunibell.Util.ToastLibrary;
 
 public class Activity_Sincronizar extends AppCompatActivity {
-    private ListView sin_lvprocesos;
+    private GridView sin_lvprocesos;
     private SincronizarAdapter sincronizarAdapter = null;
     private SincronizaDAO sincronizaDAO = new SincronizaDAO();
     private SincronizarBE sincronizarBE=null;
@@ -146,6 +147,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
     private S_gem_TipoCambioBL s_gem_tipoCambioBL = new S_gem_TipoCambioBL();
 
      private String sOPCION_SINCRONIZADA="";
+    private Integer indexPosition=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,18 +159,13 @@ public class Activity_Sincronizar extends AppCompatActivity {
             getSupportActionBar().setTitle(R.string.UNIBELL_PREF);
             getSupportActionBar().setSubtitle("SINCRONIZAR");
 
-
             DataBaseHelper dataBaseHelper = new DataBaseHelper(Activity_Sincronizar.this);
             dataBaseHelper.createDataBase();
             dataBaseHelper.openDataBase();
 
             sharedSettings = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
             editor_Shared = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
-            sin_lvprocesos = (ListView) findViewById(R.id.sin_lvprocesos);
-
-        //    View headerView = getLayoutInflater().inflate(R.layout.item_sincronizacion_header, null);
-          //  sin_lvprocesos.addHeaderView(headerView);
-
+            sin_lvprocesos = (GridView) findViewById(R.id.sin_lvprocesos);
 
             new LoadProcesosSQLite_AsyncTask().execute();
         } catch (Exception ex) {
@@ -176,7 +173,8 @@ public class Activity_Sincronizar extends AppCompatActivity {
     }
 
 
-    public void Sincronizar(String desc){
+    public void Sincronizar(String desc,Integer iPosition){
+        indexPosition=iPosition;
         sOPCION_SINCRONIZADA=desc.toString().trim();
         switch (desc.trim()) {
             case "EMPRESA":
@@ -511,6 +509,10 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 sincronizarAdapter = new SincronizarAdapter(Activity_Sincronizar.this, 0, sincronizaDAO.lstSincroniza);
                 sincronizarAdapter.notifyDataSetChanged();
                 sin_lvprocesos.setAdapter(sincronizarAdapter);
+                if(sincronizaDAO.lstSincroniza.size()>0) {
+                    sin_lvprocesos.smoothScrollToPosition(indexPosition + 1);
+                }
+
             } catch (Exception ex) {
                 Toast.makeText(Activity_Sincronizar.this, ex.getMessage().toString() +  " No hay Registros :-(", Toast.LENGTH_LONG).show();
             }

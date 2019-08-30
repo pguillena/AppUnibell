@@ -54,6 +54,6 @@
     <dimen name="layout_height_item_grid_mesa_orden">120dp</dimen>
     <dimen name="layout_width_colum_grid_visor">160sp</dimen>
 
-    <dimen name="button_height">45dp</dimen>
+    <dimen name="button_height">50dp</dimen>
 
 </resources>

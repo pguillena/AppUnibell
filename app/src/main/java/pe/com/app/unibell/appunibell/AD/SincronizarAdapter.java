@@ -75,7 +75,7 @@ public class SincronizarAdapter  extends ArrayAdapter<SincronizarBE> {
             @Override
             public void onClick(View view) {
                 if (getContext() instanceof Activity_Sincronizar) {
-                    ((Activity_Sincronizar) getContext()).Sincronizar(item.getPROCESO());
+                    ((Activity_Sincronizar) getContext()).Sincronizar(item.getPROCESO(),position);
                 }
             }
         });

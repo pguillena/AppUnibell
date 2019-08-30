@@ -90,9 +90,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                 outputfile.deleteOnExit();
                 outputfile.canExecute();
                 outputfile.delete();
-
             }
-
 
             document = new Document(PageSize.A4.rotate(), 10, 10, 10, 10);
             PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(nombre_completo));
@@ -122,6 +120,21 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                                  "0/" +
                                 sharedSettings.getString("REP_N_PLANILLA", "0").toString()
                                );
+
+
+                /*
+                planillaCobranzaBL.getLiquidacionCobranza(
+                        ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_liquidacion_cobranza + "/" +
+                                sFechaInicio + "/" +
+                                sharedSettings.getString("iID_VENDEDOR", "0").toString() + "/" +
+                                "0/" +
+                                sharedSettings.getString("iID_EMPRESA", "0").toString() + "/" +
+                                sharedSettings.getString("iID_LOCAL", "0").toString() + "/" +
+                                "0/" +
+                                sharedSettings.getString("REP_N_PLANILLA", "0").toString()
+                );
+                */
+
 
 
                 CONTENIDO=GeneraHTML();

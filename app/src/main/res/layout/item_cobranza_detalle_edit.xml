@@ -196,6 +196,7 @@
             android:gravity="center|left"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
+            android:visibility="gone"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -214,6 +215,7 @@
             android:orientation="horizontal"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
+            android:gravity="center"
             >
             <EditText
                 android:id="@+id/cp_txt1"
@@ -227,11 +229,12 @@
                 android:textSize="@dimen/txt_5sp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:visibility="gone"
                 />
 
             <Button
                 android:id="@+id/cl_btn1"
-                android:layout_width="0dp"
+                android:layout_width="230dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -239,13 +242,13 @@
                 android:text="Pagar"
                 android:background="@drawable/borderradiusbutton"
                 android:textColor="@color/background"
-                android:layout_weight="1"
+
                 android:layout_marginRight="10dp"
                 />
 
             <Button
                 android:id="@+id/cl_btnanular"
-                android:layout_width="0dp"
+                android:layout_width="230dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -253,7 +256,6 @@
                 android:text="ELIMINAR"
                 android:background="@drawable/borderradiusbutton_inac"
                 android:textColor="@color/background"
-                android:layout_weight="1"
                 />
 
         </LinearLayout>

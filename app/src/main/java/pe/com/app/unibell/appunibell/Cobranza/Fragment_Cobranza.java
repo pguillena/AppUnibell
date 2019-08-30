@@ -37,6 +37,7 @@ import pe.com.app.unibell.appunibell.DAO.Recibos_CcobranzaDAO;
 import pe.com.app.unibell.appunibell.DAO.S_gem_TipoCambioDAO;
 import pe.com.app.unibell.appunibell.DAO.SistemaDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
+import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Amortizar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Confirmar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Progress;
@@ -51,7 +52,8 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class Fragment_Cobranza extends Fragment implements
         Dialog_Fragment_Confirmar.Dialog_Fragment_ConfirmarListener,
-        Dialog_Fragment_Aceptar.DialogFragmentAceptarListener {
+        Dialog_Fragment_Aceptar.DialogFragmentAceptarListener,
+        Dialog_Fragment_Amortizar.Dialog_Fragment_AmortizarListener{
 
     private TextView co_btnguardar,co_lblcliente;
     private ListView co_lsdet;
@@ -68,6 +70,8 @@ public class Fragment_Cobranza extends Fragment implements
     private Dialog_Fragment_Auxiliar dialog_fragment_auxiliar = null;
 
     private Dialog_Fragment_Aceptar log_dialogaceptar;
+    private Dialog_Fragment_Amortizar dialog_fragment_amortizar = null;
+
     private Integer iAnticipo = 0;
 
     private Funciones funciones = new Funciones();
@@ -101,6 +105,42 @@ public class Fragment_Cobranza extends Fragment implements
     private String cpmonto = "";
     private String cptipocambio = "";
     private String cpmoneda = "";
+
+    private FactCobBE factCobBE2=null;
+    private Documentos_Cobra_DetBE documentos_cobra_detBE2 = null;
+    private Integer iDialog=0,iOpcionDialog=0;
+
+    @Override
+    public void onAmortizarSI(String Precio) {
+        if(iDialog==1){
+            factCobBE2.setVAMORTIZADO(Double.valueOf(Precio));
+            GuadarDetalle(factCobBE2);
+        }
+        if(iDialog==2){
+            documentos_cobra_detBE2.setM_COBRANZA(Double.valueOf(Precio));
+            DetalleCobranzaEdit(documentos_cobra_detBE2,iOpcionDialog);
+        }
+    }
+
+    public void AmortizarDialogTemp(FactCobBE factCobBE3){
+        iDialog=1;
+        factCobBE2=factCobBE3;
+        dialog_fragment_amortizar = new Dialog_Fragment_Amortizar();
+        dialog_fragment_amortizar.setPrecioDialogfragmentListener(Fragment_Cobranza.this);
+        dialog_fragment_amortizar.show(getFragmentManager(), dialog_fragment_amortizar.TAG);
+        dialog_fragment_amortizar.isCancelable();
+    }
+
+    public void AmortizarDialogDet(Documentos_Cobra_DetBE documentos_cobra_detBE3,Integer iOpcion){
+        iDialog=2;
+        iOpcionDialog=iOpcion;
+        documentos_cobra_detBE2=documentos_cobra_detBE3;
+        dialog_fragment_amortizar = new Dialog_Fragment_Amortizar();
+        dialog_fragment_amortizar.setPrecioDialogfragmentListener(Fragment_Cobranza.this);
+        dialog_fragment_amortizar.show(getFragmentManager(), dialog_fragment_amortizar.TAG);
+        dialog_fragment_amortizar.isCancelable();
+    }
+
 
     public interface Comunicator {
         public void Finalizar();
@@ -384,6 +424,18 @@ public class Fragment_Cobranza extends Fragment implements
         @Override
         public void onClick(View v) {
             try {
+                Integer iActicipo=0;
+
+                for (int j = 0; j < factCobDAO.lst.size(); j++) {
+                    if(factCobDAO.lst.get(j).getTIPDOC().toString().trim().equals("A1")){
+                        iActicipo+=1;
+                    }
+                }
+                if(iActicipo>=1){
+                    Toast.makeText(getActivity(),"Ya Existe un aticipo ingresado para la cobranza.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if (cobranza_cabecera_adapter != null) {
                     factCobBE = new FactCobBE();
                     factCobBE.setID_COBRANZA(cobranza_cabecera_adapter.lst.get(iPocicionCab).getID_COBRANZA());

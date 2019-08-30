@@ -728,6 +728,7 @@ public class Documentos_Cobra_CabBL {
                                     "IP_REGISTRO,IP_MODIFICACION,ID_VENDEDOR ,SALDO_INICIAL " +
                                     "FROM  S_CCM_DOCUMENTOS_COBRA_DET WHERE ESTADO<>'-1' AND ID_COBRANZA="+ ID_COBRANZA;
 
+                    Double M_COBRANZA=0.0,SALDO_INICIAL=0.0;
                     JSONArray jsonArray= new JSONArray();
                     Cursor cursorDet = null;
                     cursorDet= DataBaseHelper.myDataBase.rawQuery(SQL2, null);
@@ -742,7 +743,10 @@ public class Documentos_Cobra_CabBL {
                             jsonObject1.accumulate("IMPORTE",Funciones.isNullColumn(cursorDet,"IMPORTE",0));
                             jsonObject1.accumulate("MONEDA",Funciones.isNullColumn(cursorDet,"MONEDA",""));
                             jsonObject1.accumulate("SALDO",Funciones.isNullColumn(cursorDet,"SALDO",0));
-                            jsonObject1.accumulate("M_COBRANZA",Funciones.isNullColumn(cursorDet,"M_COBRANZA",0));
+
+                            M_COBRANZA=Double.valueOf(Funciones.isNullColumn(cursorDet,"M_COBRANZA",0.0));
+                            jsonObject1.accumulate("M_COBRANZA",M_COBRANZA);
+
                             jsonObject1.accumulate("ID_EMPRESA",Funciones.isNullColumn(cursorDet,"ID_EMPRESA",0));
                             jsonObject1.accumulate("ID_LOCAL",Funciones.isNullColumn(cursorDet,"ID_LOCAL",0));
                             jsonObject1.accumulate("ESTADO",Funciones.isNullColumn(cursorDet,"ESTADO",0));
@@ -755,7 +759,8 @@ public class Documentos_Cobra_CabBL {
                             jsonObject1.accumulate("IP_REGISTRO",Funciones.isNullColumn(cursorDet,"IP_REGISTRO",""));
                             jsonObject1.accumulate("IP_MODIFICACION",Funciones.isNullColumn(cursorDet,"IP_MODIFICACION",""));
                             jsonObject1.accumulate("ID_VENDEDOR ",Funciones.isNullColumn(cursorDet,"ID_VENDEDOR",0));
-                            jsonObject1.accumulate("SALDO_INICIAL",Funciones.isNullColumn(cursorDet,"SALDO_INICIAL",0));
+                            SALDO_INICIAL=Double.valueOf(Funciones.isNullColumn(cursorDet,"SALDO_INICIAL",0.0));
+                            jsonObject1.accumulate("SALDO_INICIAL",SALDO_INICIAL);
                             jsonObject1.accumulate("VOUCHER",Funciones.isNullColumn(cursorDet,"VOUCHER",0));
                             jsonArray.put(jsonObject1);
                         } while (cursorDet.moveToNext());

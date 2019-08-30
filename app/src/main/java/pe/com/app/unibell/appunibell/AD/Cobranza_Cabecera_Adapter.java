@@ -57,6 +57,7 @@ public class Cobranza_Cabecera_Adapter
             mainHolder.cc_item4 = (TextView) convertView.findViewById(R.id.cc_item4);
             mainHolder.cc_item5 = (TextView) convertView.findViewById(R.id.cc_item5);
             mainHolder.cc_lnfecnum = (LinearLayout) convertView.findViewById(R.id.cc_lnfecnum);
+            mainHolder.cc_btn0 = (TextView) convertView.findViewById(R.id.cc_btn0);
             mainHolder.cc_btn1 = (TextView) convertView.findViewById(R.id.cc_btn1);
 
             sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
@@ -113,20 +114,30 @@ public class Cobranza_Cabecera_Adapter
             mainHolder.cc_item5.setBackgroundResource(R.color.red_indicator);
         }*/
 
+        mainHolder.cc_btn0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    lstFiltrado.remove(iposition);
+                    notifyDataSetChanged();
+                    final CharSequence[] options1 = {"Editar Registro", "Eliminar Registro"};
+                    LlamarOpciones(options1,iposition);
+
+                }catch (Exception ex) {
+                    Toast toastCodigo = Toast.makeText(getContext(),ex.getMessage(), Toast.LENGTH_SHORT);
+                    toastCodigo.show();
+                }
+            }
+        });
+
         mainHolder.cc_btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     lstFiltrado.remove(iposition);
                     notifyDataSetChanged();
-
                     final CharSequence[] options1 = {"Editar Registro", "Eliminar Registro"};
                     LlamarOpciones(options1,iposition);
-                    /*
-                    if(getContext() instanceof Activity_Cobranzas){
-                        ((Activity_Cobranzas)getContext()).EliminarCobranzaCab(iposition);
-                    }
-                    */
 
                 }catch (Exception ex) {
                     Toast toastCodigo = Toast.makeText(getContext(),ex.getMessage(), Toast.LENGTH_SHORT);
@@ -176,7 +187,7 @@ public class Cobranza_Cabecera_Adapter
     static class MainHolder {
         TextView cc_item1,cc_item2,cc_item3,cc_item4,cc_item5;
         EditText cc_txt1,cc_txt2;
-        TextView cc_btn1;
+        TextView cc_btn0,cc_btn1;
         LinearLayout cc_lnfecnum;
     }
 

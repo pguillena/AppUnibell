@@ -9,8 +9,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.text.InputType;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -112,13 +118,45 @@ public class Activity_clientes extends AppCompatActivity  {
     }
 
 
-    public void Opcion1(){
-        Toast.makeText(getApplication(),"OPCION1", Toast.LENGTH_LONG).show();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mnu_filtro_list, menu);
+        final MenuItem ic_action_refresh = menu.findItem(R.id.ic_action_refresh);
+        final MenuItem ic_action_buscar = menu.findItem(R.id.ic_action_buscar);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(ic_action_buscar);
+        searchView.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+
+        searchView.setQueryHint("Buscar clientes");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (TextUtils.isEmpty(newText)) {
+                    if(cl_lvclientes.getAdapter()!=null) {
+                        Clientes_Adapter ca = (Clientes_Adapter) cl_lvclientes.getAdapter();
+                        ca.getFilter().filter(newText);
+                    }
+                } else {
+                    Clientes_Adapter ca = (Clientes_Adapter) cl_lvclientes.getAdapter();
+                    ca.getFilter().filter(newText);
+                }
+                return true;
+            }
+        });
+
+        ic_action_refresh.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Cargar();
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 
-    public void Opcion2(){
-        Toast.makeText(getApplication(), "OPCION2", Toast.LENGTH_LONG).show();
-    }
 
 
     private void Cargar(){
@@ -149,18 +187,7 @@ public class Activity_clientes extends AppCompatActivity  {
         }
     };
 
-  /*  View.OnClickListener OnClickListenercl_cl_lblbuscar = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            try {
-                Cargar();
 
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
-    };
-*/
     private class LoadClientesSQLite_AsyncTask extends AsyncTask<String, String,String> {
         @Override
         protected String doInBackground(String... p) {

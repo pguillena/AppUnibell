@@ -19,6 +19,7 @@
             android:orientation="horizontal"
             >
             <TextView
+                android:id="@+id/cc_btn0"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:text="F.Pago/Banco"

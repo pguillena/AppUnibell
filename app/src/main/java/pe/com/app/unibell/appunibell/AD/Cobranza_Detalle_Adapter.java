@@ -24,11 +24,16 @@ import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_DetDAO;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class Cobranza_Detalle_Adapter extends ArrayAdapter<FactCobBE> implements Filterable{
     public List<FactCobBE> lstFiltrado;
     public List<FactCobBE> lst;
     private AdapterFilter adapterFilter;
+
     private SharedPreferences sharedSettings;
+    private SharedPreferences.Editor editor_Shared;
+
     private Documentos_Cobra_DetDAO documentos_cobra_detDAO = new Documentos_Cobra_DetDAO();
 
     public Cobranza_Detalle_Adapter(Context context, int resource, List<FactCobBE> objects) {
@@ -120,6 +125,19 @@ public class Cobranza_Detalle_Adapter extends ArrayAdapter<FactCobBE> implements
             @Override
             public void onClick(View v) {
                 try {
+                    sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
+                    editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+
+                if(sharedSettings.getString("iAmortizar_Dialog", "0").trim().equals("1")) {
+                    editor_Shared.putString("aDOCUMENTO",factCobBE.getSERIE_NUM().toString() + "-"+ factCobBE.getNUMERO().toString());
+                    editor_Shared.putString("aSALDO",Funciones.FormatDecimal(factCobBE.getSALDO().toString()));
+                    editor_Shared.commit();
+
+                    if(getContext() instanceof  Activity_Cobranzas){
+                        ((Activity_Cobranzas)getContext()).AmortizarDialogTemp(factCobBE);
+                    }
+                }else{
+
                     if (mainHolder.cp_txt1.getText().toString().equals("")){
                         Toast toastCodigo = Toast.makeText(getContext(),"Valor Ingresado no es válido", Toast.LENGTH_SHORT);
                         toastCodigo.show();
@@ -131,12 +149,15 @@ public class Cobranza_Detalle_Adapter extends ArrayAdapter<FactCobBE> implements
                         toastCodigo.show();
                         return;
                     }
+
                     factCobBE.setVAMORTIZADO(Double.valueOf(mainHolder.cp_txt1.getText().toString()));
                     notifyDataSetChanged();
 
                     if(getContext() instanceof  Activity_Cobranzas){
                         ((Activity_Cobranzas)getContext()).GuardarCobranzaDet(factCobBE);
                     }
+                }
+
 
                 }catch (Exception ex) {
                     Toast toastCodigo = Toast.makeText(getContext(),ex.getMessage(), Toast.LENGTH_SHORT);

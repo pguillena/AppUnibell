@@ -185,7 +185,7 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
                 List<ClientesBE> localList = new ArrayList<>();
                 String[] SSA=constraint.toString().toUpperCase().split(" ");
                 for (ClientesBE clienteBE : lst) {
-                    String todo = (clienteBE.getNOMBRE().toUpperCase());
+                    String todo = (clienteBE.getRAZON_SOCIAL().toUpperCase() + clienteBE.getCODIGO_ANTIGUO().toUpperCase());
                     Boolean bfind = true;
                     for(String s : SSA){
                         if(!todo.contains(s)){

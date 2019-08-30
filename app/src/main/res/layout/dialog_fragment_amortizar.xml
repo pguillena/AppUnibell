@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:id="@+id/am_ln1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="16dp"
+        >
+        <TextView
+            android:id="@+id/am_lbltitulo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="AMORTIZANDO"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@color/ubell_color2"
+            android:textColor="@color/background"
+            />
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:layout_below="@+id/am_ln1"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:id="@+id/am_ln2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/am_ln1"
+        android:paddingBottom="20dp"
+        >
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:text="Documento"
+            android:gravity="left"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_marginRight="10dp"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:id="@+id/am_lbldocumento"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="001-20225"
+            android:textSize="25dp"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/am_ln3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/am_ln2"
+        android:paddingBottom="30dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        >
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:text="Saldo"
+            android:gravity="left"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_marginRight="10dp"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:id="@+id/am_lblsaldo"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="1300.20"
+            android:gravity="center"
+            android:textSize="25dp"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/am_ln4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/am_ln3"
+        android:layout_marginBottom="20dp"
+        >
+        <View
+            android:id="@+id/dv1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Button_login_unibell"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/am_ln5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/am_ln4"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Ingrese Monto"
+            android:layout_marginRight="10dp"
+            android:textSize="20dp"
+            />
+
+        <EditText
+            android:id="@+id/am_lblmonto"
+            android:layout_width="140dp"
+            android:layout_height="65dp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp"
+            android:inputType="numberDecimal"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:hint="0.00"
+            android:maxLength="10"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/am_ln6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/am_ln5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/am_lblcancelar"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/borderradiusbutton_inac"
+            android:gravity="center"
+            android:text="@string/gnr_lbl_cancelar"
+            android:textColor="@color/background"
+            android:textSize="@dimen/txt_9sp"
+            android:textStyle="bold"
+
+            />
+        <TextView
+            android:id="@+id/am_lblconfirmar"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:text="@string/gnr_lbl_confirmar"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="@dimen/txt_9sp"
+            android:background="@drawable/borderradiusbutton"
+            android:textColor="@color/background"
+            />
+    </LinearLayout>
+</LinearLayout>
+
+</RelativeLayout>

@@ -101,21 +101,33 @@ public class Cobranza_Detalle_Adapter_Edit extends ArrayAdapter<Documentos_Cobra
             @Override
             public void onClick(View v) {
                 try {
-                    if (mainHolder.cp_txt1.getText().toString().equals("")){
-                        Toast toastCodigo = Toast.makeText(getContext(),"Valor Ingresado no es válido", Toast.LENGTH_SHORT);
-                        toastCodigo.show();
-                        return;
-                    }
-                    if (Double.valueOf(mainHolder.cp_txt1.getText().toString())<=0){
-                        Toast toastCodigo = Toast.makeText(getContext(),"Valor Ingresado no es válido", Toast.LENGTH_SHORT);
-                        toastCodigo.show();
-                        return;
-                    }
-                    documentos_cobra_detBE.setM_COBRANZA(Double.valueOf(mainHolder.cp_txt1.getText().toString()));
-                    notifyDataSetChanged();
+                    if(sharedSettings.getString("iAmortizar_Dialog", "0").trim().equals("1")) {
+                        editor_Shared.putString("aDOCUMENTO",documentos_cobra_detBE.getSERIE_NUM().toString() + "-"+ documentos_cobra_detBE.getNUMERO().toString());
+                        editor_Shared.putString("aSALDO",Funciones.FormatDecimal(documentos_cobra_detBE.getSALDO().toString()));
+                        editor_Shared.commit();
 
-                    if(getContext() instanceof  Activity_Cobranzas){
-                        ((Activity_Cobranzas)getContext()).DetalleCobranzaEdit(documentos_cobra_detBE,1);
+                        if(getContext() instanceof  Activity_Cobranzas){
+                            ((Activity_Cobranzas)getContext()).AmortizarDialogDet(documentos_cobra_detBE,1);
+                        }
+                    }else{
+
+                        if (mainHolder.cp_txt1.getText().toString().equals("")){
+                            Toast toastCodigo = Toast.makeText(getContext(),"Valor Ingresado no es válido", Toast.LENGTH_SHORT);
+                            toastCodigo.show();
+                            return;
+                        }
+                        if (Double.valueOf(mainHolder.cp_txt1.getText().toString())<=0){
+                            Toast toastCodigo = Toast.makeText(getContext(),"Valor Ingresado no es válido", Toast.LENGTH_SHORT);
+                            toastCodigo.show();
+                            return;
+                        }
+
+                        documentos_cobra_detBE.setM_COBRANZA(Double.valueOf(mainHolder.cp_txt1.getText().toString()));
+                        notifyDataSetChanged();
+
+                        if(getContext() instanceof  Activity_Cobranzas){
+                            ((Activity_Cobranzas)getContext()).DetalleCobranzaEdit(documentos_cobra_detBE,1);
+                        }
                     }
 
                 }catch (Exception ex) {
