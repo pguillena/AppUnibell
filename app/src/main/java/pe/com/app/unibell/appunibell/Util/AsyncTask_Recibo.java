@@ -186,7 +186,6 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
 
 
             if(documentos_cobra_cabDAO.lst!=null && documentos_cobra_cabDAO.lst.size()>0) {
-
                 String Splanilla = "";
 
                 if(!documentos_cobra_cabDAO.lst.get(0).getPLANILLA().equals(""))
@@ -294,7 +293,7 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
 
                 sHTML = htmToCab2 + htmToDet + sResumen + htmPie;
             }else{
-                sHTML="<html><body>ERROR AL GENERAR EL REPORTE</body></html>";
+                sHTML="<html><body>NO SE PUDO CARGAR EL REPORTE</body></html>";
             }
         }catch (Exception e){
         }

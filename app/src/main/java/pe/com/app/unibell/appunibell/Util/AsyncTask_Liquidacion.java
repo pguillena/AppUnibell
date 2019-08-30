@@ -32,6 +32,7 @@ import java.io.StringReader;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Aprobacion_Planilla_Adapter;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_MovBL;
 import pe.com.app.unibell.appunibell.BL.PlanillaCobranzaBL;
+import pe.com.app.unibell.appunibell.BL.PlanillaCobranzaGrupoBL;
 import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.Planilla.Fragment_AprobacionPlanilla;
 import pe.com.app.unibell.appunibell.R;
@@ -53,6 +54,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
     //private Documentos_Cobra_CabDAO documentos_cobra_cabDAO = new Documentos_Cobra_CabDAO();
 
     private PlanillaCobranzaBL planillaCobranzaBL = new PlanillaCobranzaBL();
+    private PlanillaCobranzaGrupoBL planillaCobranzaGrupoBL = new PlanillaCobranzaGrupoBL();
 
     private Funciones funciones=new Funciones();
 
@@ -121,10 +123,8 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                                 sharedSettings.getString("REP_N_PLANILLA", "0").toString()
                                );
 
-
-                /*
-                planillaCobranzaBL.getLiquidacionCobranza(
-                        ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_liquidacion_cobranza + "/" +
+                planillaCobranzaGrupoBL.getLiquidacionCobranza(
+                        ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_LiqCobranza_Grupo + "/" +
                                 sFechaInicio + "/" +
                                 sharedSettings.getString("iID_VENDEDOR", "0").toString() + "/" +
                                 "0/" +
@@ -133,7 +133,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                                 "0/" +
                                 sharedSettings.getString("REP_N_PLANILLA", "0").toString()
                 );
-                */
+
 
 
 
@@ -171,7 +171,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
     private String GeneraHTML(){
         String sHTML="";
         try{
-            String htmToCab="",htmToDet="",htmTotalGeneral="",sResumen="",htmPie="";
+            String htmToCab="",htmToDet="",htmTotalGeneral="",sResumen="",sResumendet="",htmPie="";
 
             Bitmap bitMap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo); // Default Unibell
             File mFile1 = Environment.getExternalStorageDirectory();
@@ -190,10 +190,9 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
             String sdPath = mFile1.getAbsolutePath().toString()+"/"+fileName;
 
-            if(planillaCobranzaBL.lst!=null) {
+            if(planillaCobranzaBL.lst!=null && planillaCobranzaBL.lst.size()>0) {
                 htmToCab =
                         "<html>" +
                                 "<head>" +
@@ -265,7 +264,20 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                                 "<td width='12%' style='font-size:10px;font-weight:bold'>N°.OP/N°CHEQUE</td>" +
                                 "<td width='12%' style='font-size:10px;font-weight:bold' >VOUCHER</td>" +
                                 "<td width='12%' style='font-size:10px;font-weight:bold' >MONTO TOTAL</td>" +
-                                "</tr></table>";
+                                "</tr>";
+
+                for (int j = 0; j < planillaCobranzaGrupoBL.lst.size(); j++) {
+                    sResumendet = sResumendet + "<tr><td width='7.5%' style='font-size:10px' align='left' >" + planillaCobranzaGrupoBL.lst.get(j).getPLANILLA().toString() + "</td>" +
+                            "<td width='7.5%' style='font-size:10px'>" + planillaCobranzaGrupoBL.lst.get(j).getFPAGO().toString() + "</td>" +
+                            "<td width='12%' style='font-size:10px'>" +  planillaCobranzaGrupoBL.lst.get(j).getENTIDAD().toString() + "</td>" +
+                            "<td width='40%' style='font-size:10px'>" +   planillaCobranzaGrupoBL.lst.get(j).getFECHA().toString() + "</td>" +
+                            "<td width='12%' style='font-size:10px'>" +  planillaCobranzaGrupoBL.lst.get(j).getCONSTANCIA().toString() + "</td>" +
+                            "<td width='12%' style='font-size:10px'>" +   planillaCobranzaGrupoBL.lst.get(j).getVOUCHER().toString() + "</td>" +
+                            "<td width='12%' style='font-size:10px'>" +  planillaCobranzaGrupoBL.lst.get(j).getM_COBRANZA().toString() + "</td>" +
+                            "</tr>";
+                }
+
+                sResumendet = sResumendet + " </table>";
 
                 htmPie = "</table>" +
                         "</body>" +
@@ -274,7 +286,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
 
                 sHTML = htmToCab + htmToDet + htmPie + htmTotalGeneral + sResumen;
             }else{
-                sHTML="ERROR";
+                sHTML="<html><body>NO SE PUDO CARGAR LA LIQUIDACIÓN</body></html>";
             }
         }catch (Exception e){
         }
