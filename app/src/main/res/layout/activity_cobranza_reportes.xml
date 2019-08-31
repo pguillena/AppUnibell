@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_main_unibell"
+    >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:id="@+id/cr_lsdetalle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarStyle="insideInset"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:choiceMode="singleChoice"
+            android:divider="@null"
+            android:dividerHeight="20dp"
+            android:padding="10dp"
+            android:listSelector="@color/list_seleccion"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/cr_fabbuscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            android:src="@drawable/filtro_small" />
+
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/label_blanco_login_unibell"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        >
+
+        <TextView
+            android:id="@+id/cr_btnverdetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:text="Ver detalle"
+            android:textColor="@color/label_color_menu"
+            android:layout_gravity="bottom"
+            android:textSize="16dp"
+            android:layout_marginRight="10dp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:text="Total general"
+            android:textColor="@color/Button_login_unibell"
+            android:gravity="right"
+            android:textSize="16dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            />
+
+        <TextView
+            android:id="@+id/cr_lbltotalg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:fontFamily="@font/sf_pro_display_light"
+
+            android:text="S/ 00.00"
+            android:gravity="right"
+            android:textColor="@color/label_color_menu"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

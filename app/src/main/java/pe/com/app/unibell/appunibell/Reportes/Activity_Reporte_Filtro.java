@@ -1,4 +1,4 @@
-package pe.com.app.unibell.appunibell.Planilla;
+package pe.com.app.unibell.appunibell.Reportes;
 
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialogo_Fragment_Fecha;
 import pe.com.app.unibell.appunibell.R;
 
-public class Activity_Aprobacion_Planilla_Filtro_Rep  extends AppCompatActivity
+public class Activity_Reporte_Filtro extends AppCompatActivity
         implements Dialog_Fragment_Aceptar.DialogFragmentAceptarListener,
         Dialog_Fragment_Auxiliar.Dialog_Fragment_AuxiliarListener,
         Dialogo_Fragment_Fecha.NoticeDialogoListener{
@@ -38,13 +38,17 @@ public class Activity_Aprobacion_Planilla_Filtro_Rep  extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aprobacion_planilla_filtro_rep);
+        setContentView(R.layout.activity_reporte_filtro);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportActionBar().setTitle(R.string.UNIBELL_PREF);
         getSupportActionBar().setSubtitle("REPORTE");
+
+        sharedSettings = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
+        editor_Shared = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+
 
         plb_txtcodigo = (EditText)findViewById(R.id.plb_txtcodigo);
         plb_txtcliente = (EditText)findViewById(R.id.plb_txtcliente);
@@ -105,7 +109,7 @@ public class Activity_Aprobacion_Planilla_Filtro_Rep  extends AppCompatActivity
                 iAuxiliar = 1;
                 iTabla = 14;
                 dialog_fragment_auxiliar = new Dialog_Fragment_Auxiliar();
-                dialog_fragment_auxiliar.setAuxiliarDialogfragmentListener(Activity_Aprobacion_Planilla_Filtro_Rep.this, iTabla, 0);
+                dialog_fragment_auxiliar.setAuxiliarDialogfragmentListener(Activity_Reporte_Filtro.this, iTabla, 0);
                 dialog_fragment_auxiliar.show(getSupportFragmentManager(), dialog_fragment_auxiliar.TAG);
             } catch (Exception e) {
             }
@@ -116,10 +120,10 @@ public class Activity_Aprobacion_Planilla_Filtro_Rep  extends AppCompatActivity
         public void onClick(View v) {
             try {
                 //Descripción Estado
+                iAuxiliar=2;
                 iTabla=100;
-                iAuxiliar=1;
                 dialog_fragment_auxiliar = new Dialog_Fragment_Auxiliar();
-                dialog_fragment_auxiliar.setAuxiliarDialogfragmentListener(Activity_Aprobacion_Planilla_Filtro_Rep.this,iTabla,0);
+                dialog_fragment_auxiliar.setAuxiliarDialogfragmentListener(Activity_Reporte_Filtro.this,iTabla,0);
                 dialog_fragment_auxiliar.show(getSupportFragmentManager(), dialog_fragment_auxiliar.TAG);
 
             } catch (Exception e) {
@@ -153,7 +157,6 @@ public class Activity_Aprobacion_Planilla_Filtro_Rep  extends AppCompatActivity
         @Override
         public void onClick(View v) {
             try {
-
                 // TODO Auto-generated method stub
                 Intent data = new Intent();
                 editor_Shared.putString("plb_txtcodigo",plb_txtcodigo.getText().toString());
@@ -179,7 +182,6 @@ public class Activity_Aprobacion_Planilla_Filtro_Rep  extends AppCompatActivity
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-
         }
     };
 
@@ -197,8 +199,8 @@ public class Activity_Aprobacion_Planilla_Filtro_Rep  extends AppCompatActivity
                 plb_lblfpago.setText(sharedSettings.getString("IDESTABAUX", "").toString().toUpperCase());
                 break;
             case 2:
-                plb_lblestado.setTag(sharedSettings.getString("ICODTABAUX", "").toString());
-                plb_lblestado.setText(sharedSettings.getString("IDESTABAUX", "").toString());
+                plb_lblestado.setTag(sharedSettings.getString("ICODTABAUX", "").toString().toUpperCase());
+                plb_lblestado.setText(sharedSettings.getString("IDESTABAUX", "").toString().toUpperCase());
                 break;
         }
     }

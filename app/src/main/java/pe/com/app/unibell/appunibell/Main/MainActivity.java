@@ -42,6 +42,7 @@ import pe.com.app.unibell.appunibell.Flujo_Seguimiento.Activity_Flujo_Seguimient
 import pe.com.app.unibell.appunibell.Liquidacion.Activity_Liquidacion;
 import pe.com.app.unibell.appunibell.Planilla.Activity_AprobacionPlanilla;
 import pe.com.app.unibell.appunibell.R;
+import pe.com.app.unibell.appunibell.Reportes.Activity_Reportes;
 import pe.com.app.unibell.appunibell.Servicio.AlarmReceiver;
 import pe.com.app.unibell.appunibell.Util.Globals;
 
@@ -137,6 +138,7 @@ protected void onCreate(Bundle savedInstanceState) {
         btncobranzas.setOnClickListener(OnClickListenercl_btncobranzas);
         btnliquidacion.setOnClickListener(OnClickListenercl_btnliquidacion);
         btnaplanilla.setOnClickListener(OnClickListenercl_btnaplanilla);
+            btnreportes.setOnClickListener(OnClickListenercl_btnreportes);
 
        //EJECUTA EL SERVICIO
         Intent alarm = new Intent(MainActivity.this, AlarmReceiver.class);
@@ -228,7 +230,9 @@ protected void onCreate(Bundle savedInstanceState) {
                 break;
 
             case "SMNU_REPORTES":
-                 OcultarDrawel();
+                Intent SMNU_REPORTES = new Intent(getApplication(), Activity_Reportes.class);
+                startActivity(SMNU_REPORTES);
+                OcultarDrawel();
                  break;
 
             case "SMNU_ACERCADE":
@@ -300,6 +304,19 @@ protected void onCreate(Bundle savedInstanceState) {
             try {
                 Intent SMNU_APROBACIONPLA = new Intent(getApplication(), Activity_AprobacionPlanilla.class);
                 startActivity(SMNU_APROBACIONPLA);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    };
+
+    View.OnClickListener OnClickListenercl_btnreportes = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            try {
+                Intent SMNU_REPORTES = new Intent(getApplication(), Activity_Reportes.class);
+                startActivity(SMNU_REPORTES);
 
             } catch (Exception ex) {
                 ex.printStackTrace();

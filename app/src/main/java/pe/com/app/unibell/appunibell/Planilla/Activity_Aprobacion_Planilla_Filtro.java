@@ -165,11 +165,11 @@ public class Activity_Aprobacion_Planilla_Filtro   extends AppCompatActivity
     public void onTablaAuxiliarSI() {
         switch (iAuxiliar) {
             case 1:
-                pl_lblfpago.setTag(sharedSettings.getString("ICODTABAUX", "").toString().toUpperCase());
+                pl_lblfpago.setTag(sharedSettings.getString("ICODTABAUX", "0").toString().toUpperCase());
                 pl_lblfpago.setText(sharedSettings.getString("IDESTABAUX", "").toString().toUpperCase());
                 break;
             case 2:
-                pl_lblestado.setTag(sharedSettings.getString("ICODTABAUX", "").toString());
+                pl_lblestado.setTag(sharedSettings.getString("ICODTABAUX", "0").toString());
                 pl_lblestado.setText(sharedSettings.getString("IDESTABAUX", "").toString());
                 break;
         }

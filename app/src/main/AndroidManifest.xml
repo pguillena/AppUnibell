@@ -64,7 +64,6 @@
             android:parentActivityName=".Main.MainActivity"
             android:screenOrientation="portrait" />
 
-
         <activity
             android:name=".Clientes.Activity_FiltroClientes"
             android:parentActivityName=".Clientes.Activity_clientes"
@@ -146,6 +145,17 @@
             android:name=".Reportes.Activity_Cobranza_Liquidacion_Rep"
             android:screenOrientation="portrait"
             />
+
+        <activity
+            android:name=".Reportes.Activity_Reportes"
+            android:parentActivityName=".Main.MainActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Reportes.Activity_Reporte_Filtro"
+            android:parentActivityName=".Reportes.Activity_Reportes"
+            android:screenOrientation="portrait" />
+
 
         <service
             android:name=".Servicio.ServiceBackground"

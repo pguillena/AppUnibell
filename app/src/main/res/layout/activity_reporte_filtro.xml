@@ -94,6 +94,7 @@
                 android:layout_weight="1"
                 android:layout_marginRight="5dp"
                 android:paddingLeft="15dp"
+                android:layout_marginBottom="8dp"
                 />
 
             <TextView
@@ -283,7 +284,7 @@
                 android:paddingLeft="15dp"
                 android:textSize="14dp"
                 android:textColor="@color/label_color_menu"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="2dp"
                 />
 
             <TextView
@@ -368,7 +369,7 @@
                 android:paddingLeft="15dp"
                 android:textSize="14dp"
                 android:textColor="@color/label_color_menu"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="2dp"
                 />
 
             <TextView
@@ -450,15 +451,15 @@
                 android:id="@+id/plb_btnregistrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@mipmap/ic_buscar"
+                android:drawableRight="@mipmap/ic_buscar"
                 android:textSize="@dimen/txt_12sp"
                 android:text="Buscar"
                 android:gravity="center"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="16dp"
                 android:layout_marginTop="20dp"
-                android:padding="20dp"
+                android:padding="16dp"
                 android:background="@drawable/borderradiusbutton"
                 android:textColor="@color/background"
                 />
