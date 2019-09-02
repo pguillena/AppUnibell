@@ -28,6 +28,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import pe.com.app.unibell.appunibell.AD.Cobranza_Aprobacion_Planilla_Adapter;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_MovBL;
@@ -92,7 +97,9 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                 outputfile.deleteOnExit();
                 outputfile.canExecute();
                 outputfile.delete();
+
             }
+
 
             document = new Document(PageSize.A4.rotate(), 10, 10, 10, 10);
             PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(nombre_completo));
@@ -171,7 +178,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
     private String GeneraHTML(){
         String sHTML="";
         try{
-            String htmToCab="",htmToDet="",htmTotalGeneral="",sResumen="",sResumendet="",htmPie="";
+            String htmToCab="",htmToDet="",htmTotalGeneral="",sResumen="", sResumendet="",htmPie="";
 
             Bitmap bitMap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo); // Default Unibell
             File mFile1 = Environment.getExternalStorageDirectory();

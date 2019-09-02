@@ -511,8 +511,8 @@ public class Fragment_Cobranza extends Fragment implements
                     documentos_cobra_detBE.setESTADO(40003);
                     documentos_cobra_detBE.setFECHA_REGISTRO(funciones.FechaActual());
                     documentos_cobra_detBE.setFECHA_MODIFICACION(funciones.FechaActual());
-                    documentos_cobra_detBE.setUSUARIO_REGISTRO(sharedSettings.getString("Usuario", "").toString());
-                    documentos_cobra_detBE.setUSUARIO_MODIFICACION(sharedSettings.getString("Usuario", "").toString());
+                    documentos_cobra_detBE.setUSUARIO_REGISTRO(sharedSettings.getString("USUARIO", "").toString());
+                    documentos_cobra_detBE.setUSUARIO_MODIFICACION(sharedSettings.getString("USUARIO", "").toString());
                     documentos_cobra_detBE.setPC_REGISTRO(sharedSettings.getString("sIMEI", "").toString());
                     documentos_cobra_detBE.setPC_MODIFICACION(sharedSettings.getString("sIMEI", "").toString());
                     documentos_cobra_detBE.setIP_REGISTRO(sharedSettings.getString("sIMEI", "").toString());
@@ -678,8 +678,8 @@ public class Fragment_Cobranza extends Fragment implements
             documentos_cobra_cabBE.setESTADO("40003");
             documentos_cobra_cabBE.setFECHA_REGISTRO(funciones.FechaActual());
             documentos_cobra_cabBE.setFECHA_MODIFICACION(funciones.FechaActual());
-            documentos_cobra_cabBE.setUSUARIO_REGISTRO(sharedSettings.getString("Usuario", "").toString());
-            documentos_cobra_cabBE.setUSUARIO_MODIFICACION(sharedSettings.getString("Usuario", "").toString());
+            documentos_cobra_cabBE.setUSUARIO_REGISTRO(sharedSettings.getString("USUARIO", "").toString());
+            documentos_cobra_cabBE.setUSUARIO_MODIFICACION(sharedSettings.getString("USUARIO", "").toString());
             //Registrar IMEI
             documentos_cobra_cabBE.setPC_REGISTRO(sharedSettings.getString("sIMEI", "").toString());
             //Registrar IMEI
@@ -795,8 +795,8 @@ public class Fragment_Cobranza extends Fragment implements
             documentos_cobra_detBE.setESTADO(40003);
             documentos_cobra_detBE.setFECHA_REGISTRO(funciones.FechaActual());
             documentos_cobra_detBE.setFECHA_MODIFICACION(funciones.FechaActual());
-            documentos_cobra_detBE.setUSUARIO_REGISTRO(sharedSettings.getString("Usuario", "").toString());
-            documentos_cobra_detBE.setUSUARIO_MODIFICACION(sharedSettings.getString("Usuario", "").toString());
+            documentos_cobra_detBE.setUSUARIO_REGISTRO(sharedSettings.getString("USUARIO", "").toString());
+            documentos_cobra_detBE.setUSUARIO_MODIFICACION(sharedSettings.getString("USUARIO", "").toString());
             documentos_cobra_detBE.setPC_REGISTRO(sharedSettings.getString("sIMEI", "").toString());
             documentos_cobra_detBE.setPC_MODIFICACION(sharedSettings.getString("sIMEI", "").toString());
             documentos_cobra_detBE.setIP_REGISTRO(sharedSettings.getString("sIMEI", "").toString());

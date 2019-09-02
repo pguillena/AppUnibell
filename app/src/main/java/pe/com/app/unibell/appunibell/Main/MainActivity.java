@@ -181,7 +181,7 @@ protected void onCreate(Bundle savedInstanceState) {
         //Cargamos los clientes desde la base de datos SQLite
         Cargar();
         aTrabajar();
-        //username.setText(sharedSettings.getString("Usuario", "").toString());
+        //username.setText(sharedSettings.getString("USUARIO", "").toString());
 
      mnu_lvmenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
     @Override

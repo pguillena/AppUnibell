@@ -151,17 +151,26 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
         try{
             String htmToCab1="",htmToCab2="",htmToDet="",sResumen="",htmPie="";
 
-            Bitmap bitMap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo); // Default Unibell
+            Bitmap bitMap=null;
 
-            if(sharedSettings.getString("iID_EMPRESA", "0").toString().equals("2"))//Unibell
+            if(sharedSettings.getString("iID_EMPRESA", "0").toString().equals("1"))//Unibell
             {
-                //bitMap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo); //Colocar Logo Cosmotrade
+                bitMap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo); // Default Unibell
             }
+           else if(sharedSettings.getString("iID_EMPRESA", "0").toString().equals("2"))//Unibell
+            {
+                bitMap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo_cosmotrade); //Colocar Logo Cosmotrade
+            }
+          else if(sharedSettings.getString("iID_EMPRESA", "0").toString().equals("9"))//Unibell
+            {
+                bitMap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo_rmg); //Colocar Logo Cosmotrade
+            }
+
 
 
             File mFile1 = Environment.getExternalStorageDirectory();
 
-            String fileName ="img1.jpg";
+            String fileName ="img"+sharedSettings.getString("iID_EMPRESA", "0")+".jpg";
 
             File mFile2 = new File(mFile1,fileName);
             try {

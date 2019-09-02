@@ -534,8 +534,8 @@ public class Activity_Login extends AppCompatActivity
             super.onPostExecute(restResult);
             try {
                 if(s_sem_usuarioDAO.lst.size()>0) {
-                    editor_Shared.putString("Usuario",s_sem_usuarioDAO.lst.get(0).getCREDENCIAL().trim().toUpperCase());
-                    editor_Shared.putString("Perfil",s_sem_usuarioDAO.lst.get(0).getCREDENCIAL().trim().toUpperCase());
+                    editor_Shared.putString("USUARIO",s_sem_usuarioDAO.lst.get(0).getCREDENCIAL().trim().toUpperCase());
+                    editor_Shared.putString("PERFIL",s_sem_usuarioDAO.lst.get(0).getCREDENCIAL().trim().toUpperCase());
                     editor_Shared.putString("iID_VENDEDOR",s_sem_usuarioDAO.lst.get(0).getID_PERSONA().toString());
                     editor_Shared.commit();
                 }else{
