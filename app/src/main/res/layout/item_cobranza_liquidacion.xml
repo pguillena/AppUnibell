@@ -201,6 +201,8 @@
                 android:textSize="16dp"
                 android:fontFamily="@font/sf_pro_display_medium"
                 android:textColor="@color/Button_login_unibell"
+                android:drawableRight="@drawable/eye_active"
+                android:paddingRight="@dimen/pad_10dp"
                 />
 
         </LinearLayout>

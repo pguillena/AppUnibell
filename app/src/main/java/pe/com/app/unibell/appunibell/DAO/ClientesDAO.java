@@ -270,12 +270,13 @@ public class ClientesDAO {
                     " INNER JOIN S_GEM_CLIENTE_CODIGO_ANT CA ON(A.ID_CLIENTE=CA.ID_CLIENTE AND CA.FLAG_VIGENCIA=1)\n" +
                     " INNER JOIN CLIENTES LS ON(CA.CODIGO_ANTIGUO = LS.COD_CLIENTE) \n" +
                     " INNER JOIN VEM_COBRADOR_ZONA CZ ON(CZ.UBIGEO = CASE WHEN (LS.COD_UBC)='070100' THEN '070101' ELSE LS.COD_UBC END )\n" +
-                    " WHERE (CZ.COBRADOR =" +  iID_VENDEDOR + " OR " +  iID_VENDEDOR + "=0 OR CA.CODIGO_ANTIGUO IN( '018726I','10030133','45945156') OR " + iID_VENDEDOR + " IN(347,306,332))\n" +
+                    " WHERE (CZ.COBRADOR ='" +  iID_VENDEDOR + "' OR '" +  iID_VENDEDOR + "'='0' OR CA.CODIGO_ANTIGUO IN( '018726I','10030133','45945156') OR '" + iID_VENDEDOR + "' IN('347','306','332'))\n"+
                     " AND IFNULL(A.RUC,'') LIKE '%" + iRUC +  "%'\n" +
                     " AND IFNULL(A.DNI,'') LIKE '%" + iDNI +  "%'\n" +
                     " AND IFNULL(A.RAZON_SOCIAL,'') LIKE '%"+ iRAZON_SOCIAL + "%'\n" +
                     " AND UPPER(IFNULL(CA.CODIGO_ANTIGUO,'')) LIKE '%" + iCODIGO_ANTIGUO+ "%'\n" +
                     " AND (A.ID_GRUPO =" + iID_GRUPO + " OR " + iID_GRUPO + "= 0)";
+
                 iIngreso=1;
             }
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);

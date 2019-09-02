@@ -20,7 +20,9 @@ import java.util.List;
 
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
 import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranzas;
+import pe.com.app.unibell.appunibell.Flujo_Seguimiento.Activity_Flujo_Seguimiento;
 import pe.com.app.unibell.appunibell.R;
+import pe.com.app.unibell.appunibell.Reportes.Activity_Cobranza_Liquidacion_Rep;
 import pe.com.app.unibell.appunibell.Reportes.Activity_Cobranza_Recibo_Rep;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 
@@ -55,13 +57,20 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
             mainHolder.cl_itemMonto = (TextView) view.findViewById(R.id.cl_itemMonto);
             mainHolder.cl_itemFormaPago = (TextView) view.findViewById(R.id.cl_itemFormaPago);
             mainHolder.cl_itemRecibo = (TextView) view.findViewById(R.id.cl_itemRecibo);
-            mainHolder.cl_itemPlanilla = (TextView) view.findViewById(R.id.cl_itemPlanilla);
             mainHolder.cl_lblPlanilla = (TextView) view.findViewById(R.id.cl_lblPlanilla);
+            mainHolder.cl_itemPlanilla = (TextView) view.findViewById(R.id.cl_itemPlanilla);
             mainHolder.cl_lblRecibo = (TextView) view.findViewById(R.id.cl_lblRecibo);
             mainHolder.lyRecibo = (LinearLayout) view.findViewById(R.id.lyRecibo);
             mainHolder.ivMarkerConciliado = (ImageView) view.findViewById(R.id.ivMarkerConciliado);
             mainHolder.lyItemLiquidacion = (LinearLayout) view.findViewById(R.id.lyItemLiquidacion);
             mainHolder.lyFondoBtnEditar = (LinearLayout) view.findViewById(R.id.lyFondoBtnEditar);
+
+
+
+
+
+
+
 
 
             mainHolder.cl_itemchk = (CheckBox) view.findViewById(R.id.cl_itemchk);
@@ -101,6 +110,56 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
                 getContext().startActivity(intent);
 
          }});
+
+
+//Imprimir en PDF la planillla
+        holder.cl_itemPlanilla.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String[] nroPlanilla = documentos_cobra_cabBE.getPLANILLA().split("-");
+
+                sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
+                editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+
+                editor_Shared.putString("REP_N_PLANILLA", nroPlanilla[1].toString());
+                editor_Shared.putString("IOPCION_RECIBO", "0");
+                editor_Shared.commit();
+
+                Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Liquidacion_Rep.class);
+                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                getContext().startActivity(intent);
+
+            }
+        });
+
+
+//Ver el seguimiento de la planilla
+        holder.cl_lblPlanilla.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String[] nroPlanilla = documentos_cobra_cabBE.getPLANILLA().split("-");
+
+                sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
+                editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+                editor_Shared.putString("SERIE_PLANILLA", nroPlanilla[0].toString());
+                editor_Shared.putString("N_PLANILLA", nroPlanilla[1].toString());
+                editor_Shared.commit();
+
+                try {
+                    Intent intent = new Intent(getContext().getApplicationContext(), Activity_Flujo_Seguimiento.class);
+                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
+            }
+        });
+
+
 
         holder.cl_itemCliente.setText(documentos_cobra_cabBE.getCOD_CLIENTE().toString() +" "+documentos_cobra_cabBE.getRAZON_SOCIAL().toString());
 

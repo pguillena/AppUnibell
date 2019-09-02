@@ -232,7 +232,7 @@
         >
         <Button
             android:id="@+id/ap_btnretornar"
-            android:layout_width="135dp"
+            android:layout_width="120dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
@@ -245,7 +245,7 @@
 
         <Button
             android:id="@+id/ap_btnaprobar"
-            android:layout_width="135dp"
+            android:layout_width="120dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
