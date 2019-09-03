@@ -83,7 +83,7 @@ public class Cobranza_Cabecera_Adapter
 
         mainHolder.cc_lnfecnum.setVisibility(View.INVISIBLE);
         //TARJETAS DE CREDITO
-        if (sFPAGO.equals("D") || sFPAGO.equals("V") || sFPAGO.equals("M") || sFPAGO.equals("S") || sFPAGO.equals("I")) {
+        if (sFPAGO.equals("D") || sFPAGO.equals("V") || sFPAGO.equals("M") || sFPAGO.equals("S") || sFPAGO.equals("I")|| sFPAGO.equals("H")) {
             mainHolder.cc_item5.setText(documentos_cobra_cabBE.getFECHA_DEPOSITO().toString() + "-"+ documentos_cobra_cabBE.getN_TARJETA().toString());
             mainHolder.cc_lnfecnum.setVisibility(View.VISIBLE);
         }

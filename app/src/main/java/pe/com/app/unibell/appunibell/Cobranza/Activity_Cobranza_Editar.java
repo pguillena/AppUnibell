@@ -171,7 +171,7 @@ public class Activity_Cobranza_Editar
                 Documentos_Cobra_CabBE documentos_cobra_cabBE2 = new Documentos_Cobra_CabBE();
                 documentos_cobra_cabBE2.setFPAGO(sFPAGO);
                 //TARJETAS DE CRÉDITO
-                if (sFPAGO.equals("D") || sFPAGO.equals("V") || sFPAGO.equals("M") || sFPAGO.equals("S") || sFPAGO.equals("I")) {
+                if (sFPAGO.equals("D") || sFPAGO.equals("V") || sFPAGO.equals("M") || sFPAGO.equals("S") || sFPAGO.equals("I")|| sFPAGO.equals("H")) {
                     documentos_cobra_cabBE2.setFECHA_DEPOSITO(ch_lblfplanilla.getText().toString());
                     documentos_cobra_cabBE2.setN_TARJETA(ch_lblnumero.getText().toString().trim());
                     documentos_cobra_cabBE2.setCTACORRIENTE_BANCO(ch_lblbanco.getTag().toString().trim());

@@ -314,7 +314,7 @@ public class Fragment_AprobacionPlanilla extends Fragment
                             dMontoCheque += Double.valueOf(cobranza_aprobacion_planilla_adapter.lstFiltrado.get(j).getM_COBRANZA().toString());
                         }
                         //VISA
-                        if (fPago.equals("D") || fPago.equals("V") || fPago.equals("M") || fPago.equals("S") || fPago.equals("I")) {
+                        if (fPago.equals("D") || fPago.equals("V") || fPago.equals("M") || fPago.equals("S") || fPago.equals("I")|| fPago.equals("H")) {
                             dMontoVisa += Double.valueOf(cobranza_aprobacion_planilla_adapter.lstFiltrado.get(j).getM_COBRANZA().toString());
                         }
                         //EFECTIVO

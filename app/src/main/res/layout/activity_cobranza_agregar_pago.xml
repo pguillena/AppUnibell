@@ -54,13 +54,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/pad_16dp"
+            android:paddingLeft="@dimen/pad_15dp"
+            android:paddingRight="@dimen/pad_15dp"
+            android:paddingTop="@dimen/pad_5dp"
             >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="5dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
@@ -135,7 +137,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Ejm: 001"
                 android:textSize="16dp"
-                android:padding="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="@dimen/pad_10dp"
+                android:paddingBottom="@dimen/pad_10dp"
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
@@ -150,7 +154,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Ejm: 745812"
                 android:textSize="16dp"
-                android:padding="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="@dimen/pad_10dp"
+                android:paddingBottom="@dimen/pad_10dp"
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
@@ -238,13 +244,16 @@
                 android:layout_height="wrap_content"
                 android:hint="Ejm: 142.32"
                 android:textSize="16dp"
-                android:padding="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="@dimen/pad_10dp"
+                android:paddingBottom="@dimen/pad_10dp"
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:maxLength="10"
                 android:inputType="numberDecimal"
                 />
+
 
             <LinearLayout
                 android:layout_width="match_parent"

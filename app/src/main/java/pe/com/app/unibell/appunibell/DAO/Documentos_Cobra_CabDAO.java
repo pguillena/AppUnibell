@@ -709,7 +709,7 @@ public class Documentos_Cobra_CabDAO {
         try{
             ContentValues cv = new ContentValues();
             ////TARJETAS DE CRÉDITO
-            if(sFormaPago.equals("D") || sFormaPago.equals("V") || sFormaPago.equals("M")  || sFormaPago.equals("S")  || sFormaPago.equals("I")  ) {
+            if(sFormaPago.equals("D") || sFormaPago.equals("V") || sFormaPago.equals("M")  || sFormaPago.equals("S")  || sFormaPago.equals("I") || sFormaPago.equals("H")  ) {
                 cv.put("FECHA_DEPOSITO",documentos_cobra_cabBE.getFECHA_DEPOSITO());
                 cv.put("N_TARJETA",documentos_cobra_cabBE.getN_TARJETA());
                 cv.put("CTACORRIENTE_BANCO",documentos_cobra_cabBE.getCTACORRIENTE_BANCO());
@@ -806,7 +806,7 @@ public class Documentos_Cobra_CabDAO {
             }
 
             //VISA
-            if(fPago.equals("D") || fPago.equals("V") || fPago.equals("M")  || fPago.equals("S")  || fPago.equals("I")  ) {
+            if(fPago.equals("D") || fPago.equals("V") || fPago.equals("M")  || fPago.equals("S")  || fPago.equals("I")|| fPago.equals("H")  ) {
                 cv.put("CTACORRIENTE_BANCO",documentos_cobra_cabBE.getCTACORRIENTE_BANCO().toString());
                 cv.put("FECHA_DEPOSITO",documentos_cobra_cabBE.getFECHA_DEPOSITO().toString());
                 cv.put("N_TARJETA",documentos_cobra_cabBE.getN_TARJETA().toString());

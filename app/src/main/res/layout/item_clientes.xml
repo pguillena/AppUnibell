@@ -2,7 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="20dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
     android:orientation="vertical"
     android:background="@drawable/borderradius_sin_borde"
 
@@ -36,7 +39,7 @@
         android:layout_height="wrap_content"
         android:text="Cliente"
         android:textSize="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/sf_pro_display_medium"
         android:textColor="@color/Button_login_unibell"
         />
@@ -59,7 +62,7 @@
         android:textSize="16dp"
         android:textColor="@color/Button_login_unibell"
         android:fontFamily="@font/sf_pro_display_medium"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         />
 
 
@@ -79,7 +82,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
         <TableLayout
             android:layout_width="fill_parent"

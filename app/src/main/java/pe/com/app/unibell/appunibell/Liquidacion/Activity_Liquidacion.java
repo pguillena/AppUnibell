@@ -407,7 +407,7 @@ public class Activity_Liquidacion extends AppCompatActivity
                             documentos_cobra_cabBE.setFECHA_DEPOSITO(lq_txtfecha.toString());
                         }
                         //Cuando eligen targeta y llenan el campo
-                        if (fPago.equals("D") || fPago.equals("V") || fPago.equals("M") || fPago.equals("S") || fPago.equals("I")) {
+                        if (fPago.equals("D") || fPago.equals("V") || fPago.equals("M") || fPago.equals("S") || fPago.equals("I")|| fPago.equals("H")) {
                             documentos_cobra_cabBE.setCTACORRIENTE_BANCO(lq_txtccbanco.toString());
                             documentos_cobra_cabBE.setFECHA_DEPOSITO(lq_txtfecha.toString());
                             documentos_cobra_cabBE.setN_TARJETA(lq_txtnroope.toString());
@@ -777,7 +777,7 @@ public class Activity_Liquidacion extends AppCompatActivity
             return false;
         }
         //TARJETA DE CREDTO
-        if(fpago.equals("D") || fpago.equals("V") || fpago.equals("M")  || fpago.equals("S")  || fpago.equals("I")  ) {
+        if(fpago.equals("D") || fpago.equals("V") || fpago.equals("M")  || fpago.equals("S")  || fpago.equals("I")|| fpago.equals("H")  ) {
             if(lq_txtfecha.toString().trim().equals("") || lq_txtnroope.toString().trim().equals(""))  {
                 Mensaje("Ingrese Número de Tarjeta de credito y fecha de deposito.");
                 return false;
@@ -1054,7 +1054,7 @@ public class Activity_Liquidacion extends AppCompatActivity
                         dMontoCheque+=Double.valueOf(cobranza_liquidacion_adapter.lstFiltrado.get(j).getM_COBRANZA().toString());
                     }
                     //VISA
-                    if(fPago.equals("D") || fPago.equals("V") || fPago.equals("M")  || fPago.equals("S")  || fPago.equals("I")  ) {
+                    if(fPago.equals("D") || fPago.equals("V") || fPago.equals("M")  || fPago.equals("S")  || fPago.equals("I") || fPago.equals("H")  ) {
                         dMontoVisa+=Double.valueOf(cobranza_liquidacion_adapter.lstFiltrado.get(j).getM_COBRANZA().toString());
                     }
                     //EFECTIVO

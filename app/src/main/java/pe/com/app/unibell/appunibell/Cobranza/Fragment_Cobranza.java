@@ -187,7 +187,7 @@ public class Fragment_Cobranza extends Fragment implements
             co_btnanticipo = (TextView) view.findViewById(R.id.co_btnanticipo);
 
 
-            co_lblcliente.setText(sharedSettings.getString("RAZON_SOCIAL", "").toString());
+            co_lblcliente.setText(new Funciones().LetraCapital(sharedSettings.getString("RAZON_SOCIAL", "").toString()));
             co_lblcliente.setTag(sharedSettings.getString("CODIGO_ANTIGUO", "").toString());
 
             co_btnguardar = (TextView) view.findViewById(R.id.co_btnguardar);
@@ -294,7 +294,7 @@ public class Fragment_Cobranza extends Fragment implements
                  String fPago = cobranza_cabecera_adapter.getItem(iPocicionCab).getFPAGO().toString();
 
                 //TARJETAS DE CREDITO
-                if (fPago.equals("D") || fPago.equals("V") || fPago.equals("M") || fPago.equals("S") || fPago.equals("I")) {
+                if (fPago.equals("D") || fPago.equals("V") || fPago.equals("M") || fPago.equals("S") || fPago.equals("I")|| fPago.equals("H")) {
                     //co_txtnro.setText(cobranza_cabecera_adapter.getItem(iPocicionCab).getN_TARJETA().toString());
                     EDITAR_TPAGO="TARJETA";
                     editor_Shared.putString("iID_BANCO", cobranza_cabecera_adapter.getItem(iPocicionCab).getCTACORRIENTE_BANCO().toString());
@@ -357,7 +357,7 @@ public class Fragment_Cobranza extends Fragment implements
             String fPago = cobranza_cabecera_adapter.getItem(iPocicionCab).getFPAGO().toString();
 
             //TARJETAS DE CREDITO
-            if (fPago.equals("D") || fPago.equals("V") || fPago.equals("M") || fPago.equals("S") || fPago.equals("I")) {
+            if (fPago.equals("D") || fPago.equals("V") || fPago.equals("M") || fPago.equals("S") || fPago.equals("I")|| fPago.equals("H")) {
                 //co_txtnro.setText(cobranza_cabecera_adapter.getItem(iPocicionCab).getN_TARJETA().toString());
                 EDITAR_TPAGO="TARJETA";
                 editor_Shared.putString("iID_BANCO", cobranza_cabecera_adapter.getItem(iPocicionCab).getCTACORRIENTE_BANCO().toString());
@@ -546,7 +546,7 @@ public class Fragment_Cobranza extends Fragment implements
                 vID_Cobranza = cobranza_cabecera_adapter.lst.get(j).getID_COBRANZA();
                 sFPago = cobranza_cabecera_adapter.lst.get(j).getFPAGO().trim();
 
-                if (sFPago.equals("D") || sFPago.equals("V") || sFPago.equals("M") || sFPago.equals("S") || sFPago.equals("I")) {
+                if (sFPago.equals("D") || sFPago.equals("V") || sFPago.equals("M") || sFPago.equals("S") || sFPago.equals("I")|| sFPago.equals("H")) {
                     if (cobranza_cabecera_adapter.lst.get(j).getFECHA_DEPOSITO().trim().equals("") || cobranza_cabecera_adapter.lst.get(j).getN_TARJETA().trim().equals("")) {
                         Mensaje("Ingrese Tarjeta de credito y fecha de deposito.");
                         return;
@@ -701,7 +701,7 @@ public class Fragment_Cobranza extends Fragment implements
             documentos_cobra_cabBE.setT_CAMBIO_TIENDA(sharedSettings.getString("dTIPO_CAMBIO", "0.0").toString());
 
             //Cuando eligen targeta y llenan el campo
-            if (cpfpago.equals("D") || cpfpago.equals("V") || cpfpago.equals("M") || cpfpago.equals("S") || cpfpago.equals("I")) {
+            if (cpfpago.equals("D") || cpfpago.equals("V") || cpfpago.equals("M") || cpfpago.equals("S") || cpfpago.equals("I")|| cpfpago.equals("H")) {
                 documentos_cobra_cabBE.setCTACORRIENTE_BANCO(cpbancoctacte);
                 documentos_cobra_cabBE.setFECHA_DEPOSITO("");
                 documentos_cobra_cabBE.setN_TARJETA(cpbancoctacte);

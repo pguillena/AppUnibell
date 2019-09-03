@@ -22,6 +22,7 @@ import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialogo_Fragment_Fecha;
 import pe.com.app.unibell.appunibell.R;
+import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.Globals;
 
 public class Activity_Cobranza_Agregar_Pago
@@ -83,7 +84,7 @@ public class Activity_Cobranza_Agregar_Pago
         sharedSettings = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
         editor_Shared = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
-        rp_lblcliente.setText(sharedSettings.getString("RAZON_SOCIAL", "").toString());
+        rp_lblcliente.setText(new Funciones().LetraCapital(sharedSettings.getString("RAZON_SOCIAL", "").toString()));
         rp_lblcliente.setTag(sharedSettings.getString("CODIGO_ANTIGUO", "").toString());
 
         //Cargamos las cobranzas registradas hasta el momento

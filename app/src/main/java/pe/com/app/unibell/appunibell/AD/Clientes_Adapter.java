@@ -24,6 +24,7 @@ import pe.com.app.unibell.appunibell.Clientes.Activity_EstadoCuenta;
 import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranza_Recibo;
 import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranzas;
 import pe.com.app.unibell.appunibell.R;
+import pe.com.app.unibell.appunibell.Util.Funciones;
 
 import static android.content.Context.MODE_PRIVATE;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
@@ -64,7 +65,7 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
             mainHolder = (MainHolder) convertView.getTag();
         }
         final ClientesBE clienteBE = getItem(position);
-        mainHolder.cl_item2.setText(clienteBE.getRAZON_SOCIAL().toString().trim());
+        mainHolder.cl_item2.setText( new Funciones().LetraCapital( clienteBE.getRAZON_SOCIAL().toString().trim()));
 
         if(Double.valueOf(clienteBE.getM_PAE()) > 0.0 ) {
             mainHolder.cl_item3.setText(clienteBE.getM_PAE().toString().trim());

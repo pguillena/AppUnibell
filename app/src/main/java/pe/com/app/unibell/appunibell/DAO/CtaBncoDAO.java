@@ -74,7 +74,8 @@ public class CtaBncoDAO {
                     scodfpago.trim().equalsIgnoreCase("D")||
                     scodfpago.trim().equalsIgnoreCase("M")||
                     scodfpago.trim().equalsIgnoreCase("S")||
-                    scodfpago.trim().equalsIgnoreCase("I")) {
+                    scodfpago.trim().equalsIgnoreCase("I")||
+                    scodfpago.trim().equalsIgnoreCase("H")) {
 
                 Sql="select a.codigo AS ID_BANCO,el.descripcion AS BANCO, a.MONEDA AS MONEDA " +
                         " from ctabnco a inner join ctabnco_empresa_local el" +
