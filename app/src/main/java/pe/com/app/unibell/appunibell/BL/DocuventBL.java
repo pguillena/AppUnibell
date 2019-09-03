@@ -124,23 +124,10 @@ public class DocuventBL {
                 //Eliminamos los registros
                 DataBaseHelper.myDataBase.delete("DOCUVENT", null, null);
 
-                String SQL="INSERT OR REPLACE INTO DOCUVENT(" +
-                        "TIPODOC,SERIE,NUMERO,ESTADO,FECHA,COD_CLIENTE," +
-                        "NRO_SUCUR,RUC,COND_PAG,COD_VENDE,ORIGEN,MONEDA," +
-                        "NRO_LISTA,POR_DESC1,POR_DESC2,DETALLE,VAL_VENTA,IMP_DESCTO," +
-                        "IMP_NETO,IMP_INTERES,IMP_ISC,IMP_IGV,PRECIO_VTA,CUOTA_INIC," +
-                        "DESCTO_ADIC,CTA_DESCTO,CTA_INTERES,CTA_IMPISC,CTA_IMPIGV,CTA_PVTA," +
-                        "MOTIVO,PASECC,VOUCHER,COD_ALM,CLIENTE_AFECTO,TIPO_CAMBIO," +
-                        "IMPORT_CAM,CALC_INT,GNRA_LETRA,F_VENCTO,PORC_COMISION,TIP_DOC_REF," +
-                        "SER_DOC_REF,NRO_DOC_REF,FLG_IMPR,UBICACION,NOMBRE,DIRECCION," +
-                        "ESTADO1,F_ANO_COMISION,F_MES_COMISION,C_SUC_EMP,I_DI,VNUMREGOPE," +
-                        "NC_TIP_REF,NC_SER_REF,NC_NRO_REF,M_PORC_PERC,M_PERCEPCION,PERIODO_PLE," +
-                        "I_FE,ID_LOCAL,M_PAE,ID_EMPRESA,URL_PDF,URL_XML,I_RESPUESTA)"+
+                String SQL="INSERT OR REPLACE INTO DOCUVENT(TIPODOC,   SERIE,   NUMERO,    FECHA,   COD_CLIENTE,   RUC,   COND_PAG,   COD_VENDE,   MONEDA,   VAL_VENTA,   IMP_DESCTO,   IMP_NETO, " +
+                                                            "IMP_INTERES, IMP_ISC,   IMP_IGV,   PRECIO_VTA,   TIPO_CAMBIO,   IMPORT_CAM,   F_VENCTO,   UBICACION,   ID_LOCAL, M_PAE, ID_EMPRESA, URL_PDF, URL_XML, I_RESPUESTA, ESTADO, ORIGEN)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                        "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                        "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"+
-                         "?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
@@ -154,70 +141,31 @@ public class DocuventBL {
                     stmt.bindString(1,jsonObjectItem.getString("TIPODOC"));
                     stmt.bindString(2,jsonObjectItem.getString("SERIE"));
                     stmt.bindString(3,jsonObjectItem.getString("NUMERO"));
-                    stmt.bindString(4,jsonObjectItem.getString("ESTADO"));
-                    stmt.bindString(5,jsonObjectItem.getString("FECHA"));
-                    stmt.bindString(6,jsonObjectItem.getString("COD_CLIENTE"));
-                    stmt.bindString(7,jsonObjectItem.getString("NRO_SUCUR"));
-                    stmt.bindString(8,jsonObjectItem.getString("RUC"));
-                    stmt.bindString(9,jsonObjectItem.getString("COND_PAG"));
-                    stmt.bindString(10,jsonObjectItem.getString("COD_VENDE"));
-                    stmt.bindString(11,jsonObjectItem.getString("ORIGEN"));
-                    stmt.bindString(12,jsonObjectItem.getString("MONEDA"));
-                    stmt.bindString(13,jsonObjectItem.getString("NRO_LISTA"));
-                    stmt.bindString(14,jsonObjectItem.getString("POR_DESC1"));
-                    stmt.bindString(15,jsonObjectItem.getString("POR_DESC2"));
-                    stmt.bindString(16,jsonObjectItem.getString("DETALLE"));
-                    stmt.bindString(17,jsonObjectItem.getString("VAL_VENTA"));
-                    stmt.bindString(18,jsonObjectItem.getString("IMP_DESCTO"));
-                    stmt.bindString(19,jsonObjectItem.getString("IMP_NETO"));
-                    stmt.bindString(20,jsonObjectItem.getString("IMP_INTERES"));
-                    stmt.bindString(21,jsonObjectItem.getString("IMP_ISC"));
-                    stmt.bindString(22,jsonObjectItem.getString("IMP_IGV"));
-                    stmt.bindString(23,jsonObjectItem.getString("PRECIO_VTA"));
-                    stmt.bindString(24,jsonObjectItem.getString("CUOTA_INIC"));
-                    stmt.bindString(25,jsonObjectItem.getString("DESCTO_ADIC"));
-                    stmt.bindString(26,jsonObjectItem.getString("CTA_DESCTO"));
-                    stmt.bindString(27,jsonObjectItem.getString("CTA_INTERES"));
-                    stmt.bindString(28,jsonObjectItem.getString("CTA_IMPISC"));
-                    stmt.bindString(29,jsonObjectItem.getString("CTA_IMPIGV"));
-                    stmt.bindString(30,jsonObjectItem.getString("CTA_PVTA"));
-                    stmt.bindString(31,jsonObjectItem.getString("MOTIVO"));
-                    stmt.bindString(32,jsonObjectItem.getString("PASECC"));
-                    stmt.bindString(33,jsonObjectItem.getString("VOUCHER"));
-                    stmt.bindString(34,jsonObjectItem.getString("COD_ALM"));
-                    stmt.bindString(35,jsonObjectItem.getString("CLIENTE_AFECTO"));
-                    stmt.bindString(36,jsonObjectItem.getString("TIPO_CAMBIO"));
-                    stmt.bindString(37,jsonObjectItem.getString("IMPORT_CAM"));
-                    stmt.bindString(38,jsonObjectItem.getString("CALC_INT"));
-                    stmt.bindString(39,jsonObjectItem.getString("GNRA_LETRA"));
-                    stmt.bindString(40,jsonObjectItem.getString("F_VENCTO"));
-                    stmt.bindString(41,jsonObjectItem.getString("PORC_COMISION"));
-                    stmt.bindString(42,jsonObjectItem.getString("TIP_DOC_REF"));
-                    stmt.bindString(43,jsonObjectItem.getString("SER_DOC_REF"));
-                    stmt.bindString(44,jsonObjectItem.getString("NRO_DOC_REF"));
-                    stmt.bindString(45,jsonObjectItem.getString("FLG_IMPR"));
-                    stmt.bindString(46,jsonObjectItem.getString("UBICACION"));
-                    stmt.bindString(47,jsonObjectItem.getString("NOMBRE"));
-                    stmt.bindString(48,jsonObjectItem.getString("DIRECCION"));
-                    stmt.bindString(49,jsonObjectItem.getString("ESTADO1"));
-                    stmt.bindString(50,jsonObjectItem.getString("F_ANO_COMISION"));
-                    stmt.bindString(51,jsonObjectItem.getString("F_MES_COMISION"));
-                    stmt.bindString(52,jsonObjectItem.getString("C_SUC_EMP"));
-                    stmt.bindString(53,jsonObjectItem.getString("I_DI"));
-                    stmt.bindString(54,jsonObjectItem.getString("VNUMREGOPE"));
-                    stmt.bindString(55,jsonObjectItem.getString("NC_TIP_REF"));
-                    stmt.bindString(56,jsonObjectItem.getString("NC_SER_REF"));
-                    stmt.bindString(57,jsonObjectItem.getString("NC_NRO_REF"));
-                    stmt.bindString(58,jsonObjectItem.getString("M_PORC_PERC"));
-                    stmt.bindString(59,jsonObjectItem.getString("M_PERCEPCION"));
-                    stmt.bindString(60,jsonObjectItem.getString("PERIODO_PLE"));
-                    stmt.bindString(61,jsonObjectItem.getString("I_FE"));
-                    stmt.bindString(62,jsonObjectItem.getString("ID_LOCAL"));
-                    stmt.bindString(63,jsonObjectItem.getString("M_PAE"));
-                    stmt.bindString(64,jsonObjectItem.getString("ID_EMPRESA"));
-                    stmt.bindString(65,jsonObjectItem.getString("URL_PDF"));
-                    stmt.bindString(66,jsonObjectItem.getString("URL_XML"));
-                    stmt.bindString(67,jsonObjectItem.getString("I_RESPUESTA"));
+                    stmt.bindString(4,jsonObjectItem.getString("FECHA"));
+                    stmt.bindString(5,jsonObjectItem.getString("COD_CLIENTE"));
+                    stmt.bindString(6,jsonObjectItem.getString("RUC"));
+                    stmt.bindString(7,jsonObjectItem.getString("COND_PAG"));
+                    stmt.bindString(8,jsonObjectItem.getString("COD_VENDE"));
+                    stmt.bindString(9,jsonObjectItem.getString("MONEDA"));
+                    stmt.bindString(10,jsonObjectItem.getString("VAL_VENTA"));
+                    stmt.bindString(11,jsonObjectItem.getString("IMP_DESCTO"));
+                    stmt.bindString(12,jsonObjectItem.getString("IMP_NETO"));
+                    stmt.bindString(13,jsonObjectItem.getString("IMP_INTERES"));
+                    stmt.bindString(14,jsonObjectItem.getString("IMP_ISC"));
+                    stmt.bindString(15,jsonObjectItem.getString("IMP_IGV"));
+                    stmt.bindString(16,jsonObjectItem.getString("PRECIO_VTA"));
+                    stmt.bindString(17,jsonObjectItem.getString("TIPO_CAMBIO"));
+                    stmt.bindString(18,jsonObjectItem.getString("IMPORT_CAM"));
+                    stmt.bindString(19,jsonObjectItem.getString("F_VENCTO"));
+                    stmt.bindString(20,jsonObjectItem.getString("UBICACION"));
+                    stmt.bindString(21,jsonObjectItem.getString("ID_LOCAL"));
+                    stmt.bindString(22,jsonObjectItem.getString("M_PAE"));
+                    stmt.bindString(23,jsonObjectItem.getString("ID_EMPRESA"));
+                    stmt.bindString(24,jsonObjectItem.getString("URL_PDF"));
+                    stmt.bindString(25,jsonObjectItem.getString("URL_XML"));
+                    stmt.bindString(26,jsonObjectItem.getString("I_RESPUESTA"));
+                    stmt.bindString(27,jsonObjectItem.getString("ESTADO"));
+                    stmt.bindString(28,jsonObjectItem.getString("ORIGEN"));
                     stmt.execute();
                     stmt.clearBindings();
                 }
