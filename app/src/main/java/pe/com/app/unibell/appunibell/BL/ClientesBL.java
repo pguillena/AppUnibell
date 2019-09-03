@@ -172,31 +172,9 @@ public class ClientesBL {
                 DataBaseHelper.myDataBase.delete("CLIENTES", null, null);
 
                 String sql = "INSERT OR REPLACE INTO CLIENTES" +
-                        "(COD_CLIENTE,NOMBRE,DIRECCION,CIUDAD,DISTRITO,PAIS," +
-                        "ZONA,VENDEDOR,COBRADOR,GIRO,TELEFONO,FAX," +
-                        "FECHA_ING,COND_PAG,CALIFICACION,LIMITE_CRED,ESTADO,RUC," +
-                        "DSCTO_1,DSCTO_2,CTACONTS,CTACONTD,CLIENTE_AFECTO,DSCTO_MAX," +
-                        "LISTA_PRECIO,NIVEL_CP,CRED_USADO,LETRA_PRT,CHEQ_DEV,GRUPO," +
-                        "DIREC_FACT,INTERES,COMI_PREDET,ALM_CONS,COD_UBC,DOCIDEN," +
-                        "RUC_NEW,UBIGEO,DIA_VISITA,ORD_VISITA,FRC_VISITA,ANIVERSARIO," +
-                        "R_CUMPLEANOS,L_TAMANO,L_DECORACION,L_TECNOLOGIA,NRO_EMPLEADOS,NRO_EXIBIDOR," +
-                        "NRO_VISITAS,CANEMP,CEOCLIE,PROFESO,CARNET,REFERENCIA," +
-                        "COD_STROE,GIRO_CLI,R_SEXO,R_LUGNAC,R_ESTCIV,R_HOBBIE," +
-                        "R_GENERO,R_REVIST,R_PERIOD,RETENCION,CALIF_VTA,CALIF_CRED," +
-                        "PLAZO_PAGO,I_SITUACION,C_CANAL,C_CLIENTE,C_ETAPA,FLG_CONSIGNA_VTA," +
-                        "FLG_CONSIGNA_PROM,C_COBRADOR_EXT,C_DIA_VISITA_EXT,N_ORD_VISITA_EXT,C_FRC_VISITA_EXT,C_RUTA_DISTRIBUCION," +
-                        "E_MAIL,N_ARCHIVO,C_CLIENTE_PAGO,C_NIVEL,I_CLIENTE_INT_EXT,M_CUOTA_SEMANAL," +
-                        "C_FRC_COB,C_SUC_EMP,C_GRUPO_CANAL_VTA,C_FUERZA_VTA,I_DIR_FISCAL,C_REGION_VTA," +
-                        "C_COBRADOR,I_ORIGEN,I_DI,I_AGENTE_RET,I_AGENTE_PER,I_PERCEPCION," +
-                        "COD_DPT,COD_PVC,DIRECCION_VSTA,ID_NIVEL,I_RELACION,F_FACT_AUTOM," +
-                        "C_USUARIO,C_PERFIL,C_CPU,FEC_REG,I_REGISTRO_CASTIGO,OBSERVACION,ID_LOCAL,ID_EMPRESA) " +
+                        "(COD_CLIENTE,   NOMBRE,   RUC,   GRUPO,   COD_UBC,   DOCIDEN,   DIA_VISITA,   C_CANAL,  E_MAIL,   I_CANC_ANTIGUO,   ID_EMPRESA) " +
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?)";
+                        "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                     DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                     DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -208,114 +186,15 @@ public class ClientesBL {
                     JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(i);
                     stmt.bindString(1,jsonObjectItem.getString("COD_CLIENTE"));
                     stmt.bindString(2,jsonObjectItem.getString("NOMBRE"));
-                    stmt.bindString(3,jsonObjectItem.getString("DIRECCION"));
-                    stmt.bindString(4,jsonObjectItem.getString("CIUDAD"));
-                    stmt.bindString(5,jsonObjectItem.getString("DISTRITO"));
-                    stmt.bindString(6,jsonObjectItem.getString("PAIS"));
-                    stmt.bindString(7,jsonObjectItem.getString("ZONA"));
-                    stmt.bindString(8,jsonObjectItem.getString("VENDEDOR"));
-                    stmt.bindString(9,jsonObjectItem.getString("COBRADOR"));
-                    stmt.bindString(10,jsonObjectItem.getString("GIRO"));
-                    stmt.bindString(11,jsonObjectItem.getString("TELEFONO"));
-                    stmt.bindString(12,jsonObjectItem.getString("FAX"));
-                    stmt.bindString(13,jsonObjectItem.getString("FECHA_ING"));
-                    stmt.bindString(14,jsonObjectItem.getString("COND_PAG"));
-                    stmt.bindString(15,jsonObjectItem.getString("CALIFICACION"));
-                    stmt.bindString(16,jsonObjectItem.getString("LIMITE_CRED"));
-                    stmt.bindString(17,jsonObjectItem.getString("ESTADO"));
-                    stmt.bindString(18,jsonObjectItem.getString("RUC"));
-                    stmt.bindString(19,jsonObjectItem.getString("DSCTO_1"));
-                    stmt.bindString(20,jsonObjectItem.getString("DSCTO_2"));
-                    stmt.bindString(21,jsonObjectItem.getString("CTACONTS"));
-                    stmt.bindString(22,jsonObjectItem.getString("CTACONTD"));
-                    stmt.bindString(23,jsonObjectItem.getString("CLIENTE_AFECTO"));
-                    stmt.bindString(24,jsonObjectItem.getString("DSCTO_MAX"));
-                    stmt.bindString(25,jsonObjectItem.getString("LISTA_PRECIO"));
-                    stmt.bindString(26,jsonObjectItem.getString("NIVEL_CP"));
-                    stmt.bindString(27,jsonObjectItem.getString("CRED_USADO"));
-                    stmt.bindString(28,jsonObjectItem.getString("LETRA_PRT"));
-                    stmt.bindString(29,jsonObjectItem.getString("CHEQ_DEV"));
-                    stmt.bindString(30,jsonObjectItem.getString("GRUPO"));
-                    stmt.bindString(31,jsonObjectItem.getString("DIREC_FACT"));
-                    stmt.bindString(32,jsonObjectItem.getString("INTERES"));
-                    stmt.bindString(33,jsonObjectItem.getString("COMI_PREDET"));
-                    stmt.bindString(34,jsonObjectItem.getString("ALM_CONS"));
-                    stmt.bindString(35,jsonObjectItem.getString("COD_UBC"));
-                    stmt.bindString(36,jsonObjectItem.getString("DOCIDEN"));
-                    stmt.bindString(37,jsonObjectItem.getString("RUC_NEW"));
-                    stmt.bindString(38,jsonObjectItem.getString("UBIGEO"));
-                    stmt.bindString(39,jsonObjectItem.getString("DIA_VISITA"));
-                    stmt.bindString(40,jsonObjectItem.getString("ORD_VISITA"));
-                    stmt.bindString(41,jsonObjectItem.getString("FRC_VISITA"));
-                    stmt.bindString(42,jsonObjectItem.getString("ANIVERSARIO"));
-                    stmt.bindString(43,jsonObjectItem.getString("R_CUMPLEANOS"));
-                    stmt.bindString(44,jsonObjectItem.getString("L_TAMANO"));
-                    stmt.bindString(45,jsonObjectItem.getString("L_DECORACION"));
-                    stmt.bindString(46,jsonObjectItem.getString("L_TECNOLOGIA"));
-                    stmt.bindString(47,jsonObjectItem.getString("NRO_EMPLEADOS"));
-                    stmt.bindString(48,jsonObjectItem.getString("NRO_EXIBIDOR"));
-                    stmt.bindString(49,jsonObjectItem.getString("NRO_VISITAS"));
-                    stmt.bindString(50,jsonObjectItem.getString("CANEMP"));
-                    stmt.bindString(51,jsonObjectItem.getString("CEOCLIE"));
-                    stmt.bindString(52,jsonObjectItem.getString("PROFESO"));
-                    stmt.bindString(53,jsonObjectItem.getString("CARNET"));
-                    stmt.bindString(54,jsonObjectItem.getString("REFERENCIA"));
-                    stmt.bindString(55,jsonObjectItem.getString("COD_STROE"));
-                    stmt.bindString(56,jsonObjectItem.getString("GIRO_CLI"));
-                    stmt.bindString(57,jsonObjectItem.getString("R_SEXO"));
-                    stmt.bindString(58,jsonObjectItem.getString("R_LUGNAC"));
-                    stmt.bindString(59,jsonObjectItem.getString("R_ESTCIV"));
-                    stmt.bindString(60,jsonObjectItem.getString("R_HOBBIE"));
-                    stmt.bindString(61,jsonObjectItem.getString("R_GENERO"));
-                    stmt.bindString(62,jsonObjectItem.getString("R_REVIST"));
-                    stmt.bindString(63,jsonObjectItem.getString("R_PERIOD"));
-                    stmt.bindString(64,jsonObjectItem.getString("RETENCION"));
-                    stmt.bindString(65,jsonObjectItem.getString("CALIF_VTA"));
-                    stmt.bindString(66,jsonObjectItem.getString("CALIF_CRED"));
-                    stmt.bindString(67,jsonObjectItem.getString("PLAZO_PAGO"));
-                    stmt.bindString(68,jsonObjectItem.getString("I_SITUACION"));
-                    stmt.bindString(69,jsonObjectItem.getString("C_CANAL"));
-                    stmt.bindString(70,jsonObjectItem.getString("C_CLIENTE"));
-                    stmt.bindString(71,jsonObjectItem.getString("C_ETAPA"));
-                    stmt.bindString(72,jsonObjectItem.getString("FLG_CONSIGNA_VTA"));
-                    stmt.bindString(73,jsonObjectItem.getString("FLG_CONSIGNA_PROM"));
-                    stmt.bindString(74,jsonObjectItem.getString("C_COBRADOR_EXT"));
-                    stmt.bindString(75,jsonObjectItem.getString("C_DIA_VISITA_EXT"));
-                    stmt.bindString(76,jsonObjectItem.getString("N_ORD_VISITA_EXT"));
-                    stmt.bindString(77,jsonObjectItem.getString("C_FRC_VISITA_EXT"));
-                    stmt.bindString(78,jsonObjectItem.getString("C_RUTA_DISTRIBUCION"));
-                    stmt.bindString(79,jsonObjectItem.getString("E_MAIL"));
-                    stmt.bindString(80,jsonObjectItem.getString("N_ARCHIVO"));
-                    stmt.bindString(81,jsonObjectItem.getString("C_CLIENTE_PAGO"));
-                    stmt.bindString(82,jsonObjectItem.getString("C_NIVEL"));
-                    stmt.bindString(83,jsonObjectItem.getString("I_CLIENTE_INT_EXT"));
-                    stmt.bindString(84,jsonObjectItem.getString("M_CUOTA_SEMANAL"));
-                    stmt.bindString(85,jsonObjectItem.getString("C_FRC_COB"));
-                    stmt.bindString(86,jsonObjectItem.getString("C_SUC_EMP"));
-                    stmt.bindString(87,jsonObjectItem.getString("C_GRUPO_CANAL_VTA"));
-                    stmt.bindString(88,jsonObjectItem.getString("C_FUERZA_VTA"));
-                    stmt.bindString(89,jsonObjectItem.getString("I_DIR_FISCAL"));
-                    stmt.bindString(90,jsonObjectItem.getString("C_REGION_VTA"));
-                    stmt.bindString(91,jsonObjectItem.getString("C_COBRADOR"));
-                    stmt.bindString(92,jsonObjectItem.getString("I_ORIGEN"));
-                    stmt.bindString(93,jsonObjectItem.getString("I_DI"));
-                    stmt.bindString(94,jsonObjectItem.getString("I_AGENTE_RET"));
-                    stmt.bindString(95,jsonObjectItem.getString("I_AGENTE_PER"));
-                    stmt.bindString(96,jsonObjectItem.getString("I_PERCEPCION"));
-                    stmt.bindString(97,jsonObjectItem.getString("COD_DPT"));
-                    stmt.bindString(98,jsonObjectItem.getString("COD_PVC"));
-                    stmt.bindString(99,jsonObjectItem.getString("DIRECCION_VSTA"));
-                    stmt.bindString(100,jsonObjectItem.getString("ID_NIVEL"));
-                    stmt.bindString(101,jsonObjectItem.getString("I_RELACION"));
-                    stmt.bindString(102,jsonObjectItem.getString("F_FACT_AUTOM"));
-                    stmt.bindString(103,jsonObjectItem.getString("C_USUARIO"));
-                    stmt.bindString(104,jsonObjectItem.getString("C_PERFIL"));
-                    stmt.bindString(105,jsonObjectItem.getString("C_CPU"));
-                    stmt.bindString(106,jsonObjectItem.getString("FEC_REG"));
-                    stmt.bindString(107,jsonObjectItem.getString("I_REGISTRO_CASTIGO"));
-                    stmt.bindString(108,jsonObjectItem.getString("OBSERVACION"));
-                    stmt.bindString(109,jsonObjectItem.getString("ID_LOCAL"));
-                    stmt.bindString(110,jsonObjectItem.getString("ID_EMPRESA"));
+                    stmt.bindString(3,jsonObjectItem.getString("RUC"));
+                    stmt.bindString(4,jsonObjectItem.getString("GRUPO"));
+                    stmt.bindString(5,jsonObjectItem.getString("COD_UBC"));
+                    stmt.bindString(6,jsonObjectItem.getString("DOCIDEN"));
+                    stmt.bindString(7,jsonObjectItem.getString("DIA_VISITA"));
+                    stmt.bindString(8,jsonObjectItem.getString("C_CANAL"));
+                    stmt.bindString(9,jsonObjectItem.getString("E_MAIL"));
+                    stmt.bindString(10,jsonObjectItem.getString("I_CANC_ANTIGUO"));
+                    stmt.bindString(11,jsonObjectItem.getString("ID_EMPRESA"));
 
                     stmt.execute();
                     stmt.clearBindings();
