@@ -252,10 +252,10 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                             "<td width='5%' style='font-size:10px'>" +   planillaCobranzaBL.lst.get(j).getCOBRADOR().toString() + "</td>" +
                             "</tr>";
                 }
-                htmToDet = htmToDet + "<tr><td colspan='10' style='font-weight:bold' align='right' >TOTAL DE PLANILLA" + planillaCobranzaBL.lst.get(0).getPLANILLA().toString() + "</td>" + "<td width='7.5%' style='font-size:12px'>" +  funciones.FormatDecimal(dCobranza.toString()) + "</td>" + "</tr>";
+                htmToDet = htmToDet + "<tr><td colspan='10' style='font-weight:bold' align='right' >TOTAL DE PLANILLA " + planillaCobranzaBL.lst.get(0).getPLANILLA().toString() + "</td>" + "<td width='7.5%' style='font-size:12px'>" +  funciones.FormatDecimal(dCobranza.toString()) + "</td>" + "</tr>";
 
                 htmTotalGeneral = "<table width='88.5%' border=0 cellspacing=0 bordercolor='666633'>" +
-                        "<tr><td  style='font-weight:bold;background:#FFDDDD' align='center' >TOTAL GENERAL</td>" + "<td style='font-weight:bold;background:#FFDDDD' width='7.5%'>1600.20</td>" + "</tr></table>";
+                        "<tr><td  style='font-weight:bold;background:#FFDDDD' align='center' >TOTAL GENERAL</td>" + "<td style='font-weight:bold;background:#FFDDDD' width='7.5%'>" + funciones.FormatDecimal(dCobranza.toString())  + "</td>" + "</tr></table>";
 
                 sResumen =
                         "<table width='100%'>" +
@@ -285,7 +285,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                 }
 
                 sResumendet = sResumendet + " </table>";
-
+                sResumen=sResumen+sResumendet ;
                 htmPie = "</table>" +
                         "</body>" +
                         "</head>" +
