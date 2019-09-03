@@ -103,7 +103,7 @@ public class Fragment_Cobranza_Recibo extends Fragment
             rc_lblborrar=(TextView)view.findViewById(R.id.rc_lblborrar);
 
             rc_lscobranza=(ListView)view.findViewById(R.id.rc_lscobranza);
-            rc_lblcliente.setText( sharedSettings.getString("RAZON_SOCIAL", "").toString());
+            rc_lblcliente.setText(funciones.LetraCapital(sharedSettings.getString("RAZON_SOCIAL", "").toString()));
             rc_txtffecha.setOnClickListener(OnClickListenercl_rc_txtffecha);
             rc_lblborrar.setOnClickListener(OnClickListenercl_rc_lblborrar);
 

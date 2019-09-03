@@ -46,60 +46,6 @@
 
     </LinearLayout>
 
-
-    <LinearLayout
-        android:id="@+id/lyVencidasEstadoCuenta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/pad_20dp"
-        android:background="@color/label_login_titulo_unibell"
-        >
-        <TextView
-            android:id="@+id/lblSaldoDeudaVencida"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Saldo deuda vencida"
-            android:textSize="16dp"
-            android:layout_marginTop="@dimen/pad_20dp"
-            android:fontFamily="@font/sf_pro_display_medium"
-            android:textColor="@color/Button_login_unibell"
-            />
-
-        <TextView
-            android:id="@+id/ec_txtsaldovencido"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:fontFamily="@font/sf_pro_display_light"
-            android:textColor="@color/label_color_menu"
-            android:hint="S/ 0.00"
-            />
-
-
-        <TextView
-            android:id="@+id/lblSaldoDeudaXVencer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Saldo deuda por vencer"
-            android:textSize="16dp"
-            android:layout_marginTop="@dimen/pad_20dp"
-            android:fontFamily="@font/sf_pro_display_medium"
-            android:textColor="@color/Button_login_unibell"
-            />
-
-        <TextView
-            android:id="@+id/ec_txtsaldoxvencer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:fontFamily="@font/sf_pro_display_light"
-            android:textColor="@color/label_color_menu"
-            android:hint="S/ 0.00"
-            />
-
-    </LinearLayout>
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -111,6 +57,58 @@
 
 
         <TextView
+            android:id="@+id/lblSaldoDeudaVencida"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Deuda vencida"
+            android:textSize="16dp"
+            android:layout_marginTop="@dimen/pad_20dp"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:textColor="@color/Button_login_unibell"
+            />
+
+
+        <TextView
+            android:id="@+id/ec_txtsaldovencido"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:hint="S/ 0.00"
+            android:layout_below="@id/lblSaldoDeudaVencida"
+            />
+
+
+
+
+        <TextView
+            android:id="@+id/lblSaldoDeudaXVencer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Deuda por vencer"
+            android:textSize="16dp"
+            android:layout_marginTop="@dimen/pad_20dp"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_toRightOf="@id/lblSaldoDeudaVencida"
+            />
+
+        <TextView
+            android:id="@+id/ec_txtsaldoxvencer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:hint="S/ 0.00"
+            android:layout_below="@id/lblSaldoDeudaXVencer"
+            android:layout_toRightOf="@id/ec_txtsaldovencido"
+            />
+
+
+
+        <TextView
             android:id="@+id/lblBoletas"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
@@ -119,6 +117,7 @@
             android:fontFamily="@font/sf_pro_display_medium"
             android:textColor="@color/Button_login_unibell"
             android:layout_marginTop="@dimen/pad_20dp"
+            android:layout_below="@id/ec_txtsaldovencido"
             />
         <TextView
             android:id="@+id/lblFacturas"
@@ -130,6 +129,7 @@
             android:textColor="@color/Button_login_unibell"
             android:layout_toRightOf="@id/lblBoletas"
             android:layout_marginTop="@dimen/pad_20dp"
+            android:layout_below="@id/ec_txtsaldoxvencer"
             />
 
         <TextView

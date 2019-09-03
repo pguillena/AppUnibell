@@ -70,7 +70,7 @@ public class Activity_EstadoCuenta extends AppCompatActivity {
             ec_txttnotadebito.setText(funciones.FormatDecimal(String.valueOf(dTotalNCredito).trim().replace(",","")));
 
             ec_lsdet=(ListView)findViewById(R.id.ec_lsdet);
-            ec_lblcliente.setText( sharedSettings.getString("RAZON_SOCIAL", "").toString());
+            ec_lblcliente.setText(funciones.LetraCapital(sharedSettings.getString("RAZON_SOCIAL", "").toString()));
 
             LayoutInflater inflater = getLayoutInflater();
             //ViewGroup header = (ViewGroup)inflater.inflate(R.layout.item_clientes_estadocuenta_header,ec_lsdet,false);

@@ -119,21 +119,9 @@ public class FactCobBL {
                 //Eliminamos los registros
                 DataBaseHelper.myDataBase.delete("FACTCOB", null, null);
 
-                String SQL="INSERT OR REPLACE INTO FACTCOB( " +
-                        "COD_CLIENTE,TIPDOC,SERIE_NUM,NUMERO,FECHA," +
-                        "F_VENCTO,F_ACEPTACION,F_TRANSFE,ANO,MES," +
-                        "LIBRO,VOUCHER,ITEM,TIPO_REFERENCIA,SERIE_REF," +
-                        "NRO_REFERENCIA,CONCEPTO,SISTEMA_ORIGEN,VENDED,BANCO," +
-                        "L_AGENCIA,L_REFBCO,L_CONDLE,MONEDA,IMPORTE," +
-                        "TCAM_IMP,SALDO,TCAM_SAL,NUMERO_CANJE,ESTADO," +
-                        "CTACTBLE,F_RECEPCION,C_USUARIO,C_PERFIL,C_CPU," +
-                        "FEC_REG,C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD,C_CPU_MOD," +
-                        "N_SERIE_RECIBO_COBRA,N_RECIBO_COBRA,ANO_PROVISION,MES_CSTGO,ANO_CSTGO," +
-                        "LIBRO_CSTGO,VOUCHER_CSTGO,DIAS,AGREGADO)"+
+                String SQL="INSERT OR REPLACE INTO FACTCOB(COD_CLIENTE, TIPDOC, SERIE_NUM, NUMERO, FECHA, F_VENCTO, VENDED, MONEDA, IMPORTE, SALDO,  DIAS, AGREGADO)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -149,49 +137,12 @@ public class FactCobBL {
                     stmt.bindString(4,jsonObjectItem.getString("NUMERO"));
                     stmt.bindString(5,jsonObjectItem.getString("FECHA"));
                     stmt.bindString(6,jsonObjectItem.getString("F_VENCTO"));
-                    stmt.bindString(7,jsonObjectItem.getString("F_ACEPTACION"));
-                    stmt.bindString(8,jsonObjectItem.getString("F_TRANSFE"));
-                    stmt.bindString(9,jsonObjectItem.getString("ANO"));
-                    stmt.bindString(10,jsonObjectItem.getString("MES"));
-                    stmt.bindString(11,jsonObjectItem.getString("LIBRO"));
-                    stmt.bindString(12,jsonObjectItem.getString("VOUCHER"));
-                    stmt.bindString(13,jsonObjectItem.getString("ITEM"));
-                    stmt.bindString(14,jsonObjectItem.getString("TIPO_REFERENCIA"));
-                    stmt.bindString(15,jsonObjectItem.getString("SERIE_REF"));
-                    stmt.bindString(16,jsonObjectItem.getString("NRO_REFERENCIA"));
-                    stmt.bindString(17,jsonObjectItem.getString("CONCEPTO"));
-                    stmt.bindString(18,jsonObjectItem.getString("SISTEMA_ORIGEN"));
-                    stmt.bindString(19,jsonObjectItem.getString("VENDED"));
-                    stmt.bindString(20,jsonObjectItem.getString("BANCO"));
-                    stmt.bindString(21,jsonObjectItem.getString("L_AGENCIA"));
-                    stmt.bindString(22,jsonObjectItem.getString("L_REFBCO"));
-                    stmt.bindString(23,jsonObjectItem.getString("L_CONDLE"));
-                    stmt.bindString(24,jsonObjectItem.getString("MONEDA"));
-                    stmt.bindString(25,jsonObjectItem.getString("IMPORTE"));
-                    stmt.bindString(26,jsonObjectItem.getString("TCAM_IMP"));
-                    stmt.bindString(27,jsonObjectItem.getString("SALDO"));
-                    stmt.bindString(28,jsonObjectItem.getString("TCAM_SAL"));
-                    stmt.bindString(29,jsonObjectItem.getString("NUMERO_CANJE"));
-                    stmt.bindString(30,jsonObjectItem.getString("ESTADO"));
-                    stmt.bindString(31,jsonObjectItem.getString("CTACTBLE"));
-                    stmt.bindString(32,jsonObjectItem.getString("F_RECEPCION"));
-                    stmt.bindString(33,jsonObjectItem.getString("C_USUARIO"));
-                    stmt.bindString(34,jsonObjectItem.getString("C_PERFIL"));
-                    stmt.bindString(35,jsonObjectItem.getString("C_CPU"));
-                    stmt.bindString(36,jsonObjectItem.getString("FEC_REG"));
-                    stmt.bindString(37,jsonObjectItem.getString("C_USUARIO_MOD"));
-                    stmt.bindString(38,jsonObjectItem.getString("C_PERFIL_MOD"));
-                    stmt.bindString(39,jsonObjectItem.getString("FEC_MOD"));
-                    stmt.bindString(40,jsonObjectItem.getString("C_CPU_MOD"));
-                    stmt.bindString(41,jsonObjectItem.getString("N_SERIE_RECIBO_COBRA"));
-                    stmt.bindString(42,jsonObjectItem.getString("N_RECIBO_COBRA"));
-                    stmt.bindString(43,jsonObjectItem.getString("ANO_PROVISION"));
-                    stmt.bindString(44,jsonObjectItem.getString("MES_CSTGO"));
-                    stmt.bindString(45,jsonObjectItem.getString("ANO_CSTGO"));
-                    stmt.bindString(46,jsonObjectItem.getString("LIBRO_CSTGO"));
-                    stmt.bindString(47,jsonObjectItem.getString("VOUCHER_CSTGO"));
-                    stmt.bindString(48,jsonObjectItem.getString("DIAS"));
-                    stmt.bindString(49,"0");
+                    stmt.bindString(7,jsonObjectItem.getString("VENDED"));
+                    stmt.bindString(8,jsonObjectItem.getString("MONEDA"));
+                    stmt.bindString(9,jsonObjectItem.getString("IMPORTE"));
+                    stmt.bindString(10,jsonObjectItem.getString("SALDO"));
+                    stmt.bindString(11,jsonObjectItem.getString("DIAS"));
+                    stmt.bindString(12,"0");
 
                     stmt.execute();
                     stmt.clearBindings();
