@@ -5,6 +5,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+
+import java.util.UUID;
+
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.AsyncTask_Liquidacion;
 
@@ -67,7 +70,8 @@ public class Activity_Cobranza_Liquidacion_Rep extends AppCompatActivity {
             try {
                 //new ReciboAsyncTask().execute("");
                 String NOMBRE_CARPETA_APP="UNIBELL_REPORT";
-                String NOMBRE_ARCHIVO ="Recibo_Cobranza.pdf";
+                String NOMBRE_ARCHIVO = UUID.randomUUID().toString()+".pdf";
+                //String NOMBRE_ARCHIVO ="Recibo_Cobranza.pdf";
                 String TITLE="Recibo";
                 String OPCION=sharedSettings.getString("IOPCION_RECIBO", "0").toString();
                 new AsyncTask_Liquidacion(Activity_Cobranza_Liquidacion_Rep.this).execute(NOMBRE_CARPETA_APP,NOMBRE_ARCHIVO,TITLE,OPCION);

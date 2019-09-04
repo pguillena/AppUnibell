@@ -123,12 +123,12 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                         ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_liquidacion_cobranza + "/" +
                                 sFechaInicio + "/" +
                                 sharedSettings.getString("iID_VENDEDOR", "0").toString() + "/" +
-                                 "0/" +
+                                "0/" +
                                 sharedSettings.getString("iID_EMPRESA", "0").toString() + "/" +
                                 sharedSettings.getString("iID_LOCAL", "0").toString() + "/" +
-                                 "0/" +
+                                "0/" +
                                 sharedSettings.getString("REP_N_PLANILLA", "0").toString()
-                               );
+                );
 
                 planillaCobranzaGrupoBL.getLiquidacionCobranza(
                         ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_LiqCobranza_Grupo + "/" +
@@ -181,9 +181,15 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
             String htmToCab="",htmToDet="",htmTotalGeneral="",sResumen="", sResumendet="",htmPie="";
 
             Bitmap bitMap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo); // Default Unibell
+             Bitmap bitMapCheck = BitmapFactory.decodeResource(context.getResources(), R.drawable.check); // Default check
+
             File mFile1 = Environment.getExternalStorageDirectory();
-            String fileName ="img1.jpg";
+            String fileName ="logo.jpg";
+               String fileCheck ="check.jpg";
             File mFile2 = new File(mFile1,fileName);
+              File mFileCheck = new File(mFile1,fileCheck);
+
+
             try {
                 FileOutputStream outStream;
                 outStream = new FileOutputStream(mFile2);
@@ -197,59 +203,101 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+
+
+            try {
+                FileOutputStream outStream;
+                outStream = new FileOutputStream(mFileCheck);
+                bitMapCheck.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
+                outStream.flush();
+                outStream.close();
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+
+
             String sdPath = mFile1.getAbsolutePath().toString()+"/"+fileName;
+             String sdPathCheck = mFile1.getAbsolutePath().toString()+"/"+fileCheck;
 
             if(planillaCobranzaBL.lst!=null && planillaCobranzaBL.lst.size()>0) {
-                htmToCab =
-                        "<html>" +
-                                "<head>" +
-                                "<body>" +
-                                "<table width='100%'>" +
-                                "<tr width='100%'>" +
-                                "<td width='25%'><img src='"+sdPath+"' /></td>"+
-                                "<td width='80%' style='font-weight:bold'>PLANILLA LIQUIDACIÓN DE COBRANZA " + planillaCobranzaBL.lst.get(0).getPLANILLA().toString() + "</td>" +
-                                "<td width='20%'><b>Usuario:</b>" + sharedSettings.getString("USUARIO", "").toString() + "</td></tr>" +
-                                "<tr width='100%'>" +
-                                "<td width='80%' colspan='2'></td><td width='20%'><b>Fecha:</b>" + funciones.FechaActualNow() + "</td></tr>" +
-                                "<tr width='100%'>" +
-                                "<td width='80%'><b>Fecha Cobranza:</b>" + planillaCobranzaBL.lst.get(0).getFECHA_PLANILLA().toString() +  "</td><td width='20%'><b>Cobrador:</b>" +  planillaCobranzaBL.lst.get(0).getCOBRADOR().toString() + "</td></tr>" +
-                                "<tr width='100%' style='background:#FFDDDD'>" +
-                                "<td width='80%' colspan='2'><b>PALNILLA:</b>" + planillaCobranzaBL.lst.get(0).getPLANILLA().toString() + "</td><td width='20%'></td></tr>" +
-                                "</table>" +
-                                "<table width='100%' border=0.01 cellspacing=0 cellpadding=5 bordercolor='666633'>" +
-                                "<tr><td width='7.5%' align='left' style='font-size:10px;font-weight:bold' >Código</td>" +
-                                "<td width='7.5%' style='font-size:10px;font-weight:bold'>RUC/DNI</td>" +
-                                "<td width='15%' style='font-size:10px;font-weight:bold'>Nombre/Razon Social</td>" +
-                                "<td width='5%' style='font-size:10px;font-weight:bold'>Tipo Doc</td>" +
-                                "<td width='10%' style='font-size:10px;font-weight:bold'>N°.Doc</td>" +
-                                "<td width='6%' style='font-size:10px;font-weight:bold' >Forma Pago</td>" +
-                                "<td width='10%' style='font-size:10px;font-weight:bold' >Efectivo/Baco/Cuenta Corriente</td>" +
-                                "<td width='10%' style='font-size:10px;font-weight:bold' >Fecha Transacción</td>" +
-                                "<td width='7.5%' style='font-size:10px;font-weight:bold'>N° OP/N° Cheque</td>" +
-                                "<td width='4%' style='font-size:10px;font-weight:bold'>Md</td>" +
-                                "<td width='7.5%' style='font-size:10px;font-weight:bold'>Importe</td>" +
-                                "<td width='5%' style='font-size:10px;font-weight:bold'>Recibo</td>" +
-                                "<td width='5%' style='font-size:10px;font-weight:bold'>Aprob</td>" +
-                                "</tr>";
+
+                htmToCab =  "<html>" +
+                        "<head>" +
+                        "<body>" +
+                        "<table width='100%'>\n" +
+                        "<tr>\n" +
+                        "<td colspan='2' rowspan='2' style='width: 25%'><img src='"+sdPath+"' /></td>\n" +
+                        "<td colspan='2' rowspan='2' align='center' width='45%' ><b>PLANILLA LIQUIDACIÓN DE COBRANZA "+ planillaCobranzaBL.lst.get(0).getPLANILLA().toString() +"</b></td>\n" +
+                        "<td width='10%' align='right'><b>Usuario:</b></td>\n" +
+                        "<td width='20%'>"+ sharedSettings.getString("USUARIO", "").toString()+"</td>\n" +
+                        "</tr>\n" +
+                        "<tr>\n" +
+                        "<td width='10%' align='right' > <b>Fecha:</b></td>\n" +
+                        "<td width='20%'>"+funciones.FechaActualNow()+"</td>\n" +
+                        "</tr>\n" +
+                        "<tr>\n" +
+                        "<td width='15%' ><b>Fecha Cobranza:</b></td>" +
+                        "<td width='10%'>"+planillaCobranzaBL.lst.get(0).getFECHA_PLANILLA().toString()+"</td>\n" +
+                        "<td width='10%' align='right'><b>Cobrador:</b></td>\n" +
+                        "<td width='45%' align='left' colspan='2'>"+planillaCobranzaBL.lst.get(0).getCOBRADOR().toString()+"</td>\n" +
+                        "<td width='20%'></td>\n" +
+                        "</tr>\n" +
+                        "</table>"+
+                        "<br /><br />"+
+                        "<table width='100%'  cellspacing=0 cellpadding=5 style='background:#FFDDDD'>" +
+                        "<tr>\n" +
+                        "<td width='100%' colspan='13'><b>PLANILLA:"+ planillaCobranzaBL.lst.get(0).getPLANILLA().toString()+"</b></td>\n" +
+                        "</tr>\n" +
+                        "</table>"+
+                        "<br /><br />"+
+                        "<table width='100%' border=0.01 cellspacing=0 cellpadding=5 bordercolor='666633'>" +
+                        "<tr><td width='7%'  align='center' style='font-size:8px;font-weight:bold' >Código</td>" +
+                        "<td width='7%'  align='center' style='font-size:8px;font-weight:bold'>RUC/DNI</td>" +
+                        "<td width='22%'  align='center'  style='font-size:8px;font-weight:bold'>Nombre/Razon Social</td>" +
+                        "<td width='4%'  align='center'  style='font-size:8px;font-weight:bold'>Tipo Doc</td>" +
+                        "<td width='5%'  align='center'  style='font-size:8px;font-weight:bold'>N°.Doc</td>" +
+                        "<td width='6%'  align='center'  style='font-size:8px;font-weight:bold'>Forma Pago</td>" +
+                        "<td width='15%'  align='center'  style='font-size:8px;font-weight:bold'>Efectivo/Baco/Cuenta Corriente</td>" +
+                        "<td width='6%'  align='center'  style='font-size:8px;font-weight:bold' >Fecha Transacción</td>" +
+                        "<td width='7%'  align='center'  style='font-size:8px;font-weight:bold'>N° OP/N° Cheque</td>" +
+                        "<td width='2%'  align='center'  style='font-size:8px;font-weight:bold'>Md</td>" +
+                        "<td width='7%'  align='center'  style='font-size:8px;font-weight:bold'>Importe</td>" +
+                        "<td width='7%'  align='center'  style='font-size:8px;font-weight:bold'>Recibo</td>" +
+                        "<td width='4%'  align='center'  style='font-size:8px;font-weight:bold'>Aprob</td>" +
+                        "</tr>";
 
 
                 String RUC="10201010101",MONEDA="S/.",TIPO_DOC="XXX",NRO_DOC="XXXX";
                 Double dCobranza=0.0;
+                String urlCheck="";
                 for (int j = 0; j < planillaCobranzaBL.lst.size(); j++) {
                     dCobranza +=Double.valueOf(planillaCobranzaBL.lst.get(j).getM_COBRANZA());
-                    htmToDet = htmToDet + "<tr><td width='7.5%' style='font-size:10px' align='left' >" + planillaCobranzaBL.lst.get(j).getCOD_CLIENTE().toString() + "</td>" +
-                           "<td width='7.5%' style='font-size:10px'>" + planillaCobranzaBL.lst.get(j).getRUC().toString() + "</td>" +
-                            "<td width='15%' style='font-size:10px'>" +  planillaCobranzaBL.lst.get(j).getRAZON_SOCIAL().toString() + "</td>" +
-                            "<td width='5%' style='font-size:10px'>" +  planillaCobranzaBL.lst.get(j).getTIPODOC().toString() + "</td>" +
-                            "<td width='10%' style='font-size:10px'>" +  planillaCobranzaBL.lst.get(j).getNUMERO().toString() + "</td>" +
-                            "<td width='6%' style='font-size:10px'>" +   planillaCobranzaBL.lst.get(j).getFPAGO().toString() + "</td>" +
-                            "<td width='10%' style='font-size:10px'>" +  planillaCobranzaBL.lst.get(j).getENTIDAD().toString() + "</td>" +
-                            "<td width='10%' style='font-size:10px' >" + planillaCobranzaBL.lst.get(j).getFECHA().toString() + "</td>" +
-                            "<td width='7.5%' style='font-size:10px'>" + planillaCobranzaBL.lst.get(j).getNUMERO().toString() + "</td>" +
-                            "<td width='4%' style='font-size:10px'>" +    planillaCobranzaBL.lst.get(j).getMONEDA().toString() + "</td>" +
-                            "<td width='7.5%' style='font-size:10px'>" + funciones.FormatDecimal(planillaCobranzaBL.lst.get(j).getM_COBRANZA().toString()) + "</td>" +
-                            "<td width='5%' style='font-size:10px'>" +   planillaCobranzaBL.lst.get(j).getRECIBO().toString() + "</td>" +
-                            "<td width='5%' style='font-size:10px'>" +   planillaCobranzaBL.lst.get(j).getCOBRADOR().toString() + "</td>" +
+                    urlCheck="";
+
+                    if(planillaCobranzaBL.lst.get(j).getESTADO().toString().trim().equals("40005"))
+                    {
+                         urlCheck = "<img Height='16px' width='16px'  src='"+sdPathCheck+"'/>" ;
+
+                    }
+
+                    htmToDet = htmToDet + "<tr><td width='7%' style='font-size:10px' align='left' >" + planillaCobranzaBL.lst.get(j).getCOD_CLIENTE().toString() + "</td>" +
+                            "<td width='7%' style='font-size:8px'>" + planillaCobranzaBL.lst.get(j).getRUC().toString() + "</td>" +
+                            "<td width='22%'  align='center'  style='font-size:8px'>" +  planillaCobranzaBL.lst.get(j).getRAZON_SOCIAL().toString() + "</td>" +
+                            "<td width='4%'  align='center'  style='font-size:8px'>" +  planillaCobranzaBL.lst.get(j).getTIPODOC().toString() + "</td>" +
+                            "<td width='6%'  align='center'  style='font-size:8px'>" +  planillaCobranzaBL.lst.get(j).getNUMERO().toString() + "</td>" +
+                            "<td width='6%'  align='center'  style='font-size:8px'>" +   planillaCobranzaBL.lst.get(j).getFPAGO().toString() + "</td>" +
+                            "<td width='15%' style='font-size:8px'>" +  planillaCobranzaBL.lst.get(j).getENTIDAD().toString() + "</td>" +
+                            "<td width='6%'  align='center'  style='font-size:8px' >" + planillaCobranzaBL.lst.get(j).getFECHA().toString() + "</td>" +
+                            "<td width='7%'  align='center'  style='font-size:8px'>" + planillaCobranzaBL.lst.get(j).getCONSTANCIA().toString() + "</td>" +
+                            "<td width='2%'  align='center'  style='font-size:8px'>" +    planillaCobranzaBL.lst.get(j).getMONEDA().toString() + "</td>" +
+                            "<td width='7%'  align='right'  style='font-size:8px'>" + funciones.FormatDecimal(planillaCobranzaBL.lst.get(j).getM_COBRANZA().toString()) + "</td>" +
+                            "<td width='7%'  align='center'  style='font-size:8px'>" +   planillaCobranzaBL.lst.get(j).getRECIBO().toString() + "</td>" +
+                            "<td width='4%'  align='center' style='font-size:8px'>"+urlCheck+"</td>" +
                             "</tr>";
                 }
                 htmToDet = htmToDet + "<tr><td colspan='10' style='font-weight:bold' align='right' >TOTAL DE PLANILLA " + planillaCobranzaBL.lst.get(0).getPLANILLA().toString() + "</td>" + "<td width='7.5%' style='font-size:12px'>" +  funciones.FormatDecimal(dCobranza.toString()) + "</td>" + "</tr>";
