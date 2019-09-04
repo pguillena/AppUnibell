@@ -26,6 +26,24 @@ public class PlanillaCobranzaBE {
     private String  COBRADOR;
     private Integer  ESTADO_CONCILIADO;
     private String  PLANILLA;
+    private Integer  C_PACKING;
+    private Integer  N_RECIBO;
+
+    public void setN_RECIBO(Integer n_RECIBO) {
+        N_RECIBO = n_RECIBO;
+    }
+
+    public Integer getN_RECIBO() {
+        return N_RECIBO;
+    }
+
+    public Integer getC_PACKING() {
+        return C_PACKING;
+    }
+
+    public void setC_PACKING(Integer c_PACKING) {
+        C_PACKING = c_PACKING;
+    }
 
     public void setFECHA_PLANILLA(String FECHA_PLANILLA) {
         this.FECHA_PLANILLA = FECHA_PLANILLA;
