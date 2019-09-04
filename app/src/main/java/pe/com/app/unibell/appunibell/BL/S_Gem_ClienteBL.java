@@ -118,20 +118,9 @@ public class S_Gem_ClienteBL {
                 //Eliminamos los registros
                 DataBaseHelper.myDataBase.delete("S_GEM_CLIENTE", null, null);
 
-                String SQL="INSERT OR REPLACE INTO S_GEM_CLIENTE(" +
-                        "ID_CLIENTE,CODIGO,RAZON_SOCIAL,ID_ZONA,TIPO_GIRO,TELEFONO," +
-                        "FAX,FECHA_INGRES,TIPO_CALIFICACION,ESTADO,RUC,CLIENTE_AFECTO," +
-                        "UBICACION,DNI,DIA_VISITA,FRC_VISITA,FLAG_RETENCION,CALIF_VTA," +
-                        "CALIF_CRED,PLAZO_PAGO,ID_CANAL,CORREO,ID_NIVEL,ID_FUERZA_VTA," +
-                        "ID_EMPRESA,ID_LOCAL,COND_PAGO,ID_GRUPO,ID_LISTA_DESCUENTO,ID_CANAL_DETALLE," +
-                        "LIM_CRED,PROM_MAX_DIA_PAGO,PORC_MAX_DEUDA,MONT_MAX_DEUDA,FLAG_PERCEPCION,FECHA_REGISTRO," +
-                        "FECHA_MODIFICACION,USUARIO_REGISTRO,USUARIO_MODIFICACION,PC_REGISTRO,PC_MODIFICACION,IP_REGISTRO," +
-                        "IP_MODIFICACION,CLIENTE_ESPECIAL,ID_COBRADOR,ID_COBRADOR_EXT,CUOTA_SEMANAL,COD_ALM_CONSIG," +
-                        "FLAG_FE,LISTA_PRECIO)"+
+                String SQL="INSERT OR REPLACE INTO S_GEM_CLIENTE(ID_CLIENTE, CODIGO, RAZON_SOCIAL,  RUC, CLIENTE_AFECTO, DNI, ID_CANAL, CORREO, COND_PAGO, ID_GRUPO, ID_LISTA_DESCUENTO, ID_CANAL_DETALLE, CLIENTE_ESPECIAL, COD_ALM_CONSIG)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -145,53 +134,18 @@ public class S_Gem_ClienteBL {
                     stmt.bindString(1,jsonObjectItem.getString("ID_CLIENTE"));
                     stmt.bindString(2,jsonObjectItem.getString("CODIGO"));
                     stmt.bindString(3,jsonObjectItem.getString("RAZON_SOCIAL"));
-                    stmt.bindString(4,jsonObjectItem.getString("ID_ZONA"));
-                    stmt.bindString(5,jsonObjectItem.getString("TIPO_GIRO"));
-                    stmt.bindString(6,jsonObjectItem.getString("TELEFONO"));
-                    stmt.bindString(7,jsonObjectItem.getString("FAX"));
-                    stmt.bindString(8,jsonObjectItem.getString("FECHA_INGRES"));
-                    stmt.bindString(9,jsonObjectItem.getString("TIPO_CALIFICACION"));
-                    stmt.bindString(10,jsonObjectItem.getString("ESTADO"));
-                    stmt.bindString(11,jsonObjectItem.getString("RUC"));
-                    stmt.bindString(12,jsonObjectItem.getString("CLIENTE_AFECTO"));
-                    stmt.bindString(13,jsonObjectItem.getString("UBICACION"));
-                    stmt.bindString(14,jsonObjectItem.getString("DNI"));
-                    stmt.bindString(15,jsonObjectItem.getString("DIA_VISITA"));
-                    stmt.bindString(16,jsonObjectItem.getString("FRC_VISITA"));
-                    stmt.bindString(17,jsonObjectItem.getString("FLAG_RETENCION"));
-                    stmt.bindString(18,jsonObjectItem.getString("CALIF_VTA"));
-                    stmt.bindString(19,jsonObjectItem.getString("CALIF_CRED"));
-                    stmt.bindString(20,jsonObjectItem.getString("PLAZO_PAGO"));
-                    stmt.bindString(21,jsonObjectItem.getString("ID_CANAL"));
-                    stmt.bindString(22,jsonObjectItem.getString("CORREO"));
-                    stmt.bindString(23,jsonObjectItem.getString("ID_NIVEL"));
-                    stmt.bindString(24,jsonObjectItem.getString("ID_FUERZA_VTA"));
-                    stmt.bindString(25,jsonObjectItem.getString("ID_EMPRESA"));
-                    stmt.bindString(26,jsonObjectItem.getString("ID_LOCAL"));
-                    stmt.bindString(27,jsonObjectItem.getString("COND_PAGO"));
-                    stmt.bindString(28,jsonObjectItem.getString("ID_GRUPO"));
-                    stmt.bindString(29,jsonObjectItem.getString("ID_LISTA_DESCUENTO"));
-                    stmt.bindString(30,jsonObjectItem.getString("ID_CANAL_DETALLE"));
-                    stmt.bindString(31,jsonObjectItem.getString("LIM_CRED"));
-                    stmt.bindString(32,jsonObjectItem.getString("PROM_MAX_DIA_PAGO"));
-                    stmt.bindString(33,jsonObjectItem.getString("PORC_MAX_DEUDA"));
-                    stmt.bindString(34,jsonObjectItem.getString("MONT_MAX_DEUDA"));
-                    stmt.bindString(35,jsonObjectItem.getString("FLAG_PERCEPCION"));
-                    stmt.bindString(36,jsonObjectItem.getString("FECHA_REGISTRO"));
-                    stmt.bindString(37,jsonObjectItem.getString("FECHA_MODIFICACION"));
-                    stmt.bindString(38,jsonObjectItem.getString("USUARIO_REGISTRO"));
-                    stmt.bindString(39,jsonObjectItem.getString("USUARIO_MODIFICACION"));
-                    stmt.bindString(40,jsonObjectItem.getString("PC_REGISTRO"));
-                    stmt.bindString(41,jsonObjectItem.getString("PC_MODIFICACION"));
-                    stmt.bindString(42,jsonObjectItem.getString("IP_REGISTRO"));
-                    stmt.bindString(43,jsonObjectItem.getString("IP_MODIFICACION"));
-                    stmt.bindString(44,jsonObjectItem.getString("CLIENTE_ESPECIAL"));
-                    stmt.bindString(45,jsonObjectItem.getString("ID_COBRADOR"));
-                    stmt.bindString(46,jsonObjectItem.getString("ID_COBRADOR_EXT"));
-                    stmt.bindString(47,jsonObjectItem.getString("CUOTA_SEMANAL"));
-                    stmt.bindString(48,jsonObjectItem.getString("COD_ALM_CONSIG"));
-                    stmt.bindString(49,jsonObjectItem.getString("FLAG_FE"));
-                    stmt.bindString(50,jsonObjectItem.getString("LISTA_PRECIO"));
+                    stmt.bindString(4,jsonObjectItem.getString("RUC"));
+                    stmt.bindString(5,jsonObjectItem.getString("CLIENTE_AFECTO"));
+                    stmt.bindString(6,jsonObjectItem.getString("DNI"));
+                    stmt.bindString(7,jsonObjectItem.getString("ID_CANAL"));
+                    stmt.bindString(8,jsonObjectItem.getString("CORREO"));
+                    stmt.bindString(9,jsonObjectItem.getString("COND_PAGO"));
+                    stmt.bindString(10,jsonObjectItem.getString("ID_GRUPO"));
+                    stmt.bindString(11,jsonObjectItem.getString("ID_LISTA_DESCUENTO"));
+                    stmt.bindString(12,jsonObjectItem.getString("ID_CANAL_DETALLE"));
+                    stmt.bindString(13,jsonObjectItem.getString("CLIENTE_ESPECIAL"));
+                    stmt.bindString(14,jsonObjectItem.getString("COD_ALM_CONSIG"));
+
                     stmt.execute();
                     stmt.clearBindings();
                 }
