@@ -38,8 +38,8 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("FILTRAR");
-        getSupportActionBar().setSubtitle("Liquidación cobranza");
+        getSupportActionBar().setTitle("Filtro liquidación");
+        getSupportActionBar().setSubtitle("");
 
         sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
 

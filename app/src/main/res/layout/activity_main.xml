@@ -160,7 +160,7 @@
                     android:id="@+id/btncobranzas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cobranzas"
+                    android:text="Registro de cobranzas"
                     android:drawableLeft="@drawable/list_cobranza"
                     android:layout_weight="1"
                     android:textSize="@dimen/pad_20dp"

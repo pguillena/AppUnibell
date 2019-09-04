@@ -40,8 +40,8 @@ public class Activity_Aprobacion_Planilla_Filtro   extends AppCompatActivity
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getSupportActionBar().setTitle(R.string.UNIBELL_PREF);
-        getSupportActionBar().setSubtitle("FILTRO");
+        getSupportActionBar().setTitle("Filtro de aprobación");
+        getSupportActionBar().setSubtitle("");
 
         sharedSettings = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
         editor_Shared = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();

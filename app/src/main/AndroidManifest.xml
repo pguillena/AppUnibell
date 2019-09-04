@@ -25,8 +25,11 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Liquidacion.Activity_Asignar"
+            android:parentActivityName=".Liquidacion.Activity_Liquidacion"
             android:label="@string/title_activity__asignar"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity
             android:name=".Liquidacion.Activity_FiltroLiquidacion"

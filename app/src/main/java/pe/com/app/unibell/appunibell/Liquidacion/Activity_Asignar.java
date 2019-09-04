@@ -43,6 +43,16 @@ public class Activity_Asignar extends AppCompatActivity implements Dialog_Fragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__asignar);
+
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setTitle("Asignar forma de pago");
+        getSupportActionBar().setSubtitle("");
+
+
+
         sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
 
         lq_btnasignar=(Button) findViewById(R.id.lq_btnasignar);

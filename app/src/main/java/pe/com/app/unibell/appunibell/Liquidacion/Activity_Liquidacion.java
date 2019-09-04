@@ -134,7 +134,7 @@ public class Activity_Liquidacion extends AppCompatActivity
         try {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("LIQUIDACIÓN DE COBRANZA");
+            getSupportActionBar().setTitle("Liquidación de cobranzas");
             getSupportActionBar().setSubtitle("");
 
             sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);

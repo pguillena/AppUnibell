@@ -84,11 +84,9 @@
             android:scrollbarStyle="insideInset"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:choiceMode="singleChoice"
             android:divider="@null"
             android:dividerHeight="20dp"
-            android:padding="10dp"
-            android:listSelector="@color/list_seleccion"/>
+            android:padding="10dp"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabBuscar"

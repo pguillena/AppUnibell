@@ -68,9 +68,6 @@ public class PlanillaCobranzaBL {
         return jsonObjectResult;
     }
 
-
-
-
     public JSONObject getRptCobranza(String newURL) {
         PlanillaCobranzaBE planillaCobranzaBE = null;
         JSONObject jsonObjectRest =null;

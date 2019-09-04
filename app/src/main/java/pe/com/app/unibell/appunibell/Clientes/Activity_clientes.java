@@ -54,8 +54,8 @@ public class Activity_clientes extends AppCompatActivity  {
         try {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.UNIBELL_PREF);
-            getSupportActionBar().setSubtitle("LISTA DE CLIENTES");
+            getSupportActionBar().setTitle("Listado de clientes");
+            getSupportActionBar().setSubtitle("");
 
             sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
             editor_Shared=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF),MODE_PRIVATE).edit();
@@ -66,7 +66,8 @@ public class Activity_clientes extends AppCompatActivity  {
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
             fab.setOnClickListener(OnClickListener_fab);
 
-            this.Cargar();
+
+            BuscarCliente();
 
         } catch (Exception ex) {
 
@@ -78,25 +79,31 @@ public class Activity_clientes extends AppCompatActivity  {
 
         @Override
         public void onClick(View view) {
-            try {
-                Intent intent = new Intent(Activity_clientes.this, Activity_FiltroClientes.class);
 
-                intent.putExtra("txtRazonSocial",hdfRazonSocial);
-                intent.putExtra("txtRUC",hdfRUC);
-                intent.putExtra("txtDNI",hdfDNI);
-                intent.putExtra("txtCodigoCliente",hdfCodigoCliente);
-                intent.putExtra("txtGrupo",hdfGrupo);
-                intent.putExtra("txtCpacking",hdfCPacking);
-                startActivityForResult(intent,request_code);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-
-
+                BuscarCliente();
         }
 
 
     };
+
+    private void BuscarCliente() {
+
+        try {
+
+        Intent intent = new Intent(Activity_clientes.this, Activity_FiltroClientes.class);
+
+        intent.putExtra("txtRazonSocial",hdfRazonSocial);
+        intent.putExtra("txtRUC",hdfRUC);
+        intent.putExtra("txtDNI",hdfDNI);
+        intent.putExtra("txtCodigoCliente",hdfCodigoCliente);
+        intent.putExtra("txtGrupo",hdfGrupo);
+        intent.putExtra("txtCpacking",hdfCPacking);
+        startActivityForResult(intent,request_code);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
 
 
     @Override

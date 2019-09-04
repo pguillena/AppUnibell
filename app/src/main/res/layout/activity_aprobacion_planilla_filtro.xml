@@ -395,17 +395,15 @@
                 android:id="@+id/rp_btnregistrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/ic_buscar"
-                android:textSize="@dimen/txt_12sp"
+                android:textSize="18dp"
                 android:text="Buscar"
                 android:gravity="center"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
-                android:padding="16dp"
+                android:layout_marginBottom="@dimen/pad_10dp"
+                android:padding="15dp"
                 android:background="@drawable/borderradiusbutton"
-                android:textColor="@color/background"
+                android:textColor="@color/label_blanco_login_unibell"
+
                 />
 
         </LinearLayout>
