@@ -29,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import pe.com.app.unibell.appunibell.BL.PreferenciasBL;
+import pe.com.app.unibell.appunibell.BL.S_Gem_PersonaBL;
 import pe.com.app.unibell.appunibell.BL.S_Gem_VendedorBL;
 import pe.com.app.unibell.appunibell.BL.S_Sea_AccesosBL;
 import pe.com.app.unibell.appunibell.BL.S_Sea_Usuario_AccionBL;
@@ -361,6 +362,8 @@ public class Activity_Login extends AppCompatActivity
         } catch (Exception ex) {
             new ToastLibrary(Activity_Login.this,"Error al sincronizar vendedores.").Show();
         }
+
+
 
         try {
 
@@ -895,6 +898,8 @@ public class Activity_Login extends AppCompatActivity
             }
         }
     }
+
+
     public class S_Gem_VendedorBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/

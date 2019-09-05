@@ -114,20 +114,9 @@ public class Dpm_Packing_DetBL {
                 //Eliminamos los registros
                 DataBaseHelper.myDataBase.delete("DPM_PACKING_DET", null, null);
 
-                String SQL="INSERT OR REPLACE INTO DPM_PACKING_DET(" +
-                        "C_PACKING,F_PACKING,C_EMPRESA,TIPODOC,SERIE,NUMERO," +
-                        "COD_CLIENTE,MONEDA,TOTAL_DOC,FLG_COND,OBSERVACION,C_USUARIO," +
-                        "C_PERFIL,C_CPU,FEC_REG,C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD," +
-                        "C_ESTADO,C_CPU_MOD,ANULADO,BANDEJAS,CAJAS,BOLSAS," +
-                        "UNISUELTAS,TOTPESO,FLG_ENTREGADO,C_MOTIVO,N_PLANILLA_COB,BULTOS," +
-                        "N_VOUCHER_TES,F_ANO_TES,F_MES_TES,C_TIPO_TES,N_ITEM_TES,COND_PAGO," +
-                        "M_COBRANZA,M_COBRANZA_D,FPAGO,NUMCHEQ,FECCHEQ,BANCO," +
-                        "N_RECIBO,N_SERIE_RECIBO,ORD_VISITA,N_SEQUENCIA,M_COBRANZA_ANT,NRO_OPERACION," +
-                        "FECHA_DEPOSITO,BCO_CTACTE,IC_MONTO,N_TARJETA,ID_MOVIMIENTO_POS,SERIE_PLANILLA_COB)"+
+                String SQL="INSERT OR REPLACE INTO DPM_PACKING_DET(C_PACKING, F_PACKING, C_EMPRESA, TIPODOC, SERIE, NUMERO, COD_CLIENTE, N_PLANILLA_COB, COND_PAGO)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -145,53 +134,8 @@ public class Dpm_Packing_DetBL {
                     stmt.bindString(5,jsonObjectItem.getString("SERIE"));
                     stmt.bindString(6,jsonObjectItem.getString("NUMERO"));
                     stmt.bindString(7,jsonObjectItem.getString("COD_CLIENTE"));
-                    stmt.bindString(8,jsonObjectItem.getString("MONEDA"));
-                    stmt.bindString(9,jsonObjectItem.getString("TOTAL_DOC"));
-                    stmt.bindString(10,jsonObjectItem.getString("FLG_COND"));
-                    stmt.bindString(11,jsonObjectItem.getString("OBSERVACION"));
-                    stmt.bindString(12,jsonObjectItem.getString("C_USUARIO"));
-                    stmt.bindString(13,jsonObjectItem.getString("C_PERFIL"));
-                    stmt.bindString(14,jsonObjectItem.getString("C_CPU"));
-                    stmt.bindString(15,jsonObjectItem.getString("FEC_REG"));
-                    stmt.bindString(16,jsonObjectItem.getString("C_USUARIO_MOD"));
-                    stmt.bindString(17,jsonObjectItem.getString("C_PERFIL_MOD"));
-                    stmt.bindString(18,jsonObjectItem.getString("FEC_MOD"));
-                    stmt.bindString(19,jsonObjectItem.getString("C_ESTADO"));
-                    stmt.bindString(20,jsonObjectItem.getString("C_CPU_MOD"));
-                    stmt.bindString(21,jsonObjectItem.getString("ANULADO"));
-                    stmt.bindString(22,jsonObjectItem.getString("BANDEJAS"));
-                    stmt.bindString(23,jsonObjectItem.getString("CAJAS"));
-                    stmt.bindString(24,jsonObjectItem.getString("BOLSAS"));
-                    stmt.bindString(25,jsonObjectItem.getString("UNISUELTAS"));
-                    stmt.bindString(26,jsonObjectItem.getString("TOTPESO"));
-                    stmt.bindString(27,jsonObjectItem.getString("FLG_ENTREGADO"));
-                    stmt.bindString(28,jsonObjectItem.getString("C_MOTIVO"));
-                    stmt.bindString(29,jsonObjectItem.getString("N_PLANILLA_COB"));
-                    stmt.bindString(30,jsonObjectItem.getString("BULTOS"));
-                    stmt.bindString(31,jsonObjectItem.getString("N_VOUCHER_TES"));
-                    stmt.bindString(32,jsonObjectItem.getString("F_ANO_TES"));
-                    stmt.bindString(33,jsonObjectItem.getString("F_MES_TES"));
-                    stmt.bindString(34,jsonObjectItem.getString("C_TIPO_TES"));
-                    stmt.bindString(35,jsonObjectItem.getString("N_ITEM_TES"));
-                    stmt.bindString(36,jsonObjectItem.getString("COND_PAGO"));
-                    stmt.bindString(3,jsonObjectItem.getString("M_COBRANZA"));
-                    stmt.bindString(38,jsonObjectItem.getString("M_COBRANZA_D"));
-                    stmt.bindString(39,jsonObjectItem.getString("FPAGO"));
-                    stmt.bindString(40,jsonObjectItem.getString("NUMCHEQ"));
-                    stmt.bindString(41,jsonObjectItem.getString("FECCHEQ"));
-                    stmt.bindString(42,jsonObjectItem.getString("BANCO"));
-                    stmt.bindString(43,jsonObjectItem.getString("N_RECIBO"));
-                    stmt.bindString(44,jsonObjectItem.getString("N_SERIE_RECIBO"));
-                    stmt.bindString(45,jsonObjectItem.getString("ORD_VISITA"));
-                    stmt.bindString(46,jsonObjectItem.getString("N_SEQUENCIA"));
-                    stmt.bindString(47,jsonObjectItem.getString("M_COBRANZA_ANT"));
-                    stmt.bindString(48,jsonObjectItem.getString("NRO_OPERACION"));
-                    stmt.bindString(49,jsonObjectItem.getString("FECHA_DEPOSITO"));
-                    stmt.bindString(50,jsonObjectItem.getString("BCO_CTACTE"));
-                    stmt.bindString(51,jsonObjectItem.getString("IC_MONTO"));
-                    stmt.bindString(52,jsonObjectItem.getString("N_TARJETA"));
-                    stmt.bindString(53,jsonObjectItem.getString("ID_MOVIMIENTO_POS"));
-                    stmt.bindString(54,jsonObjectItem.getString("SERIE_PLANILLA_COB"));
+                    stmt.bindString(8,jsonObjectItem.getString("N_PLANILLA_COB"));
+                    stmt.bindString(9,jsonObjectItem.getString("COND_PAGO"));
                     stmt.execute();
                     stmt.clearBindings();
                 }

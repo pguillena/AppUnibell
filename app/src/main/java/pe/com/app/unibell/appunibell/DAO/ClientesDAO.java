@@ -236,9 +236,9 @@ public class ClientesDAO {
                             "    ELSE 0 END)  = " + iID_EMPRESA +
                             " AND D.TIPODOC IN ('01','03') \n" +
                             " AND DO.ESTADO<>'9' \n" +
-                            " AND (CASE WHEN " + iID_EMPRESA + "=2 THEN 3 WHEN  D.SERIE IN('F030','B030') THEN 2 \n" +
-                            "   ELSE 1 END)=" +  iID_LOCAL +
-                            " AND DO.ID_EMPRESA="+ iID_EMPRESA +
+                         //   " AND (CASE WHEN " + iID_EMPRESA + "=2 THEN 3 WHEN  D.SERIE IN('F030','B030') THEN 2 \n" +
+                          //  "   ELSE 1 END)=" +  iID_LOCAL +
+                         //   " AND DO.ID_EMPRESA="+ iID_EMPRESA +
                             " GROUP BY A.ID_CLIENTE," +
                             " CLI.RAZON_SOCIAL," +
                             " CLI.ID_CANAL," +

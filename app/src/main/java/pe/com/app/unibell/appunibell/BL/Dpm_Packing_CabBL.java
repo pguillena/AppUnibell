@@ -98,17 +98,9 @@ public class Dpm_Packing_CabBL {
                 //Eliminamos los registros
                 DataBaseHelper.myDataBase.delete("DPM_PACKING_CAB", null, null);
 
-                String SQL="INSERT OR REPLACE INTO DPM_PACKING_CAB(" +
-                        "C_PACKING,F_PACKING,F_SALIDA,F_RETORNO,C_EMPTRANS,C_VEHICULO," +
-                        "C_CHOFER,C_REPARTIDOR,PLACA,HORA_SALIDA,HORA_RETORNO,OBSERVACION," +
-                        "F_CIERRE,C_USUARIO_CIE,C_USUARIO,C_PERFIL,C_CPU,FEC_REG," +
-                        "C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD,C_ESTADO,C_CPU_MOD,ANULADO," +
-                        "C_DESPACHADOR,C_CHEQUEADOR,C_CONTROLADOR,C_USUARIO_RECCRE,C_PERFIL_RECCRE,C_CPU_RECCRE," +
-                        "F_REGISTRO_RECCRE,I_VERIFICA_RECCRE,C_TUSUARIO_RECCRE,C_TPERFIL_RECCRE,C_TCPU_RECCRE,F_TREGISTRO_RECCRE," +
-                        "I_TVERIFICA_RECCRE,ID_LOCAL)"+
+                String SQL="INSERT OR REPLACE INTO DPM_PACKING_CAB(C_PACKING, F_PACKING, C_EMPTRANS, C_VEHICULO, C_CHOFER, C_REPARTIDOR, PLACA, C_DESPACHADOR, C_CONTROLADOR)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?)";
 
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
@@ -122,42 +114,13 @@ public class Dpm_Packing_CabBL {
 
                      stmt.bindString(1,jsonObjectItem.getString("C_PACKING"));
                      stmt.bindString(2,jsonObjectItem.getString("F_PACKING"));
-                     stmt.bindString(3,jsonObjectItem.getString("F_SALIDA"));
-                     stmt.bindString(4,jsonObjectItem.getString("F_RETORNO"));
-                     stmt.bindString(5,jsonObjectItem.getString("C_EMPTRANS"));
-                     stmt.bindString(6,jsonObjectItem.getString("C_VEHICULO"));
-                     stmt.bindString(7,jsonObjectItem.getString("C_CHOFER"));
-                     stmt.bindString(8,jsonObjectItem.getString("C_REPARTIDOR"));
-                     stmt.bindString(9,jsonObjectItem.getString("PLACA"));
-                     stmt.bindString(10,jsonObjectItem.getString("HORA_SALIDA"));
-                     stmt.bindString(11,jsonObjectItem.getString("HORA_RETORNO"));
-                     stmt.bindString(12,jsonObjectItem.getString("OBSERVACION"));
-                     stmt.bindString(13,jsonObjectItem.getString("F_CIERRE"));
-                     stmt.bindString(14,jsonObjectItem.getString("C_USUARIO_CIE"));
-                     stmt.bindString(15,jsonObjectItem.getString("C_USUARIO"));
-                     stmt.bindString(16,jsonObjectItem.getString("C_PERFIL"));
-                     stmt.bindString(17,jsonObjectItem.getString("C_CPU"));
-                     stmt.bindString(18,jsonObjectItem.getString("FEC_REG"));
-                     stmt.bindString(19,jsonObjectItem.getString("C_USUARIO_MOD"));
-                     stmt.bindString(20,jsonObjectItem.getString("C_PERFIL_MOD"));
-                     stmt.bindString(21,jsonObjectItem.getString("FEC_MOD"));
-                     stmt.bindString(22,jsonObjectItem.getString("C_ESTADO"));
-                     stmt.bindString(23,jsonObjectItem.getString("C_CPU_MOD"));
-                     stmt.bindString(24,jsonObjectItem.getString("ANULADO"));
-                     stmt.bindString(25,jsonObjectItem.getString("C_DESPACHADOR"));
-                     stmt.bindString(26,jsonObjectItem.getString("C_CHEQUEADOR"));
-                     stmt.bindString(27,jsonObjectItem.getString("C_CONTROLADOR"));
-                     stmt.bindString(28,jsonObjectItem.getString("C_USUARIO_RECCRE"));
-                     stmt.bindString(29,jsonObjectItem.getString("C_PERFIL_RECCRE"));
-                     stmt.bindString(30,jsonObjectItem.getString("C_CPU_RECCRE"));
-                     stmt.bindString(31,jsonObjectItem.getString("F_REGISTRO_RECCRE"));
-                     stmt.bindString(32,jsonObjectItem.getString("I_VERIFICA_RECCRE"));
-                     stmt.bindString(33,jsonObjectItem.getString("C_TUSUARIO_RECCRE"));
-                     stmt.bindString(34,jsonObjectItem.getString("C_TPERFIL_RECCRE"));
-                     stmt.bindString(35,jsonObjectItem.getString("C_TCPU_RECCRE"));
-                     stmt.bindString(36,jsonObjectItem.getString("F_TREGISTRO_RECCRE"));
-                     stmt.bindString(37,jsonObjectItem.getString("I_TVERIFICA_RECCRE"));
-                     stmt.bindString(38,jsonObjectItem.getString("ID_LOCAL"));
+                     stmt.bindString(3,jsonObjectItem.getString("C_EMPTRANS"));
+                     stmt.bindString(4,jsonObjectItem.getString("C_VEHICULO"));
+                     stmt.bindString(5,jsonObjectItem.getString("C_CHOFER"));
+                     stmt.bindString(6,jsonObjectItem.getString("C_REPARTIDOR"));
+                     stmt.bindString(7,jsonObjectItem.getString("PLACA"));
+                     stmt.bindString(8,jsonObjectItem.getString("C_DESPACHADOR"));
+                     stmt.bindString(9,jsonObjectItem.getString("C_CONTROLADOR"));
                     stmt.execute();
                     stmt.clearBindings();
                 }
