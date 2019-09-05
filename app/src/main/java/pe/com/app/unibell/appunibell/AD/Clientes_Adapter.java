@@ -69,6 +69,9 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
 
         if(Double.valueOf(clienteBE.getM_PAE()) > 0.0 ) {
             mainHolder.cl_item3.setText(clienteBE.getM_PAE().toString().trim());
+
+            mainHolder.cl_item3.setVisibility(View.VISIBLE);
+            mainHolder.cl_col3.setVisibility(View.VISIBLE);
         }
         else
         {

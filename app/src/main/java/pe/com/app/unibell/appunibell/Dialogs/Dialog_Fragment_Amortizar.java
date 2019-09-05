@@ -84,14 +84,14 @@ public class Dialog_Fragment_Amortizar extends DialogFragment {
                 vibrator.vibrate(200);
                 return;
             }
-            if(Double.valueOf(am_lblmonto.getText().toString())<=0.0){
+            if(Double.valueOf(am_lblmonto.getText().toString().replace(",",""))<=0.0){
                 Toast toastCodigo = Toast.makeText(getActivity(),"Monto no es Válido.",Toast.LENGTH_LONG);
                 toastCodigo.show();
                 vibrator.vibrate(200);
                 return;
             }
 
-            if(Double.valueOf(am_lblmonto.getText().toString()) > Double.valueOf(am_lblsaldo.getText().toString())){
+            if(Double.valueOf(am_lblmonto.getText().toString().replace(",","")) > Double.valueOf(am_lblsaldo.getText().toString().replace(",",""))){
                 Toast toastCodigo = Toast.makeText(getActivity(),"Monto Ingresado es mayor al Saldo.",Toast.LENGTH_LONG);
                 toastCodigo.show();
                 vibrator.vibrate(200);
@@ -99,7 +99,7 @@ public class Dialog_Fragment_Amortizar extends DialogFragment {
             }
 
             if (dialog_fragment_amortizarListener != null) {
-                dialog_fragment_amortizarListener.onAmortizarSI(am_lblmonto.getText().toString().trim());
+                dialog_fragment_amortizarListener.onAmortizarSI(am_lblmonto.getText().toString().trim().replace(",",""));
             }
             dismissAllowingStateLoss();
         }

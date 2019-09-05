@@ -220,9 +220,9 @@ public class ClientesDAO {
                             "IFNULL(M_PAE,0)AS M_PAE,'N' AS I_CANC_ANTIGUO\n" +
                             " FROM DPM_PACKING_CAB C \n" +
                             " INNER JOIN DPM_PACKING_DET D ON (C.C_PACKING = D.C_PACKING) \n" +
-                            " INNER JOIN DOCUVENT DO ON (D.TIPODOC = DO.TIPODOC AND D.SERIE = DO.SERIE AND D.NUMERO = DO.NUMERO) \n" +
-                            " INNER JOIN S_GEM_CLIENTE_CODIGO_ANT A ON (D.COD_CLIENTE = A.CODIGO_ANTIGUO AND A.FLAG_VIGENCIA > 0) \n" +
-                            " INNER JOIN S_GEM_CLIENTE CLI ON (A.ID_CLIENTE = CLI.ID_CLIENTE) \n" +
+                            " LEFT JOIN DOCUVENT DO ON (D.TIPODOC = DO.TIPODOC AND D.SERIE = DO.SERIE AND D.NUMERO = DO.NUMERO) \n" +
+                            " LEFT JOIN S_GEM_CLIENTE_CODIGO_ANT A ON (D.COD_CLIENTE = A.CODIGO_ANTIGUO AND A.FLAG_VIGENCIA > 0) \n" +
+                            " LEFT JOIN S_GEM_CLIENTE CLI ON (A.ID_CLIENTE = CLI.ID_CLIENTE) \n" +
                             " WHERE (C.C_PACKING =" + iC_PACKING +" OR " + iC_PACKING + "=0) \n" +
                             " AND IFNULL(CLI.RUC, '') LIKE '%" + iRUC + "%' \n" +
                             " AND IFNULL(CLI.DNI, '') LIKE '%" + iDNI + "%' \n" +
@@ -236,9 +236,9 @@ public class ClientesDAO {
                             "    ELSE 0 END)  = " + iID_EMPRESA +
                             " AND D.TIPODOC IN ('01','03') \n" +
                             " AND DO.ESTADO<>'9' \n" +
-                         //   " AND (CASE WHEN " + iID_EMPRESA + "=2 THEN 3 WHEN  D.SERIE IN('F030','B030') THEN 2 \n" +
-                          //  "   ELSE 1 END)=" +  iID_LOCAL +
-                         //   " AND DO.ID_EMPRESA="+ iID_EMPRESA +
+                           " AND (CASE WHEN " + iID_EMPRESA + "=2 THEN 3 WHEN  D.SERIE IN('F030','B030') THEN 2 \n" +
+                           "   ELSE 1 END)=" +  iID_LOCAL +
+                            " AND DO.ID_EMPRESA="+ iID_EMPRESA +
                             " GROUP BY A.ID_CLIENTE," +
                             " CLI.RAZON_SOCIAL," +
                             " CLI.ID_CANAL," +

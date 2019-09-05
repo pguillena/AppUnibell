@@ -189,7 +189,7 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
             holder.cl_itemRecibo.setVisibility(View.GONE);
         }
 
-        if(lstFiltrado.get(position).getPLANILLA()!=null && !lstFiltrado.get(position).getPLANILLA().toString().equals(""))
+        if(lstFiltrado.get(position).getPLANILLA()!=null && !lstFiltrado.get(position).getPLANILLA().toString().equals("")&& !lstFiltrado.get(position).getPLANILLA().toString().trim().equals("-"))
         {
             holder.cl_itemPlanilla.setText(lstFiltrado.get(position).getPLANILLA());
         }

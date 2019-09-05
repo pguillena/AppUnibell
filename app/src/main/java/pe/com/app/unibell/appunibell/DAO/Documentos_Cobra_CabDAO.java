@@ -361,11 +361,11 @@ public class Documentos_Cobra_CabDAO {
                             " FROM S_CCM_DOCUMENTOS_COBRA_CAB C\n" +
                             " INNER JOIN S_CCM_DOCUMENTOS_COBRA_DET D  ON (C.ID_COBRANZA = D.ID_COBRANZA) \n" +
                             " LEFT JOIN S_GEM_PERSONA P ON(C.ID_COBRADOR = P.ID_PERSONA) \n" +
-                            " INNER JOIN S_GEM_PERSONA V ON(D.ID_VENDEDOR = V.ID_PERSONA) \n" +
-                            " INNER JOIN S_SEM_EMPRESA E ON(C.ID_EMPRESA = E.ID_EMPRESA)\n" +
-                            " INNER JOIN CLIENTES S ON (C.COD_CLIENTE = S.COD_CLIENTE) \n" +
+                            " LEFT JOIN S_GEM_PERSONA V ON(D.ID_VENDEDOR = V.ID_PERSONA) \n" +
+                            " LEFT JOIN S_SEM_EMPRESA E ON(C.ID_EMPRESA = E.ID_EMPRESA)\n" +
+                            " LEFT JOIN CLIENTES S ON (C.COD_CLIENTE = S.COD_CLIENTE) \n" +
                             " LEFT JOIN TABLAS_AUXILIARES A ON (D.FPAGO = A.CODIGO AND A.TIPO = 14) \n" +
-                            " INNER JOIN TABLAS_AUXILIARES T ON(D.TIPDOC = T.CODIGO AND T.TIPO = 2) \n" +
+                            " LEFT JOIN TABLAS_AUXILIARES T ON(D.TIPDOC = T.CODIGO AND T.TIPO = 2) \n" +
                             " LEFT JOIN CTABNCO B ON(C.CTACORRIENTE_BANCO = B.CODIGO) \n" +
                             " LEFT JOIN  S_GEM_BANCO SB ON(C.ID_BANCO = SB.ID_BANCO AND SB.ID_EMPRESA =C.ID_EMPRESA)" +
                             " WHERE C.N_SERIE_RECIBO  =" + iSERIE_RECIBO  +
