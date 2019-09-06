@@ -984,6 +984,24 @@ public class Activity_Liquidacion extends AppCompatActivity
                 sPACKING = sCPacking.trim();
             }
 
+
+            if(documentos_cobra_cabDAO.lst!=null && documentos_cobra_cabDAO.lst.size()>0)
+            { String fpago;
+                for(int i=0; i<documentos_cobra_cabDAO.lst.size(); i++)
+                {
+                    fpago = documentos_cobra_cabDAO.lst.get(i).getCODIGO_FPAGO();
+                    if(fpago.equals("P") || fpago.equals("V") || fpago.equals("D") || fpago.equals("M") || fpago.equals("I") || fpago.equals("H") || fpago.equals("S"))
+                    {
+                        if(!documentos_cobra_cabDAO.lst.get(i).getESTADO_CONCILIADO().equals("40025"))
+                        {
+                            Mensaje("No se pueden enviar documentos sin conciliar");
+                            return;
+                        }
+                    }
+                }
+            }
+
+
             new GenerarPlanillaCobranzaAsyncTask().execute(
                     ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_GeneraPlanilla + "/" +
                             lq_txtffecha.toString().trim() + "/" +
