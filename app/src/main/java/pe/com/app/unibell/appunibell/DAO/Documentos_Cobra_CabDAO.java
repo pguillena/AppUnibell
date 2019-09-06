@@ -213,19 +213,19 @@ public class Documentos_Cobra_CabDAO {
                             "S.NOMBRE AS RAZON_SOCIAL,T.ABREVIADA AS TIPODOC,D.SERIE_NUM || '-' ||D.NUMERO AS NUMERO,\n" +
                             "A.ABREVIADA AS FPAGODESC, C.FPAGO, \n" +
                             "CASE     \n" +
-                            "   WHEN C.FPAGO IN('P','V','Z','D','M','I','H') THEN B.DESCRIPCION\n" +
+                            "   WHEN C.FPAGO IN('P','V','Z','D','M','I','H','S') THEN B.DESCRIPCION\n" +
                             "   WHEN C.FPAGO='C' THEN SB.BANCO  \n" +
                             "   WHEN C.FPAGO='E' THEN 'EFECTIVO'\n" +
                             "   END ENTIDAD,\n" +
                             "CASE     \n" +
                             "   WHEN C.FPAGO IN('P','Z') THEN C.NRO_OPERACION\n" +
                             "   WHEN C.FPAGO='C' THEN C.NUMCHEQ \n" +
-                            "   WHEN C.FPAGO IN('V','D','M','I','H') THEN '****' || C.N_TARJETA\n" +
+                            "   WHEN C.FPAGO IN('V','D','M','I','H','S') THEN '****' || C.N_TARJETA\n" +
                             "   WHEN C.FPAGO='E' THEN 'EFECTIVO'\n" +
                             "   WHEN C.FPAGO='C' THEN C.NUMCHEQ    \n" +
                             "   END CONSTANCIA,\n" +
                             "CASE     \n" +
-                            "   WHEN C.FPAGO IN('P','V','Z','D','M','I','H') THEN C.FECHA_DEPOSITO\n" +
+                            "   WHEN C.FPAGO IN('P','V','Z','D','M','I','H','S') THEN C.FECHA_DEPOSITO\n" +
                             "   WHEN C.FPAGO='C' THEN C.FECCHEQ\n" +
                             "   WHEN C.FPAGO='E' THEN C.FECHA    \n" +
                             "   END FECHA,\n" +
@@ -334,18 +334,18 @@ public class Documentos_Cobra_CabDAO {
                             "       T.ABREVIADA AS TIPODOC,\n" +
                             "   D.SERIE_NUM || '-' || D.NUMERO AS NUMERO,\n" +
                             "       A.ABREVIADA AS FPAGO,\n" +
-                            " CASE WHEN C.FPAGO IN('P','V','Z','D','M','I','H') THEN B.DESCRIPCION\n" +
+                            " CASE WHEN C.FPAGO IN('P','V','Z','D','M','I','H','S') THEN B.DESCRIPCION \n" +
                             "            WHEN C.FPAGO='C' THEN SB.BANCO  \n" +
                             "            WHEN C.FPAGO='E' THEN 'EFECTIVO'\n" +
                             "            END ENTIDAD,\n" +
                             " CASE\n" +
                             "     WHEN C.FPAGO IN('P','Z') THEN C.NRO_OPERACION\n" +
                             "              WHEN C.FPAGO='C' THEN C.NUMCHEQ \n" +
-                            "              WHEN C.FPAGO IN('V','D','M','I','H') THEN '****' || C.N_TARJETA\n" +
+                            "              WHEN C.FPAGO IN('V','D','M','I','H','S') THEN '****' || C.N_TARJETA \n" +
                             "              WHEN C.FPAGO='E' THEN 'EFECTIVO'\n" +
-                            "              END CONSTANCIA,\n" +
-                            " CASE  WHEN C.FPAGO IN('P','V','Z','D','M','I','H') THEN C.FECHA_DEPOSITO\n" +
-                            "               WHEN C.FPAGO='C' THEN C.FECCHEQ\n" +
+                            "              END CONSTANCIA, \n" +
+                            " CASE  WHEN C.FPAGO IN('P','V','Z','D','M','I','H','S') THEN C.FECHA_DEPOSITO \n" +
+                            "               WHEN C.FPAGO='C' THEN C.FECCHEQ \n" +
                             "               WHEN C.FPAGO='E' THEN C.FECHA \n" +
                             "               END FECHA,\n" +
                             " CASE   WHEN D.MONEDA IN('D') THEN 'S' ELSE  D.MONEDA END AS MONEDA ,\n" +
