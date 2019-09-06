@@ -79,6 +79,8 @@ public class Cobranza_Cabecera_Adapter
             mainHolder.cc_item3.setText(documentos_cobra_cabBE.getM_COBRANZA_D().toString());
         }
         mainHolder.cc_item4.setText(documentos_cobra_cabBE.getSALDO().toString());
+        editor_Shared.putString("SALDO_CABECERA",documentos_cobra_cabBE.getSALDO().toString());
+        editor_Shared.commit();
         String sFPAGO=documentos_cobra_cabBE.getFPAGO().toString();
 
         mainHolder.cc_lnfecnum.setVisibility(View.INVISIBLE);

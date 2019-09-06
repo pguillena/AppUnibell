@@ -197,7 +197,7 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
             if(documentos_cobra_cabDAO.lst!=null && documentos_cobra_cabDAO.lst.size()>0) {
                 String Splanilla = "";
 
-                if(!documentos_cobra_cabDAO.lst.get(0).getPLANILLA().equals(""))
+                if(!documentos_cobra_cabDAO.lst.get(0).getPLANILLA().equals("") && !documentos_cobra_cabDAO.lst.get(0).getPLANILLA().trim().equals("-"))
                 {
                     Splanilla = "Planilla de cobranza N° "+documentos_cobra_cabDAO.lst.get(0).getPLANILLA();
                 }

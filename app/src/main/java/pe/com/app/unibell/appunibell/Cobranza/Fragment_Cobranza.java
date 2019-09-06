@@ -692,8 +692,6 @@ public class Fragment_Cobranza extends Fragment implements
             documentos_cobra_cabBE.setESTADO_CONCILIADO("40004");
             documentos_cobra_cabBE.setSERIE_PLANILLA("");
             documentos_cobra_cabBE.setN_PLANILLA("");
-            //Obtener desde la consulta de cliente(Planilla de despacho)
-            documentos_cobra_cabBE.setC_PACKING(sharedSettings.getString("iPACKING", "").toString());
             //Cuando concilia
             documentos_cobra_cabBE.setID_MOV_BANCO("");
             //Pendiente
