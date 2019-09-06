@@ -90,14 +90,9 @@ public class MvendedorBL {
                 //Eliminamos los registros
                 DataBaseHelper.myDataBase.delete("MVENDEDOR", null, null);
 
-                String SQL="INSERT OR REPLACE INTO MVENDEDOR(" +
-                        "C_VENDEDOR,APELLIDO_PATERNO,APELLIDO_MATERNO,NOMBRES,C_CANAL,C_SUBCANAL,"+
-                        "I_VENDEDOR,C_EMPRESA,F_INGRESO,F_CESE,F_REGISTRO,C_USUARIO_REGISTRO,"+
-                        "F_ACTUALIZACION,C_USUARIO_ACTUALIZACION,C_GERENCIA,I_TIPO_VENDEDOR,C_SUC_EMP,N_CELULAR,"+
-                        "I_SIGA,F_ENTREGA_TABLET,OBSERVACION,I_RUTA,C_CODIGO,ID_LOCAL)"+
+                String SQL="INSERT OR REPLACE INTO MVENDEDOR(C_VENDEDOR,APELLIDO_PATERNO,APELLIDO_MATERNO,NOMBRES)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?)";
+                        "(?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -111,29 +106,6 @@ public class MvendedorBL {
                     stmt.bindString(2,jsonObjectItem.getString("APELLIDO_PATERNO"));
                     stmt.bindString(3,jsonObjectItem.getString("APELLIDO_MATERNO"));
                     stmt.bindString(4,jsonObjectItem.getString("NOMBRES"));
-                    stmt.bindString(5,jsonObjectItem.getString("C_CANAL"));
-                    stmt.bindString(6,jsonObjectItem.getString("C_SUBCANAL"));
-
-                    stmt.bindString(7,jsonObjectItem.getString("I_VENDEDOR"));
-                    stmt.bindString(8,jsonObjectItem.getString("C_EMPRESA"));
-                    stmt.bindString(9,jsonObjectItem.getString("F_INGRESO"));
-                    stmt.bindString(10,jsonObjectItem.getString("F_CESE"));
-                    stmt.bindString(11,jsonObjectItem.getString("F_REGISTRO"));
-                    stmt.bindString(12,jsonObjectItem.getString("C_USUARIO_REGISTRO"));
-
-                    stmt.bindString(13,jsonObjectItem.getString("F_ACTUALIZACION"));
-                    stmt.bindString(14,jsonObjectItem.getString("C_GERENCIA"));
-                    stmt.bindString(15,jsonObjectItem.getString("C_GERENCIA"));
-                    stmt.bindString(16,jsonObjectItem.getString("I_TIPO_VENDEDOR"));
-                    stmt.bindString(17,jsonObjectItem.getString("C_SUC_EMP"));
-                    stmt.bindString(18,jsonObjectItem.getString("N_CELULAR"));
-
-                    stmt.bindString(19,jsonObjectItem.getString("I_SIGA"));
-                    stmt.bindString(20,jsonObjectItem.getString("F_ENTREGA_TABLET"));
-                    stmt.bindString(21,jsonObjectItem.getString("OBSERVACION"));
-                    stmt.bindString(22,jsonObjectItem.getString("I_RUTA"));
-                    stmt.bindString(23,jsonObjectItem.getString("C_CODIGO"));
-                    stmt.bindString(24,jsonObjectItem.getString("ID_LOCAL"));
                     stmt.execute();
                     stmt.clearBindings();
                 }

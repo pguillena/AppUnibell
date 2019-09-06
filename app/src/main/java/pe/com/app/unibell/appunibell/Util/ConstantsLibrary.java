@@ -18,7 +18,7 @@ public interface ConstantsLibrary {
 
         //CABECERA DE COBRANZA
         public static final String bldocumentos_cobra_cab = "/bldocumentos_cobra_cab";
-        public static final String bldocumentos_cobra_cab_Insert = "/cobranuza_insert";
+        public static final String bldocumentos_cobra_cab_Insert = "/cobranza_insert";
         public static final String bldocumentos_cobra_cab_Insert_Update = "/cobranza_insert_update";
         public static final String bldocumentos_cobra_cab_Update = "/cobranza_update";
         public static final String bldocumentos_cobra_cab_Delete = "/cobranza_delete";

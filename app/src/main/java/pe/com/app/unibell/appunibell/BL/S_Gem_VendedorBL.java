@@ -83,12 +83,9 @@ public class S_Gem_VendedorBL {
                 //Eliminamos los registros
                 DataBaseHelper.myDataBase.delete("S_GEM_VENDEDOR", null, null);
 
-                String SQL="INSERT OR REPLACE INTO S_GEM_VENDEDOR(" +
-                        "ID_PERSONA,ID_EMPRESA,ID_LOCAL,TIPO_VENDEDOR,FECHA_CESE,ESTADO," +
-                        "FECHA_REGISTRO,FECHA_MODIFICACION,USUARIO_REGISTRO,USUARIO_MODIFICACION,PC_REGISTRO,PC_MODIFICACION," +
-                        "IP_REGISTRO,IP_MODIFICACION,VISIBLE,VALIDA_RECIBO,ID_CANAL)"+
+                String SQL="INSERT OR REPLACE INTO S_GEM_VENDEDOR(ID_PERSONA, ID_EMPRESA, ID_LOCAL, TIPO_VENDEDOR, FECHA_CESE, ESTADO, VISIBLE, VALIDA_RECIBO, ID_CANAL) " +
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -105,17 +102,9 @@ public class S_Gem_VendedorBL {
                     stmt.bindString(4,jsonObjectItem.getString("TIPO_VENDEDOR"));
                     stmt.bindString(5,jsonObjectItem.getString("FECHA_CESE"));
                     stmt.bindString(6,jsonObjectItem.getString("ESTADO"));
-                    stmt.bindString(7,jsonObjectItem.getString("FECHA_REGISTRO"));
-                    stmt.bindString(8,jsonObjectItem.getString("FECHA_MODIFICACION"));
-                    stmt.bindString(9,jsonObjectItem.getString("USUARIO_REGISTRO"));
-                    stmt.bindString(10,jsonObjectItem.getString("USUARIO_MODIFICACION"));
-                    stmt.bindString(11,jsonObjectItem.getString("PC_REGISTRO"));
-                    stmt.bindString(12,jsonObjectItem.getString("PC_MODIFICACION"));
-                    stmt.bindString(13,jsonObjectItem.getString("IP_REGISTRO"));
-                    stmt.bindString(14,jsonObjectItem.getString("IP_MODIFICACION"));
-                    stmt.bindString(15,jsonObjectItem.getString("VISIBLE"));
-                    stmt.bindString(16,jsonObjectItem.getString("VALIDA_RECIBO"));
-                    stmt.bindString(17,jsonObjectItem.getString("ID_CANAL"));
+                    stmt.bindString(7,jsonObjectItem.getString("VISIBLE"));
+                    stmt.bindString(8,jsonObjectItem.getString("VALIDA_RECIBO"));
+                    stmt.bindString(9,jsonObjectItem.getString("ID_CANAL"));
                     stmt.execute();
                     stmt.clearBindings();
 

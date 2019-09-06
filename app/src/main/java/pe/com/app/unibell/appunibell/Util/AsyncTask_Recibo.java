@@ -240,17 +240,17 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                                 "</table>" +
                                 "<table width='100%' border='0.01'  cellpadding='5px' bordercolor='666633'>" +
                                 "<tr><td width='2%' align='center' style='font-size:10px;font-weight:bold' >N°</td>" +
-                                "<td width='18%' align='center' style='font-size:10px;font-weight:bold'>VENDEDOR</td>" +
+                                "<td width='23%' align='center' style='font-size:10px;font-weight:bold'>VENDEDOR</td>" +
                                 "<td width='5%'  align='center' style='font-size:10px;font-weight:bold'>TIPO</td>" +
                                 "<td width='8%'  align='center' style='font-size:10px;font-weight:bold'>DOC</td>" +
                                 "<td width='8%'  align='center' style='font-size:10px;font-weight:bold'>FPAGO</td>" +
                                 "<td width='18%' align='center' style='font-size:10px;font-weight:bold' >ENTIDAD</td>" +
                                 "<td width='9%'  align='center' style='font-size:10px;font-weight:bold' >CONSTANCIA</td>" +
-                                "<td width='8%'  align='center' style='font-size:10px;font-weight:bold' >FECHA</td>" +
-                                "<td width='8%'  align='center' style='font-size:10px;font-weight:bold'>DEUDA</td>" +
-                                "<td width='8%'  align='center' style='font-size:10px;font-weight:bold'>ABONO</td>" +
-                                "<td width='8%'  align='center' style='font-size:10px;font-weight:bold'>CAMBIO</td>" +
-                                "<td width='8%'  align='center' style='font-size:10px;font-weight:bold'>SALDO</td>" +
+                                "<td width='7%'  align='center' style='font-size:10px;font-weight:bold' >FECHA</td>" +
+                                "<td width='7%'  align='center' style='font-size:10px;font-weight:bold'>DEUDA</td>" +
+                                "<td width='7%'  align='center' style='font-size:10px;font-weight:bold'>ABONO</td>" +
+                                "<td width='7%'  align='center' style='font-size:10px;font-weight:bold'>CAMBIO</td>" +
+                                "<td width='7%'  align='center' style='font-size:10px;font-weight:bold'>SALDO</td>" +
                                 "</tr>";
 
                 Double dCobranza = 0.0;
@@ -263,23 +263,23 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
 
                     htmToDet = htmToDet + "" +
                             "<tr><td width='2%' style='font-size:10px' align='left' >" + (j+1) + "</td>" +
-                            "<td width='18%' style='font-size:10px'>" + documentos_cobra_cabDAO.lst.get(j).getVENDEDOR().toString() + "</td>" +
+                            "<td width='23%' style='font-size:10px'>" + documentos_cobra_cabDAO.lst.get(j).getVENDEDOR().toString() + "</td>" +
                             "<td width='5%'  style='font-size:10px' align='center'>" + documentos_cobra_cabDAO.lst.get(j).getTIPODOC().toString() + "</td>" +
                             "<td width='8%'  style='font-size:10px' align='center'>" + documentos_cobra_cabDAO.lst.get(j).getNUMERO().toString() + "</td>" +
                             "<td width='8%'  style='font-size:10px' align='center'>" + documentos_cobra_cabDAO.lst.get(j).getFPAGO().toString() + "</td>" +
                             "<td width='18%' style='font-size:10px' align='center'>" + documentos_cobra_cabDAO.lst.get(j).getENTIDAD().toString() + "</td>" +
                             "<td width='9%'  style='font-size:10px' align='center'>" + documentos_cobra_cabDAO.lst.get(j).getCONSTANCIA().toString() + "</td>" +
-                            "<td width='8%'  style='font-size:10px' align='center'>" + documentos_cobra_cabDAO.lst.get(j).getFECHA().toString() + "</td>" +
-                            "<td width='8%'  style='font-size:10px' align='right'>" + "S/ " + funciones.FormatDecimal(documentos_cobra_cabDAO.lst.get(j).getSALDO_INICIAL().toString()) + "</td>" +
-                            "<td width='8%'  style='font-size:10px' align='right'>" + "S/ " +funciones.FormatDecimal(documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA().toString()) + "</td>" +
-                            "<td width='8%'  style='font-size:10px' align='right'>" + "$ " + funciones.FormatDecimal(cobranzaDolares.toString()) + "</td>" +
-                            "<td width='8%'  style='font-size:10px' align='right'>" + "S/ "+ documentos_cobra_cabDAO.lst.get(j).getSALDO().toString() + "</td>" +
+                            "<td width='7%'  style='font-size:10px' align='center'>" + documentos_cobra_cabDAO.lst.get(j).getFECHA().toString() + "</td>" +
+                            "<td width='7%'  style='font-size:10px' align='right'>" + "S/ " + funciones.FormatDecimal(documentos_cobra_cabDAO.lst.get(j).getSALDO_INICIAL().toString()) + "</td>" +
+                            "<td width='7%'  style='font-size:10px' align='right'>" + "S/ " +funciones.FormatDecimal(documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA().toString()) + "</td>" +
+                            "<td width='7%'  style='font-size:10px' align='right'>" + "$ " + funciones.FormatDecimal(cobranzaDolares.toString()) + "</td>" +
+                            "<td width='7%'  style='font-size:10px' align='right'>" + "S/ "+ documentos_cobra_cabDAO.lst.get(j).getSALDO().toString() + "</td>" +
                             "</tr>";
                 }
                 htmToDet = htmToDet + "<tr>" +
                         "<td colspan='9' style='font-weight:bold' align='right' >TOTAL RECIBO</td>" +
-                        "<td width='8%' style='font-size:12px;font-weight:bold' align='right'>" + "S/ " + funciones.FormatDecimal(dCobranza.toString()) + "</td>" +
-                        "<td width='8%' style='font-size:12px;font-weight:bold' align='right'>" + "$ "  + funciones.FormatDecimal(dCobranzaDolares.toString()) + "</td>" + "</tr></table>";
+                        "<td width='7%' style='font-size:12px;font-weight:bold' align='right'>" + "S/ " + funciones.FormatDecimal(dCobranza.toString()) + "</td>" +
+                        "<td width='7%' style='font-size:12px;font-weight:bold' align='right'>" + "$ "  + funciones.FormatDecimal(dCobranzaDolares.toString()) + "</td>" + "</tr></table>";
 
                 sResumen =
                         "<table width='100%' cellpadding='4px' >" +
