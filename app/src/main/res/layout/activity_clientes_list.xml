@@ -7,22 +7,70 @@
     android:orientation="vertical"
     >
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pad_20dp"
+        android:layout_marginLeft="@dimen/pad_20dp"
+        android:layout_marginRight="@dimen/pad_20dp">
 
         <TextView
             android:id="@+id/cl_lblregistros"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24dp"
             android:text="0 Registros"
             android:textColor="@color/Button_login_unibell"
             android:gravity="left"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/pad_20dp"
-            android:layout_marginLeft="@dimen/pad_20dp"
-            android:layout_marginRight="@dimen/pad_20dp"
+            android:fontFamily="@font/sf_pro_display_bold"
             />
 
 
+        <TextView
+
+            android:id="@+id/txtPAE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/eye_off"
+            android:layout_toRightOf="@id/cl_lblregistros"
+            android:textSize="16dp"
+            android:text="PAE"
+            android:textColor="@color/label_login_unibell"
+            android:gravity="right"
+            android:drawablePadding="5dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:fontFamily="@font/sf_pro_display_medium"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/lyPlanillaDespacho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borderradius_inactivo2"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/pad_20dp"
+        android:layout_marginRight="@dimen/pad_20dp"
+        android:layout_marginTop="@dimen/pad_10dp"
+      >
+
+        <TextView
+            android:id="@+id/TxtNroPacking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Planilla Despacho N° 43999"
+            android:textColor="@color/label_color_menu"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:paddingTop="@dimen/pad_5dp"
+            android:paddingBottom="@dimen/pad_5dp"
+            />
+
+    </LinearLayout>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/tools"
@@ -39,7 +87,10 @@
             android:scrollbarStyle="insideInset"
         android:divider="@null"
         android:dividerHeight="20dp"
-        android:layout_margin="@dimen/pad_20dp"
+        android:layout_marginTop="@dimen/pad_10dp"
+        android:layout_marginBottom="@dimen/pad_10dp"
+        android:layout_marginLeft="@dimen/pad_20dp"
+        android:layout_marginRight="@dimen/pad_20dp"
             />
 
         <android.support.design.widget.FloatingActionButton

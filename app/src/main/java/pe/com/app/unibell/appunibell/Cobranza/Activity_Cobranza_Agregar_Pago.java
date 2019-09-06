@@ -16,6 +16,8 @@ import android.widget.ToggleButton;
 
 import pe.com.app.unibell.appunibell.AD.Cobranza_Cabecera_Adapter;
 import pe.com.app.unibell.appunibell.AD.CtaBnco_Adapter;
+import pe.com.app.unibell.appunibell.BL.Dpm_Packing_CabBL;
+import pe.com.app.unibell.appunibell.DAO.Dpm_Packing_CabDAO;
 import pe.com.app.unibell.appunibell.DAO.Recibos_CcobranzaDAO;
 import pe.com.app.unibell.appunibell.DAO.S_gem_TipoCambioDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
@@ -46,6 +48,7 @@ public class Activity_Cobranza_Agregar_Pago
     private Cobranza_Cabecera_Adapter cobranza_cabecera_adapter=null;
     private Recibos_CcobranzaDAO recibos_ccobranzaDAO = new Recibos_CcobranzaDAO();
     private S_gem_TipoCambioDAO s_gem_tipoCambioDAO = new S_gem_TipoCambioDAO();
+    private Dpm_Packing_CabDAO dpm_packing_cabDAO = new Dpm_Packing_CabDAO();
 
     private Integer iAuxiliar = 0,iTabla=0;
 
@@ -59,6 +62,9 @@ public class Activity_Cobranza_Agregar_Pago
 
         getSupportActionBar().setTitle(R.string.UNIBELL_PREF);
         getSupportActionBar().setSubtitle("PROCESO DE COBRANZA");
+
+        sharedSettings = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
+        editor_Shared = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
         rp_txtserie = (EditText)findViewById(R.id.rp_txtserie);
         rp_txtnumero = (EditText)findViewById(R.id.rp_txtnumero);
@@ -76,16 +82,31 @@ public class Activity_Cobranza_Agregar_Pago
 
         rp_lblfpago.setTag("0");
         rp_lblbancoctacte.setTag("0");
-        //Valore por Default
         rp_txtmonto.setText("");
-        rp_txtserie.setText("1");
-        rp_txtnumero.setText("817151");
-
-        sharedSettings = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
-        editor_Shared = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+        //Valore por Default
 
         rp_lblcliente.setText(new Funciones().LetraCapital(sharedSettings.getString("RAZON_SOCIAL", "").toString()));
         rp_lblcliente.setTag(sharedSettings.getString("CODIGO_ANTIGUO", "").toString());
+
+        if(Double.valueOf(sharedSettings.getString("PAE", "0").toString())>0.0) {
+            rp_txtmonto.setText(sharedSettings.getString("PAE", "").toString());
+            rp_lblfpago.setTag("E");
+            rp_lblfpago.setText("EFECTIVO");
+            rp_lblbancoctacte.setTag("0");
+            rp_lblbancoctacte.setText("");
+            dpm_packing_cabDAO.getAll(sharedSettings.getString("C_PACKING", "").toString());
+
+            rp_lblfplanilla.setText(dpm_packing_cabDAO.lst.get(0).getF_PACKING());
+
+
+        }
+
+        rp_txtserie.setText("1");
+        rp_txtnumero.setText("817151");
+
+
+
+
 
         //Cargamos las cobranzas registradas hasta el momento
        /*
@@ -295,8 +316,11 @@ public class Activity_Cobranza_Agregar_Pago
             Mensaje("Ingrese monto válido");
             return false;
         }
-        CtaBnco_Adapter ca = ((Dialog_Fragment_Auxiliar) dialog_fragment_auxiliar).ctaBnco_adapter;
+
         if (!fpago.equals("C") && !fpago.equals("E") && !fpago.equals("Z")) {
+
+            CtaBnco_Adapter ca = ((Dialog_Fragment_Auxiliar) dialog_fragment_auxiliar).ctaBnco_adapter;
+
             if (ca != null || ca.getCount() > 0) {
                 for (int i = 0; i < ca.getCount(); i++) {
                     if (ca.getItem(i).getCODIGO().equals(rp_lblbancoctacte.getTag().toString().trim()) && !ca.getItem(i).getMONEDA().equals(sMoneda)) {

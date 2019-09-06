@@ -12,14 +12,15 @@ public class Dpm_Packing_CabDAO {
         Cursor cursor = null;
         Dpm_Packing_CabBE dpm_packing_cabBE = null;
         try {
-            String SQL="SELECT C_PACKING,F_PACKING,F_SALIDA,F_RETORNO,C_EMPTRANS,C_VEHICULO," +
-                    "C_CHOFER,C_REPARTIDOR,PLACA,HORA_SALIDA,HORA_RETORNO,OBSERVACION," +
-                    "F_CIERRE,C_USUARIO_CIE,C_USUARIO,C_PERFIL,C_CPU,FEC_REG," +
-                    "C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD,C_ESTADO,C_CPU_MOD,ANULADO," +
-                    "C_DESPACHADOR,C_CHEQUEADOR,C_CONTROLADOR,C_USUARIO_RECCRE,C_PERFIL_RECCRE,C_CPU_RECCRE," +
-                    "F_REGISTRO_RECCRE,I_VERIFICA_RECCRE,C_TUSUARIO_RECCRE,C_TPERFIL_RECCRE,C_TCPU_RECCRE,F_TREGISTRO_RECCRE," +
-                    "I_TVERIFICA_RECCRE,ID_LOCAL"+ 
-                    "FROM DPM_PACKING_CAB";
+            String SQL=" SELECT C_PACKING,F_PACKING,F_SALIDA,F_RETORNO,C_EMPTRANS,C_VEHICULO, " +
+                    " C_CHOFER,C_REPARTIDOR,PLACA,HORA_SALIDA,HORA_RETORNO,OBSERVACION, " +
+                    " F_CIERRE,C_USUARIO_CIE,C_USUARIO,C_PERFIL,C_CPU,FEC_REG, " +
+                    " C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD,C_ESTADO,C_CPU_MOD,ANULADO, " +
+                    " C_DESPACHADOR,C_CHEQUEADOR,C_CONTROLADOR,C_USUARIO_RECCRE,C_PERFIL_RECCRE,C_CPU_RECCRE, " +
+                    " F_REGISTRO_RECCRE,I_VERIFICA_RECCRE,C_TUSUARIO_RECCRE,C_TPERFIL_RECCRE,C_TCPU_RECCRE,F_TREGISTRO_RECCRE, " +
+                    " I_TVERIFICA_RECCRE,ID_LOCAL "+
+                    " FROM DPM_PACKING_CAB " +
+                    " WHERE C_PACKING = "+pCODIGO;
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<Dpm_Packing_CabBE>();

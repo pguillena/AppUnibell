@@ -223,7 +223,7 @@ public class ClientesDAO {
                             " LEFT JOIN DOCUVENT DO ON (D.TIPODOC = DO.TIPODOC AND D.SERIE = DO.SERIE AND D.NUMERO = DO.NUMERO) \n" +
                             " LEFT JOIN S_GEM_CLIENTE_CODIGO_ANT A ON (D.COD_CLIENTE = A.CODIGO_ANTIGUO AND A.FLAG_VIGENCIA > 0) \n" +
                             " LEFT JOIN S_GEM_CLIENTE CLI ON (A.ID_CLIENTE = CLI.ID_CLIENTE) \n" +
-                            " WHERE (C.C_PACKING =" + iC_PACKING +" OR " + iC_PACKING + "=0) \n" +
+                            " WHERE C.C_PACKING =" + iC_PACKING +
                             " AND IFNULL(CLI.RUC, '') LIKE '%" + iRUC + "%' \n" +
                             " AND IFNULL(CLI.DNI, '') LIKE '%" + iDNI + "%' \n" +
                             " AND IFNULL(CLI.RAZON_SOCIAL, '') LIKE '%" +  iRAZON_SOCIAL + "%' \n" +

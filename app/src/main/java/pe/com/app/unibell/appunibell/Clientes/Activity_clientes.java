@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -23,12 +25,16 @@ import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+import java.util.ArrayList;
+
 import pe.com.app.unibell.appunibell.AD.Clientes_Adapter;
+import pe.com.app.unibell.appunibell.BE.ClientesBE;
 import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranzas;
 import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
@@ -37,7 +43,7 @@ import pe.com.app.unibell.appunibell.R;
 public class Activity_clientes extends AppCompatActivity  {
 
    public String hdfCodigoCliente="", hdfRazonSocial="", hdfRUC="", hdfDNI="", hdfGrupo="", hdfCPacking="0";
-   private TextView cl_lblregistros;
+   private TextView cl_lblregistros, txtPAE, TxtNroPacking;
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
     private ListView  cl_lvclientes;
@@ -46,6 +52,10 @@ public class Activity_clientes extends AppCompatActivity  {
     private TextView cl_codbar;
     private Typeface script;
     int request_code = 1;
+    int colorOjito=0;
+
+    LinearLayout lyPlanillaDespacho;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,17 +72,48 @@ public class Activity_clientes extends AppCompatActivity  {
 
             cl_lblregistros=(TextView) findViewById(R.id.cl_lblregistros);
             cl_lvclientes=(ListView)findViewById(R.id.cl_lvclientes);
+            lyPlanillaDespacho = (LinearLayout)findViewById(R.id.lyPlanillaDespacho);
+            TxtNroPacking = (TextView)findViewById(R.id.TxtNroPacking);
+            txtPAE= (TextView)findViewById(R.id.txtPAE);
             cl_lvclientes.setOnItemClickListener(cl_lvclientes_OnItemClickListener);
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
             fab.setOnClickListener(OnClickListener_fab);
+            txtPAE.setOnClickListener(OnClickListener_txtPAE);
 
-
+            lyPlanillaDespacho.setVisibility(View.GONE);
+            txtPAE.setVisibility(View.GONE);
             BuscarCliente();
 
         } catch (Exception ex) {
 
         }
     }
+
+    View.OnClickListener OnClickListener_txtPAE = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View view) {
+
+            if(colorOjito == 0) {
+                txtPAE.setTextColor(getResources().getColor(R.color.Button_login_unibell));
+                txtPAE.setCompoundDrawablesWithIntrinsicBounds(null,null, ContextCompat.getDrawable(getApplicationContext(), R.drawable.eye_active),null);
+                colorOjito = 1;
+                Cargar();
+            }
+            else if(colorOjito == 1)
+            {
+                txtPAE.setTextColor(getResources().getColor(R.color.label_login_unibell));
+                txtPAE.setCompoundDrawablesWithIntrinsicBounds(null,null, ContextCompat.getDrawable(getApplicationContext(), R.drawable.eye_off),null);
+                colorOjito = 0;
+                Cargar();
+            }
+
+
+
+
+        }
+
+    };
 
 
     View.OnClickListener OnClickListener_fab = new View.OnClickListener() {
@@ -168,6 +209,23 @@ public class Activity_clientes extends AppCompatActivity  {
 
     private void Cargar(){
         try {
+
+            editor_Shared.putString("C_PACKING", hdfCPacking.trim());
+            editor_Shared.commit();
+
+            if(hdfCPacking.trim()!=null && !hdfCPacking.trim().equals("")  && Integer.parseInt(hdfCPacking.trim())>0)
+            {
+                TxtNroPacking.setText("Planilla de despacho: N° "+hdfCPacking.trim());
+                lyPlanillaDespacho.setVisibility(View.VISIBLE);
+                txtPAE.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                lyPlanillaDespacho.setVisibility(View.GONE);
+                txtPAE.setVisibility(View.GONE);
+
+            }
+
             new LoadClientesSQLite_AsyncTask().execute(
                     sharedSettings.getString("iID_VENDEDOR", "0").toString(),
                     hdfRazonSocial.trim(),
@@ -200,6 +258,7 @@ public class Activity_clientes extends AppCompatActivity  {
         protected String doInBackground(String... p) {
             try {
                 clientesDAO.getAllBy(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8],p[9]);
+
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -215,10 +274,29 @@ public class Activity_clientes extends AppCompatActivity  {
         protected void onPostExecute(String restResult) {
             super.onPostExecute(restResult);
             try {
-                clientes_adapter = new Clientes_Adapter(getApplication(), 0, clientesDAO.lst);
+                ArrayList<ClientesBE> lst  = new ArrayList<ClientesBE>();
+                if (colorOjito==1)
+                {
+                    for(int i=0; i<clientesDAO.lst.size(); i++)
+                    {
+                        if ( Double.valueOf(clientesDAO.lst.get(i).getM_PAE() )>0.0)
+                        {
+                            lst.add(clientesDAO.lst.get(i));
+
+                        }
+
+                    }
+                }
+                else
+                {
+                    lst =clientesDAO.lst;
+
+                }
+
+                clientes_adapter = new Clientes_Adapter(getApplication(), 0, lst);
                 clientes_adapter.notifyDataSetChanged();
                 cl_lvclientes.setAdapter(clientes_adapter);
-                cl_lblregistros.setText("Registro(s) " + String.valueOf(clientes_adapter.getCount()));
+                cl_lblregistros.setText("Registro(s) " + String.valueOf(lst.size()));
             } catch (Exception ex) {
                 //Toast.makeText(getApplication(),getResources().getString(R.string.msg_nohayregistros), Toast.LENGTH_LONG).show();
             }
