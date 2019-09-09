@@ -122,12 +122,14 @@ public class Menu_StringDAO {
                     "  FROM S_SEM_MENU A \n" +
                     "  INNER JOIN S_SEA_ACCESOS C ON(A.C_MENU = C.C_MENU) \n" +
                     "  INNER JOIN   S_SEM_PERFIL B ON(C.C_PERFIL = B.C_PERFIL)\n" +
-                    "WHERE B.C_PERFIL = 'S_VENDEDOR'\n" +
-                    " AND C.VISIBLE = 1\n" +
+                    " WHERE B.C_PERFIL = '"+ sPerfil + "' \n" +
+                    " AND C.VISIBLE = 1   \n" +
                     " AND A.ESTADO = 40001\n" +
                     " AND C.ESTADO = 40001\n" +
                     " AND B.ESTADO = 40001\n" +
-                    " AND A.TIPO_FORMULARIO = 360003 order by A.ORDEN";
+                    " AND A.TIPO_FORMULARIO = 360003 " +
+                    " AND C.VISIBLE <> '0'" +
+                    " order by A.ORDEN ";
             lisMenu = new ArrayList<Menu_StringBE>();
             lisMenu.clear();
             cursor = DataBaseHelper.myDataBase.rawQuery(SQL, null);

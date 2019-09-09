@@ -140,6 +140,11 @@ protected void onCreate(Bundle savedInstanceState) {
         btnaplanilla.setOnClickListener(OnClickListenercl_btnaplanilla);
             btnreportes.setOnClickListener(OnClickListenercl_btnreportes);
 
+            btnaplanilla.setVisibility(View.GONE);
+            btncobranzas.setVisibility(View.GONE);
+            btnreportes.setVisibility(View.GONE);
+            btnliquidacion.setVisibility(View.GONE);
+
        //EJECUTA EL SERVICIO
         Intent alarm = new Intent(MainActivity.this, AlarmReceiver.class);
         boolean alarmRunning = (PendingIntent.getBroadcast(MainActivity.this, 0, alarm, PendingIntent.FLAG_NO_CREATE) != null);
@@ -188,6 +193,8 @@ protected void onCreate(Bundle savedInstanceState) {
     public void onItemClick(AdapterView adapterView, View view, int position, long l) {
             String mnu_nom=menu_adapter.getItem(position).getMNUNOM().toString();
 
+
+
          switch(mnu_nom) {
              case "SMNU_SINCRONIZAR":
                  Intent SMNU_SINCRONIZAR = new Intent(getApplication(), Activity_Sincronizar.class);
@@ -206,6 +213,8 @@ protected void onCreate(Bundle savedInstanceState) {
             case "SMNU_COBRANZAS":
                 Intent SMNU_COBRANZAS = new Intent(getApplication(), Activity_clientes.class);
                 startActivity(SMNU_COBRANZAS);
+                btncobranzas.setEnabled(true);
+                btncobranzas.setVisibility(View.VISIBLE);
                 OcultarDrawel();
                 break;
 
@@ -213,6 +222,7 @@ protected void onCreate(Bundle savedInstanceState) {
                 Intent SMNU_LINQCOBRANZA = new Intent(getApplication(), Activity_Liquidacion.class);
                 startActivity(SMNU_LINQCOBRANZA);
                 btnliquidacion.setEnabled(true);
+                btnliquidacion.setVisibility(View.VISIBLE);
                 OcultarDrawel();
                  break;
 
@@ -226,12 +236,15 @@ protected void onCreate(Bundle savedInstanceState) {
                 Intent SMNU_APROBACIONPLA = new Intent(getApplication(), Activity_AprobacionPlanilla.class);
                 startActivity(SMNU_APROBACIONPLA);
                 btnaplanilla.setEnabled(true);
+                btnaplanilla.setVisibility(View.VISIBLE);
                 OcultarDrawel();
                 break;
 
             case "SMNU_REPORTES":
                 Intent SMNU_REPORTES = new Intent(getApplication(), Activity_Reportes.class);
                 startActivity(SMNU_REPORTES);
+                btnreportes.setEnabled(true);
+                btnreportes.setVisibility(View.VISIBLE);
                 OcultarDrawel();
                  break;
 
@@ -429,15 +442,23 @@ private class LoadMenuSQLite_AsyncTask extends AsyncTask<String, String,String> 
                 switch (sNOMBRE_MENU.trim()) {
                     case "SMNU_SINCRONIZAR":
                         btnsincronizar.setEnabled(true);
+                        btnsincronizar.setVisibility(View.VISIBLE);
                         break;
                     case "SMNU_COBRANZAS":
                         btncobranzas.setEnabled(true);
+                        btncobranzas.setVisibility(View.VISIBLE);
                         break;
                     case "SMNU_LINQCOBRANZA":
                         btnliquidacion.setEnabled(true);
+                        btnliquidacion.setVisibility(View.VISIBLE);
+                        break;
+                    case "SMNU_REPORTES":
+                        btnreportes.setEnabled(true);
+                        btnreportes.setVisibility(View.VISIBLE);
                         break;
                     case "SMNU_APROBACIONPLA":
                         btnaplanilla.setEnabled(true);
+                        btnaplanilla.setVisibility(View.VISIBLE);
                         break;
                 }
             }
