@@ -261,7 +261,7 @@ public class Fragment_AprobacionPlanilla extends Fragment
                     ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_RetornarPlanilla + "/" +
                             sharedSettings.getString("SERIE_PLANILLA", "0").toString() + "/" +
                             sharedSettings.getString("N_PLANILLA", "0").toString() + "/" +
-                            "40005" + "/" +
+                            "40003" + "/" +
                             sharedSettings.getString("iID_EMPRESA", "0").toString() + "/" +
                             sharedSettings.getString("iID_LOCAL", "0").toString() + "/" +
                             sharedSettings.getString("ID_DOCUMENTO_MOVIMIENTO", "0").toString()

@@ -248,10 +248,13 @@ public class Documentos_Cobra_CabBL {
             } else{
                 JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(0);
                 String sID_EMPRESA= jsonObjectItem.getString("ID_EMPRESA");
+                String sNPlanilla = jsonObjectItem.getString("N_PLANILLA");
+
                 if(!sID_EMPRESA.equals("null") && !sID_EMPRESA.equals("0")) {
                     String sID_LOCAL = jsonObjectItem.getString("ID_LOCAL");
                     String sID_VENDEDOR = jsonObjectItem.getString("ID_VENDEDOR");
                     jsonObjectResult.accumulate("MSG", jsonObjectItem.getString("MSG"));
+                    jsonObjectResult.accumulate("N_PLANILLA", sNPlanilla);
                     //SI NO SALTO LAS VALIDACIONES DE LA BD ENTONCES
                     this.PostSincronizarCobranza(sID_EMPRESA,sID_LOCAL,sID_VENDEDOR,"0","40007");
                 }

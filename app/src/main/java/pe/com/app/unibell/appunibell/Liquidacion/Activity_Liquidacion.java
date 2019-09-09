@@ -68,9 +68,12 @@ import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Confirmar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialogo_Fragment_Fecha;
 import pe.com.app.unibell.appunibell.R;
+import pe.com.app.unibell.appunibell.Reportes.Activity_Cobranza_Liquidacion_Rep;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.ToastLibrary;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 
 public class Activity_Liquidacion extends AppCompatActivity
@@ -643,7 +646,7 @@ public class Activity_Liquidacion extends AppCompatActivity
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(Uri.fromFile(file), "application/pdf");
             intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
             try {
                 context.startActivity(intent);
             } catch (ActivityNotFoundException e) {
@@ -1160,6 +1163,18 @@ public class Activity_Liquidacion extends AppCompatActivity
                     Mensaje(result.getString("MSG").toString());
                 } else {
                     Mensaje(result.getString("MSG").toString());
+
+                    if(result.getString("N_PLANILLA").toString()!= null && !result.getString("N_PLANILLA").toString().equals("0"))
+                    {
+                        editor_Shared.putString("REP_N_PLANILLA",result.getString("N_PLANILLA").toString());
+                        editor_Shared.putString("IOPCION_REPORTE", "0");
+                        editor_Shared.commit();
+
+                        Intent intent = new Intent(getApplicationContext(), Activity_Cobranza_Liquidacion_Rep.class);
+                        intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+
                     Cargar();
                 }
             }catch(Exception ex){

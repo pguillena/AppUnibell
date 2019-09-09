@@ -36,6 +36,7 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
 
+    Funciones funciones = new Funciones();
 
     public Cobranza_Liquidacion_Adapter(Context context, int resource, List<Documentos_Cobra_CabBE> objects) {
         super(context, resource, objects);
@@ -153,17 +154,17 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
 
 
 
-        holder.cl_itemCliente.setText(documentos_cobra_cabBE.getCOD_CLIENTE().toString() +" "+documentos_cobra_cabBE.getRAZON_SOCIAL().toString());
+        holder.cl_itemCliente.setText(documentos_cobra_cabBE.getCOD_CLIENTE().toString() +" "+funciones.LetraCapital(documentos_cobra_cabBE.getRAZON_SOCIAL().toString()));
 
         if (documentos_cobra_cabBE.getFPAGO().toString().equals("E"))
         {
-            holder.cl_itemFormaPago.setText(documentos_cobra_cabBE.getFPAGODESC().toString());
+            holder.cl_itemFormaPago.setText( funciones.LetraCapital(documentos_cobra_cabBE.getFPAGODESC().toString()));
         }
         else {
-            holder.cl_itemFormaPago.setText(documentos_cobra_cabBE.getFPAGODESC().toString() + " " + documentos_cobra_cabBE.getENTIDAD().toString() + " " + documentos_cobra_cabBE.getCONSTANCIA().toString());
+            holder.cl_itemFormaPago.setText(funciones.LetraCapital(documentos_cobra_cabBE.getFPAGODESC().toString() )+ " " + funciones.LetraCapital(documentos_cobra_cabBE.getENTIDAD().toString()) + " " + documentos_cobra_cabBE.getCONSTANCIA().toString());
         }
 
-        holder.cl_itemDocumentos.setText(documentos_cobra_cabBE.getTIPODOC().toString() +" "+documentos_cobra_cabBE.getNUMERO().toString());
+        holder.cl_itemDocumentos.setText(funciones.LetraCapital(documentos_cobra_cabBE.getTIPODOC().toString()) +" "+documentos_cobra_cabBE.getNUMERO().toString());
 
 
         if(documentos_cobra_cabBE.getMONEDA().toString().trim().equals("S")) {
@@ -184,6 +185,8 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
         if(lstFiltrado.get(position).getPLANILLA()!=null && !lstFiltrado.get(position).getPLANILLA().toString().equals("")&& !lstFiltrado.get(position).getPLANILLA().toString().trim().equals("-"))
         {
             holder.cl_itemPlanilla.setText(lstFiltrado.get(position).getPLANILLA());
+            holder.cl_lblPlanilla.setVisibility(View.VISIBLE);
+            holder.cl_itemPlanilla.setVisibility(View.VISIBLE);
         }
         else
         {

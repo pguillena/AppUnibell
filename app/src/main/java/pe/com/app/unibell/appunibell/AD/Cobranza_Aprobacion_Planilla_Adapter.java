@@ -72,9 +72,9 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
         mainHolder.ap_btnretornar.setTag(position);
 
         mainHolder.ap_item1.setText(documentos_cobra_movBE.getCOD_CLIENTE().toString());
-        mainHolder.ap_item2.setText(documentos_cobra_movBE.getNOMBRECLIENTE().toString());
-        mainHolder.ap_item3.setText(documentos_cobra_movBE.getNOMBREFORMAPAGO().toString());
-        mainHolder.ap_item4.setText(documentos_cobra_movBE.getNOMBRECOBRADOR().toString());
+        mainHolder.ap_item2.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOMBRECLIENTE().toString()));
+        mainHolder.ap_item3.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOMBREFORMAPAGO().toString()));
+        mainHolder.ap_item4.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOMBRECOBRADOR().toString()));
         mainHolder.ap_item5.setText(documentos_cobra_movBE.getFECHA().toString());
         if(Double.valueOf(documentos_cobra_movBE.getM_COBRANZA().toString())>0.0){
             mainHolder.ap_item6.setText("S/." + " " + funciones.FormatDecimal(String.valueOf(documentos_cobra_movBE.getM_COBRANZA()).trim().replace(",","")));
