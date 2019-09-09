@@ -65,14 +65,6 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
             mainHolder.lyItemLiquidacion = (LinearLayout) view.findViewById(R.id.lyItemLiquidacion);
             mainHolder.lyFondoBtnEditar = (LinearLayout) view.findViewById(R.id.lyFondoBtnEditar);
 
-
-
-
-
-
-
-
-
             mainHolder.cl_itemchk = (CheckBox) view.findViewById(R.id.cl_itemchk);
             mainHolder.cl_itemchk
                     .setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -102,7 +94,7 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
 
                 editor_Shared.putString("iN_SERIE_RECIBO", documentos_cobra_cabBE.getN_SERIE_RECIBO().toString());
                 editor_Shared.putString("iN_RECIBO", documentos_cobra_cabBE.getN_RECIBO().toString());
-                editor_Shared.putString("IOPCION_RECIBO","0");
+                editor_Shared.putString("IOPCION_REPORTE","0");
                 editor_Shared.commit();
 
                 Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Recibo_Rep.class);
@@ -123,7 +115,7 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
                 editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
                 editor_Shared.putString("REP_N_PLANILLA", nroPlanilla[1].toString());
-                editor_Shared.putString("IOPCION_RECIBO", "0");
+                editor_Shared.putString("IOPCION_REPORTE", "0");
                 editor_Shared.commit();
 
                 Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Liquidacion_Rep.class);

@@ -69,7 +69,6 @@
 
         <activity
             android:name=".Clientes.Activity_FiltroClientes"
-            android:parentActivityName=".Clientes.Activity_clientes"
             android:screenOrientation="portrait" />
 
         <activity
@@ -102,6 +101,7 @@
             android:name=".Clientes.Activity_clientes"
             android:parentActivityName=".Main.MainActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Planilla.Activity_AprobacionPlanilla"
             android:parentActivityName=".Main.MainActivity"

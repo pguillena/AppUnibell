@@ -160,6 +160,7 @@
         android:layout_marginBottom="10dp"
         >
         <TextView
+            android:id="@+id/cr_lblrepxrecibo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Recibo"
@@ -190,6 +191,7 @@
         android:layout_marginBottom="20dp"
         >
         <TextView
+            android:id="@+id/cr_lblrepxplanilla"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Planilla"

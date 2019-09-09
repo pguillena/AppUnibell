@@ -124,7 +124,7 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
                 editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
                 editor_Shared.putString("REP_N_PLANILLA", documentos_cobra_movBE.getN_PLANILLA().toString());
-                editor_Shared.putString("IOPCION_RECIBO", "0");
+                editor_Shared.putString("IOPCION_REPORTE", "0");
                 editor_Shared.commit();
 
                 Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Liquidacion_Rep.class);

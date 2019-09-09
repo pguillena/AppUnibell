@@ -1346,7 +1346,7 @@ public class Fragment_Cobranza extends Fragment implements
                     //ABRIMOS EL RECIBO
                     editor_Shared.putString("iN_SERIE_RECIBO",sharedSettings.getString("cpserie", "0").toString());
                     editor_Shared.putString("iN_RECIBO", sharedSettings.getString("cpnumero", "0").toString());
-                    editor_Shared.putString("IOPCION_RECIBO","1");
+                    editor_Shared.putString("IOPCION_REPORTE","1");
                     editor_Shared.commit();
 
                     Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Recibo_Rep.class);

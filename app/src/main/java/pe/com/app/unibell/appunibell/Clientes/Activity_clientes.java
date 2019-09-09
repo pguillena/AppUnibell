@@ -165,7 +165,6 @@ public class Activity_clientes extends AppCompatActivity  {
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mnu_filtro_list, menu);
@@ -223,7 +222,6 @@ public class Activity_clientes extends AppCompatActivity  {
             {
                 lyPlanillaDespacho.setVisibility(View.GONE);
                 txtPAE.setVisibility(View.GONE);
-
             }
 
             new LoadClientesSQLite_AsyncTask().execute(

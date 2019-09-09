@@ -135,6 +135,14 @@ public class Activity_Reporte_Filtro extends AppCompatActivity
         @Override
         public void onClick(View v) {
             try {
+                //Descripción Estado
+                iAuxiliar=3;
+                iTabla=500;
+                dialog_fragment_auxiliar = new Dialog_Fragment_Auxiliar();
+                dialog_fragment_auxiliar.setAuxiliarDialogfragmentListener(Activity_Reporte_Filtro.this,iTabla,0);
+                dialog_fragment_auxiliar.show(getSupportFragmentManager(), dialog_fragment_auxiliar.TAG);
+
+
 
             } catch (Exception e) {
             }
@@ -145,6 +153,11 @@ public class Activity_Reporte_Filtro extends AppCompatActivity
         @Override
         public void onClick(View v) {
             try {
+                iAuxiliar=4;
+                iTabla=600;
+                dialog_fragment_auxiliar = new Dialog_Fragment_Auxiliar();
+                dialog_fragment_auxiliar.setAuxiliarDialogfragmentListener(Activity_Reporte_Filtro.this,iTabla,0);
+                dialog_fragment_auxiliar.show(getSupportFragmentManager(), dialog_fragment_auxiliar.TAG);
 
             } catch (Exception e) {
             }
@@ -202,6 +215,16 @@ public class Activity_Reporte_Filtro extends AppCompatActivity
                 plb_lblestado.setTag(sharedSettings.getString("ICODTABAUX", "").toString().toUpperCase());
                 plb_lblestado.setText(sharedSettings.getString("IDESTABAUX", "").toString().toUpperCase());
                 break;
+            case 3:
+                plb_lbltipodoc.setTag(sharedSettings.getString("ICODTABAUX", "").toString().toUpperCase());
+                plb_lbltipodoc.setText(sharedSettings.getString("IDESTABAUX", "").toString().toUpperCase());
+                break;
+            case 4:
+                plb_lblmoneda.setTag(sharedSettings.getString("ICODTABAUX", "").toString().toUpperCase());
+                plb_lblmoneda.setText(sharedSettings.getString("IDESTABAUX", "").toString().toUpperCase());
+                break;
+
+
         }
     }
 

@@ -105,9 +105,6 @@ public class Activity_Cobranza_Agregar_Pago
         rp_txtnumero.setText("817151");
 
 
-
-
-
         //Cargamos las cobranzas registradas hasta el momento
        /*
         Globals g = (Globals) getApplication();

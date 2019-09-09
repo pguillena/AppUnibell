@@ -15,24 +15,14 @@ public class SincronizaDAO {
         Cursor cursor = null;
         SincronizarBE sincronizarBE = null;
         try {
-            //String SQL="SELECT ID,PROCESO,FECHA,HORA,ESTADO,USUARIO,DESCRIPCION FROM SINCRONIZAR";
-            String SQL="SELECT ID,PROCESO,HORA,USUARIO,DESCRIPCION,FECHA_ACTUAL,FECHAVAL,CASE WHEN FECHA_ACTUAL=FECHAVAL THEN FECHA ELSE '' END FECHA, \n" +
+            String SQL="SELECT ID,PROCESO,FECHA,HORA,ESTADO,USUARIO,DESCRIPCION FROM SINCRONIZAR";
+            String SQL2="SELECT ID,PROCESO,HORA,USUARIO,DESCRIPCION,FECHA_ACTUAL,FECHAVAL,CASE WHEN FECHA_ACTUAL=FECHAVAL THEN FECHA ELSE '' END FECHA, \n" +
                     " CASE WHEN FECHA_ACTUAL=FECHAVAL THEN ESTADO ELSE 'KO' END ESTADO\n" +
                     " FROM(SELECT ID,PROCESO,FECHA,HORA,USUARIO,ESTADO,DESCRIPCION,  (strftime('%d','now') ||'-'|| strftime('%m','now') ||'-' ||strftime('%Y','now')) AS FECHA_ACTUAL,substr(FECHA,1,10) AS FECHAVAL  \n" +
                     " FROM SINCRONIZAR) TEMPS ";
 
             lstSincroniza = new ArrayList<SincronizarBE>();
             lstSincroniza.clear();
-
-           /* sincronizarBE = new SincronizarBE();
-            sincronizarBE.setID(0);
-            sincronizarBE.setPROCESO("TODOS");
-            sincronizarBE.setFECHA("");
-            sincronizarBE.setHORA("");
-            sincronizarBE.setESTADO("");
-            sincronizarBE.setUSUARIO("");
-            sincronizarBE.setDESCRIPCION("TODOS");
-            lstSincroniza.add(sincronizarBE);*/
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             if (cursor.moveToFirst()) {

@@ -22,7 +22,9 @@ public class ParTablaDAO {
                         "GRUPO,ESTADO,SEMUESTRA,GRUPO_SUPERIOR " +
                         "FROM ParTabla where grupo='40000' and idtabla in ('40003','40005','40007') " +
                         " and semuestra =1 and estado='40001' ORDER BY IDTABLA";
-            }else{
+            }
+
+            if(pOpcion.equals("1")) {
                 //TESORERIA
                 if(pROL.equals("130018")) {
                     SQL = "SELECT IDTABLA,DESCRIPCION,ABREVIADO,VALOR1,VALOR2," +
@@ -38,6 +40,23 @@ public class ParTablaDAO {
                             " and semuestra =1 and estado='40001' ORDER BY IDTABLA";
                 }
             }
+
+            if(pOpcion.equals("2")) {
+                SQL = "SELECT IDTABLA,DESCRIPCION,ABREVIADO,VALOR1,VALOR2," +
+                        "VALOR3,INDICADOR1,INDICADOR2,INDICADOR3,VALORSUNAT," +
+                        "GRUPO,ESTADO,SEMUESTRA,GRUPO_SUPERIOR " +
+                        "FROM ParTabla where grupo='140000' and idtabla in ('140001', '140002') " +
+                        "  ORDER BY IDTABLA";
+            }
+
+            if(pOpcion.equals("3")) {
+                SQL = "SELECT IDTABLA,DESCRIPCION,ABREVIADO,VALOR1,VALOR2," +
+                        "VALOR3,INDICADOR1,INDICADOR2,INDICADOR3,VALORSUNAT," +
+                        "GRUPO,ESTADO,SEMUESTRA,GRUPO_SUPERIOR " +
+                        "FROM ParTabla where grupo='20000' and idtabla in ('20001', '20002') " +
+                        "  ORDER BY IDTABLA";
+            }
+
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
 

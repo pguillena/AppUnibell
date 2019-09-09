@@ -113,6 +113,13 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
             case 400:
                 tba_lbltitulo.setText("Seleccione un local");
                 break;
+
+            case 500:
+                tba_lbltitulo.setText("Seleccione un documento");
+                break;
+            case 600:
+                tba_lbltitulo.setText("Seleccione un moneda");
+                break;
         }
         try {
             DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
@@ -136,7 +143,8 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
                     }
                 }
 
-                if(!s.equals("") && iTabla==100) {
+                //ESTADO,TIPO DOC,MONEDA
+                if(!s.equals("") && (iTabla==100 || iTabla==500 || iTabla==600)) {
                     if(tab_lvauxiliar.getAdapter()!=null) {
                         ParTabla_Adapter ca = (ParTabla_Adapter) tab_lvauxiliar.getAdapter();
                         ca.getFilter().filter(s.toString());
@@ -179,7 +187,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if(iTabla==100) {
+                if(iTabla==100 || iTabla==500 || iTabla==600) {
                     editor_Shared.putString("ICODTABAUX", parTabla_adapter.getItem(position).getIDTABLA().toString());
                     editor_Shared.putString("IDESTABAUX", parTabla_adapter.getItem(position).getDESCRIPCION());
                     editor_Shared.commit();
@@ -204,7 +212,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
                     editor_Shared.commit();
                 }
 
-                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400) {
+                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600) {
                     editor_Shared.putString("ICODTABAUX", tablas_auxiliares_adapter.getItem(position).getCODIGO().toString());
                     editor_Shared.putString("IDESTABAUX", tablas_auxiliares_adapter.getItem(position).getDESCRIPCION());
                     editor_Shared.putString("COD_FPAGO", tablas_auxiliares_adapter.getItem(position).getCODIGO().toString());
@@ -232,6 +240,15 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
                 new LoadParTablaSQLite_AsyncTask().execute("1",sharedSettings.getString("ROL", "").toString());
             }
         }
+        //TIPO DOCUMENTO
+        if(iTabla==500) {
+            new LoadParTablaSQLite_AsyncTask().execute("2",sharedSettings.getString("ROL", "").toString());
+        }
+        //MONEDA
+        if(iTabla==600) {
+            new LoadParTablaSQLite_AsyncTask().execute("3",sharedSettings.getString("ROL", "").toString());
+        }
+
        //CTA BANCOS
         if(iTabla==200) {
              new LoadCtaBancosSQLite_AsyncTask().execute(
@@ -258,7 +275,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
         }
 
         //AUXILIARES
-        if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400) {
+        if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600) {
             new LoadAuxiliaresSQLite_AsyncTask().execute(iTabla.toString());
         }
 

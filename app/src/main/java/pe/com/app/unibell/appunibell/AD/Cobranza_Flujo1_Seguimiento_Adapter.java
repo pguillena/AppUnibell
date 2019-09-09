@@ -78,27 +78,6 @@ public class Cobranza_Flujo1_Seguimiento_Adapter extends ArrayAdapter<Documentos
         }
         mainHolder.fj_item10.setText(documentos_cobra_cabBE.getRECIBO());
 
-
-     /*   MainHolder holder = (MainHolder) convertView.getTag();
-
-        holder.fj_item10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
-                editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
-
-                editor_Shared.putString("iN_SERIE_RECIBO", documentos_cobra_cabBE.getN_SERIE_RECIBO().toString());
-                editor_Shared.putString("iN_RECIBO", documentos_cobra_cabBE.getN_RECIBO().toString());
-                editor_Shared.putString("IOPCION_RECIBO","0");
-                editor_Shared.commit();
-
-                Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Recibo_Rep.class);
-                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-                getContext().startActivity(intent);
-
-            }});
-*/
-
         return convertView;
     }
 
