@@ -455,7 +455,6 @@
                 android:id="@+id/plb_btnregistrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/ic_buscar"
                 android:textSize="@dimen/txt_12sp"
                 android:text="Buscar"
                 android:gravity="center"

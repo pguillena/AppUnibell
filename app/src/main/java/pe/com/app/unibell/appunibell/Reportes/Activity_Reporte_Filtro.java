@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -186,25 +187,106 @@ public class Activity_Reporte_Filtro extends AppCompatActivity
         @Override
         public void onClick(View v) {
             try {
+                String vsplb_txtcodigo="",vplb_lblfpago="",vplb_txtseriep="",vplb_txtnumerop="",vplb_lblestado="",vplb_lbltipodoc="",vplb_txtserief="";
+                String vplb_txtfnumerof="",vplb_lblmoneda="",vplb_txtoserie="",vplb_txtonumero="",vplb_txtcliente="",vplb_txtnumero="",vplb_lblinicio="",vplb_lblfin="";
+
+                if(plb_txtcodigo.getText().toString().trim().equals("")) {
+                    vsplb_txtcodigo = "XXX";
+                }else{
+                    vsplb_txtcodigo = plb_txtcodigo.getText().toString();
+                }
+
+                if(plb_lblfpago.getText().toString().trim().equals("")) {
+                    vplb_lblfpago = "0";
+                }else{
+                    vplb_lblfpago=  plb_lblfpago.getTag().toString();
+                }
+
+                if(plb_txtseriep.getText().toString().trim().equals("")) {
+                    vplb_txtseriep = "0";
+                }else{
+                    vplb_txtseriep= plb_txtseriep.getText().toString();
+                }
+
+                if(plb_txtnumerop.getText().toString().trim().equals("")) {
+                    vplb_txtnumerop = "0";
+                }else{
+                    vplb_txtnumerop= plb_txtnumerop.getText().toString();
+                }
+
+                if(plb_lblestado.getText().toString().trim().equals("")) {
+                    vplb_lblestado = "0";
+                }else{
+                    vplb_lblestado=  plb_lblestado.getTag().toString();
+                }
+
+                if(plb_lbltipodoc.getText().toString().trim().equals("")) {
+                    vplb_lbltipodoc = "XXX";
+                }else{
+                    vplb_lbltipodoc  =plb_lbltipodoc.getTag().toString();
+                }
+                if(plb_txtserief.getText().toString().trim().equals("")) {
+                    vplb_txtserief = "XXX";
+                }else{
+                    vplb_txtserief=plb_txtserief.getText().toString();
+                }
+                if(plb_txtfnumerof.getText().toString().trim().equals("")) {
+                    vplb_txtfnumerof = "XXX";
+                }else{
+                    vplb_txtfnumerof=  plb_txtfnumerof.getText().toString();
+                }
+                if(plb_lblmoneda.getText().toString().trim().equals("")) {
+                    vplb_lblmoneda = "XXX";
+                }else{
+                    vplb_lblmoneda= plb_lblmoneda.getTag().toString();
+                }
+                if(plb_txtoserie.getText().toString().trim().equals("")) {
+                    vplb_txtoserie = "0";
+                }else{
+                    vplb_txtoserie= plb_txtoserie.getText().toString();
+                }
+
+                if(plb_txtonumero.getText().toString().trim().equals("")) {
+                    vplb_txtonumero = "0";
+                }else{
+                    vplb_txtonumero=plb_txtonumero.getText().toString();
+                }
+
+                if(plb_txtcliente.getText().toString().trim().equals("")) {
+                    vplb_txtcliente = "0";
+                }else{
+                    vplb_txtcliente= plb_txtcliente.getTag().toString();
+                }
+
+                if(plb_txtnumero.getText().toString().trim().equals("")) {
+                    vplb_txtnumero = "0";
+                }else{
+                    vplb_txtnumero= plb_txtnumero.getText().toString();
+                }
+                if(!plb_lblinicio.getText().toString().trim().equals("")) {
+                    vplb_lblinicio =plb_lblinicio.getText().toString();
+                }
+
+                if(!plb_lblfin.getText().toString().trim().equals("")){
+                    vplb_lblfin=plb_lblfin.getText().toString();
+                }
+
                 Intent data = new Intent();
-                editor_Shared.putString("plb_txtcodigo",plb_txtcodigo.getText().toString().replace("","XXX"));
-                editor_Shared.putString("plb_lblfpago",plb_lblfpago.getTag().toString().replace("","XXX"));
-                editor_Shared.putString("plb_txtseriep", plb_txtseriep.getText().toString().replace("","0"));
-                editor_Shared.putString("plb_txtnumerop",plb_txtnumerop.getText().toString().replace("","0"));
-                editor_Shared.putString("plb_lblestado",plb_lblestado.getTag().toString().replace("","0"));
-                editor_Shared.putString("plb_lbltipodoc",plb_lbltipodoc.getTag().toString().replace("","XXX"));
-                editor_Shared.putString("plb_txtserief", plb_txtserief.getText().toString().replace("","XXX"));
-                editor_Shared.putString("plb_txtfnumerof",plb_txtfnumerof.getText().toString().replace("","XXX"));
-                editor_Shared.putString("plb_lblmoneda",plb_lblmoneda.getTag().toString().replace("","XXX"));
-                editor_Shared.putString("plb_txtoserie",plb_txtoserie.getText().toString().replace("","0"));
-                editor_Shared.putString("plb_txtonumero",plb_txtonumero.getText().toString().replace("","0"));
-                editor_Shared.putString("plb_txtcliente",plb_txtcliente.getTag().toString().replace("","0"));
-                editor_Shared.putString("plb_txtnumero", plb_txtnumero.getText().toString().replace("","0"));
-                editor_Shared.putString("plb_lblinicio",plb_lblinicio.getText().toString().replace("","XXX"));
-                editor_Shared.putString("plb_lblfin",plb_lblfin.getText().toString().replace("","XXX"));
-
-
-
+                editor_Shared.putString("plb_txtcodigo",vsplb_txtcodigo);
+                editor_Shared.putString("plb_lblfpago",vplb_lblfpago);
+                editor_Shared.putString("plb_txtseriep",vplb_txtseriep);
+                editor_Shared.putString("plb_txtnumerop",vplb_txtnumerop);
+                editor_Shared.putString("plb_lblestado",vplb_lblestado);
+                editor_Shared.putString("plb_lbltipodoc",vplb_lbltipodoc);
+                editor_Shared.putString("plb_txtserief",vplb_txtserief );
+                editor_Shared.putString("plb_txtfnumerof",vplb_txtfnumerof);
+                editor_Shared.putString("plb_lblmoneda",vplb_lblmoneda);
+                editor_Shared.putString("plb_txtoserie",vplb_txtoserie);
+                editor_Shared.putString("plb_txtonumero",vplb_txtonumero);
+                editor_Shared.putString("plb_txtcliente",vplb_txtcliente);
+                editor_Shared.putString("plb_txtnumero", vplb_txtnumero);
+                editor_Shared.putString("plb_lblinicio",vplb_lblinicio);
+                editor_Shared.putString("plb_lblfin",vplb_lblfin);
                 editor_Shared.commit();
 
                 setResult(RESULT_OK, data);
@@ -305,6 +387,12 @@ public class Activity_Reporte_Filtro extends AppCompatActivity
     }
 
 
+    @Override
+    protected void onStart() {
+        //SE EJECUTA ANTES DE QUE LA APLICACION SEA VISIBLE
+        super.onStart();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
 
     @Override
     public void setearFecha(String fecha) {
