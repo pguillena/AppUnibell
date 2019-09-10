@@ -11,9 +11,6 @@ public class Cobranzas_ReporteBL {
     public ArrayList<CobranzaReporteBE> lst = null;
 
     public JSONObject getAllRest(String newURL) {
-
-
-
         CobranzaReporteBE cobranzaReporteBE = null;
         JSONObject jsonObjectRest = null;
         JSONObject jsonObjectResult = new JSONObject();

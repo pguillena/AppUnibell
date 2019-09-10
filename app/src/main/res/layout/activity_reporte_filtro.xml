@@ -62,7 +62,7 @@
                 android:textColor="@color/label_login_unibell"
                 android:layout_marginBottom="2dp"
                 />
-            <EditText
+            <android.support.v7.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/plb_txtcliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,6 +72,7 @@
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="8dp"
+                android:tag="0"
                 />
 
             <TextView
@@ -95,6 +96,7 @@
                 android:layout_marginRight="5dp"
                 android:paddingLeft="15dp"
                 android:layout_marginBottom="8dp"
+                android:tag="0"
                 />
 
             <TextView
@@ -204,6 +206,7 @@
                 android:layout_marginRight="5dp"
                 android:paddingLeft="15dp"
                 android:layout_marginBottom="8dp"
+                android:tag=""
                 />
 
             <TextView
@@ -298,6 +301,7 @@
                 android:layout_marginRight="5dp"
                 android:paddingLeft="15dp"
                 android:layout_marginBottom="8dp"
+                android:tag="0"
                 />
 
             <LinearLayout

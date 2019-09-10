@@ -87,9 +87,8 @@ public class Activity_FiltroClientes extends AppCompatActivity {
 
 
     private void AutoComplete() {
-
         try {
-            new Activity_FiltroClientes.LoadClientesSQLite_AsyncTask().execute(
+            new LoadClientesSQLite_AsyncTask().execute(
                     sharedSettings.getString("iID_VENDEDOR", "0").toString(),
                     "",
                     "",

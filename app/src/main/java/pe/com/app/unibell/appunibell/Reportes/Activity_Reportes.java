@@ -1,5 +1,6 @@
 package pe.com.app.unibell.appunibell.Reportes;
 
+import android.arch.core.util.Function;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -19,6 +20,7 @@ import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
 import pe.com.app.unibell.appunibell.Planilla.Fragment_AprobacionPlanilla;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
+import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.ToastLibrary;
 
 public class Activity_Reportes extends AppCompatActivity {
@@ -74,34 +76,70 @@ public class Activity_Reportes extends AppCompatActivity {
         }
     };
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        // TODO Auto-generated method stub
+         if (resultCode == RESULT_OK)  {
+                try {
+                    Cargar();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
+            }
+    }
+
+
 
     public void Cargar(){
         try{
-           // http://172.16.1.78/ServiceUnibell/bldocumentos_cobra_cab_RptCobranza/17530101/17530101/XXX/0/172/0/0/0/1/1/XXX/XXX/XXX/XXX/0/0
-                    String iID_VENDEDOR= sharedSettings.getString("iID_VENDEDOR", "0").toString();
-                    new Load_AsyncTask().execute(
-                    ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_RptCobranza + "/" +
-                            sharedSettings.getString("plb_lblinicio", "17530101").toString()+ "/" +
-                            sharedSettings.getString("plb_lblfin", "17530101").toString()+ "/" +
-                            sharedSettings.getString("plb_txtcodigo", "XXX").toString()+ "/" +
-                            sharedSettings.getString("plb_lblfpago", "0").toString()+ "/" +
-                            sharedSettings.getString("iID_VENDEDOR", "172").toString()+ "/" +
-                            sharedSettings.getString("plb_txtseriep", "0").toString()+ "/" +
-                            sharedSettings.getString("plb_txtnumerop", "0").toString()+ "/" +
-                            sharedSettings.getString("plb_lblestado", "0").toString()+ "/" +
-                            sharedSettings.getString("iID_EMPRESA", "1").toString() + "/" +
-                            sharedSettings.getString("iID_LOCAL", "1").toString() + "/" +
-                            sharedSettings.getString("plb_lbltipodoc", "XXX").toString()+ "/" +
-                            sharedSettings.getString("plb_txtserief", "XXX").toString()+ "/" +
-                            sharedSettings.getString("plb_txtfnumerof", "XXX").toString()+ "/" +
-                            sharedSettings.getString("plb_lblmoneda", "XXX").toString()+ "/" +
-                            sharedSettings.getString("plb_txtoserie", "0").toString()+ "/" +
-                            sharedSettings.getString("plb_txtonumero", "0").toString()
+
+            String fechainicio="",fechafin="";
+
+            String finicio = sharedSettings.getString("plb_lblinicio", "").toString();
+            String ffin = sharedSettings.getString("plb_lblfin", "").toString();
+
+            if (!finicio.toString().trim().equals("")) {
+                fechainicio = finicio.toString().substring(6)
+                        + finicio.toString().substring(3, 5)
+                        + finicio.toString().substring(0, 2);
+            }else{
+                fechainicio="17530101";
+            }
+
+            if (!ffin.toString().trim().equals("")) {
+                fechafin = ffin.toString().substring(6)
+                        + ffin.toString().substring(3, 5)
+                        + ffin.toString().substring(0, 2);
+            }else{
+                fechafin="17530101";
+            }
+
+                new Load_AsyncTask().execute(
+                ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_RptCobranza + "/" +
+                        fechainicio+ "/" +
+                        fechafin+ "/" +
+                        sharedSettings.getString("plb_txtcodigo", "XXX").toString()+ "/" +
+                        sharedSettings.getString("plb_lblfpago", "0").toString()+ "/" +
+                        sharedSettings.getString("iID_VENDEDOR", "0").toString()+ "/" +
+                        sharedSettings.getString("plb_txtseriep", "0").toString()+ "/" +
+                        sharedSettings.getString("plb_txtnumerop", "0").toString()+ "/" +
+                        sharedSettings.getString("plb_lblestado", "0").toString()+ "/" +
+                        sharedSettings.getString("iID_EMPRESA", "1").toString() + "/" +
+                        sharedSettings.getString("iID_LOCAL", "1").toString() + "/" +
+                        sharedSettings.getString("plb_lbltipodoc", "XXX").toString()+ "/" +
+                        sharedSettings.getString("plb_txtserief", "XXX").toString()+ "/" +
+                        sharedSettings.getString("plb_txtfnumerof", "XXX").toString()+ "/" +
+                        sharedSettings.getString("plb_lblmoneda", "XXX").toString()+ "/" +
+                        sharedSettings.getString("plb_txtoserie", "0").toString()+ "/" +
+                        sharedSettings.getString("plb_txtonumero", "0").toString()
             );
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
+
 
 
 
@@ -134,6 +172,13 @@ public class Activity_Reportes extends AppCompatActivity {
                     cobranza_reporte_adapter = new Cobranza_Reporte_Adapter(Activity_Reportes.this, 0, cobranzas_reporteBL.lst);
                     cobranza_reporte_adapter.notifyDataSetChanged();
                     cr_lsdetalle.setAdapter(cobranza_reporte_adapter);
+
+                 Double dTotalGeneral=0.0;
+
+                    for (int j = 0; j < cobranza_reporte_adapter.lstFiltrado.size(); j++) {
+                        dTotalGeneral+= Double.valueOf(cobranza_reporte_adapter.lst.get(j).getM_COBRANZA());
+                    }
+                    cr_lbltotalg.setText(Funciones.FormatDecimal(dTotalGeneral.toString()));
 
                 }
             }catch(Exception ex){
