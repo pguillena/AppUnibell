@@ -257,10 +257,10 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                         "<br /><br />"+
                         "<table width='100%' border=0.01 cellspacing=0 cellpadding=5 bordercolor='666633'>" +
                         "<tr><td width='7%'  align='center' style='font-size:8px;font-weight:bold' >Código</td>" +
-                        "<td width='7%'  align='center' style='font-size:8px;font-weight:bold'>RUC/DNI</td>" +
+                        "<td width='6%'  align='center' style='font-size:8px;font-weight:bold'>RUC/DNI</td>" +
                         "<td width='22%'  align='center'  style='font-size:8px;font-weight:bold'>Nombre/Razon Social</td>" +
                         "<td width='4%'  align='center'  style='font-size:8px;font-weight:bold'>Tipo Doc</td>" +
-                        "<td width='5%'  align='center'  style='font-size:8px;font-weight:bold'>N°.Doc</td>" +
+                        "<td width='6%'  align='center'  style='font-size:8px;font-weight:bold'>N°.Doc</td>" +
                         "<td width='6%'  align='center'  style='font-size:8px;font-weight:bold'>Forma Pago</td>" +
                         "<td width='15%'  align='center'  style='font-size:8px;font-weight:bold'>Efectivo/Baco/Cuenta Corriente</td>" +
                         "<td width='6%'  align='center'  style='font-size:8px;font-weight:bold' >Fecha Transacción</td>" +
@@ -286,10 +286,10 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                     }
 
                     htmToDet = htmToDet + "<tr><td width='7%' style='font-size:10px' align='left' >" + planillaCobranzaBL.lst.get(j).getCOD_CLIENTE().toString() + "</td>" +
-                            "<td width='7%' style='font-size:8px'>" + planillaCobranzaBL.lst.get(j).getRUC().toString() + "</td>" +
+                            "<td width='6%' style='font-size:8px'>" + planillaCobranzaBL.lst.get(j).getRUC().toString() + "</td>" +
                             "<td width='22%'  align='center'  style='font-size:8px'>" +  planillaCobranzaBL.lst.get(j).getRAZON_SOCIAL().toString() + "</td>" +
                             "<td width='4%'  align='center'  style='font-size:8px'>" +  planillaCobranzaBL.lst.get(j).getTIPODOC().toString() + "</td>" +
-                            "<td width='6%'  align='center'  style='font-size:8px'>" +  planillaCobranzaBL.lst.get(j).getNUMERO().toString() + "</td>" +
+                            "<td width='7%'  align='center'  style='font-size:8px'>" +  planillaCobranzaBL.lst.get(j).getNUMERO().toString() + "</td>" +
                             "<td width='6%'  align='center'  style='font-size:8px'>" +   planillaCobranzaBL.lst.get(j).getFPAGO().toString() + "</td>" +
                             "<td width='15%' style='font-size:8px'>" +  planillaCobranzaBL.lst.get(j).getENTIDAD().toString() + "</td>" +
                             "<td width='6%'  align='center'  style='font-size:8px' >" + planillaCobranzaBL.lst.get(j).getFECHA().toString() + "</td>" +
@@ -300,7 +300,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                             "<td width='4%'  align='center' style='font-size:8px'>"+urlCheck+"</td>" +
                             "</tr>";
                 }
-                htmToDet = htmToDet + "<tr><td colspan='10' style='font-weight:bold' align='right' >TOTAL DE PLANILLA " + planillaCobranzaBL.lst.get(0).getPLANILLA().toString() + "</td>" + "<td width='7.5%' style='font-size:12px'>" +  funciones.FormatDecimal(dCobranza.toString()) + "</td>" + "</tr>";
+                htmToDet = htmToDet + "<tr><td colspan='10' style='font-weight:bold' align='right' >TOTAL DE PLANILLA " + planillaCobranzaBL.lst.get(0).getPLANILLA().toString() + "</td>" + "<td width='7.5%' style='font-size:12px' align='right' >" +  funciones.FormatDecimal(dCobranza.toString()) + "</td>" + "</tr>";
 
                 htmTotalGeneral = "<table width='88.5%' border=0 cellspacing=0 bordercolor='666633'>" +
                         "<tr><td  style='font-weight:bold;background:#FFDDDD' align='center' >TOTAL GENERAL</td>" + "<td style='font-weight:bold;background:#FFDDDD' width='7.5%'>" + funciones.FormatDecimal(dCobranza.toString())  + "</td>" + "</tr></table>";

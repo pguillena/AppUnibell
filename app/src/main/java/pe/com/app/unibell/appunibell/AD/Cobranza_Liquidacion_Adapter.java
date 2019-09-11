@@ -66,6 +66,10 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
             mainHolder.lyItemLiquidacion = (LinearLayout) view.findViewById(R.id.lyItemLiquidacion);
             mainHolder.lyFondoBtnEditar = (LinearLayout) view.findViewById(R.id.lyFondoBtnEditar);
 
+            mainHolder.txtFechaLiquidacion = (TextView) view.findViewById(R.id.txtFechaLiquidacion);
+
+
+
             mainHolder.cl_itemchk = (CheckBox) view.findViewById(R.id.cl_itemchk);
             mainHolder.cl_itemchk
                     .setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -155,6 +159,8 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
 
 
         holder.cl_itemCliente.setText(documentos_cobra_cabBE.getCOD_CLIENTE().toString() +" "+funciones.LetraCapital(documentos_cobra_cabBE.getRAZON_SOCIAL().toString()));
+        holder.txtFechaLiquidacion.setText(documentos_cobra_cabBE.getFECHA_RECIBO());
+
 
         if (documentos_cobra_cabBE.getFPAGO().toString().equals("E"))
         {
@@ -264,7 +270,7 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
 
     static class MainHolder {
         //TextView lc_item1,lc_item2,lc_item3,lc_item4,lc_item5,lc_item6,lc_item7,lc_item8,lc_item9,lc_item10,lc_item11;
-        TextView cl_itemCliente, cl_itemDocumentos, cl_itemMonto, cl_itemFormaPago, cl_itemRecibo, cl_itemPlanilla;
+        TextView cl_itemCliente, cl_itemDocumentos, cl_itemMonto, cl_itemFormaPago, cl_itemRecibo, cl_itemPlanilla, txtFechaLiquidacion;
         TextView cl_lblPlanilla, cl_lblRecibo;
         LinearLayout lyRecibo;
         Button cl_btn;

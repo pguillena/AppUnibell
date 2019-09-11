@@ -477,6 +477,245 @@ public class Activity_Liquidacion extends AppCompatActivity
     };
 
 
+    public class GeneraPDFAsyncTask extends AsyncTask<String, String, JSONObject> {
+        private volatile boolean running = true;
+        @Override
+        protected void onPreExecute(){}
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            String NOMBRE_ARCHIVO = "REP_LIQUIDACION.pdf";
+            if (iValorEnviar==1) {
+                NOMBRE_ARCHIVO =sharedSettings.getString("iID_EMPRESA", "REP_LIQUIDACION").toString() +
+                        "_" + funciones.Year(funciones.FechaActual()).toString()+
+                        funciones.Month(funciones.FechaActual()).toString()+
+                        funciones.Day(funciones.FechaActual()).toString()+".pdf";
+            }
+            String tarjetaSD = Environment.getExternalStorageDirectory().toString();
+            File pdfDir = new File(tarjetaSD + File.separator + NOMBRE_CARPETA_APP);
+            try {
+                if (!pdfDir.exists()) {
+                    pdfDir.mkdir();
+                }
+
+                File pdfSubDir = new File(pdfDir.getPath() + File.separator + GENERADOS);
+                if (!pdfSubDir.exists()) {
+                    pdfSubDir.mkdir();
+                }
+                nombre_completo = Environment.getExternalStorageDirectory() + File.separator + NOMBRE_CARPETA_APP + File.separator + GENERADOS + File.separator + NOMBRE_ARCHIVO;
+                File outputfile = new File(nombre_completo);
+                if (outputfile.exists()) {
+                    outputfile.delete();
+                }
+                document = new Document(PageSize.A4.rotate(), 10, 10, 10, 10);
+                //document = new Document();
+                //document.setPageSize(PageSize.A4.rotate(),5,5,5,5);
+                //document= new Document();
+                PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(nombre_completo));
+                //PdfWriter.getInstance(document, new FileOutputStream(nombre_completo));
+
+                document.open();
+                document.addAuthor("Renan galvez");
+                document.addCreator("RENAN");
+                document.addSubject("Reportes");
+                document.addCreationDate();
+                document.addTitle("LIQUIDACIÓN Y APROBACIÓN DE PLANILLA");
+                XMLWorkerHelper worker = XMLWorkerHelper.getInstance();
+
+                String htmToCab="";
+                String htmToDet="";
+                String htmTotalGeneral="";
+                String htmPie="";
+                String PDF="";
+                Double SubTal=0.0;
+                String co_txtfechainicio="";
+                try {
+                    //REPORTE POR CATEGORIA
+                    if (cobranza_liquidacion_adapter != null) {
+                        htmToCab =
+                                "<html>" +
+                                        "<head>" +
+                                        "<body>" +
+                                        "<table width='100%'>" +
+                                        "<tr width='100%'>" +
+                                        "<td width='80%' style='font-weight:bold'>PLANILLA LIQUIDACIÓN DE COBRANZA " + cobranza_liquidacion_adapter.lst.get(0).getPLANILLA().toString() + "</td><td width='20%'><b>Usuario:</b>" + sharedSettings.getString("USUARIO", "").toString() + "</td></tr>" +
+                                        "<tr width='100%'>" +
+                                        "<td width='80%'></td><td width='20%'><b>Fecha:</b>" + funciones.FechaActualNow() + "</td></tr>" +
+                                        "<tr width='100%'>" +
+                                        "<td width='80%'><b>Fecha Cobranza:</b>" + cobranza_liquidacion_adapter.lst.get(0).getFECHA().toString() +  "</td><td width='20%'><b>Cobrador:</b>" +  cobranza_liquidacion_adapter.lst.get(0).getNOMCOBRADOR().toString() + "</td></tr>" +
+                                        "<tr width='100%' style='background:#FFDDDD'>" +
+                                        "<td width='80%' ><b>PALNILLA:</b>" + cobranza_liquidacion_adapter.lst.get(0).getPLANILLA().toString() + "</td><td width='20%'></td></tr>" +
+                                        "</table>" +
+                                        "<table width='100%' border=0.01 cellspacing=0 cellpadding=5 bordercolor='666633'>" +
+                                        "<tr><td width='7.5%' align='left' style='font-size:10px;font-weight:bold' >Código</td>" +
+                                        "<td width='7.5%' style='font-size:10px;font-weight:bold'>RUC/DNI</td>" +
+                                        "<td width='15%' style='font-size:10px;font-weight:bold'>Nombre/Razon Social</td>" +
+                                        "<td width='5%' style='font-size:10px;font-weight:bold'>Tipo Doc</td>" +
+                                        "<td width='10%' style='font-size:10px;font-weight:bold'>N°.Doc</td>" +
+                                        "<td width='6%' style='font-size:10px;font-weight:bold' >Forma Pago</td>" +
+                                        "<td width='10%' style='font-size:10px;font-weight:bold' >Efectivo/Baco/Cuenta Corriente</td>" +
+                                        "<td width='10%' style='font-size:10px;font-weight:bold' >Fecha Transacción</td>" +
+                                        "<td width='7.5%' style='font-size:10px;font-weight:bold'>N° OP/N° Cheque</td>" +
+                                        "<td width='4%' style='font-size:10px;font-weight:bold'>Md</td>" +
+                                        "<td width='7.5%' style='font-size:10px;font-weight:bold'>Importe</td>" +
+                                        "<td width='5%' style='font-size:10px;font-weight:bold'>Recibo</td>" +
+                                        "<td width='5%' style='font-size:10px;font-weight:bold'>Aprob</td>" +
+                                        "</tr>";
+                        Double dCobranza=0.0;
+                        for (int j = 0; j < cobranza_liquidacion_adapter.lst.size(); j++) {
+                            dCobranza +=cobranza_liquidacion_adapter.lst.get(j).getM_COBRANZA();
+                            htmToDet = htmToDet + "<tr><td width='7.5%' style='font-size:10px' align='left' >" + cobranza_liquidacion_adapter.lst.get(j).getCOD_CLIENTE().toString() + "</td>" +
+                                    "<td width='7.5%' style='font-size:10px'>" + cobranza_liquidacion_adapter.lst.get(j).getRUC().toString() + "</td>" +
+                                    "<td width='15%' style='font-size:10px'>" +  cobranza_liquidacion_adapter.lst.get(j).getRAZON_SOCIAL().toString() + "</td>" +
+                                    "<td width='5%' style='font-size:10px'>" +   cobranza_liquidacion_adapter.lst.get(j).getTIPODOC().toString() + "</td>" +
+                                    "<td width='10%' style='font-size:10px'>" +  cobranza_liquidacion_adapter.lst.get(j).getNUMERO().toString() + "</td>" +
+                                    "<td width='6%' style='font-size:10px'>" +   cobranza_liquidacion_adapter.lst.get(j).getFPAGODESC().toString() + "</td>" +
+                                    "<td width='10%' style='font-size:10px'>" +  cobranza_liquidacion_adapter.lst.get(j).getNOMCTACORRIENTE().toString() + "</td>" +
+                                    "<td width='10%' style='font-size:10px' >" + cobranza_liquidacion_adapter.lst.get(j).getFECHA().toString() + "</td>" +
+                                    "<td width='7.5%' style='font-size:10px'>" + cobranza_liquidacion_adapter.lst.get(j).getNUMCHEQ().toString() + "</td>" +
+                                    "<td width='4%' style='font-size:10px'>" +   cobranza_liquidacion_adapter.lst.get(j).getMONEDA().toString() + "</td>" +
+                                    "<td width='7.5%' style='font-size:10px'>" + funciones.FormatDecimal(cobranza_liquidacion_adapter.lst.get(j).getM_COBRANZA().toString()) + "</td>" +
+                                    "<td width='5%' style='font-size:10px'>" +   cobranza_liquidacion_adapter.lst.get(j).getRECIBO().toString() + "</td>" +
+                                    "<td width='5%' style='font-size:10px'>" +   cobranza_liquidacion_adapter.lst.get(j).getID_COBRADOR().toString() + "</td>" +
+                                    "</tr>";
+                        }
+                        htmToDet = htmToDet + "<tr><td colspan='10' style='font-weight:bold' align='right' >TOTAL DE PLANILLA" + cobranza_liquidacion_adapter.lst.get(0).getPLANILLA().toString() + "</td>" + "<td width='7.5%' style='font-size:12px' align='right'  >" +  funciones.FormatDecimal(dCobranza.toString()) + "</td>" + "</tr>";
+
+                        htmPie = "</table>" +
+                                "</body>" +
+                                "</head>" +
+                                "</html>";
+
+                        htmTotalGeneral = "<table width='88.5%' border=0 cellspacing=0 bordercolor='666633'>" +
+                                "<tr><td  style='font-weight:bold;background:#FFDDDD' align='center' >TOTAL GENERAL</td>" + "<td style='font-weight:bold;background:#FFDDDD' width='7.5%'>1600.20</td>" + "</tr></table>";
+
+                        String sResumen =
+                                "<table width='100%'>" +
+                                        "<tr width='100%'><td></td></tr>" +
+                                        "<tr width='100%'>" +
+                                        "<td width='100%' style='font-weight:bold;align='center''>RESUMEN DE COBRANZAS</td></tr>" +
+                                        "</table>" +
+                                        "<table width='100%' border=0.01 cellspacing=0 cellpadding=5 bordercolor='666633'>" +
+                                        "<tr><td width='7.5%' align='left' style='font-size:10px;font-weight:bold' >PLANILLA</td>" +
+                                        "<td width='12%' style='font-size:10px;font-weight:bold'>FORMA PAGO</td>" +
+                                        "<td width='40%' style='font-size:10px;font-weight:bold'>EFECTIVO/BANCO/CUENTA CORRIENTE</td>" +
+                                        "<td width='12%' style='font-size:10px;font-weight:bold'>FECHA OP/CHEQUE</td>" +
+                                        "<td width='12%' style='font-size:10px;font-weight:bold'>N°.OP/N°CHEQUE</td>" +
+                                        "<td width='12%' style='font-size:10px;font-weight:bold' >VOUCHER</td>" +
+                                        "<td width='12%' style='font-size:10px;font-weight:bold' >MONTO TOTAL</td>" +
+                                        "</tr></table>";
+
+                        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.logo);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                        Image imagen = Image.getInstance(stream.toByteArray());
+                        imagen.scaleToFit(120, 100);
+                        imagen.setBorderColor(BaseColor.WHITE);
+                        imagen.setBackgroundColor(BaseColor.WHITE);
+                        imagen.setAlignment(Chunk.ALIGN_LEFT);
+                        document.add(imagen);
+
+                        PDF = htmToCab + htmToDet + htmPie + htmTotalGeneral + sResumen;
+                        worker.parseXHtml(pdfWriter, document, new StringReader(PDF));
+                        if (iValorEnviar == 1) {
+                            //1 EMAIL, 2 WHATSAPP
+                            EnviarDocumento(1);
+                        } else {
+                            muestraPDF(nombre_completo, getApplication());
+                        }
+                    }else{
+                        Mensaje("No hay registros.");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                document.close();
+
+            } catch (DocumentException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+
+        }
+
+        public void muestraPDF(String archivo, Context context) {
+
+            File file = new File(archivo);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.fromFile(file), "application/pdf");
+            intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+            try {
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                Mensaje("No Tiene ninguna aplicación para abrir el archivo");
+            }
+        }
+
+        private void EnviarDocumento(Integer iOpcion){
+            try {
+                String to="",cc="",asunto="asunto",mensaje="mensaje";
+                File file = new File(nombre_completo);
+
+                //Email
+                if (iOpcion==1){
+                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                    emailIntent.setType("message/rfc822");
+                    emailIntent.setData(Uri.parse("mailto:"));
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+                    emailIntent.putExtra(Intent.EXTRA_CC, cc);
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, asunto);
+                    emailIntent.putExtra(Intent.EXTRA_TEXT, mensaje);
+                    emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+                    emailIntent.setType("application/pdf"); //indicamos el tipo de dato
+                    emailIntent.setPackage("com.google.android.gm");
+                    if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(Intent.createChooser(emailIntent, "Email "));
+                    }else {
+                        Toast.makeText(Activity_Liquidacion.this,"Por favor instale email",Toast.LENGTH_LONG).show();
+                    }
+                }
+                //whatsapp
+                if (iOpcion==2){
+                    Intent whatsappsend = new Intent();
+                    whatsappsend.setAction(Intent.ACTION_SEND);
+                    whatsappsend.putExtra(Intent.EXTRA_TEXT, mensaje);
+                    whatsappsend.putExtra("jid", "941895433" +"@s.whatsapp.net");
+                    whatsappsend.setType("application/pdf"); //indicamos el tipo de dato
+                    //whatsappsend.setType("text/plain");
+                    whatsappsend.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+                    whatsappsend.setPackage("com.whatsapp");
+                    if (whatsappsend.resolveActivity(getPackageManager()) != null) {
+                        startActivity(whatsappsend);
+                    }else {
+                        Toast.makeText(Activity_Liquidacion.this,"Por favor instale whatsapp",Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+            }
+            catch (Exception e){
+                new ToastLibrary(Activity_Liquidacion.this,e.getMessage()).Show();
+            }
+        }
+
+
+        @Override
+        protected void onProgressUpdate(String... prog) {
+            super.onProgressUpdate(prog);
+        }
+        @Override
+        protected void onPostExecute(JSONObject result){
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            try {
+
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+        }
+    }
 
     private void Cargar(){
         Integer iValidar=0;
