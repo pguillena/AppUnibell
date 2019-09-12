@@ -3,8 +3,15 @@ package pe.com.app.unibell.appunibell.Util;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
+import android.widget.Toast;
+
+import pe.com.app.unibell.appunibell.Main.Activity_Login;
+
 /**
  * Created by RENAN on 18/08/2016.
  */
@@ -28,6 +35,7 @@ public class UtilLibrary {
     }
     //<uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+
     public static String fnNumEquipo(Context paramContext){
         return ((TelephonyManager)paramContext.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
     }
@@ -39,6 +47,7 @@ public class UtilLibrary {
     public static String fnNumSim(Context paramContext){
         return ((TelephonyManager)paramContext.getSystemService(Context.TELEPHONY_SERVICE)).getSimSerialNumber();
     }
+
 
     public static int getApiVersion() {
         return Build.VERSION.SDK_INT;
