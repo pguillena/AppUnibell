@@ -584,7 +584,7 @@ public class Fragment_Cobranza extends Fragment implements
             //NUEVO REGISTRO
             if (sharedSettings.getString("COBRANZA_EVENTO", "0").toString().trim().equals("1")) {
                 iAccion = 3;
-                String sMensaje = "¿Desea Aactualizar la cobranza?";
+                String sMensaje = "¿Desea actualizar la cobranza?";
                 dialog_fragment_confirmar = new Dialog_Fragment_Confirmar();
                 dialog_fragment_confirmar.setmConfirmarDialogfragmentListener(Fragment_Cobranza.this, sMensaje);
                 dialog_fragment_confirmar.show(getFragmentManager(), dialog_fragment_confirmar.TAG);

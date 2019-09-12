@@ -42,8 +42,8 @@ public class Activity_Reportes extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("REPORTES");
-        getSupportActionBar().setSubtitle("");
+        getSupportActionBar().setTitle("Reporte de cobranzas");
+
 
         sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
         editor_Shared=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF),MODE_PRIVATE).edit();

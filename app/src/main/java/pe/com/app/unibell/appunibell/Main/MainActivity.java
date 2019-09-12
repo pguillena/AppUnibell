@@ -94,8 +94,8 @@ protected void onCreate(Bundle savedInstanceState) {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.UNIBELL_PREF);
-        getSupportActionBar().setSubtitle("COBRANZAS");
+        getSupportActionBar().setTitle("Cobranzas");
+        //getSupportActionBar().setSubtitle("COBRANZAS");
 
 
          try{

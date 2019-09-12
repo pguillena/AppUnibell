@@ -39,7 +39,7 @@
         >
         <TextView
             android:layout_width="120dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:text="Documento"
             android:gravity="left"
             android:textColor="@color/Button_login_unibell"
@@ -49,10 +49,10 @@
         <TextView
             android:id="@+id/am_lbldocumento"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="001-20225"
-            android:textSize="25dp"
-            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="F001-20225"
+            android:textSize="20dp"
+            android:gravity="left"
             />
     </LinearLayout>
 
@@ -68,7 +68,7 @@
         >
         <TextView
             android:layout_width="120dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:text="Saldo"
             android:gravity="left"
             android:textColor="@color/Button_login_unibell"
@@ -79,10 +79,10 @@
         <TextView
             android:id="@+id/am_lblsaldo"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:text="1300.20"
-            android:gravity="center"
-            android:textSize="25dp"
+            android:gravity="left"
+            android:textSize="20dp"
 
             />
     </LinearLayout>

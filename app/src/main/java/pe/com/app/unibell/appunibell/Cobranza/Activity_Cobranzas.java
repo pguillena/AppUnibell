@@ -44,8 +44,9 @@ public class Activity_Cobranzas
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getSupportActionBar().setTitle(R.string.UNIBELL_PREF);
-        getSupportActionBar().setSubtitle("PROCESO DE COBRANZA");
+        getSupportActionBar().setTitle("Registro de cobranza");
+        //getSupportActionBar().setSubtitle("PROCESO DE COBRANZA");
+
         try {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             Fragment_Cobranza fragment = new Fragment_Cobranza();

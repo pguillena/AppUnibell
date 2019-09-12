@@ -63,7 +63,7 @@ public class Recibos_CcobranzaDAO {
                     "F_RECEPCION,F_DEVOLUCION,VIGENCIA,C_USUARIO,C_PERFIL," +
                     "C_CPU,FEC_REG,C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD," +
                     "C_CPU_MOD,OBSERVACION,C_ESTADO  "+
-                    "FROM CCM_RECIBOS_COBRANZA WHERE N_SERIE=" + pN_SERIE + " AND C_RECEPTOR =" + iID_VENDEDOR ;
+                    "FROM CCM_RECIBOS_COBRANZA WHERE VIGENCIA = 'A' AND N_SERIE=" + pN_SERIE + " AND C_RECEPTOR =" + iID_VENDEDOR ;
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<Recibos_CcobranzaBE>();

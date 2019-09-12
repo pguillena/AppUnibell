@@ -24,6 +24,7 @@ import java.util.List;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
 import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranzas;
 import pe.com.app.unibell.appunibell.R;
+import pe.com.app.unibell.appunibell.Util.Funciones;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -35,6 +36,7 @@ public class Cobranza_Cabecera_Adapter
     private AdapterFilter adapterFilter;
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
+    Funciones funciones = new Funciones();
 
     public Cobranza_Cabecera_Adapter(Context context, int resource, List<Documentos_Cobra_CabBE> objects) {
         super(context, resource, objects);
@@ -57,8 +59,11 @@ public class Cobranza_Cabecera_Adapter
             mainHolder.cc_item4 = (TextView) convertView.findViewById(R.id.cc_item4);
             mainHolder.cc_item5 = (TextView) convertView.findViewById(R.id.cc_item5);
             mainHolder.cc_lnfecnum = (LinearLayout) convertView.findViewById(R.id.cc_lnfecnum);
+            mainHolder.cc_lnfecnum2 = (LinearLayout) convertView.findViewById(R.id.cc_lnfecnum2);
             mainHolder.cc_btn0 = (TextView) convertView.findViewById(R.id.cc_btn0);
             mainHolder.cc_btn1 = (TextView) convertView.findViewById(R.id.cc_btn1);
+            mainHolder.cc_NroDoc = (TextView) convertView.findViewById(R.id.cc_NroDoc);
+
 
             sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
             editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
@@ -67,37 +72,53 @@ public class Cobranza_Cabecera_Adapter
             mainHolder = (MainHolder) convertView.getTag();
         }
         final Documentos_Cobra_CabBE documentos_cobra_cabBE = getItem(position);
-        mainHolder.cc_item1.setText(documentos_cobra_cabBE.getFPAGODESC().toString().toUpperCase());
-        if(!documentos_cobra_cabBE.getBANCODESC().toString().trim().equals("")) {
-            mainHolder.cc_item2.setText( documentos_cobra_cabBE.getBANCODESC().toString().toUpperCase());
-        }else{
-            mainHolder.cc_item2.setText(documentos_cobra_cabBE.getNOMCTACORRIENTE().toString().toUpperCase());
+        mainHolder.cc_item1.setText(funciones.LetraCapital(documentos_cobra_cabBE.getFPAGODESC().toString()));
+
+
+        if(!documentos_cobra_cabBE.getFPAGO().toString().equals("E")) {
+            if (!documentos_cobra_cabBE.getBANCODESC().toString().trim().equals("")) {
+                mainHolder.cc_item2.setText(funciones.LetraCapital(documentos_cobra_cabBE.getBANCODESC().toString()));
+            } else {
+                mainHolder.cc_item2.setText(funciones.LetraCapital(documentos_cobra_cabBE.getNOMCTACORRIENTE().toString()));
+            }
         }
+        else
+        {
+            mainHolder.cc_item2.setVisibility(View.GONE);
+        }
+
         if(documentos_cobra_cabBE.getM_COBRANZA()>0) {
-            mainHolder.cc_item3.setText(documentos_cobra_cabBE.getM_COBRANZA().toString());
+            mainHolder.cc_item3.setText("S/ " + documentos_cobra_cabBE.getM_COBRANZA().toString());
         }else{
-            mainHolder.cc_item3.setText(documentos_cobra_cabBE.getM_COBRANZA_D().toString());
+            mainHolder.cc_item3.setText("$ " + documentos_cobra_cabBE.getM_COBRANZA_D().toString());
         }
-        mainHolder.cc_item4.setText(documentos_cobra_cabBE.getSALDO().toString());
+        mainHolder.cc_item4.setText("S/ " + documentos_cobra_cabBE.getSALDO().toString());
         editor_Shared.putString("SALDO_CABECERA",documentos_cobra_cabBE.getSALDO().toString());
         editor_Shared.commit();
         String sFPAGO=documentos_cobra_cabBE.getFPAGO().toString();
 
-        mainHolder.cc_lnfecnum.setVisibility(View.INVISIBLE);
+        mainHolder.cc_lnfecnum.setVisibility(View.GONE);
+        mainHolder.cc_lnfecnum2.setVisibility(View.GONE);
         //TARJETAS DE CREDITO
         if (sFPAGO.equals("D") || sFPAGO.equals("V") || sFPAGO.equals("M") || sFPAGO.equals("S") || sFPAGO.equals("I")|| sFPAGO.equals("H")) {
-            mainHolder.cc_item5.setText(documentos_cobra_cabBE.getFECHA_DEPOSITO().toString() + "-"+ documentos_cobra_cabBE.getN_TARJETA().toString());
+            mainHolder.cc_item5.setText(documentos_cobra_cabBE.getFECHA_DEPOSITO().toString());
+            mainHolder.cc_NroDoc.setText( documentos_cobra_cabBE.getN_TARJETA().toString());
             mainHolder.cc_lnfecnum.setVisibility(View.VISIBLE);
+            mainHolder.cc_lnfecnum2.setVisibility(View.VISIBLE);
         }
         //DEPOSITO EN BANCO
         if (sFPAGO.equals("P")) {
-            mainHolder.cc_item5.setText(documentos_cobra_cabBE.getFECHA_DEPOSITO().toString() + "-" +documentos_cobra_cabBE.getNRO_OPERACION().toString());
+            mainHolder.cc_item5.setText(documentos_cobra_cabBE.getFECHA_DEPOSITO().toString());
+            mainHolder.cc_NroDoc.setText(documentos_cobra_cabBE.getNRO_OPERACION().toString());
             mainHolder.cc_lnfecnum.setVisibility(View.VISIBLE);
+            mainHolder.cc_lnfecnum2.setVisibility(View.VISIBLE);
         }
         //CHEQUE
         if (sFPAGO.equals("C")) {
-            mainHolder.cc_item5.setText(documentos_cobra_cabBE.getFECCHEQ().toString() + "-" +documentos_cobra_cabBE.getNUMCHEQ().toString());
+            mainHolder.cc_item5.setText(documentos_cobra_cabBE.getFECCHEQ().toString());
+            mainHolder.cc_NroDoc.setText(documentos_cobra_cabBE.getNUMCHEQ().toString());
             mainHolder.cc_lnfecnum.setVisibility(View.VISIBLE);
+            mainHolder.cc_lnfecnum2.setVisibility(View.VISIBLE);
         }
 
         String sID_COBRANZA=sharedSettings.getString("ID_COBRANZA", "0").toString().toString().trim();
@@ -187,10 +208,10 @@ public class Cobranza_Cabecera_Adapter
 
 
     static class MainHolder {
-        TextView cc_item1,cc_item2,cc_item3,cc_item4,cc_item5;
+        TextView cc_item1,cc_item2,cc_item3,cc_item4,cc_item5, cc_NroDoc;
         EditText cc_txt1,cc_txt2;
         TextView cc_btn0,cc_btn1;
-        LinearLayout cc_lnfecnum;
+        LinearLayout cc_lnfecnum, cc_lnfecnum2;
     }
 
     @Override

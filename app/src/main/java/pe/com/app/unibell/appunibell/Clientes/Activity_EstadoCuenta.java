@@ -43,8 +43,7 @@ public class Activity_EstadoCuenta extends AppCompatActivity {
         try {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.UNIBELL_PREF);
-            getSupportActionBar().setSubtitle("ESTADO DE CUENTA CLIENTE");
+            getSupportActionBar().setTitle("Estado de cuenta del cliente");
 
             sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
             editor_Shared=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF),MODE_PRIVATE).edit();

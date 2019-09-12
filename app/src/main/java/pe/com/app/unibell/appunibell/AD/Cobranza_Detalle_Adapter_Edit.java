@@ -45,13 +45,12 @@ public class Cobranza_Detalle_Adapter_Edit extends ArrayAdapter<Documentos_Cobra
         if (convertView == null || !(convertView.getTag() instanceof MainHolder)) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_cobranza_detalle_edit, parent, false);
             mainHolder = new MainHolder();
-            mainHolder.cp_item1 = (TextView) convertView.findViewById(R.id.cp_item1);
             mainHolder.cp_item2 = (TextView) convertView.findViewById(R.id.cp_item2);
             mainHolder.cp_item3 = (TextView) convertView.findViewById(R.id.cp_item3);
             mainHolder.cp_item4 = (TextView) convertView.findViewById(R.id.cp_item4);
             mainHolder.cp_item5 = (TextView) convertView.findViewById(R.id.cp_item5);
             mainHolder.cp_item6 = (TextView) convertView.findViewById(R.id.cp_item6);
-            mainHolder.cp_item7 = (TextView) convertView.findViewById(R.id.cp_item7);
+            mainHolder.txtCobranza = (TextView) convertView.findViewById(R.id.txtCobranza);
             mainHolder.cp_txt1 = (EditText) convertView.findViewById(R.id.cp_txt1);
             mainHolder.cl_btn1 = (Button) convertView.findViewById(R.id.cl_btn1);
             mainHolder.cl_btnanular = (Button) convertView.findViewById(R.id.cl_btnanular);
@@ -60,22 +59,27 @@ public class Cobranza_Detalle_Adapter_Edit extends ArrayAdapter<Documentos_Cobra
             mainHolder = (MainHolder) convertView.getTag();
         }
         final Documentos_Cobra_DetBE documentos_cobra_detBE = getItem(position);
+
+
+        String nombreTipoDoc = documentos_cobra_detBE.getNOMBRETIPODOC().toString();
         if (documentos_cobra_detBE.getTIPDOC().toString().trim().equals("A1")) {
-            mainHolder.cp_item1.setText("ANTICIPO");
-        }else{
-            mainHolder.cp_item1.setText(documentos_cobra_detBE.getTIPDOC().toString());
+            nombreTipoDoc = "ANTICIPO";
         }
+
+
      /*   if(documentos_cobra_detBE.getTIPDOC().toString().trim().equals("A1")) {
             convertView.setBackgroundResource(R.color.list_seleccion);
         }else{
             convertView.setBackgroundResource(R.color.background);
         }*/
-        mainHolder.cp_item2.setText(documentos_cobra_detBE.getSERIE_NUM().toString() + "-"+ documentos_cobra_detBE.getNUMERO().toString());
-        mainHolder.cp_item3.setText(Funciones.FormatDecimal(documentos_cobra_detBE.getIMPORTE().toString()));
-        mainHolder.cp_item4.setText(Funciones.FormatDecimal(documentos_cobra_detBE.getSALDO().toString()));
-        mainHolder.cp_item5.setText(Funciones.FormatDecimal(documentos_cobra_detBE.getM_COBRANZA().toString()));
-        mainHolder.cp_item6.setText(documentos_cobra_detBE.getFECHA().toString() + "-" + documentos_cobra_detBE.getF_VENCTO().toString());
-        mainHolder.cp_item7.setText("(" + documentos_cobra_detBE.getDIAS().toString() + ")");
+        mainHolder.cp_item2.setText(nombreTipoDoc + " "+ documentos_cobra_detBE.getSERIE_NUM().toString() + "-"+ documentos_cobra_detBE.getNUMERO().toString());
+        mainHolder.cp_item3.setText("S/ " + Funciones.FormatDecimal(documentos_cobra_detBE.getIMPORTE().toString()));
+        mainHolder.cp_item4.setText("S/ " + Funciones.FormatDecimal(documentos_cobra_detBE.getSALDO().toString()));
+        mainHolder.cp_item6.setText(documentos_cobra_detBE.getFECHA().toString() + "  /  " + documentos_cobra_detBE.getF_VENCTO().toString());
+        mainHolder.txtCobranza.setText("S/ " + documentos_cobra_detBE.getM_COBRANZA().toString());
+
+
+
 
         if(Double.valueOf(documentos_cobra_detBE.getM_COBRANZA().toString()) >0) {
             mainHolder.cl_btn1.setVisibility(View.GONE);
@@ -158,7 +162,7 @@ public class Cobranza_Detalle_Adapter_Edit extends ArrayAdapter<Documentos_Cobra
 
 
     static class MainHolder {
-        TextView cp_item1,cp_item2,cp_item3,cp_item4,cp_item5,cp_item6,cp_item7;
+        TextView cp_item2,cp_item3,cp_item4,cp_item5,cp_item6,txtCobranza;
         EditText cp_txt1;
         Button cl_btn1,cl_btnanular;
     }

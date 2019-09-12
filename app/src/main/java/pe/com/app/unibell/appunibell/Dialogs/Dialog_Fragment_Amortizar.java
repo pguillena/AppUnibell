@@ -52,7 +52,7 @@ public class Dialog_Fragment_Amortizar extends DialogFragment {
         am_lblmonto = (EditText) view.findViewById(R.id.am_lblmonto);
 
         am_lbldocumento.setText(sharedSettings.getString("aDOCUMENTO", "").toString());
-        am_lblsaldo.setText(sharedSettings.getString("aSALDO", "0.00").toString());
+        am_lblsaldo.setText("S/ " + sharedSettings.getString("aSALDO", "0.00").toString());
         am_lblmonto.setText(sharedSettings.getString("aSALDO", "0.00").toString());
 
         if(Double.valueOf(sharedSettings.getString("aSALDO", "0.00").toString()) > Double.valueOf(sharedSettings.getString("SALDO_CABECERA", "0.00").toString()))
@@ -104,7 +104,7 @@ public class Dialog_Fragment_Amortizar extends DialogFragment {
                 return;
             }
 
-            if(Double.valueOf(am_lblmonto.getText().toString().replace(",","")) > Double.valueOf(am_lblsaldo.getText().toString().replace(",",""))){
+            if(Double.valueOf(am_lblmonto.getText().toString().replace(",","").replace("S/","")) > Double.valueOf(am_lblsaldo.getText().toString().replace(",","").replace("S/",""))){
                 Toast toastCodigo = Toast.makeText(getActivity(),"Monto Ingresado es mayor al Saldo.",Toast.LENGTH_LONG);
                 toastCodigo.show();
                 vibrator.vibrate(200);

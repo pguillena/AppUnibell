@@ -46,7 +46,6 @@
             android:textColor="@color/label_color_menu"
             />
 
-
         <TextView
             android:id="@+id/cl_col1"
             android:layout_width="match_parent"

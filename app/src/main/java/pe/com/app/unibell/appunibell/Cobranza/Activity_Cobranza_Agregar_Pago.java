@@ -60,8 +60,8 @@ public class Activity_Cobranza_Agregar_Pago
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getSupportActionBar().setTitle(R.string.UNIBELL_PREF);
-        getSupportActionBar().setSubtitle("PROCESO DE COBRANZA");
+        getSupportActionBar().setTitle("Registro de cobranza");
+        //getSupportActionBar().setSubtitle("PROCESO DE COBRANZA");
 
         sharedSettings = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
         editor_Shared = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();

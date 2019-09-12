@@ -50,17 +50,17 @@ public class Cobranza_Detalle_Adapter extends ArrayAdapter<FactCobBE> implements
         if (convertView == null || !(convertView.getTag() instanceof MainHolder)) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_cobranza_detalle, parent, false);
             mainHolder = new MainHolder();
-            mainHolder.cp_item1 = (TextView) convertView.findViewById(R.id.cp_item1);
             mainHolder.cp_item2 = (TextView) convertView.findViewById(R.id.cp_item2);
             mainHolder.cp_item3 = (TextView) convertView.findViewById(R.id.cp_item3);
             mainHolder.cp_item4 = (TextView) convertView.findViewById(R.id.cp_item4);
-            mainHolder.cp_item5 = (TextView) convertView.findViewById(R.id.cp_item5);
             mainHolder.cp_item6 = (TextView) convertView.findViewById(R.id.cp_item6);
-            mainHolder.cp_item7 = (TextView) convertView.findViewById(R.id.cp_item7);
+            //mainHolder.cp_item7 = (TextView) convertView.findViewById(R.id.cp_item7);
             mainHolder.cp_item8 = (TextView) convertView.findViewById(R.id.cp_item8);
             mainHolder.cp_txt1 = (EditText) convertView.findViewById(R.id.cp_txt1);
             mainHolder.cl_btn1 = (Button) convertView.findViewById(R.id.cl_btn1);
             mainHolder.cl_btnanular = (Button) convertView.findViewById(R.id.cl_btnanular);
+            mainHolder.txtCobranza = (TextView) convertView.findViewById(R.id.txtCobranza);
+
 
             convertView.setTag(mainHolder);
         } else {
@@ -68,10 +68,9 @@ public class Cobranza_Detalle_Adapter extends ArrayAdapter<FactCobBE> implements
         }
         final FactCobBE factCobBE = getItem(position);
 
+        String nombreTipoDoc = factCobBE.getNOMBRETIPODOC().toString();
         if (factCobBE.getTIPDOC().toString().trim().equals("A1")) {
-            mainHolder.cp_item1.setText("ANTICIPO");
-        }else{
-            mainHolder.cp_item1.setText(factCobBE.getTIPDOC().toString());
+            nombreTipoDoc = "ANTICIPO";
         }
 
        /* if(factCobBE.getTIPDOC().toString().trim().equals("A1")) {
@@ -79,18 +78,18 @@ public class Cobranza_Detalle_Adapter extends ArrayAdapter<FactCobBE> implements
         }else{
             convertView.setBackgroundResource(R.color.background);
         }*/
-        mainHolder.cp_item2.setText(factCobBE.getSERIE_NUM().toString() + "-"+ factCobBE.getNUMERO().toString());
-        mainHolder.cp_item3.setText(Funciones.FormatDecimal(factCobBE.getIMPORTE().toString()));
-        mainHolder.cp_item4.setText(Funciones.FormatDecimal(factCobBE.getSALDO().toString()));
-        mainHolder.cp_item5.setText( factCobBE.getCOBRANZA().toString());
-        mainHolder.cp_item6.setText(factCobBE.getFECHA().toString() + "-" + factCobBE.getF_VENCTO().toString());
-        mainHolder.cp_item7.setText("(" + factCobBE.getDIAS().toString() + ")");
+        mainHolder.cp_item2.setText(nombreTipoDoc + " "+ factCobBE.getSERIE_NUM().toString() + "-"+ factCobBE.getNUMERO().toString());
+        mainHolder.cp_item3.setText("S/ " + Funciones.FormatDecimal(factCobBE.getIMPORTE().toString()));
+        mainHolder.cp_item4.setText("S/ " + Funciones.FormatDecimal(factCobBE.getSALDO().toString()));
+        mainHolder.cp_item6.setText(factCobBE.getFECHA().toString() + "  /  " + factCobBE.getF_VENCTO().toString());
+        //mainHolder.cp_item7.setText("(" + factCobBE.getDIAS().toString() + ")");
+        mainHolder.txtCobranza.setText("S/ " + factCobBE.getCOBRANZA().toString());
 
         if(!factCobBE.getVAMORTIZADO().toString().equals("")){
             if(Double.valueOf(factCobBE.getVAMORTIZADO().toString())>0) {
-                mainHolder.cp_txt1.setText(Funciones.FormatDecimal(factCobBE.getVAMORTIZADO().toString()));
+                mainHolder.cp_txt1.setText("S/ " + Funciones.FormatDecimal(factCobBE.getVAMORTIZADO().toString()));
             }else{
-                mainHolder.cp_txt1.setText(Funciones.FormatDecimal(factCobBE.getSALDO().toString()));
+                mainHolder.cp_txt1.setText("S/ " + Funciones.FormatDecimal(factCobBE.getSALDO().toString()));
             }
         }
 
@@ -183,7 +182,7 @@ public class Cobranza_Detalle_Adapter extends ArrayAdapter<FactCobBE> implements
     }
 
     static class MainHolder {
-        TextView cp_item1,cp_item2,cp_item3,cp_item4,cp_item5,cp_item6,cp_item7,cp_item8;
+        TextView cp_item2,cp_item3,cp_item4,txtCobranza,cp_item6,cp_item8;
         EditText cp_txt1;
         Button cl_btn1,cl_btnanular;
     }
