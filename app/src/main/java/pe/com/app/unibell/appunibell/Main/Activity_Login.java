@@ -103,6 +103,7 @@ public class Activity_Login extends AppCompatActivity
     private Dialog_Fragment_Auxiliar dialog_fragment_auxiliar = null;
     private Button btnSincronizarLogin, btnInfoLogin;
     private Integer MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE=1;
+    static final Integer PHONESTATS = 0x1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +113,7 @@ public class Activity_Login extends AppCompatActivity
         getSupportActionBar().hide();
         try {
             PackageInfo pInfo = null;
+
             try {
                 sharedSettings = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
                 editor_Shared = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
@@ -126,10 +128,8 @@ public class Activity_Login extends AppCompatActivity
             }
 
             try {
-                editor_Shared.putString("sIMEI",UtilLibrary.fnNumIMEI(ctx).toString().trim());
-                editor_Shared.commit();
+                consultarPermiso(Manifest.permission.READ_PHONE_STATE, PHONESTATS);
             }catch (Exception e){
-
             }
 
             if (ContextCompat.checkSelfPermission(this,
@@ -140,7 +140,6 @@ public class Activity_Login extends AppCompatActivity
                         Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
                 } else {
-
                     ActivityCompat.requestPermissions(this,
                             new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                             MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
@@ -174,6 +173,27 @@ public class Activity_Login extends AppCompatActivity
         }
     }
 
+    // Con este método mostramos en un Toast con un mensaje que el usuario ha concedido los permisos a la aplicación
+    private void consultarPermiso(String permission, Integer requestCode) {
+        if (ContextCompat.checkSelfPermission(Activity_Login.this, permission) != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Activity_Login.this, permission)) {
+
+                ActivityCompat.requestPermissions(Activity_Login.this, new String[]{permission}, requestCode);
+
+            } else {
+
+                ActivityCompat.requestPermissions(Activity_Login.this, new String[]{permission}, requestCode);
+            }
+        } else {
+            editor_Shared.putString("sIMEI",UtilLibrary.fnNumIMEI(ctx).toString().trim());
+            editor_Shared.commit();
+            Toast.makeText(this,permission + " El permiso a la aplicación esta concedido.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
     private void setOnFocusChangeListener(TextView textView, String name){
 
         textView.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -199,17 +219,15 @@ public class Activity_Login extends AppCompatActivity
     }
 
 
+
+
     View.OnClickListener OnClickListener_btnInfoLogin=new View.OnClickListener(){
 
         @Override
         public void onClick(View anchorView) {
 
-          /*  AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Login.this);
 
-            builder.setTitle("Version");
-            builder.setMessage("vs 1.20");
-            builder.show();
-*/
+
             PopupWindow popup = new PopupWindow(Activity_Login.this);
             View layout = getLayoutInflater().inflate(R.layout.popup_login, null);
             TextView lblVersion = (TextView)layout.findViewById(R.id.lblPopupLogin);
