@@ -28,7 +28,7 @@
             android:layout_marginLeft="@dimen/pad_30dp"
             android:layout_marginRight="@dimen/pad_30dp"
             android:padding="@dimen/pad_10dp"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:hint="Filtro"
             android:textColor="@color/label_login_unibell"
             android:inputType="textCapCharacters"
