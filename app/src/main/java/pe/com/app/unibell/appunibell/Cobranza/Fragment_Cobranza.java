@@ -323,6 +323,8 @@ public class Fragment_Cobranza extends Fragment implements
                     editor_Shared.putString("sFECHA_DEPOSITO", cobranza_cabecera_adapter.getItem(iPocicionCab).getFECCHEQ().toString());
                 }
 
+
+                editor_Shared.putString("SALDO_CABECERA",cobranza_cabecera_adapter.getItem(iPocicionCab).getSALDO().toString());
                 editor_Shared.putString("EDITAR_TPAGO",EDITAR_TPAGO.toString().trim());
                 editor_Shared.commit();
 
@@ -1171,6 +1173,9 @@ public class Fragment_Cobranza extends Fragment implements
                 cobranza_cabecera_adapter = new Cobranza_Cabecera_Adapter(getActivity(), 0, documentos_cobra_cabDAO.lst);
                 cobranza_cabecera_adapter.notifyDataSetChanged();
                 co_lscab.setAdapter(cobranza_cabecera_adapter);
+
+                editor_Shared.putString("SALDO_CABECERA",cobranza_cabecera_adapter.getItem(iPocicionCab).getSALDO().toString());
+                editor_Shared.commit();
 
                 Globals g = (Globals)getActivity().getApplication();
                 g.setIntentCobranzaCab(cobranza_cabecera_adapter);

@@ -72,6 +72,7 @@ public class Cobranza_Cabecera_Adapter
             sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
             editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
+
             convertView.setTag(mainHolder);
         } else {
             mainHolder = (MainHolder) convertView.getTag();
@@ -96,12 +97,13 @@ public class Cobranza_Cabecera_Adapter
 
         if(documentos_cobra_cabBE.getM_COBRANZA()>0) {
             mainHolder.cc_item3.setText("S/ " + documentos_cobra_cabBE.getM_COBRANZA().toString());
+
         }else{
             mainHolder.cc_item3.setText("$ " + documentos_cobra_cabBE.getM_COBRANZA_D().toString());
         }
         mainHolder.cc_item4.setText("S/ " + documentos_cobra_cabBE.getSALDO().toString());
-        editor_Shared.putString("SALDO_CABECERA",documentos_cobra_cabBE.getSALDO().toString());
-        editor_Shared.commit();
+
+
         String sFPAGO=documentos_cobra_cabBE.getFPAGO().toString();
 
         mainHolder.cc_lnfecnum.setVisibility(View.GONE);
