@@ -241,35 +241,31 @@
                 android:layout_marginBottom="2dp"
                 />
 
-            <EditText
-                android:id="@+id/rp_txtmonto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ejm: 142.32"
-                android:textSize="16dp"
-                android:paddingLeft="15dp"
-                android:paddingTop="@dimen/pad_10dp"
-                android:paddingBottom="@dimen/pad_10dp"
-                style="@style/SkyTextViewStyleUnibellBusquedaCliente"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:maxLength="10"
-                android:inputType="numberDecimal"
-                />
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="10dp"
                 >
-                <TextView
+
+                <EditText
+                    android:id="@+id/rp_txtmonto"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Seleccione Moneda"
+                    android:layout_height="45dp"
                     android:layout_weight="1"
+                    android:hint="Ejm: 142.32"
+                    android:textSize="16dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="@dimen/pad_10dp"
+                    android:paddingBottom="@dimen/pad_10dp"
+                    style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+                    android:layout_marginBottom="10dp"
+                    android:maxLength="10"
+                    android:inputType="numberDecimal"
+                    android:layout_marginRight="10dp"
                     />
+
+
 
                 <Switch
                     android:id="@+id/rp_swmoneda"

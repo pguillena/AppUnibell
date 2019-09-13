@@ -135,6 +135,7 @@ public class Activity_Cobranza_Agregar_Pago
         rp_lblbancoctacte.setVisibility(View.GONE);
         lblCtaCte.setVisibility(View.GONE);
 
+
         rp_swmoneda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
