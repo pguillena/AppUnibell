@@ -36,7 +36,11 @@ public class Cobranza_Cabecera_Adapter
     private AdapterFilter adapterFilter;
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
-    Funciones funciones = new Funciones();
+    private Funciones funciones = new Funciones();
+    private Integer iposition = 0;
+
+    private String sID_COBRANZA;
+    private String aID_COBRANZA;
 
     public Cobranza_Cabecera_Adapter(Context context, int resource, List<Documentos_Cobra_CabBE> objects) {
         super(context, resource, objects);
@@ -48,7 +52,7 @@ public class Cobranza_Cabecera_Adapter
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final Integer iposition = 0;
+
         final MainHolder mainHolder;
         if (convertView == null || !(convertView.getTag() instanceof Cobranza_Detalle_Adapter.MainHolder)) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_cobranza_cabecera, parent, false);
@@ -74,6 +78,8 @@ public class Cobranza_Cabecera_Adapter
             mainHolder = (MainHolder) convertView.getTag();
         }
         final Documentos_Cobra_CabBE documentos_cobra_cabBE = getItem(position);
+        iposition=position;
+
         mainHolder.cc_item1.setText(funciones.LetraCapital(documentos_cobra_cabBE.getFPAGODESC().toString()));
 
 
@@ -121,8 +127,8 @@ public class Cobranza_Cabecera_Adapter
             mainHolder.cc_lnfecnum.setVisibility(View.VISIBLE);
             mainHolder.cc_lnfecnum2.setVisibility(View.VISIBLE);
         }
-        String sID_COBRANZA=sharedSettings.getString("ID_COBRANZA", "0").toString().toString().trim();
-        String aID_COBRANZA=documentos_cobra_cabBE.getID_COBRANZA().toString().trim();
+         sID_COBRANZA=sharedSettings.getString("ID_COBRANZA", "0").toString().toString().trim();
+         aID_COBRANZA=documentos_cobra_cabBE.getID_COBRANZA().toString().trim();
 
         if(aID_COBRANZA.equals(sID_COBRANZA)) {
             mainHolder.ln_itemcabecera.setBackgroundResource(R.color.ubell_color5);
@@ -142,6 +148,9 @@ public class Cobranza_Cabecera_Adapter
             public void onClick(View v) {
                 try {
                     lstFiltrado.remove(iposition);
+                    editor_Shared.putString("ID_COBRANZA",aID_COBRANZA.trim());
+                    editor_Shared.commit();
+
                     notifyDataSetChanged();
                     final CharSequence[] options1 = {"Editar Registro", "Eliminar Registro"};
                     LlamarOpciones(options1,iposition);
