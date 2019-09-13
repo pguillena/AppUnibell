@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/pad_20dp"
-    android:paddingRight="@dimen/pad_20dp"
+    android:paddingLeft="@dimen/pad_10dp"
+    android:paddingRight="@dimen/pad_10dp"
     android:paddingBottom="@dimen/pad_20dp"
     android:background="@color/label_login_titulo_unibell"
     >
@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/lblVendOrigen"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Vend. Origen"
         android:textSize="16dp"
@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/cp_item1"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:textSize="16dp"
         android:fontFamily="@font/sf_pro_display_light"
@@ -56,7 +56,7 @@
 
     <TextView
         android:id="@+id/lblCpago"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="C. Pago"
         android:textSize="16dp"
@@ -69,7 +69,7 @@
 
     <TextView
         android:id="@+id/cp_item3"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:textSize="16dp"
         android:fontFamily="@font/sf_pro_display_light"
@@ -111,7 +111,7 @@
 
     <TextView
         android:id="@+id/lblFechaDoc"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="F. Doc"
         android:textSize="16dp"
@@ -124,7 +124,7 @@
 
     <TextView
         android:id="@+id/cp_item7"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:textSize="16dp"
         android:fontFamily="@font/sf_pro_display_light"
@@ -166,7 +166,7 @@
 
     <TextView
         android:id="@+id/lblImporte"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Importe"
         android:textSize="16dp"
@@ -195,7 +195,7 @@
 
     <TextView
         android:id="@+id/cp_item11"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:textSize="16dp"
         android:fontFamily="@font/sf_pro_display_light"
@@ -222,7 +222,7 @@
 
     <TextView
         android:id="@+id/cl_btnPDF"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Descargar PDF"
         android:textSize="16dp"
@@ -240,7 +240,7 @@
 
     <TextView
         android:id="@+id/cl_btnXML"
-        android:layout_width="180dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Descargar XML"
         android:textSize="16dp"
