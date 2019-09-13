@@ -88,7 +88,7 @@ public class Cobranza_Recibo_Adapter  extends ArrayAdapter<Documentos_Cobra_CabB
                     editor_Shared.putString("iN_SERIE_RECIBO", documentos_cobra_cabBE.getN_SERIE_RECIBO().toString());
                     editor_Shared.putString("iN_RECIBO", documentos_cobra_cabBE.getN_RECIBO().toString());
                     //PARA ABRIR EL DOCUMENTO
-                    editor_Shared.putString("IOPCION_REPORTE","0");
+                    editor_Shared.putString("IOPCION_REPORTE","1");
 
                     editor_Shared.commit();
 
