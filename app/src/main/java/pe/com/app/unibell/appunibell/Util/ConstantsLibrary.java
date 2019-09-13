@@ -5,7 +5,7 @@ package pe.com.app.unibell.appunibell.Util;
 public interface ConstantsLibrary {
         public static final String DEBUG_TAG = "DRES_DEBUG";
         //LOCAL
-       // public static final String RESTFUL_URL = "http://172.16.1.78/ServiceUnibell";
+        //public static final String RESTFUL_URL = "http://172.16.1.78/ServiceUnibell";
         //REMOTO
         public static final String RESTFUL_URL ="http://181.65.215.174/ServiceUnibell";
         public static final String blcabfcob = "/blcabfcob";
@@ -34,8 +34,6 @@ public interface ConstantsLibrary {
         public static final String bldocumentos_cobra_cab_liquidacion_cobranza = "/bldocumentos_cobra_cab_LiqCobranza";
         public static final String bldocumentos_cobra_cab_LiqCobranza_Grupo = "/bldocumentos_cobra_cab_LiqCobranza_Grupo";
         public static final String bldocumentos_cobra_cab_RptCobranza = "/bldocumentos_cobra_cab_RptCobranza";
-
-
 
         public static final String blfactcob = "/blfactcob";
         public static final String blgem_banco = "/blgem_banco";

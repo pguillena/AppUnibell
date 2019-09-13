@@ -88,7 +88,6 @@ public class Cobranza_Cabecera_Adapter
         {
             mainHolder.cc_item2.setVisibility(View.GONE);
         }
-
         if(documentos_cobra_cabBE.getM_COBRANZA()>0) {
             mainHolder.cc_item3.setText("S/ " + documentos_cobra_cabBE.getM_COBRANZA().toString());
         }else{
@@ -122,15 +121,21 @@ public class Cobranza_Cabecera_Adapter
             mainHolder.cc_lnfecnum.setVisibility(View.VISIBLE);
             mainHolder.cc_lnfecnum2.setVisibility(View.VISIBLE);
         }
-
         String sID_COBRANZA=sharedSettings.getString("ID_COBRANZA", "0").toString().toString().trim();
         String aID_COBRANZA=documentos_cobra_cabBE.getID_COBRANZA().toString().trim();
 
+        if(aID_COBRANZA.equals(sID_COBRANZA)) {
+            mainHolder.ln_itemcabecera.setBackgroundResource(R.color.ubell_color5);
+        }else{
+            mainHolder.ln_itemcabecera.setBackgroundResource(R.color.label_login_titulo_unibell);
+        }
+        /*
         if(aID_COBRANZA.equals(sID_COBRANZA)) {
             mainHolder.ln_itemcabecera.setBackgroundResource(R.drawable.borderradius_activo);
         }else{
             mainHolder.ln_itemcabecera.setBackgroundResource(R.drawable.borderradius_sin_borde);
         }
+        */
 
         mainHolder.cc_btn0.setOnClickListener(new View.OnClickListener() {
             @Override
