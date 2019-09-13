@@ -208,6 +208,7 @@
                 />
 
             <TextView
+                android:id="@+id/lblCtaCte"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Banco CTA CTE"
@@ -215,6 +216,7 @@
                 android:textSize="14dp"
                 android:textColor="@color/label_login_unibell"
                 android:layout_marginBottom="2dp"
+
                 />
 
             <TextView
@@ -226,6 +228,7 @@
                 android:textSize="16dp"
                 android:paddingLeft="15dp"
                 android:layout_marginBottom="10dp"
+
                 />
 
             <TextView
@@ -272,12 +275,15 @@
                     android:id="@+id/rp_swmoneda"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/Button_login_unibell"
+                    android:textOn="U$D"
+                    android:textOff="S/"
+                    android:showText="true"
                     android:textColor="@color/background"
-                    android:textOn="Dolares"
-                    android:textOff="Soles"
-                    android:text="Soles"
+                    android:track="@drawable/switch_track_custom"
+                    android:thumb="@drawable/switch_thumb_custom"
+                    android:thumbTextPadding="10dp"
                    />
+
             </LinearLayout>
 
             <Button

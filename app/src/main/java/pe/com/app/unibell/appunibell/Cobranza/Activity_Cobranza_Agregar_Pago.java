@@ -3,6 +3,11 @@ package pe.com.app.unibell.appunibell.Cobranza;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.StateListDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -37,7 +42,7 @@ public class Activity_Cobranza_Agregar_Pago
         Dialogo_Fragment_Fecha.NoticeDialogoListener{
 
     private EditText rp_txtserie,rp_txtnumero,rp_txtmonto;
-    private TextView rp_lblfplanilla,rp_lblfpago,rp_lblbancoctacte,rp_lblcliente,rp_txttipocambio;
+    private TextView rp_lblfplanilla,rp_lblfpago,rp_lblbancoctacte,rp_lblcliente,rp_txttipocambio,lblCtaCte;
     private Button rp_btnregistrar;
     private Switch rp_swmoneda;
 
@@ -80,9 +85,14 @@ public class Activity_Cobranza_Agregar_Pago
         rp_lblfplanilla = (TextView)findViewById(R.id.rp_lblfplanilla);
         rp_lblfpago = (TextView)findViewById(R.id.rp_lblfpago);
         rp_lblbancoctacte = (TextView)findViewById(R.id.rp_lblbancoctacte);
+        lblCtaCte = (TextView)findViewById(R.id.lblCtaCte);
         rp_lblcliente = (TextView)findViewById(R.id.rp_lblcliente);
         rp_txttipocambio = (TextView)findViewById(R.id.rp_txttipocambio);
         rp_swmoneda = (Switch) findViewById(R.id.rp_swmoneda);
+
+
+
+
 
         //rp_tbmoneda = (ToggleButton) findViewById(R.id.rp_tbmoneda);
 
@@ -122,14 +132,19 @@ public class Activity_Cobranza_Agregar_Pago
 
         rp_btnregistrar.setOnClickListener(OnClickListener_rp_btnregistrar);
 
+        rp_lblbancoctacte.setVisibility(View.GONE);
+        lblCtaCte.setVisibility(View.GONE);
+
         rp_swmoneda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String statusSwitch1, statusSwitch2;
-                if (rp_swmoneda.isChecked())
-                    rp_swmoneda.setText("Dolares");
-                else
-                    rp_swmoneda.setText("Soles");
+                if (rp_swmoneda.isChecked()){
+                    //rp_swmoneda.setText("Dolares");
+                }
+                else{
+                    //rp_swmoneda.setText("Soles");
+                    }
             }
         });
 
@@ -165,18 +180,24 @@ public class Activity_Cobranza_Agregar_Pago
         @Override
         public void onClick(View v) {
             try {
-                //iTabla=200 CC/BANCOS
-                iAuxiliar = 2;
-                iTabla = 200;
-                dialog_fragment_auxiliar = new Dialog_Fragment_Auxiliar();
-                dialog_fragment_auxiliar.setAuxiliarDialogfragmentListener(Activity_Cobranza_Agregar_Pago.this, iTabla, 0);
-                dialog_fragment_auxiliar.show(getSupportFragmentManager(), dialog_fragment_auxiliar.TAG);
 
+                MostrarBancos();
 
             } catch (Exception e) {
             }
         }
     };
+
+    private void MostrarBancos() {
+
+        //iTabla=200 CC/BANCOS
+        iAuxiliar = 2;
+        iTabla = 200;
+        dialog_fragment_auxiliar = new Dialog_Fragment_Auxiliar();
+        dialog_fragment_auxiliar.setAuxiliarDialogfragmentListener(Activity_Cobranza_Agregar_Pago.this, iTabla, 0);
+        dialog_fragment_auxiliar.show(getSupportFragmentManager(), dialog_fragment_auxiliar.TAG);
+
+    }
 
     @Override
     public void onTablaAuxiliarSI() {
@@ -188,8 +209,14 @@ public class Activity_Cobranza_Agregar_Pago
                 rp_lblbancoctacte.setText("");
                 if (rp_lblfpago.getTag().toString().trim().equals("E") || rp_lblfpago.getTag().toString().trim().equals("Z")) {
                     rp_lblbancoctacte.setEnabled(false);
+                    rp_lblbancoctacte.setVisibility(View.GONE);
+                    lblCtaCte.setVisibility(View.GONE);
+
                 } else {
                     rp_lblbancoctacte.setEnabled(true);
+                    rp_lblbancoctacte.setVisibility(View.VISIBLE);
+                    lblCtaCte.setVisibility(View.VISIBLE);
+                    MostrarBancos();
                 }
                 break;
             case 2:
