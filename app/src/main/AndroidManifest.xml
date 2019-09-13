@@ -130,7 +130,6 @@
         <activity
             android:name=".Cobranza.Activity_Cobranza_Editar"
             android:screenOrientation="portrait"
-            android:parentActivityName=".Cobranza.Activity_Cobranzas"
             />
 
         <activity

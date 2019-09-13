@@ -128,7 +128,7 @@ public class Activity_Login extends AppCompatActivity
             }
 
             try {
-                consultarPermiso(Manifest.permission.READ_PHONE_STATE, PHONESTATS);
+               // consultarPermiso(Manifest.permission.READ_PHONE_STATE, PHONESTATS);
             }catch (Exception e){
             }
 

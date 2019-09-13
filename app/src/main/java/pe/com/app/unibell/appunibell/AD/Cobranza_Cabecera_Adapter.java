@@ -37,10 +37,9 @@ public class Cobranza_Cabecera_Adapter
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
     private Funciones funciones = new Funciones();
-    private Integer iposition = 0;
-
     private String sID_COBRANZA;
     private String aID_COBRANZA;
+    private Integer iPocicion;
 
     public Cobranza_Cabecera_Adapter(Context context, int resource, List<Documentos_Cobra_CabBE> objects) {
         super(context, resource, objects);
@@ -51,10 +50,10 @@ public class Cobranza_Cabecera_Adapter
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         final MainHolder mainHolder;
-        if (convertView == null || !(convertView.getTag() instanceof Cobranza_Detalle_Adapter.MainHolder)) {
+        if (convertView == null || !(convertView.getTag() instanceof MainHolder)) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_cobranza_cabecera, parent, false);
             mainHolder = new MainHolder();
             mainHolder.cc_item1 = (TextView) convertView.findViewById(R.id.cc_item1);
@@ -77,8 +76,8 @@ public class Cobranza_Cabecera_Adapter
         } else {
             mainHolder = (MainHolder) convertView.getTag();
         }
+        iPocicion=position;
         final Documentos_Cobra_CabBE documentos_cobra_cabBE = getItem(position);
-        iposition=position;
 
         mainHolder.cc_item1.setText(funciones.LetraCapital(documentos_cobra_cabBE.getFPAGODESC().toString()));
 
@@ -147,13 +146,11 @@ public class Cobranza_Cabecera_Adapter
             @Override
             public void onClick(View v) {
                 try {
-                    lstFiltrado.remove(iposition);
+                   // lstFiltrado.remove(iposition);
                     editor_Shared.putString("ID_COBRANZA",aID_COBRANZA.trim());
                     editor_Shared.commit();
-
-                    notifyDataSetChanged();
                     final CharSequence[] options1 = {"Editar Registro", "Eliminar Registro"};
-                    LlamarOpciones(options1,iposition);
+                    LlamarOpciones(options1,position);
 
                 }catch (Exception ex) {
                     Toast toastCodigo = Toast.makeText(getContext(),ex.getMessage(), Toast.LENGTH_SHORT);
@@ -166,10 +163,9 @@ public class Cobranza_Cabecera_Adapter
             @Override
             public void onClick(View v) {
                 try {
-                    lstFiltrado.remove(iposition);
-                    notifyDataSetChanged();
+                    //lstFiltrado.remove(iposition);
                     final CharSequence[] options1 = {"Editar Registro", "Eliminar Registro"};
-                    LlamarOpciones(options1,iposition);
+                    LlamarOpciones(options1,position);
 
                 }catch (Exception ex) {
                     Toast toastCodigo = Toast.makeText(getContext(),ex.getMessage(), Toast.LENGTH_SHORT);

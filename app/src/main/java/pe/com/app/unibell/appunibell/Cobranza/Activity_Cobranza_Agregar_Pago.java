@@ -102,7 +102,7 @@ public class Activity_Cobranza_Agregar_Pago
         }
 
         rp_txtserie.setText("1");
-        rp_txtnumero.setText("817151");
+        rp_txtnumero.setText("829351");
 
 
         //Cargamos las cobranzas registradas hasta el momento
