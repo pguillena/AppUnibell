@@ -16,8 +16,11 @@ import android.widget.ToggleButton;
 
 import pe.com.app.unibell.appunibell.AD.Cobranza_Cabecera_Adapter;
 import pe.com.app.unibell.appunibell.AD.CtaBnco_Adapter;
+import pe.com.app.unibell.appunibell.AD.ParTabla_Adapter;
 import pe.com.app.unibell.appunibell.BL.Dpm_Packing_CabBL;
+import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.Dpm_Packing_CabDAO;
+import pe.com.app.unibell.appunibell.DAO.ParTablaDAO;
 import pe.com.app.unibell.appunibell.DAO.Recibos_CcobranzaDAO;
 import pe.com.app.unibell.appunibell.DAO.S_gem_TipoCambioDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
@@ -51,6 +54,9 @@ public class Activity_Cobranza_Agregar_Pago
     private Dpm_Packing_CabDAO dpm_packing_cabDAO = new Dpm_Packing_CabDAO();
 
     private Integer iAuxiliar = 0,iTabla=0;
+    public Integer   iMinDate = 0;;
+    private ParTablaDAO parTablaDAO = new ParTablaDAO();
+    private ParTabla_Adapter parTabla_adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,7 +204,25 @@ public class Activity_Cobranza_Agregar_Pago
         @Override
         public void onClick(View v) {
             try {
+
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
+                dataBaseHelper.createDataBase();
+                dataBaseHelper.openDataBase();
+                parTablaDAO.getByGroup("120000", "120025");
+
+                parTabla_adapter = new ParTabla_Adapter(getApplicationContext(), 0, parTablaDAO.lst);
+                parTabla_adapter.notifyDataSetChanged();
+
+                if(parTabla_adapter!=null){
+
+                    for (int i = 0; i<parTabla_adapter.getCount(); i++) {
+                        iMinDate =Integer.parseInt(parTabla_adapter.getItem(i).getVALORSUNAT());
+                    }
+                }
+
+
                 dialogFragmentFecha = new Dialogo_Fragment_Fecha();
+                ((Dialogo_Fragment_Fecha) dialogFragmentFecha).iMinDate = iMinDate;
                 dialogFragmentFecha.show(getFragmentManager(), "");
             } catch (Exception e) {
             }
