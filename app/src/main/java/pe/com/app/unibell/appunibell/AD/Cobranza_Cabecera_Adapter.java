@@ -63,10 +63,12 @@ public class Cobranza_Cabecera_Adapter
             mainHolder.cc_btn0 = (TextView) convertView.findViewById(R.id.cc_btn0);
             mainHolder.cc_btn1 = (TextView) convertView.findViewById(R.id.cc_btn1);
             mainHolder.cc_NroDoc = (TextView) convertView.findViewById(R.id.cc_NroDoc);
+            mainHolder.ln_itemcabecera = (LinearLayout) convertView.findViewById(R.id.ln_itemcabecera);
 
 
             sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
             editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+
             convertView.setTag(mainHolder);
         } else {
             mainHolder = (MainHolder) convertView.getTag();
@@ -123,19 +125,12 @@ public class Cobranza_Cabecera_Adapter
 
         String sID_COBRANZA=sharedSettings.getString("ID_COBRANZA", "0").toString().toString().trim();
         String aID_COBRANZA=documentos_cobra_cabBE.getID_COBRANZA().toString().trim();
-        /*
-        if(aID_COBRANZA.equals(sID_COBRANZA)) {
-            convertView.setBackgroundResource(R.color.list_seleccion);
-        }else{
-            convertView.setBackgroundResource(R.color.background);
-        }
-        */
 
-     /*   if(documentos_cobra_cabBE.getSALDO()>0) {
-            mainHolder.cc_item5.setBackgroundResource(R.color.colorAccent);
+        if(aID_COBRANZA.equals(sID_COBRANZA)) {
+            mainHolder.ln_itemcabecera.setBackgroundResource(R.drawable.borderradius_activo);
         }else{
-            mainHolder.cc_item5.setBackgroundResource(R.color.red_indicator);
-        }*/
+            mainHolder.ln_itemcabecera.setBackgroundResource(R.drawable.borderradius_sin_borde);
+        }
 
         mainHolder.cc_btn0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,7 +206,7 @@ public class Cobranza_Cabecera_Adapter
         TextView cc_item1,cc_item2,cc_item3,cc_item4,cc_item5, cc_NroDoc;
         EditText cc_txt1,cc_txt2;
         TextView cc_btn0,cc_btn1;
-        LinearLayout cc_lnfecnum, cc_lnfecnum2;
+        LinearLayout cc_lnfecnum, cc_lnfecnum2,ln_itemcabecera;
     }
 
     @Override

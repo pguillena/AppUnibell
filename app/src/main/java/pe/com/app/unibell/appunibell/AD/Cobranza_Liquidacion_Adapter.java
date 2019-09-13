@@ -67,9 +67,6 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
             mainHolder.lyFondoBtnEditar = (LinearLayout) view.findViewById(R.id.lyFondoBtnEditar);
 
             mainHolder.txtFechaLiquidacion = (TextView) view.findViewById(R.id.txtFechaLiquidacion);
-
-
-
             mainHolder.cl_itemchk = (CheckBox) view.findViewById(R.id.cl_itemchk);
             mainHolder.cl_itemchk
                     .setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
