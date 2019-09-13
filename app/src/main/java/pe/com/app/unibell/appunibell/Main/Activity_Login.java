@@ -524,6 +524,8 @@ public class Activity_Login extends AppCompatActivity
                     editor_Shared.putString("C_PERFIL",s_sem_usuarioDAO.lst.get(0).getC_PERFIL().toString());
                     editor_Shared.putString("ROL",s_sem_usuarioDAO.lst.get(0).getROL().toString());
                     editor_Shared.putString("VALIDA_RECIBO",s_sem_usuarioDAO.lst.get(0).getVALIDA_RECIBO().toString());
+                    editor_Shared.putString("NOMBRE_TELEFONO",funciones.getDeviceName());
+
                     editor_Shared.commit();
                     //new LoginVendedorCodAntiguoSQLite_AsyncTask().execute(sharedSettings.getString("iID_VENDEDOR", "0"));
                     startActivity(intent);

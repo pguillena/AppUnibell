@@ -921,13 +921,6 @@ public class Documentos_Cobra_CabDAO {
                     "SELECT \n" +
                             "C.NRO_OPERACION, SUM(C.M_COBRANZA) AS M_COBRANZA,  SUM(C.M_COBRANZA_D) AS M_COBRANZA_D \n"+
                             "FROM S_CCM_DOCUMENTOS_COBRA_CAB C \n" +
-                            "INNER JOIN S_CCM_DOCUMENTOS_COBRA_DET D ON (C.ID_COBRANZA = D.ID_COBRANZA)\n" +
-                            "INNER JOIN CLIENTES S ON (C.COD_CLIENTE = S.COD_CLIENTE AND S.ID_EMPRESA=1)\n" +
-                            "LEFT JOIN  TABLAS_AUXILIARES A ON (D.FPAGO = A.CODIGO AND A.TIPO = 14 AND A.ID_EMPRESA=" +  iID_EMPRESA + ") \n" +
-                            "INNER JOIN TABLAS_AUXILIARES T ON(D.TIPDOC = T.CODIGO AND T.TIPO = 2 AND T.ID_EMPRESA=" +  iID_EMPRESA + " )\n" +
-                            "LEFT JOIN CTABNCO B ON(C.CTACORRIENTE_BANCO = B.CODIGO and B.ID_EMPRESA=" +  iID_EMPRESA + ") \n" +
-                            "LEFT JOIN S_GEM_BANCO SB ON(C.ID_BANCO = SB.ID_BANCO AND SB.ID_EMPRESA =" +  iID_EMPRESA + ") \n" +
-                            "LEFT JOIN S_GEM_VENDEDOR_CODIGO_ANT VA ON(C.ID_COBRADOR = VA.ID_VENDEDOR AND VA.FLAG_VIGENCIA>0)" +
                             "WHERE (C.ID_COBRADOR ="+ iID_COBRADOR + " OR ( " + iID_COBRADOR + " IN(8719,15737) AND C.C_PACKING>0) )\n" +
                             " AND (  substr(C.FECHA,7,4) || substr(C.FECHA,4,2) || substr(C.FECHA,1,2)  BETWEEN '"+ iFECHA +"' AND '" + iFECHA +"'" + " OR '" + iFECHA + "' = '' )" +
                             "AND (C.ESTADO =" +  iESTADO + " OR " +  iESTADO + "= 0)\n" +

@@ -472,14 +472,14 @@ public class Fragment_Cobranza extends Fragment implements
                     factCobBE.setESTADO("40003");
                     factCobBE.setCTACTBLE("");
                     factCobBE.setF_RECEPCION("");
-                    factCobBE.setC_USUARIO(sharedSettings.getString("Usuario", "").toString());
+                    factCobBE.setC_USUARIO(sharedSettings.getString("USUARIO", "").toString());
                     factCobBE.setC_PERFIL("");
-                    factCobBE.setC_CPU(sharedSettings.getString("sIMEI", "").toString());
+                    factCobBE.setC_CPU(sharedSettings.getString("NOMBRE_TELEFONO", "").toString());
                     factCobBE.setFEC_REG(funciones.FechaActual());
                     factCobBE.setC_USUARIO_MOD(sharedSettings.getString("sIMEI", "").toString());
                     factCobBE.setC_PERFIL_MOD("");
                     factCobBE.setFEC_MOD(funciones.FechaActual());
-                    factCobBE.setC_CPU_MOD(sharedSettings.getString("sIMEI", "").toString());
+                    factCobBE.setC_CPU_MOD(sharedSettings.getString("NOMBRE_TELEFONO", "").toString());
                     factCobBE.setN_SERIE_RECIBO_COBRA("");
                     factCobBE.setN_RECIBO_COBRA(0);
                     factCobBE.setANO_PROVISION(0);
@@ -513,8 +513,8 @@ public class Fragment_Cobranza extends Fragment implements
                     documentos_cobra_detBE.setFECHA_MODIFICACION(funciones.FechaActual());
                     documentos_cobra_detBE.setUSUARIO_REGISTRO(sharedSettings.getString("USUARIO", "").toString());
                     documentos_cobra_detBE.setUSUARIO_MODIFICACION(sharedSettings.getString("USUARIO", "").toString());
-                    documentos_cobra_detBE.setPC_REGISTRO(sharedSettings.getString("sIMEI", "").toString());
-                    documentos_cobra_detBE.setPC_MODIFICACION(sharedSettings.getString("sIMEI", "").toString());
+                    documentos_cobra_detBE.setPC_REGISTRO(sharedSettings.getString("NOMBRE_TELEFONO", "").toString());
+                    documentos_cobra_detBE.setPC_MODIFICACION(sharedSettings.getString("NOMBRE_TELEFONO", "").toString());
                     documentos_cobra_detBE.setIP_REGISTRO(sharedSettings.getString("sIMEI", "").toString());
                     documentos_cobra_detBE.setIP_MODIFICACION(sharedSettings.getString("sIMEI", "").toString());
                     //Campo VenDed del Factcob
@@ -681,9 +681,9 @@ public class Fragment_Cobranza extends Fragment implements
             documentos_cobra_cabBE.setUSUARIO_REGISTRO(sharedSettings.getString("USUARIO", "").toString());
             documentos_cobra_cabBE.setUSUARIO_MODIFICACION(sharedSettings.getString("USUARIO", "").toString());
             //Registrar IMEI
-            documentos_cobra_cabBE.setPC_REGISTRO(sharedSettings.getString("sIMEI", "").toString());
+            documentos_cobra_cabBE.setPC_REGISTRO(sharedSettings.getString("NOMBRE_TELEFONO", "").toString());
             //Registrar IMEI
-            documentos_cobra_cabBE.setPC_MODIFICACION(sharedSettings.getString("sIMEI", "").toString());
+            documentos_cobra_cabBE.setPC_MODIFICACION(sharedSettings.getString("NOMBRE_TELEFONO", "").toString());
             documentos_cobra_cabBE.setIP_REGISTRO(sharedSettings.getString("sIMEI", "").toString());
             documentos_cobra_cabBE.setIP_MODIFICACION(sharedSettings.getString("sIMEI", "").toString());
             //Secuencia de cabecera para el registro(Tipo Entero)
@@ -795,8 +795,8 @@ public class Fragment_Cobranza extends Fragment implements
             documentos_cobra_detBE.setFECHA_MODIFICACION(funciones.FechaActual());
             documentos_cobra_detBE.setUSUARIO_REGISTRO(sharedSettings.getString("USUARIO", "").toString());
             documentos_cobra_detBE.setUSUARIO_MODIFICACION(sharedSettings.getString("USUARIO", "").toString());
-            documentos_cobra_detBE.setPC_REGISTRO(sharedSettings.getString("sIMEI", "").toString());
-            documentos_cobra_detBE.setPC_MODIFICACION(sharedSettings.getString("sIMEI", "").toString());
+            documentos_cobra_detBE.setPC_REGISTRO(sharedSettings.getString("NOMBRE_TELEFONO", "").toString());
+            documentos_cobra_detBE.setPC_MODIFICACION(sharedSettings.getString("NOMBRE_TELEFONO", "").toString());
             documentos_cobra_detBE.setIP_REGISTRO(sharedSettings.getString("sIMEI", "").toString());
             documentos_cobra_detBE.setIP_MODIFICACION(sharedSettings.getString("sIMEI", "").toString());
             //Campo VenDed del Factcob
