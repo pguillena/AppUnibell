@@ -113,6 +113,7 @@ public class Activity_Login extends AppCompatActivity
         getSupportActionBar().hide();
         try {
             PackageInfo pInfo = null;
+            String sValor="",versionCode="";
 
             try {
                 sharedSettings = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
@@ -128,8 +129,23 @@ public class Activity_Login extends AppCompatActivity
             }
 
             try {
-               // consultarPermiso(Manifest.permission.READ_PHONE_STATE, PHONESTATS);
+                sValor=UtilLibrary.fnNumIMEI(ctx).toString().trim();
+
+                if(sValor.equals("")){
+                    sValor=UtilLibrary.fnNumEquipo(ctx).toString().trim();
+                }
+
+                if(sValor.equals("")){
+                    sValor=UtilLibrary.fnNumSim(ctx).toString().trim();
+                }
+                editor_Shared.putString("sIMEI",sValor);
+                editor_Shared.commit();
+
+                String version = pInfo.versionName;
+                versionCode =  String.valueOf(pInfo.versionCode);
+
             }catch (Exception e){
+                versionCode="0";
             }
 
             if (ContextCompat.checkSelfPermission(this,
@@ -147,8 +163,7 @@ public class Activity_Login extends AppCompatActivity
                 }
             }
 
-            String version = pInfo.versionName;
-            versionCode = pInfo.versionCode;
+
             btLogin=(Button) findViewById(R.id.btLogin);
             edtUserName=(EditText)findViewById(R.id.LogEdtUserName);
             edtUserPass=(EditText)findViewById(R.id.LogEdtUserPass);
@@ -225,38 +240,42 @@ public class Activity_Login extends AppCompatActivity
 
         @Override
         public void onClick(View anchorView) {
-
-
-
             PopupWindow popup = new PopupWindow(Activity_Login.this);
-            View layout = getLayoutInflater().inflate(R.layout.popup_login, null);
-            TextView lblVersion = (TextView)layout.findViewById(R.id.lblPopupLogin);
 
             try {
-                lblVersion.setText(String.format(getResources().getString(R.string.version_text), versionCode) + "\n" + String.format(getResources().getString(R.string.imei_text), UtilLibrary.fnNumIMEI(ctx)));
-                // lblVersion.setText("Version: 1" +"\n" + "IMEI: " + "65464adf684123");
+                String sValor="";
+                String sValor2="";
+                String sValor3="";
+
+                View layout = getLayoutInflater().inflate(R.layout.popup_login, null);
+                TextView lblVersion = (TextView)layout.findViewById(R.id.lblPopupLogin);
+
+                sValor=String.format(getResources().getString(R.string.version_text), versionCode);
+                sValor2=getResources().getString(R.string.imei_text);
+                sValor3=sharedSettings.getString("sIMEI", "").toString();
+
+                lblVersion.setText(sValor + "\n" + sValor3.toString() );
+
+                popup.setContentView(layout);
+                // Set content width and height
+                popup.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+                popup.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
+
+                // Closes the popup window when touch outside of it - when looses focus
+                popup.setOutsideTouchable(true);
+                popup.setFocusable(true);
+                // Show anchored to button
+                popup.setBackgroundDrawable(new BitmapDrawable());
+
+                int x = (int)btnInfoLogin.getX()-385;
+                int y = (int)btnInfoLogin.getY()-350;
+
+                popup.showAsDropDown(btnInfoLogin, x, y);
+               // popup.showAsDropDown(btnInfoLogin);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            popup.setContentView(layout);
-
-            // Set content width and height
-            popup.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-            popup.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
-
-            // Closes the popup window when touch outside of it - when looses focus
-            popup.setOutsideTouchable(true);
-            popup.setFocusable(true);
-            // Show anchored to button
-            popup.setBackgroundDrawable(new BitmapDrawable());
-            //  popup.showAsDropDown(anchorView);
-            // popup.showAsDropDown(btnInfoLogin, 100, -230);
-
-            int x = (int)btnInfoLogin.getX()-385;
-            int y = (int)btnInfoLogin.getY()-350;
-
-            popup.showAsDropDown(btnInfoLogin, x, y);
-
         }
     };
 

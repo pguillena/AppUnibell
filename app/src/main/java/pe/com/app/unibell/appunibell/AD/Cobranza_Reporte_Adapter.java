@@ -176,8 +176,13 @@ public class Cobranza_Reporte_Adapter extends ArrayAdapter<CobranzaReporteBE> im
             } else {
                 List<CobranzaReporteBE> localList = new ArrayList<>();
                 String[] SSA=constraint.toString().toUpperCase().split(" ");
+
                 for (CobranzaReporteBE cobranzaReporteBE : lst) {
-                    String todo = (cobranzaReporteBE.getCOD_CLIENTE().toString());
+                    String todo = (cobranzaReporteBE.getCOD_CLIENTE().toString() +
+                                   cobranzaReporteBE.getRAZON_SOCIAL().toString()+
+                                   cobranzaReporteBE.getENTIDAD().toString()+
+                                   cobranzaReporteBE.getN_RECIBO().toString()+
+                                   cobranzaReporteBE.getPLANILLA().toString());
                     Boolean bfind = true;
                     for(String s : SSA){
                         if(!todo.contains(s)){

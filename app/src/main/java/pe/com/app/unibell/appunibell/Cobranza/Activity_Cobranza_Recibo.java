@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.WindowManager;
 
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
@@ -65,6 +66,17 @@ public class Activity_Cobranza_Recibo extends AppCompatActivity
         fragment_cobranza.setFecha(fecha);
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
 

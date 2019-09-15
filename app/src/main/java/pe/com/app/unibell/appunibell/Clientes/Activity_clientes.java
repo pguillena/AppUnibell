@@ -107,10 +107,6 @@ public class Activity_clientes extends AppCompatActivity  {
                 colorOjito = 0;
                 Cargar();
             }
-
-
-
-
         }
 
     };
@@ -120,17 +116,14 @@ public class Activity_clientes extends AppCompatActivity  {
 
         @Override
         public void onClick(View view) {
-
-                BuscarCliente();
+          BuscarCliente();
         }
 
 
     };
 
     private void BuscarCliente() {
-
         try {
-
         Intent intent = new Intent(Activity_clientes.this, Activity_FiltroClientes.class);
 
         intent.putExtra("txtRazonSocial",hdfRazonSocial);

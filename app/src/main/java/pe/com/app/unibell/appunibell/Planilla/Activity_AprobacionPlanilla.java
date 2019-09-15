@@ -79,6 +79,7 @@ public class Activity_AprobacionPlanilla extends AppCompatActivity
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_aprobacion, menu);
@@ -93,6 +94,7 @@ public class Activity_AprobacionPlanilla extends AppCompatActivity
 
         return super.onCreateOptionsMenu(menu);
     }
+
 
     @Override
     protected void onStart() {

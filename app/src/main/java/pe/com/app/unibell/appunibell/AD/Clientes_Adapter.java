@@ -98,8 +98,6 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
                 editor_Shared.putString("sN_SERIE_RECIBO", "");
                 editor_Shared.putString("sN_RECIBO", "");
 
-                editor_Shared.commit();
-
                 Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Recibo.class);
                 intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
                 getContext().startActivity(intent);
@@ -118,6 +116,11 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
                     editor_Shared.putString("CODIGO_ANTIGUO", clienteBE.getCODIGO_ANTIGUO().toString());
                     editor_Shared.putString("RAZON_SOCIAL", clienteBE.getRAZON_SOCIAL().toString());
                     editor_Shared.putString("PAE", clienteBE.getM_PAE().toString());
+
+                    editor_Shared.putString("cpserie","");
+                    editor_Shared.putString("cpnumero","");
+                    editor_Shared.putString("cpfplanilla", "");
+                    editor_Shared.commit();
 
                     editor_Shared.commit();
 

@@ -176,11 +176,6 @@ public class Fragment_Cobranza extends Fragment implements
             dataBaseHelper.createDataBase();
             dataBaseHelper.openDataBase();
 
-             /*
-            Globals g = (Globals)getActivity().getApplication();
-            g.setIntentCobranzaCab(cobranza_cabecera_adapter);
-            */
-
             co_lblcliente = (TextView) view.findViewById(R.id.co_lblcliente);
             //co_lblfecha = (TextView) view.findViewById(R.id.co_lblfecha);
             co_btnagregarpago = (TextView) view.findViewById(R.id.co_btnagregarpago);
@@ -214,6 +209,10 @@ public class Fragment_Cobranza extends Fragment implements
                 MAX_CODUNICO = sistemaDAO.MAX_REGISTRO("S_CCM_DOCUMENTOS_COBRA_CAB", "ID_CORREL2");
                 editor_Shared.putString("MAX_CODUNICO", MAX_CODUNICO.toString());
                 editor_Shared.commit();
+
+                Globals g = (Globals)getActivity().getApplication();
+                g.setIntentCobranzaCab(cobranza_cabecera_adapter);
+
                 comunicator.AgregarPago();
             }
 
@@ -415,7 +414,10 @@ public class Fragment_Cobranza extends Fragment implements
         @Override
         public void onClick(View v) {
             try {
-                comunicator.AgregarPago();
+              Globals g = (Globals)getActivity().getApplication();
+              g.setIntentCobranzaCab(cobranza_cabecera_adapter);
+
+            comunicator.AgregarPago();
             } catch (Exception e) {
             }
         }

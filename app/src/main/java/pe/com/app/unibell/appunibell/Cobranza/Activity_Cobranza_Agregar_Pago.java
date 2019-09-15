@@ -90,11 +90,15 @@ public class Activity_Cobranza_Agregar_Pago
         rp_txttipocambio = (TextView)findViewById(R.id.rp_txttipocambio);
         rp_swmoneda = (Switch) findViewById(R.id.rp_swmoneda);
 
+        if(!sharedSettings.getString("cpfplanilla", "").toString().equals("")){
+            rp_txtserie.setText(sharedSettings.getString("cpserie", "").toString());
+            rp_txtnumero.setText(sharedSettings.getString("cpnumero", "").toString());
+            rp_lblfplanilla.setText(sharedSettings.getString("cpfplanilla", "").toString());
 
-
-
-
-        //rp_tbmoneda = (ToggleButton) findViewById(R.id.rp_tbmoneda);
+            rp_txtserie.setEnabled(false);
+            rp_txtnumero.setEnabled(false);
+            rp_lblfplanilla.setEnabled(false);
+        }
 
         rp_lblfpago.setTag("0");
         rp_lblbancoctacte.setTag("0");
@@ -111,21 +115,9 @@ public class Activity_Cobranza_Agregar_Pago
             rp_lblbancoctacte.setTag("0");
             rp_lblbancoctacte.setText("");
             dpm_packing_cabDAO.getAll(sharedSettings.getString("C_PACKING", "").toString());
-
             rp_lblfplanilla.setText(dpm_packing_cabDAO.lst.get(0).getF_PACKING());
-
-
         }
 
-        rp_txtserie.setText("1");
-        rp_txtnumero.setText("829351");
-
-
-        //Cargamos las cobranzas registradas hasta el momento
-       /*
-        Globals g = (Globals) getApplication();
-        cobranza_cabecera_adapter  = (Cobranza_Cabecera_Adapter) g.getIntentCobranzaCab();
-        */
         rp_lblfpago.setOnClickListener(OnClickList_rp_lblfpago);
         rp_lblfplanilla.setOnClickListener(OnClickList_rp_lblfplanilla);
         rp_lblbancoctacte.setOnClickListener(OnClickList_rp_lblbancoctacte);
@@ -134,7 +126,6 @@ public class Activity_Cobranza_Agregar_Pago
 
         rp_lblbancoctacte.setVisibility(View.GONE);
         lblCtaCte.setVisibility(View.GONE);
-
 
         rp_swmoneda.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -262,6 +253,22 @@ public class Activity_Cobranza_Agregar_Pago
         @Override
         public void onClick(View view) {
             try {
+
+                Globals g = (Globals) getApplication();
+                cobranza_cabecera_adapter  = (Cobranza_Cabecera_Adapter) g.getIntentCobranzaCab();
+                Boolean iExiste=false;
+                if (cobranza_cabecera_adapter!=null){
+                    for (int j = 0; j < cobranza_cabecera_adapter.lst.size(); j++) {
+                        if(cobranza_cabecera_adapter.lst.get(j).getFPAGO().toString().trim().equals("E")){
+                            iExiste=true;
+                        }
+                    }
+                }
+                if(iExiste==true){
+                    Mensaje("Ya existe un pago en efectivo");
+                    return;
+                }
+
                 if (ValidarGeneral()==false){return;}
                 // TODO Auto-generated method stub
                 Intent data = new Intent();
@@ -300,10 +307,14 @@ public class Activity_Cobranza_Agregar_Pago
 
         if (rp_txtserie.getText().toString().trim().equals("")) {
             Mensaje("Ingrese serie de decumento");
+            rp_txtserie.requestFocus();
+            MostrarTeclado();
             return false;
         }
         if (rp_txtnumero.getText().toString().trim().equals("")) {
             Mensaje("Ingrese número de documento");
+            rp_txtnumero.requestFocus();
+            MostrarTeclado();
             return false;
         }
         if (rp_lblfplanilla.getText().toString().trim().equals("")) {
@@ -319,6 +330,7 @@ public class Activity_Cobranza_Agregar_Pago
 
         if (!fpago.equals("E") && !fpago.equals("Z")) {
             if (rp_lblbancoctacte.getText().toString().trim().equals("")) {
+                rp_lblbancoctacte.requestFocus();
                 if (fpago.equals("C")) {
                     Mensaje("Seleccione un banco");
                 } else {
@@ -357,6 +369,8 @@ public class Activity_Cobranza_Agregar_Pago
         Double dmonto = 0.0;
         if (rp_txtmonto.getText().toString().trim().equals("")) {
             Mensaje("Ingrese monto válido");
+            rp_txtmonto.requestFocus();
+            MostrarTeclado();
         }
 
         dmonto = Double.valueOf(rp_txtmonto.getText().toString());
@@ -436,6 +450,10 @@ public class Activity_Cobranza_Agregar_Pago
         editor_Shared.putString("dTIPO_CAMBIO", dTipocambio.toString());
         editor_Shared.commit();
 
+    }
+
+    private void MostrarTeclado(){
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 
     @Override

@@ -5,11 +5,13 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import pe.com.app.unibell.appunibell.AD.Cobranza_Cabecera_Adapter;
+
 /**
  * Created by RENAN on 18/08/2016.
  */
 public class Globals extends Application {
-    public Object IntentCobranzaCab;
+    public Cobranza_Cabecera_Adapter IntentCobranzaCab;
     public Object IntentAdapterMenuString;
     private static Globals instance = new Globals();
 
@@ -21,11 +23,11 @@ public class Globals extends Application {
         return instance;
     }
 
-    public Object getIntentCobranzaCab() {
+    public Cobranza_Cabecera_Adapter getIntentCobranzaCab() {
         return IntentCobranzaCab;
     }
 
-    public void setIntentCobranzaCab(Object intentCobranzaCab) {
+    public void setIntentCobranzaCab(Cobranza_Cabecera_Adapter intentCobranzaCab) {
         IntentCobranzaCab = intentCobranzaCab;
     }
 

@@ -35,6 +35,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
     public Context context;
+
     public AsyncTask_Recibo(Context context){
         this.context =context;
     }
@@ -93,17 +94,6 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
             document.addTitle(TITLE);
             XMLWorkerHelper worker = XMLWorkerHelper.getInstance();
             try {
-                //LOGO
-            /*   Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                Image imagen = Image.getInstance(stream.toByteArray());
-                imagen.scaleToFit(160, 200);
-                imagen.setBorderColor(BaseColor.WHITE);
-                imagen.setBackgroundColor(BaseColor.WHITE);
-                imagen.setAlignment(Chunk.ALIGN_LEFT);
-                document.add(imagen);
-                */
 
                 sharedSettings =context.getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
                 editor_Shared = context.getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
@@ -135,9 +125,7 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
     @Override
     protected void onPostExecute(Boolean exist) {
         try {
-
             if(exist){
-
 
                 DocumentoCreado(SOPCION,nombre_completo);
             }

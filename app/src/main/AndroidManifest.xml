@@ -18,6 +18,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
+        android:name=".Util.Globals"
         android:allowBackup="true"
         android:icon="@drawable/favicon"
         android:label="@string/app_name"
@@ -116,7 +117,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Cobranza.Activity_Cobranza_Recibo"
-            android:parentActivityName=".Clientes.Activity_clientes"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Planilla.Activity_FlujoSeguimiento"

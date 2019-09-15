@@ -216,14 +216,17 @@ public class Activity_Cobranza_Editar
 
     private Boolean ValidarGeneral() {
         if (ch_lblbanco.getText().toString().trim().equals("")) {
+            ch_lblbanco.requestFocus();
             Mensaje(ch_lbl1.getText().toString());
             return false;
         }
         if (ch_lblnumero.getText().toString().trim().equals("")) {
+            ch_lblnumero.requestFocus();
             Mensaje(ch_lbl2.getText().toString());
             return false;
         }
         if (ch_lblfplanilla.getText().toString().trim().equals("")) {
+            ch_lblfplanilla.requestFocus();
             Mensaje(ch_lbl3.getText().toString());
             return false;
         }

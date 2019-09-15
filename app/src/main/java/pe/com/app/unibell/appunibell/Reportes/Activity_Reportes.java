@@ -6,13 +6,20 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.text.InputType;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONObject;
 
+import pe.com.app.unibell.appunibell.AD.Clientes_Adapter;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Aprobacion_Planilla_Adapter;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Reporte_Adapter;
 import pe.com.app.unibell.appunibell.BL.Cobranzas_ReporteBL;
@@ -75,6 +82,46 @@ public class Activity_Reportes extends AppCompatActivity {
 
         }
     };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mnu_filtro_list, menu);
+        final MenuItem ic_action_refresh = menu.findItem(R.id.ic_action_refresh);
+        final MenuItem ic_action_buscar = menu.findItem(R.id.ic_action_buscar);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(ic_action_buscar);
+        searchView.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+
+        searchView.setQueryHint("Ingrese dato a buscar");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (TextUtils.isEmpty(newText)) {
+                    if(cr_lsdetalle.getAdapter()!=null) {
+                        Cobranza_Reporte_Adapter ca = (Cobranza_Reporte_Adapter) cr_lsdetalle.getAdapter();
+                        ca.getFilter().filter(newText);
+                    }
+                } else {
+                    Cobranza_Reporte_Adapter ca = (Cobranza_Reporte_Adapter) cr_lsdetalle.getAdapter();
+                    ca.getFilter().filter(newText);
+                }
+                return true;
+            }
+        });
+
+        ic_action_refresh.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Cargar();
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

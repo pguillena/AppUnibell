@@ -37,15 +37,30 @@ public class UtilLibrary {
 
 
     public static String fnNumEquipo(Context paramContext){
-        return ((TelephonyManager)paramContext.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
+        String sValor="";
+        try {
+            sValor= ((TelephonyManager)paramContext.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
+        }catch (SecurityException e){
+        }
+       return sValor;
     }
 
     public static String fnNumIMEI(Context paramContext){
-        return ((TelephonyManager)paramContext.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+        String sValor="";
+        try {
+            sValor=((TelephonyManager)paramContext.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+        }catch (SecurityException e){
+        }
+        return sValor;
     }
 
     public static String fnNumSim(Context paramContext){
-        return ((TelephonyManager)paramContext.getSystemService(Context.TELEPHONY_SERVICE)).getSimSerialNumber();
+        String sValor="";
+        try {
+            sValor=((TelephonyManager)paramContext.getSystemService(Context.TELEPHONY_SERVICE)).getSimSerialNumber();
+        }catch (SecurityException e){
+        }
+        return sValor;
     }
 
 
