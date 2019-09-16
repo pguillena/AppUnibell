@@ -264,7 +264,8 @@ public class Activity_Cobranza_Agregar_Pago
                         }
                     }
                 }
-                if(iExiste==true){
+
+                if(iExiste==true && rp_lblfpago.getTag().toString().trim().equals("E")){
                     Mensaje("Ya existe un pago en efectivo");
                     return;
                 }
