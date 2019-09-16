@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import pe.com.app.unibell.appunibell.R;
 public class Activity_FiltroClientes extends AppCompatActivity {
 
     private EditText txtRUC, txtCodigoCliente, txtDNI, txtCpacking, txtGrupo;
+    private TextView lblBuscarCliente6;
     private Button btnBuscarCientes;
     private AppCompatAutoCompleteTextView txtRazonSocial;
     private ClientesDAO clientesDAO = new ClientesDAO();
@@ -44,7 +46,7 @@ public class Activity_FiltroClientes extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Filtro de Clientes");
+        getSupportActionBar().setTitle("Filtro de clientes");
         getSupportActionBar().setSubtitle("");
 
         sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
@@ -57,6 +59,19 @@ public class Activity_FiltroClientes extends AppCompatActivity {
         txtDNI = (EditText)findViewById(R.id.cl_txtdni);
         txtCpacking = (EditText)findViewById(R.id.cl_txtpdespacho);
         txtGrupo = (EditText)findViewById(R.id.cl_txtgrupo);
+        lblBuscarCliente6 = (TextView)findViewById(R.id.lblBuscarCliente6);
+
+        lblBuscarCliente6.setVisibility(View.GONE);
+        txtCpacking.setVisibility(View.GONE);
+
+        //(usuario.ROL == (int)EnumRoles.LiquidadorCobranzaDespacho || usuario.ROL == (int)EnumRoles.RegistradorPedidos)
+        if(sharedSettings.getString("ROL", "").toString().equals("130019") || sharedSettings.getString("ROL", "").toString().equals("130008"))
+        {
+            lblBuscarCliente6.setVisibility(View.VISIBLE);
+            txtCpacking.setVisibility(View.VISIBLE);
+        }
+
+
 
         Bundle parametros = getIntent().getExtras();
 
@@ -71,6 +86,8 @@ public class Activity_FiltroClientes extends AppCompatActivity {
         AutoComplete();
         btnBuscarCientes = (Button)findViewById(R.id.cl_lblbuscarClientes);
         btnBuscarCientes.setOnClickListener(OnClickListener_btnBuscarCientes);
+
+
 
     }
 
