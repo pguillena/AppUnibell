@@ -138,5 +138,39 @@ public class S_Sem_UsuarioBL {
     }
 
 
+    public JSONObject getUsuarioMD5(String newURL) {
+        S_Sem_UsuarioBE s_sem_usuarioBE = null;
+        JSONObject jsonObjectRest =null;
+        JSONObject jsonObjectResult = new JSONObject();
+        try {
+            lst=new ArrayList<S_Sem_UsuarioBE>();
+            lst.clear();
+            String aux = new RestClientLibrary().get(newURL);
+            jsonObjectRest = new JSONObject(aux);
+            //EVALUAMOS EL STATUS
+            if (jsonObjectRest.getInt("status")!=1) {
+            } else{
+                for(int i=0;i<jsonObjectRest.getJSONArray("datos").length();i++) {
+                    JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(i);
+                    s_sem_usuarioBE = new S_Sem_UsuarioBE();
+                    s_sem_usuarioBE.setID_PERSONA(jsonObjectItem.getInt("ID_PERSONA"));
+                    lst.add(s_sem_usuarioBE);
+                }
+            }
+            //CREAMOS UN JSON PARA MOSTRAR EL STATUS Y MESSAGE
+            jsonObjectResult.accumulate("status", jsonObjectRest.getInt("status"));
+            jsonObjectResult.accumulate("message", jsonObjectRest.getString("message"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                jsonObjectResult.accumulate("status", 0);
+                jsonObjectResult.accumulate("message", e.getMessage());
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return jsonObjectResult;
+    }
+
 
 }

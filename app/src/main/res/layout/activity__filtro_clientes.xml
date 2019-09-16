@@ -85,7 +85,7 @@
                 android:padding="15dp"
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:inputType="number"
-
+                android:maxLines="1"
                 />
 
 
@@ -110,7 +110,7 @@
                 android:padding="15dp"
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:inputType="number"
-
+                android:maxLines="1"
                 />
 
     <TextView
@@ -132,7 +132,7 @@
         android:textSize="16dp"
         android:padding="15dp"
         style="@style/SkyTextViewStyleUnibellBusquedaCliente"
-
+        android:maxLines="1"
         android:inputType="number"
         />
 
@@ -157,7 +157,7 @@
                 android:padding="15dp"
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:inputType="number"
-
+                android:maxLines="1"
                 />
 
 

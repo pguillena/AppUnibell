@@ -54,6 +54,7 @@ public interface ConstantsLibrary {
         public static final String blsucursales = "/blsucursales";
         public static final String bltablas_auxiliares = "/bltablas_auxiliares";
         public static final String bls_sem_menu = "/bls_sem_menu";
+        public static final String bls_rec_usuario = "/bls_rec_usuario";
 
 
         public static final String bls_gea_vendedor_cliente = "/bls_gea_vendedor_cliente";

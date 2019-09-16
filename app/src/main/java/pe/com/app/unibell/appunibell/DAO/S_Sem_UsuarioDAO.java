@@ -134,8 +134,8 @@ public class S_Sem_UsuarioDAO {
                     " LEFT JOIN S_GEM_PERSONA P ON(A.ID_PERSONA = P.ID_PERSONA) " +
                     "LEFT JOIN S_SEA_USUARIO_LOCAL B ON(A.ID_PERSONA=B.ID_PERSONA) " +
                     "LEFT JOIN S_GEM_VENDEDOR V ON V.ID_PERSONA=A.ID_PERSONA " +
-                    "WHERE Upper(CREDENCIAL)='" + USU_NOMBRE.toUpperCase()  + "'";
-                     //" AND CLAVE=" + funciones.md5(CLAVE)
+                    "WHERE Upper(CREDENCIAL)='" + USU_NOMBRE.toUpperCase()  + "'" ;
+                    //" AND CLAVE=" + funciones.md5(CLAVE); //se valida desde la BD
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
 
             lst = new ArrayList<S_Sem_UsuarioBE>();

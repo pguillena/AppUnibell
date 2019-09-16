@@ -486,6 +486,11 @@ public class Activity_Login extends AppCompatActivity
             }
         };
     */
+
+
+
+
+
     View.OnClickListener OnClickList_btLogin=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -493,11 +498,18 @@ public class Activity_Login extends AppCompatActivity
             if (edtUserName.getText().toString().trim().length() == 0 || edtUserPass.getText().toString().trim().length() ==0) {
                 new ToastLibrary(Activity_Login.this,"Ingrese Usuario y Password.").Show();
             }else{
-                // Intent intent = new Intent(Activity_Login.this, Activity_Login_Local.class);
-                //intent.putExtra("edtUserName", edtUserName.getText().toString());
-                //intent.putExtra("edtUserPass", edtUserPass.getText().toString());
-                //startActivity(intent);
-                new LoginUsuarioSQLite_AsyncTask().execute(edtUserName.getText().toString().trim().toUpperCase(), edtUserPass.getText().toString().trim().toUpperCase());
+
+                try {
+                    new S_Sem_UsuarioBL_RecuperarUsuarioMD5().execute(
+                            ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_rec_usuario + '/'
+                                    + edtUserName.getText().toString().trim().toUpperCase()+ '/'
+                                    + edtUserPass.getText().toString().trim());
+
+                } catch (Exception ex) {
+                    new ToastLibrary(Activity_Login.this,"Usuario o contraseña invalidos.").Show();
+                }
+
+
 
             }
         }
@@ -528,10 +540,18 @@ public class Activity_Login extends AppCompatActivity
 
         @Override
         protected void onPreExecute() {
+            s_sem_usuarioPG = new Dialog_Fragment_Progress();
+            s_sem_usuarioPG.setMensaje("Obteniendo empresas y locales...");
+            s_sem_usuarioPG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
         }
 
         @Override
         protected void onPostExecute(String restResult) {
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            if (s_sem_usuarioPG != null && s_sem_usuarioPG.isVisible()) {
+                s_sem_usuarioPG.dismiss();
+            }
+
             super.onPostExecute(restResult);
             try {
                 if(s_sem_usuarioDAO.lst.size()>0) {
@@ -628,6 +648,10 @@ public class Activity_Login extends AppCompatActivity
             }
         }
     }
+
+
+
+
     public class S_Sem_EmpresaBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
@@ -1023,11 +1047,67 @@ public class Activity_Login extends AppCompatActivity
 
 
 
+
+
+
+
     @Override
     protected void onStart() {
         //SE EJECUTA ANTES DE QUE LA APLICACION SEA VISIBLE
         super.onStart();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
+
+
+
+    public class S_Sem_UsuarioBL_RecuperarUsuarioMD5 extends AsyncTask<String, String, JSONObject> {
+        /*ASYNCTASK<Parametros, Progreso, Resultado>
+        DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
+        private volatile boolean running = true;
+
+        @Override
+        protected void onPreExecute() {
+            s_sem_usuarioPG = new Dialog_Fragment_Progress();
+            s_sem_usuarioPG.setMensaje("Validando..");
+            s_sem_usuarioPG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            return s_sem_usuarioBL.getUsuarioMD5(p[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            if (s_sem_usuarioPG != null && s_sem_usuarioPG.isVisible()) {
+                s_sem_usuarioPG.dismiss();
+            }
+
+            try {
+                if (result.getInt("status")!=1) {
+                    //MOSTRAMOS MESSAGE
+                    new ToastLibrary(Activity_Login.this, result.getString("message") + ":Usuarios").Show();
+                }
+                else if (result.getInt("status")==1 && result.getString("message").equals("0"))
+                {
+                    new ToastLibrary(Activity_Login.this, "Usuario o contraseña incorrectos").Show();
+                }
+                else
+                {
+                    if(s_sem_usuarioBL.lst!=null && s_sem_usuarioBL.lst.size()>0) {
+                        new LoginUsuarioSQLite_AsyncTask().execute(edtUserName.getText().toString().trim().toUpperCase(), edtUserPass.getText().toString().trim().toUpperCase());
+                    }
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }
+
+
 
 }

@@ -212,6 +212,9 @@ $app->get('/bltablas_auxiliares/:p1/:p2', 'bltablas_auxiliares:SelectAll');
 $app->get('/blfactcob/:p1/:p2/:p3', 'blfactcob:SelectAll');
 $app->get('/blctabnco_empresa_local/:p1/:p2', 'blctabnco_empresa_local:SelectAll');
 
+$app->get('/bls_rec_usuario/:p1/:p2', 'bls_sem_usuario:RecuperarUsuarioMD5');
+
+
 $app->get('/bldocuvent/:p1/:p2/:p3', 'bldocuvent:SelectAll');
 $app->get('/bldpm_packing_cab/:p1/:p2/:p3', 'bldpm_packing_cab:SelectAll');
 $app->get('/bldpm_personal_transporte/:p1/:p2', 'bldpm_personal_transporte:SelectAll');

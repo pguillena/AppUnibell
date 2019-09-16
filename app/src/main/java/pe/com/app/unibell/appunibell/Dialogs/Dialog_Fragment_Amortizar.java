@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import pe.com.app.unibell.appunibell.R;
+import pe.com.app.unibell.appunibell.Util.Funciones;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -53,20 +54,13 @@ public class Dialog_Fragment_Amortizar extends DialogFragment {
 
         am_lbldocumento.setText(sharedSettings.getString("aDOCUMENTO", "").toString());
         am_lblsaldo.setText("S/ " + sharedSettings.getString("aSALDO", "0.00").toString());
-        am_lblmonto.setText(sharedSettings.getString("aSALDO", "0.00").toString());
+        am_lblmonto.setText(sharedSettings.getString("aSALDO", "0.00").toString().replace(",",""));
 
-        if(Double.valueOf(sharedSettings.getString("aSALDO", "0.00").toString()) > Double.valueOf(sharedSettings.getString("SALDO_CABECERA", "0.00").toString()))
-        {
-            am_lblmonto.setText(sharedSettings.getString("SALDO_CABECERA", "0.00").toString());
+            if(Double.valueOf(sharedSettings.getString("aSALDO", "0.00").toString().replace(",","")) > Double.valueOf(sharedSettings.getString("SALDO_CABECERA", "0.00").toString().replace(",","")))
+            {
+                am_lblmonto.setText(sharedSettings.getString("SALDO_CABECERA", "0.00").toString());
 
-        }
-
-
-
-
-
-
-
+            }
 
         am_lblconfirmar.setOnClickListener(tvYesOnClickListener);
         am_lblcancelar.setOnClickListener(tvNoOnClickListener);
