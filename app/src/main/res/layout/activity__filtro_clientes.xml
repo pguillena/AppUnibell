@@ -36,6 +36,7 @@
           android:hint="Ejm: Estilista E.I.R.L"
           android:padding="15dp"
           style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+          android:maxLines="1"
 
           />
 
@@ -58,7 +59,7 @@
                 android:textSize="16dp"
                 android:padding="15dp"
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
-
+                android:maxLines="1"
                 />
 
 

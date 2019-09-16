@@ -278,6 +278,7 @@
                     android:track="@drawable/switch_track_custom"
                     android:thumb="@drawable/switch_thumb_custom"
                     android:thumbTextPadding="10dp"
+
                    />
 
             </LinearLayout>
