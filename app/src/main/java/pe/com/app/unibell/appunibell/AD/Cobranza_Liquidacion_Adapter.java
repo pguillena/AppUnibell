@@ -306,7 +306,11 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
                 List<Documentos_Cobra_CabBE> localList = new ArrayList<>();
                 String[] SSA=constraint.toString().toUpperCase().split(" ");
                 for (Documentos_Cobra_CabBE documentos_cobra_cabBE : lst) {
-                    String todo = (documentos_cobra_cabBE.getBANCODESC().toString());
+                    String todo = (documentos_cobra_cabBE.getENTIDAD().toString() +
+                                   documentos_cobra_cabBE.getRAZON_SOCIAL().toString()+
+                                   documentos_cobra_cabBE.getCOD_CLIENTE().toString()+
+                                   documentos_cobra_cabBE.getN_RECIBO().toString()+
+                                   documentos_cobra_cabBE.getPLANILLA().toString());
                     Boolean bfind = true;
                     for(String s : SSA){
                         if(!todo.contains(s)){
