@@ -1061,10 +1061,8 @@ public class Activity_Liquidacion extends AppCompatActivity
                             sharedSettings.getString("iID_EMPRESA", "0").toString() + "/" +
                             sharedSettings.getString("iID_LOCAL", "0").toString() + "/" +
                             sPACKING + "/" +
-                            sharedSettings.getString("ROL", "").toString() + "/" +
-                            lq_txtffecha.toString() + "/" +
-                            lq_txtffecha.toString() + "/" +
-                            "XXX"
+                            sharedSettings.getString("sIMEI", "").toString() + "/" +
+                            sharedSettings.getString("NOMBRE_TELEFONO", "").toString()
             );
         }
     }

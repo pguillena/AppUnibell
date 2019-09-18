@@ -46,9 +46,9 @@ public class CabfcobDAO {
             cabfcobBE.setCHEQUE(Funciones.isNullColumn(cursor,"CHEQUE",""));
             cabfcobBE.setSISTEMA_ORIGEN(Funciones.isNullColumn(cursor,"SISTEMA_ORIGEN",""));
             cabfcobBE.setMONEDA(Funciones.isNullColumn(cursor,"MONEDA",""));
-            cabfcobBE.setIMPORTE(Funciones.isNullColumn(cursor,"IMPORTE",0));
-            cabfcobBE.setIMPORTE_X(Funciones.isNullColumn(cursor,"IMPORTE_X",0));
-            cabfcobBE.setTIPO_CAMBIO(Funciones.isNullColumn(cursor,"TIPO_CAMBIO",0));
+            cabfcobBE.setIMPORTE(Funciones.isNullColumn(cursor,"IMPORTE",0.00));
+            cabfcobBE.setIMPORTE_X(Funciones.isNullColumn(cursor,"IMPORTE_X",0.00));
+            cabfcobBE.setTIPO_CAMBIO(Funciones.isNullColumn(cursor,"TIPO_CAMBIO",0.00));
             cabfcobBE.setESTADO(Funciones.isNullColumn(cursor,"ESTADO",""));
             cabfcobBE.setC_ANO(Funciones.isNullColumn(cursor,"C_ANO",0));
             cabfcobBE.setC_MES(Funciones.isNullColumn(cursor,"C_MES",0));
@@ -135,5 +135,41 @@ public class CabfcobDAO {
         }
         return sMensaje;
     }
+
+    public void getByRecibo(String pSerie, String pNumero) {
+        Cursor cursor = null;
+        CabfcobBE cabfcobBE = null;
+        try {
+            String SQL=" SELECT TIPDOC, SERIE_NUM, NUMERO, FECHA, IMPORTE, COBRADOR, N_SERIE_RECIBO_COBRA, N_RECIBO_COBRA " +
+                    " FROM CABFCOB " +
+                    " WHERE N_SERIE_RECIBO_COBRA =" + pSerie + " AND N_RECIBO_COBRA = " + pNumero + "   AND N_RECIBO_COBRA IS NOT NULL   AND N_RECIBO_COBRA <> '0' ";
+
+
+            cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
+            lst = new ArrayList<CabfcobBE>();
+            lst.clear();
+            if (cursor.moveToFirst()) {
+                do {
+                    cabfcobBE = new CabfcobBE();
+                    cabfcobBE.setTIPDOC(Funciones.isNullColumn(cursor,"TINRO PDOC",""));
+                    cabfcobBE.setSERIE_NUM(Funciones.isNullColumn(cursor,"SERIE_NUM",""));
+                    cabfcobBE.setNUMERO(Funciones.isNullColumn(cursor,"NUMERO",""));
+                    cabfcobBE.setFECHA(Funciones.isNullColumn(cursor,"FECHA",""));
+                    cabfcobBE.setIMPORTE(Funciones.isNullColumn(cursor,"IMPORTE",0.00));
+                    cabfcobBE.setCOBRADOR(Funciones.isNullColumn(cursor,"COBRADOR",""));
+                    cabfcobBE.setN_SERIE_RECIBO_COBRA(Funciones.isNullColumn(cursor,"N_SERIE_RECIBO_COBRA",""));
+                    cabfcobBE.setN_RECIBO_COBRA(Funciones.isNullColumn(cursor,"N_RECIBO_COBRA",0));
+
+                    lst.add(cabfcobBE);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+    }
+
 
 }

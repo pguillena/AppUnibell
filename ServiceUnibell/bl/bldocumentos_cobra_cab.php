@@ -278,11 +278,11 @@ class bldocumentos_cobra_cab {
         }
     }
 
- public function GenerarPlanillaCobranza($p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$p11,$p12){          
+ public function GenerarPlanillaCobranza($p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10){
         $this->response->header("Content-type", "application/json"); 
         try{
             $cnn = getConnectionOracle();
-            $stmt = oci_parse($cnn,"begin PKG_MS_COBRANZA.GENERAR_PLANILLA_COBRANZA(:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8,:p9,:p10,:p11,:p12,:data); end;");
+            $stmt = oci_parse($cnn,"begin PKG_MS_COBRANZA.GENERAR_PLANILLA_COBRANZA(:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8,:p9,:p10,:data); end;");
             $curs = oci_new_cursor($cnn);
             //Send parameters variable  value  lenght            
             oci_bind_by_name($stmt, ':p1', $p1); 
@@ -294,9 +294,7 @@ class bldocumentos_cobra_cab {
             oci_bind_by_name($stmt, ':p7', $p7); 
             oci_bind_by_name($stmt, ':p8', $p8); 
             oci_bind_by_name($stmt, ':p9', $p9); 
-            oci_bind_by_name($stmt, ':p10', $p10); 
-            oci_bind_by_name($stmt, ':p11', $p11);
-            oci_bind_by_name($stmt, ':p12', $p12); 
+            oci_bind_by_name($stmt, ':p10', $p10);
             //Bind Cursor     put -1 
             oci_bind_by_name($stmt, ':data', $curs, -1, OCI_B_CURSOR);
             //Execute Statement
@@ -356,11 +354,11 @@ public function InsertarPlanilla($p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$p11,$
         }
     }
 
-    public function RetornarPlanilla($p1,$p2,$p3,$p4,$p5,$p6){          
+    public function RetornarPlanilla($p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9){
         $this->response->header("Content-type", "application/json"); 
         try{
             $cnn = getConnectionOracle();
-         $stmt = oci_parse($cnn,"begin PKG_MS_COBRANZA.RETORNAR_PLANILLA(:p1,:p2,:p3,:p4,:p5,:p6,:data); end;");
+         $stmt = oci_parse($cnn,"begin PKG_MS_COBRANZA.RETORNAR_PLANILLA(:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8,:p9,:data); end;");
             $curs = oci_new_cursor($cnn);
             //Send parameters variable  value  lenght            
             oci_bind_by_name($stmt, ':p1', $p1); 
@@ -368,7 +366,10 @@ public function InsertarPlanilla($p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$p11,$
             oci_bind_by_name($stmt, ':p3', $p3); 
             oci_bind_by_name($stmt, ':p4', $p4); 
             oci_bind_by_name($stmt, ':p5', $p5); 
-            oci_bind_by_name($stmt, ':p6', $p6);             
+            oci_bind_by_name($stmt, ':p6', $p6);
+            oci_bind_by_name($stmt, ':p7', $p7);
+            oci_bind_by_name($stmt, ':p8', $p8);
+            oci_bind_by_name($stmt, ':p9', $p9);
             //Bind Cursor     put -1 
             oci_bind_by_name($stmt, ':data', $curs, -1, OCI_B_CURSOR);
             //Execute Statement

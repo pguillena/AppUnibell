@@ -86,13 +86,9 @@ public class S_Sem_LocalBL {
                 //Eliminamos los registros
                 DataBaseHelper.myDataBase.delete("S_SEM_LOCAL", null, null);
 
-                String SQL="INSERT OR REPLACE INTO S_SEM_LOCAL(" +
-                        "ID_EMPRESA,ID_LOCAL,NOMBRE,DIRECCION,TELEFONO," +
-                        "FAX,ESTADO,FECHA_REGISTRO,FECHA_MODIFICACION,USUARIO_REGISTRO," +
-                        "USUARIO_MODIFICACION,PC_REGISTRO,PC_MODIFICACION,IP_REGISTRO,IP_MODIFICACION,"+
-                        "PRINCIPAL,ESPROVINCIA,UBIGEO,C_SUC_EMP)"+
+                String SQL="INSERT OR REPLACE INTO S_SEM_LOCAL(ID_EMPRESA, ID_LOCAL, NOMBRE,DIRECCION, TELEFONO, FAX, ESTADO, PRINCIPAL, ESPROVINCIA, UBIGEO, C_SUC_EMP)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -108,23 +104,12 @@ public class S_Sem_LocalBL {
                     stmt.bindString(3,jsonObjectItem.getString("NOMBRE"));
                     stmt.bindString(4,jsonObjectItem.getString("DIRECCION"));
                     stmt.bindString(5,jsonObjectItem.getString("TELEFONO"));
-
                     stmt.bindString(6,jsonObjectItem.getString("FAX"));
                     stmt.bindString(7,jsonObjectItem.getString("ESTADO"));
-                    stmt.bindString(8,jsonObjectItem.getString("FECHA_REGISTRO"));
-                    stmt.bindString(9,jsonObjectItem.getString("FECHA_MODIFICACION"));
-                    stmt.bindString(10,jsonObjectItem.getString("USUARIO_REGISTRO"));
-
-                    stmt.bindString(11,jsonObjectItem.getString("USUARIO_MODIFICACION"));
-                    stmt.bindString(12,jsonObjectItem.getString("PC_REGISTRO"));
-                    stmt.bindString(13,jsonObjectItem.getString("PC_MODIFICACION"));
-                    stmt.bindString(14,jsonObjectItem.getString("IP_REGISTRO"));
-                    stmt.bindString(15,jsonObjectItem.getString("IP_MODIFICACION"));
-
-                    stmt.bindString(16,jsonObjectItem.getString("PRINCIPAL"));
-                    stmt.bindString(17,jsonObjectItem.getString("ESPROVINCIA"));
-                    stmt.bindString(18,jsonObjectItem.getString("UBIGEO"));
-                    stmt.bindString(19,jsonObjectItem.getString("C_SUC_EMP"));
+                    stmt.bindString(8,jsonObjectItem.getString("PRINCIPAL"));
+                    stmt.bindString(9,jsonObjectItem.getString("ESPROVINCIA"));
+                    stmt.bindString(10,jsonObjectItem.getString("UBIGEO"));
+                    stmt.bindString(11,jsonObjectItem.getString("C_SUC_EMP"));
                     stmt.execute();
                     stmt.clearBindings();
                 }

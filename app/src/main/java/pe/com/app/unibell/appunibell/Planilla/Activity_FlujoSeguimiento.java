@@ -165,7 +165,8 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
                     ConstantsLibrary.RESTFUL_URL +
                             ConstantsLibrary.bldocumentos_cobra_mov_flujoresumen + "/"+
                             sharedSettings.getString("SERIE_PLANILLA", "0").toString()+ "/"+
-                            sharedSettings.getString("N_PLANILLA", "0").toString()
+                            sharedSettings.getString("N_PLANILLA", "0").toString() + "/"+
+                            sharedSettings.getString("iID_EMPRESA", "0")
             );
 
 /*

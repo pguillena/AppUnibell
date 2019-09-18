@@ -82,12 +82,9 @@ public class S_Sem_UsuarioBL {
                 //Eliminamos los registros
                 DataBaseHelper.myDataBase.delete("S_SEM_USUARIO", null, null);
 
-                String SQL="INSERT OR REPLACE INTO S_SEM_USUARIO(" +
-                        "ID_PERSONA ,CREDENCIAL,CLAVE,ESTADO,RESETEADO," +
-                        " FECHA_REGISTRO,FECHA_MODIFICACION,USUARIO_REGISTRO, USUARIO_MODIFICACION,PC_REGISTRO," +
-                        " PC_MODIFICACION,IP_REGISTRO,IP_MODIFICACION,NOMBRE_CORTO,PC_USUARIO)"+
+                String SQL="INSERT OR REPLACE INTO S_SEM_USUARIO(ID_PERSONA ,CREDENCIAL,CLAVE,ESTADO,RESETEADO, NOMBRE_CORTO,PC_USUARIO)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -103,16 +100,8 @@ public class S_Sem_UsuarioBL {
                     stmt.bindString(3,jsonObjectItem.getString("CLAVE"));
                     stmt.bindString(4,jsonObjectItem.getString("ESTADO"));
                     stmt.bindString(5,jsonObjectItem.getString("RESETEADO"));
-                    stmt.bindString(6,jsonObjectItem.getString("FECHA_REGISTRO"));
-                    stmt.bindString(7,jsonObjectItem.getString("FECHA_MODIFICACION"));
-                    stmt.bindString(8,jsonObjectItem.getString("USUARIO_REGISTRO"));
-                    stmt.bindString(9,jsonObjectItem.getString("USUARIO_MODIFICACION"));
-                    stmt.bindString(10,jsonObjectItem.getString("PC_REGISTRO"));
-                    stmt.bindString(11,jsonObjectItem.getString("PC_MODIFICACION"));
-                    stmt.bindString(12,jsonObjectItem.getString("IP_REGISTRO"));
-                    stmt.bindString(13,jsonObjectItem.getString("IP_MODIFICACION"));
-                    stmt.bindString(14,jsonObjectItem.getString("NOMBRE_CORTO"));
-                    stmt.bindString(15,jsonObjectItem.getString("PC_USUARIO"));
+                    stmt.bindString(6,jsonObjectItem.getString("NOMBRE_CORTO"));
+                    stmt.bindString(7,jsonObjectItem.getString("PC_USUARIO"));
                     stmt.execute();
                     stmt.clearBindings();
                 }

@@ -2,6 +2,7 @@ package pe.com.app.unibell.appunibell.Liquidacion;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
@@ -27,6 +28,12 @@ public class Activity_Totales_Liquidacion  extends AppCompatActivity {
         ListView lstDepositosLiquidacion =(ListView)findViewById(R.id.lstDepositosLiquidacion);
         ArrayList<Documentos_Cobra_CabBE> listaDepositos = (ArrayList<Documentos_Cobra_CabBE> ) getIntent().getSerializableExtra("listaDepositos");
 
+
+        //MEDIMOS LA PANTALLA
+        Display display = getWindowManager().getDefaultDisplay();
+        int ancho = display.getWidth();
+        int  alto= display.getHeight();
+
         Bundle   parametros = getIntent().getExtras();
 
         if(parametros !=null){
@@ -43,7 +50,20 @@ public class Activity_Totales_Liquidacion  extends AppCompatActivity {
             totales_liquidacion_adapter = new Totales_Liquidacion_Adapter(getBaseContext(), 0, listaDepositos);
             totales_liquidacion_adapter.notifyDataSetChanged();
             lstDepositosLiquidacion.setAdapter(totales_liquidacion_adapter);
+
+            if (listaDepositos.size()>6){
+                lstDepositosLiquidacion.getLayoutParams().height=alto/3;
+
+            }
+
         }
+
+
+
+
+
+
+
 
     }
 

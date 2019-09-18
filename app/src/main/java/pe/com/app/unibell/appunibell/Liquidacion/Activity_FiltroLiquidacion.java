@@ -22,7 +22,7 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
         Dialogo_Fragment_Fecha.NoticeDialogoListener {
 
     private SharedPreferences sharedSettings;
-    private TextView txtEstado, txtFechaFiltro;
+    private TextView txtEstado, txtFechaFiltro, lblBuscarLiquidacion4;
     private EditText txtNroPlanilla, txtCpacking;
     private Button btnBuscarLiquidacion;
     private Integer iTabla=0;
@@ -47,6 +47,18 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
         txtFechaFiltro = (TextView)findViewById(R.id.lq_txtffechaFiltro);
         txtNroPlanilla = (EditText)findViewById(R.id.lq_txtfplan);
         txtCpacking = (EditText)findViewById(R.id.lq_txtpaking);
+        lblBuscarLiquidacion4 = (TextView)findViewById(R.id.lblBuscarLiquidacion4);
+
+
+        lblBuscarLiquidacion4.setVisibility(View.GONE);
+        txtCpacking.setVisibility(View.GONE);
+        //(usuario.ROL == (int)EnumRoles.LiquidadorCobranzaDespacho || usuario.ROL == (int)EnumRoles.RegistradorPedidos)
+        if(sharedSettings.getString("ROL", "").toString().equals("130019") || sharedSettings.getString("ROL", "").toString().equals("130008"))
+        {
+            lblBuscarLiquidacion4.setVisibility(View.VISIBLE);
+            txtCpacking.setVisibility(View.VISIBLE);
+        }
+
 
         txtEstado.setOnClickListener(OnClickListener_txtEstado);
 

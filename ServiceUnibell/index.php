@@ -168,15 +168,15 @@ $app->get('/bldocumentos_cobra_cab_LiqCobranza_Grupo/:p1/:p2/:p3/:p4/:p5/:p6/:p7
 $app->get('/bldocumentos_cobra_cab_RptCobranza/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8/:p9/:p10/:p11/:p12/:p13/:p14/:p15/:p16', 'bldocumentos_cobra_cab:RptCobranza');
 
 $app->get('/ConciliarDepositos/:p1/:p2/:p3/:p4/:p5/:p6/:p7', 'bldocumentos_cobra_cab:ConciliarDepositos');
-$app->get('/GenerarPlanillaCobranza/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8/:p9/:p10/:p11/:p12', 
+$app->get('/GenerarPlanillaCobranza/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8/:p9/:p10',
     'bldocumentos_cobra_cab:GenerarPlanillaCobranza');
 
 $app->get('/InsertarPlanilla/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8/:p9/:p10/:p11/:p12/:p13/:p14', 'bldocumentos_cobra_cab:InsertarPlanilla');
-$app->get('/RetornarPlanilla/:p1/:p2/:p3/:p4/:p5/:p6', 'bldocumentos_cobra_cab:RetornarPlanilla');
+$app->get('/RetornarPlanilla/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8/:p9/', 'bldocumentos_cobra_cab:RetornarPlanilla');
 $app->get('/bldocumentos_cobra_det/:p1/:p2/:p3/:p4/:p5', 'bldocumentos_cobra_det:SelectAll');
  
 $app->get('/bldocumentos_cobra_mov/:p1/:p2/:p3', 'bldocumentos_cobra_mov:SelectAll');
-$app->get('/bldocumentos_cobra_mov_flujoresumen/:p1/:p2', 'bldocumentos_cobra_mov:CobranzaFlujoResumen');
+$app->get('/bldocumentos_cobra_mov_flujoresumen/:p1/:p2/:p3', 'bldocumentos_cobra_mov:CobranzaFlujoResumen');
 $app->get('/bldocumentos_cobra_mov_flujo2/:p1/:p2/:p3', 'bldocumentos_cobra_mov:CobranzaFlujoPlanilla2');
 $app->get('/bldocumentos_cobra_mov_flujo3/:p1/:p2/:p3/:p4/:p5/:p6/:p7', 'bldocumentos_cobra_mov:CobranzaFlujoPlanilla3');
 
@@ -213,7 +213,6 @@ $app->get('/blfactcob/:p1/:p2/:p3', 'blfactcob:SelectAll');
 $app->get('/blctabnco_empresa_local/:p1/:p2', 'blctabnco_empresa_local:SelectAll');
 
 $app->get('/bls_rec_usuario/:p1/:p2', 'bls_sem_usuario:RecuperarUsuarioMD5');
-
 
 $app->get('/bldocuvent/:p1/:p2/:p3', 'bldocuvent:SelectAll');
 $app->get('/bldpm_packing_cab/:p1/:p2/:p3', 'bldpm_packing_cab:SelectAll');

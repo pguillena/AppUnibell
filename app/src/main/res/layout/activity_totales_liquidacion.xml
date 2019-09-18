@@ -241,7 +241,7 @@
             android:layout_height="wrap_content"
             android:text="S/ 153"
             android:textSize="16dp"
-            android:fontFamily="@font/sf_pro_display_light"
+            android:fontFamily="@font/sf_pro_display_bold"
             android:textColor="@color/label_color_menu"
             android:layout_below="@id/dv5"
             android:layout_alignParentRight="true"

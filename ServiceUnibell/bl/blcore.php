@@ -53,8 +53,8 @@
     //PRE PRODUCCION======>$dbuser = "CONEXO7" ,$dbpass = "FCC0O7"
     //DESARROLLO======>$dbuser = "CONEXO7" ,$dbpass = "FCC0O7"
     function getConnectionOracle($dbuser = "CONEXO7" ,$dbpass = "FCC0O7"){
-		$username = "MS_MOBILE";
-		$password = "MOBILE";
+		$username = "UNIBELL";
+		$password = "I3B4E5";
 		$dbhost="172.16.1.66";
 		$dbserv="UNIBD";
 

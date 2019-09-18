@@ -34,15 +34,14 @@ class bls_sem_usuario {
                      $cont++; 
                  } while($obj = \oci_fetch_object($curs));
              }
-            echo '{"status": 1, "message":"' . $cont . '", "datos":' . json_encode($pila) . '}';
+            echo '{"status": 1, "message":"' . $cont . ' Registro(s) Encontrado(s)", "datos":' . json_encode($pila) . '}';            
         } catch (Exception $e) {
             echo '{"status": 0, "message":"'. fnCleaner($e->getMessage()) .'"}';
-        }
-    }
-
-
-
-    public function RecuperarUsuarioMD5($p1,$p2){
+        }    
+	
+	}
+	
+	    public function RecuperarUsuarioMD5($p1,$p2){
         $this->response->header("Content-type", "application/json");
         try{
             $cnn = getConnectionOracle();
@@ -64,10 +63,11 @@ class bls_sem_usuario {
                      $cont++;
                  } while($obj = \oci_fetch_object($curs));
              }
-            echo '{"status": 1, "message":"' . $cont . ' Registro(s) Encontrado(s)", "datos":' . json_encode($pila) . '}';
+            echo '{"status": 1, "message":"' . $cont . '", "datos":' . json_encode($pila) . '}';
         } catch (Exception $e) {
             echo '{"status": 0, "message":"'. fnCleaner($e->getMessage()) .'"}';
         }
     }
+    
 
 }

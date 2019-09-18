@@ -40,15 +40,16 @@ class bldocumentos_cobra_mov {
         }
     } 
 
- public function CobranzaFlujoResumen($p1,$p2){          
+ public function CobranzaFlujoResumen($p1,$p2,$p3){
         $this->response->header("Content-type", "application/json"); 
         try{
             $cnn = getConnectionOracle();
-            $stmt = oci_parse($cnn,"begin PKG_MS_COBRANZA.LISTAR_MOV_X_PLANILLA(:p1,:p2,:data); end;");
+            $stmt = oci_parse($cnn,"begin PKG_MS_COBRANZA.LISTAR_MOV_X_PLANILLA(:p1,:p2,:p3,:data); end;");
             $curs = oci_new_cursor($cnn);
             //Send parameters variable  value  lenght            
             oci_bind_by_name($stmt, ':p1', $p1); 
-            oci_bind_by_name($stmt, ':p2', $p2);            
+            oci_bind_by_name($stmt, ':p2', $p2);
+            oci_bind_by_name($stmt, ':p3', $p3);
             //Bind Cursor     put -1 
             oci_bind_by_name($stmt, ':data', $curs, -1, OCI_B_CURSOR);
             //Execute Statement

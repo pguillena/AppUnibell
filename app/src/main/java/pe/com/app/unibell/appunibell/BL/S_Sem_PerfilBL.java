@@ -73,12 +73,9 @@ public class S_Sem_PerfilBL {
                 //Eliminamos los registros
                 DataBaseHelper.myDataBase.delete("S_SEM_PERFIL", null, null);
 
-                String SQL="INSERT OR REPLACE INTO S_SEM_PERFIL(" +
-                        "C_PERFIL,NOMBRE_PERFIL,COMENTARIO,USUARIO_REGISTRO,USUARIO_MODIFICACION,PC_REGISTRO," +
-                        "PC_MODIFICACION,IP_REGISTRO,IP_MODIFICACION,FECHA_REGISTRO,FECHA_MODIFICACION,ESTADO," +
-                        "ID_EMPRESA)"+
+                String SQL="INSERT OR REPLACE INTO S_SEM_PERFIL(C_PERFIL,NOMBRE_PERFIL,COMENTARIO, ESTADO, ID_EMPRESA)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -92,16 +89,8 @@ public class S_Sem_PerfilBL {
                     stmt.bindString(1,jsonObjectItem.getString("C_PERFIL"));
                     stmt.bindString(2,jsonObjectItem.getString("NOMBRE_PERFIL"));
                     stmt.bindString(3,jsonObjectItem.getString("COMENTARIO"));
-                    stmt.bindString(4,jsonObjectItem.getString("USUARIO_REGISTRO"));
-                    stmt.bindString(5,jsonObjectItem.getString("USUARIO_MODIFICACION"));
-                    stmt.bindString(6,jsonObjectItem.getString("PC_REGISTRO"));
-                    stmt.bindString(7,jsonObjectItem.getString("PC_MODIFICACION"));
-                    stmt.bindString(8,jsonObjectItem.getString("IP_REGISTRO"));
-                    stmt.bindString(9,jsonObjectItem.getString("IP_MODIFICACION"));
-                    stmt.bindString(10,jsonObjectItem.getString("FECHA_REGISTRO"));
-                    stmt.bindString(11,jsonObjectItem.getString("FECHA_MODIFICACION"));
-                    stmt.bindString(12,jsonObjectItem.getString("ESTADO"));
-                    stmt.bindString(13,jsonObjectItem.getString("ID_EMPRESA"));
+                    stmt.bindString(4,jsonObjectItem.getString("ESTADO"));
+                    stmt.bindString(5,jsonObjectItem.getString("ID_EMPRESA"));
                     stmt.execute();
                     stmt.clearBindings();
                 }

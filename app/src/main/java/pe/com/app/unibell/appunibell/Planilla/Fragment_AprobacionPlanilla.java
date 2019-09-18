@@ -264,7 +264,10 @@ public class Fragment_AprobacionPlanilla extends Fragment
                             "40003" + "/" +
                             sharedSettings.getString("iID_EMPRESA", "0").toString() + "/" +
                             sharedSettings.getString("iID_LOCAL", "0").toString() + "/" +
-                            sharedSettings.getString("ID_DOCUMENTO_MOVIMIENTO", "0").toString()
+                            sharedSettings.getString("ID_DOCUMENTO_MOVIMIENTO", "0").toString() + "/" +
+                            sharedSettings.getString("USUARIO","").toString()+ "/" +
+                            sharedSettings.getString("NOMBRE_TELEFONO", "").toString()+ "/" +
+                            sharedSettings.getString("sIMEI", "").toString()
             );
         }
 

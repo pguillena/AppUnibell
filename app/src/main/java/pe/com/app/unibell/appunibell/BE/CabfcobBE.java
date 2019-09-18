@@ -19,9 +19,9 @@ public class CabfcobBE {
     private String CHEQUE;
     private String SISTEMA_ORIGEN;
     private String MONEDA;
-    private Integer IMPORTE;
-    private Integer IMPORTE_X;
-    private Integer TIPO_CAMBIO;
+    private Double IMPORTE;
+    private Double IMPORTE_X;
+    private Double TIPO_CAMBIO;
     private String ESTADO;
     private Integer C_ANO;
     private Integer C_MES;
@@ -186,27 +186,27 @@ public class CabfcobBE {
         this.MONEDA = MONEDA;
     }
 
-    public Integer getIMPORTE() {
+    public double getIMPORTE() {
         return IMPORTE;
     }
 
-    public void setIMPORTE(Integer IMPORTE) {
+    public void setIMPORTE(Double IMPORTE) {
         this.IMPORTE = IMPORTE;
     }
 
-    public Integer getIMPORTE_X() {
+    public double getIMPORTE_X() {
         return IMPORTE_X;
     }
 
-    public void setIMPORTE_X(Integer IMPORTE_X) {
+    public void setIMPORTE_X(Double IMPORTE_X) {
         this.IMPORTE_X = IMPORTE_X;
     }
 
-    public Integer getTIPO_CAMBIO() {
+    public Double getTIPO_CAMBIO() {
         return TIPO_CAMBIO;
     }
 
-    public void setTIPO_CAMBIO(Integer TIPO_CAMBIO) {
+    public void setTIPO_CAMBIO(Double TIPO_CAMBIO) {
         this.TIPO_CAMBIO = TIPO_CAMBIO;
     }
 

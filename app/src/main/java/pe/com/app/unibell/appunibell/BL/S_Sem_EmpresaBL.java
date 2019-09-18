@@ -90,15 +90,9 @@ public class S_Sem_EmpresaBL {
                 //Eliminamos los registros
                 DataBaseHelper.myDataBase.delete("S_SEM_EMPRESA", null, null);
 
-                String SQL="INSERT OR REPLACE INTO S_SEM_EMPRESA(" +
-                        "ID_EMPRESA,NOMBRE,RAZON_SOCIAL,DIRECCION,RUC," +
-                        "TELEFONO,FAX,REPRESENTANTE,ESTADO,FECHA_REGISTRO," +
-                        "FECHA_MODIFICACION,USUARIO_REGISTRO,USUARIO_MODIFICACION,PC_REGISTRO,PC_MODIFICACION," +
-                        "IP_REGISTRO,IP_MODIFICACION,C_EMPRESA,AGENTE_PERCEPCION,AGENTE_RETENCION," +
-                        "BUEN_CONTRIBUYENTE,UBIGEO,RESOLUCION_SUNAT_FE,PAGINA_WEB)"+
+                String SQL="INSERT OR REPLACE INTO S_SEM_EMPRESA(ID_EMPRESA,NOMBRE,RAZON_SOCIAL,DIRECCION,RUC, TELEFONO,FAX,REPRESENTANTE,ESTADO, C_EMPRESA,AGENTE_PERCEPCION,AGENTE_RETENCION, BUEN_CONTRIBUYENTE,UBIGEO,RESOLUCION_SUNAT_FE,PAGINA_WEB)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -118,21 +112,13 @@ public class S_Sem_EmpresaBL {
                     stmt.bindString(7,jsonObjectItem.getString("FAX"));
                     stmt.bindString(8,jsonObjectItem.getString("REPRESENTANTE"));
                     stmt.bindString(9,jsonObjectItem.getString("ESTADO"));
-                    stmt.bindString(10,jsonObjectItem.getString("FECHA_REGISTRO"));
-                    stmt.bindString(11,jsonObjectItem.getString("FECHA_MODIFICACION"));
-                    stmt.bindString(12,jsonObjectItem.getString("USUARIO_REGISTRO"));
-                    stmt.bindString(13,jsonObjectItem.getString("USUARIO_MODIFICACION"));
-                    stmt.bindString(14,jsonObjectItem.getString("PC_REGISTRO"));
-                    stmt.bindString(15,jsonObjectItem.getString("PC_MODIFICACION"));
-                    stmt.bindString(16,jsonObjectItem.getString("IP_REGISTRO"));
-                    stmt.bindString(17,jsonObjectItem.getString("IP_MODIFICACION"));
-                    stmt.bindString(18,jsonObjectItem.getString("C_EMPRESA"));
-                    stmt.bindString(19,jsonObjectItem.getString("AGENTE_PERCEPCION"));
-                    stmt.bindString(20,jsonObjectItem.getString("AGENTE_RETENCION"));
-                    stmt.bindString(21,jsonObjectItem.getString("BUEN_CONTRIBUYENTE"));
-                    stmt.bindString(22,jsonObjectItem.getString("UBIGEO"));
-                    stmt.bindString(23,jsonObjectItem.getString("RESOLUCION_SUNAT_FE"));
-                    stmt.bindString(24,jsonObjectItem.getString("PAGINA_WEB"));
+                    stmt.bindString(10,jsonObjectItem.getString("C_EMPRESA"));
+                    stmt.bindString(11,jsonObjectItem.getString("AGENTE_PERCEPCION"));
+                    stmt.bindString(12,jsonObjectItem.getString("AGENTE_RETENCION"));
+                    stmt.bindString(13,jsonObjectItem.getString("BUEN_CONTRIBUYENTE"));
+                    stmt.bindString(14,jsonObjectItem.getString("UBIGEO"));
+                    stmt.bindString(15,jsonObjectItem.getString("RESOLUCION_SUNAT_FE"));
+                    stmt.bindString(16,jsonObjectItem.getString("PAGINA_WEB"));
                     stmt.execute();
                     stmt.clearBindings();
                 }

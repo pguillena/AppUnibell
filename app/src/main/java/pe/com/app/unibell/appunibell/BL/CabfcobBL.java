@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import pe.com.app.unibell.appunibell.BE.CabfcobBE;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
+import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.RestClientLibrary;
 
 public class CabfcobBL {
@@ -45,9 +46,9 @@ public class CabfcobBL {
             cabfcobBE.setCHEQUE(jsonObjectItem.getString("CHEQUE"));
             cabfcobBE.setSISTEMA_ORIGEN(jsonObjectItem.getString("SISTEMA_ORIGEN"));
             cabfcobBE.setMONEDA(jsonObjectItem.getString("MONEDA"));
-            cabfcobBE.setIMPORTE(jsonObjectItem.getInt("IMPORTE"));
-            cabfcobBE.setIMPORTE_X(jsonObjectItem.getInt("IMPORTE_X"));
-            cabfcobBE.setTIPO_CAMBIO(jsonObjectItem.getInt("TIPO_CAMBIO"));
+            cabfcobBE.setIMPORTE(jsonObjectItem.getDouble("IMPORTE"));
+            cabfcobBE.setIMPORTE_X(jsonObjectItem.getDouble("IMPORTE_X"));
+            cabfcobBE.setTIPO_CAMBIO(jsonObjectItem.getDouble("TIPO_CAMBIO"));
             cabfcobBE.setESTADO(jsonObjectItem.getString("ESTADO"));
             cabfcobBE.setC_ANO(jsonObjectItem.getInt("C_ANO"));
             cabfcobBE.setC_MES(jsonObjectItem.getInt("C_MES"));
@@ -100,17 +101,9 @@ public class CabfcobBL {
                 //Eliminamos los registros
                 DataBaseHelper.myDataBase.delete("CABFCOB", null, null);
 
-                String SQL="INSERT OR REPLACE INTO CABFCOB(" +
-                        "TIPDOC,SERIE_NUM,NUMERO,FECHA,ANO,MES,"+
-                        "LIBRO,VOUCHER,ITEM,TIPO_REFERENCIA,SERIE_REF,NRO_REFERENCIA,"+
-                        "CONCEPTO,FORMA_PAGO,BANCO,CHEQUE,SISTEMA_ORIGEN,MONEDA,"+
-                        "IMPORTE,IMPORTE_X,TIPO_CAMBIO,ESTADO,C_ANO,C_MES,"+
-                        "COBRADOR,C_USUARIO,C_PERFIL,C_CPU,FEC_REG,C_USUARIO_MOD,"+
-                        "C_PERFIL_MOD,FEC_MOD,C_CPU_MOD,N_SERIE_RECIBO_COBRA,N_RECIBO_COBRA,SERIE_PLANILLA,"+
-                        "NRO_PLANILLA,C_LIQUIDADOR,TIPO_LIQUIDADOR,FECHA_COBRANZA)"+
+                String SQL="INSERT OR REPLACE INTO CABFCOB(TIPDOC, SERIE_NUM, NUMERO, FECHA, IMPORTE, COBRADOR, N_SERIE_RECIBO_COBRA, N_RECIBO_COBRA)" +
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -124,48 +117,10 @@ public class CabfcobBL {
                     stmt.bindString(2,jsonObjectItem.getString("SERIE_NUM"));
                     stmt.bindString(3,jsonObjectItem.getString("NUMERO"));
                     stmt.bindString(4,jsonObjectItem.getString("FECHA"));
-                    stmt.bindString(5,jsonObjectItem.getString("ANO"));
-                    stmt.bindString(6,jsonObjectItem.getString("MES"));
-
-                    stmt.bindString(7,jsonObjectItem.getString("LIBRO"));
-                    stmt.bindString(8,jsonObjectItem.getString("VOUCHER"));
-                    stmt.bindString(9,jsonObjectItem.getString("ITEM"));
-                    stmt.bindString(10,jsonObjectItem.getString("TIPO_REFERENCIA"));
-                    stmt.bindString(11,jsonObjectItem.getString("SERIE_REF"));
-                    stmt.bindString(12,jsonObjectItem.getString("NRO_REFERENCIA"));
-
-                    stmt.bindString(13,jsonObjectItem.getString("CONCEPTO"));
-                    stmt.bindString(14,jsonObjectItem.getString("FORMA_PAGO"));
-                    stmt.bindString(15,jsonObjectItem.getString("BANCO"));
-                    stmt.bindString(16,jsonObjectItem.getString("CHEQUE"));
-                    stmt.bindString(17,jsonObjectItem.getString("SISTEMA_ORIGEN"));
-                    stmt.bindString(18,jsonObjectItem.getString("MONEDA"));
-
-                    stmt.bindString(19,jsonObjectItem.getString("IMPORTE"));
-                    stmt.bindString(20,jsonObjectItem.getString("IMPORTE_X"));
-                    stmt.bindString(21,jsonObjectItem.getString("TIPO_CAMBIO"));
-                    stmt.bindString(22,jsonObjectItem.getString("ESTADO"));
-                    stmt.bindString(23,jsonObjectItem.getString("C_ANO"));
-                    stmt.bindString(24,jsonObjectItem.getString("C_MES"));
-
-                    stmt.bindString(25,jsonObjectItem.getString("COBRADOR"));
-                    stmt.bindString(26,jsonObjectItem.getString("C_USUARIO"));
-                    stmt.bindString(27,jsonObjectItem.getString("C_PERFIL"));
-                    stmt.bindString(28,jsonObjectItem.getString("C_CPU"));
-                    stmt.bindString(29,jsonObjectItem.getString("FEC_REG"));
-                    stmt.bindString(30,jsonObjectItem.getString("C_USUARIO_MOD"));
-
-                    stmt.bindString(31,jsonObjectItem.getString("C_PERFIL_MOD"));
-                    stmt.bindString(32,jsonObjectItem.getString("FEC_MOD"));
-                    stmt.bindString(33,jsonObjectItem.getString("C_CPU_MOD"));
-                    stmt.bindString(34,jsonObjectItem.getString("N_SERIE_RECIBO_COBRA"));
-                    stmt.bindString(35,jsonObjectItem.getString("N_RECIBO_COBRA"));
-                    stmt.bindString(36,jsonObjectItem.getString("SERIE_PLANILLA"));
-
-                    stmt.bindString(37,jsonObjectItem.getString("NRO_PLANILLA"));
-                    stmt.bindString(38,jsonObjectItem.getString("C_LIQUIDADOR"));
-                    stmt.bindString(39,jsonObjectItem.getString("TIPO_LIQUIDADOR"));
-                    stmt.bindString(40,jsonObjectItem.getString("FECHA_COBRANZA"));
+                    stmt.bindString(5,jsonObjectItem.getString("IMPORTE"));
+                    stmt.bindString(6,jsonObjectItem.getString("COBRADOR"));
+                    stmt.bindString(7,jsonObjectItem.getString("N_SERIE_RECIBO_COBRA"));
+                    stmt.bindString(8,jsonObjectItem.getString("N_RECIBO_COBRA"));
                     stmt.execute();
                     stmt.clearBindings();
                 }
@@ -190,5 +145,8 @@ public class CabfcobBL {
         }
         return jsonObjectResult;
     }
+
+
+
 
 }

@@ -99,9 +99,9 @@ public class Dpm_Personal_TransporteBL {
                 DataBaseHelper.myDataBase.delete("DPM_PERSONAL_TRANSPORTE", null, null);
 
                 String SQL="INSERT OR REPLACE INTO DPM_PERSONAL_TRANSPORTE( " +
-                        " C_PERTRANS, C_EMPTRANS, APE_PATERNO, APE_MATERNO, NOMBRES, RUC, TIPODOCID, DOCIDENT, NRO_BREVETE, DOMICILIO, FLG_CHOFER, FLG_REPART, C_USUARIO, C_PERFIL, C_CPU, FEC_REG, C_USUARIO_MOD, C_PERFIL_MOD, FEC_MOD, C_ESTADO, C_CPU_MOD, ANULADO, FLG_CHEQUEADOR, FLG_CONTROLADOR, FLG_DESPACHADOR, FLG_ARMADOR, TELEFONO, C_SUC_EMP, FNATAL, FLAG_SCTR, C_NIVEL_RIEZGO, ID_EMPRESA) "+
+                        " C_PERTRANS, C_EMPTRANS, APE_PATERNO, APE_MATERNO, NOMBRES, RUC, TIPODOCID, DOCIDENT, NRO_BREVETE, ID_EMPRESA) "+
                         " VALUES " +
-                        " (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+                        " (?,?,?,?,?,?,?,?,?,?) ";
 
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
@@ -122,29 +122,7 @@ public class Dpm_Personal_TransporteBL {
                     stmt.bindString(7,jsonObjectItem.getString("TIPODOCID"));
                     stmt.bindString(8,jsonObjectItem.getString("DOCIDENT"));
                     stmt.bindString(9,jsonObjectItem.getString("NRO_BREVETE"));
-                    stmt.bindString(10,jsonObjectItem.getString("DOMICILIO"));
-                    stmt.bindString(11,jsonObjectItem.getString("FLG_CHOFER"));
-                    stmt.bindString(12,jsonObjectItem.getString("FLG_REPART"));
-                    stmt.bindString(13,jsonObjectItem.getString("C_USUARIO"));
-                    stmt.bindString(14,jsonObjectItem.getString("C_PERFIL"));
-                    stmt.bindString(15,jsonObjectItem.getString("C_CPU"));
-                    stmt.bindString(16,jsonObjectItem.getString("FEC_REG"));
-                    stmt.bindString(17,jsonObjectItem.getString("C_USUARIO_MOD"));
-                    stmt.bindString(18,jsonObjectItem.getString("C_PERFIL_MOD"));
-                    stmt.bindString(19,jsonObjectItem.getString("FEC_MOD"));
-                    stmt.bindString(20,jsonObjectItem.getString("C_ESTADO"));
-                    stmt.bindString(21,jsonObjectItem.getString("C_CPU_MOD"));
-                    stmt.bindString(22,jsonObjectItem.getString("ANULADO"));
-                    stmt.bindString(23,jsonObjectItem.getString("FLG_CHEQUEADOR"));
-                    stmt.bindString(24,jsonObjectItem.getString("FLG_CONTROLADOR"));
-                    stmt.bindString(25,jsonObjectItem.getString("FLG_DESPACHADOR"));
-                    stmt.bindString(26,jsonObjectItem.getString("FLG_ARMADOR"));
-                    stmt.bindString(27,jsonObjectItem.getString("TELEFONO"));
-                    stmt.bindString(28,jsonObjectItem.getString("C_SUC_EMP"));
-                    stmt.bindString(29,jsonObjectItem.getString("FNATAL"));
-                    stmt.bindString(30,jsonObjectItem.getString("FLAG_SCTR"));
-                    stmt.bindString(31,jsonObjectItem.getString("C_NIVEL_RIEZGO"));
-                    stmt.bindString(32,jsonObjectItem.getString("ID_EMPRESA"));
+                    stmt.bindString(10,jsonObjectItem.getString("ID_EMPRESA"));
 
                     stmt.execute();
                     stmt.clearBindings();

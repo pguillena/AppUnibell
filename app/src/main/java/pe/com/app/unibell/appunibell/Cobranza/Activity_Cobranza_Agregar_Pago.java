@@ -19,11 +19,14 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import pe.com.app.unibell.appunibell.AD.Cabfcob_Adapter;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Cabecera_Adapter;
 import pe.com.app.unibell.appunibell.AD.CtaBnco_Adapter;
 import pe.com.app.unibell.appunibell.AD.ParTabla_Adapter;
 import pe.com.app.unibell.appunibell.BL.Dpm_Packing_CabBL;
+import pe.com.app.unibell.appunibell.DAO.CabfcobDAO;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
+import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.DAO.Dpm_Packing_CabDAO;
 import pe.com.app.unibell.appunibell.DAO.ParTablaDAO;
 import pe.com.app.unibell.appunibell.DAO.Recibos_CcobranzaDAO;
@@ -61,6 +64,8 @@ public class Activity_Cobranza_Agregar_Pago
     private Integer iAuxiliar = 0,iTabla=0;
     public Integer   iMinDate = 0;;
     private ParTablaDAO parTablaDAO = new ParTablaDAO();
+    private CabfcobDAO cabfcobDAO = new CabfcobDAO();
+    private Documentos_Cobra_CabDAO documentos_Cobra_CabDAO = new Documentos_Cobra_CabDAO();
     private ParTabla_Adapter parTabla_adapter = null;
 
     @Override
@@ -271,6 +276,13 @@ public class Activity_Cobranza_Agregar_Pago
                 }
 
                 if (ValidarGeneral()==false){return;}
+
+                //Valida recibo cabfcob
+                if (!ValidarReciboRegistrado()){
+                    Mensaje("El recibo " + rp_txtserie.getText().toString() +"-" + rp_txtnumero.getText().toString() + " ya fue registrado anteriormente");
+                    rp_txtnumero.requestFocus();
+                    return;
+                }
                 // TODO Auto-generated method stub
                 Intent data = new Intent();
                 editor_Shared.putString("cpserie",rp_txtserie.getText().toString());
@@ -417,6 +429,38 @@ public class Activity_Cobranza_Agregar_Pago
                 return false;
             }
         }
+        return true;
+    }
+
+    private Boolean ValidarReciboRegistrado() {
+
+        try {
+
+            DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
+            dataBaseHelper.createDataBase();
+            dataBaseHelper.openDataBase();
+            cabfcobDAO.getByRecibo(rp_txtserie.getText().toString(), rp_txtnumero.getText().toString());
+            if(cabfcobDAO.lst!=null && cabfcobDAO.lst.size()>0)
+            {
+                return false;
+            }
+            Globals g = (Globals) getApplication();
+            cobranza_cabecera_adapter  = (Cobranza_Cabecera_Adapter) g.getIntentCobranzaCab();
+
+            if(cobranza_cabecera_adapter==null || cobranza_cabecera_adapter.getCount() == 0 )
+            {
+                documentos_Cobra_CabDAO.getByRecibo(rp_txtserie.getText().toString(), rp_txtnumero.getText().toString(), sharedSettings.getString("iID_EMPRESA", "").toString());
+                if(documentos_Cobra_CabDAO.lst!=null && documentos_Cobra_CabDAO.lst.size()>0)
+                {
+                    return false;
+                }
+
+            }
+
+
+        } catch (Exception e) {
+        }
+
         return true;
     }
 
