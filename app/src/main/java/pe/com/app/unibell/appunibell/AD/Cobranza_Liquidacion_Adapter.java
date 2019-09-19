@@ -64,6 +64,8 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
             mainHolder.cl_lblPlanilla = (TextView) view.findViewById(R.id.cl_lblPlanilla);
             mainHolder.cl_itemPlanilla = (TextView) view.findViewById(R.id.cl_itemPlanilla);
             mainHolder.cl_lblRecibo = (TextView) view.findViewById(R.id.cl_lblRecibo);
+            mainHolder.lblcPacking = (TextView) view.findViewById(R.id.lblcPacking);
+            mainHolder.txtcPacking = (TextView) view.findViewById(R.id.txtcPacking);
             mainHolder.lyRecibo = (LinearLayout) view.findViewById(R.id.lyRecibo);
             mainHolder.ivMarkerConciliado = (ImageView) view.findViewById(R.id.ivMarkerConciliado);
             mainHolder.lyItemLiquidacion = (LinearLayout) view.findViewById(R.id.lyItemLiquidacion);
@@ -155,6 +157,17 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
 
             }
         });
+
+        holder.txtcPacking.setVisibility(View.GONE);
+        holder.lblcPacking.setVisibility(View.GONE);
+
+        if(documentos_cobra_cabBE.getC_PACKING() != null && !documentos_cobra_cabBE.getC_PACKING().equals("") && !documentos_cobra_cabBE.getC_PACKING().equals("0"))
+        {
+            holder.txtcPacking.setText(documentos_cobra_cabBE.getC_PACKING());
+
+            holder.txtcPacking.setVisibility(View.VISIBLE);
+            holder.lblcPacking.setVisibility(View.VISIBLE);
+        }
 
 
 
@@ -254,7 +267,7 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
                 editor_Shared.putString("dTIPO_CAMBIO", documentos_cobra_cabBE.getT_CAMBIO_TIENDA().toString());
                 editor_Shared.putString("sESTADO", documentos_cobra_cabBE.getESTADO().toString());
                 editor_Shared.putString("sESTADO_CONCILIADO", documentos_cobra_cabBE.getESTADO_CONCILIADO().toString());
-
+                editor_Shared.putString("RAZON_SOCIAL", documentos_cobra_cabBE.getRAZON_SOCIAL().toString());
                 editor_Shared.putString("COBRANZA_EVENTO","1");
                 editor_Shared.commit();
 
@@ -271,8 +284,8 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
 
     static class MainHolder {
         //TextView lc_item1,lc_item2,lc_item3,lc_item4,lc_item5,lc_item6,lc_item7,lc_item8,lc_item9,lc_item10,lc_item11;
-        TextView cl_itemCliente, cl_itemDocumentos, cl_itemMonto, cl_itemFormaPago, cl_itemRecibo, cl_itemPlanilla, txtFechaLiquidacion;
-        TextView cl_lblPlanilla, cl_lblRecibo;
+        TextView cl_itemCliente, cl_itemDocumentos, cl_itemMonto, cl_itemFormaPago, cl_itemRecibo, cl_itemPlanilla, txtFechaLiquidacion, txtcPacking;
+        TextView cl_lblPlanilla, cl_lblRecibo, lblcPacking;
         LinearLayout lyRecibo;
         Button cl_btn;
         CheckBox cl_itemchk;
