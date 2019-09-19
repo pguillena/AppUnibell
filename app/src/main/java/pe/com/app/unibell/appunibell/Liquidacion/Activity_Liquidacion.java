@@ -33,6 +33,7 @@ import android.widget.AdapterViewAnimator;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -134,6 +135,7 @@ public class Activity_Liquidacion extends AppCompatActivity
     int contadorChecks = 0;
     private String sNroPlanilla, sCPacking, sEstado="40003", sFecha;
     private String lq_lblmontoc,lq_lblmontov,lq_lblmontoe,lq_lblmontob, lq_lblmontop;
+    private EditText txtPackingEnvio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,7 +161,7 @@ public class Activity_Liquidacion extends AppCompatActivity
             Button btnAsignar = (Button) findViewById(R.id.btnAsignar);
             Button btnEnvio = (Button) findViewById(R.id.btnEnvio);
             TextView btnVerDetalle = (TextView) findViewById(R.id.btnVerDetalle);
-
+            txtPackingEnvio = (EditText) findViewById(R.id.txtPackingEnvio);
             btnAsignar.setOnClickListener(OnClickListener_btnAsignar);
             btnEnvio.setOnClickListener(OnClickListener_btnEnvio);
             btnVerDetalle.setOnClickListener(OnClickListener_btnVerDetalle);
@@ -174,6 +176,14 @@ public class Activity_Liquidacion extends AppCompatActivity
             dataBaseHelper.openDataBase();
 
             Cargar();
+
+            txtPackingEnvio.setVisibility(View.GONE);
+            //(usuario.ROL == (int)EnumRoles.LiquidadorCobranzaDespacho || usuario.ROL == (int)EnumRoles.RegistradorPedidos)
+            if(sharedSettings.getString("ROL", "").toString().equals("130019") || sharedSettings.getString("ROL", "").toString().equals("130008"))
+            {
+                txtPackingEnvio.setVisibility(View.VISIBLE);
+            }
+
 
         } catch (Exception ex) {
 
@@ -342,14 +352,32 @@ public class Activity_Liquidacion extends AppCompatActivity
         @Override
         public void onClick(View view) {
 
-            iOpcionFecha = 3;//EnviarPlanilla
+            boolean existeDatos = false;
+            if(documentos_cobra_cabDAO.lst!=null && documentos_cobra_cabDAO.lst.size()>0)
+            {
+                for(int i=0; i<documentos_cobra_cabDAO.lst.size(); i++) {
+                    if(documentos_cobra_cabDAO.lst.get(i).getESTADO().equals("40003"))
+                    {
+                        existeDatos = true;
+                        break;
+                    }
+                }
+            }
 
+            if(existeDatos)
+            {
+            iOpcionFecha = 3;//EnviarPlanilla
             try {
                 dialogFragmentFecha = new Dialogo_Fragment_Fecha();
                 dialogFragmentFecha.show(getFragmentManager(), "");
 
             } catch (Exception ex) {
                 ex.printStackTrace();
+            }
+            }
+            else
+            {
+                Mensaje("No existen cobranzas pendientes de envio");
             }
 
 
@@ -1002,16 +1030,32 @@ public class Activity_Liquidacion extends AppCompatActivity
         iEvento = 3;
         lq_txtffecha = fecha;
         if(sEstado.equals("40003")){
-            if(lq_txtffecha != null && !lq_txtffecha.toString().trim().equals("")) {
-                String sMensaje = "¿Desea enviar la planilla del " + lq_txtffecha.toString().trim();
-                dialog_fragment_confirmar = new Dialog_Fragment_Confirmar();
-                dialog_fragment_confirmar.setmConfirmarDialogfragmentListener(Activity_Liquidacion.this, sMensaje);
-                dialog_fragment_confirmar.show(getSupportFragmentManager(), dialog_fragment_confirmar.TAG);
-                dialog_fragment_confirmar.isCancelable();
-            }else{
-                Mensaje("Seleccione Fecha para poder enviar los documentos.");
-                BuscarLiquidacion();
+
+            //(usuario.ROL == (int)EnumRoles.LiquidadorCobranzaDespacho || usuario.ROL == (int)EnumRoles.RegistradorPedidos)
+            if(sharedSettings.getString("ROL", "").toString().equals("130019") || sharedSettings.getString("ROL", "").toString().equals("130008"))
+            {
+                if(txtPackingEnvio.getText()== null || txtPackingEnvio.getText().toString().trim().equals("") ||txtPackingEnvio.getText().toString().trim().equals("0"))
+                {
+                    txtPackingEnvio.requestFocus();
+                    Mensaje("Debe ingresar una planilla de despacho");
+                    return false;
+                }
+                else {
+                    sCPacking = txtPackingEnvio.getText().toString();
+                }
             }
+
+                if (lq_txtffecha != null && !lq_txtffecha.toString().trim().equals("")) {
+                    String sMensaje = "¿Desea enviar la planilla del " + lq_txtffecha.toString().trim();
+                    dialog_fragment_confirmar = new Dialog_Fragment_Confirmar();
+                    dialog_fragment_confirmar.setmConfirmarDialogfragmentListener(Activity_Liquidacion.this, sMensaje);
+                    dialog_fragment_confirmar.show(getSupportFragmentManager(), dialog_fragment_confirmar.TAG);
+                    dialog_fragment_confirmar.isCancelable();
+                } else {
+                    Mensaje("Seleccione Fecha para poder enviar los documentos.");
+                    BuscarLiquidacion();
+                }
+
         }
         else
         {
@@ -1100,6 +1144,7 @@ public class Activity_Liquidacion extends AppCompatActivity
                             sharedSettings.getString("sIMEI", "").toString() + "/" +
                             sharedSettings.getString("NOMBRE_TELEFONO", "").toString()
             );
+
         }
     }
 

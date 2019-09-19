@@ -43,11 +43,24 @@
             android:layout_marginLeft="@dimen/pad_20dp"
             >
 
+            <EditText
+                android:id="@+id/txtPackingEnvio"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="Packing"
+                android:textSize="22dp"
+                style="@style/editext_graybg"
+                android:maxLines="1"
+                android:inputType="number"
+                />
+
+
             <Button
                 android:id="@+id/btnConciliar"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/alpha_c_circle_outline"
+                android:layout_marginLeft="20dp"
                 />
 
             <Button
