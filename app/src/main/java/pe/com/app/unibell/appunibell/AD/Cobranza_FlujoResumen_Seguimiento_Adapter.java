@@ -49,6 +49,8 @@ public class Cobranza_FlujoResumen_Seguimiento_Adapter extends ArrayAdapter<Docu
             mainHolder.fl_item3 = (TextView) convertView.findViewById(R.id.fl_item3);
             mainHolder.fl_item4 = (TextView) convertView.findViewById(R.id.fl_item4);
             mainHolder.fl_item5 = (TextView) convertView.findViewById(R.id.fl_item5);
+            mainHolder.fl_itemHoraDerivado = (TextView) convertView.findViewById(R.id.fl_itemHoraDerivado);
+            mainHolder.fl_itemHoraAceptado = (TextView) convertView.findViewById(R.id.fl_itemHoraAceptado);
 
             convertView.setTag(mainHolder);
         } else {
@@ -60,8 +62,10 @@ public class Cobranza_FlujoResumen_Seguimiento_Adapter extends ArrayAdapter<Docu
         mainHolder.fj_item3.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOM_ROL_DESTINO()));
         mainHolder.fj_item4.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOM_PERSONA_DESTINO().toString()));
 
-        mainHolder.fl_item2.setText(documentos_cobra_movBE.getFECHA_MOVIMIENTO());
+        mainHolder.fl_item2.setText(documentos_cobra_movBE.getFECHA_DERIVAR());
+        mainHolder.fl_itemHoraDerivado.setText(documentos_cobra_movBE.getHORA_DERIVAR());
         mainHolder.fl_item3.setText(documentos_cobra_movBE.getFECHA_RECEPCION());
+        mainHolder.fl_itemHoraAceptado.setText(documentos_cobra_movBE.getHORA_RECEPCION());
         mainHolder.fl_item4.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOM_PERSONA_DESTINO()));
         mainHolder.fl_item5.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOM_ESTADO_MOVIMIENTO()));
 
@@ -72,6 +76,10 @@ public class Cobranza_FlujoResumen_Seguimiento_Adapter extends ArrayAdapter<Docu
     static class MainHolder {
         TextView fj_item1,fj_item2,fj_item3,fj_item4;
         TextView fl_item5,fl_item2,fl_item3,fl_item4;
+        TextView fl_itemHoraDerivado,fl_itemHoraAceptado;
+
+
+
     }
 
     @Override

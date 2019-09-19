@@ -81,11 +81,9 @@ public class Gem_BancoBL {
                 DataBaseHelper.myDataBase.delete("S_GEM_BANCO", null, null);
 
                 String SQL="INSERT OR REPLACE INTO S_GEM_BANCO(" +
-                        "ID_BANCO,BANCO,ESTADO,ID_EMPRESA,FECHA_REGISTRO," +
-                        "FECHA_MODIFICACION,USUARIO_REGISTRO,USUARIO_MODIFICACION,PC_REGISTRO,PC_MODIFICACION," +
-                        "IP_REGISTRO,IP_MODIFICACION,ABREVIADO,CODIGO_LOGIX,VISIBLE)"+
+                        "ID_BANCO,BANCO,ESTADO,ID_EMPRESA, ABREVIADO,CODIGO_LOGIX,VISIBLE)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -100,17 +98,9 @@ public class Gem_BancoBL {
                     stmt.bindString(2,jsonObjectItem.getString("BANCO"));
                     stmt.bindString(3,jsonObjectItem.getString("ESTADO"));
                     stmt.bindString(4,jsonObjectItem.getString("ID_EMPRESA"));
-                    stmt.bindString(5,jsonObjectItem.getString("FECHA_REGISTRO"));
-                    stmt.bindString(6,jsonObjectItem.getString("FECHA_MODIFICACION"));
-                    stmt.bindString(7,jsonObjectItem.getString("USUARIO_REGISTRO"));
-                    stmt.bindString(8,jsonObjectItem.getString("USUARIO_MODIFICACION"));
-                    stmt.bindString(9,jsonObjectItem.getString("PC_REGISTRO"));
-                    stmt.bindString(10,jsonObjectItem.getString("PC_MODIFICACION"));
-                    stmt.bindString(11,jsonObjectItem.getString("IP_REGISTRO"));
-                    stmt.bindString(12,jsonObjectItem.getString("IP_MODIFICACION"));
-                    stmt.bindString(13,jsonObjectItem.getString("ABREVIADO"));
-                    stmt.bindString(14,jsonObjectItem.getString("CODIGO_LOGIX"));
-                    stmt.bindString(15,jsonObjectItem.getString("VISIBLE"));
+                    stmt.bindString(5,jsonObjectItem.getString("ABREVIADO"));
+                    stmt.bindString(6,jsonObjectItem.getString("CODIGO_LOGIX"));
+                    stmt.bindString(7,jsonObjectItem.getString("VISIBLE"));
                     stmt.execute();
                     stmt.clearBindings();
                 }

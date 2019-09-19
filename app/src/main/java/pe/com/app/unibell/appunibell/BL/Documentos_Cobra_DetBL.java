@@ -96,12 +96,9 @@ public class Documentos_Cobra_DetBL {
 
                 String SQL="INSERT OR REPLACE INTO S_CCM_DOCUMENTOS_COBRA_DET(" +
                         "ID_COBRANZA,FPAGO,TIPDOC,SERIE_NUM,NUMERO,IMPORTE," +
-                        "MONEDA,SALDO,M_COBRANZA,ID_EMPRESA,ID_LOCAL,ESTADO," +
-                        "FECHA_REGISTRO,FECHA_MODIFICACION,USUARIO_REGISTRO,USUARIO_MODIFICACION,PC_REGISTRO,PC_MODIFICACION," +
-                        "IP_REGISTRO,IP_MODIFICACION,ID_VENDEDOR,SALDO_INICIAL,VOUCHER,GUARDADO)"+
+                        "MONEDA,SALDO,M_COBRANZA,ID_EMPRESA,ID_LOCAL,ESTADO,ID_VENDEDOR,SALDO_INICIAL,VOUCHER,GUARDADO)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                        "?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -123,18 +120,10 @@ public class Documentos_Cobra_DetBL {
                     stmt.bindString(10,jsonObjectItem.getString("ID_EMPRESA"));
                     stmt.bindString(11,jsonObjectItem.getString("ID_LOCAL"));
                     stmt.bindString(12,jsonObjectItem.getString("ESTADO"));
-                    stmt.bindString(13,jsonObjectItem.getString("FECHA_REGISTRO"));
-                    stmt.bindString(14,jsonObjectItem.getString("FECHA_MODIFICACION"));
-                    stmt.bindString(15,jsonObjectItem.getString("USUARIO_REGISTRO"));
-                    stmt.bindString(16,jsonObjectItem.getString("USUARIO_MODIFICACION"));
-                    stmt.bindString(17,jsonObjectItem.getString("PC_REGISTRO"));
-                    stmt.bindString(18,jsonObjectItem.getString("PC_MODIFICACION"));
-                    stmt.bindString(19,jsonObjectItem.getString("IP_REGISTRO"));
-                    stmt.bindString(20,jsonObjectItem.getString("IP_MODIFICACION"));
-                    stmt.bindString(21,jsonObjectItem.getString("ID_VENDEDOR"));
-                    stmt.bindString(22,jsonObjectItem.getString("SALDO_INICIAL"));
-                    stmt.bindString(23,jsonObjectItem.getString("VOUCHER"));
-                    stmt.bindString(24,"1");
+                    stmt.bindString(13,jsonObjectItem.getString("ID_VENDEDOR"));
+                    stmt.bindString(14,jsonObjectItem.getString("SALDO_INICIAL"));
+                    stmt.bindString(15,jsonObjectItem.getString("VOUCHER"));
+                    stmt.bindString(16,"1");
                     stmt.execute();
                     stmt.clearBindings();
                 }

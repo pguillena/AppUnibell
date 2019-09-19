@@ -93,6 +93,8 @@ public class Documentos_Cobra_MovBL {
                     documentos_cobra_movBE.setNOM_ESTADO_MOVIMIENTO(jsonObjectItem.getString("NOM_ESTADO_MOVIMIENTO"));
                     documentos_cobra_movBE.setNOM_PERSONA_ORIGEN(jsonObjectItem.getString("NOM_PERSONA_ORIGEN"));
                     documentos_cobra_movBE.setNOM_PERSONA_DESTINO(jsonObjectItem.getString("NOM_PERSONA_DESTINO"));
+                    documentos_cobra_movBE.setHORA_DERIVAR(jsonObjectItem.getString("HORA_DERIVAR"));
+                    documentos_cobra_movBE.setHORA_RECEPCION(jsonObjectItem.getString("HORA_RECEPCION"));
                     lst.add(documentos_cobra_movBE);
                 }
             }

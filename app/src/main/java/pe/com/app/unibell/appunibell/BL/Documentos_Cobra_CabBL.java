@@ -420,13 +420,11 @@ public class Documentos_Cobra_CabBL {
                         "ID_COBRANZA,COD_CLIENTE,N_RECIBO,N_SERIE_RECIBO,FPAGO,ID_COBRADOR," +
                         "FECHA,M_COBRANZA,M_COBRANZA_D,SALDO,NUMCHEQ,FECCHEQ," +
                         "ID_BANCO,CTACORRIENTE_BANCO,NRO_OPERACION,FECHA_DEPOSITO,COMENTARIO,ID_EMPRESA," +
-                        "ID_LOCAL,ESTADO,FECHA_REGISTRO,FECHA_MODIFICACION,USUARIO_REGISTRO,USUARIO_MODIFICACION," +
-                        "PC_REGISTRO,PC_MODIFICACION,IP_REGISTRO,IP_MODIFICACION,ITEM,ESTADO_CONCILIADO," +
+                        "ID_LOCAL,ESTADO,ITEM,ESTADO_CONCILIADO," +
                         "SERIE_PLANILLA,N_PLANILLA,C_PACKING,ID_MOV_BANCO,ESTADO_PROCESO,T_CAMBIO_TIENDA," +
                         "N_TARJETA,ID_MOV_BANCO_ABONO,FECHA_DEPOSITO_ABONO,LOTE,FLAG_COBRANZA,GUARDADO,SINCRONIZADO)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -467,29 +465,21 @@ public class Documentos_Cobra_CabBL {
                     stmt.bindString(18,jsonObjectItem.getString("ID_EMPRESA"));
                     stmt.bindString(19,jsonObjectItem.getString("ID_LOCAL"));
                     stmt.bindString(20,jsonObjectItem.getString("ESTADO"));
-                    stmt.bindString(21,jsonObjectItem.getString("FECHA_REGISTRO"));
-                    stmt.bindString(22,jsonObjectItem.getString("FECHA_MODIFICACION"));
-                    stmt.bindString(23,jsonObjectItem.getString("USUARIO_REGISTRO"));
-                    stmt.bindString(24,jsonObjectItem.getString("USUARIO_MODIFICACION"));
-                    stmt.bindString(25,jsonObjectItem.getString("PC_REGISTRO"));
-                    stmt.bindString(26,jsonObjectItem.getString("PC_MODIFICACION"));
-                    stmt.bindString(27,jsonObjectItem.getString("IP_REGISTRO"));
-                    stmt.bindString(28,jsonObjectItem.getString("IP_MODIFICACION"));
-                    stmt.bindString(29,jsonObjectItem.getString("ITEM"));
-                    stmt.bindString(30,jsonObjectItem.getString("ESTADO_CONCILIADO"));
-                    stmt.bindString(31,jsonObjectItem.getString("SERIE_PLANILLA"));
-                    stmt.bindString(32,jsonObjectItem.getString("N_PLANILLA"));
-                    stmt.bindString(33,jsonObjectItem.getString("C_PACKING"));
-                    stmt.bindString(34,jsonObjectItem.getString("ID_MOV_BANCO"));
-                    stmt.bindString(35,jsonObjectItem.getString("ESTADO_PROCESO"));
-                    stmt.bindString(36,jsonObjectItem.getString("T_CAMBIO_TIENDA"));
-                    stmt.bindString(37,jsonObjectItem.getString("N_TARJETA"));
-                    stmt.bindString(38,jsonObjectItem.getString("ID_MOV_BANCO_ABONO"));
-                    stmt.bindString(39,jsonObjectItem.getString("FECHA_DEPOSITO_ABONO"));
-                    stmt.bindString(40,jsonObjectItem.getString("LOTE"));
-                    stmt.bindString(41,jsonObjectItem.getString("FLAG_COBRANZA"));
-                    stmt.bindString(42,"2");
-                    stmt.bindString(43,"1");
+                    stmt.bindString(21,jsonObjectItem.getString("ITEM"));
+                    stmt.bindString(22,jsonObjectItem.getString("ESTADO_CONCILIADO"));
+                    stmt.bindString(23,jsonObjectItem.getString("SERIE_PLANILLA"));
+                    stmt.bindString(24,jsonObjectItem.getString("N_PLANILLA"));
+                    stmt.bindString(25,jsonObjectItem.getString("C_PACKING"));
+                    stmt.bindString(26,jsonObjectItem.getString("ID_MOV_BANCO"));
+                    stmt.bindString(27,jsonObjectItem.getString("ESTADO_PROCESO"));
+                    stmt.bindString(28,jsonObjectItem.getString("T_CAMBIO_TIENDA"));
+                    stmt.bindString(29,jsonObjectItem.getString("N_TARJETA"));
+                    stmt.bindString(30,jsonObjectItem.getString("ID_MOV_BANCO_ABONO"));
+                    stmt.bindString(31,jsonObjectItem.getString("FECHA_DEPOSITO_ABONO"));
+                    stmt.bindString(32,jsonObjectItem.getString("LOTE"));
+                    stmt.bindString(33,jsonObjectItem.getString("FLAG_COBRANZA"));
+                    stmt.bindString(34,"2");
+                    stmt.bindString(35,"1");
                     stmt.execute();
                     stmt.clearBindings();
                 }

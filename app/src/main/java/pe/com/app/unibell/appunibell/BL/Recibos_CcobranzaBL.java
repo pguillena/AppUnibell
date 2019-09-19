@@ -90,11 +90,9 @@ public class Recibos_CcobranzaBL {
 
                 String SQL="INSERT OR REPLACE INTO CCM_RECIBOS_COBRANZA(" +
                         "N_SERIE,N_NUMINI,N_NUMFIN,C_TIPO_REC,C_RECEPTOR," +
-                        "F_RECEPCION,F_DEVOLUCION,VIGENCIA,C_USUARIO,C_PERFIL," +
-                        "C_CPU,FEC_REG,C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD," +
-                        "C_CPU_MOD,OBSERVACION,C_ESTADO) "+
+                        "F_RECEPCION,F_DEVOLUCION,VIGENCIA,C_USUARIO, OBSERVACION,C_ESTADO) "+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -114,15 +112,8 @@ public class Recibos_CcobranzaBL {
                     stmt.bindString(7,jsonObjectItem.getString("F_DEVOLUCION").trim().replace("null",""));
                     stmt.bindString(8,jsonObjectItem.getString("VIGENCIA"));
                     stmt.bindString(9,jsonObjectItem.getString("C_USUARIO"));
-                    stmt.bindString(10,jsonObjectItem.getString("C_PERFIL"));
-                    stmt.bindString(11,jsonObjectItem.getString("C_CPU"));
-                    stmt.bindString(12,jsonObjectItem.getString("FEC_REG"));
-                    stmt.bindString(13,jsonObjectItem.getString("C_USUARIO_MOD"));
-                    stmt.bindString(14,jsonObjectItem.getString("C_PERFIL_MOD"));
-                    stmt.bindString(15,jsonObjectItem.getString("FEC_MOD"));
-                    stmt.bindString(16,jsonObjectItem.getString("C_CPU_MOD"));
-                    stmt.bindString(17,jsonObjectItem.getString("OBSERVACION"));
-                    stmt.bindString(18,jsonObjectItem.getString("C_ESTADO"));
+                    stmt.bindString(10,jsonObjectItem.getString("OBSERVACION"));
+                    stmt.bindString(11,jsonObjectItem.getString("C_ESTADO"));
                     stmt.execute();
                     stmt.clearBindings();
                 }

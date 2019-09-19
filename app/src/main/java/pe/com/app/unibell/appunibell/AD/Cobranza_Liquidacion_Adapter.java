@@ -21,10 +21,13 @@ import java.util.List;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
 import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranzas;
 import pe.com.app.unibell.appunibell.Flujo_Seguimiento.Activity_Flujo_Seguimiento;
+import pe.com.app.unibell.appunibell.Liquidacion.Activity_Liquidacion;
+import pe.com.app.unibell.appunibell.Main.Activity_Login;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Reportes.Activity_Cobranza_Liquidacion_Rep;
 import pe.com.app.unibell.appunibell.Reportes.Activity_Cobranza_Recibo_Rep;
 import pe.com.app.unibell.appunibell.Util.Funciones;
+import pe.com.app.unibell.appunibell.Util.ToastLibrary;
 
 import static android.content.Context.MODE_PRIVATE;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
@@ -209,6 +212,7 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
 
         if(documentos_cobra_cabBE.getESTADO_CONCILIADO().toString().trim().equals("40025")) {
             holder.ivMarkerConciliado.setVisibility(View.VISIBLE);
+
         }else{
             holder.ivMarkerConciliado.setVisibility(View.GONE);
             /*
@@ -310,7 +314,8 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
                                    documentos_cobra_cabBE.getRAZON_SOCIAL().toString()+
                                    documentos_cobra_cabBE.getCOD_CLIENTE().toString()+
                                    documentos_cobra_cabBE.getN_RECIBO().toString()+
-                                   documentos_cobra_cabBE.getPLANILLA().toString());
+                                   documentos_cobra_cabBE.getPLANILLA().toString()+
+                                   documentos_cobra_cabBE.getFPAGODESC().toString());
                     Boolean bfind = true;
                     for(String s : SSA){
                         if(!todo.contains(s)){
@@ -338,5 +343,7 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
             }
         }
     }
+
+
 
 }

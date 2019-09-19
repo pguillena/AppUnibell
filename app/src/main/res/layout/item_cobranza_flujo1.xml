@@ -119,7 +119,7 @@
         android:id="@+id/fj_item8Label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="N° Op / N° Cheque"
+        android:text="N° Op/Cheq/Tarjeta"
         android:textSize="16dp"
         android:fontFamily="@font/sf_pro_display_medium"
         android:textColor="@color/Button_login_unibell"

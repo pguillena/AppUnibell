@@ -52,6 +52,9 @@ public class Cobranza_Flujo1_Seguimiento_Adapter extends ArrayAdapter<Documentos
             //mainHolder.fj_item6 = (TextView) convertView.findViewById(R.id.fj_item6);
             mainHolder.fj_item7 = (TextView) convertView.findViewById(R.id.fj_item7);
             mainHolder.fj_item8 = (TextView) convertView.findViewById(R.id.fj_item8);
+            mainHolder.fj_item8Label = (TextView) convertView.findViewById(R.id.fj_item8Label);
+
+
             mainHolder.fj_item9 = (TextView) convertView.findViewById(R.id.fj_item9);
             mainHolder.fj_item10 = (TextView) convertView.findViewById(R.id.fj_item10);
             convertView.setTag(mainHolder);
@@ -70,7 +73,7 @@ public class Cobranza_Flujo1_Seguimiento_Adapter extends ArrayAdapter<Documentos
         mainHolder.fj_item4.setText(funciones.LetraCapital(documentos_cobra_cabBE.getFPAGO()));
 
         mainHolder.fj_item7.setText(documentos_cobra_cabBE.getFECHA());
-        mainHolder.fj_item8.setText(documentos_cobra_cabBE.getCONSTANCIA());
+        mainHolder.fj_item8.setText(funciones.LetraCapital(documentos_cobra_cabBE.getCONSTANCIA()));
         if(documentos_cobra_cabBE.getMONEDA().toString().trim().equals("S")) {
             mainHolder.fj_item9.setText("S/ " + documentos_cobra_cabBE.getM_COBRANZA());
         }else{
@@ -78,11 +81,31 @@ public class Cobranza_Flujo1_Seguimiento_Adapter extends ArrayAdapter<Documentos
         }
         mainHolder.fj_item10.setText(documentos_cobra_cabBE.getRECIBO());
 
+
+        if(documentos_cobra_cabBE.getCODIGO_FPAGO().equals("P"))
+        {
+            mainHolder.fj_item8Label.setText("N° Operación");
+        }
+        else if (documentos_cobra_cabBE.getCODIGO_FPAGO().equals("C"))
+        {
+            mainHolder.fj_item8Label.setText("N° Cheque");
+        }
+        else if (documentos_cobra_cabBE.getCODIGO_FPAGO().equals("E") || documentos_cobra_cabBE.getCODIGO_FPAGO().equals("Z"))
+        {
+            mainHolder.fj_item8Label.setText("Forma de Pago");
+        }
+        else
+        {
+            mainHolder.fj_item8Label.setText("N° Tarjeta");
+        }
+
         return convertView;
     }
 
     static class MainHolder {
         TextView fj_item1,fj_item2,fj_item3,fj_item4,fj_item5,fj_item6,fj_item7,fj_item8,fj_item9,fj_item10;
+        TextView fj_item8Label;
+
     }
 
     @Override

@@ -206,11 +206,32 @@ public class Activity_Liquidacion extends AppCompatActivity
                     }
 
                 }
+
+                CambiarNumeroCheck();
+
             }
 
 
         });
 
+    }
+
+    private void CambiarNumeroCheck() {
+        contadorChecks=0;
+        for (int i = 0; i < cobranza_liquidacion_adapter.getCount(); i++) {
+            if (cobranza_liquidacion_adapter.lst.get(i).getCHKMARCADO()) {
+                contadorChecks = contadorChecks + 1;
+            }
+        }
+
+        if (contadorChecks>0)
+        {
+            lq_chktodos.setText(""+contadorChecks);
+        }
+        else
+        {
+            lq_chktodos.setText("Todo");
+        }
     }
 
     @Override
@@ -261,12 +282,24 @@ public class Activity_Liquidacion extends AppCompatActivity
                                        int position, long id) {
             // TODO Auto-generated method stub
 
-            if(cobranza_liquidacion_adapter.lst.get(position).getESTADO().toString().equals("40003")) //SOLO SE PUEDE REASIGNAR SI EL ESTADO ESTA COMO REGISTRADO
+            if(cobranza_liquidacion_adapter.lst.get(position).getESTADO().toString().equals("40003")  ) //SOLO SE PUEDE REASIGNAR SI EL ESTADO ESTA COMO REGISTRADO
             {
-                cobranza_liquidacion_adapter.lst.get(position).setCHKMARCADO(!cobranza_liquidacion_adapter.lst.get(position).getCHKMARCADO());
-                cobranza_liquidacion_adapter.notifyDataSetChanged();
+                if(!cobranza_liquidacion_adapter.lst.get(position).getESTADO_CONCILIADO().toString().equals("40025")) //ESTADO DIFERENTE DE CONCILIADO
+                {
+                    cobranza_liquidacion_adapter.lst.get(position).setCHKMARCADO(!cobranza_liquidacion_adapter.lst.get(position).getCHKMARCADO());
+                    cobranza_liquidacion_adapter.notifyDataSetChanged();
+                }
+                else
+                {
+                    cobranza_liquidacion_adapter.lst.get(position).setCHKMARCADO(false);
+                    cobranza_liquidacion_adapter.notifyDataSetChanged();
+
+                    Mensaje("No se puede cambiar los datos de un documento conciliado");
+                }
 
             }
+
+            CambiarNumeroCheck();
 
             return true;
         }
@@ -488,6 +521,7 @@ public class Activity_Liquidacion extends AppCompatActivity
             } else {
                 MarcarCheks(true);
             }
+
         }
     };
 
@@ -495,7 +529,7 @@ public class Activity_Liquidacion extends AppCompatActivity
 
         for (int j = 0; j < cobranza_liquidacion_adapter.lst.size(); j++) {
 
-            if(cobranza_liquidacion_adapter.lst.get(j).getESTADO().toString().equals("40003")) //SOLO SE PUEDE REASIGNAR SI EL ESTADO ESTA COMO REGISTRADO
+            if(cobranza_liquidacion_adapter.lst.get(j).getESTADO().toString().equals("40003") && !cobranza_liquidacion_adapter.lst.get(j).getESTADO_CONCILIADO().toString().equals("40025")) //SOLO SE PUEDE REASIGNAR SI EL ESTADO ESTA COMO REGISTRADO Y QUE NO ESTE CONCILIADO
             {
                 cobranza_liquidacion_adapter.lst.get(j).setCHKMARCADO(chk);
                 contadorChecks  = contadorChecks + 1;
@@ -512,6 +546,8 @@ public class Activity_Liquidacion extends AppCompatActivity
                 lq_chktodos.setTextColor(this.getResources().getColor(R.color.Button_recibo_unibell));
             }
         }
+
+        CambiarNumeroCheck();
 
     }
 

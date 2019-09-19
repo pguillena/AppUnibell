@@ -73,6 +73,8 @@ public class Documentos_Cobra_MovBE {
     //FLUJO2
     private String NOMBRE_ROL;
     private String NOMBRE_USUARIO;
+    private String HORA_DERIVAR;
+    private String HORA_RECEPCION;
     //FLUJO3
     private Integer ID_AUDITORIA;
     private String TIPO_DOC;
@@ -83,6 +85,21 @@ public class Documentos_Cobra_MovBE {
     private String OBSERVACION;
     private String NOMBREACCION;
 
+    public void setHORA_DERIVAR(String HORA_DERIVAR) {
+        this.HORA_DERIVAR = HORA_DERIVAR;
+    }
+
+    public void setHORA_RECEPCION(String HORA_RECEPCION) {
+        this.HORA_RECEPCION = HORA_RECEPCION;
+    }
+
+    public String getHORA_DERIVAR() {
+        return HORA_DERIVAR;
+    }
+
+    public String getHORA_RECEPCION() {
+        return HORA_RECEPCION;
+    }
 
     public Integer getID_DOCUMENTO_MOVIMIENTO() {
         return ID_DOCUMENTO_MOVIMIENTO;

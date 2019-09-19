@@ -131,7 +131,7 @@
 
 
     <TextView
-        android:id="@+id/fl_item33"
+        android:id="@+id/fl_itemHoraDerivado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="13:28:42"
@@ -176,7 +176,7 @@
         android:textSize="14dp"
         android:fontFamily="@font/sf_pro_display_bold"
         android:textColor="@color/Button_login_unibell"
-        android:layout_below="@id/fl_item33"
+        android:layout_below="@id/fl_itemHoraDerivado"
         android:layout_toRightOf="@id/fl_item3"
         android:paddingTop="@dimen/pad_20dp"
         />

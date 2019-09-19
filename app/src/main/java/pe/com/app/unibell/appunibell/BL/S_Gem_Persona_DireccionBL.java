@@ -98,12 +98,9 @@ public class S_Gem_Persona_DireccionBL {
                 String SQL="INSERT OR REPLACE INTO S_GEM_PERSONA_DIRECCION(" +
                         "ID_DIRECCION,ID_PERSONA,TIPO_DIRECCION,FACTURACION,ID_VIA,NOMBRE_VIA," +
                         "NUMERO,INTERIOR,ID_ZONA,NOMBRE_ZONA,KILOMETRO,MANZANA," +
-                        "LOTE,REFERENCIA,OBSERVACION,UBIGEO,DEPARTAMENTO,BLOQUE," +
-                        "USUARIO_MODIFICACION,ETAPA,ESTADO,FECHA_REGISTRO,FECHA_MODIFICACION,USUARIO_REGISTRO," +
-                        "PC_REGISTRO,PC_MODIFICACION,IP_REGISTRO,IP_MODIFICACION,DIRECCION_COMPLETA,TELEFONO)"+
+                        "LOTE,REFERENCIA,OBSERVACION,UBIGEO,DEPARTAMENTO,BLOQUE, ETAPA, ESTADO, DIRECCION_COMPLETA, TELEFONO)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -133,16 +130,8 @@ public class S_Gem_Persona_DireccionBL {
                     stmt.bindString(18,jsonObjectItem.getString("BLOQUE"));
                     stmt.bindString(19,jsonObjectItem.getString("ETAPA"));
                     stmt.bindString(20,jsonObjectItem.getString("ESTADO"));
-                    stmt.bindString(21,jsonObjectItem.getString("FECHA_REGISTRO"));
-                    stmt.bindString(22,jsonObjectItem.getString("FECHA_MODIFICACION"));
-                    stmt.bindString(23,jsonObjectItem.getString("USUARIO_REGISTRO"));
-                    stmt.bindString(24,jsonObjectItem.getString("USUARIO_MODIFICACION"));
-                    stmt.bindString(25,jsonObjectItem.getString("PC_REGISTRO"));
-                    stmt.bindString(26,jsonObjectItem.getString("PC_MODIFICACION"));
-                    stmt.bindString(27,jsonObjectItem.getString("IP_REGISTRO"));
-                    stmt.bindString(28,jsonObjectItem.getString("IP_MODIFICACION"));
-                    stmt.bindString(29,jsonObjectItem.getString("DIRECCION_COMPLETA"));
-                    stmt.bindString(30,jsonObjectItem.getString("TELEFONO"));
+                    stmt.bindString(21,jsonObjectItem.getString("DIRECCION_COMPLETA"));
+                    stmt.bindString(22,jsonObjectItem.getString("TELEFONO"));
                     stmt.execute();
                     stmt.clearBindings();
                 }

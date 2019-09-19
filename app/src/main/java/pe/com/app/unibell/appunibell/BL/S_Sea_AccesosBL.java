@@ -97,13 +97,11 @@ public class S_Sea_AccesosBL {
                         "C_PERFIL,C_MENU,VISIBLE,NUEVO,EDITAR,GRABAR," +
                         "BUSCAR,ANULAR,ENVIAR,AGREGAR,ELIMINAR,EXPORTAR," +
                         "IMPRIMIR,CERRAR,EX_WORD,EX_EXCEL,EX_PDF,EMAIL," +
-                        "ICONO,USUARIO_REGISTRO,USUARIO_MODIFICACION,PC_REGISTRO,PC_MODIFICACION,IP_REGISTRO," +
-                        "IP_MODIFICACION,FECHA_REGISTRO,FECHA_MODIFICACION,ESTADO,ID_EMPRESA)"+
+                        "ICONO,ESTADO,ID_EMPRESA)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?," +
-                         "?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-                DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
+               DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
                 DataBaseHelper.myDataBase.setLockingEnabled(false);
                 DataBaseHelper.myDataBase.beginTransactionNonExclusive();
@@ -130,16 +128,8 @@ public class S_Sea_AccesosBL {
                     stmt.bindString(17,jsonObjectItem.getString("EX_PDF"));
                     stmt.bindString(18,jsonObjectItem.getString("EMAIL"));
                     stmt.bindString(19,jsonObjectItem.getString("ICONO"));
-                    stmt.bindString(20,jsonObjectItem.getString("USUARIO_REGISTRO"));
-                    stmt.bindString(21,jsonObjectItem.getString("USUARIO_MODIFICACION"));
-                    stmt.bindString(22,jsonObjectItem.getString("PC_REGISTRO"));
-                    stmt.bindString(23,jsonObjectItem.getString("PC_MODIFICACION"));
-                    stmt.bindString(24,jsonObjectItem.getString("IP_REGISTRO"));
-                    stmt.bindString(25,jsonObjectItem.getString("IP_MODIFICACION"));
-                    stmt.bindString(26,jsonObjectItem.getString("FECHA_REGISTRO"));
-                    stmt.bindString(27,jsonObjectItem.getString("FECHA_MODIFICACION"));
-                    stmt.bindString(28,jsonObjectItem.getString("ESTADO"));
-                    stmt.bindString(29,jsonObjectItem.getString("ID_EMPRESA"));
+                    stmt.bindString(20,jsonObjectItem.getString("ESTADO"));
+                    stmt.bindString(21,jsonObjectItem.getString("ID_EMPRESA"));
                     stmt.execute();
                     stmt.clearBindings();
                 }
