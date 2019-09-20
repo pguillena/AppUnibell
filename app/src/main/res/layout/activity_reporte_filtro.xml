@@ -51,6 +51,7 @@
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="8dp"
+                android:maxLines="1"
                 />
 
             <TextView
@@ -73,6 +74,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="8dp"
                 android:tag="0"
+                android:maxLines="1"
                 />
 
             <TextView
@@ -119,6 +121,8 @@
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="8dp"
+                android:maxLines="1"
+                android:inputType="number"
                 />
 
             <LinearLayout
@@ -266,6 +270,8 @@
                     style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                     android:layout_weight="1"
                     android:layout_marginRight="5dp"
+                    android:maxLines="1"
+                    android:inputType="number"
                     />
 
                 <EditText
@@ -277,6 +283,8 @@
                     android:padding="15dp"
                     style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                     android:layout_weight="1"
+                    android:maxLines="1"
+                    android:inputType="number"
                     />
             </LinearLayout>
 
@@ -351,6 +359,8 @@
                     style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                     android:layout_weight="1"
                     android:layout_marginRight="5dp"
+                    android:maxLines="1"
+                    android:inputType="number"
                     />
 
                 <EditText
@@ -362,6 +372,8 @@
                     android:padding="15dp"
                     style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                     android:layout_weight="1"
+                    android:maxLines="1"
+                    android:inputType="number"
                     />
             </LinearLayout>
 
@@ -436,6 +448,8 @@
                     style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                     android:layout_weight="1"
                     android:layout_marginRight="5dp"
+                    android:maxLines="1"
+                    android:inputType="number"
                     />
 
                 <EditText
@@ -447,6 +461,8 @@
                     android:padding="15dp"
                     style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                     android:layout_weight="1"
+                    android:maxLines="1"
+                    android:inputType="number"
                     />
             </LinearLayout>
 
