@@ -143,7 +143,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
         tba_edttitulo.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before,int count) {
 
-                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400) {
+                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=700) {
                     if(tab_lvauxiliar.getAdapter()!=null) {
                         Tablas_Auxiliares_Adapter ca = (Tablas_Auxiliares_Adapter) tab_lvauxiliar.getAdapter();
                         ca.getFilter().filter(s.toString());
@@ -234,7 +234,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
                 }
 
 
-                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600) {
+                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600 && iTabla!=700) {
                     editor_Shared.putString("ICODTABAUX", tablas_auxiliares_adapter.getItem(position).getCODIGO().toString());
                     editor_Shared.putString("IDESTABAUX", tablas_auxiliares_adapter.getItem(position).getDESCRIPCION());
                     editor_Shared.putString("COD_FPAGO", tablas_auxiliares_adapter.getItem(position).getCODIGO().toString());

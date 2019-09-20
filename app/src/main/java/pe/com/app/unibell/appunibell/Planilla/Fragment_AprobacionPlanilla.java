@@ -123,7 +123,7 @@ public class Fragment_AprobacionPlanilla extends Fragment
     public void BuscarPlanilla(Intent data){
         try{
 
-            String cobranza="0", serie="0",recibo="0",fpago="0",codigoCliente="XXX",nomCliente="XXX",ruc="XXX",dni="XXX",noperacion="XXX",estado="40004",planilla="0";
+            String cobranza="0", serie="0",recibo="0",fpago="0",codigoCliente="XXX",nomCliente="XXX",ruc="XXX",dni="XXX",noperacion="XXX",estado="40004",planilla="0", pl_cobrador="0";
             String sFechaInicio="17530101",sFechaFin="17530101";
 
             String iID_VENDEDOR= sharedSettings.getString("iID_VENDEDOR", "0").toString();
@@ -142,6 +142,9 @@ public class Fragment_AprobacionPlanilla extends Fragment
                 sFechaFin=parametros.getString("pl_fin").toString().trim();
                 fpago=parametros.getString("pl_fpago").toString().trim();
                 estado=parametros.getString("pl_estado").toString().trim();
+                pl_cobrador=parametros.getString("pl_cobrador").toString().trim();
+
+
             }
 
          new Load_AsyncTask().execute(
@@ -150,7 +153,7 @@ public class Fragment_AprobacionPlanilla extends Fragment
                  recibo + "/" +
                  serie + "/" +
                  fpago  + "/" +
-                 "0" + "/" + //DEBE VENIR DEL FILTRO
+                 pl_cobrador + "/" +
                  codigoCliente+ "/" +
                  sFechaInicio+ "/" +
                  sFechaFin + "/" +

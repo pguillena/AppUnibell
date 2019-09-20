@@ -75,6 +75,7 @@
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:layout_weight="1"
                 android:layout_marginRight="5dp"
+                android:maxLines="1"
                 />
 
             <EditText
@@ -86,6 +87,7 @@
                 android:padding="15dp"
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:layout_weight="1"
+                android:maxLines="1"
                 />
         </LinearLayout>
 
@@ -171,6 +173,7 @@
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="8dp"
+                android:maxLines="1"
                 />
 
             <TextView
@@ -192,6 +195,7 @@
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="8dp"
+                android:maxLines="1"
                 />
 
             <LinearLayout
@@ -240,6 +244,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
+                android:maxLines="1"
                 />
 
             <EditText
@@ -253,6 +258,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
+                android:maxLines="1"
                 />
 
           </LinearLayout>
@@ -303,6 +309,7 @@
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="8dp"
+                android:maxLines="1"
                 />
 
             <TextView
@@ -376,6 +383,7 @@
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
+                android:maxLines="1"
                 />
 
             <TextView
