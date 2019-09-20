@@ -152,17 +152,110 @@ public class Activity_Aprobacion_Planilla_Filtro   extends AppCompatActivity
                 // TODO Auto-generated method stub
                 String fpago="";
                 Intent data = new Intent();
-                data.putExtra("pl_serie",pl_txtserie.getText().toString().replace("","0"));
-                data.putExtra("pl_numero",pl_txtnumero.getText().toString().replace("","0"));
-                data.putExtra("pl_codigo", pl_txtcodigo.getText().toString().replace("","XXX"));
-                data.putExtra("pl_cliente", pl_txtcliente.getText().toString().replace("","XXX"));
-                data.putExtra("pl_ruc",pl_txtruc.getText().toString().replace("","XXX"));
-                data.putExtra("pl_dni", pl_txtdni.getText().toString().replace("","XXX"));
-                data.putExtra("pl_cobrador",ddlCobrador.getTag().toString().trim());
-                data.putExtra("pl_noperacion",pl_txtoperacion.getText().toString().replace("","XXX"));
-                data.putExtra("pl_planilla",pl_txtplanilla.getText().toString().replace("","0"));
-                data.putExtra("pl_inicio",pl_lblinicio.getText().toString().replace("","17530101"));
-                data.putExtra("pl_fin",pl_lblfin.getText().toString().replace("","17530101"));
+
+                if (!pl_txtserie.getText().toString().equals(""))
+                {
+                    data.putExtra("pl_serie",pl_txtserie.getText().toString());
+                }
+                else {
+                    data.putExtra("pl_serie","0");
+                }
+
+                if(!pl_txtnumero.getText().toString().equals(""))
+                {
+                    data.putExtra("pl_numero",pl_txtnumero.getText().toString());
+                }
+                else
+                {
+                    data.putExtra("pl_numero","0");
+                }
+
+
+                if(!pl_txtcodigo.getText().toString().equals(""))
+                {
+                    data.putExtra("pl_codigo", pl_txtcodigo.getText().toString());
+                }
+                else
+                {
+                    data.putExtra("pl_codigo", "XXX");
+                }
+
+
+                if(!pl_txtcliente.getText().toString().equals(""))
+                {
+                    data.putExtra("pl_cliente", pl_txtcliente.getText().toString());
+                }
+                else
+                {
+                    data.putExtra("pl_cliente", "XXX");
+                }
+
+
+                if(!pl_txtruc.getText().toString().equals(""))
+                {
+                    data.putExtra("pl_ruc",pl_txtruc.getText().toString());
+                }
+                else
+                {
+                    data.putExtra("pl_ruc", "XXX");
+                }
+
+
+                if(!pl_txtdni.getText().toString().equals(""))
+                {
+                    data.putExtra("pl_dni",pl_txtruc.getText().toString());
+                }
+                else
+                {
+                    data.putExtra("pl_dni", "XXX");
+                }
+
+
+                if(!ddlCobrador.getText().toString().equals(""))
+                {
+                    data.putExtra("pl_cobrador",ddlCobrador.getTag().toString().trim());
+                }
+                else
+                {
+                    data.putExtra("pl_cobrador","0");
+                }
+
+                if(!pl_txtoperacion.getText().toString().equals(""))
+                {
+                    data.putExtra("pl_noperacion",pl_txtoperacion.getText().toString());
+                }
+                else
+                {
+                    data.putExtra("pl_noperacion", "XXX");
+                }
+
+                if(!pl_txtplanilla.getText().toString().equals(""))
+                {
+                    data.putExtra("pl_planilla",pl_txtplanilla.getText().toString());
+                }
+                else
+                {
+                    data.putExtra("pl_planilla", "0");
+                }
+
+                if(!pl_lblinicio.getText().toString().equals(""))
+                {
+                    data.putExtra("pl_inicio",pl_lblinicio.getText().toString());
+                }
+                else
+                {
+                    data.putExtra("pl_inicio","17530101");
+                }
+
+                if(!pl_lblfin.getText().toString().equals(""))
+                {
+                    data.putExtra("pl_fin",pl_lblfin.getText().toString());
+                }
+                else
+                {
+                    data.putExtra("pl_fin","17530101");
+                }
+
                 fpago=pl_lblfpago.getTag().toString().trim();
                 data.putExtra("pl_fpago",fpago.trim());
                 data.putExtra("pl_estado",pl_lblestado.getTag().toString().trim());

@@ -181,7 +181,7 @@ public class Activity_Login extends AppCompatActivity
             btnSincronizarLogin.setOnClickListener(OnClickListener_btnSincronizarLogin);
             btnInfoLogin.setOnClickListener(OnClickListener_btnInfoLogin);
 
-            SincronizarTipoCambio();
+            //SincronizarTipoCambio();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -309,6 +309,7 @@ public class Activity_Login extends AppCompatActivity
             if (edtUserName.getText().toString().trim().length() == 0 || edtUserPass.getText().toString().trim().length() ==0) {
                 new ToastLibrary(Activity_Login.this,"Ingrese Usuario y Password.").Show();
             }else{
+
                 new LoginUsuarioValidaSQLite_AsyncTask().execute(
                         edtUserName.getText().toString().trim().toUpperCase(),
                         edtUserPass.getText().toString().trim().toUpperCase());
@@ -500,6 +501,9 @@ public class Activity_Login extends AppCompatActivity
             }else{
 
                 try {
+
+                    SincronizarTipoCambio();
+
                     new S_Sem_UsuarioBL_RecuperarUsuarioMD5().execute(
                             ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_rec_usuario + '/'
                                     + edtUserName.getText().toString().trim().toUpperCase()+ '/'

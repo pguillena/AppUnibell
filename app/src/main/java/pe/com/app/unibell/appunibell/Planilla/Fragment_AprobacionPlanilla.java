@@ -130,19 +130,19 @@ public class Fragment_AprobacionPlanilla extends Fragment
             Bundle parametros = data.getExtras();
 
             if(parametros !=null && iInacializa==1 ){
-                serie=parametros.getString("pl_serie").toString().trim();
-                recibo=parametros.getString("pl_numero").toString().trim();;
-                codigoCliente=parametros.getString("pl_codigo").toString().trim();
-                nomCliente=parametros.getString("pl_cliente").toString().trim();
-                ruc=parametros.getString("pl_ruc").toString().trim();
-                dni=parametros.getString("pl_dni").toString().trim();
-                noperacion=parametros.getString("pl_noperacion").toString().trim();
-                planilla=parametros.getString("pl_planilla").toString().trim();
-                sFechaInicio=parametros.getString("pl_inicio").toString().trim();
-                sFechaFin=parametros.getString("pl_fin").toString().trim();
-                fpago=parametros.getString("pl_fpago").toString().trim();
-                estado=parametros.getString("pl_estado").toString().trim();
-                pl_cobrador=parametros.getString("pl_cobrador").toString().trim();
+                serie=parametros.getString("pl_serie","0").toString().trim();
+                recibo=parametros.getString("pl_numero","0").toString().trim();;
+                codigoCliente=parametros.getString("pl_codigo","XXX").toString().trim();
+                nomCliente=parametros.getString("pl_cliente","XXX").toString().trim();
+                ruc=parametros.getString("pl_ruc","XXX").toString().trim();
+                dni=parametros.getString("pl_dni","XXX").toString().trim();
+                noperacion=parametros.getString("pl_noperacion","XXX").toString().trim();
+                planilla=parametros.getString("pl_planilla","0").toString().trim();
+                sFechaInicio=parametros.getString("pl_inicio","17530101").toString().trim();
+                sFechaFin=parametros.getString("pl_fin","17530101").toString().trim();
+                fpago=parametros.getString("pl_fpago","0").toString().trim();
+                estado=parametros.getString("pl_estado","0").toString().trim();
+                pl_cobrador=parametros.getString("pl_cobrador","0").toString().trim();
 
 
             }
