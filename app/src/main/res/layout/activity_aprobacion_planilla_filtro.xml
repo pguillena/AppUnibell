@@ -41,20 +41,22 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Serie"
+                    android:text="Serie recibo"
                     android:textSize="14dp"
                     android:textColor="@color/label_login_unibell"
                     android:layout_weight="1"
                     android:layout_marginRight="5dp"
+                    android:paddingLeft="@dimen/pad_15dp"
                     />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Número"
+                    android:text="Número recibo"
                     android:textSize="14dp"
                     android:textColor="@color/label_login_unibell"
                     android:layout_weight="1"
+                    android:paddingLeft="@dimen/pad_15dp"
                     />
             </LinearLayout>
 
@@ -76,18 +78,20 @@
                 android:layout_weight="1"
                 android:layout_marginRight="5dp"
                 android:maxLines="1"
+                android:inputType="number"
                 />
 
             <EditText
                 android:id="@+id/pl_txtnumero"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Ingrese Número"
+                android:hint="Ingrese número"
                 android:textSize="16dp"
                 android:padding="15dp"
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:layout_weight="1"
                 android:maxLines="1"
+                android:inputType="number"
                 />
         </LinearLayout>
 
@@ -107,6 +111,7 @@
                     android:textColor="@color/label_login_unibell"
                     android:layout_weight="1"
                     android:layout_marginRight="5dp"
+                    android:paddingLeft="@dimen/pad_15dp"
                     />
 
                 <TextView
@@ -116,6 +121,7 @@
                     android:textSize="14dp"
                     android:textColor="@color/label_login_unibell"
                     android:layout_weight="1"
+                    android:paddingLeft="@dimen/pad_15dp"
                     />
             </LinearLayout>
 
@@ -143,7 +149,7 @@
                     android:id="@+id/pl_lblfin"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="F.Fin"
+                    android:hint="F.fin"
                     android:textSize="16dp"
                     style="@style/SkyTextViewStyleSpinnerUnibellBusqueda"
                     android:layout_weight="1"
@@ -167,7 +173,7 @@
                 android:id="@+id/pl_txtcodigo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Ingrese Código"
+                android:hint="Ingrese código"
                 android:textSize="16dp"
                 android:padding="15dp"
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
@@ -189,7 +195,7 @@
                 android:id="@+id/pl_txtcliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Ingrese Cliente"
+                android:hint="Ingrese cliente"
                 android:textSize="16dp"
                 android:padding="15dp"
                 style="@style/SkyTextViewStyleUnibellBusquedaCliente"
@@ -245,6 +251,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:maxLines="1"
+                android:inputType="number"
                 />
 
             <EditText
@@ -259,6 +266,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:maxLines="1"
+                android:inputType="number"
                 />
 
           </LinearLayout>
@@ -310,6 +318,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="8dp"
                 android:maxLines="1"
+                android:inputType="number"
                 />
 
             <TextView
@@ -326,7 +335,7 @@
                 android:id="@+id/pl_lblfpago"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Seleccione Forma de pago"
+                android:hint="Seleccione forma de pago"
                 android:textSize="16dp"
                 style="@style/SkyTextViewStyleSpinnerUnibellBusqueda"
                 android:layout_weight="1"
@@ -384,6 +393,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:maxLines="1"
+                android:inputType="number"
                 />
 
             <TextView
