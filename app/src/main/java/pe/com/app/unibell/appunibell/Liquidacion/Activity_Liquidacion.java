@@ -1133,7 +1133,7 @@ public class Activity_Liquidacion extends AppCompatActivity
 
             new GenerarPlanillaCobranzaAsyncTask().execute(
                     ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_GeneraPlanilla + "/" +
-                            lq_txtffecha.toString().trim() + "/" +
+                            sFecha + "/" +
                             sharedSettings.getString("iID_VENDEDOR", "0").toString() + "/" +
                             "40003"+ "/" +
                             sharedSettings.getString("USUARIO", "").toString() + "/" +

@@ -21,12 +21,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import pe.com.app.unibell.appunibell.AD.CtaBnco_Adapter;
 import pe.com.app.unibell.appunibell.AD.ParTabla_Adapter;
+import pe.com.app.unibell.appunibell.AD.S_Gem_Vendedor_Adapter;
 import pe.com.app.unibell.appunibell.AD.S_Sem_Empresa_Adapter;
 import pe.com.app.unibell.appunibell.AD.S_Sem_Local_Adapter;
 import pe.com.app.unibell.appunibell.AD.Tablas_Auxiliares_Adapter;
 import pe.com.app.unibell.appunibell.DAO.CtaBncoDAO;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.ParTablaDAO;
+import pe.com.app.unibell.appunibell.DAO.S_Gem_VendedorDAO;
+import pe.com.app.unibell.appunibell.DAO.S_Gem_Vendedor_Codigo_antDAO;
 import pe.com.app.unibell.appunibell.DAO.S_Sem_EmpresaDAO;
 import pe.com.app.unibell.appunibell.DAO.S_Sem_LocalDAO;
 import pe.com.app.unibell.appunibell.DAO.Tablas_AuxiliaresDAO;
@@ -39,6 +42,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
     private EditText tba_edttitulo;
 
     private Tablas_AuxiliaresDAO tablas_auxiliaresDAO = new Tablas_AuxiliaresDAO();
+    private S_Gem_VendedorDAO s_gem_vendedorAO = new S_Gem_VendedorDAO();
     private ParTablaDAO parTablaDAO = new ParTablaDAO();
     private CtaBncoDAO ctaBncoDAO = new CtaBncoDAO();
 
@@ -47,6 +51,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
 
     private S_Sem_Empresa_Adapter s_sem_empresa_adapter = null;
     private S_Sem_Local_Adapter s_sem_local_adapter = null;
+    private S_Gem_Vendedor_Adapter s_gem_vendedor_adapter = null;
 
     WindowManager.LayoutParams lWindowParams;
 
@@ -113,12 +118,14 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
             case 400:
                 tba_lbltitulo.setText("Seleccione un local");
                 break;
-
             case 500:
                 tba_lbltitulo.setText("Seleccione un documento");
                 break;
             case 600:
                 tba_lbltitulo.setText("Seleccione un moneda");
+                break;
+            case 700:
+                tba_lbltitulo.setText("Seleccione un cobrador");
                 break;
         }
         try {
@@ -172,6 +179,13 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
                     }
                 }
 
+                if(!s.equals("") && iTabla==700) {
+                    if(tab_lvauxiliar.getAdapter()!=null) {
+                        S_Gem_Vendedor_Adapter ca = (S_Gem_Vendedor_Adapter) tab_lvauxiliar.getAdapter();
+                        ca.getFilter().filter(s.toString());
+                    }
+                }
+
             }
             public void beforeTextChanged(CharSequence s, int start, int count,int after) {
 
@@ -211,6 +225,14 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
                     editor_Shared.putString("NOM_LOCAL", s_sem_local_adapter.getItem(position).getNOMBRE());
                     editor_Shared.commit();
                 }
+
+                //VENDEDORES
+                if(iTabla==700) {
+                    editor_Shared.putString("iID_COBRADOR", s_gem_vendedor_adapter.getItem(position).getID_PERSONA().toString());
+                    editor_Shared.putString("NOM_COBRADOR", s_gem_vendedor_adapter.getItem(position).getNOMBRE_COMPLETO());
+                    editor_Shared.commit();
+                }
+
 
                 if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600) {
                     editor_Shared.putString("ICODTABAUX", tablas_auxiliares_adapter.getItem(position).getCODIGO().toString());
@@ -274,12 +296,54 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
             );
         }
 
+        //VENDEDORES
+        if(iTabla==700) {
+            new LoadVendedoresSQLite_AsyncTask().execute("0");
+        }
+
         //AUXILIARES
-        if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600) {
+        if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600 && iTabla!=700) {
             new LoadAuxiliaresSQLite_AsyncTask().execute(iTabla.toString());
         }
 
     }
+
+
+
+    private class LoadVendedoresSQLite_AsyncTask extends AsyncTask<String, String,String> {
+        @Override
+        protected String doInBackground(String... p) {
+            try {
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
+                dataBaseHelper.createDataBase();
+                dataBaseHelper.openDataBase();
+                s_gem_vendedorAO.getAll(p[0]);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected void onPostExecute(String restResult) {
+            super.onPostExecute(restResult);
+            try {
+                s_gem_vendedor_adapter = new S_Gem_Vendedor_Adapter(getContext(), 0, s_gem_vendedorAO.lst);
+                s_gem_vendedor_adapter.notifyDataSetChanged();
+                tab_lvauxiliar.setAdapter(s_gem_vendedor_adapter);
+            } catch (Exception ex) {
+            }
+        }
+    }
+
+
+
+
 
     private class LoadAuxiliaresSQLite_AsyncTask extends AsyncTask<String, String,String> {
         @Override

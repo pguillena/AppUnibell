@@ -96,6 +96,8 @@ public class Funciones {
             endIndex=s.indexOf(searchString);
             substring=s.substring(starIndex+1,endIndex);
         }
+
+
         return substring;
     }
 

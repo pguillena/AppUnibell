@@ -229,6 +229,7 @@ public class Documentos_Cobra_CabBL {
     }
 
     public JSONObject getGeneraPlanilla(String newURL) {
+        newURL = newURL.replaceAll(" ","%20");
         Documentos_Cobra_CabBE documentos_cobra_cabBE = null;
         JSONObject jsonObjectRest =null;
         JSONObject jsonObjectResult = new JSONObject();
@@ -242,7 +243,7 @@ public class Documentos_Cobra_CabBL {
                 String s=jsonObjectRest.getString("message");
                 String MSG= Funciones.ObtienMsqOracle(s);
                 if(MSG.equals("")){
-                    MSG="Error al conciliar.";
+                    MSG=s;
                 }
                 jsonObjectResult.accumulate("MSG", MSG);
             } else{

@@ -20,6 +20,16 @@ public class S_Gem_VendedorBE {
    private Integer VALIDA_RECIBO;
    private Integer ID_CANAL;
 
+    private String NOMBRE_COMPLETO;
+
+    public String getNOMBRE_COMPLETO() {
+        return NOMBRE_COMPLETO;
+    }
+
+    public void setNOMBRE_COMPLETO(String NOMBRE_COMPLETO) {
+        this.NOMBRE_COMPLETO = NOMBRE_COMPLETO;
+    }
+
     public Integer getID_PERSONA() {
         return ID_PERSONA;
     }

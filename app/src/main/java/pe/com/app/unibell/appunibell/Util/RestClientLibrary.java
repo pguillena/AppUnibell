@@ -74,8 +74,8 @@ public class RestClientLibrary {
 
             try {
                 jsonObject.accumulate("status", 0);
-                //jsonObject.accumulate("message", ex.getMessage());
-                jsonObject.accumulate("message","Error al conectarse al servidor,\nValid por favor su conexión a internet\n");
+                jsonObject.accumulate("message", ex.getMessage());
+                //jsonObject.accumulate("message","Error al conectarse al servidor,\nValide por favor su conexión a internet\n");
                 //CONVERSION JSONOBJECT A STRING PARA LA SALIDA STRRESULT
                 strResult = jsonObject.toString();
             } catch (JSONException e) {

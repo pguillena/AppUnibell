@@ -268,22 +268,25 @@
                 android:layout_marginBottom="2dp"
                 />
 
-            <EditText
-                android:id="@+id/pl_txtcobrador"
+            <TextView
+                android:id="@+id/ddlCobrador"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Ingrese nombre del cobrador"
+                android:hint="Seleccione cobrador"
                 android:textSize="16dp"
-                android:padding="15dp"
-                style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+                style="@style/SkyTextViewStyleSpinnerUnibellBusqueda"
+                android:layout_weight="1"
                 android:layout_marginRight="5dp"
+                android:paddingLeft="15dp"
                 android:layout_marginBottom="8dp"
+                android:tag="0"
+
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nr° Operación"
+                android:text="N° Operación"
                 android:paddingLeft="15dp"
                 android:textSize="14dp"
                 android:textColor="@color/label_login_unibell"

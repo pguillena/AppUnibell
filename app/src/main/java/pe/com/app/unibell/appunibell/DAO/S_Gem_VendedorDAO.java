@@ -14,10 +14,13 @@ public class S_Gem_VendedorDAO {
         Cursor cursor = null;
         S_Gem_VendedorBE s_gem_vendedorBE = null;
         try {
-            String SQL="SELECT  ID_PERSONA,ID_EMPRESA,ID_LOCAL,TIPO_VENDEDOR,FECHA_CESE,ESTADO,\n" +
-                    "FECHA_REGISTRO,FECHA_MODIFICACION,USUARIO_REGISTRO,USUARIO_MODIFICACION,PC_REGISTRO,PC_MODIFICACION,\n" +
-                    "IP_REGISTRO,IP_MODIFICACION,VISIBLE,VALIDA_RECIBO,ID_CANAL "+
-                    "FROM S_GEM_VENDEDOR WHERE (" + pID_PERSONA + "=-1 OR ID_PERSONA=" + pID_PERSONA + ") ORDER BY ID_PERSONA";
+            String SQL="SELECT  V.ID_PERSONA,V.ID_EMPRESA,V.ID_LOCAL,V.TIPO_VENDEDOR,V.FECHA_CESE,V.ESTADO, V.VISIBLE,V.VALIDA_RECIBO,V.ID_CANAL, \n" +
+                    " (P.APELLIDO_PATERNO || ' ' || P.APELLIDO_MATERNO || ' ' || P.NOMBRES) AS NOMBRE_COMPLETO  \n" +
+                    " FROM S_GEM_VENDEDOR V INNER JOIN S_GEM_PERSONA P \n" +
+                    " ON(V.ID_PERSONA = P.ID_PERSONA) \n" +
+                    " WHERE (V.ID_PERSONA ="+pID_PERSONA+" OR " + pID_PERSONA + "= 0 ) \n" +
+                    " AND V.ID_PERSONA < 7 AND V.ESTADO = 40001 \n" +
+                    " ORDER BY P.APELLIDO_PATERNO ASC";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<S_Gem_VendedorBE>();
@@ -31,17 +34,10 @@ public class S_Gem_VendedorDAO {
                     s_gem_vendedorBE.setTIPO_VENDEDOR(Funciones.isNullColumn(cursor,"TIPO_VENDEDOR",0));
                     s_gem_vendedorBE.setFECHA_CESE(Funciones.isNullColumn(cursor,"FECHA_CESE",""));
                     s_gem_vendedorBE.setESTADO(Funciones.isNullColumn(cursor,"ESTADO",0));
-                    s_gem_vendedorBE.setFECHA_REGISTRO(Funciones.isNullColumn(cursor,"FECHA_REGISTRO",""));
-                    s_gem_vendedorBE.setFECHA_MODIFICACION(Funciones.isNullColumn(cursor,"FECHA_MODIFICACION",""));
-                    s_gem_vendedorBE.setUSUARIO_REGISTRO(Funciones.isNullColumn(cursor,"USUARIO_REGISTRO",""));
-                    s_gem_vendedorBE.setUSUARIO_MODIFICACION(Funciones.isNullColumn(cursor,"USUARIO_MODIFICACION",""));
-                    s_gem_vendedorBE.setPC_REGISTRO(Funciones.isNullColumn(cursor,"PC_REGISTRO",""));
-                    s_gem_vendedorBE.setPC_MODIFICACION(Funciones.isNullColumn(cursor,"PC_MODIFICACION",""));
-                    s_gem_vendedorBE.setIP_REGISTRO(Funciones.isNullColumn(cursor,"IP_REGISTRO",""));
-                    s_gem_vendedorBE.setIP_MODIFICACION(Funciones.isNullColumn(cursor,"IP_MODIFICACION",""));
                     s_gem_vendedorBE.setVISIBLE(Funciones.isNullColumn(cursor,"VISIBLE",0));
                     s_gem_vendedorBE.setVALIDA_RECIBO(Funciones.isNullColumn(cursor,"VALIDA_RECIBO",0));
                     s_gem_vendedorBE.setID_CANAL(Funciones.isNullColumn(cursor,"ID_CANAL",0));
+                    s_gem_vendedorBE.setNOMBRE_COMPLETO(Funciones.isNullColumn(cursor,"NOMBRE_COMPLETO",""));
                    lst.add(s_gem_vendedorBE);
                 } while (cursor.moveToNext());
             }

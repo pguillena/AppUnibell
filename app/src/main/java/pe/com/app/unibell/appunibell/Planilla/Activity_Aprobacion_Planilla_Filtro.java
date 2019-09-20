@@ -20,8 +20,8 @@ public class Activity_Aprobacion_Planilla_Filtro   extends AppCompatActivity
         Dialog_Fragment_Auxiliar.Dialog_Fragment_AuxiliarListener,
         Dialogo_Fragment_Fecha.NoticeDialogoListener{
 
-    private EditText pl_txtserie,pl_txtnumero,pl_txtcodigo,pl_txtcliente,pl_txtruc,pl_txtdni,pl_txtcobrador,pl_txtoperacion,pl_txtplanilla;
-    private TextView pl_lblinicio,pl_lblfin,pl_lblfpago,pl_lblestado;
+    private EditText pl_txtserie,pl_txtnumero,pl_txtcodigo,pl_txtcliente,pl_txtruc,pl_txtdni,pl_txtoperacion,pl_txtplanilla;
+    private TextView pl_lblinicio,pl_lblfin,pl_lblfpago,pl_lblestado,ddlCobrador;
     private Button rp_btnregistrar;
 
     private Integer iFiltroFecha =0;
@@ -53,7 +53,7 @@ public class Activity_Aprobacion_Planilla_Filtro   extends AppCompatActivity
         pl_txtcliente = (EditText)findViewById(R.id.pl_txtcliente);
         pl_txtruc = (EditText)findViewById(R.id.pl_txtruc);
         pl_txtdni = (EditText)findViewById(R.id.pl_txtdni);
-        pl_txtcobrador = (EditText)findViewById(R.id.pl_txtcobrador);
+        ddlCobrador = (TextView)findViewById(R.id.ddlCobrador);
         pl_txtoperacion = (EditText)findViewById(R.id.pl_txtoperacion);
         pl_txtplanilla = (EditText)findViewById(R.id.pl_txtplanilla);
         pl_lblinicio = (TextView)findViewById(R.id.pl_lblinicio);
@@ -63,12 +63,15 @@ public class Activity_Aprobacion_Planilla_Filtro   extends AppCompatActivity
         rp_btnregistrar = (Button)findViewById(R.id.rp_btnregistrar);
         pl_lblfpago.setTag("0");
         pl_lblestado.setTag("40004");
+        pl_lblestado.setText("PENDIENTE");
 
         pl_lblinicio.setOnClickListener(OnClickList_pl_lblinicio);
         pl_lblfin.setOnClickListener(OnClickList_pl_lblfin);
         pl_lblfpago.setOnClickListener(OnClickList_pl_lblfpago);
         pl_lblestado.setOnClickListener(OnClickList_pl_lblestado);
         rp_btnregistrar.setOnClickListener(OnClickList_rp_btnregistrar);
+        ddlCobrador.setOnClickListener(OnClickList_ddlCobrador);
+
     }
 
 
@@ -117,6 +120,22 @@ public class Activity_Aprobacion_Planilla_Filtro   extends AppCompatActivity
                 iTabla=100;
                 iAuxiliar=2;
                 dialog_fragment_auxiliar = new Dialog_Fragment_Auxiliar();
+                dialog_fragment_auxiliar.setAuxiliarDialogfragmentListener(Activity_Aprobacion_Planilla_Filtro.this,iTabla, Integer.parseInt(sharedSettings.getString("ROL", "0")));
+                dialog_fragment_auxiliar.show(getSupportFragmentManager(), dialog_fragment_auxiliar.TAG);
+
+            } catch (Exception e) {
+            }
+        }
+    };
+
+    View.OnClickListener OnClickList_ddlCobrador = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            try {
+                //Vendedores
+                iTabla=700;
+                iAuxiliar=3;
+                dialog_fragment_auxiliar = new Dialog_Fragment_Auxiliar();
                 dialog_fragment_auxiliar.setAuxiliarDialogfragmentListener(Activity_Aprobacion_Planilla_Filtro.this,iTabla,0);
                 dialog_fragment_auxiliar.show(getSupportFragmentManager(), dialog_fragment_auxiliar.TAG);
 
@@ -124,6 +143,7 @@ public class Activity_Aprobacion_Planilla_Filtro   extends AppCompatActivity
             }
         }
     };
+
 
     View.OnClickListener OnClickList_rp_btnregistrar = new View.OnClickListener() {
         @Override
@@ -138,7 +158,7 @@ public class Activity_Aprobacion_Planilla_Filtro   extends AppCompatActivity
                 data.putExtra("pl_cliente", pl_txtcliente.getText().toString().replace("","XXX"));
                 data.putExtra("pl_ruc",pl_txtruc.getText().toString().replace("","XXX"));
                 data.putExtra("pl_dni", pl_txtdni.getText().toString().replace("","XXX"));
-                data.putExtra("pl_cobrador",pl_txtcobrador.getText().toString().replace("","XXX"));
+                data.putExtra("pl_cobrador",ddlCobrador.getTag().toString().trim());
                 data.putExtra("pl_noperacion",pl_txtoperacion.getText().toString().replace("","XXX"));
                 data.putExtra("pl_planilla",pl_txtplanilla.getText().toString().replace("","0"));
                 data.putExtra("pl_inicio",pl_lblinicio.getText().toString().replace("","17530101"));
@@ -171,6 +191,12 @@ public class Activity_Aprobacion_Planilla_Filtro   extends AppCompatActivity
             case 2:
                 pl_lblestado.setTag(sharedSettings.getString("ICODTABAUX", "0").toString());
                 pl_lblestado.setText(sharedSettings.getString("IDESTABAUX", "").toString());
+                break;
+
+
+            case 3:
+                ddlCobrador.setTag(sharedSettings.getString("iID_COBRADOR", "0").toString());
+                ddlCobrador.setText(sharedSettings.getString("NOM_COBRADOR", "").toString());
                 break;
         }
     }

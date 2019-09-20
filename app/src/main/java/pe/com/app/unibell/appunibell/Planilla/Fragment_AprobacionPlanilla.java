@@ -150,7 +150,7 @@ public class Fragment_AprobacionPlanilla extends Fragment
                  recibo + "/" +
                  serie + "/" +
                  fpago  + "/" +
-                 iID_VENDEDOR + "/" +
+                 "0" + "/" + //DEBE VENIR DEL FILTRO
                  codigoCliente+ "/" +
                  sFechaInicio+ "/" +
                  sFechaFin + "/" +
