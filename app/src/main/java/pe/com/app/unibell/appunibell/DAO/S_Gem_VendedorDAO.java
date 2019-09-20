@@ -19,7 +19,7 @@ public class S_Gem_VendedorDAO {
                     " FROM S_GEM_VENDEDOR V INNER JOIN S_GEM_PERSONA P \n" +
                     " ON(V.ID_PERSONA = P.ID_PERSONA) \n" +
                     " WHERE (V.ID_PERSONA ="+pID_PERSONA+" OR " + pID_PERSONA + "= 0 ) \n" +
-                    " AND V.ID_PERSONA < 7 AND V.ESTADO = 40001 \n" +
+                    " AND V.ID_PERSONA < 800 AND V.ESTADO = 40001 \n" +
                     " ORDER BY P.APELLIDO_PATERNO ASC";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
