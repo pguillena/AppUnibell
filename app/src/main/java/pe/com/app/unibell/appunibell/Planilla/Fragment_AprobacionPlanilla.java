@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -172,6 +173,22 @@ public class Fragment_AprobacionPlanilla extends Fragment
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void Filtro(String newText){
+        if (TextUtils.isEmpty(newText)) {
+            Cobranza_Aprobacion_Planilla_Adapter ca = (Cobranza_Aprobacion_Planilla_Adapter) ap_lsdetalle.getAdapter();
+                if (ca != null) {
+                    ca.getFilter().filter(newText);
+                    ca.notifyDataSetChanged();
+                }
+            }else{
+            Cobranza_Aprobacion_Planilla_Adapter ca = (Cobranza_Aprobacion_Planilla_Adapter) ap_lsdetalle.getAdapter();
+                if (ca != null) {
+                    ca.getFilter().filter(newText);
+                    ca.notifyDataSetChanged();
+                }
+            }
     }
 
     private void VerDetalleTotales() {

@@ -211,7 +211,12 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
                 List<Documentos_Cobra_MovBE> localList = new ArrayList<>();
                 String[] SSA=constraint.toString().toUpperCase().split(" ");
                 for (Documentos_Cobra_MovBE documentos_cobra_movBE : lst) {
-                    String todo = (documentos_cobra_movBE.getESTADO_MOVIMIENTO().toString());
+                    String todo = (documentos_cobra_movBE.getSERIE_PLANILLA().toString()+
+                                    documentos_cobra_movBE.getN_PLANILLA().toString()+
+                                    documentos_cobra_movBE.getNOMBREFORMAPAGO().toString()+
+                                    documentos_cobra_movBE.getSERIE_PLANILLA().toString()+
+                                    documentos_cobra_movBE.getCOD_CLIENTE().toString()+
+                                    documentos_cobra_movBE.getN_RECIBO().toString());
                     Boolean bfind = true;
                     for(String s : SSA){
                         if(!todo.contains(s)){
