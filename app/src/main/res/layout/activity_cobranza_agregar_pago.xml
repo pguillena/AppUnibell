@@ -274,10 +274,9 @@
                     android:textOn="U$D"
                     android:textOff="S/"
                     android:showText="true"
-                    android:textColor="@color/background"
                     android:track="@drawable/switch_track_custom"
                     android:thumb="@drawable/switch_thumb_custom"
-                    android:thumbTextPadding="10dp"
+                    android:thumbTextPadding="5dp"
 
                    />
 

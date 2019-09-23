@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,6 +38,8 @@ import pe.com.app.unibell.appunibell.Dialogs.Dialogo_Fragment_Fecha;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.Globals;
+
+import static android.graphics.Color.YELLOW;
 
 public class Activity_Cobranza_Agregar_Pago
         extends AppCompatActivity
@@ -95,6 +98,8 @@ public class Activity_Cobranza_Agregar_Pago
         rp_txttipocambio = (TextView)findViewById(R.id.rp_txttipocambio);
         rp_swmoneda = (Switch) findViewById(R.id.rp_swmoneda);
 
+        rp_swmoneda.setSwitchTextAppearance(this    , R.style.SwitchTextAppearance);
+
         if(!sharedSettings.getString("cpfplanilla", "").toString().equals("")){
             rp_txtserie.setText(sharedSettings.getString("cpserie", "").toString());
             rp_txtnumero.setText(sharedSettings.getString("cpnumero", "").toString());
@@ -131,6 +136,11 @@ public class Activity_Cobranza_Agregar_Pago
 
         rp_lblbancoctacte.setVisibility(View.GONE);
         lblCtaCte.setVisibility(View.GONE);
+
+
+
+
+
 
         rp_swmoneda.setOnClickListener(new View.OnClickListener() {
             @Override

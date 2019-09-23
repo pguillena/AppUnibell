@@ -93,6 +93,8 @@
     </style>
 
     <style name="SkyFilterViewStyle">
+
+
         <item name="android:textColor">#000000</item>
         <!--   <item name="android:textStyle">italic</item> -->
         <item name="android:gravity">start|center_vertical</item>
@@ -161,4 +163,10 @@
 
     </style>
 
+    <style name="SwitchTextAppearance">
+        <item name="android:textColor">@color/label_blanco_login_unibell</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
 </resources>
+
