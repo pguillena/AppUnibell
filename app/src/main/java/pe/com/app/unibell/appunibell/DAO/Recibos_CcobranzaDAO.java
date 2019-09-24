@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import java.util.ArrayList;
 
+import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
 import pe.com.app.unibell.appunibell.BE.Recibos_CcobranzaBE;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 
@@ -17,7 +18,7 @@ public class Recibos_CcobranzaDAO {
             String SQL="SELECT N_SERIE,N_NUMINI,N_NUMFIN,C_TIPO_REC,C_RECEPTOR," +
                     "F_RECEPCION,F_DEVOLUCION,VIGENCIA,C_USUARIO,C_PERFIL," +
                     "C_CPU,FEC_REG,C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD," +
-                    "C_CPU_MOD,OBSERVACION,C_ESTADO  "+
+                    "C_CPU_MOD,OBSERVACION,C_ESTADO, AUTOMATICO, NUMERO  "+
                     "FROM CCM_RECIBOS_COBRANZA WHERE (" + pN_SERIE + "=-1 OR N_SERIE=" + pN_SERIE + ") ORDER BY N_SERIE";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
@@ -44,6 +45,8 @@ public class Recibos_CcobranzaDAO {
                     recibos_ccobranzaBE.setC_CPU_MOD(Funciones.isNullColumn(cursor,"C_CPU_MOD",""));
                     recibos_ccobranzaBE.setOBSERVACION(Funciones.isNullColumn(cursor,"OBSERVACION",""));
                     recibos_ccobranzaBE.setC_ESTADO(Funciones.isNullColumn(cursor,"C_ESTADO",""));
+                    recibos_ccobranzaBE.setAUTOMATICO(Funciones.isNullColumn(cursor,"AUTOMATICO",""));
+                    recibos_ccobranzaBE.setNUMERO(Funciones.isNullColumn(cursor,"NUMERO",0));
                     lst.add(recibos_ccobranzaBE);
                 } while (cursor.moveToNext());
             }
@@ -62,7 +65,7 @@ public class Recibos_CcobranzaDAO {
             String SQL="SELECT N_SERIE,N_NUMINI,N_NUMFIN,C_TIPO_REC,C_RECEPTOR," +
                     "F_RECEPCION,F_DEVOLUCION,VIGENCIA,C_USUARIO,C_PERFIL," +
                     "C_CPU,FEC_REG,C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD," +
-                    "C_CPU_MOD,OBSERVACION,C_ESTADO  "+
+                    "C_CPU_MOD,OBSERVACION,C_ESTADO, AUTOMATICO, NUMERO  "+
                     "FROM CCM_RECIBOS_COBRANZA WHERE VIGENCIA = 'A' AND N_SERIE=" + pN_SERIE + " AND C_RECEPTOR =" + iID_VENDEDOR ;
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
@@ -89,6 +92,8 @@ public class Recibos_CcobranzaDAO {
                     recibos_ccobranzaBE.setC_CPU_MOD(Funciones.isNullColumn(cursor,"C_CPU_MOD",""));
                     recibos_ccobranzaBE.setOBSERVACION(Funciones.isNullColumn(cursor,"OBSERVACION",""));
                     recibos_ccobranzaBE.setC_ESTADO(Funciones.isNullColumn(cursor,"C_ESTADO",""));
+                    recibos_ccobranzaBE.setAUTOMATICO(Funciones.isNullColumn(cursor,"AUTOMATICO",""));
+                    recibos_ccobranzaBE.setNUMERO(Funciones.isNullColumn(cursor,"NUMERO",0));
                     lst.add(recibos_ccobranzaBE);
                 } while (cursor.moveToNext());
             }
@@ -129,8 +134,6 @@ public class Recibos_CcobranzaDAO {
         return Ivalor;
     }
 
-
-
     public String insert(Recibos_CcobranzaBE recibos_ccobranzaBE){
         String sMensaje="";
 
@@ -155,6 +158,8 @@ public class Recibos_CcobranzaDAO {
             cv.put("C_CPU_MOD",recibos_ccobranzaBE.getC_CPU_MOD());
             cv.put("OBSERVACION",recibos_ccobranzaBE.getOBSERVACION());
             cv.put("C_ESTADO",recibos_ccobranzaBE.getC_ESTADO());
+            cv.put("AUTOMATICO",recibos_ccobranzaBE.getAUTOMATICO());
+            cv.put("NUMERO",recibos_ccobranzaBE.getNUMERO());
             DataBaseHelper.myDataBase.insert("CCM_RECIBOS_COBRANZA",null,cv);
             sMensaje="";
         }catch (Exception ex){
@@ -186,6 +191,8 @@ public class Recibos_CcobranzaDAO {
             cv.put("C_CPU_MOD",recibos_ccobranzaBE.getC_CPU_MOD());
             cv.put("OBSERVACION",recibos_ccobranzaBE.getOBSERVACION());
             cv.put("C_ESTADO",recibos_ccobranzaBE.getC_ESTADO());
+            cv.put("AUTOMATICO",recibos_ccobranzaBE.getAUTOMATICO());
+            cv.put("NUMERO",recibos_ccobranzaBE.getNUMERO());
             DataBaseHelper.myDataBase.update("CCM_RECIBOS_COBRANZA",cv,"N_SERIE = ?",
                     new String[]{String.valueOf(recibos_ccobranzaBE.getN_SERIE())});
 
@@ -209,6 +216,68 @@ public class Recibos_CcobranzaDAO {
         return sMensaje;
     }
 
+    public void getReciboAutomaticoCorrelativo(String iID_VENDEDOR) {
+        Cursor cursor = null;
+        Recibos_CcobranzaBE recibos_ccobranzaBE = null;
+        try {
+            String SQL="SELECT N_SERIE,N_NUMINI,N_NUMFIN,C_TIPO_REC,C_RECEPTOR," +
+                    "F_RECEPCION,F_DEVOLUCION,VIGENCIA,C_USUARIO,C_PERFIL," +
+                    "C_CPU,FEC_REG,C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD," +
+                    "C_CPU_MOD,OBSERVACION,C_ESTADO, AUTOMATICO, NUMERO  "+
+                    "FROM CCM_RECIBOS_COBRANZA WHERE VIGENCIA = 'A' AND AUTOMATICO= 'S' AND C_RECEPTOR =" + iID_VENDEDOR ;
 
-    
+            cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
+            lst = new ArrayList<Recibos_CcobranzaBE>();
+            lst.clear();
+            if (cursor.moveToFirst()) {
+                do {
+                    recibos_ccobranzaBE = new Recibos_CcobranzaBE();
+                    recibos_ccobranzaBE.setN_SERIE(Funciones.isNullColumn(cursor,"N_SERIE",""));
+                    recibos_ccobranzaBE.setN_NUMINI(Funciones.isNullColumn(cursor,"N_NUMINI",""));
+                    recibos_ccobranzaBE.setN_NUMFIN(Funciones.isNullColumn(cursor,"N_NUMFIN",""));
+                    recibos_ccobranzaBE.setC_TIPO_REC(Funciones.isNullColumn(cursor,"C_TIPO_REC",""));
+                    recibos_ccobranzaBE.setC_RECEPTOR(Funciones.isNullColumn(cursor,"C_RECEPTOR",""));
+                    recibos_ccobranzaBE.setF_RECEPCION(Funciones.isNullColumn(cursor,"F_RECEPCION",""));
+                    recibos_ccobranzaBE.setF_DEVOLUCION(Funciones.isNullColumn(cursor,"F_DEVOLUCION",""));
+                    recibos_ccobranzaBE.setVIGENCIA(Funciones.isNullColumn(cursor,"VIGENCIA",""));
+                    recibos_ccobranzaBE.setC_USUARIO(Funciones.isNullColumn(cursor,"C_USUARIO",""));
+                    recibos_ccobranzaBE.setC_PERFIL(Funciones.isNullColumn(cursor,"C_PERFIL",""));
+                    recibos_ccobranzaBE.setC_CPU(Funciones.isNullColumn(cursor,"C_CPU",""));
+                    recibos_ccobranzaBE.setFEC_REG(Funciones.isNullColumn(cursor,"FEC_REG",""));
+                    recibos_ccobranzaBE.setC_USUARIO_MOD(Funciones.isNullColumn(cursor,"C_USUARIO_MOD",""));
+                    recibos_ccobranzaBE.setC_PERFIL_MOD(Funciones.isNullColumn(cursor,"C_PERFIL_MOD",""));
+                    recibos_ccobranzaBE.setFEC_MOD(Funciones.isNullColumn(cursor,"FEC_MOD",""));
+                    recibos_ccobranzaBE.setC_CPU_MOD(Funciones.isNullColumn(cursor,"C_CPU_MOD",""));
+                    recibos_ccobranzaBE.setOBSERVACION(Funciones.isNullColumn(cursor,"OBSERVACION",""));
+                    recibos_ccobranzaBE.setC_ESTADO(Funciones.isNullColumn(cursor,"C_ESTADO",""));
+                    recibos_ccobranzaBE.setAUTOMATICO(Funciones.isNullColumn(cursor,"AUTOMATICO",""));
+                    recibos_ccobranzaBE.setNUMERO(Funciones.isNullColumn(cursor,"NUMERO",0));
+                    lst.add(recibos_ccobranzaBE);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+    }
+
+    public String updateNumeroCorrelativo(Documentos_Cobra_CabBE documentos_cobra_cabBE){
+        String sMensaje="";
+        try{
+
+            ContentValues cv_cab = new ContentValues();
+            cv_cab.put("NUMERO",documentos_cobra_cabBE.getN_RECIBO());
+            DataBaseHelper.myDataBase.update("CCM_RECIBOS_COBRANZA",cv_cab,"C_RECEPTOR = ? AND N_SERIE = ? AND AUTOMATICO = ?",
+                    new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRADOR()), String.valueOf(documentos_cobra_cabBE.getN_SERIE_RECIBO()),"S"});
+
+            sMensaje="";
+        }catch (Exception ex){
+            sMensaje="Error:" + ex.getMessage().toString();
+            ex.printStackTrace();
+        }
+        return sMensaje;
+    }
+
 }

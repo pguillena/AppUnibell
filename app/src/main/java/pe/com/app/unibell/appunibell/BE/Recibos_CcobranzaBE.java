@@ -20,6 +20,24 @@ public class Recibos_CcobranzaBE {
     private String C_CPU_MOD;
     private String OBSERVACION;
     private String C_ESTADO;
+    private String AUTOMATICO;
+    private Integer NUMERO;
+
+    public void setAUTOMATICO(String AUTOMATICO) {
+        this.AUTOMATICO = AUTOMATICO;
+    }
+
+    public void setNUMERO(Integer NUMERO) {
+        this.NUMERO = NUMERO;
+    }
+
+    public String getAUTOMATICO() {
+        return AUTOMATICO;
+    }
+
+    public Integer getNUMERO() {
+        return NUMERO;
+    }
 
     public String getN_SERIE() {
         return N_SERIE;

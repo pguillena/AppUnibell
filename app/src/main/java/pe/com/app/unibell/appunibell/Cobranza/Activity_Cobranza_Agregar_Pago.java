@@ -31,6 +31,7 @@ import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.DAO.Dpm_Packing_CabDAO;
 import pe.com.app.unibell.appunibell.DAO.ParTablaDAO;
 import pe.com.app.unibell.appunibell.DAO.Recibos_CcobranzaDAO;
+import pe.com.app.unibell.appunibell.DAO.S_Gem_VendedorDAO;
 import pe.com.app.unibell.appunibell.DAO.S_gem_TipoCambioDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;
@@ -63,6 +64,7 @@ public class Activity_Cobranza_Agregar_Pago
     private Recibos_CcobranzaDAO recibos_ccobranzaDAO = new Recibos_CcobranzaDAO();
     private S_gem_TipoCambioDAO s_gem_tipoCambioDAO = new S_gem_TipoCambioDAO();
     private Dpm_Packing_CabDAO dpm_packing_cabDAO = new Dpm_Packing_CabDAO();
+    private S_Gem_VendedorDAO s_gem_vendedorDAO  = new S_Gem_VendedorDAO();
 
     private Integer iAuxiliar = 0,iTabla=0;
     public Integer   iMinDate = 0;;
@@ -155,6 +157,30 @@ public class Activity_Cobranza_Agregar_Pago
             }
         });
 
+
+        ValidarReciboAutomatico();
+
+    }
+
+    private void ValidarReciboAutomatico() {
+        try {
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
+        dataBaseHelper.createDataBase();
+        dataBaseHelper.openDataBase();
+
+     recibos_ccobranzaDAO.getReciboAutomaticoCorrelativo(sharedSettings.getString("iID_VENDEDOR", "").toString());
+
+     if(recibos_ccobranzaDAO.lst!=null && recibos_ccobranzaDAO.lst.size()>0)
+     {
+         rp_txtserie.setText(recibos_ccobranzaDAO.lst.get(0).getN_SERIE().toString());
+         rp_txtnumero.setText(String.valueOf(recibos_ccobranzaDAO.lst.get(0).getNUMERO()+1));
+         rp_txtserie.setEnabled(false);
+         rp_txtnumero.setEnabled(false);
+     }
+
+
+    } catch (Exception e) {
+    }
     }
 
     @Override
@@ -291,6 +317,7 @@ public class Activity_Cobranza_Agregar_Pago
                 if (!ValidarReciboRegistrado()){
                     Mensaje("El recibo " + rp_txtserie.getText().toString() +"-" + rp_txtnumero.getText().toString() + " ya fue registrado anteriormente");
                     rp_txtnumero.requestFocus();
+                    MostrarTeclado();
                     return;
                 }
                 // TODO Auto-generated method stub
@@ -318,6 +345,7 @@ public class Activity_Cobranza_Agregar_Pago
 
 
     private Boolean ValidarGeneral() {
+
         String sMoneda = "S", sDescripcionMoneda = "soles";
 
         if(rp_swmoneda.isChecked()) {
@@ -328,18 +356,21 @@ public class Activity_Cobranza_Agregar_Pago
             sDescripcionMoneda = "Soles";
         }
 
-        if (rp_txtserie.getText().toString().trim().equals("")) {
-            Mensaje("Ingrese serie de decumento");
+
+        if (rp_txtserie.getText().toString().trim().equals("") && Integer.valueOf(sharedSettings.getString("VALIDA_RECIBO", "0").toString())>0) {
+            Mensaje("Ingrese serie de documento");
             rp_txtserie.requestFocus();
             MostrarTeclado();
             return false;
         }
-        if (rp_txtnumero.getText().toString().trim().equals("")) {
+        if (rp_txtnumero.getText().toString().trim().equals("")  && Integer.valueOf(sharedSettings.getString("VALIDA_RECIBO", "0").toString())>0) {
             Mensaje("Ingrese número de documento");
             rp_txtnumero.requestFocus();
             MostrarTeclado();
             return false;
         }
+
+
         if (rp_lblfplanilla.getText().toString().trim().equals("")) {
             Mensaje("Seleccione Fecha");
             return false;

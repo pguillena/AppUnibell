@@ -695,6 +695,13 @@ public class Documentos_Cobra_CabDAO {
             DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_DET",cv_det,"ID_COBRANZA = ?",
                     new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRANZA())});
 
+
+            ContentValues cv_recibo = new ContentValues();
+            cv_recibo.put("NUMERO",documentos_cobra_cabBE.getN_RECIBO());
+            DataBaseHelper.myDataBase.update("CCM_RECIBOS_COBRANZA",cv_recibo,"C_RECEPTOR = ? AND N_SERIE = ? AND AUTOMATICO = ?",
+                    new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRADOR()), String.valueOf(documentos_cobra_cabBE.getN_SERIE_RECIBO()),"S"});
+
+
             sMensaje="";
         }catch (Exception ex){
             sMensaje="Error:" + ex.getMessage().toString();

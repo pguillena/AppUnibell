@@ -56,6 +56,8 @@ public class Recibos_CcobranzaBL {
                     recibos_ccobranzaBE.setC_CPU_MOD(jsonObjectItem.getString("C_CPU_MOD"));
                     recibos_ccobranzaBE.setOBSERVACION(jsonObjectItem.getString("OBSERVACION"));
                     recibos_ccobranzaBE.setC_ESTADO(jsonObjectItem.getString("C_ESTADO"));
+                    recibos_ccobranzaBE.setAUTOMATICO(jsonObjectItem.getString("AUTOMATICO"));
+                    recibos_ccobranzaBE.setNUMERO(jsonObjectItem.getInt("NUMERO"));
                     lst.add(recibos_ccobranzaBE);
                 }
             }
@@ -90,9 +92,9 @@ public class Recibos_CcobranzaBL {
 
                 String SQL="INSERT OR REPLACE INTO CCM_RECIBOS_COBRANZA(" +
                         "N_SERIE,N_NUMINI,N_NUMFIN,C_TIPO_REC,C_RECEPTOR," +
-                        "F_RECEPCION,F_DEVOLUCION,VIGENCIA,C_USUARIO, OBSERVACION,C_ESTADO) "+
+                        "F_RECEPCION,F_DEVOLUCION,VIGENCIA,C_USUARIO, OBSERVACION,C_ESTADO, AUTOMATICO, NUMERO) "+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -114,6 +116,8 @@ public class Recibos_CcobranzaBL {
                     stmt.bindString(9,jsonObjectItem.getString("C_USUARIO"));
                     stmt.bindString(10,jsonObjectItem.getString("OBSERVACION"));
                     stmt.bindString(11,jsonObjectItem.getString("C_ESTADO"));
+                    stmt.bindString(12,jsonObjectItem.getString("AUTOMATICO"));
+                    stmt.bindString(13,jsonObjectItem.getString("NUMERO"));
                     stmt.execute();
                     stmt.clearBindings();
                 }
