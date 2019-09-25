@@ -25,6 +25,7 @@ import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialogo_Fragment_Fecha;
 import pe.com.app.unibell.appunibell.R;
+import pe.com.app.unibell.appunibell.Util.Funciones;
 
 public class Activity_Reporte_Filtro extends AppCompatActivity
         implements Dialog_Fragment_Aceptar.DialogFragmentAceptarListener,
@@ -48,7 +49,7 @@ public class Activity_Reporte_Filtro extends AppCompatActivity
 
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
-
+    Funciones funciones = new Funciones();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,30 @@ public class Activity_Reporte_Filtro extends AppCompatActivity
         plb_lbltipodoc.setOnClickListener(OnClickListener_plb_lbltipodoc);
         plb_lblmoneda.setOnClickListener(OnClickListener_plb_lblmoneda);
         plb_btnregistrar.setOnClickListener(OnClickListener_plb_btnregistrar);
+
+
+
+
+        funciones.addTextChangedListener(plb_txtcodigo, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(plb_txtcliente, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(plb_txtnumero, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(plb_txtseriep, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(plb_txtnumerop, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(plb_txtserief, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(plb_txtfnumerof, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(plb_txtoserie, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(plb_txtonumero, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(plb_lblestado, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(plb_lblinicio, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+
+
+        funciones.addTextChangedListener(plb_lblfin, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(plb_lblfpago, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(plb_lbltipodoc, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(plb_lblmoneda, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+
+
+
 
         AutoComplete();
 
