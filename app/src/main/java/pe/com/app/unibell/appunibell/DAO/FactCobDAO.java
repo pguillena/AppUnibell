@@ -104,6 +104,7 @@ public class FactCobDAO {
                     "  A.C_USUARIO_MOD, A.C_PERFIL_MOD, A.FEC_MOD, A.C_CPU_MOD, A.N_SERIE_RECIBO_COBRA, A.N_RECIBO_COBRA\n" +
                     ",(B.NOMBRES ||' ' ||B.APELLIDO_PATERNO ||' ' || B.APELLIDO_MATERNO)  AS NOMBREVENDEDOR,AUX.ABREVIADA AS NOMBRETIPODOC,\n" +
                     " D2.URL_PDF,D2.URL_XML,D2.I_RESPUESTA,D2.COND_PAG AS COND_PAG ,D2.COD_VENDE AS COD_VEND_ORIGEN,"+
+                    " D2.NOMBRE AS RAZON_SOCIAL,  " +
                     " IFNULL(A.DIAS,0) AS DIAS,0 AS COBRANZA,IFNULL(AGREGADO,0) AS AGREGADO " +
                     " FROM FACTCOB A \n" +
                   //" LEFT JOIN DOCUVENT D ON (D.TIPODOC=A.TIPDOC AND D.SERIE = A.SERIE_NUM AND D.NUMERO = A.NUMERO AND D.COD_CLIENTE = A.COD_CLIENTE) "+
@@ -119,7 +120,7 @@ public class FactCobDAO {
                     "  AND A.TIPDOC<>'PB'\n" +
                     "  AND A.SALDO <>0\n" +
                     "  AND A.VENDED <> '989' \n" +
-                    "  ORDER BY A.FECHA ASC, A.SALDO ASC;";
+                    "  ORDER BY A.DIAS DESC, A.SALDO ASC;";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<FactCobBE>();
@@ -176,6 +177,7 @@ public class FactCobDAO {
                     factCobBE.setI_RESPUESTA(Funciones.isNullColumn(cursor,"I_RESPUESTA","").replace("null",""));
                     factCobBE.setCOND_PAG(Funciones.isNullColumn(cursor,"COND_PAG","").replace("null",""));
                     factCobBE.setCOD_VEND_ORIGEN(Funciones.isNullColumn(cursor,"COD_VEND_ORIGEN","").replace("null",""));
+                    factCobBE.setRAZON_SOCIAL(Funciones.isNullColumn(cursor,"RAZON_SOCIAL(","").replace("null",""));
                     factCobBE.setDIAS(Funciones.isNullColumn(cursor,"DIAS",0));
                     factCobBE.setCOBRANZA(Funciones.isNullColumn(cursor,"COBRANZA",0.0));
                     factCobBE.setVAMORTIZADO(0.0);

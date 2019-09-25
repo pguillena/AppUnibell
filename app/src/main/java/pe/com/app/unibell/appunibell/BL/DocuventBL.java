@@ -125,9 +125,9 @@ public class DocuventBL {
                 DataBaseHelper.myDataBase.delete("DOCUVENT", null, null);
 
                 String SQL="INSERT OR REPLACE INTO DOCUVENT(TIPODOC,   SERIE,   NUMERO,    FECHA,   COD_CLIENTE,   RUC,   COND_PAG,   COD_VENDE,   MONEDA,   VAL_VENTA,   IMP_DESCTO,   IMP_NETO, " +
-                                                            "IMP_INTERES, IMP_ISC,   IMP_IGV,   PRECIO_VTA,   TIPO_CAMBIO,   IMPORT_CAM,   F_VENCTO,   UBICACION,   ID_LOCAL, M_PAE, ID_EMPRESA, URL_PDF, URL_XML, I_RESPUESTA, ESTADO, ORIGEN)"+
+                                                            "IMP_INTERES, IMP_ISC,   IMP_IGV,   PRECIO_VTA,   TIPO_CAMBIO,   IMPORT_CAM,   F_VENCTO,   UBICACION,   ID_LOCAL, M_PAE, ID_EMPRESA, URL_PDF, URL_XML, I_RESPUESTA, ESTADO, ORIGEN, NOMBRE)"+
                         "VALUES " +
-                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
@@ -166,6 +166,7 @@ public class DocuventBL {
                     stmt.bindString(26,jsonObjectItem.getString("I_RESPUESTA"));
                     stmt.bindString(27,jsonObjectItem.getString("ESTADO"));
                     stmt.bindString(28,jsonObjectItem.getString("ORIGEN"));
+                    stmt.bindString(29,jsonObjectItem.getString("NOMBRE"));
                     stmt.execute();
                     stmt.clearBindings();
                 }

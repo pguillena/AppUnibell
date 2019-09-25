@@ -427,7 +427,7 @@ public class Activity_Cobranza_Agregar_Pago
             MostrarTeclado();
         }
 
-        dmonto = Double.valueOf(rp_txtmonto.getText().toString());
+        dmonto = Double.valueOf(rp_txtmonto.getText().toString().replace(",","").replace("'",""));
 
         if (dmonto <= 0.0 ) {
             Mensaje("Ingrese monto válido");

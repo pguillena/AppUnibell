@@ -62,7 +62,15 @@ public class FactCobBE {
     private Integer AGREGADO;
     private Integer ID_COBRANZA;
     private Integer CODUNC_LOCAL;
+    private String RAZON_SOCIAL;
 
+    public String getRAZON_SOCIAL() {
+        return RAZON_SOCIAL;
+    }
+
+    public void setRAZON_SOCIAL(String RAZON_SOCIAL) {
+        this.RAZON_SOCIAL = RAZON_SOCIAL;
+    }
 
     public String getCOD_CLIENTE() {
         return COD_CLIENTE;

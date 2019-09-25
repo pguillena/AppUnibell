@@ -122,8 +122,6 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
                     editor_Shared.putString("cpfplanilla", "");
                     editor_Shared.commit();
 
-                    editor_Shared.commit();
-
                     Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranzas.class);
                     intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
                     getContext().startActivity(intent);

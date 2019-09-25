@@ -656,10 +656,10 @@ public class Fragment_Cobranza extends Fragment implements
             documentos_cobra_cabBE.setID_COBRADOR(Integer.valueOf(sharedSettings.getString("iID_VENDEDOR", "").toString()));
             documentos_cobra_cabBE.setFECHA(cpfplanilla);
             documentos_cobra_cabBE.setC_PACKING(sharedSettings.getString("C_PACKING", "0").toString());
-            documentos_cobra_cabBE.setM_COBRANZA(Double.valueOf(funciones.FormatDecimal(M_COBRANZA.toString())));
-            documentos_cobra_cabBE.setM_COBRANZA_D(Double.valueOf(funciones.FormatDecimal(M_COBRANZA_D.toString())));
+            documentos_cobra_cabBE.setM_COBRANZA(Double.valueOf(M_COBRANZA.toString()));
+            documentos_cobra_cabBE.setM_COBRANZA_D(Double.valueOf(M_COBRANZA_D.toString()));
             //setSALDO=El saldo segun se va descontando en soles convertido al tipo de cambio del dia
-            documentos_cobra_cabBE.setSALDO(Double.valueOf(funciones.FormatDecimal(M_COBRANZA_SALDO.toString())));
+            documentos_cobra_cabBE.setSALDO(Double.valueOf(M_COBRANZA_SALDO.toString()));
             //setNUMCHEQ dependiendo de la forma de pago
             documentos_cobra_cabBE.setNUMCHEQ("");
             documentos_cobra_cabBE.setFECCHEQ("");

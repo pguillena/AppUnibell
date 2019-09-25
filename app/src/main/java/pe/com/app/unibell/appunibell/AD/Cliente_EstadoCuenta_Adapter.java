@@ -2,6 +2,7 @@ package pe.com.app.unibell.appunibell.AD;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +18,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import pe.com.app.unibell.appunibell.BE.FactCobBE;
+import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranzas;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 
+import static android.content.Context.MODE_PRIVATE;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class Cliente_EstadoCuenta_Adapter extends ArrayAdapter<FactCobBE> implements Filterable {
@@ -28,6 +31,8 @@ public class Cliente_EstadoCuenta_Adapter extends ArrayAdapter<FactCobBE> implem
     private AdapterFilter adapterFilter;
     private Funciones funciones=new Funciones();
     private String sMoneda;
+    private SharedPreferences sharedSettings;
+    private SharedPreferences.Editor editor_Shared;
 
     public Cliente_EstadoCuenta_Adapter(Context context, int resource, List<FactCobBE> objects) {
         super(context, resource, objects);
@@ -90,6 +95,34 @@ public class Cliente_EstadoCuenta_Adapter extends ArrayAdapter<FactCobBE> implem
         {
             mainHolder.cl_btnXML.setVisibility(View.GONE);
         }
+
+
+        mainHolder.cp_itemSaldo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notifyDataSetChanged();
+                notifyDataSetChanged();
+                try {
+                    sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
+                    editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+                    editor_Shared.putString("COBRANZA_EVENTO","0");
+                    editor_Shared.putString("CODIGO_ANTIGUO", factCobBE.getCOD_CLIENTE().toString());
+                    editor_Shared.putString("RAZON_SOCIAL", factCobBE.getRAZON_SOCIAL().toString());
+                    editor_Shared.putString("PAE", "0");
+                    editor_Shared.putString("cpserie","");
+                    editor_Shared.putString("cpnumero","");
+                    editor_Shared.putString("cpfplanilla", "");
+                    editor_Shared.commit();
+
+
+                    Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranzas.class);
+                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
+
+                }catch (Exception ex) {
+                }
+            }
+        });
 
 
         mainHolder.cl_btnPDF.setOnClickListener(new View.OnClickListener() {
