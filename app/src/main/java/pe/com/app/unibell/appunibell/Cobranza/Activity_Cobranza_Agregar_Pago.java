@@ -127,7 +127,11 @@ public class Activity_Cobranza_Agregar_Pago
             rp_lblbancoctacte.setTag("0");
             rp_lblbancoctacte.setText("");
             dpm_packing_cabDAO.getAll(sharedSettings.getString("C_PACKING", "").toString());
-            rp_lblfplanilla.setText(dpm_packing_cabDAO.lst.get(0).getF_PACKING());
+
+            if(dpm_packing_cabDAO.lst!=null && dpm_packing_cabDAO.lst.size()>0)
+            {
+                rp_lblfplanilla.setText(dpm_packing_cabDAO.lst.get(0).getF_PACKING());
+            }
         }
 
         rp_lblfpago.setOnClickListener(OnClickList_rp_lblfpago);

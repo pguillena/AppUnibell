@@ -107,8 +107,7 @@ public class Cliente_EstadoCuenta_Adapter extends ArrayAdapter<FactCobBE> implem
                     editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
                     editor_Shared.putString("COBRANZA_EVENTO","0");
                     editor_Shared.putString("CODIGO_ANTIGUO", factCobBE.getCOD_CLIENTE().toString());
-                    editor_Shared.putString("RAZON_SOCIAL", factCobBE.getRAZON_SOCIAL().toString());
-                    editor_Shared.putString("PAE", "0");
+                    editor_Shared.putString("PAE", String.valueOf(factCobBE.getSALDO()).trim().replace(",",""));
                     editor_Shared.putString("cpserie","");
                     editor_Shared.putString("cpnumero","");
                     editor_Shared.putString("cpfplanilla", "");
