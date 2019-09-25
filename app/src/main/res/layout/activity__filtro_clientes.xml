@@ -37,7 +37,6 @@
           android:padding="15dp"
           style="@style/SkyTextViewStyleUnibellBusquedaCliente"
           android:maxLines="1"
-
           />
 
     <TextView

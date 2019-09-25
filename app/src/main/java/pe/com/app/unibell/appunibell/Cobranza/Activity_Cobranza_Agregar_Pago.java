@@ -104,6 +104,14 @@ public class Activity_Cobranza_Agregar_Pago
         rp_txttipocambio = (TextView)findViewById(R.id.rp_txttipocambio);
         rp_swmoneda = (Switch) findViewById(R.id.rp_swmoneda);
 
+        funciones.addTextChangedListener(rp_txtserie, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(rp_txtnumero, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(rp_txtmonto, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(rp_lblfplanilla, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(rp_lblfpago, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(rp_lblbancoctacte, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+
+
         rp_swmoneda.setSwitchTextAppearance(this    , R.style.SwitchTextAppearance);
 
         if(!sharedSettings.getString("cpfplanilla", "").toString().equals("")){
@@ -147,12 +155,7 @@ public class Activity_Cobranza_Agregar_Pago
         rp_lblbancoctacte.setVisibility(View.GONE);
         lblCtaCte.setVisibility(View.GONE);
 
-        funciones.addTextChangedListener(rp_txtserie, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
-        funciones.addTextChangedListener(rp_txtnumero, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
-        funciones.addTextChangedListener(rp_txtmonto, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
-        funciones.addTextChangedListener(rp_lblfplanilla, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
-        funciones.addTextChangedListener(rp_lblfpago, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
-        funciones.addTextChangedListener(rp_lblbancoctacte, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+
 
 
         rp_swmoneda.setOnClickListener(new View.OnClickListener() {

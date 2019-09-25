@@ -118,8 +118,8 @@ public class Activity_Login_Local extends AppCompatActivity
             lo_txtlocal=(TextView)findViewById(R.id.lo_txtlocal);
 
 
-            funciones.addTextChangedListener(lo_txtlocal, R.drawable.borderradius, R.drawable.borderradiusbutton_inactivo);
-            funciones.addTextChangedListener(lo_txtempresa, R.drawable.borderradius, R.drawable.borderradiusbutton_inactivo);
+            funciones.addTextChangedListener(lo_txtlocal, R.drawable.borderradius_activo, R.drawable.borderradius);
+            funciones.addTextChangedListener(lo_txtempresa, R.drawable.borderradius_activo, R.drawable.borderradius);
 
 
             addTextChangedListener(lo_txtlocal, R.drawable.boton_redondo, R.drawable.boton_redondo_inactivo);

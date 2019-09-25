@@ -27,6 +27,7 @@ import pe.com.app.unibell.appunibell.AD.Clientes_Adapter;
 import pe.com.app.unibell.appunibell.BE.ClientesBE;
 import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
 import pe.com.app.unibell.appunibell.R;
+import pe.com.app.unibell.appunibell.Util.Funciones;
 
 public class Activity_FiltroClientes extends AppCompatActivity {
 
@@ -38,6 +39,7 @@ public class Activity_FiltroClientes extends AppCompatActivity {
     private Clientes_Adapter clientes_adapter = null;
     private SharedPreferences sharedSettings;
     private ArrayList<String> RazonSocialArray;
+    Funciones funciones = new Funciones();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,15 @@ public class Activity_FiltroClientes extends AppCompatActivity {
         txtCpacking = (EditText)findViewById(R.id.cl_txtpdespacho);
         txtGrupo = (EditText)findViewById(R.id.cl_txtgrupo);
         lblBuscarCliente6 = (TextView)findViewById(R.id.lblBuscarCliente6);
+
+
+        funciones.addTextChangedListener(txtRUC, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(txtCodigoCliente, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(txtRazonSocial, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(txtDNI, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(txtCpacking, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(txtGrupo, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+
 
         lblBuscarCliente6.setVisibility(View.GONE);
         txtCpacking.setVisibility(View.GONE);

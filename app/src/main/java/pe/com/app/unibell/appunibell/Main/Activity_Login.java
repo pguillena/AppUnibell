@@ -169,24 +169,16 @@ public class Activity_Login extends AppCompatActivity
             btLogin=(Button) findViewById(R.id.btLogin);
             edtUserName=(EditText)findViewById(R.id.LogEdtUserName);
             edtUserPass=(EditText)findViewById(R.id.LogEdtUserPass);
-            //edtUserName.setTextAppearance(getApplication(), R.style.SkyTextViewStyle);
-
-            btnSincronizarLogin = (Button)findViewById(R.id.btnSincronizarLogin);
-            btnInfoLogin = (Button)findViewById(R.id.btnInfoLogin);
-
-            edtUserName.setText(sharedSettings.getString("USUARIO", "AGRAUA").toString());
-            edtUserPass.setText("0");
-
-
 
             funciones.addTextChangedListener(edtUserName, R.drawable.borderradius_activo, R.drawable.borderradius);
             funciones.addTextChangedListener(edtUserPass, R.drawable.borderradius_activo, R.drawable.borderradius);
             addTextChangedListener(edtUserName, R.drawable.borderradiusbutton, R.drawable.borderradiusbutton_inactivo);
             addTextChangedListener(edtUserPass, R.drawable.borderradiusbutton, R.drawable.borderradiusbutton_inactivo);
 
+            //edtUserName.setTextAppearance(getApplication(), R.style.SkyTextViewStyle);
 
-
-
+            btnSincronizarLogin = (Button)findViewById(R.id.btnSincronizarLogin);
+            btnInfoLogin = (Button)findViewById(R.id.btnInfoLogin);
             btLogin.setOnClickListener(OnClickList_btLogin);
             btnSincronizarLogin.setOnClickListener(OnClickListener_btnSincronizarLogin);
             btnInfoLogin.setOnClickListener(OnClickListener_btnInfoLogin);

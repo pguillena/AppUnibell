@@ -17,6 +17,7 @@ import android.widget.TextView;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialogo_Fragment_Fecha;
 import pe.com.app.unibell.appunibell.R;
+import pe.com.app.unibell.appunibell.Util.Funciones;
 
 public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dialog_Fragment_Auxiliar.Dialog_Fragment_AuxiliarListener,
         Dialogo_Fragment_Fecha.NoticeDialogoListener {
@@ -30,6 +31,8 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
     private Dialog_Fragment_Auxiliar dialog_fragment_auxiliar = null;
     private Integer iOpcionFecha=0,iOpcionHora=0;
     private DialogFragment dialogFragmentFecha;
+    Funciones funciones = new Funciones();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,12 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
         txtNroPlanilla = (EditText)findViewById(R.id.lq_txtfplan);
         txtCpacking = (EditText)findViewById(R.id.lq_txtpaking);
         lblBuscarLiquidacion4 = (TextView)findViewById(R.id.lblBuscarLiquidacion4);
+
+
+        funciones.addTextChangedListener(txtEstado, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(txtFechaFiltro, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(txtNroPlanilla, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(txtCpacking, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
 
 
         lblBuscarLiquidacion4.setVisibility(View.GONE);

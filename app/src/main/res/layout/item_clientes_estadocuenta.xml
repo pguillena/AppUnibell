@@ -188,7 +188,7 @@
         android:hint="S/ 19.9"
         android:layout_below="@id/lblSaldo"
         android:layout_toRightOf="@id/cp_item11"
-        android:drawableRight="@drawable/chevron_right"
+        android:drawableRight="@drawable/alpha_c_circle_outline_activo"
         />
 
 
