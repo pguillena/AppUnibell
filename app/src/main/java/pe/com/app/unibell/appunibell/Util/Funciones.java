@@ -4,12 +4,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.telephony.TelephonyManager;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Base64;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +33,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import pe.com.app.unibell.appunibell.R;
 
 /**
  * Created by RENAN on 18/08/2016.
@@ -405,6 +413,69 @@ public class Funciones {
         phrase += c;
         }
         return phrase; }
+
+
+
+
+    public void addTextChangedListener(final EditText textView, final int activo, final int inactivo){
+
+        textView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if(!textView.getText().toString().trim().equals("")) {
+
+                    textView.setBackgroundResource(activo);
+                }
+                else
+                {
+                    textView.setBackgroundResource(inactivo);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
+    public void addTextChangedListener(final TextView textView, final int activo, final int inactivo){
+
+        textView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if(!textView.getText().toString().trim().equals("")) {
+
+                    textView.setBackgroundResource(activo);
+                }
+                else
+                {
+                    textView.setBackgroundResource(inactivo);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
 
 
 }

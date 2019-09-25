@@ -11,6 +11,8 @@ import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -72,6 +74,8 @@ public class Activity_Cobranza_Agregar_Pago
     private CabfcobDAO cabfcobDAO = new CabfcobDAO();
     private Documentos_Cobra_CabDAO documentos_Cobra_CabDAO = new Documentos_Cobra_CabDAO();
     private ParTabla_Adapter parTabla_adapter = null;
+
+    Funciones funciones = new Funciones();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,9 +147,12 @@ public class Activity_Cobranza_Agregar_Pago
         rp_lblbancoctacte.setVisibility(View.GONE);
         lblCtaCte.setVisibility(View.GONE);
 
-
-
-
+        funciones.addTextChangedListener(rp_txtserie, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(rp_txtnumero, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(rp_txtmonto, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(rp_lblfplanilla, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(rp_lblfpago, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(rp_lblbancoctacte, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
 
 
         rp_swmoneda.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +172,7 @@ public class Activity_Cobranza_Agregar_Pago
         ValidarReciboAutomatico();
 
     }
+
 
     private void ValidarReciboAutomatico() {
         try {
@@ -526,6 +534,8 @@ public class Activity_Cobranza_Agregar_Pago
 
     @Override
     public void setearFecha(String fecha) {
+
+
         rp_lblfplanilla.setText(fecha);
 
         //TIPO DE CAMBIO

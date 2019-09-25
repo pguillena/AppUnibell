@@ -7,11 +7,14 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -114,6 +117,15 @@ public class Activity_Login_Local extends AppCompatActivity
             lo_txtempresa=(TextView)findViewById(R.id.lo_txtempresa);
             lo_txtlocal=(TextView)findViewById(R.id.lo_txtlocal);
 
+
+            funciones.addTextChangedListener(lo_txtlocal, R.drawable.borderradius, R.drawable.borderradiusbutton_inactivo);
+            funciones.addTextChangedListener(lo_txtempresa, R.drawable.borderradius, R.drawable.borderradiusbutton_inactivo);
+
+
+            addTextChangedListener(lo_txtlocal, R.drawable.boton_redondo, R.drawable.boton_redondo_inactivo);
+            addTextChangedListener(lo_txtempresa, R.drawable.boton_redondo, R.drawable.boton_redondo_inactivo);
+
+
             // edtUserName.setDrawingCacheBackgroundColor(R.color.label_login_unibell);
             // edtUserName.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.eye), null, null, null);
             //edtUserName.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(R.drawable.eye), null);
@@ -147,6 +159,38 @@ public class Activity_Login_Local extends AppCompatActivity
             e.printStackTrace();
         }
     }
+
+
+
+    private void addTextChangedListener(final TextView textView, final int activo, final int inactivo){
+
+        textView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if(!lo_txtempresa.getTag().toString().trim().equals("0") && !lo_txtlocal.getTag().toString().trim().equals("0")) {
+                    btLoginLocal.setBackgroundResource(activo);
+                }
+                else
+                {
+                    btLoginLocal.setBackgroundResource(inactivo);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
 
     private Boolean Validar(){
         if(lo_txtempresa.getText().toString().trim().equals("Seleccionar")){

@@ -14,6 +14,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -174,8 +176,16 @@ public class Activity_Login extends AppCompatActivity
 
             edtUserName.setText(sharedSettings.getString("USUARIO", "AGRAUA").toString());
             edtUserPass.setText("0");
-            setOnFocusChangeListener(edtUserName,"edtUserName");
-            setOnFocusChangeListener(edtUserPass,"edtUserPass");
+
+
+
+            funciones.addTextChangedListener(edtUserName, R.drawable.borderradius_activo, R.drawable.borderradius);
+            funciones.addTextChangedListener(edtUserPass, R.drawable.borderradius_activo, R.drawable.borderradius);
+            addTextChangedListener(edtUserName, R.drawable.borderradiusbutton, R.drawable.borderradiusbutton_inactivo);
+            addTextChangedListener(edtUserPass, R.drawable.borderradiusbutton, R.drawable.borderradiusbutton_inactivo);
+
+
+
 
             btLogin.setOnClickListener(OnClickList_btLogin);
             btnSincronizarLogin.setOnClickListener(OnClickListener_btnSincronizarLogin);
@@ -208,32 +218,34 @@ public class Activity_Login extends AppCompatActivity
     }
 
 
+    private void addTextChangedListener(final EditText textView, final int activo, final int inactivo){
 
-    private void setOnFocusChangeListener(TextView textView, String name){
+        textView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        textView.setOnFocusChangeListener(new OnFocusChangeListener() {
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus) {
-                    if(!edtUserName.getText().toString().trim().equals("") && !edtUserPass.getText().toString().trim().equals("")) {
-                        btLogin.setBackgroundResource(R.drawable.borderradiusbutton);
+            }
 
-                        edtUserName.setBackgroundResource(R.drawable.borderradius_activo);
-                        edtUserPass.setBackgroundResource(R.drawable.borderradius_activo);
-                    }
-                    else
-                    {
-                        btLogin.setBackgroundResource(R.drawable.borderradiusbutton_inactivo);
-                        edtUserName.setBackgroundResource(R.drawable.borderradius);
-                        edtUserPass.setBackgroundResource(R.drawable.borderradius);
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
-                    }
+                if(!edtUserName.getText().toString().trim().equals("") && !edtUserPass.getText().toString().trim().equals("")) {
+                    btLogin.setBackgroundResource(activo);
                 }
+                else
+                {
+                    btLogin.setBackgroundResource(inactivo);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
+
     }
-
-
 
 
     View.OnClickListener OnClickListener_btnInfoLogin=new View.OnClickListener(){
