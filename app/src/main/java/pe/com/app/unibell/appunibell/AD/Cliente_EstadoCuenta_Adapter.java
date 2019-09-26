@@ -74,7 +74,19 @@ public class Cliente_EstadoCuenta_Adapter extends ArrayAdapter<FactCobBE> implem
         //mainHolder.cp_item5.setText(factCobBE.getSERIE_NUM().toString());
         //mainHolder.cp_item6.setText(factCobBE.getNUMERO().toString());
         mainHolder.cp_item7.setText(factCobBE.getFECHA().toString());
-        mainHolder.cp_item8.setText(factCobBE.getF_VENCTO().toString());
+
+        if(factCobBE.getDIAS()>0)
+        {
+            mainHolder.cp_item8.setText(factCobBE.getF_VENCTO().toString() + "  ("+factCobBE.getDIAS().toString()+")");
+        }
+        else
+        {
+            mainHolder.cp_item8.setText(factCobBE.getF_VENCTO().toString());
+        }
+
+
+
+
         //mainHolder.cp_item9.setText(factCobBE.getDIAS().toString());
         sMoneda=factCobBE.getMONEDA().toString().trim();
         switch (sMoneda) {

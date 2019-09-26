@@ -257,7 +257,7 @@ public class Documentos_Cobra_CabDAO {
                                  "AND C.ID_LOCAL =" +  iID_LOCAL + "\n" +
                                  "AND (C.N_PLANILLA ="+ iN_PLANILLA + " OR " + iN_PLANILLA + "=0) \n" +
                                  "AND C.GUARDADO IN(2,3) " +
-                                 "ORDER BY C.C_PACKING ASC, S.NOMBRE ASC,D.SERIE_NUM ASC, D.NUMERO ASC,  C.N_RECIBO ASC, C.ID_COBRANZA ASC";
+                                 "ORDER BY C.C_PACKING ASC, C.N_RECIBO ASC";
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<Documentos_Cobra_CabBE>();
             lst.clear();

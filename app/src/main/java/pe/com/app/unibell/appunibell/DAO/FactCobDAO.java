@@ -231,7 +231,7 @@ public class FactCobDAO {
                        " LEFT JOIN TABLAS_AUXILIARES AUX ON(A.TIPDOC = AUX.CODIGO AND AUX.TIPO = 2) \n" +
                        " INNER JOIN S_CCM_DOCUMENTOS_COBRA_CAB C ON C.ID_COBRANZA=A.ID_COBRANZA \n" +
                        " WHERE A.SALDO <>0 AND C.CODUNC_LOCAL=" + iCODUNC_LOCAL + " AND C.ID_COBRANZA=" + ID_COBRANZA.toString() +
-                       "  ORDER BY A.FECHA ASC, A.SALDO ASC";
+                       "  ORDER BY A.DIAS DESC, A.SALDO ASC";
 
             //Tabla de Cobranzas Real
             //SUBSTR('0000000000' || A.SERIE_NUM, -4, 4) AS SERIE_NUM
@@ -261,7 +261,7 @@ public class FactCobDAO {
                     "  AND A.TIPDOC<>'PB'\n" +
                     "  AND A.SALDO <>0 \n" +
                     "  AND A.VENDED <> '989' \n" +
-                    "  ORDER BY A.FECHA ASC, A.SALDO ASC";
+                    "  ORDER BY  A.DIAS DESC, A.SALDO ASC";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL1, null);
             if(cursor.getCount()==0){
@@ -367,7 +367,7 @@ public class FactCobDAO {
                     " LEFT JOIN TABLAS_AUXILIARES AUX ON(A.TIPDOC = AUX.CODIGO AND AUX.TIPO = 2) \n" +
                     " INNER JOIN S_CCM_DOCUMENTOS_COBRA_CAB C ON C.ID_COBRANZA=A.ID_COBRANZA \n"+
                     " WHERE C.CODUNC_LOCAL=" + iCODUNC_LOCAL + " AND C.ID_COBRANZA="+ iID_COBRANZA +
-                    "  ORDER BY A.FECHA ASC, A.SALDO ASC";
+                    "  ORDER BY A.DIAS DESC, A.SALDO ASC";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<FactCobBE>();
@@ -470,7 +470,7 @@ public class FactCobDAO {
                     " AND A.TIPDOC<>'PB'\n" +
                     " AND A.SALDO <>0\n" +
                     " AND A.VENDED <> '989'\n" +
-                    " ORDER BY A.FECHA ASC, A.SALDO ASC";
+                    " ORDER BY A.DIAS DESC, A.SALDO ASC";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQLPAGOS, null);
             lst = new ArrayList<FactCobBE>();
@@ -654,6 +654,7 @@ public class FactCobDAO {
             cv.put("ID_COBRANZA",factCobBE.getID_COBRANZA().toString());
             cv.put("CODUNC_LOCAL",factCobBE.getCODUNC_LOCAL().toString());
             cv.put("COBRANZA",factCobBE.getCOBRANZA().toString());
+            cv.put("DIAS",factCobBE.getDIAS().toString());
 
             DataBaseHelper.myDataBase.insert("FACTCOBTEMP",null,cv);
             sMensaje="";

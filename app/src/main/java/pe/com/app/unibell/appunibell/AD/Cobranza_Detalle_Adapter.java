@@ -81,7 +81,18 @@ public class Cobranza_Detalle_Adapter extends ArrayAdapter<FactCobBE> implements
         mainHolder.cp_item2.setText(nombreTipoDoc + " "+ factCobBE.getSERIE_NUM().toString() + "-"+ factCobBE.getNUMERO().toString());
         mainHolder.cp_item3.setText("S/ " + Funciones.FormatDecimal(factCobBE.getIMPORTE().toString()));
         mainHolder.cp_item4.setText("S/ " + Funciones.FormatDecimal(factCobBE.getSALDO().toString()));
-        mainHolder.cp_item6.setText(factCobBE.getFECHA().toString() + "  /  " + factCobBE.getF_VENCTO().toString());
+
+        if(factCobBE.getDIAS()>0)
+        {
+            mainHolder.cp_item6.setText(factCobBE.getFECHA().toString() + " / " + factCobBE.getF_VENCTO().toString() +  " ("+factCobBE.getDIAS().toString() +")" );
+        }
+        else
+        {
+            mainHolder.cp_item6.setText(factCobBE.getFECHA().toString() + "  /  " + factCobBE.getF_VENCTO().toString());
+        }
+
+
+
         //mainHolder.cp_item7.setText("(" + factCobBE.getDIAS().toString() + ")");
         mainHolder.txtCobranza.setText("S/ " + factCobBE.getCOBRANZA().toString());
 

@@ -545,7 +545,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
             try {
                 if (result.getInt("status")!=1) {
                     //MOSTRAMOS MESSAGE
-                    new ToastLibrary(Activity_Sincronizar.this, result.getString("message")+ ":CobfCob").Show();
+                    new ToastLibrary(Activity_Sincronizar.this, result.getString("message")+ ":CabfCob").Show();
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.cabfcobBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();

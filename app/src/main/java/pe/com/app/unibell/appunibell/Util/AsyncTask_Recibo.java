@@ -206,7 +206,7 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                         "<table width='100%'>" +
                         "<tr><td align='center' style='font-size: 25px'>RUC. "+documentos_cobra_cabDAO.lst.get(0).getRUC()+"</td></tr>" +
                         "<tr><td align='center' style='font-size: 25px; font-weight: bold;'>RECIBO</td></tr>" +
-                        "<tr><td align='center' style='font-size: 25px; color: #FF0000; font-weight: bold;'>"+"0"+documentos_cobra_cabDAO.lst.get(0).getN_SERIE_RECIBO() +"-" +documentos_cobra_cabDAO.lst.get(0).getN_RECIBO() +"</td></tr>" +
+                        "<tr><td align='center' style='font-size: 25px; color: #FF0000; font-weight: bold;'>"+documentos_cobra_cabDAO.lst.get(0).getN_SERIE_RECIBO() +"-" +documentos_cobra_cabDAO.lst.get(0).getN_RECIBO() +"</td></tr>" +
                         "</table>" +
                         "</td></tr></table>" +
                         "</td>" +
