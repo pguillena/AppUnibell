@@ -5,11 +5,12 @@ package pe.com.app.unibell.appunibell.Util;
 public interface ConstantsLibrary {
         public static final String DEBUG_TAG = "DRES_DEBUG";
         //LOCAL
-        //public static final String RESTFUL_URL = "http://172.16.1.78/ServiceUnibell";
+        public static final String RESTFUL_URL = "http://172.16.1.78/ServiceUnibell";
         //REMOTO
-        public static final String RESTFUL_URL ="http://181.65.215.174/ServiceUnibell";
+        //public static final String RESTFUL_URL ="http://181.65.215.174/ServiceUnibell";
         public static final String blcabfcob = "/blcabfcob";
         public static final String blcliente = "/blclientes";
+        public static final String blclientesxcodigo = "/blclientesxcodigo";
         public static final String blctabnco = "/blctabnco";
 
         //MOVMIENTOS
@@ -41,6 +42,7 @@ public interface ConstantsLibrary {
         public static final String blpartabla = "/blpartabla";
         public static final String blrecibos_ccobranza = "/blrecibos_ccobranza";
         public static final String bls_gem_cliente = "/bls_gem_cliente";
+        public static final String bls_gem_clientexCodigo = "/bls_gem_clientexCodigo";
         public static final String bls_gem_persona_direccion = "/bls_gem_persona_direccion";
         public static final String bls_gem_persona = "/bls_gem_persona";
         public static final String bls_gem_vendedor = "/bls_gem_vendedor";
@@ -59,6 +61,8 @@ public interface ConstantsLibrary {
 
         public static final String bls_gea_vendedor_cliente = "/bls_gea_vendedor_cliente";
         public static final String bls_gem_cliente_codigo_ant = "/bls_gem_cliente_codigo_ant";
+        public static final String bls_gem_cliente_codigo_antxcodigo = "/bls_gem_cliente_codigo_antxcodigo";
+
         public static final String bls_gem_vendedor_codigo_ant = "/bls_gem_vendedor_codigo_ant";
 
 

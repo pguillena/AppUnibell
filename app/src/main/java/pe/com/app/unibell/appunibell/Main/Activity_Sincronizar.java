@@ -211,14 +211,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                     new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar sucursales.").Show();
                 }
 
-                try{
-                    new Recibos_CcobranzaBL_Sincronizar().execute(ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blrecibos_ccobranza + '/'
-                                    + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
-                                    + sharedSettings.getString("iID_LOCAL", "0")+ '/'
-                                    + sharedSettings.getString("iID_VENDEDOR", "0"));
-                } catch (Exception ex) {
-                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar sucursales.").Show();
-                }
+
             break;
 
 
@@ -390,6 +383,15 @@ public class Activity_Sincronizar extends AppCompatActivity {
                             + sharedSettings.getString("iID_VENDEDOR", "0")+ "/0/0","0");
                 } catch (Exception ex) {
                     new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar Documentos Det.").Show();
+                }
+
+                try{
+                    new Recibos_CcobranzaBL_Sincronizar().execute(ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blrecibos_ccobranza + '/'
+                            + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                            + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                            + sharedSettings.getString("iID_VENDEDOR", "0"));
+                } catch (Exception ex) {
+                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar sucursales.").Show();
                 }
 
             break;
@@ -599,6 +601,8 @@ public class Activity_Sincronizar extends AppCompatActivity {
             }
         }
     }
+
+
     public class CtaBncoBL_Sincronizar_AsyncTask extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
@@ -999,6 +1003,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
             }
         }
     }
+
     public class S_Gem_Persona_DireccionBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
@@ -1520,6 +1525,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
             }
         }
     }
+
     public class S_Gea_Vendedor_ClienteBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/

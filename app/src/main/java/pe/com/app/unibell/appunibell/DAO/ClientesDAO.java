@@ -427,8 +427,50 @@ public class ClientesDAO {
         return sMensaje;
     }
 
+    public void getByCodCliente(String COD_CLIENTE) {
+        Cursor cursor = null;
+        ClientesBE clientesBE = null;
+        try {
+            String SQL=" SELECT COD_CLIENTE,NOMBRE,DIRECCION,CIUDAD,DISTRITO,PAIS, " +
+                    " ZONA,VENDEDOR,COBRADOR,GIRO,TELEFONO,FAX, " +
+                    " FECHA_ING,COND_PAG,CALIFICACION,LIMITE_CRED,ESTADO,RUC " +
+                    " FROM CLIENTES  " +
+                    " WHERE COD_CLIENTE = '" + COD_CLIENTE+"'";
 
-
+            cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
+            lst = new ArrayList<ClientesBE>();
+            lst.clear();
+            if (cursor.moveToFirst()) {
+                do {
+                    clientesBE = new ClientesBE();
+                    clientesBE.setCOD_CLIENTE(Funciones.isNullColumn(cursor,"COD_CLIENTE",""));
+                    clientesBE.setNOMBRE(Funciones.isNullColumn(cursor,"NOMBRE",""));
+                    clientesBE.setDIRECCION(Funciones.isNullColumn(cursor,"DIRECCION",""));
+                    clientesBE.setCIUDAD(Funciones.isNullColumn(cursor,"CIUDAD",""));
+                    clientesBE.setDISTRITO(Funciones.isNullColumn(cursor,"DISTRITO",""));
+                    clientesBE.setPAIS(Funciones.isNullColumn(cursor,"PAIS",""));
+                    clientesBE.setZONA(Funciones.isNullColumn(cursor,"ZONA",""));
+                    clientesBE.setVENDEDOR(Funciones.isNullColumn(cursor,"VENDEDOR",""));
+                    clientesBE.setCOBRADOR(Funciones.isNullColumn(cursor,"COBRADOR",""));
+                    clientesBE.setGIRO(Funciones.isNullColumn(cursor,"GIRO",""));
+                    clientesBE.setTELEFONO(Funciones.isNullColumn(cursor,"TELEFONO",""));
+                    clientesBE.setFAX(Funciones.isNullColumn(cursor,"FAX",""));
+                    clientesBE.setFECHA_ING(Funciones.isNullColumn(cursor,"FECHA_ING",""));
+                    clientesBE.setCOND_PAG(Funciones.isNullColumn(cursor,"COND_PAG",""));
+                    clientesBE.setCALIFICACION(Funciones.isNullColumn(cursor,"CALIFICACION",""));
+                    clientesBE.setLIMITE_CRED(Funciones.isNullColumn(cursor,"LIMITE_CRED",""));
+                    clientesBE.setESTADO(Funciones.isNullColumn(cursor,"ESTADO",0));
+                    clientesBE.setRUC(Funciones.isNullColumn(cursor,"RUC",""));
+                    lst.add(clientesBE);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+    }
 
 
 }

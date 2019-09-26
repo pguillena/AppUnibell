@@ -159,6 +159,7 @@ $app->get('/Query/User/Rol/:codusu', 'bluser:SelectRolByCodUsu');
  
 $app->get('/blcabfcob/:p1/:p2/:p3', 'blcabfcob:SelectAll');
 $app->get('/blclientes/:p1/:p2/:p3', 'blclientes:SelectAll');
+$app->get('/blclientesxcodigo/:p1/:p2/:p3', 'blclientes:SelectAllxCod');
 $app->get('/blctabnco/:p1/:p2/:p3/:p4', 'blctabnco:SelectAll');
 
 $app->get('/bldocumentos_cobra_cab/:p1/:p2/:p3/:p4/:p5', 'bldocumentos_cobra_cab:SelectAll');
@@ -195,7 +196,9 @@ $app->get('/blpartabla', 'blpartabla:SelectAll');
 $app->get('/blrecibos_ccobranza/:p1/:p2/:p3', 'blrecibos_ccobranza:SelectAll');
 $app->get('/bls_gea_vendedor_cliente/:p1/:p2/:p3', 'bls_gea_vendedor_cliente:SelectAll');
 $app->get('/bls_gem_cliente/:p1/:p2/:p3', 'bls_gem_cliente:SelectAll');
+$app->get('/bls_gem_clientexcodigo/:p1/:p2/:p3', 'bls_gem_cliente:SelectAllxCod');
 $app->get('/bls_gem_cliente_codigo_ant/:p1/:p2/:p3', 'bls_gem_cliente_codigo_ant:SelectAll');
+$app->get('/bls_gem_cliente_codigo_antxcodigo/:p1/:p2/:p3', 'bls_gem_cliente_codigo_ant:SelectAllxCod');
 $app->get('/bls_gem_persona_direccion/:p1/:p2/:p3', 'bls_gem_persona_direccion:SelectAll');
 $app->get('/bls_gem_persona/:p1/:p2/:p3', 'bls_gem_persona:SelectAll');
 $app->get('/bls_gem_vendedor/:p1/:p2/:p3', 'bls_gem_vendedor:SelectAll');

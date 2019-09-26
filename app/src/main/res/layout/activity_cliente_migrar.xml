@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_main_unibell"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Ingrese el codigo del cliente a migrar"
+            android:gravity="left"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Código"
+        android:paddingLeft="15dp"
+        android:textSize="14dp"
+        android:textColor="@color/label_login_unibell"
+        android:layout_marginBottom="2dp"
+        />
+
+    <EditText
+        android:id="@+id/plb_txtcodClienteMigrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese código de cliente"
+        android:textSize="16dp"
+        android:padding="15dp"
+        style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="20dp"
+        android:maxLines="1"
+        />
+
+
+    <Button
+        android:id="@+id/plb_btnmigrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/txt_12sp"
+        android:text="Migrar"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:padding="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/borderradiusbutton"
+        android:textColor="@color/background"
+        />
+
+</LinearLayout>

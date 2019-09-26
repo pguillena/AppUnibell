@@ -35,6 +35,7 @@ import java.util.Random;
 
 import pe.com.app.unibell.appunibell.AD.Menu_Adapter;
 import pe.com.app.unibell.appunibell.BL.MenuStringBL;
+import pe.com.app.unibell.appunibell.Clientes.Activity_MigrarCliente;
 import pe.com.app.unibell.appunibell.Clientes.Activity_clientes;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.Menu_StringDAO;
@@ -65,7 +66,7 @@ public class MainActivity  extends AppCompatActivity{
     private static final int REQUEST_CODE_1=1;
     private Integer  SMNU_ORDLIST=0,SMNU_OLOCAL=0;
     private static String DB_NAME = "REST_POS_BD.sqlite";
-    private Button sp_img1, btnsincronizar, btncobranzas,btnliquidacion,btnaplanilla,btnreportes;
+    private Button sp_img1, btnsincronizar, btncobranzas,btnliquidacion,btnaplanilla,btnreportes, btnMigrarCliente;
     //DIEZ MINUTOS
     private Integer iTiempoEjecuta=2;
 
@@ -118,6 +119,7 @@ protected void onCreate(Bundle savedInstanceState) {
         btnliquidacion=(Button) findViewById(R.id.btnliquidacion);
         btnaplanilla=(Button) findViewById(R.id.btnaplanilla);
             btnreportes=(Button) findViewById(R.id.btnreportes);
+            btnMigrarCliente=(Button) findViewById(R.id.btnMigrarCliente);
 
         lo_txtempresa=(TextView) findViewById(R.id.lo_txtempresa);
         lo_txtlocal=(TextView) findViewById(R.id.lo_txtlocal);
@@ -139,11 +141,15 @@ protected void onCreate(Bundle savedInstanceState) {
         btnliquidacion.setOnClickListener(OnClickListenercl_btnliquidacion);
         btnaplanilla.setOnClickListener(OnClickListenercl_btnaplanilla);
             btnreportes.setOnClickListener(OnClickListenercl_btnreportes);
+            btnMigrarCliente.setOnClickListener(OnClickListenercl_btnMigrarCliente);
+
+
 
             btnaplanilla.setVisibility(View.GONE);
             btncobranzas.setVisibility(View.GONE);
             btnreportes.setVisibility(View.GONE);
             btnliquidacion.setVisibility(View.GONE);
+          //  btnMigrarCliente.setVisibility(View.GONE);
 
        //EJECUTA EL SERVICIO
         Intent alarm = new Intent(MainActivity.this, AlarmReceiver.class);
@@ -338,7 +344,18 @@ protected void onCreate(Bundle savedInstanceState) {
     };
 
 
+    View.OnClickListener OnClickListenercl_btnMigrarCliente = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            try {
+                Intent SMNU_MIGRAR_CLIENTE = new Intent(getApplication(), Activity_MigrarCliente.class);
+                startActivity(SMNU_MIGRAR_CLIENTE);
 
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    };
 
     private void Activar(Boolean valor){
         iActivado=valor;

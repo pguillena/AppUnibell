@@ -105,6 +105,11 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".Clientes.Activity_MigrarCliente"
+            android:parentActivityName=".Main.MainActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".Planilla.Activity_AprobacionPlanilla"
             android:parentActivityName=".Main.MainActivity"
             android:screenOrientation="portrait" />
