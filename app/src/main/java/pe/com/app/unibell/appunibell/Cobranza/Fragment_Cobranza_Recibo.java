@@ -112,7 +112,11 @@ public class Fragment_Cobranza_Recibo extends Fragment
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
 
+            //ELIMINAMOS LAS COBRANZAS TERMPORALES
+            documentos_cobra_cabDAO.deleteTemp();
+
             Cargar();
+
         } catch (Exception ex) {
         }
         return view;
@@ -182,6 +186,7 @@ public class Fragment_Cobranza_Recibo extends Fragment
                     sharedSettings.getString("CODIGO_ANTIGUO", "").toString(),
                     sFecha.toString().trim()
             );
+
         } catch (Exception ex){
 
         }
