@@ -415,7 +415,8 @@ public class Fragment_Cobranza extends Fragment implements
         public void onClick(View v) {
             try {
 
-
+                editor_Shared.putString("PAE", "0");
+                editor_Shared.commit();
 
               Globals g = (Globals)getActivity().getApplication();
               g.setIntentCobranzaCab(cobranza_cabecera_adapter);

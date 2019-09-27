@@ -183,6 +183,8 @@ public class Activity_Login extends AppCompatActivity
             btnSincronizarLogin.setOnClickListener(OnClickListener_btnSincronizarLogin);
             btnInfoLogin.setOnClickListener(OnClickListener_btnInfoLogin);
 
+            edtUserName.setText(sharedSettings.getString("USUARIO",""));
+
             //SincronizarTipoCambio();
 
         } catch (Exception e) {

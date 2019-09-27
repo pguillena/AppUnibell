@@ -364,12 +364,16 @@ public class Funciones {
         }
         else {
             String nuevoStr = "";
+            str = str.replace("  "," ");
             String[] lista = str.split(" ");
 
             if (lista != null && lista.length > 0) {
                 for (int i = 0; i < lista.length; i++) {
 
-                    nuevoStr = nuevoStr +" "+ lista[i].substring(0, 1).toUpperCase() + lista[i].toLowerCase().substring(1);
+                    if(!lista[i].equals(""))
+                    {
+                        nuevoStr = nuevoStr + " " + lista[i].substring(0, 1).toUpperCase() + lista[i].toLowerCase().substring(1);
+                    }
 
                 }
 
