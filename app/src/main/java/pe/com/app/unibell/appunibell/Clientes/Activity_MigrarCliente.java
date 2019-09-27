@@ -15,6 +15,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import pe.com.app.unibell.appunibell.BL.ClientesBL;
+import pe.com.app.unibell.appunibell.BL.DocuventBL;
+import pe.com.app.unibell.appunibell.BL.FactCobBL;
 import pe.com.app.unibell.appunibell.BL.S_Gem_ClienteBL;
 import pe.com.app.unibell.appunibell.BL.S_Gem_Cliente_Codigo_AntBL;
 import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
@@ -37,8 +39,8 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
     private ClientesDAO clientesDAO;
     private Dialog_Fragment_Aceptar log_dialogaceptar;
     private Dialog_Fragment_Progress clientesPG;
-    private Dialog_Fragment_Progress s_gem_clientePG;
-    private Dialog_Fragment_Progress s_gem_cliente_codigo_antPG;
+    private Dialog_Fragment_Progress factCobPG;
+    private Dialog_Fragment_Progress docuventPG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +110,32 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
             new ToastLibrary(this,"Error al sincronizar el cliente.").Show();
         }
 
+
+        try{
+            new Activity_MigrarCliente.DocuventBL_Sincronizar().execute(
+                    ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocuventxcodigo + '/'
+                            + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                            + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                            + codCliente);
+        } catch (Exception ex) {
+            new ToastLibrary(this,"Error al Sincronizar Docuvent.").Show();
+        }
+
+
+        try{
+            new Activity_MigrarCliente.FactCobBL_Sincronizar().execute(
+                    ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blfactcobxcodigo+ '/'
+                            + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                            + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                            + codCliente);
+        } catch (Exception ex) {
+            new ToastLibrary(this,"Error al Sincronizar Facturas por cobrar.").Show();
+        }
+
+
+
+
+
     }
 
     private void Mensaje(String msj){
@@ -151,6 +179,88 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
                     new ToastLibrary(Activity_MigrarCliente.this, result.getString("message")+ ":Cliente").Show();
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.clientesBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
+                    View sbView = snackbar.getView();
+                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.YELLOW);
+                    snackbar.show();
+                }
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+
+    public class FactCobBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
+        /*ASYNCTASK<Parametros, Progreso, Resultado>
+        DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
+        private volatile boolean running = true;
+
+        @Override
+        protected void onPreExecute() {
+            factCobPG = new Dialog_Fragment_Progress();
+            factCobPG.setMensaje("Sincronizando");
+            factCobPG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            return new FactCobBL().getSincronizarxCodigo(p[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            if (factCobPG != null && factCobPG.isVisible()) {
+                factCobPG.dismiss();
+            }
+            try {
+                if (result.getInt("status")!=1) {
+                    //MOSTRAMOS MESSAGE
+                    new ToastLibrary(Activity_MigrarCliente.this, result.getString("message")+ ":FactCob").Show();
+                } else {
+                    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.factCobBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
+                    View sbView = snackbar.getView();
+                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.YELLOW);
+                    snackbar.show();
+                }
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+
+    public class DocuventBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
+        /*ASYNCTASK<Parametros, Progreso, Resultado>
+        DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
+        private volatile boolean running = true;
+
+        @Override
+        protected void onPreExecute() {
+            docuventPG = new Dialog_Fragment_Progress();
+            docuventPG.setMensaje("Sincronizando");
+            docuventPG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            return new DocuventBL().getSincronizarxCodigo(p[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            if (docuventPG != null && docuventPG.isVisible()) {
+                docuventPG.dismiss();
+            }
+            try {
+                if (result.getInt("status")!=1) {
+                    //MOSTRAMOS MESSAGE
+                    new ToastLibrary(Activity_MigrarCliente.this, result.getString("message")+ ":Docuvent").Show();
+                } else {
+                    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.docuventBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
                     TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);

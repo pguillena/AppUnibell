@@ -38,6 +38,7 @@ public interface ConstantsLibrary {
         public static final String bldocumentos_cobra_cab_RptCobranza = "/bldocumentos_cobra_cab_RptCobranza";
 
         public static final String blfactcob = "/blfactcob";
+        public static final String blfactcobxcodigo = "/blfactcobxcodigo";
         public static final String blgem_banco = "/blgem_banco";
         public static final String blmvendedor = "/blmvendedor";
         public static final String blpartabla = "/blpartabla";
@@ -71,6 +72,7 @@ public interface ConstantsLibrary {
         public static final String bls_vem_correlativo = "/bls_vem_correlativo";
         public static final String bls_gea_vendedor_supervisor = "/bls_gea_vendedor_supervisor";
         public static final String bldocuvent = "/bldocuvent";
+        public static final String bldocuventxcodigo = "/bldocuventxcodigo";
         public static final String bldpm_packing_cab = "/bldpm_packing_cab";
         public static final String bldpm_packing_det = "/bldpm_packing_det";
 

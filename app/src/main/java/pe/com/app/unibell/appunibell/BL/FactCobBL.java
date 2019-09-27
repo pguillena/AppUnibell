@@ -170,4 +170,70 @@ public class FactCobBL {
     }
 
 
+    public JSONObject getSincronizarxCodigo(String newURL) {
+        JSONObject jsonObjectRest =null;
+        JSONObject jsonObjectResult = new JSONObject();
+        try {
+            lst=new ArrayList<FactCobBE>();
+            lst.clear();
+            String aux = new RestClientLibrary().get(newURL);
+            jsonObjectRest = new JSONObject(aux);
+
+            //EVALUAMOS EL STATUS
+            if (jsonObjectRest.getInt("status")!=1) {
+            } else{
+                //Eliminamos los registros
+               // DataBaseHelper.myDataBase.delete("FACTCOB", null, null);
+
+                String SQL="INSERT OR REPLACE INTO FACTCOB(COD_CLIENTE, TIPDOC, SERIE_NUM, NUMERO, FECHA, F_VENCTO, VENDED, MONEDA, IMPORTE, SALDO,  DIAS, AGREGADO)"+
+                        "VALUES " +
+                        "(?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
+                DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
+                DataBaseHelper.myDataBase.setLockingEnabled(false);
+                DataBaseHelper.myDataBase.beginTransactionNonExclusive();
+                SQLiteStatement stmt = DataBaseHelper.myDataBase.compileStatement(SQL);
+
+                for(int i=0;i<jsonObjectRest.getJSONArray("datos").length();i++) {
+                    JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(i);
+                    stmt.bindString(1,jsonObjectItem.getString("COD_CLIENTE"));
+                    stmt.bindString(2,jsonObjectItem.getString("TIPDOC"));
+                    stmt.bindString(3,jsonObjectItem.getString("SERIE_NUM"));
+                    stmt.bindString(4,jsonObjectItem.getString("NUMERO"));
+                    stmt.bindString(5,jsonObjectItem.getString("FECHA"));
+                    stmt.bindString(6,jsonObjectItem.getString("F_VENCTO"));
+                    stmt.bindString(7,jsonObjectItem.getString("VENDED"));
+                    stmt.bindString(8,jsonObjectItem.getString("MONEDA"));
+                    stmt.bindString(9,jsonObjectItem.getString("IMPORTE"));
+                    stmt.bindString(10,jsonObjectItem.getString("SALDO"));
+                    stmt.bindString(11,jsonObjectItem.getString("DIAS"));
+                    stmt.bindString(12,"0");
+
+                    stmt.execute();
+                    stmt.clearBindings();
+                }
+                DataBaseHelper.myDataBase.setTransactionSuccessful();
+                DataBaseHelper.myDataBase.endTransaction();
+                DataBaseHelper.myDataBase.setLockingEnabled(true);
+                DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=NORMAL");
+
+            }
+            //CREAMOS UN JSON PARA MOSTRAR EL STATUS Y MESSAGE
+            jsonObjectResult.accumulate("status", jsonObjectRest.getInt("status"));
+            jsonObjectResult.accumulate("message", jsonObjectRest.getString("message"));
+        } catch (Exception e) {
+            DataBaseHelper.myDataBase.endTransaction();
+            e.printStackTrace();
+            try {
+                jsonObjectResult.accumulate("status", 0);
+                jsonObjectResult.accumulate("message", e.getMessage());
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return jsonObjectResult;
+    }
+
+
 }

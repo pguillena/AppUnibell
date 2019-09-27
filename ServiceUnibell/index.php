@@ -214,11 +214,13 @@ $app->get('/bls_sem_usuario/:p1/:p2/:p3', 'bls_sem_usuario:SelectAll');
 $app->get('/blsucursales/:p1/:p2/:p3', 'blsucursales:SelectAll');
 $app->get('/bltablas_auxiliares/:p1/:p2', 'bltablas_auxiliares:SelectAll');
 $app->get('/blfactcob/:p1/:p2/:p3', 'blfactcob:SelectAll');
+$app->get('/blfactcobxcodigo/:p1/:p2/:p3', 'blfactcob:SelectAllxCod');
 $app->get('/blctabnco_empresa_local/:p1/:p2', 'blctabnco_empresa_local:SelectAll');
 
 $app->get('/bls_rec_usuario/:p1/:p2', 'bls_sem_usuario:RecuperarUsuarioMD5');
 
 $app->get('/bldocuvent/:p1/:p2/:p3', 'bldocuvent:SelectAll');
+$app->get('/bldocuventxcodigo/:p1/:p2/:p3', 'bldocuvent:SelectAllxCod');
 $app->get('/bldpm_packing_cab/:p1/:p2/:p3', 'bldpm_packing_cab:SelectAll');
 $app->get('/bldpm_personal_transporte/:p1/:p2', 'bldpm_personal_transporte:SelectAll');
 $app->get('/bldpm_packing_det/:p1/:p2/:p3', 'bldpm_packing_det:SelectAll');

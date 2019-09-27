@@ -803,6 +803,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
             }
         }
     }
+
     public class Gem_BancoBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
