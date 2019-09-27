@@ -168,6 +168,12 @@
             android:name=".Reportes.Activity_Reportes_Detalle"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".Reportes.Activity_Reportes_Resumen"
+            android:screenOrientation="portrait" />
+
+
+
         <service
             android:name=".Servicio.ServiceBackground"
             android:enabled="true"

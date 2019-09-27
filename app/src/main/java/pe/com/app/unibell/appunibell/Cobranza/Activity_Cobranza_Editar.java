@@ -87,12 +87,17 @@ public class Activity_Cobranza_Editar
             ch_lbl3.setText("Seleccione Fecha de Cheque");
         }
 
+        String sNNUMERO= sharedSettings.getString("sNNUMERO", "").toString();
+        if(sNNUMERO.trim().equals("32")){
+            sNNUMERO="";
+        }
+
         ch_lblfpago.setText(sharedSettings.getString("sFPAGODESC", "").toString());
         ch_lblfpago.setTag(sharedSettings.getString("COD_FPAGO", "").toString());
 
         ch_lblbanco.setTag(sharedSettings.getString("iID_BANCO", "0").toString());
         ch_lblbanco.setText(sharedSettings.getString("sBANCODESC", "").toString());
-        ch_lblnumero.setText(sharedSettings.getString("sNNUMERO", "").toString());
+        ch_lblnumero.setText(sNNUMERO);
         ch_lblfplanilla.setText(sharedSettings.getString("sFECHA_DEPOSITO", "").toString());
 
         //EVENTOS

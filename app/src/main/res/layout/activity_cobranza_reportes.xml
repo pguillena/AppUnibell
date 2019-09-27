@@ -62,7 +62,6 @@
             android:layout_gravity="bottom"
             android:textSize="16dp"
             android:layout_marginRight="10dp"
-            android:visibility="gone"
             />
 
         <TextView

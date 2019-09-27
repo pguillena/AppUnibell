@@ -29,6 +29,7 @@ import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.ToastLibrary;
+import pe.com.app.unibell.appunibell.Util.UtilLibrary;
 
 public class Activity_Reportes extends AppCompatActivity {
 
@@ -40,6 +41,26 @@ public class Activity_Reportes extends AppCompatActivity {
     private SharedPreferences.Editor editor_Shared;
     private Cobranzas_ReporteBL cobranzas_reporteBL = new Cobranzas_ReporteBL();
     private Cobranza_Reporte_Adapter cobranza_reporte_adapter = null;
+    private Funciones funciones=new Funciones();
+
+   private Double lblmontocheque=0.0;
+   private Double lblmontochequepost=0.0;
+   private Double lbltotalcheque=0.0;
+   private Double lblmontotarjeta=0.0;
+   private Double lblmontotarjetapost=0.0;
+   private Double lbltotaltarjeta=0.0;
+   private Double lblmontodeposito=0.0;
+   private Double lblmondepositopost=0.0;
+   private Double lbltotaldeposito=0.0;
+   private Double lblmontoefectivo=0.0;
+   private Double lbltotalefectivo=0.0;
+   private Double lblmontotalbancarizado=0.0;
+   private Double lblmontobancarizadopost=0.0;
+   private Double lbltotalbancarizado=0.0;
+   private Double lbltotal=0.0;
+   private Double lbltotalpost=0.0;
+   private Double lbltotalgeneral=0.0;
+
 
 
     @Override
@@ -70,9 +91,83 @@ public class Activity_Reportes extends AppCompatActivity {
     View.OnClickListener OnClickListener_cr_btnverdetalle = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            lblmontocheque=0.0;
+            lblmontochequepost=0.0;
+            lbltotalcheque=0.0;
+            lblmontotarjeta=0.0;
+            lblmontotarjetapost=0.0;
+            lbltotaltarjeta=0.0;
+            lblmontodeposito=0.0;
+            lblmondepositopost=0.0;
+            lbltotaldeposito=0.0;
+            lblmontoefectivo=0.0;
+            lbltotalefectivo=0.0;
+            lblmontotalbancarizado=0.0;
+            lblmontobancarizadopost=0.0;
+            lbltotalbancarizado=0.0;
+            lbltotal=0.0;
+            lbltotalpost=0.0;
+            lbltotalgeneral=0.0;
+            String fPago="";
+
+            if(cobranza_reporte_adapter!=null) {
+                for (int j = 0; j < cobranza_reporte_adapter.lstFiltrado.size(); j++) {
+                    fPago=cobranza_reporte_adapter.lstFiltrado.get(j).getCODIGO_FPAGO().toString().trim();
+
+                    //Deposito
+                    if(fPago.equals("P")){
+                        lblmontodeposito+=Double.valueOf(cobranza_reporte_adapter.lstFiltrado.get(j).getM_COBRANZA().toString());
+                    }
+
+                    //CHEQUE
+                    if(fPago.equals("C")){
+                        lblmontocheque+=Double.valueOf(cobranza_reporte_adapter.lstFiltrado.get(j).getM_COBRANZA().toString());
+                    }
+                    //VISA
+                    if(fPago.equals("D") || fPago.equals("V") || fPago.equals("M")  || fPago.equals("S")  || fPago.equals("I") || fPago.equals("H")  ) {
+                        lblmontotarjeta+=Double.valueOf(cobranza_reporte_adapter.lstFiltrado.get(j).getM_COBRANZA().toString());
+                    }
+                    //EFECTIVO
+                    if(fPago.equals("E")){
+                        lblmontoefectivo+=Double.valueOf(cobranza_reporte_adapter.lstFiltrado.get(j).getM_COBRANZA().toString());
+                    }
+                    //BANCARIZADO
+                    if(fPago.equals("Z")){
+                        lblmontotalbancarizado+=Double.valueOf(cobranza_reporte_adapter.lstFiltrado.get(j).getM_COBRANZA().toString());
+                    }
+
+                }
+            }
+
+            lbltotal=lblmontocheque+lblmontotarjeta+lblmontodeposito+lblmontoefectivo+lblmontotalbancarizado;
+            lbltotalpost=lblmontochequepost+lblmontotarjetapost+lblmondepositopost+lblmontobancarizadopost;
+            lbltotalgeneral=lbltotal+lbltotalpost;
+
+            editor_Shared.putString("lblmontocheque","S/ " +funciones.FormatDecimal(String.valueOf(lblmontocheque.toString())));
+            editor_Shared.putString("lblmontochequepost","S/ " +funciones.FormatDecimal(String.valueOf(lblmontochequepost.toString())));
+            editor_Shared.putString("lbltotalcheque","S/ " +funciones.FormatDecimal(String.valueOf(lbltotalcheque.toString())));
+            editor_Shared.putString("lblmontotarjeta","S/ " +funciones.FormatDecimal(String.valueOf(lblmontotarjeta.toString())));
+            editor_Shared.putString("lblmontotarjetapost","S/ " +funciones.FormatDecimal(String.valueOf(lblmontotarjetapost.toString())));
+            editor_Shared.putString("lbltotaltarjeta","S/ " +funciones.FormatDecimal(String.valueOf(lbltotaltarjeta.toString())));
+            editor_Shared.putString("lblmontodeposito","S/ " +funciones.FormatDecimal(String.valueOf(lblmontodeposito.toString())));
+            editor_Shared.putString("lblmondepositopost","S/ " +funciones.FormatDecimal(String.valueOf(lblmondepositopost.toString())));
+            editor_Shared.putString("lbltotaldeposito","S/ " +funciones.FormatDecimal(String.valueOf(lbltotaldeposito.toString())));
+            editor_Shared.putString("lblmontoefectivo","S/ " +funciones.FormatDecimal(String.valueOf(lblmontoefectivo.toString())));
+            editor_Shared.putString("lbltotalefectivo","S/ " +funciones.FormatDecimal(String.valueOf(lbltotalefectivo.toString())));
+            editor_Shared.putString("lblmontotalbancarizado","S/ " +funciones.FormatDecimal(String.valueOf(lblmontotalbancarizado.toString())));
+            editor_Shared.putString("lblmontobancarizadopost","S/ " +funciones.FormatDecimal(String.valueOf(lblmontobancarizadopost.toString())));
+            editor_Shared.putString("lbltotalbancarizado","S/ " +funciones.FormatDecimal(String.valueOf(lbltotalbancarizado.toString())));
+            editor_Shared.putString("lbltotal","S/ " +funciones.FormatDecimal(String.valueOf(lbltotal.toString())));
+            editor_Shared.putString("lbltotalpost","S/ " +funciones.FormatDecimal(String.valueOf(lbltotalpost.toString())));
+            editor_Shared.putString("lbltotalgeneral","S/ " +funciones.FormatDecimal(String.valueOf(lbltotalgeneral.toString())));
+            editor_Shared.commit();
+
+            Intent intent = new Intent(Activity_Reportes.this, Activity_Reportes_Resumen.class);
+            startActivity(intent);
 
         }
     };
+
 
     View.OnClickListener OnClickListener_cr_fabbuscar = new View.OnClickListener() {
         @Override

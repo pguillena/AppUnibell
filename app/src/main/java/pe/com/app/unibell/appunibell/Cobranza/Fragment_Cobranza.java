@@ -414,6 +414,9 @@ public class Fragment_Cobranza extends Fragment implements
         @Override
         public void onClick(View v) {
             try {
+
+
+
               Globals g = (Globals)getActivity().getApplication();
               g.setIntentCobranzaCab(cobranza_cabecera_adapter);
 

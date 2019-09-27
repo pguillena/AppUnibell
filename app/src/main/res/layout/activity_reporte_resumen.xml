@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/label_login_titulo_unibell"
+    android:orientation="vertical"
+    android:padding="@dimen/pad_20dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Cheque"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/lblmontocheque"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Cheque Post"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/lblmontochequepost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Total Cheque"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/lbltotalcheque"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Divider_color"
+        android:layout_marginTop="@dimen/pad_10dp"
+        android:layout_marginBottom="@dimen/pad_10dp"
+        />
+
+     <!--TARJETA-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Tarjeta"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/lblmontotarjeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Tarjeta Post"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/lblmontotarjetapost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Total Tarjeta"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/lbltotaltarjeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Divider_color"
+        android:layout_marginTop="@dimen/pad_10dp"
+        android:layout_marginBottom="@dimen/pad_10dp"
+        />
+
+    <!--DEPOCITO-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Depósito"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/lblmontodeposito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Depósito Post"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/lblmondepositopost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Total Depósito"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/lbltotaldeposito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Divider_color"
+        android:layout_marginTop="@dimen/pad_10dp"
+        android:layout_marginBottom="@dimen/pad_10dp"
+        />
+
+    <!--EFECTIVO-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Efectivo"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/lblmontoefectivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Total Efectivo"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/lbltotalefectivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Divider_color"
+        android:layout_marginTop="@dimen/pad_10dp"
+        android:layout_marginBottom="@dimen/pad_10dp"
+        />
+
+    <!--BACARIZADO-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Bancarizado"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/lblmontotalbancarizado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Bancarizado Post"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/lblmontobancarizadopost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Total Bancarizado"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/lbltotalbancarizado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+
+
+    <View
+        android:id="@+id/dv1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Divider_color"
+        android:layout_marginTop="@dimen/pad_10dp"
+        android:layout_marginBottom="@dimen/pad_10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Total"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/lbltotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Total Post"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/lbltotalpost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Total General"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/Button_login_unibell"
+
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/lbltotalgeneral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textColor="@color/label_color_menu"
+
+            android:layout_alignParentRight="true"
+            />
+    </LinearLayout>
+
+>
+
+    </LinearLayout>
+
+</LinearLayout>
