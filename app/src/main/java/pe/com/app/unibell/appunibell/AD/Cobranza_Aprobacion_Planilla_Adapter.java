@@ -123,7 +123,9 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
                 sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
                 editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
-                editor_Shared.putString("REP_N_PLANILLA", documentos_cobra_movBE.getN_PLANILLA().toString());
+                editor_Shared.putString("REP_SER_PLANILLA", documentos_cobra_movBE.getSERIE_PLANILLA().toString());
+                editor_Shared.putString("REP_NUM_PLANILLA", documentos_cobra_movBE.getN_PLANILLA().toString());
+
                 editor_Shared.putString("IOPCION_REPORTE", "0");
                 editor_Shared.commit();
 

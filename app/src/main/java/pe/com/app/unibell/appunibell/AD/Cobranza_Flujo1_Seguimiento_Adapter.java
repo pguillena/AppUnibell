@@ -63,7 +63,6 @@ public class Cobranza_Flujo1_Seguimiento_Adapter extends ArrayAdapter<Documentos
         }
 
 
-
         final Documentos_Cobra_CabBE documentos_cobra_cabBE = getItem(position);
         //mainHolder.fj_item1.setText(documentos_cobra_cabBE.getCOD_CLIENTE());
         mainHolder.fj_item2.setText(documentos_cobra_cabBE.getCOD_CLIENTE() +"-"+funciones.LetraCapital(documentos_cobra_cabBE.getRAZON_SOCIAL()));

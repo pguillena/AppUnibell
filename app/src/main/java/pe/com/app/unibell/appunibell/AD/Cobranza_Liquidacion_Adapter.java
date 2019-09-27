@@ -99,8 +99,8 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
                 sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
                 editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
-                editor_Shared.putString("iN_SERIE_RECIBO", documentos_cobra_cabBE.getN_SERIE_RECIBO().toString());
-                editor_Shared.putString("iN_RECIBO", documentos_cobra_cabBE.getN_RECIBO().toString());
+                editor_Shared.putString("REP_SER_RECIBO", documentos_cobra_cabBE.getN_SERIE_RECIBO().toString());
+                editor_Shared.putString("REP_NUM_RECIBO", documentos_cobra_cabBE.getN_RECIBO().toString());
                 editor_Shared.putString("IOPCION_REPORTE","0");
                 editor_Shared.commit();
 
@@ -116,12 +116,21 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
             @Override
             public void onClick(View v) {
 
-                String[] nroPlanilla = documentos_cobra_cabBE.getPLANILLA().split("-");
+                String[] parts = documentos_cobra_cabBE.getPLANILLA().split("-");
+                String SERIE ="0";
+                String NUMERO ="0";
+
+                if(parts.length>0){
+                    SERIE = parts[0];
+                    NUMERO = parts[1];
+                }
 
                 sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
                 editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
-                editor_Shared.putString("REP_N_PLANILLA", nroPlanilla[1].toString());
+                editor_Shared.putString("REP_SER_PLANILLA", SERIE);
+                editor_Shared.putString("REP_NUM_PLANILLA", NUMERO);
+
                 editor_Shared.putString("IOPCION_REPORTE", "0");
                 editor_Shared.commit();
 
@@ -138,12 +147,21 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
             @Override
             public void onClick(View v) {
 
-                String[] nroPlanilla = documentos_cobra_cabBE.getPLANILLA().split("-");
+                String[] parts = documentos_cobra_cabBE.getPLANILLA().split("-");
+                String SERIE ="0";
+                String NUMERO ="0";
+
+                if(parts.length>0){
+                    SERIE = parts[0];
+                    NUMERO = parts[1];
+                }
 
                 sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
                 editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
-                editor_Shared.putString("SERIE_PLANILLA", nroPlanilla[0].toString());
-                editor_Shared.putString("N_PLANILLA", nroPlanilla[1].toString());
+
+                editor_Shared.putString("SERIE_PLANILLA",SERIE);
+                editor_Shared.putString("N_PLANILLA", NUMERO);
+
                 editor_Shared.commit();
 
                 try {

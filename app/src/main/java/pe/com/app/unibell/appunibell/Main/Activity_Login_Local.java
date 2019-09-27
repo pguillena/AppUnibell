@@ -193,12 +193,12 @@ public class Activity_Login_Local extends AppCompatActivity
 
 
     private Boolean Validar(){
-        if(lo_txtempresa.getText().toString().trim().equals("Seleccionar")){
+        if(lo_txtempresa.getText().toString().trim().equals("")){
             Toast toastCodigo = Toast.makeText(getApplicationContext(),"SELECCIONE UNA EMPRESA", Toast.LENGTH_SHORT);
             toastCodigo.show();
             return false;
         }
-        if(lo_txtlocal.getText().toString().trim().equals("Seleccionar")){
+        if(lo_txtlocal.getText().toString().trim().equals("")){
             Toast toastCodigo = Toast.makeText(getApplicationContext(),"SELECCIONE LOCAL", Toast.LENGTH_SHORT);
             toastCodigo.show();
             return false;

@@ -164,6 +164,9 @@
             android:parentActivityName=".Reportes.Activity_Reportes"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".Reportes.Activity_Reportes_Detalle"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".Servicio.ServiceBackground"

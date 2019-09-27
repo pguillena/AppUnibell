@@ -115,8 +115,8 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
 
                 String iID_EMPRESA= sharedSettings.getString("iID_EMPRESA", "0").toString();
                 String iID_LOCAL= sharedSettings.getString("iID_LOCAL", "0").toString();
-                String iN_SERIE_RECIBO= sharedSettings.getString("iN_SERIE_RECIBO", "0").toString();
-                String iN_RECIBO= sharedSettings.getString("iN_RECIBO", "").toString();
+                String iN_SERIE_RECIBO= sharedSettings.getString("REP_SER_RECIBO", "0").toString();
+                String iN_RECIBO= sharedSettings.getString("REP_NUM_RECIBO", "").toString();
 
                 documentos_cobra_cabDAO.getReciboElectronico(iID_EMPRESA,iID_LOCAL,iN_SERIE_RECIBO,iN_RECIBO);
                 CONTENIDO=GeneraRecibo();
