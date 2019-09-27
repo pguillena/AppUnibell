@@ -30,6 +30,7 @@ public class Activity_Cobranza_Liquidacion_Rep extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle("REPORTE");
             getSupportActionBar().setSubtitle("");
+            getSupportActionBar().hide();
 
             //Permite abrir el archivo PDF
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -43,7 +44,7 @@ public class Activity_Cobranza_Liquidacion_Rep extends AppCompatActivity {
         } catch (Exception ex) {
 
         }finally {
-            finish();
+
         }
     }
 
@@ -58,6 +59,13 @@ public class Activity_Cobranza_Liquidacion_Rep extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
 
 
 

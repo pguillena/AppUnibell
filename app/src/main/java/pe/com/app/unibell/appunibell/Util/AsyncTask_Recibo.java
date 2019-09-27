@@ -1,5 +1,6 @@
 package pe.com.app.unibell.appunibell.Util;
 
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -29,12 +30,14 @@ import java.io.StringReader;
 
 
 import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
+import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Progress;
 import pe.com.app.unibell.appunibell.R;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
     public Context context;
+    ProgressDialog progressDialog;
 
     public AsyncTask_Recibo(Context context){
         this.context =context;
@@ -51,6 +54,17 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
 
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
+
+    @Override
+    protected void onPreExecute() {
+       /* progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading..."); // Setting Message
+        progressDialog.setTitle("Recibo"); // Setting Title
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+        progressDialog.show(); // Display Progress Dialog
+        progressDialog.setCancelable(false);*/
+
+    }
 
 
     @Override
@@ -95,6 +109,7 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
             XMLWorkerHelper worker = XMLWorkerHelper.getInstance();
             try {
 
+
                 sharedSettings =context.getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
                 editor_Shared = context.getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
@@ -126,8 +141,12 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
     protected void onPostExecute(Boolean exist) {
         try {
             if(exist){
+              /*  if (progressDialog != null && progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }*/
 
                 DocumentoCreado(SOPCION,nombre_completo);
+
             }
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
