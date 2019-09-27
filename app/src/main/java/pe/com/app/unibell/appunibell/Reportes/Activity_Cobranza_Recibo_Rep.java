@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import java.util.UUID;
 
@@ -15,10 +16,10 @@ import pe.com.app.unibell.appunibell.Util.AsyncTask_Recibo;
 public class Activity_Cobranza_Recibo_Rep extends AppCompatActivity {
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
-    private String NOMBRE_CARPETA_APP="UNIBELL_REPORT";
-    private String NOMBRE_ARCHIVO = UUID.randomUUID().toString()+".pdf";
-    private String TITLE="Recibo";
-    private String OPCION="";
+    private String NOMBRE_CARPETA_APP = "UNIBELL_REPORT";
+    private String NOMBRE_ARCHIVO = UUID.randomUUID().toString() + ".pdf";
+    private String TITLE = "Recibo";
+    private String OPCION = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class Activity_Cobranza_Recibo_Rep extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle("REPORTE-RECIBO DE COBRANZA");
             getSupportActionBar().setSubtitle("");
+            getSupportActionBar().hide();
 
             //Permite abrir el archivo PDF
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -37,15 +39,15 @@ public class Activity_Cobranza_Recibo_Rep extends AppCompatActivity {
 
             sharedSettings = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
             editor_Shared = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
-             OPCION=sharedSettings.getString("IOPCION_REPORTE", "0").toString();
+            OPCION = sharedSettings.getString("IOPCION_REPORTE", "0").toString();
 
-            new AsyncTask_Recibo(Activity_Cobranza_Recibo_Rep.this).execute(NOMBRE_CARPETA_APP,NOMBRE_ARCHIVO,TITLE,OPCION);
+            new AsyncTask_Recibo(Activity_Cobranza_Recibo_Rep.this).execute(NOMBRE_CARPETA_APP, NOMBRE_ARCHIVO, TITLE, OPCION);
 
 
         } catch (Exception ex) {
 
-        }finally {
-            finish();
+        } finally {
+            // finish();
         }
     }
 
@@ -60,6 +62,13 @@ public class Activity_Cobranza_Recibo_Rep extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
 
 
 

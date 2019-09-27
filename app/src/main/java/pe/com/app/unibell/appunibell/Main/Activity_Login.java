@@ -513,6 +513,7 @@ public class Activity_Login extends AppCompatActivity
                                     + edtUserName.getText().toString().trim().toUpperCase()+ '/'
                                     + edtUserPass.getText().toString().trim());
 
+
                 } catch (Exception ex) {
                     new ToastLibrary(Activity_Login.this,"Usuario o contraseña invalidos.").Show();
                 }
