@@ -88,9 +88,6 @@ public class Activity_Cobranza_Editar
         }
 
         String sNNUMERO= sharedSettings.getString("sNNUMERO", "").toString();
-        if(sNNUMERO.trim().equals("32")){
-            sNNUMERO="";
-        }
 
         ch_lblfpago.setText(sharedSettings.getString("sFPAGODESC", "").toString());
         ch_lblfpago.setTag(sharedSettings.getString("COD_FPAGO", "").toString());
