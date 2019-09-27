@@ -98,6 +98,7 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
                 editor_Shared.putString("sN_SERIE_RECIBO", "");
                 editor_Shared.putString("sN_RECIBO", "");
 
+                //cambio cyper
                 Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Recibo.class);
                 intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
                 getContext().startActivity(intent);
