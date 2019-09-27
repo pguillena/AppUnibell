@@ -160,12 +160,13 @@ $app->get('/Query/User/Rol/:codusu', 'bluser:SelectRolByCodUsu');
 $app->get('/blcabfcob/:p1/:p2/:p3', 'blcabfcob:SelectAll');
 $app->get('/blclientes/:p1/:p2/:p3', 'blclientes:SelectAll');
 $app->get('/blclientesxcodigo/:p1/:p2/:p3', 'blclientes:SelectAllxCod');
+$app->get('/blclientes_migrar_cliente/:p1/:p2/:p3', 'blclientes:MigrarClienteCompleto');
 $app->get('/blctabnco/:p1/:p2/:p3/:p4', 'blctabnco:SelectAll');
 
 $app->get('/bldocumentos_cobra_cab/:p1/:p2/:p3/:p4/:p5', 'bldocumentos_cobra_cab:SelectAll');
 $app->get('/bldocumentos_cobra_cab_Flujo1/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8/:p9/:p10/:p11/:p12/:p13/:p14/:p15/:p16/:p17', 'bldocumentos_cobra_cab:CobranzaFlujo1');
-$app->get('/bldocumentos_cobra_cab_LiqCobranza/:p1/:p2/:p3/:p4/:p5/:p6/:p7', 'bldocumentos_cobra_cab:LiquidacionCobranza');
-$app->get('/bldocumentos_cobra_cab_LiqCobranza_Grupo/:p1/:p2/:p3/:p4/:p5/:p6/:p7', 'bldocumentos_cobra_cab:LiquidacionCobranzaGrupo');
+$app->get('/bldocumentos_cobra_cab_LiqCobranza/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8', 'bldocumentos_cobra_cab:LiquidacionCobranza');
+$app->get('/bldocumentos_cobra_cab_LiqCobranza_Grupo/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8', 'bldocumentos_cobra_cab:LiquidacionCobranzaGrupo');
 $app->get('/bldocumentos_cobra_cab_RptCobranza/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8/:p9/:p10/:p11/:p12/:p13/:p14/:p15/:p16', 'bldocumentos_cobra_cab:RptCobranza');
 
 $app->get('/ConciliarDepositos/:p1/:p2/:p3/:p4/:p5/:p6/:p7', 'bldocumentos_cobra_cab:ConciliarDepositos');

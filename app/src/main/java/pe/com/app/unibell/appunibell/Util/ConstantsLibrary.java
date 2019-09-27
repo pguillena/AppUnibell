@@ -11,6 +11,7 @@ public interface ConstantsLibrary {
         public static final String blcabfcob = "/blcabfcob";
         public static final String blcliente = "/blclientes";
         public static final String blclientesxcodigo = "/blclientesxcodigo";
+        public static final String blclientes_migrar_cliente = "/blclientes_migrar_cliente";
         public static final String blctabnco = "/blctabnco";
 
         //MOVMIENTOS
