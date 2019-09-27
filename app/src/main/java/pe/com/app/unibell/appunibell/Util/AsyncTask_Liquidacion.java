@@ -127,7 +127,8 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                                 sharedSettings.getString("iID_EMPRESA", "0").toString() + "/" +
                                 sharedSettings.getString("iID_LOCAL", "0").toString() + "/" +
                                 "0/" +
-                                sharedSettings.getString("REP_N_PLANILLA", "0").toString()
+                                sharedSettings.getString("REP_NUM_PLANILLA", "0").toString()+"/"+
+                                sharedSettings.getString("REP_SER_PLANILLA", "0").toString()
                 );
 
                 planillaCobranzaGrupoBL.getLiquidacionCobranza(
@@ -138,11 +139,9 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                                 sharedSettings.getString("iID_EMPRESA", "0").toString() + "/" +
                                 sharedSettings.getString("iID_LOCAL", "0").toString() + "/" +
                                 "0/" +
-                                sharedSettings.getString("REP_N_PLANILLA", "0").toString()
+                                sharedSettings.getString("REP_NUM_PLANILLA", "0").toString()+"/"+
+                                sharedSettings.getString("REP_SER_PLANILLA", "0").toString()
                 );
-
-
-
 
                 CONTENIDO=GeneraHTML();
 

@@ -85,8 +85,8 @@ public class Cobranza_Recibo_Adapter  extends ArrayAdapter<Documentos_Cobra_CabB
                     sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
                     editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
-                    editor_Shared.putString("iN_SERIE_RECIBO", documentos_cobra_cabBE.getN_SERIE_RECIBO().toString());
-                    editor_Shared.putString("iN_RECIBO", documentos_cobra_cabBE.getN_RECIBO().toString());
+                    editor_Shared.putString("REP_SER_RECIBO", documentos_cobra_cabBE.getN_SERIE_RECIBO().toString());
+                    editor_Shared.putString("REP_NUM_RECIBO", documentos_cobra_cabBE.getN_RECIBO().toString());
                     //PARA ABRIR EL DOCUMENTO
                     editor_Shared.putString("IOPCION_REPORTE","1");
 

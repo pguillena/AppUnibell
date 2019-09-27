@@ -188,8 +188,6 @@ public class Activity_Reportes extends AppCompatActivity {
     }
 
 
-
-
     public class Load_AsyncTask extends AsyncTask<String, String, JSONObject> {
         /*DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
         private volatile boolean running = true;

@@ -22,6 +22,7 @@ import pe.com.app.unibell.appunibell.BE.FactCobBE;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Reportes.Activity_Cobranza_Liquidacion_Rep;
 import pe.com.app.unibell.appunibell.Reportes.Activity_Cobranza_Recibo_Rep;
+import pe.com.app.unibell.appunibell.Reportes.Activity_Reportes_Detalle;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -72,7 +73,7 @@ public class Cobranza_Reporte_Adapter extends ArrayAdapter<CobranzaReporteBE> im
         mainHolder.cr_lblmonto.setText(cobranzaReporteBE.getM_COBRANZA().toString());
         mainHolder.cr_lblfechacobranza.setText(cobranzaReporteBE.getFECHA().toString());
         mainHolder.cr_lblmoneda.setText(cobranzaReporteBE.getMONEDA().toString());
-        mainHolder.cr_lblrecibo.setText(cobranzaReporteBE.getN_RECIBO().toString());
+        mainHolder.cr_lblrecibo.setText(cobranzaReporteBE.getRECIBO().toString());
         mainHolder.cr_lblplanilla.setText(cobranzaReporteBE.getPLANILLA().toString());
 
         mainHolder.cr_lblrepxrecibo.setOnClickListener(new View.OnClickListener() {
@@ -82,9 +83,16 @@ public class Cobranza_Reporte_Adapter extends ArrayAdapter<CobranzaReporteBE> im
                     sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
                     editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
+                    String[] parts = cobranzaReporteBE.getRECIBO().toString().split("-");
+                    String SERIE ="0";
+                    String NUMERO ="0";
+                    if(parts.length>0){
+                        SERIE = parts[0];
+                        NUMERO = parts[1];
+                    }
 
-                    editor_Shared.putString("iN_SERIE_RECIBO","1");
-                    editor_Shared.putString("iN_RECIBO", cobranzaReporteBE.getN_RECIBO().toString());
+                    editor_Shared.putString("REP_SER_RECIBO",SERIE.trim());
+                    editor_Shared.putString("REP_NUM_RECIBO",NUMERO.trim());
                     editor_Shared.putString("IOPCION_REPORTE","0");
                     editor_Shared.commit();
 
@@ -108,7 +116,16 @@ public class Cobranza_Reporte_Adapter extends ArrayAdapter<CobranzaReporteBE> im
                     sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
                     editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
-                    editor_Shared.putString("REP_N_PLANILLA", cobranzaReporteBE.getPLANILLA().toString());
+                    String[] parts = cobranzaReporteBE.getPLANILLA().toString().split("-");
+                    String SERIE ="0";
+                    String NUMERO ="0";
+                    if(parts.length>0){
+                        SERIE = parts[0];
+                        NUMERO = parts[1];
+                    }
+
+                    editor_Shared.putString("REP_SER_PLANILLA", SERIE);
+                    editor_Shared.putString("REP_NUM_PLANILLA", NUMERO);
                     editor_Shared.putString("IOPCION_REPORTE", "0");
                     editor_Shared.commit();
 
@@ -129,6 +146,27 @@ public class Cobranza_Reporte_Adapter extends ArrayAdapter<CobranzaReporteBE> im
             public void onClick(View v) {
                 notifyDataSetChanged();
                 try {
+
+                    sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
+                    editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+
+                    editor_Shared.putString("rep_razonsocial", cobranzaReporteBE.getRAZON_SOCIAL().toString());
+                    editor_Shared.putString("rep_codigo", cobranzaReporteBE.getCOD_CLIENTE().toString());
+                    editor_Shared.putString("rep_monto", cobranzaReporteBE.getM_COBRANZA().toString());
+                    editor_Shared.putString("rep_documento", cobranzaReporteBE.getTIPODOC().toString());
+                    editor_Shared.putString("rep_numero", cobranzaReporteBE.getNUMERO().toString());
+                    editor_Shared.putString("rep_fpago", cobranzaReporteBE.getFPAGO().toString());
+                    editor_Shared.putString("rep_entidad", cobranzaReporteBE.getENTIDAD().toString());
+                    editor_Shared.putString("rep_numcheque", cobranzaReporteBE.getCONSTANCIA().toString());
+                    editor_Shared.putString("rep_fcobranza", cobranzaReporteBE.getFECHA().toString());
+                    editor_Shared.putString("rep_moneda", cobranzaReporteBE.getMONEDA().toString());
+                    editor_Shared.putString("rep_recibo", cobranzaReporteBE.getRECIBO().toString());
+                    editor_Shared.putString("rep_planilla", cobranzaReporteBE.getPLANILLA().toString());
+                    editor_Shared.commit();
+
+                    Intent intent = new Intent(getContext().getApplicationContext(), Activity_Reportes_Detalle.class);
+                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
 
                 }catch (Exception ex) {
                     Toast toastCodigo = Toast.makeText(getContext(),ex.getMessage(), Toast.LENGTH_SHORT);
