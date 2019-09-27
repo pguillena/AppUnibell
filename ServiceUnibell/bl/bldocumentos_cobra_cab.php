@@ -391,11 +391,11 @@ public function InsertarPlanilla($p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$p11,$
 
 
 
-    public function LiquidacionCobranza($p1,$p2,$p3,$p4,$p5,$p6,$p7){
+    public function LiquidacionCobranza($p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8){
             $this->response->header("Content-type", "application/json");
             try{
                 $cnn = getConnectionOracle();
-                $stmt = oci_parse($cnn,"begin PKG_MS_COBRANZA.LIQUIDACION_COBRANZA(:p1,:p2,:p3,:p4,:p5,:p6,:p7,:data); end;");
+                $stmt = oci_parse($cnn,"begin PKG_MS_COBRANZA.LIQUIDACION_COBRANZA(:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8,:data); end;");
                 $curs = oci_new_cursor($cnn);
                 //Send parameters variable  value  lenght
                 oci_bind_by_name($stmt, ':p1', $p1);
@@ -405,6 +405,7 @@ public function InsertarPlanilla($p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$p11,$
                 oci_bind_by_name($stmt, ':p5', $p5);
                 oci_bind_by_name($stmt, ':p6', $p6);
                 oci_bind_by_name($stmt, ':p7', $p7);
+                oci_bind_by_name($stmt, ':p8', $p8);
                 //Bind Cursor     put -1
                 oci_bind_by_name($stmt, ':data', $curs, -1, OCI_B_CURSOR);
                 //Execute Statement
@@ -424,11 +425,11 @@ public function InsertarPlanilla($p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$p11,$
             }
         }
 
- public function LiquidacionCobranzaGrupo($p1,$p2,$p3,$p4,$p5,$p6,$p7){
+ public function LiquidacionCobranzaGrupo($p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8){
             $this->response->header("Content-type", "application/json");
             try{
                 $cnn = getConnectionOracle();
-                $stmt = oci_parse($cnn,"begin PKG_MS_COBRANZA.LIQUIDACION_COBRANZA_GRUPO(:p1,:p2,:p3,:p4,:p5,:p6,:p7,:data); end;");
+                $stmt = oci_parse($cnn,"begin PKG_MS_COBRANZA.LIQUIDACION_COBRANZA_GRUPO(:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8,:data); end;");
                 $curs = oci_new_cursor($cnn);
                 //Send parameters variable  value  lenght
                 oci_bind_by_name($stmt, ':p1', $p1);
@@ -438,6 +439,7 @@ public function InsertarPlanilla($p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10,$p11,$
                 oci_bind_by_name($stmt, ':p5', $p5);
                 oci_bind_by_name($stmt, ':p6', $p6);
                 oci_bind_by_name($stmt, ':p7', $p7);
+                oci_bind_by_name($stmt, ':p8', $p8);
                 //Bind Cursor     put -1
                 oci_bind_by_name($stmt, ':data', $curs, -1, OCI_B_CURSOR);
                 //Execute Statement

@@ -15,6 +15,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import pe.com.app.unibell.appunibell.BL.ClientesBL;
+import pe.com.app.unibell.appunibell.BL.DocuventBL;
+import pe.com.app.unibell.appunibell.BL.FactCobBL;
 import pe.com.app.unibell.appunibell.BL.S_Gem_ClienteBL;
 import pe.com.app.unibell.appunibell.BL.S_Gem_Cliente_Codigo_AntBL;
 import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
@@ -37,8 +39,8 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
     private ClientesDAO clientesDAO;
     private Dialog_Fragment_Aceptar log_dialogaceptar;
     private Dialog_Fragment_Progress clientesPG;
-    private Dialog_Fragment_Progress s_gem_clientePG;
-    private Dialog_Fragment_Progress s_gem_cliente_codigo_antPG;
+    private Dialog_Fragment_Progress factCobPG;
+    private Dialog_Fragment_Progress docuventPG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,35 +101,37 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
     private void Migrar(String codCliente) {
 
         try{
-            new Activity_MigrarCliente.S_Gem_Cliente_CodigoBL_Sincronizar().execute(
-                    ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_gem_cliente_codigo_ant + '/'
-                            + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
-                            + sharedSettings.getString("iID_LOCAL", "0")+ '/'
-                            + codCliente);
-        } catch (Exception ex) {
-            new ToastLibrary(this,"Error al Sincronizar Clientes anteriores.").Show();
-        }
-
-
-        try{
-            new Activity_MigrarCliente.S_Gem_ClienteBL_Sincronizar().execute(
-                    ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_gem_clientexCodigo + '/'
-                            + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
-                            + sharedSettings.getString("iID_LOCAL", "0")+ '/'
-                            + codCliente);
-        } catch (Exception ex) {
-            new ToastLibrary(Activity_MigrarCliente.this,"Error al Sincronizar Gem Clientes.").Show();
-        }
-
-        try{
             new Activity_MigrarCliente.Cliente_Sincronizar_AsyncTask().execute(
-                    ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blclientesxcodigo + '/'
+                    ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blclientes_migrar_cliente + '/'
                             + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
                             + sharedSettings.getString("iID_LOCAL", "0")+ '/'
                             + codCliente);
         } catch (Exception ex) {
             new ToastLibrary(this,"Error al sincronizar el cliente.").Show();
         }
+
+
+        try{
+            new Activity_MigrarCliente.DocuventBL_Sincronizar().execute(
+                    ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocuventxcodigo + '/'
+                            + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                            + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                            + codCliente);
+        } catch (Exception ex) {
+            new ToastLibrary(this,"Error al Sincronizar Docuvent.").Show();
+        }
+
+
+        try{
+            new Activity_MigrarCliente.FactCobBL_Sincronizar().execute(
+                    ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blfactcobxcodigo+ '/'
+                            + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                            + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                            + codCliente);
+        } catch (Exception ex) {
+            new ToastLibrary(this,"Error al Sincronizar Facturas por cobrar.").Show();
+        }
+
 
 
 
@@ -146,7 +150,6 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
 
     }
 
-
     public class Cliente_Sincronizar_AsyncTask extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
@@ -161,7 +164,7 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
 
         @Override
         protected JSONObject doInBackground(String... p) {
-            return new ClientesBL().getSincronizaxCodigo(p[0]);
+            return new ClientesBL().getMigrarClienteCompleto(p[0]);
         }
 
         @Override
@@ -188,35 +191,35 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
     }
 
 
-    public class S_Gem_ClienteBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
+    public class FactCobBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
         private volatile boolean running = true;
 
         @Override
         protected void onPreExecute() {
-            s_gem_clientePG = new Dialog_Fragment_Progress();
-            s_gem_clientePG.setMensaje("Sincronizando");
-            s_gem_clientePG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
+            factCobPG = new Dialog_Fragment_Progress();
+            factCobPG.setMensaje("Sincronizando");
+            factCobPG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
         }
 
         @Override
         protected JSONObject doInBackground(String... p) {
-            return new S_Gem_ClienteBL().getSincronizarxCod(p[0]);
+            return new FactCobBL().getSincronizarxCodigo(p[0]);
         }
 
         @Override
         protected void onPostExecute(JSONObject result) {
             //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
-            if (s_gem_clientePG != null && s_gem_clientePG.isVisible()) {
-                s_gem_clientePG.dismiss();
+            if (factCobPG != null && factCobPG.isVisible()) {
+                factCobPG.dismiss();
             }
             try {
                 if (result.getInt("status")!=1) {
                     //MOSTRAMOS MESSAGE
-                    new ToastLibrary(Activity_MigrarCliente.this, result.getString("message") + ":Cliente").Show();
+                    new ToastLibrary(Activity_MigrarCliente.this, result.getString("message")+ ":FactCob").Show();
                 } else {
-                    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_gem_clienteBL) + result.getString("message") , Snackbar.LENGTH_LONG);
+                    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.factCobBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
                     TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
@@ -229,35 +232,35 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
     }
 
 
-    public class S_Gem_Cliente_CodigoBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
+    public class DocuventBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
         private volatile boolean running = true;
 
         @Override
         protected void onPreExecute() {
-            s_gem_cliente_codigo_antPG = new Dialog_Fragment_Progress();
-            s_gem_cliente_codigo_antPG.setMensaje("Sincronizando");
-            s_gem_cliente_codigo_antPG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
+            docuventPG = new Dialog_Fragment_Progress();
+            docuventPG.setMensaje("Sincronizando");
+            docuventPG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
         }
 
         @Override
         protected JSONObject doInBackground(String... p) {
-            return new S_Gem_Cliente_Codigo_AntBL().getSincronizarxCod(p[0]);
+            return new DocuventBL().getSincronizarxCodigo(p[0]);
         }
 
         @Override
         protected void onPostExecute(JSONObject result) {
             //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
-            if (s_gem_cliente_codigo_antPG != null && s_gem_cliente_codigo_antPG.isVisible()) {
-                s_gem_cliente_codigo_antPG.dismiss();
+            if (docuventPG != null && docuventPG.isVisible()) {
+                docuventPG.dismiss();
             }
             try {
                 if (result.getInt("status")!=1) {
                     //MOSTRAMOS MESSAGE
-                    new ToastLibrary(Activity_MigrarCliente.this, result.getString("message")+ ":Cliente Código antiguo").Show();
+                    new ToastLibrary(Activity_MigrarCliente.this, result.getString("message")+ ":Docuvent").Show();
                 } else {
-                    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_gem_clientes_codigo_antBL) + result.getString("message") , Snackbar.LENGTH_LONG);
+                    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.docuventBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
                     TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
@@ -268,7 +271,6 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
             }
         }
     }
-
 
 
 

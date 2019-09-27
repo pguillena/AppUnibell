@@ -284,5 +284,147 @@ public class ClientesBL {
     }
 
 
+    public JSONObject getMigrarClienteCompleto(String newURL) {
+        JSONObject jsonObjectRest =null;
+        JSONObject jsonObjectResult = new JSONObject();
+        try {
+            lst=new ArrayList<ClientesBE>();
+            lst.clear();
+            String aux = new RestClientLibrary().get(newURL);
+            jsonObjectRest = new JSONObject(aux);
+
+            //EVALUAMOS EL STATUS
+            if (jsonObjectRest.getInt("status")!=1) {
+            } else{
+                //Eliminamos los registros
+                //DataBaseHelper.myDataBase.delete("CLIENTES", null, null);
+
+                String sqlClientes = "INSERT OR REPLACE INTO CLIENTES" +
+                        "(COD_CLIENTE,   NOMBRE,   RUC,   GRUPO,   COD_UBC,   DOCIDEN,   DIA_VISITA,   C_CANAL,  E_MAIL,   I_CANC_ANTIGUO,   ID_EMPRESA) " +
+                        "VALUES " +
+                        "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+                String sqlClienteCodigoAntiguo="INSERT OR REPLACE INTO S_GEM_CLIENTE_CODIGO_ANT(" +
+                        "ID_CLIENTE,CODIGO_ANTIGUO,FLAG_VIGENCIA)"+
+                        "VALUES " +
+                        "(?,?,?)";
+
+                String sqlGemCliente="INSERT OR REPLACE INTO S_GEM_CLIENTE(ID_CLIENTE, CODIGO, RAZON_SOCIAL,  RUC, CLIENTE_AFECTO, DNI, ID_CANAL, CORREO, COND_PAGO, ID_GRUPO, ID_LISTA_DESCUENTO, ID_CANAL_DETALLE, CLIENTE_ESPECIAL, COD_ALM_CONSIG)"+
+                        "VALUES " +
+                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+
+                String sqlGemPersona="INSERT OR REPLACE INTO S_GEM_PERSONA(" +
+                        "ID_PERSONA,TIPO_PERSONA,APELLIDO_PATERNO,APELLIDO_MATERNO,NOMBRES,DIRECCION," +
+                        "RUC,DISTRITO,TELEFONO,SEXO,FECHA_NATAL,ESTADO_CIVIL," +
+                        "TIPO_DOC,NRO_DOC,CELULAR,CORREO,ESTADO)"+
+                        "VALUES " +
+                        "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+
+                DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
+                DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
+                DataBaseHelper.myDataBase.setLockingEnabled(false);
+                DataBaseHelper.myDataBase.beginTransactionNonExclusive();
+
+                SQLiteStatement stmtClientes = DataBaseHelper.myDataBase.compileStatement(sqlClientes);
+                SQLiteStatement stmtClienteCodigoAntiguo = DataBaseHelper.myDataBase.compileStatement(sqlClienteCodigoAntiguo);
+                SQLiteStatement stmtGemCliente = DataBaseHelper.myDataBase.compileStatement(sqlGemCliente);
+                SQLiteStatement stmtGemPersona = DataBaseHelper.myDataBase.compileStatement(sqlGemPersona);
+
+                for(int i=0;i<jsonObjectRest.getJSONArray("datos").length();i++) {
+                    JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(i);
+                    stmtClientes.bindString(1,jsonObjectItem.getString("COD_CLIENTE"));
+                    stmtClientes.bindString(2,jsonObjectItem.getString("RAZON_SOCIAL"));
+                    stmtClientes.bindString(3,jsonObjectItem.getString("RUC"));
+                    stmtClientes.bindString(4,jsonObjectItem.getString("GRUPO"));
+                    stmtClientes.bindString(5,jsonObjectItem.getString("COD_UBC"));
+                    stmtClientes.bindString(6,jsonObjectItem.getString("DOCIDEN"));
+                    stmtClientes.bindString(7,jsonObjectItem.getString("DIA_VISITA"));
+                    stmtClientes.bindString(8,jsonObjectItem.getString("C_CANAL"));
+                    stmtClientes.bindString(9,jsonObjectItem.getString("E_MAIL"));
+                    stmtClientes.bindString(10,jsonObjectItem.getString("I_CANC_ANTIGUO"));
+                    stmtClientes.bindString(11,jsonObjectItem.getString("ID_EMPRESA"));
+
+                    stmtClientes.execute();
+                    stmtClientes.clearBindings();
+                }
+
+                for(int i=0;i<jsonObjectRest.getJSONArray("datos").length();i++) {
+                    JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(i);
+                    stmtClienteCodigoAntiguo.bindString(1,jsonObjectItem.getString("ID_CLIENTE"));
+                    stmtClienteCodigoAntiguo.bindString(2,jsonObjectItem.getString("COD_CLIENTE"));
+                    stmtClienteCodigoAntiguo.bindString(3,jsonObjectItem.getString("FLAG_VIGENCIA"));
+                    stmtClienteCodigoAntiguo.execute();
+                    stmtClienteCodigoAntiguo.clearBindings();
+                }
+
+                for(int i=0;i<jsonObjectRest.getJSONArray("datos").length();i++) {
+                    JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(i);
+
+                    stmtGemCliente.bindString(1,jsonObjectItem.getString("ID_CLIENTE"));
+                    stmtGemCliente.bindString(2,jsonObjectItem.getString("CODIGO"));
+                    stmtGemCliente.bindString(3,jsonObjectItem.getString("RAZON_SOCIAL"));
+                    stmtGemCliente.bindString(4,jsonObjectItem.getString("RUC"));
+                    stmtGemCliente.bindString(5,jsonObjectItem.getString("CLIENTE_AFECTO"));
+                    stmtGemCliente.bindString(6,jsonObjectItem.getString("DNI"));
+                    stmtGemCliente.bindString(7,jsonObjectItem.getString("ID_CANAL"));
+                    stmtGemCliente.bindString(8,jsonObjectItem.getString("E_MAIL"));
+                    stmtGemCliente.bindString(9,jsonObjectItem.getString("COND_PAGO"));
+                    stmtGemCliente.bindString(10,jsonObjectItem.getString("ID_GRUPO"));
+                    stmtGemCliente.bindString(11,jsonObjectItem.getString("ID_LISTA_DESCUENTO"));
+                    stmtGemCliente.bindString(12,jsonObjectItem.getString("ID_CANAL_DETALLE"));
+                    stmtGemCliente.bindString(13,jsonObjectItem.getString("CLIENTE_ESPECIAL"));
+                    stmtGemCliente.bindString(14,jsonObjectItem.getString("COD_ALM_CONSIG"));
+
+                    stmtGemCliente.execute();
+                    stmtGemCliente.clearBindings();
+                }
+
+                for(int i=0;i<jsonObjectRest.getJSONArray("datos").length();i++) {
+                    JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(i);
+
+                    stmtGemPersona.bindString(1,jsonObjectItem.getString("ID_CLIENTE"));
+                    stmtGemPersona.bindString(2,jsonObjectItem.getString("TIPO_PERSONA"));
+                    stmtGemPersona.bindString(3,jsonObjectItem.getString("APELLIDO_PATERNO"));
+                    stmtGemPersona.bindString(4,jsonObjectItem.getString("APELLIDO_MATERNO"));
+                    stmtGemPersona.bindString(5,jsonObjectItem.getString("NOMBRES"));
+                    stmtGemPersona.bindString(6,jsonObjectItem.getString("DIRECCION"));
+                    stmtGemPersona.bindString(7,jsonObjectItem.getString("RUC"));
+                    stmtGemPersona.bindString(8,jsonObjectItem.getString("DISTRITO"));
+                    stmtGemPersona.bindString(9,jsonObjectItem.getString("TELEFONO"));
+                    stmtGemPersona.bindString(10,jsonObjectItem.getString("SEXO"));
+                    stmtGemPersona.bindString(11,jsonObjectItem.getString("FECHA_NATAL"));
+                    stmtGemPersona.bindString(12,jsonObjectItem.getString("ESTADO_CIVIL"));
+                    stmtGemPersona.bindString(13,jsonObjectItem.getString("TIPO_DOC"));
+                    stmtGemPersona.bindString(14,jsonObjectItem.getString("NRO_DOC"));
+                    stmtGemPersona.bindString(15,jsonObjectItem.getString("CELULAR"));
+                    stmtGemPersona.bindString(16,jsonObjectItem.getString("E_MAIL"));
+                    stmtGemPersona.bindString(17,jsonObjectItem.getString("ESTADO"));
+                    stmtGemPersona.execute();
+                    stmtGemPersona.clearBindings();
+                }
+
+                DataBaseHelper.myDataBase.setTransactionSuccessful();
+                DataBaseHelper.myDataBase.endTransaction();
+                DataBaseHelper.myDataBase.setLockingEnabled(true);
+                DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=NORMAL");
+            }
+            //CREAMOS UN JSON PARA MOSTRAR EL STATUS Y MESSAGE
+            jsonObjectResult.accumulate("status", jsonObjectRest.getInt("status"));
+            jsonObjectResult.accumulate("message", jsonObjectRest.getString("message"));
+        } catch (Exception e) {
+            DataBaseHelper.myDataBase.endTransaction();
+            e.printStackTrace();
+            try {
+                jsonObjectResult.accumulate("status", 0);
+                jsonObjectResult.accumulate("message", e.getMessage());
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return jsonObjectResult;
+    }
+
 
 }
