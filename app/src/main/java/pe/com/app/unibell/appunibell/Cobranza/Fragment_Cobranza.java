@@ -636,7 +636,7 @@ public class Fragment_Cobranza extends Fragment implements
               cpnumero=sharedSettings.getString("cpnumero", "").toString();
               cpfplanilla=sharedSettings.getString("cpfplanilla", "").toString();
               cpfpago =sharedSettings.getString("cpfpago", "").toString();
-              cpbancoctacte =sharedSettings.getString("cpbancoctacte", "").toString();
+              cpbancoctacte ="";
               cpmonto =sharedSettings.getString("cpmonto", "").toString();
               cptipocambio = sharedSettings.getString("cptipocambio", "").toString();
               cpmoneda = sharedSettings.getString("cpmoneda", "").toString();
