@@ -59,7 +59,7 @@ public class Activity_Login_Local extends AppCompatActivity
     private S_Sem_LocalBL s_sem_localBL = new S_Sem_LocalBL();
     private S_Sem_MenuBL s_sem_menuBL = new S_Sem_MenuBL();
     //private TextView LogTxvIMEI,LogTxvVersion,
-    private TextView         lo_txtempresa,lo_txtlocal;
+    private TextView   txtempresa,txtlocal;
     private Context ctx = this;
     private int versionCode = 0;
     private String sConfNombre="",sConfValor="";
@@ -114,16 +114,14 @@ public class Activity_Login_Local extends AppCompatActivity
             versionCode = pInfo.versionCode;
 
             btLoginLocal=(Button) findViewById(R.id.btLoginLocal);
-            lo_txtempresa=(TextView)findViewById(R.id.lo_txtempresa);
-            lo_txtlocal=(TextView)findViewById(R.id.lo_txtlocal);
+            txtempresa=(TextView)findViewById(R.id.txtempresa);
+            txtlocal=(TextView)findViewById(R.id.txtlocal);
 
+            funciones.addTextChangedListener(txtlocal, R.drawable.borderradius_activo, R.drawable.borderradius);
+            funciones.addTextChangedListener(txtempresa, R.drawable.borderradius_activo, R.drawable.borderradius);
 
-            funciones.addTextChangedListener(lo_txtlocal, R.drawable.borderradius_activo, R.drawable.borderradius);
-            funciones.addTextChangedListener(lo_txtempresa, R.drawable.borderradius_activo, R.drawable.borderradius);
-
-
-            addTextChangedListener(lo_txtlocal, R.drawable.boton_redondo, R.drawable.boton_redondo_inactivo);
-            addTextChangedListener(lo_txtempresa, R.drawable.boton_redondo, R.drawable.boton_redondo_inactivo);
+            addTextChangedListener(txtlocal, R.drawable.boton_redondo, R.drawable.boton_redondo_inactivo);
+            addTextChangedListener(txtempresa, R.drawable.boton_redondo, R.drawable.boton_redondo_inactivo);
 
 
             // edtUserName.setDrawingCacheBackgroundColor(R.color.label_login_unibell);
@@ -146,14 +144,15 @@ public class Activity_Login_Local extends AppCompatActivity
                 e.printStackTrace();
             }
 
-            btLoginLocal.setOnClickListener(OnClickList_btLoginLocal);
-            lo_txtempresa.setOnClickListener(OnClickList_lo_txtempresa);
-            lo_txtlocal.setOnClickListener(OnClickList_lo_txtlocal);
+            txtempresa.setTag(sharedSettings.getString("iID_EMPRESA", "0"));
+            txtempresa.setText(sharedSettings.getString("NOM_EMPRESA", ""));
 
-            lo_txtempresa.setTag(sharedSettings.getString("iID_EMPRESA", "0"));
-            lo_txtempresa.setText(sharedSettings.getString("NOM_EMPRESA", "Seleccionar"));
-            lo_txtlocal.setTag(sharedSettings.getString("iID_LOCAL", "0"));
-            lo_txtlocal.setText(sharedSettings.getString("NOM_LOCAL", "Seleccionar"));
+            txtlocal.setTag(sharedSettings.getString("iID_LOCAL", "0"));
+            txtlocal.setText(sharedSettings.getString("NOM_LOCAL", ""));
+
+            btLoginLocal.setOnClickListener(OnClickList_btLoginLocal);
+            txtempresa.setOnClickListener(OnClickList_txtempresa);
+            txtlocal.setOnClickListener(OnClickList_txtlocal);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -173,7 +172,7 @@ public class Activity_Login_Local extends AppCompatActivity
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if(!lo_txtempresa.getTag().toString().trim().equals("0") && !lo_txtlocal.getTag().toString().trim().equals("0")) {
+                if(!txtempresa.getTag().toString().trim().equals("0") && !txtlocal.getTag().toString().trim().equals("0")) {
                     btLoginLocal.setBackgroundResource(activo);
                 }
                 else
@@ -193,12 +192,12 @@ public class Activity_Login_Local extends AppCompatActivity
 
 
     private Boolean Validar(){
-        if(lo_txtempresa.getText().toString().trim().equals("")){
+        if(txtempresa.getText().toString().trim().equals("")){
             Toast toastCodigo = Toast.makeText(getApplicationContext(),"SELECCIONE UNA EMPRESA", Toast.LENGTH_SHORT);
             toastCodigo.show();
             return false;
         }
-        if(lo_txtlocal.getText().toString().trim().equals("")){
+        if(txtlocal.getText().toString().trim().equals("")){
             Toast toastCodigo = Toast.makeText(getApplicationContext(),"SELECCIONE LOCAL", Toast.LENGTH_SHORT);
             toastCodigo.show();
             return false;
@@ -208,7 +207,7 @@ public class Activity_Login_Local extends AppCompatActivity
     }
 
 
-    View.OnClickListener OnClickList_lo_txtempresa = new View.OnClickListener() {
+    View.OnClickListener OnClickList_txtempresa = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             try {
@@ -222,7 +221,7 @@ public class Activity_Login_Local extends AppCompatActivity
         }
     };
 
-    View.OnClickListener OnClickList_lo_txtlocal = new View.OnClickListener() {
+    View.OnClickListener OnClickList_txtlocal = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             try {
@@ -265,15 +264,15 @@ public class Activity_Login_Local extends AppCompatActivity
     public void onTablaAuxiliarSI() {
         try {
             if(iTabla==300){
-                lo_txtlocal.setTag("0");
-                lo_txtlocal.setText("Seleccionar");
-                lo_txtempresa.setTag(sharedSettings.getString("iID_EMPRESA", "0"));
-                lo_txtempresa.setText(sharedSettings.getString("NOM_EMPRESA", "Seleccionar"));
+                txtlocal.setTag("0");
+                txtlocal.setText("Seleccionar");
+                txtempresa.setTag(sharedSettings.getString("iID_EMPRESA", "0"));
+                txtempresa.setText(sharedSettings.getString("NOM_EMPRESA", "Seleccionar"));
             }
 
             if(iTabla==400){
-                lo_txtlocal.setTag(sharedSettings.getString("iID_LOCAL", "0"));
-                lo_txtlocal.setText(sharedSettings.getString("NOM_LOCAL", "Seleccionar"));
+                txtlocal.setTag(sharedSettings.getString("iID_LOCAL", "0"));
+                txtlocal.setText(sharedSettings.getString("NOM_LOCAL", "Seleccionar"));
             }
 
         } catch (Exception ex) {

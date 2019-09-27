@@ -62,7 +62,7 @@
             />
 
         <TextView
-            android:id="@+id/lo_txtempresa"
+            android:id="@+id/txtempresa"
             style="@style/SkyTextViewStyleSpinnerUnibell"
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -72,10 +72,11 @@
             android:paddingTop="10dp"
             android:textSize="@dimen/pad_16dp"
             android:textColor="@color/label_color_menu"
+            android:tag="0"
             />
 
         <TextView
-            android:id="@+id/lblLocal"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -85,10 +86,11 @@
             android:paddingBottom="10dp"
             android:textSize="16dp"
             android:textColor="@color/label_login_unibell"
+
             />
 
         <TextView
-            android:id="@+id/lo_txtlocal"
+            android:id="@+id/txtlocal"
             style="@style/SkyTextViewStyleSpinnerUnibell"
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -98,6 +100,7 @@
             android:paddingTop="10dp"
             android:textSize="@dimen/pad_16dp"
             android:textColor="@color/label_color_menu"
+            android:tag="0"
             />
 
         <LinearLayout
