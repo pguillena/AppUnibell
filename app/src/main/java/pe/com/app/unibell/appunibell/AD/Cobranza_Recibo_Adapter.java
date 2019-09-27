@@ -18,6 +18,7 @@ import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
 import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranza_Recibo;
 import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranzas;
 import pe.com.app.unibell.appunibell.R;
+import pe.com.app.unibell.appunibell.Reportes.Activity_Cobranza_Liquidacion_Rep;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 import static android.content.Context.MODE_PRIVATE;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
@@ -101,6 +102,32 @@ public class Cobranza_Recibo_Adapter  extends ArrayAdapter<Documentos_Cobra_CabB
                 }
             }
         });
+
+        mainHolder.rc_itemPlanilla.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notifyDataSetChanged();
+                try {
+                    sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
+                    editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+
+                    editor_Shared.putString("REP_SER_PLANILLA", documentos_cobra_cabBE.getSERIE_PLANILLA().toString());
+                    editor_Shared.putString("REP_NUM_PLANILLA", documentos_cobra_cabBE.getN_PLANILLA().toString());
+                    //PARA ABRIR EL DOCUMENTO
+                    editor_Shared.putString("IOPCION_REPORTE", "0");
+                    editor_Shared.commit();
+
+                    Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Liquidacion_Rep.class);
+                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
+
+                }catch (Exception ex) {
+                    Toast toastCodigo = Toast.makeText(getContext(),ex.getMessage(), Toast.LENGTH_SHORT);
+                    toastCodigo.show();
+                }
+            }
+        });
+
 
         mainHolder.cl_btneditar.setOnClickListener(new View.OnClickListener() {
             @Override
