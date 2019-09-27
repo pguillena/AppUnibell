@@ -636,7 +636,7 @@ public class Fragment_Cobranza extends Fragment implements
               cpnumero=sharedSettings.getString("cpnumero", "").toString();
               cpfplanilla=sharedSettings.getString("cpfplanilla", "").toString();
               cpfpago =sharedSettings.getString("cpfpago", "").toString();
-              cpbancoctacte ="";
+              cpbancoctacte =sharedSettings.getString("cpbancoctacte", "").toString();
               cpmonto =sharedSettings.getString("cpmonto", "").toString();
               cptipocambio = sharedSettings.getString("cptipocambio", "").toString();
               cpmoneda = sharedSettings.getString("cpmoneda", "").toString();
@@ -712,7 +712,7 @@ public class Fragment_Cobranza extends Fragment implements
             if (cpfpago.equals("D") || cpfpago.equals("V") || cpfpago.equals("M") || cpfpago.equals("S") || cpfpago.equals("I")|| cpfpago.equals("H")) {
                 documentos_cobra_cabBE.setCTACORRIENTE_BANCO(cpbancoctacte);
                 documentos_cobra_cabBE.setFECHA_DEPOSITO("");
-                documentos_cobra_cabBE.setN_TARJETA(cpbancoctacte);
+                documentos_cobra_cabBE.setN_TARJETA("");
 
             }
 
