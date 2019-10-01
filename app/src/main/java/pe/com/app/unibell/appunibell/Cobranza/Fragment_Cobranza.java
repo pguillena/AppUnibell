@@ -1223,7 +1223,10 @@ public class Fragment_Cobranza extends Fragment implements
 
         @Override
         protected String doInBackground(String... p) {
+            //CYPER100
             return documentos_cobra_cabDAO.delete(documentos_cobra_cabBE);
+
+            //return documentos_cobra_cabDAO.UpdateCobranzaAnular(documentos_cobra_cabBE);
         }
 
         @Override

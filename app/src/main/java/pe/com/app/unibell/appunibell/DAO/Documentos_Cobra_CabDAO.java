@@ -1021,5 +1021,35 @@ public class Documentos_Cobra_CabDAO {
     }
 
 
+    public String UpdateCobranzaAnular(Documentos_Cobra_CabBE documentos_cobra_cabBE){
+        String sMensaje="";
+        try{
+            ContentValues cv = new ContentValues();
+
+            cv.put("ESTADO","40002");
+            cv.put("GUARDADO",documentos_cobra_cabBE.getGUARDADO());
+
+            DataBaseHelper.myDataBase.beginTransaction();
+            DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_CAB",cv,"ID_COBRANZA = ?",
+                    new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRANZA())});
+
+            ContentValues cv2 = new ContentValues();
+            cv2.put("ESTADO","40002");
+            DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_DET",cv2,"ID_COBRANZA = ?",
+                    new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRANZA())});
+
+            DataBaseHelper.myDataBase.setTransactionSuccessful();
+            DataBaseHelper.myDataBase.endTransaction();
+
+            sMensaje="";
+        }catch (Exception ex){
+            DataBaseHelper.myDataBase.endTransaction();
+            sMensaje="Error:" + ex.getMessage().toString();
+            ex.printStackTrace();
+        }
+        return sMensaje;
+    }
+
+
 }
 

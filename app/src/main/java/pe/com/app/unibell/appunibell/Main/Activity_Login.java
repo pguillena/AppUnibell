@@ -140,6 +140,11 @@ public class Activity_Login extends AppCompatActivity
                 if(sValor.equals("")){
                     sValor=UtilLibrary.fnNumSim(ctx).toString().trim();
                 }
+
+                if(sValor.equals("")) {
+                    sValor = funciones.getDeviceName();
+                }
+
                 editor_Shared.putString("sIMEI",sValor);
                 editor_Shared.commit();
 
@@ -205,7 +210,16 @@ public class Activity_Login extends AppCompatActivity
                 ActivityCompat.requestPermissions(Activity_Login.this, new String[]{permission}, requestCode);
             }
         } else {
-            editor_Shared.putString("sIMEI",UtilLibrary.fnNumIMEI(ctx).toString().trim());
+
+            String sValor=UtilLibrary.fnNumIMEI(ctx).toString().trim();
+
+            if(sValor.equals("")) {
+                sValor = funciones.getDeviceName();
+            }
+
+
+
+            editor_Shared.putString("sIMEI",sValor);
             editor_Shared.commit();
             Toast.makeText(this,permission + " El permiso a la aplicación esta concedido.", Toast.LENGTH_SHORT).show();
         }

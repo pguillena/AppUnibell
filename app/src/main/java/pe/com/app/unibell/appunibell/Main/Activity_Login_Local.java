@@ -131,7 +131,16 @@ public class Activity_Login_Local extends AppCompatActivity
             try{
                 //LogTxvVersion.setText(String.format(getResources().getString(R.string.version_text), versionCode));
                 //LogTxvIMEI.setText(String.format(getResources().getString(R.string.imei_text), UtilLibrary.fnNumIMEI(ctx)));
-                editor_Shared.putString("sIMEI",UtilLibrary.fnNumIMEI(ctx).toString().trim());
+
+
+             String sValor=UtilLibrary.fnNumIMEI(ctx).toString().trim();
+
+                if(sValor.equals("")) {
+                    sValor = funciones.getDeviceName();
+                }
+
+
+                editor_Shared.putString("sIMEI",sValor);
                 editor_Shared.commit();
             } catch (Exception e) {
                 e.printStackTrace();
