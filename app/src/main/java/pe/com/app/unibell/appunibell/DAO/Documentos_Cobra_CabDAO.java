@@ -1024,6 +1024,19 @@ public class Documentos_Cobra_CabDAO {
     public String UpdateCobranzaAnular(Documentos_Cobra_CabBE documentos_cobra_cabBE){
         String sMensaje="";
         try{
+
+            if(documentos_cobra_cabBE.getSINCRONIZADO()==1) {
+                Documentos_Cobra_CabBL documentos_cobra_cabBL = new Documentos_Cobra_CabBL();
+                String sURLCobranza_Cab = ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_Anula;
+
+                //SI YA ESTA EN EL REMOTO, ENTONCES LO ANULAMOS
+                documentos_cobra_cabBL.AnulaRest(
+                        documentos_cobra_cabBE.getID_COBRANZA().toString(),
+                        documentos_cobra_cabBE.getCODUNC_LOCAL().toString(),
+                        sURLCobranza_Cab);
+            }
+
+
             ContentValues cv = new ContentValues();
 
             cv.put("ESTADO","40002");

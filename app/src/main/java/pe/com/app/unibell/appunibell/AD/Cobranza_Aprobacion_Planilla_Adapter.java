@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_MovBE;
@@ -59,6 +60,9 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
             mainHolder.ap_item8 = (TextView) convertView.findViewById(R.id.ap_item8);
             mainHolder.ap_item9 = (TextView) convertView.findViewById(R.id.ap_item9);
             mainHolder.ap_itemreporte = (TextView) convertView.findViewById(R.id.ap_itemreporte);
+            mainHolder.lyAprobarRetornar = (LinearLayout)convertView.findViewById(R.id.lyAprobarRetornar);
+
+
 
             mainHolder.ap_btnaprobar = (Button) convertView.findViewById(R.id.ap_btnaprobar);
             mainHolder.ap_btnretornar = (Button) convertView.findViewById(R.id.ap_btnretornar);
@@ -70,6 +74,16 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
         final Documentos_Cobra_MovBE documentos_cobra_movBE = getItem(position);
         mainHolder.ap_btnaprobar.setTag(position);
         mainHolder.ap_btnretornar.setTag(position);
+
+        if(documentos_cobra_movBE.getESTADO().equals("40005"))
+        {
+            mainHolder.lyAprobarRetornar.setVisibility(View.GONE);
+        }
+        else
+            {
+            mainHolder.lyAprobarRetornar.setVisibility(View.VISIBLE);
+            }
+
 
         mainHolder.ap_item1.setText(documentos_cobra_movBE.getCOD_CLIENTE().toString());
         mainHolder.ap_item2.setText(funciones.LetraCapital(documentos_cobra_movBE.getNOMBRECLIENTE().toString()));
@@ -181,6 +195,7 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
     static class MainHolder {
         TextView ap_item1,ap_item2,ap_item3,ap_item4,ap_item5,ap_item6,ap_item7,ap_item8,ap_item9,ap_itemreporte;
         Button ap_btnaprobar,ap_btnretornar;
+        LinearLayout lyAprobarRetornar;
     }
 
     @Override

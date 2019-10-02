@@ -152,7 +152,7 @@ public class Cobranza_Cabecera_Adapter
                    // lstFiltrado.remove(iposition);
                     editor_Shared.putString("ID_COBRANZA",aID_COBRANZA.trim());
                     editor_Shared.commit();
-                    final CharSequence[] options1 = {"Editar Registro", "Eliminar Registro"};
+                    final CharSequence[] options1 = {"Editar Registro", "Anular Registro"};
                     LlamarOpciones(options1,position);
 
                 }catch (Exception ex) {
@@ -167,7 +167,7 @@ public class Cobranza_Cabecera_Adapter
             public void onClick(View v) {
                 try {
                     //lstFiltrado.remove(iposition);
-                    final CharSequence[] options1 = {"Editar Registro", "Eliminar Registro"};
+                    final CharSequence[] options1 = {"Editar Registro", "Anular Registro"};
                     LlamarOpciones(options1,position);
 
                 }catch (Exception ex) {
@@ -200,7 +200,7 @@ public class Cobranza_Cabecera_Adapter
                                 ((Activity_Cobranzas)getContext()).CobranzaEditar_Adapter(iposition2);
                             }
                             break;
-                        case "Eliminar Registro":
+                        case "Anular Registro":
                             if(getContext() instanceof Activity_Cobranzas){
                                 ((Activity_Cobranzas)getContext()).EliminarCobranzaCab(iposition2);
                             }

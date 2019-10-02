@@ -258,22 +258,29 @@ public class Fragment_AprobacionPlanilla extends Fragment
     @Override
     public void onConfirmacionSI() {
         if(iEvento==1){
+
+
+            String sFecha=    funciones.FechaActual().substring(6)
+                            + funciones.FechaActual().substring(3, 5)
+                            + funciones.FechaActual().substring(0, 2);
+
+
             new PutInsertPlanilla_AsyncTask().execute(
                     ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_InsertarPlanilla + "/" +
-                            sharedSettings.getString("Perfil", "0").toString()+ "/" +
-                            sharedSettings.getString("C_PERFIL", "0").toString()+ "/" +
+                            sharedSettings.getString("USUARIO", "").toString()+ "/" +
+                            sharedSettings.getString("C_PERFIL", "").toString()+ "/" +
                             sharedSettings.getString("iID_EMPRESA", "0").toString() + "/" +
                             sharedSettings.getString("iID_LOCAL", "0").toString() + "/" +
-                            "0" + "/" +
+                            sharedSettings.getString("C_PACKING", "0") + "/"+
                             sharedSettings.getString("SERIE_PLANILLA", "0").toString() + "/" +
                             sharedSettings.getString("N_PLANILLA", "0").toString() + "/" +
                             sharedSettings.getString("ID_DOCUMENTO_MOVIMIENTO", "0").toString() + "/" +
-                            sharedSettings.getString("ID_ROL_USUARIO_DERIVAR", "0").toString() + "/" +
-                            sharedSettings.getString("FECHA_MODIFICACION", "0").toString() + "/" +
-                            sharedSettings.getString("ID_COBRANZA", "0").toString() + "/" +
+                            sharedSettings.getString("iID_VENDEDOR", "0").toString() + "/" +
+                            sFecha + "/" +
                             "40005" + "/" +
-                            sharedSettings.getString("IMI", "0").toString()  + "/" +
-                            sharedSettings.getString("IMI", "0").toString()
+                            sharedSettings.getString("NOMBRE_TELEFONO", "").toString()+ "/" +
+                            sharedSettings.getString("sIMEI", "").toString() + "/" +
+                            sharedSettings.getString("ID_COBRANZA", "0").toString()
             );
         }
         if(iEvento==2){

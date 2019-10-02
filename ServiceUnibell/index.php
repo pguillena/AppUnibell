@@ -188,6 +188,7 @@ $app->post('/cobranza_insert', 'bldocumentos_cobra_cab:InsertCobranza');
 $app->post('/cobranza_insert_update', 'bldocumentos_cobra_cab:InsertUpdateCobranza');
 $app->post('/cobranza_update', 'bldocumentos_cobra_cab:UpdateCobranza');
 $app->post('/cobranza_delete', 'bldocumentos_cobra_cab:DeleteCobranza');
+$app->post('/cobranza_anula', 'bldocumentos_cobra_cab:AnulaCobranza');
 
 $app->post('/documentos_insert', 'bldocumentos_cobra_mov:InsertDocumentosMov');
  

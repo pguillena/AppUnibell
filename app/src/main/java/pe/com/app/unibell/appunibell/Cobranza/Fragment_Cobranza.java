@@ -924,7 +924,7 @@ public class Fragment_Cobranza extends Fragment implements
 
 
     public void EliminarCobranzaCab(Integer position) {
-        String sMensaje = "¿Desea eliminar la cobranza?";
+        String sMensaje = "¿Desea anular la cobranza?";
         iAccion = 2;
         iPocicionCab = position;
         dialog_fragment_confirmar = new Dialog_Fragment_Confirmar();
@@ -1224,9 +1224,9 @@ public class Fragment_Cobranza extends Fragment implements
         @Override
         protected String doInBackground(String... p) {
             //CYPER100
-            return documentos_cobra_cabDAO.delete(documentos_cobra_cabBE);
+           // return documentos_cobra_cabDAO.delete(documentos_cobra_cabBE);
 
-            //return documentos_cobra_cabDAO.UpdateCobranzaAnular(documentos_cobra_cabBE);
+            return documentos_cobra_cabDAO.UpdateCobranzaAnular(documentos_cobra_cabBE);
         }
 
         @Override

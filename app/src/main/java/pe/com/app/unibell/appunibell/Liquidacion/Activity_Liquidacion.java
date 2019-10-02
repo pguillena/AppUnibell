@@ -78,6 +78,7 @@ import pe.com.app.unibell.appunibell.Reportes.Activity_Cobranza_Liquidacion_Rep;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.ToastLibrary;
+import android.widget.ProgressBar;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
@@ -136,6 +137,9 @@ public class Activity_Liquidacion extends AppCompatActivity
     private String sNroPlanilla, sCPacking, sEstado="40003", sFecha;
     private String lq_lblmontoc,lq_lblmontov,lq_lblmontoe,lq_lblmontob, lq_lblmontop;
     private EditText txtPackingEnvio;
+    private TextView txtProgressLoading;
+    private ProgressBar pbLiquidacion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +157,9 @@ public class Activity_Liquidacion extends AppCompatActivity
             lq_chktodos = (CheckBox) findViewById(R.id.lq_chktodos);
             lq_lbltotalg=(TextView)findViewById(R.id.lq_lbltotalg);
             lq_lsdetalle=(ListView)findViewById(R.id.lq_lsdetalle);
+
+            txtProgressLoading=(TextView)findViewById(R.id.txtProgressLoading);
+            pbLiquidacion = (ProgressBar)findViewById(R.id.pbLiquidacion);
 
             lq_chktodos.setOnCheckedChangeListener(lq_chktodos_ChangeListener);
             FloatingActionButton fabBuscar = (FloatingActionButton) findViewById(R.id.fabBuscar);
@@ -1233,6 +1240,9 @@ public class Activity_Liquidacion extends AppCompatActivity
 
         @Override
         protected void onPreExecute() {
+
+            txtProgressLoading.setVisibility(View.VISIBLE);
+            pbLiquidacion.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -1248,6 +1258,10 @@ public class Activity_Liquidacion extends AppCompatActivity
 
         @Override
         protected void onPostExecute(JSONObject result) {
+
+            txtProgressLoading.setVisibility(View.GONE);
+            pbLiquidacion.setVisibility(View.GONE);
+
             try {
                 if (result.getInt("status")!=1) {
                     Mensaje(result.getString("MSG").toString());
