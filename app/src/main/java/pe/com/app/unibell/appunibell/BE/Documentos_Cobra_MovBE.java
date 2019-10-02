@@ -62,6 +62,7 @@ public class Documentos_Cobra_MovBE {
     private String NOMBREFORMAPAGO;
     private String NOMBREESTADO;
     private String NOMBRECOBRADOR;
+    private String DOCUMENTOS;
 
     //FLUJO1
     private String NOM_ROL_ORIGEN;
@@ -84,6 +85,14 @@ public class Documentos_Cobra_MovBE {
     private String ACCION;
     private String OBSERVACION;
     private String NOMBREACCION;
+
+    public String getDOCUMENTOS() {
+        return DOCUMENTOS;
+    }
+
+    public void setDOCUMENTOS(String DOCUMENTOS) {
+        this.DOCUMENTOS = DOCUMENTOS;
+    }
 
     public void setHORA_DERIVAR(String HORA_DERIVAR) {
         this.HORA_DERIVAR = HORA_DERIVAR;

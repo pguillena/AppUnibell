@@ -265,6 +265,7 @@ public class Documentos_Cobra_MovBL {
                     documentos_cobra_movBE.setNOMBREFORMAPAGO(jsonObjectItem.getString("NOMBREFORMAPAGO"));
                     documentos_cobra_movBE.setNOMBREESTADO(jsonObjectItem.getString("NOMBREESTADO"));
                     documentos_cobra_movBE.setNOMBRECOBRADOR(jsonObjectItem.getString("NOMBRECOBRADOR"));
+                    documentos_cobra_movBE.setDOCUMENTOS(jsonObjectItem.getString("DOCUMENTOS"));
                     lst.add(documentos_cobra_movBE);
                 }
             }

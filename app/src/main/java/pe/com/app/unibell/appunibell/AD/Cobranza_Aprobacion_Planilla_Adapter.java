@@ -97,7 +97,7 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
             mainHolder.ap_item6.setText("U$$" + " " + funciones.FormatDecimal(String.valueOf(documentos_cobra_movBE.getM_COBRANZA_D()).trim().replace(",","")));
         }
         mainHolder.ap_item7.setText(documentos_cobra_movBE.getN_SERIE_RECIBO().toString() + "-"+ documentos_cobra_movBE.getN_RECIBO().toString());
-        mainHolder.ap_item8.setText("DOCUMENTOS");
+        mainHolder.ap_item8.setText(documentos_cobra_movBE.getDOCUMENTOS());
         mainHolder.ap_item9.setText(documentos_cobra_movBE.getN_PLANILLA().toString());
 
         //FLUJO sEGUIMIENTO
@@ -141,6 +141,7 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
                 editor_Shared.putString("REP_NUM_PLANILLA", documentos_cobra_movBE.getN_PLANILLA().toString());
 
                 editor_Shared.putString("IOPCION_REPORTE", "0");
+
                 editor_Shared.commit();
 
                 Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Liquidacion_Rep.class);
