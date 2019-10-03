@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,6 +72,10 @@ public class Fragment_AprobacionPlanilla extends Fragment
     private Double dTotalGeneral=0.0;
     private String fPago="";
 
+    private TextView txtProgressLoadingAprobacion;
+    private ProgressBar pbAprobacion;
+
+
 
     @Override
     public void onAceptar() {}
@@ -105,13 +110,16 @@ public class Fragment_AprobacionPlanilla extends Fragment
             ap_lbltotalg = (TextView) view.findViewById(R.id.ap_lbltotalg);
             btnVerDetalle = (TextView) view.findViewById(R.id.btnVerDetalle);
 
+            txtProgressLoadingAprobacion=(TextView)view.findViewById(R.id.txtProgressLoadingAprobacion);
+            pbAprobacion = (ProgressBar)view.findViewById(R.id.pbAprobacion);
+
             FloatingActionButton fabBuscar = (FloatingActionButton) view.findViewById(R.id.ap_fabBuscar);
             fabBuscar.setOnClickListener(OnClickListenercl_ap_fabBuscar);
 
             btnVerDetalle.setOnClickListener(OnClickListenercl_btnVerDetalle);
 
-            Intent data = new Intent();
-            BuscarPlanilla(data);
+            //Intent data = new Intent();
+            //BuscarPlanilla(data);
 
         } catch (Exception ex) {
             Toast.makeText(getActivity(), ex.getMessage().toString(), Toast.LENGTH_SHORT).show();
@@ -130,6 +138,13 @@ public class Fragment_AprobacionPlanilla extends Fragment
             String iID_VENDEDOR= sharedSettings.getString("iID_VENDEDOR", "0").toString();
             Bundle parametros = data.getExtras();
 
+            planilla= sharedSettings.getString("SERIE_PLANILLA_FILTRO", "0").toString();
+
+            if(planilla.equals(""))
+            {
+                planilla="0";
+            }
+
             if(parametros !=null && iInacializa==1 ){
                 serie=parametros.getString("pl_serie","0").toString().trim();
                 recibo=parametros.getString("pl_numero","0").toString().trim();;
@@ -138,7 +153,7 @@ public class Fragment_AprobacionPlanilla extends Fragment
                 ruc=parametros.getString("pl_ruc","XXX").toString().trim();
                 dni=parametros.getString("pl_dni","XXX").toString().trim();
                 noperacion=parametros.getString("pl_noperacion","XXX").toString().trim();
-                planilla=parametros.getString("pl_planilla","0").toString().trim();
+                //planilla=parametros.getString("pl_planilla","0").toString().trim();
                 sFechaInicio=parametros.getString("pl_inicio","17530101").toString().trim();
                 sFechaFin=parametros.getString("pl_fin","17530101").toString().trim();
                 fpago=parametros.getString("pl_fpago","0").toString().trim();
@@ -306,6 +321,10 @@ public class Fragment_AprobacionPlanilla extends Fragment
 
         @Override
         protected void onPreExecute() {
+
+            txtProgressLoadingAprobacion.setText("Buscando");
+            txtProgressLoadingAprobacion.setVisibility(View.VISIBLE);
+            pbAprobacion.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -367,6 +386,10 @@ public class Fragment_AprobacionPlanilla extends Fragment
             }catch(Exception ex){
                 ex.printStackTrace();
             }
+
+
+            txtProgressLoadingAprobacion.setVisibility(View.GONE);
+            pbAprobacion.setVisibility(View.GONE);
         }
     }
 
@@ -376,6 +399,9 @@ public class Fragment_AprobacionPlanilla extends Fragment
 
         @Override
         protected void onPreExecute() {
+            txtProgressLoadingAprobacion.setText("Aprobando");
+            txtProgressLoadingAprobacion.setVisibility(View.VISIBLE);
+            pbAprobacion.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -390,16 +416,27 @@ public class Fragment_AprobacionPlanilla extends Fragment
 
         @Override
         protected void onPostExecute(JSONObject result) {
+
+
             try {
                 if (result.getInt("status")!=1) {
                     //MOSTRAMOS MESSAGE
                     new ToastLibrary(getActivity(), result.getString("message")).Show();
                 } else {
+                    //cyper100
                     Mensaje(documentos_cobra_cabBL.lst.get(0).getMSG().toString());
+                    Intent data = new Intent();
+                    BuscarPlanilla(data);
+
+
                 }
             }catch(Exception ex){
                 ex.printStackTrace();
             }
+
+
+            txtProgressLoadingAprobacion.setVisibility(View.GONE);
+            pbAprobacion.setVisibility(View.GONE);
         }
     }
 

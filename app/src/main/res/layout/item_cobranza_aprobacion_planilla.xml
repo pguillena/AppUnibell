@@ -212,17 +212,18 @@
             android:textColor="@color/Button_login_unibell"
             android:fontFamily="@font/sf_pro_display_medium"
             android:layout_marginBottom="2dp"
-            android:drawableRight="@drawable/file_download_outline"
+            android:drawableRight="@drawable/eye_active"
             android:focusable="false"
             />
 
         <TextView
             android:id="@+id/ap_item9"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Planilla"
             android:textSize="16dp"
             android:focusable="false"
+            android:drawableRight="@drawable/file_download_outline"
             android:textColor="@color/label_color_menu"
             android:textStyle="bold"
             />

@@ -152,6 +152,8 @@ public class Activity_Aprobacion_Planilla_Filtro   extends AppCompatActivity
                 // TODO Auto-generated method stub
                 String fpago="";
                 Intent data = new Intent();
+                editor_Shared.putString("SERIE_PLANILLA_FILTRO", pl_txtplanilla.getText().toString());
+                editor_Shared.commit();
 
                 if (!pl_txtserie.getText().toString().equals(""))
                 {
@@ -232,11 +234,13 @@ public class Activity_Aprobacion_Planilla_Filtro   extends AppCompatActivity
                 if(!pl_txtplanilla.getText().toString().equals(""))
                 {
                     data.putExtra("pl_planilla",pl_txtplanilla.getText().toString());
+
                 }
                 else
                 {
                     data.putExtra("pl_planilla", "0");
                 }
+
 
                 if(!pl_lblinicio.getText().toString().equals(""))
                 {

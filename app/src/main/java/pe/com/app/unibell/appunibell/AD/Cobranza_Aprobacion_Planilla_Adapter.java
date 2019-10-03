@@ -75,14 +75,12 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
         mainHolder.ap_btnaprobar.setTag(position);
         mainHolder.ap_btnretornar.setTag(position);
 
-        if(documentos_cobra_movBE.getESTADO().equals("40005"))
+        mainHolder.lyAprobarRetornar.setVisibility(View.GONE);
+
+        if(documentos_cobra_movBE.getESTADO().equals("40007"))
         {
-            mainHolder.lyAprobarRetornar.setVisibility(View.GONE);
-        }
-        else
-            {
             mainHolder.lyAprobarRetornar.setVisibility(View.VISIBLE);
-            }
+        }
 
 
         mainHolder.ap_item1.setText(documentos_cobra_movBE.getCOD_CLIENTE().toString());
@@ -131,7 +129,7 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
             }
         });
         //REPORTE DE PLANILLA
-        mainHolder.ap_itemreporte.setOnClickListener(new View.OnClickListener() {
+        mainHolder.ap_item9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
@@ -187,6 +185,34 @@ public class Cobranza_Aprobacion_Planilla_Adapter extends ArrayAdapter<Documento
                 if(getContext() instanceof Activity_AprobacionPlanilla){
                     ((Activity_AprobacionPlanilla)getContext()).RetornarPlanilla();
                 }
+            }
+        });
+
+
+        mainHolder.ap_itemreporte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String SERIE =documentos_cobra_movBE.getSERIE_PLANILLA().toString();
+                String NUMERO =documentos_cobra_movBE.getN_PLANILLA().toString();
+
+                sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
+                editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+
+                editor_Shared.putString("SERIE_PLANILLA",SERIE);
+                editor_Shared.putString("N_PLANILLA", NUMERO);
+
+                editor_Shared.commit();
+
+                try {
+                    Intent intent = new Intent(getContext().getApplicationContext(), Activity_Flujo_Seguimiento.class);
+                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
             }
         });
 

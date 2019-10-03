@@ -122,7 +122,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                 planillaCobranzaBL.getLiquidacionCobranza(
                         ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_liquidacion_cobranza + "/" +
                                 sFechaInicio + "/" +
-                                sharedSettings.getString("iID_VENDEDOR", "0").toString() + "/" +
+                                "0/" +
                                 "0/" +
                                 sharedSettings.getString("iID_EMPRESA", "0").toString() + "/" +
                                 sharedSettings.getString("iID_LOCAL", "0").toString() + "/" +
@@ -134,7 +134,7 @@ public class AsyncTask_Liquidacion extends AsyncTask<String,String,Boolean> {
                 planillaCobranzaGrupoBL.getLiquidacionCobranza(
                         ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_LiqCobranza_Grupo + "/" +
                                 sFechaInicio + "/" +
-                                sharedSettings.getString("iID_VENDEDOR", "0").toString() + "/" +
+                                "0/" +
                                 "0/" +
                                 sharedSettings.getString("iID_EMPRESA", "0").toString() + "/" +
                                 sharedSettings.getString("iID_LOCAL", "0").toString() + "/" +
