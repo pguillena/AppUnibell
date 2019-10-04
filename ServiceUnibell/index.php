@@ -42,6 +42,9 @@ require 'bl/bldpm_packing_cab.php';
 require 'bl/bls_sem_menu.php';
 require 'bl/bls_gem_tipocambio.php';
 require 'bl/bldpm_personal_transporte.php';
+require 'bl/blvem_cliente_vendedor.php';
+require 'bl/blvem_visita_cab.php';
+require 'bl/blvem_visita_det.php';
 
 \Slim\Slim::registerAutoloader();
 
@@ -230,6 +233,11 @@ $app->get('/bls_vem_correlativo/:p1/:p2/:p3', 'bls_vem_correlativo:SelectAll');
 $app->get('/blvem_cobrador_zona/:p1/:p2/:p3', 'blvem_cobrador_zona:SelectAll');
 $app->get('/bls_sem_menu/:p1', 'bls_sem_menu:SelectAll');
 $app->get('/bls_gem_tipocambio', 'bls_gem_tipocambio:SelectAll');
+
+
+$app->get('/blvem_cliente_vendedor/:p1/:p2/:p3', 'blvem_cliente_vendedor:SelectAll');
+$app->get('/blvem_visita_cab/:p1/:p2/:p3', 'blvem_visita_cab:SelectAll');
+$app->get('/blvem_visita_det/:p1/:p2/:p3', 'blvem_visita_det:SelectAll');
 
 $app->get('/hello', function(){
 echo "hola";

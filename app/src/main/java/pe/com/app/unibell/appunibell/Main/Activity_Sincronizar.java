@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import pe.com.app.unibell.appunibell.AD.SincronizarAdapter;
 import pe.com.app.unibell.appunibell.BE.SincronizarBE;
 import pe.com.app.unibell.appunibell.BL.CabfcobBL;
+import pe.com.app.unibell.appunibell.BL.Cliente_VendedorBL;
 import pe.com.app.unibell.appunibell.BL.ClientesBL;
 import pe.com.app.unibell.appunibell.BL.CtaBncoBL;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
@@ -52,6 +53,8 @@ import pe.com.app.unibell.appunibell.BL.S_gem_TipoCambioBL;
 import pe.com.app.unibell.appunibell.BL.SucursalesBL;
 import pe.com.app.unibell.appunibell.BL.Tablas_AuxiliaresBL;
 import pe.com.app.unibell.appunibell.BL.Vem_Cobrador_ZonaBL;
+import pe.com.app.unibell.appunibell.BL.VisitaCabBL;
+import pe.com.app.unibell.appunibell.BL.VisitaDetBL;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.SincronizaDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Progress;
@@ -99,6 +102,10 @@ public class Activity_Sincronizar extends AppCompatActivity {
     private Dialog_Fragment_Progress s_gea_vendedor_clientePG;
     private Dialog_Fragment_Progress s_gem_vendedor_codigo_antPG;
 
+    private Dialog_Fragment_Progress vem_visitaCabPG;
+    private Dialog_Fragment_Progress vem_visitaDetPG;
+    private Dialog_Fragment_Progress vem_cliente_vendedorPG;
+
     private Dialog_Fragment_Progress docuventPG;
     private Dialog_Fragment_Progress dpm_Packing_CabPG;
     private Dialog_Fragment_Progress dpm_Packing_DetBLPG;
@@ -110,6 +117,9 @@ public class Activity_Sincronizar extends AppCompatActivity {
 
     private CabfcobBL cabfcobBL = new CabfcobBL();
     private ClientesBL clientesBL = new ClientesBL();
+    private Cliente_VendedorBL cliente_vendedorBL = new Cliente_VendedorBL();
+    private VisitaCabBL visitaCabBL = new VisitaCabBL();
+    private VisitaDetBL visitaDetBL = new VisitaDetBL();
     private CtaBncoBL ctaBncoBL = new CtaBncoBL();
     private Documentos_Cobra_CabBL documentos_cobra_cabBL = new Documentos_Cobra_CabBL();
     private Documentos_Cobra_DetBL documentos_cobra_detBL = new Documentos_Cobra_DetBL();
@@ -278,7 +288,38 @@ public class Activity_Sincronizar extends AppCompatActivity {
                         } catch (Exception ex) {
                             new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar clientes.").Show();
                         }
+                try{
+                    new VisitaCab_Sincronizar_AsyncTask().execute(
+                            ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blvem_visita_cab + '/'
+                                    + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                                    + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                                    + sharedSettings.getString("iID_VENDEDOR", "0"));
+                } catch (Exception ex) {
+                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar visitas.").Show();
+                }
+
+                try{
+                    new VisitaDet_Sincronizar_AsyncTask().execute(
+                            ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blvem_visita_det + '/'
+                                    + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                                    + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                                    + sharedSettings.getString("iID_VENDEDOR", "0"));
+                } catch (Exception ex) {
+                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar visitas.").Show();
+                }
+
+                try{
+                    new ClienteVendedor_Sincronizar_AsyncTask().execute(
+                            ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blvem_cliente_vendedor + '/'
+                                    + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                                    + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                                    + sharedSettings.getString("iID_VENDEDOR", "0"));
+                } catch (Exception ex) {
+                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar visitas.").Show();
+                }
+
                 break;
+
             case "VENDEDORES":
                 try{
                 new MvendedorBL_Sincronizar().execute(
@@ -1895,6 +1936,131 @@ public class Activity_Sincronizar extends AppCompatActivity {
         }
     }
 
+
+    public class ClienteVendedor_Sincronizar_AsyncTask extends AsyncTask<String, String, JSONObject> {
+        /*ASYNCTASK<Parametros, Progreso, Resultado>
+        DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
+        private volatile boolean running = true;
+
+        @Override
+        protected void onPreExecute() {
+            vem_cliente_vendedorPG = new Dialog_Fragment_Progress();
+            vem_cliente_vendedorPG.setMensaje("Sincronizando");
+            vem_cliente_vendedorPG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            return cliente_vendedorBL.getSincronizar(p[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            if (vem_cliente_vendedorPG != null && vem_cliente_vendedorPG.isVisible()) {
+                vem_cliente_vendedorPG.dismiss();
+            }
+            try {
+                if (result.getInt("status")!=1) {
+                    //MOSTRAMOS MESSAGE
+                    new ToastLibrary(Activity_Sincronizar.this, result.getString("message")+ ":Cliente Vendedor").Show();
+                } else {
+                    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.cliente_vendedorBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
+                    View sbView = snackbar.getView();
+                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.YELLOW);
+                    snackbar.show();
+                    Actualizar(sOPCION_SINCRONIZADA);
+                }
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+
+
+    public class VisitaCab_Sincronizar_AsyncTask extends AsyncTask<String, String, JSONObject> {
+        /*ASYNCTASK<Parametros, Progreso, Resultado>
+        DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
+        private volatile boolean running = true;
+
+        @Override
+        protected void onPreExecute() {
+            vem_visitaCabPG = new Dialog_Fragment_Progress();
+            vem_visitaCabPG.setMensaje("Sincronizando");
+            vem_visitaCabPG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            return visitaCabBL.getSincronizar(p[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            if (vem_visitaCabPG != null && vem_visitaCabPG.isVisible()) {
+                vem_visitaCabPG.dismiss();
+            }
+            try {
+                if (result.getInt("status")!=1) {
+                    //MOSTRAMOS MESSAGE
+                    new ToastLibrary(Activity_Sincronizar.this, result.getString("message")+ ":Visitas").Show();
+                } else {
+                    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.visitaBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
+                    View sbView = snackbar.getView();
+                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.YELLOW);
+                    snackbar.show();
+                    Actualizar(sOPCION_SINCRONIZADA);
+                }
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public class VisitaDet_Sincronizar_AsyncTask extends AsyncTask<String, String, JSONObject> {
+        /*ASYNCTASK<Parametros, Progreso, Resultado>
+        DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
+        private volatile boolean running = true;
+
+        @Override
+        protected void onPreExecute() {
+            vem_visitaDetPG = new Dialog_Fragment_Progress();
+            vem_visitaDetPG.setMensaje("Sincronizando");
+            vem_visitaDetPG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            return visitaDetBL.getSincronizar(p[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            if (vem_visitaDetPG != null && vem_visitaDetPG.isVisible()) {
+                vem_visitaDetPG.dismiss();
+            }
+            try {
+                if (result.getInt("status")!=1) {
+                    //MOSTRAMOS MESSAGE
+                    new ToastLibrary(Activity_Sincronizar.this, result.getString("message")+ ":Visitas").Show();
+                } else {
+                    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.visitaBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
+                    View sbView = snackbar.getView();
+                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.YELLOW);
+                    snackbar.show();
+                    Actualizar(sOPCION_SINCRONIZADA);
+                }
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 
 
 

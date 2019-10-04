@@ -5,9 +5,9 @@ package pe.com.app.unibell.appunibell.Util;
 public interface ConstantsLibrary {
         public static final String DEBUG_TAG = "DRES_DEBUG";
         //LOCAL
-        // public static final String RESTFUL_URL = "http://172.16.1.78/ServiceUnibell";
+        public static final String RESTFUL_URL = "http://172.16.1.78/ServiceUnibell";
         //REMOTO
-        public static final String RESTFUL_URL ="http://181.65.215.174/ServiceUnibell";
+        //public static final String RESTFUL_URL ="http://181.65.215.174/ServiceUnibell";
         public static final String blcabfcob = "/blcabfcob";
         public static final String blcliente = "/blclientes";
         public static final String blclientesxcodigo = "/blclientesxcodigo";
@@ -87,6 +87,9 @@ public interface ConstantsLibrary {
         public static final String bldpm_personal_transporte = "/bldpm_personal_transporte";
 
 
+        public static final String blvem_cliente_vendedor = "/blvem_cliente_vendedor";
+        public static final String blvem_visita_cab = "/blvem_visita_cab";
+        public static final String blvem_visita_det = "/blvem_visita_det";
 
 
 
