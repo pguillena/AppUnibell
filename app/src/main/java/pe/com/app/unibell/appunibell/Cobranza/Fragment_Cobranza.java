@@ -110,6 +110,7 @@ public class Fragment_Cobranza extends Fragment implements
     private Documentos_Cobra_DetBE documentos_cobra_detBE2 = null;
     private Integer iDialog=0,iOpcionDialog=0;
 
+
     @Override
     public void onAmortizarSI(String Precio) {
         if(iDialog==1){
@@ -877,8 +878,15 @@ public class Fragment_Cobranza extends Fragment implements
 
 
 
+
     @Override
     public void onConfirmacionSI() {
+
+        editor_Shared.putString("REP_SER_RECIBO", cobranza_cabecera_adapter.lst.get(0).getN_SERIE_RECIBO());
+        editor_Shared.putString("REP_NUM_RECIBO", cobranza_cabecera_adapter.lst.get(0).getN_RECIBO());
+        editor_Shared.commit();
+
+
         try {
             // CONFIRMAR GUARDAR
             if (iAccion == 1) {
@@ -928,6 +936,9 @@ public class Fragment_Cobranza extends Fragment implements
         iAccion = 2;
         iPocicionCab = position;
         dialog_fragment_confirmar = new Dialog_Fragment_Confirmar();
+        //dialog_fragment_confirmar.cl_txtMotivo.setVisibility(View.VISIBLE);
+        //dialog_fragment_confirmar.cl_txtMotivo.setHint("Ingrese motivo de anulación");
+        //dialog_fragment_confirmar.avisoMotivo = "Debe ingresar un motivo de anulación";
         dialog_fragment_confirmar.setmConfirmarDialogfragmentListener(Fragment_Cobranza.this, sMensaje);
         dialog_fragment_confirmar.show(getFragmentManager(), dialog_fragment_confirmar.TAG);
         dialog_fragment_confirmar.isCancelable();
@@ -936,6 +947,8 @@ public class Fragment_Cobranza extends Fragment implements
     private void EliminarCobranzaCabConfirma() {
         try {
             Documentos_Cobra_CabBE documentos_cobra_cabBE2 = (Documentos_Cobra_CabBE) cobranza_cabecera_adapter.getItem(iPocicionCab);
+
+            //documentos_cobra_cabBE2.setCOMENTARIO(motivo);
             new Delete_CabeceraAsyncTask(documentos_cobra_cabBE2).execute();
 
         } catch (Exception e) {
@@ -1225,7 +1238,6 @@ public class Fragment_Cobranza extends Fragment implements
         protected String doInBackground(String... p) {
             //CYPER100
            // return documentos_cobra_cabDAO.delete(documentos_cobra_cabBE);
-
             return documentos_cobra_cabDAO.UpdateCobranzaAnular(documentos_cobra_cabBE);
         }
 

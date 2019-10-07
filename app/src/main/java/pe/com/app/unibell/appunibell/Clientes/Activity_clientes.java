@@ -38,6 +38,7 @@ import pe.com.app.unibell.appunibell.BE.ClientesBE;
 import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranzas;
 import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
+import pe.com.app.unibell.appunibell.DAO.VisitaDetDAO;
 import pe.com.app.unibell.appunibell.R;
 
 public class Activity_clientes extends AppCompatActivity  {
@@ -53,6 +54,7 @@ public class Activity_clientes extends AppCompatActivity  {
     private Typeface script;
     int request_code = 1;
     int colorOjito=0;
+
 
     LinearLayout lyPlanillaDespacho;
 
@@ -83,6 +85,8 @@ public class Activity_clientes extends AppCompatActivity  {
             lyPlanillaDespacho.setVisibility(View.GONE);
             txtPAE.setVisibility(View.GONE);
             BuscarCliente();
+
+
 
         } catch (Exception ex) {
 

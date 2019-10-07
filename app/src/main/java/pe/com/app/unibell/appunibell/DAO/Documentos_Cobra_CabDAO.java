@@ -1031,6 +1031,7 @@ public class Documentos_Cobra_CabDAO {
 
                 //SI YA ESTA EN EL REMOTO, ENTONCES LO ANULAMOS
                 documentos_cobra_cabBL.AnulaRest(
+                        documentos_cobra_cabBE.getCOMENTARIO(),
                         documentos_cobra_cabBE.getID_COBRANZA().toString(),
                         documentos_cobra_cabBE.getCODUNC_LOCAL().toString(),
                         sURLCobranza_Cab);

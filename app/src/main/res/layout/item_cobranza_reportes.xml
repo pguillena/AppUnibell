@@ -168,7 +168,7 @@
             android:fontFamily="@font/sf_pro_display_medium"
             android:textColor="@color/Button_login_unibell"
             android:layout_marginBottom="2dp"
-            android:drawableRight="@drawable/file_download_outline"
+
             />
 
         <TextView
@@ -179,6 +179,7 @@
             android:textSize="16dp"
             android:fontFamily="@font/sf_pro_display_light"
             android:textColor="@color/label_color_menu"
+            android:drawableRight="@drawable/file_download_outline"
             />
     </LinearLayout>
 
@@ -199,7 +200,6 @@
             android:fontFamily="@font/sf_pro_display_medium"
             android:textColor="@color/Button_login_unibell"
             android:layout_marginBottom="2dp"
-            android:drawableRight="@drawable/file_download_outline"
             />
 
         <TextView
@@ -210,6 +210,7 @@
             android:textSize="16dp"
             android:fontFamily="@font/sf_pro_display_light"
             android:textColor="@color/label_color_menu"
+            android:drawableRight="@drawable/file_download_outline"
             />
     </LinearLayout>
 

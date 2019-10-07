@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_main_unibell"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:context="com.android_examples.fababovelistview_android_examplescom.MainActivityUnibell">
+
+
+
+        <ListView
+            android:id="@+id/listVisitaClientes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarStyle="insideInset"
+            android:divider="@null"
+            android:dividerHeight="20dp"
+            android:layout_marginTop="@dimen/pad_10dp"
+            android:layout_marginBottom="@dimen/pad_10dp"
+            android:layout_marginLeft="@dimen/pad_20dp"
+            android:layout_marginRight="@dimen/pad_20dp"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabVisitaFiltro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:src="@drawable/filtro_small"
+            app:elevation="4dp" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

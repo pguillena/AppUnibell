@@ -76,7 +76,7 @@ public class Cobranza_Reporte_Adapter extends ArrayAdapter<CobranzaReporteBE> im
         mainHolder.cr_lblrecibo.setText(cobranzaReporteBE.getRECIBO().toString());
         mainHolder.cr_lblplanilla.setText(cobranzaReporteBE.getPLANILLA().toString());
 
-        mainHolder.cr_lblrepxrecibo.setOnClickListener(new View.OnClickListener() {
+        mainHolder.cr_lblrecibo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
@@ -87,7 +87,7 @@ public class Cobranza_Reporte_Adapter extends ArrayAdapter<CobranzaReporteBE> im
                     String SERIE ="0";
                     String NUMERO ="0";
                     if(parts.length>0){
-                        SERIE = parts[0];
+                        SERIE = String.valueOf(Integer.parseInt(parts[0]));
                         NUMERO = parts[1];
                     }
 
@@ -109,7 +109,7 @@ public class Cobranza_Reporte_Adapter extends ArrayAdapter<CobranzaReporteBE> im
 
 
 
-        mainHolder.cr_lblrepxplanilla.setOnClickListener(new View.OnClickListener() {
+        mainHolder.cr_lblplanilla.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
@@ -120,7 +120,7 @@ public class Cobranza_Reporte_Adapter extends ArrayAdapter<CobranzaReporteBE> im
                     String SERIE ="0";
                     String NUMERO ="0";
                     if(parts.length>0){
-                        SERIE = parts[0];
+                        SERIE = String.valueOf(Integer.parseInt(parts[0]));
                         NUMERO = parts[1];
                     }
 

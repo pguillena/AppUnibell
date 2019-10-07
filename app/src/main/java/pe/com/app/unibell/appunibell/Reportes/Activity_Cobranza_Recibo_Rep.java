@@ -17,7 +17,7 @@ public class Activity_Cobranza_Recibo_Rep extends AppCompatActivity {
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
     private String NOMBRE_CARPETA_APP = "UNIBELL_REPORT";
-    private String NOMBRE_ARCHIVO = UUID.randomUUID().toString() + ".pdf";
+    private String NOMBRE_ARCHIVO;
     private String TITLE = "Recibo";
     private String OPCION = "";
 
@@ -40,7 +40,7 @@ public class Activity_Cobranza_Recibo_Rep extends AppCompatActivity {
             sharedSettings = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
             editor_Shared = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
             OPCION = sharedSettings.getString("IOPCION_REPORTE", "0").toString();
-
+            NOMBRE_ARCHIVO = UUID.randomUUID().toString() + ".pdf";
             new AsyncTask_Recibo(Activity_Cobranza_Recibo_Rep.this).execute(NOMBRE_CARPETA_APP, NOMBRE_ARCHIVO, TITLE, OPCION);
 
 

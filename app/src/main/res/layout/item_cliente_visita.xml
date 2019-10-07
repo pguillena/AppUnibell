@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/label_login_titulo_unibell"
+    android:paddingRight="@dimen/pad_20dp"
+    android:paddingLeft="@dimen/pad_20dp"
+    android:paddingTop="@dimen/pad_20dp"
+    android:paddingBottom="@dimen/pad_20dp"
+    >
+
+    <TextView
+        android:id="@+id/lblVisitaCliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cliente"
+        android:textSize="16dp"
+        android:textColor="@color/Button_login_unibell"
+        android:fontFamily="@font/sf_pro_display_medium"
+        />
+
+    <TextView
+        android:id="@+id/txtVisitaCliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="20563256975 - DKINVEST S.A.C."
+        android:textSize="16dp"
+        android:drawableRight="@drawable/chevron_right"
+        android:focusable="false"
+        android:textColor="@color/label_color_menu"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:layout_below="@id/lblVisitaCliente"
+        />
+
+    <TextView
+        android:id="@+id/lblVisitaDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dirección"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_below="@id/txtVisitaCliente"
+        />
+    <TextView
+        android:id="@+id/txtVisitaDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="AV. ALFREDO MENDIOLA N° 3698 INT. 503 MEGAPLAZA - INDEPENDENCIA"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/lblVisitaDireccion"
+        />
+
+
+
+    <TextView
+        android:id="@+id/lblVisitaFrecuencia"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Frecuencia"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_marginTop="@dimen/pad_10dp"
+        android:layout_below="@id/txtVisitaDireccion"
+        />
+    <TextView
+        android:id="@+id/lblVisitaSituacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Situación"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_toRightOf="@id/lblVisitaFrecuencia"
+        android:layout_marginTop="@dimen/pad_10dp"
+        android:layout_below="@id/txtVisitaDireccion"
+        />
+
+    <TextView
+        android:id="@+id/txtVisitaFrecuencia"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/lblVisitaFrecuencia"
+        android:hint="Semanal"
+        />
+
+    <TextView
+        android:id="@+id/txtVisitaSituacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="Activo"
+        android:layout_below="@id/lblVisitaSituacion"
+        android:layout_toRightOf="@id/txtVisitaFrecuencia"
+        />
+
+
+    <TextView
+        android:id="@+id/lblVisitaDias"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Dias de atraso"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_marginTop="@dimen/pad_10dp"
+        android:layout_below="@id/txtVisitaFrecuencia"
+        />
+    <TextView
+        android:id="@+id/lblVisitaTotalDeuda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Monto S/  ( > 60 dias)"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_medium"
+        android:textColor="@color/Button_login_unibell"
+        android:layout_toRightOf="@id/lblVisitaDias"
+        android:layout_marginTop="@dimen/pad_10dp"
+        android:layout_below="@id/txtVisitaSituacion"
+        />
+
+
+    <TextView
+        android:id="@+id/txtVisitaDias"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:layout_below="@id/lblVisitaDias"
+        android:hint="120"
+        />
+
+    <TextView
+        android:id="@+id/txtVisitaTotalDeuda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/sf_pro_display_light"
+        android:textColor="@color/label_color_menu"
+        android:hint="356.49"
+        android:layout_below="@id/lblVisitaTotalDeuda"
+        android:layout_toRightOf="@id/txtVisitaDias"
+        />
+
+    <Button
+        android:id="@+id/btnVisita"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/borderradiusbutton"
+        android:text="Iniciar visita"
+        android:layout_marginTop="@dimen/pad_10dp"
+        android:layout_below="@id/txtVisitaDias"
+        android:textColor="@android:color/white"/>
+
+
+</RelativeLayout>

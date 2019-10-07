@@ -98,6 +98,8 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
         }
     }
 
+
+
     private void Migrar(String codCliente) {
 
         try{

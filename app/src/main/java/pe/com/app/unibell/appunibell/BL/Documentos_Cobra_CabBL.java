@@ -1079,7 +1079,7 @@ public class Documentos_Cobra_CabBL {
 
 
 
-    public JSONObject AnulaRest(String ID_COBRANZA,String CODUNC_LOCAL,String newURL){
+    public JSONObject AnulaRest(String motivoAnulacion, String ID_COBRANZA,String CODUNC_LOCAL,String newURL){
         JSONObject jsonObjectRest =null;
         JSONObject jsonObjectResult = new JSONObject();
 
@@ -1116,7 +1116,7 @@ public class Documentos_Cobra_CabBL {
                     jsonObject.accumulate("CTACORRIENTE_BANCO", Funciones.isNullColumn(cursor,"CTACORRIENTE_BANCO",""));
                     jsonObject.accumulate("NRO_OPERACION", Funciones.isNullColumn(cursor,"NRO_OPERACION",""));
                     jsonObject.accumulate("FECHA_DEPOSITO", Funciones.isNullColumn(cursor,"FECHA_DEPOSITO",""));
-                    jsonObject.accumulate("COMENTARIO", Funciones.isNullColumn(cursor,"COMENTARIO",""));
+                    jsonObject.accumulate("COMENTARIO", motivoAnulacion.trim().toUpperCase());
                     jsonObject.accumulate("ID_EMPRESA", Funciones.isNullColumn(cursor,"ID_EMPRESA",""));
                     jsonObject.accumulate("ID_LOCAL", Funciones.isNullColumn(cursor,"ID_LOCAL",""));
                     jsonObject.accumulate("ESTADO", Funciones.isNullColumn(cursor,"ESTADO",""));

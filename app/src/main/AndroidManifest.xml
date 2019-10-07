@@ -103,6 +103,10 @@
             android:name=".Clientes.Activity_clientes"
             android:parentActivityName=".Main.MainActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".Clientes.Activity_Visita_Cliente"
+            android:parentActivityName=".Main.MainActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".Clientes.Activity_MigrarCliente"

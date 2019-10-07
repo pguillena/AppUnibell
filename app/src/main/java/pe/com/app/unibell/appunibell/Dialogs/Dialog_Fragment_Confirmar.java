@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
-
 import pe.com.app.unibell.appunibell.R;
 
 
@@ -22,6 +21,7 @@ public class Dialog_Fragment_Confirmar extends DialogFragment {
     private TextView tvMessage;
     private Dialog_Fragment_ConfirmarListener mDialog_Fragment_ConfirmarListener;
     private String sMensaje;
+
 
     public interface Dialog_Fragment_ConfirmarListener {
         void onConfirmacionSI();
@@ -73,4 +73,6 @@ public class Dialog_Fragment_Confirmar extends DialogFragment {
             dismissAllowingStateLoss();
         }
     };
+
+
 }
