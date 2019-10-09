@@ -73,7 +73,7 @@
         android:textSize="16dp"
         android:padding="15dp"
         style="@style/SkyTextViewStyleUnibellBusquedaCliente"
-        android:layout_marginBottom="10dp"
+
         android:maxLines="1"
         android:inputType="number"
         />

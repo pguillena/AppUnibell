@@ -52,6 +52,7 @@ import pe.com.app.unibell.appunibell.BL.S_Vem_CorrelativoBL;
 import pe.com.app.unibell.appunibell.BL.S_gem_TipoCambioBL;
 import pe.com.app.unibell.appunibell.BL.SucursalesBL;
 import pe.com.app.unibell.appunibell.BL.Tablas_AuxiliaresBL;
+import pe.com.app.unibell.appunibell.BL.UbigeoBL;
 import pe.com.app.unibell.appunibell.BL.Vem_Cobrador_ZonaBL;
 import pe.com.app.unibell.appunibell.BL.VisitaCabBL;
 import pe.com.app.unibell.appunibell.BL.VisitaDetBL;
@@ -106,6 +107,8 @@ public class Activity_Sincronizar extends AppCompatActivity {
     private Dialog_Fragment_Progress vem_visitaDetPG;
     private Dialog_Fragment_Progress vem_cliente_vendedorPG;
 
+    private Dialog_Fragment_Progress ubigeoPG;
+
     private Dialog_Fragment_Progress docuventPG;
     private Dialog_Fragment_Progress dpm_Packing_CabPG;
     private Dialog_Fragment_Progress dpm_Packing_DetBLPG;
@@ -120,6 +123,9 @@ public class Activity_Sincronizar extends AppCompatActivity {
     private Cliente_VendedorBL cliente_vendedorBL = new Cliente_VendedorBL();
     private VisitaCabBL visitaCabBL = new VisitaCabBL();
     private VisitaDetBL visitaDetBL = new VisitaDetBL();
+
+    private UbigeoBL ubigeoBL = new UbigeoBL();
+
     private CtaBncoBL ctaBncoBL = new CtaBncoBL();
     private Documentos_Cobra_CabBL documentos_cobra_cabBL = new Documentos_Cobra_CabBL();
     private Documentos_Cobra_DetBL documentos_cobra_detBL = new Documentos_Cobra_DetBL();
@@ -255,6 +261,13 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } catch (Exception ex) {
                         new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar correlativos.").Show();
                    }
+
+                try{
+                    new Ubigeo_Sincronizar_AsyncTask().execute(
+                            ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blubigeo);
+                } catch (Exception ex) {
+                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar ubigeo.").Show();
+                }
 
                 break;
 
@@ -1978,6 +1991,46 @@ public class Activity_Sincronizar extends AppCompatActivity {
         }
     }
 
+    public class Ubigeo_Sincronizar_AsyncTask extends AsyncTask<String, String, JSONObject> {
+        /*ASYNCTASK<Parametros, Progreso, Resultado>
+        DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
+        private volatile boolean running = true;
+
+        @Override
+        protected void onPreExecute() {
+            ubigeoPG = new Dialog_Fragment_Progress();
+            ubigeoPG.setMensaje("Sincronizando");
+            ubigeoPG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            return ubigeoBL.getSincronizar(p[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            if (ubigeoPG != null && ubigeoPG.isVisible()) {
+                ubigeoPG.dismiss();
+            }
+            try {
+                if (result.getInt("status")!=1) {
+                    //MOSTRAMOS MESSAGE
+                    new ToastLibrary(Activity_Sincronizar.this, result.getString("message")+ ":Ubigeos").Show();
+                } else {
+                    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.ubigeoBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
+                    View sbView = snackbar.getView();
+                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.YELLOW);
+                    snackbar.show();
+                    Actualizar(sOPCION_SINCRONIZADA);
+                }
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 
 
     public class VisitaCab_Sincronizar_AsyncTask extends AsyncTask<String, String, JSONObject> {

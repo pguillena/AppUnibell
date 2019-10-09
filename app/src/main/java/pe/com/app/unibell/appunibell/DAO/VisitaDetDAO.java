@@ -13,7 +13,9 @@ public class VisitaDetDAO {
     public void getRecorrido( String iID_EMPRESA,
                               String iID_VENDEDOR,
                               String iFECHA,
-                              String iCOD_CLIENTE) {
+                              String iCOD_CLIENTE,
+                              String iRAZON_SOCIAL,
+                              String iDISTRITO) {
 
         Cursor cursor = null;
         if (iCOD_CLIENTE.equals("")){
@@ -23,6 +25,7 @@ public class VisitaDetDAO {
         Integer iIngreso=0;
         VisitaDetBE visitaDetBE = null;
         String SQL = "",SQL_TIPO_VENDEDOR="", TIPO_VENDEDOR="", CODIGO_VENDEDOR="";
+        String OrderBY = "";
 
         try {
             SQL_TIPO_VENDEDOR = "SELECT B.I_TIPO_VENDEDOR, A.CODIGO_ANTIGUO  FROM S_GEM_VENDEDOR_CODIGO_ANT A INNER JOIN MVENDEDOR B ON (A.CODIGO_ANTIGUO = B.C_VENDEDOR) WHERE A.FLAG_VIGENCIA = 1 AND A.ID_VENDEDOR = "+iID_VENDEDOR;
@@ -38,8 +41,7 @@ public class VisitaDetDAO {
             if (cursor != null) {
                 cursor.close();
             }
-            //SI ROL=SUPERVISOR
-            if (TIPO_VENDEDOR.equals("V")) {
+
                 SQL="SELECT CLI.COD_UBC,    \n" +
                         "            CASE \n" +
                         "              WHEN CLI.I_SITUACION = 'A' THEN 1\n" +
@@ -57,7 +59,13 @@ public class VisitaDetDAO {
                         "       VC.N_ORD_VISITA AS ORDEN_VISITA,\n" +
                         "       A.N_INFORME,\n" +
                         "       D.N_SEQUENCIA,\n" +
-                        "       D.HORA_I \n" +
+                        "       D.HORA_I, \n" +
+                        "       (SELECT COUNT(*)\n" +
+                        "          FROM VEM_VISITA_DET\n" +
+                        "         WHERE N_INFORME = D.N_INFORME\n" +
+                        "           AND N_SEQUENCIA = D.N_SEQUENCIA\n" +
+                        "           AND C_CLIENTE = D.C_CLIENTE\n" +
+                        "           AND HORA_S IS NOT NULL) VISITADO\n"+
                         "  FROM VEM_VISITA_CAB A\n" +
                         " INNER JOIN VEM_VISITA_DET D\n" +
                         "    ON (A.N_INFORME = D.N_INFORME)\n" +
@@ -71,10 +79,21 @@ public class VisitaDetDAO {
                         "    ON (CLI.I_SITUACION = AUX2.CODIGO AND AUX2.TIPO = 54)\n" +
                         " WHERE A.C_VENDEDOR = '"+CODIGO_VENDEDOR+"' \n" +
                         "   AND (D.C_CLIENTE = '"+iCOD_CLIENTE+"' OR '"+iCOD_CLIENTE+"' = 'XXX')\n" +
-                        "   AND substr(A.F_VISITA,7,4) || substr(A.F_VISITA,4,2) || substr(A.F_VISITA,1,2) = '" + iFECHA+"' \n" +
-                        " ORDER BY D.N_SEQUENCIA ASC";
+                        "   AND (CLI.NOMBRE LIKE '%"+iRAZON_SOCIAL+"%' OR '" + iRAZON_SOCIAL + "' = 'XXX')  \n" +
+                        "   AND  (CLI.COD_UBC = '" +iDISTRITO+"' OR '" + iDISTRITO +"' = 'XXX' ) \n" +
+                        "   AND substr(A.F_VISITA,7,4) || substr(A.F_VISITA,4,2) || substr(A.F_VISITA,1,2) = '" + iFECHA+"' \n";
 
+            //SI ROL=SUPERVISOR
+            if (TIPO_VENDEDOR.equals("C")) {
+                SQL = "SELECT * FROM ( " + SQL + " ) K ORDER BY K.COD_UBC ASC, K.I_SITUACION ASC, K.DIAS DESC, K.TOTAL_DEUDA DESC, K.DIRECCION ASC";
             }
+            else
+            {
+                SQL =  SQL + " ORDER BY VC.N_ORD_VISITA ASC ";
+            }
+
+
+
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<VisitaDetBE>();
@@ -95,6 +114,7 @@ public class VisitaDetDAO {
                     visitaDetBE.setORDEN_VISITA(Funciones.isNullColumn(cursor,"ORDEN_VISITA",0));
                     visitaDetBE.setN_SEQUENCIA(Funciones.isNullColumn(cursor,"N_SEQUENCIA",""));
                     visitaDetBE.setHORA_I(Funciones.isNullColumn(cursor,"HORA_I",""));
+                    visitaDetBE.setVISITADO(Funciones.isNullColumn(cursor,"VISITADO",0));
 
                     lst.add(visitaDetBE);
                 } while (cursor.moveToNext());

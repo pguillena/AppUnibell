@@ -171,9 +171,9 @@ public class ClientesBL {
                 DataBaseHelper.myDataBase.delete("CLIENTES", null, null);
 
                 String sql = "INSERT OR REPLACE INTO CLIENTES" +
-                        "(COD_CLIENTE,   NOMBRE,   RUC,   GRUPO,   COD_UBC,   DOCIDEN,   DIA_VISITA,   C_CANAL,  E_MAIL,   I_CANC_ANTIGUO,   ID_EMPRESA) " +
+                        "(COD_CLIENTE,   NOMBRE,   RUC,   GRUPO,   COD_UBC,   DOCIDEN,   DIA_VISITA,   C_CANAL,  E_MAIL,   I_CANC_ANTIGUO, DIRECCION, I_SITUACION, ID_EMPRESA) " +
                         "VALUES " +
-                        "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                     DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                     DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -193,7 +193,9 @@ public class ClientesBL {
                     stmt.bindString(8,jsonObjectItem.getString("C_CANAL"));
                     stmt.bindString(9,jsonObjectItem.getString("E_MAIL"));
                     stmt.bindString(10,jsonObjectItem.getString("I_CANC_ANTIGUO"));
-                    stmt.bindString(11,jsonObjectItem.getString("ID_EMPRESA"));
+                    stmt.bindString(11,jsonObjectItem.getString("DIRECCION"));
+                    stmt.bindString(12,jsonObjectItem.getString("I_SITUACION"));
+                    stmt.bindString(13,jsonObjectItem.getString("ID_EMPRESA"));
 
                     stmt.execute();
                     stmt.clearBindings();
@@ -235,9 +237,9 @@ public class ClientesBL {
                 //DataBaseHelper.myDataBase.delete("CLIENTES", null, null);
 
                 String sql = "INSERT OR REPLACE INTO CLIENTES" +
-                        "(COD_CLIENTE,   NOMBRE,   RUC,   GRUPO,   COD_UBC,   DOCIDEN,   DIA_VISITA,   C_CANAL,  E_MAIL,   I_CANC_ANTIGUO,   ID_EMPRESA) " +
+                        "(COD_CLIENTE,   NOMBRE,   RUC,   GRUPO,   COD_UBC,   DOCIDEN,   DIA_VISITA,   C_CANAL,  E_MAIL,   I_CANC_ANTIGUO, DIRECCION,  I_SITUACION,  ID_EMPRESA) " +
                         "VALUES " +
-                        "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                 DataBaseHelper.myDataBase.execSQL("PRAGMA synchronous=OFF");
                 DataBaseHelper.myDataBase.execSQL("PRAGMA count_changes=OFF");
@@ -257,7 +259,9 @@ public class ClientesBL {
                     stmt.bindString(8,jsonObjectItem.getString("C_CANAL"));
                     stmt.bindString(9,jsonObjectItem.getString("E_MAIL"));
                     stmt.bindString(10,jsonObjectItem.getString("I_CANC_ANTIGUO"));
-                    stmt.bindString(11,jsonObjectItem.getString("ID_EMPRESA"));
+                    stmt.bindString(11,jsonObjectItem.getString("DIRECCION"));
+                    stmt.bindString(12,jsonObjectItem.getString("I_SITUACION"));
+                    stmt.bindString(13,jsonObjectItem.getString("ID_EMPRESA"));
 
                     stmt.execute();
                     stmt.clearBindings();
@@ -300,9 +304,9 @@ public class ClientesBL {
                 //DataBaseHelper.myDataBase.delete("CLIENTES", null, null);
 
                 String sqlClientes = "INSERT OR REPLACE INTO CLIENTES" +
-                        "(COD_CLIENTE,   NOMBRE,   RUC,   GRUPO,   COD_UBC,   DOCIDEN,   DIA_VISITA,   C_CANAL,  E_MAIL,   I_CANC_ANTIGUO,   ID_EMPRESA) " +
+                        "(COD_CLIENTE,   NOMBRE,   RUC,   GRUPO,   COD_UBC,   DOCIDEN,   DIA_VISITA,   C_CANAL,  E_MAIL,   I_CANC_ANTIGUO, DIRECCION, I_SITUACION, ID_EMPRESA) " +
                         "VALUES " +
-                        "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                 String sqlClienteCodigoAntiguo="INSERT OR REPLACE INTO S_GEM_CLIENTE_CODIGO_ANT(" +
                         "ID_CLIENTE,CODIGO_ANTIGUO,FLAG_VIGENCIA)"+
@@ -344,7 +348,9 @@ public class ClientesBL {
                     stmtClientes.bindString(8,jsonObjectItem.getString("C_CANAL"));
                     stmtClientes.bindString(9,jsonObjectItem.getString("E_MAIL"));
                     stmtClientes.bindString(10,jsonObjectItem.getString("I_CANC_ANTIGUO"));
-                    stmtClientes.bindString(11,jsonObjectItem.getString("ID_EMPRESA"));
+                    stmtClientes.bindString(11,jsonObjectItem.getString("DIRECCION"));
+                    stmtClientes.bindString(12,jsonObjectItem.getString("I_SITUACION"));
+                    stmtClientes.bindString(13,jsonObjectItem.getString("ID_EMPRESA"));
 
                     stmtClientes.execute();
                     stmtClientes.clearBindings();

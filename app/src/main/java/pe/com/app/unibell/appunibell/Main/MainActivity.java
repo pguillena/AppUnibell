@@ -36,6 +36,7 @@ import java.util.Random;
 import pe.com.app.unibell.appunibell.AD.Menu_Adapter;
 import pe.com.app.unibell.appunibell.BL.MenuStringBL;
 import pe.com.app.unibell.appunibell.Clientes.Activity_MigrarCliente;
+import pe.com.app.unibell.appunibell.Clientes.Activity_Visita_Cliente;
 import pe.com.app.unibell.appunibell.Clientes.Activity_clientes;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.Menu_StringDAO;
@@ -198,9 +199,6 @@ protected void onCreate(Bundle savedInstanceState) {
     @Override
     public void onItemClick(AdapterView adapterView, View view, int position, long l) {
             String mnu_nom=menu_adapter.getItem(position).getMNUNOM().toString();
-
-
-
          switch(mnu_nom) {
              case "SMNU_SINCRONIZAR":
                  Intent SMNU_SINCRONIZAR = new Intent(getApplication(), Activity_Sincronizar.class);
@@ -252,6 +250,12 @@ protected void onCreate(Bundle savedInstanceState) {
                 btnreportes.setEnabled(true);
                 btnreportes.setVisibility(View.VISIBLE);
                 OcultarDrawel();
+                 break;
+
+             case "SMNU_RECORRIDO":
+                 Intent SMNU_RECORRIDO = new Intent(getApplication(), Activity_Visita_Cliente.class);
+                 startActivity(SMNU_RECORRIDO);
+                 OcultarDrawel();
                  break;
 
             case "SMNU_ACERCADE":

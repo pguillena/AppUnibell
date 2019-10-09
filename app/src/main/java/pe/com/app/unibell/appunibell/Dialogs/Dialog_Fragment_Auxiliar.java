@@ -25,6 +25,7 @@ import pe.com.app.unibell.appunibell.AD.S_Gem_Vendedor_Adapter;
 import pe.com.app.unibell.appunibell.AD.S_Sem_Empresa_Adapter;
 import pe.com.app.unibell.appunibell.AD.S_Sem_Local_Adapter;
 import pe.com.app.unibell.appunibell.AD.Tablas_Auxiliares_Adapter;
+import pe.com.app.unibell.appunibell.AD.Ubigeo_Adapter;
 import pe.com.app.unibell.appunibell.DAO.CtaBncoDAO;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.ParTablaDAO;
@@ -33,6 +34,7 @@ import pe.com.app.unibell.appunibell.DAO.S_Gem_Vendedor_Codigo_antDAO;
 import pe.com.app.unibell.appunibell.DAO.S_Sem_EmpresaDAO;
 import pe.com.app.unibell.appunibell.DAO.S_Sem_LocalDAO;
 import pe.com.app.unibell.appunibell.DAO.Tablas_AuxiliaresDAO;
+import pe.com.app.unibell.appunibell.DAO.UbigeoDAO;
 import pe.com.app.unibell.appunibell.R;
 
 public class Dialog_Fragment_Auxiliar extends DialogFragment {
@@ -42,7 +44,8 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
     private EditText tba_edttitulo;
 
     private Tablas_AuxiliaresDAO tablas_auxiliaresDAO = new Tablas_AuxiliaresDAO();
-    private S_Gem_VendedorDAO s_gem_vendedorAO = new S_Gem_VendedorDAO();
+    private S_Gem_VendedorDAO s_gem_vendedorDAO = new S_Gem_VendedorDAO();
+    private UbigeoDAO ubigeoDAO = new UbigeoDAO();
     private ParTablaDAO parTablaDAO = new ParTablaDAO();
     private CtaBncoDAO ctaBncoDAO = new CtaBncoDAO();
 
@@ -52,6 +55,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
     private S_Sem_Empresa_Adapter s_sem_empresa_adapter = null;
     private S_Sem_Local_Adapter s_sem_local_adapter = null;
     private S_Gem_Vendedor_Adapter s_gem_vendedor_adapter = null;
+    private Ubigeo_Adapter ubigeo_adapter = null;
 
     WindowManager.LayoutParams lWindowParams;
 
@@ -127,6 +131,9 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
             case 700:
                 tba_lbltitulo.setText("Seleccione un cobrador");
                 break;
+            case 800:
+                tba_lbltitulo.setText("Seleccione un distrito");
+                break;
         }
         try {
             DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
@@ -143,7 +150,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
         tba_edttitulo.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before,int count) {
 
-                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=700) {
+                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=700&& iTabla!=800) {
                     if(tab_lvauxiliar.getAdapter()!=null) {
                         Tablas_Auxiliares_Adapter ca = (Tablas_Auxiliares_Adapter) tab_lvauxiliar.getAdapter();
                         ca.getFilter().filter(s.toString());
@@ -182,6 +189,14 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
                 if(!s.equals("") && iTabla==700) {
                     if(tab_lvauxiliar.getAdapter()!=null) {
                         S_Gem_Vendedor_Adapter ca = (S_Gem_Vendedor_Adapter) tab_lvauxiliar.getAdapter();
+                        ca.getFilter().filter(s.toString());
+                    }
+                }
+
+
+                if(!s.equals("") && iTabla==800) {
+                    if(tab_lvauxiliar.getAdapter()!=null) {
+                        Ubigeo_Adapter ca = (Ubigeo_Adapter) tab_lvauxiliar.getAdapter();
                         ca.getFilter().filter(s.toString());
                     }
                 }
@@ -233,8 +248,15 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
                     editor_Shared.commit();
                 }
 
+                //DISTRITOS
+                if(iTabla==800) {
+                    editor_Shared.putString("iCOD_UBIGEO", ubigeo_adapter.getItem(position).getCODUBIGEO().toString());
+                    editor_Shared.putString("iNOM_UBIGEO", ubigeo_adapter.getItem(position).getNOMBRE());
+                    editor_Shared.commit();
+                }
 
-                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600 && iTabla!=700) {
+
+                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600 && iTabla!=700&& iTabla!=800) {
                     editor_Shared.putString("ICODTABAUX", tablas_auxiliares_adapter.getItem(position).getCODIGO().toString());
                     editor_Shared.putString("IDESTABAUX", tablas_auxiliares_adapter.getItem(position).getDESCRIPCION());
                     editor_Shared.putString("COD_FPAGO", tablas_auxiliares_adapter.getItem(position).getCODIGO().toString());
@@ -301,8 +323,14 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
             new LoadVendedoresSQLite_AsyncTask().execute("0");
         }
 
+        //VENDEDORES
+        if(iTabla==800) {
+            new LoadUbigeoSQLite_AsyncTask().execute("0");
+        }
+
+
         //AUXILIARES
-        if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600 && iTabla!=700) {
+        if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600 && iTabla!=700&& iTabla!=800) {
             new LoadAuxiliaresSQLite_AsyncTask().execute(iTabla.toString());
         }
 
@@ -317,7 +345,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
                 DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
                 dataBaseHelper.createDataBase();
                 dataBaseHelper.openDataBase();
-                s_gem_vendedorAO.getAll(p[0]);
+                s_gem_vendedorDAO.getAll(p[0]);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -333,7 +361,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
         protected void onPostExecute(String restResult) {
             super.onPostExecute(restResult);
             try {
-                s_gem_vendedor_adapter = new S_Gem_Vendedor_Adapter(getContext(), 0, s_gem_vendedorAO.lst);
+                s_gem_vendedor_adapter = new S_Gem_Vendedor_Adapter(getContext(), 0, s_gem_vendedorDAO.lst);
                 s_gem_vendedor_adapter.notifyDataSetChanged();
                 tab_lvauxiliar.setAdapter(s_gem_vendedor_adapter);
             } catch (Exception ex) {
@@ -342,8 +370,36 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
     }
 
 
+    private class LoadUbigeoSQLite_AsyncTask extends AsyncTask<String, String,String> {
+        @Override
+        protected String doInBackground(String... p) {
+            try {
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
+                dataBaseHelper.createDataBase();
+                dataBaseHelper.openDataBase();
+                ubigeoDAO.getDistritos("150101"); //LISTAR DISTRITOS DE LIMA 150101
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return null;
+        }
 
+        @Override
+        protected void onPreExecute() {
 
+        }
+
+        @Override
+        protected void onPostExecute(String restResult) {
+            super.onPostExecute(restResult);
+            try {
+                ubigeo_adapter = new Ubigeo_Adapter(getContext(), 0, ubigeoDAO.lst);
+                ubigeo_adapter.notifyDataSetChanged();
+                tab_lvauxiliar.setAdapter(ubigeo_adapter);
+            } catch (Exception ex) {
+            }
+        }
+    }
 
     private class LoadAuxiliaresSQLite_AsyncTask extends AsyncTask<String, String,String> {
         @Override

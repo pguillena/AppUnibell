@@ -85,12 +85,15 @@ public class Funciones {
     }*/
 
     public static String FormatDecimal(String valor) {
-        String Resultado;
-        DecimalFormatSymbols simbolo = new DecimalFormatSymbols();
+       String Resultado;
+    /*    DecimalFormatSymbols simbolo = new DecimalFormatSymbols();
         simbolo.setDecimalSeparator('.');
         simbolo.setGroupingSeparator(',');
         DecimalFormat formato_entero = new DecimalFormat("###,###.00", simbolo);
         Resultado = String.valueOf(formato_entero.format((Double.valueOf(valor))));
+*/
+        Resultado = String.valueOf((float)Math.round(Double.valueOf(valor) * 100) / 100);
+
         return Resultado;
     }
 

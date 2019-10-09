@@ -90,6 +90,7 @@ public interface ConstantsLibrary {
         public static final String blvem_cliente_vendedor = "/blvem_cliente_vendedor";
         public static final String blvem_visita_cab = "/blvem_visita_cab";
         public static final String blvem_visita_det = "/blvem_visita_det";
+        public static final String blubigeo = "/blubigeo";
 
 
 

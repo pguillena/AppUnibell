@@ -18,6 +18,7 @@
     <string name="clientesBL">Clientes Sincronizados,</string>
     <string name="cliente_vendedorBL">Cliente Vendedor Sincronizados,</string>
     <string name="visitaBL">Visitas Sincronizados,</string>
+    <string name="ubigeoBL">Ubigeo Sincronizado,</string>
     <string name="ctaBncoBL">Cuentas corrientes Sincronizadas,</string>
     <string name="documentos_Cobra_CabBL">Documentos de cobranzas Cab Sincronizados,</string>
     <string name="documentos_Cobra_DetBL">Documentos de cobranzas Det Sincronizados,</string>

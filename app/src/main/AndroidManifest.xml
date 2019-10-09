@@ -74,6 +74,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".Clientes.Activity_Filtro_Visita"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".Main.Activity_Login"
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait">

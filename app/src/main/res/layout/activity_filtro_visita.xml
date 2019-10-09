@@ -1,0 +1,138 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_main_unibell"
+
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            xmlns:fab="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/pad_20dp"
+            >
+
+            <TextView
+                android:id="@+id/lblFechaFiltroVisita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha recorrido"
+                android:paddingLeft="15dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_login_unibell"
+                />
+
+            <TextView
+                android:id="@+id/ddlFechaFiltroVisita"
+                style="@style/SkyTextViewStyleSpinnerUnibellBusqueda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Elija una fecha"
+                android:textSize="16dp"
+                android:paddingLeft="15dp"
+                />
+
+
+
+            <TextView
+                android:id="@+id/lblRazonSocialFiltroVisita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Razón social"
+                android:paddingLeft="15dp"
+                android:textSize="14dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/label_login_unibell"
+                />
+
+            <android.support.v7.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/txtRazonSocialFiltroVisita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ejm: Estilista E.I.R.L"
+                android:textSize="16dp"
+                android:padding="15dp"
+                style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+                android:maxLines="1"
+                android:inputType="text"
+                android:imeOptions="actionNext"
+                />
+
+            <TextView
+                android:id="@+id/lblCodigoClienteFiltroVisita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Codigo"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_login_unibell"
+                />
+
+
+            <EditText
+                android:id="@+id/txtCodigoClienteFiltroVisita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ejm: 001245i"
+                android:textSize="16dp"
+                android:padding="15dp"
+                style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+                android:maxLines="1"
+                android:inputType="text"
+                android:imeOptions="actionNext"
+                />
+
+
+
+
+            <TextView
+                android:id="@+id/lblDistritoFiltroVisita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Distrito"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_login_unibell"
+                />
+
+            <TextView
+                android:id="@+id/ddlDistritoFiltroVisita"
+                style="@style/SkyTextViewStyleSpinnerUnibellBusqueda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Elija un distrito"
+                android:textSize="16dp"
+                android:paddingLeft="15dp"
+                />
+
+
+
+
+            <Button
+                android:id="@+id/btnBuscarRecorrido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Buscar"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:padding="15dp"
+                android:background="@drawable/borderradiusbutton"
+                android:textColor="@color/label_blanco_login_unibell"
+
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
