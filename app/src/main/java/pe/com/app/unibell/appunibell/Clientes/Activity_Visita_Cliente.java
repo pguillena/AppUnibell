@@ -55,7 +55,7 @@ public class Activity_Visita_Cliente extends AppCompatActivity {
             FloatingActionButton fabVisitaFiltro = (FloatingActionButton) findViewById(R.id.fabVisitaFiltro);
             fabVisitaFiltro.setOnClickListener(OnClickListener_fabVisitaFiltro);
 
-           // BuscarVisita();
+            Cargar();
 
 
 
@@ -151,24 +151,24 @@ public class Activity_Visita_Cliente extends AppCompatActivity {
 
         String fecha = new Funciones().FechaActual();
 
-        if(!hdfFechaVisita.equals("XXX") && !hdfFechaVisita.equals("") )
+        if(hdfFechaVisita!=null && !hdfFechaVisita.equals("XXX") && !hdfFechaVisita.equals("") )
         {
             fecha = hdfFechaVisita;
         }
 
         String fechaFormateada = fecha.substring(6,10) + fecha.substring(3,5)+ fecha.substring(0,2);
 
-        if(hdfRazonSocial.equals(""))
+        if(hdfRazonSocial == null || hdfRazonSocial.equals(""))
         {
             hdfRazonSocial ="XXX";
         }
 
-        if(hdfCodigoCliente.equals(""))
+        if(hdfCodigoCliente == null || hdfCodigoCliente.equals(""))
         {
             hdfCodigoCliente ="XXX";
         }
 
-        if(hdfDistritoVisita.equals(""))
+        if(hdfDistritoVisita == null || hdfDistritoVisita.equals(""))
         {
             hdfDistritoVisita ="XXX";
         }

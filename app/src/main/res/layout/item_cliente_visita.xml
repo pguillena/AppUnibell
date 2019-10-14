@@ -5,9 +5,17 @@
     android:background="@color/label_login_titulo_unibell"
     android:paddingRight="@dimen/pad_20dp"
     android:paddingLeft="@dimen/pad_20dp"
-    android:paddingTop="@dimen/pad_20dp"
     android:paddingBottom="@dimen/pad_20dp"
     >
+
+    <ImageView
+        android:id="@+id/ivMarkerVisita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/marker_visita"
+        android:layout_alignParentRight="true"
+
+        />
 
     <TextView
         android:id="@+id/lblVisitaCliente"
@@ -15,6 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Cliente"
         android:textSize="16dp"
+        android:layout_marginTop="@dimen/pad_20dp"
         android:textColor="@color/Button_login_unibell"
         android:fontFamily="@font/sf_pro_display_medium"
         />

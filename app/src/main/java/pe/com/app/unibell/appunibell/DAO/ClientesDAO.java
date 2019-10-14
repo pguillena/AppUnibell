@@ -182,6 +182,9 @@ public class ClientesDAO {
         if (iC_PACKING.equals("")){
             iC_PACKING="0";
         }
+
+        iRAZON_SOCIAL  = iRAZON_SOCIAL.trim();
+
         Integer iIngreso=0;
         ClientesBE clientesBE = null;
         String SQL="",SQL_TIPO_VENDEDOR="",TIPO_VENDEDOR="80001";
@@ -199,19 +202,16 @@ public class ClientesDAO {
             }
             //SI ROL=SUPERVISOR
             if (iROL.equals("130014")) {
-                SQL="SELECT DISTINCT A.ID_CLIENTE, A.RAZON_SOCIAL,A.ID_CANAL,IFNULL(CA.CODIGO_ANTIGUO,'') AS CODIGO_ANTIGUO,\n"+
-                "0 AS M_PAE,A.I_CANC_ANTIGUO \n"+
-                " FROM S_GEM_CLIENTE A  INNER JOIN S_GEA_VENDEDOR_CLIENTE J \n"+
-                " ON(A.ID_CLIENTE = J.ID_CLIENTE) INNER JOIN S_GEA_VENDEDOR_SUPERVISOR V \n"+
-                " ON(J.ID_VENDEDOR = V.ID_VENDEDOR) INNER JOIN S_GEM_CLIENTE_CODIGO_ANT CA \n"+
+                SQL="SELECT DISTINCT A.ID_CLIENTE, A.RAZON_SOCIAL, A.ID_CANAL, IFNULL(CA.CODIGO_ANTIGUO,'') AS CODIGO_ANTIGUO, \n"+
+                " 0 AS M_PAE, A.I_CANC_ANTIGUO \n"+
+                " FROM S_GEM_CLIENTE A  INNER JOIN S_GEM_CLIENTE_CODIGO_ANT CA \n"+
                 " ON(A.ID_CLIENTE=CA.ID_CLIENTE AND CA.FLAG_VIGENCIA=1)"+
-                "  WHERE (V.ID_SUPERVISOR =" + iID_VENDEDOR + " OR " +  iID_VENDEDOR + "=0) \n"+
-                " AND IFNULL(A.RUC,'') LIKE '%" + iRUC + "%' \n"+
+                " WHERE IFNULL(A.RUC,'') LIKE '%" + iRUC + "%' \n"+
                 " AND IFNULL(A.DNI,'') LIKE '%" + iDNI + "%' \n"+
-                " AND UPPER(ifnull(A.RAZON_SOCIAL,'')) LIKE UPPER('% " + iRAZON_SOCIAL + "%') \n"+
-                " AND UPPER(ifnull(CA.CODIGO_ANTIGUO,'')) LIKE UPPER('%" + iCODIGO_ANTIGUO + "%') \n"+
-                " AND (A.ID_GRUPO ="+  iID_GRUPO + " OR " + iID_GRUPO + "= 0) \n" +
-                " AND A.ESTADO <> 40002  LIMIT 50";
+                " AND UPPER(IFNULL(A.RAZON_SOCIAL,'')) LIKE UPPER('%" + iRAZON_SOCIAL + "%') \n"+
+                " AND UPPER(IFNULL(CA.CODIGO_ANTIGUO,'')) LIKE UPPER('%" + iCODIGO_ANTIGUO + "%') \n"+
+                " AND (A.ID_GRUPO ="+  iID_GRUPO + " OR " + iID_GRUPO + "= 0) ";
+
                 iIngreso=1;
             }
             if (iROL.equals("130019") || iROL.equals("130008")  &&  iIngreso==0) {
@@ -243,7 +243,7 @@ public class ClientesDAO {
                             " CLI.RAZON_SOCIAL," +
                             " CLI.ID_CANAL," +
                             " D.COD_CLIENTE" +
-                            " ORDER BY CLI.RAZON_SOCIAL ASC LIMIT 50";
+                            " ORDER BY CLI.RAZON_SOCIAL ASC";
                 iIngreso=1;
             }
             if (TIPO_VENDEDOR.equals("80001") &&  iIngreso==0){

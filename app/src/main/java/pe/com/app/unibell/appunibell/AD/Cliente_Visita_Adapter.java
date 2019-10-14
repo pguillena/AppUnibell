@@ -1,5 +1,6 @@
 package pe.com.app.unibell.appunibell.AD;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,14 +9,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Filterable;
 import android.widget.Filter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import pe.com.app.unibell.appunibell.BE.VisitaDetBE;
+import pe.com.app.unibell.appunibell.Clientes.Activity_EstadoCuenta;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.Funciones;
+
+import static android.content.Context.MODE_PRIVATE;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class Cliente_Visita_Adapter extends ArrayAdapter<VisitaDetBE> implements Filterable {
 
@@ -36,6 +42,7 @@ public class Cliente_Visita_Adapter extends ArrayAdapter<VisitaDetBE> implements
     static class MainHolder {
         TextView txtVisitaCliente, txtVisitaDireccion, txtVisitaFrecuencia, txtVisitaSituacion, txtVisitaDias, txtVisitaTotalDeuda;
         Button btnVisita;
+        ImageView ivMarkerVisita;
 
     }
 
@@ -52,6 +59,7 @@ public class Cliente_Visita_Adapter extends ArrayAdapter<VisitaDetBE> implements
             mainHolder.txtVisitaDias = (TextView) convertView.findViewById(R.id.txtVisitaDias);
             mainHolder.txtVisitaTotalDeuda = (TextView) convertView.findViewById(R.id.txtVisitaTotalDeuda);
             mainHolder.btnVisita = (Button)convertView.findViewById(R.id.btnVisita);
+            mainHolder.ivMarkerVisita = (ImageView) convertView.findViewById(R.id.ivMarkerVisita);
 
 
             convertView.setTag(mainHolder);
@@ -59,12 +67,21 @@ public class Cliente_Visita_Adapter extends ArrayAdapter<VisitaDetBE> implements
             mainHolder = (MainHolder) convertView.getTag();
         }
         final VisitaDetBE visitaDetBE = getItem(position);
-        mainHolder.txtVisitaCliente.setText( new Funciones().LetraCapital(visitaDetBE.getC_CLIENTE().toString().trim() +"-"+ visitaDetBE.getRAZON_SOCIAL().toString().trim()));
+        mainHolder.txtVisitaCliente.setText( new Funciones().LetraCapital(visitaDetBE.getC_CLIENTE().toString().trim() +" - "+ visitaDetBE.getRAZON_SOCIAL().toString().trim()));
         mainHolder.txtVisitaDireccion.setText( new Funciones().LetraCapital(visitaDetBE.getDIRECCION().toString().trim() ));
         mainHolder.txtVisitaFrecuencia.setText( new Funciones().LetraCapital(visitaDetBE.getFRECUENCIA_VISITA().toString().trim() ));
         mainHolder.txtVisitaSituacion.setText( new Funciones().LetraCapital(visitaDetBE.getSITUACION().toString().trim() ));
         mainHolder.txtVisitaDias.setText( new Funciones().LetraCapital(visitaDetBE.getDIAS().toString().trim() ));
         mainHolder.txtVisitaTotalDeuda.setText( new Funciones().LetraCapital(String.valueOf(visitaDetBE.getTOTAL_DEUDA())));
+
+        if(visitaDetBE.getVISITADO()>0)
+        {
+            mainHolder.ivMarkerVisita.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            mainHolder.ivMarkerVisita.setVisibility(View.GONE);
+        }
 
         mainHolder.btnVisita.setTag(position);
 
@@ -75,6 +92,28 @@ public class Cliente_Visita_Adapter extends ArrayAdapter<VisitaDetBE> implements
             }
         });
 
+
+
+        mainHolder.txtVisitaCliente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    notifyDataSetChanged();
+                    sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
+                    editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+
+                    editor_Shared.putString("CODIGO_ANTIGUO", visitaDetBE.getC_CLIENTE().toString());
+                    editor_Shared.putString("RAZON_SOCIAL", visitaDetBE.getRAZON_SOCIAL().toString());
+                    editor_Shared.commit();
+
+                    Intent intent = new Intent(getContext().getApplicationContext(), Activity_EstadoCuenta.class);
+                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
+                }catch (Exception ex) {
+                }
+
+            }
+        });
 
         return convertView;
     }

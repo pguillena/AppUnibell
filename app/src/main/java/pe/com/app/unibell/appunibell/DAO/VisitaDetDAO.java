@@ -65,7 +65,7 @@ public class VisitaDetDAO {
                         "         WHERE N_INFORME = D.N_INFORME\n" +
                         "           AND N_SEQUENCIA = D.N_SEQUENCIA\n" +
                         "           AND C_CLIENTE = D.C_CLIENTE\n" +
-                        "           AND HORA_S IS NOT NULL) VISITADO\n"+
+                        "           AND HORA_S <> '' ) VISITADO\n"+
                         "  FROM VEM_VISITA_CAB A\n" +
                         " INNER JOIN VEM_VISITA_DET D\n" +
                         "    ON (A.N_INFORME = D.N_INFORME)\n" +
