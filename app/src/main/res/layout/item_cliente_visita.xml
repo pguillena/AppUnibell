@@ -18,14 +18,39 @@
         />
 
     <TextView
+        android:id="@+id/lblVisitaFecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha visita"
+        android:textSize="16dp"
+        android:layout_marginTop="@dimen/pad_20dp"
+        android:textColor="@color/Button_login_unibell"
+        android:fontFamily="@font/sf_pro_display_medium"
+        />
+
+    <TextView
+        android:id="@+id/txtVisitaFecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="15/10/2019"
+        android:textSize="16dp"
+        android:focusable="false"
+        android:textColor="@color/label_color_menu"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:layout_below="@id/lblVisitaFecha"
+        />
+
+
+    <TextView
         android:id="@+id/lblVisitaCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cliente"
         android:textSize="16dp"
-        android:layout_marginTop="@dimen/pad_20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/Button_login_unibell"
         android:fontFamily="@font/sf_pro_display_medium"
+        android:layout_below="@id/txtVisitaFecha"
         />
 
     <TextView

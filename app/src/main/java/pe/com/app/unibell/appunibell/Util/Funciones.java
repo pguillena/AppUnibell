@@ -484,5 +484,21 @@ public class Funciones {
 
     }
 
+    static public Boolean CheckBoolean(String value)
+    {
+        boolean salida = false;
+
+        if (value!=null && (value.equals("1") || value.trim().toUpperCase().equals("TRUE") || value.trim().toUpperCase().equals("SI")))
+        {
+            salida = true;
+        }
+        else
+        {
+            salida = false;
+
+        }
+        return salida;
+    }
+
 
 }

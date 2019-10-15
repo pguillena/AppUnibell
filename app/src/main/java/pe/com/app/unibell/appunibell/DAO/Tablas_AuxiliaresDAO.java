@@ -9,7 +9,7 @@ import pe.com.app.unibell.appunibell.Util.Funciones;
 public class Tablas_AuxiliaresDAO {
     public ArrayList<Tablas_AuxiliaresBE> lst = null;
 
-    public void getAll(String pTIPO) {
+    public void getAll(String pTIPO, String pROL) {
         Cursor cursor = null;
         Tablas_AuxiliaresBE tablas_auxiliaresBE = null;
         String SQL="";
@@ -19,12 +19,35 @@ public class Tablas_AuxiliaresDAO {
                         "VALOR2,VALOR3,INDICADOR1,INDICADOR2,INDICADOR3," +
                         " INDICADOR4,ID_EMPRESA "+
                         " FROM Tablas_Auxiliares WHERE VALOR2='1' and (" + pTIPO + "=-1 OR TIPO=" + pTIPO + ") ORDER BY TIPO";
-            }else{
+            }
+            else  if(pTIPO.toString().trim().equals("44"))
+            {
+                if(pROL.toString().trim().equals("130013")) //Si es cobrador
+                {
+                    SQL="SELECT TIPO,CODIGO,DESCRIPCION,ABREVIADA,VALOR1," +
+                        "VALOR2,VALOR3,INDICADOR1,INDICADOR2,INDICADOR3," +
+                        " INDICADOR4,ID_EMPRESA "+
+                        " FROM Tablas_Auxiliares WHERE INDICADOR1 = 'C' AND TIPO =" + pTIPO+ " ORDER BY TIPO ";
+
+                }
+                else
+                {
+                    SQL="SELECT TIPO,CODIGO,DESCRIPCION,ABREVIADA,VALOR1," +
+                            "VALOR2,VALOR3,INDICADOR1,INDICADOR2,INDICADOR3," +
+                            " INDICADOR4,ID_EMPRESA "+
+                            " FROM Tablas_Auxiliares WHERE INDICADOR2 = 'V' AND TIPO =" + pTIPO+ " ORDER BY TIPO ";
+
+                }
+
+            }
+            else{
                 SQL="SELECT TIPO,CODIGO,DESCRIPCION,ABREVIADA,VALOR1," +
                         "VALOR2,VALOR3,INDICADOR1,INDICADOR2,INDICADOR3," +
                         " INDICADOR4,ID_EMPRESA "+
                         " FROM Tablas_Auxiliares WHERE (" + pTIPO + "=-1 OR TIPO=" + pTIPO + ") ORDER BY TIPO";
             }
+
+
 
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);

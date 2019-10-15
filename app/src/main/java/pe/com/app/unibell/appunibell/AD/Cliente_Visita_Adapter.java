@@ -1,4 +1,5 @@
 package pe.com.app.unibell.appunibell.AD;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import pe.com.app.unibell.appunibell.BE.VisitaDetBE;
 import pe.com.app.unibell.appunibell.Clientes.Activity_EstadoCuenta;
+import pe.com.app.unibell.appunibell.Clientes.Activity_Regitro_Visita;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 
@@ -40,7 +42,7 @@ public class Cliente_Visita_Adapter extends ArrayAdapter<VisitaDetBE> implements
     }
 
     static class MainHolder {
-        TextView txtVisitaCliente, txtVisitaDireccion, txtVisitaFrecuencia, txtVisitaSituacion, txtVisitaDias, txtVisitaTotalDeuda;
+        TextView txtVisitaCliente, txtVisitaDireccion, txtVisitaFrecuencia, txtVisitaSituacion, txtVisitaDias, txtVisitaTotalDeuda, txtVisitaFecha;
         Button btnVisita;
         ImageView ivMarkerVisita;
 
@@ -60,6 +62,7 @@ public class Cliente_Visita_Adapter extends ArrayAdapter<VisitaDetBE> implements
             mainHolder.txtVisitaTotalDeuda = (TextView) convertView.findViewById(R.id.txtVisitaTotalDeuda);
             mainHolder.btnVisita = (Button)convertView.findViewById(R.id.btnVisita);
             mainHolder.ivMarkerVisita = (ImageView) convertView.findViewById(R.id.ivMarkerVisita);
+            mainHolder.txtVisitaFecha = (TextView) convertView.findViewById(R.id.txtVisitaFecha);
 
 
             convertView.setTag(mainHolder);
@@ -73,6 +76,7 @@ public class Cliente_Visita_Adapter extends ArrayAdapter<VisitaDetBE> implements
         mainHolder.txtVisitaSituacion.setText( new Funciones().LetraCapital(visitaDetBE.getSITUACION().toString().trim() ));
         mainHolder.txtVisitaDias.setText( new Funciones().LetraCapital(visitaDetBE.getDIAS().toString().trim() ));
         mainHolder.txtVisitaTotalDeuda.setText( new Funciones().LetraCapital(String.valueOf(visitaDetBE.getTOTAL_DEUDA())));
+        mainHolder.txtVisitaFecha.setText(visitaDetBE.getF_VISITA().toString());
 
         if(visitaDetBE.getVISITADO()>0)
         {
@@ -88,7 +92,18 @@ public class Cliente_Visita_Adapter extends ArrayAdapter<VisitaDetBE> implements
         mainHolder.btnVisita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    notifyDataSetChanged();
+                    Intent intent = new Intent(getContext().getApplicationContext(), Activity_Regitro_Visita.class);
 
+                    intent.putExtra("N_INFORME",visitaDetBE.getN_INFORME().toString());
+                    intent.putExtra("N_SEQUENCIA",visitaDetBE.getN_SEQUENCIA().toString());
+                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
+
+                } catch (Exception ex) {
+
+                }
             }
         });
 

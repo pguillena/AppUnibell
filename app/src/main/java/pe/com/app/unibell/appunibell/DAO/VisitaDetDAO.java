@@ -42,7 +42,8 @@ public class VisitaDetDAO {
                 cursor.close();
             }
 
-                SQL="SELECT CLI.COD_UBC,    \n" +
+                SQL="SELECT     A.F_VISITA,  \n" +
+                        "       CLI.COD_UBC, \n" +
                         "            CASE \n" +
                         "              WHEN CLI.I_SITUACION = 'A' THEN 1\n" +
                         "              WHEN CLI.I_SITUACION = 'I' THEN 2 \n" +
@@ -112,9 +113,10 @@ public class VisitaDetDAO {
                     visitaDetBE.setDIRECCION(Funciones.isNullColumn(cursor,"DIRECCION","").toString());
                     visitaDetBE.setFRECUENCIA_VISITA(Funciones.isNullColumn(cursor,"FRECUENCIA_VISITA","").toString());
                     visitaDetBE.setORDEN_VISITA(Funciones.isNullColumn(cursor,"ORDEN_VISITA",0));
-                    visitaDetBE.setN_SEQUENCIA(Funciones.isNullColumn(cursor,"N_SEQUENCIA",""));
+                    visitaDetBE.setN_SEQUENCIA(Funciones.isNullColumn(cursor,"N_SEQUENCIA",0));
                     visitaDetBE.setHORA_I(Funciones.isNullColumn(cursor,"HORA_I",""));
                     visitaDetBE.setVISITADO(Funciones.isNullColumn(cursor,"VISITADO",0));
+                    visitaDetBE.setF_VISITA(Funciones.isNullColumn(cursor,"F_VISITA",""));
 
                     lst.add(visitaDetBE);
                 } while (cursor.moveToNext());
@@ -126,6 +128,106 @@ public class VisitaDetDAO {
                 cursor.close();
         }
     }
+
+
+
+
+    public void getVisita(    String iN_INFORME,
+                              String iN_SEQUENCIA) {
+
+        Cursor cursor = null;
+
+        VisitaDetBE visitaDetBE = null;
+        String SQL = "";
+
+        try {
+
+
+            SQL="SELECT     A.N_INFORME,\n" +
+                    "       A.N_SEQUENCIA,\n" +
+                    "       A.C_CLIENTE,\n" +
+                    "       S.NOMBRE AS NOMBRE_CLIENTE,\n" +
+                    "       A.CONTACTO,\n" +
+                    "       A.HORA_I,\n" +
+                    "       A.HORA_S,\n" +
+                    "       A.GESTION_V,\n" +
+                    "       A.GESTION_C,\n" +
+                    "       A.RESULTADO_V,\n" +
+                    "       A.RESULTADO_C,\n" +
+                    "       A.OBJECION_V,\n" +
+                    "       A.OBJECION_C,\n" +
+                    "       A.OBJECION_O,\n" +
+                    "       A.C_VENDEDOR,\n" +
+                    "       A.C_USUARIO,\n" +
+                    "       A.C_PERFIL,\n" +
+                    "       A.C_CPU,\n" +
+                    "       A.F_REGISTRO,\n" +
+                    "       A.C_USUARIO_MOD,\n" +
+                    "       A.C_PERFIL_MOD,\n" +
+                    "       A.F_MODIFICA,\n" +
+                    "       A.C_CPU_MOD,\n" +
+                    "       A.GESTION_O,\n" +
+                    "       A.OBSERVACION,\n" +
+                    "       A.M_PEDIDO,\n" +
+                    "       A.M_COBRANZA,\n" +
+                    "       A.NUEVO_DIA_VISITA,\n" +
+                    "       A.M_FACTURADO,\n" +
+                    "       A.NUEVO_DIA_COBRANZA\n" +
+                    "  FROM VEM_VISITA_DET A INNER JOIN CLIENTES S \n" +
+                    "    ON(A.C_CLIENTE = S.COD_CLIENTE) \n" +
+                    " WHERE N_INFORME = "+iN_INFORME+" AND  N_SEQUENCIA = "+iN_SEQUENCIA;
+
+
+            cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
+            lst = new ArrayList<VisitaDetBE>();
+            lst.clear();
+            if (cursor.moveToFirst()) {
+                do {
+                    visitaDetBE = new VisitaDetBE();
+                    visitaDetBE.setN_INFORME(Funciones.isNullColumn(cursor,"N_INFORME",0));
+                    visitaDetBE.setN_SEQUENCIA(Funciones.isNullColumn(cursor,"N_SEQUENCIA",0));
+                    visitaDetBE.setC_CLIENTE(Funciones.isNullColumn(cursor,"C_CLIENTE",""));
+                    visitaDetBE.setNOMBRE_CLIENTE(Funciones.isNullColumn(cursor,"NOMBRE_CLIENTE",""));
+                    visitaDetBE.setCONTACTO(Funciones.isNullColumn(cursor,"CONTACTO",""));
+                    visitaDetBE.setHORA_I(Funciones.isNullColumn(cursor,"HORA_I",""));
+                    visitaDetBE.setHORA_S(Funciones.isNullColumn(cursor,"HORA_S",""));
+                    visitaDetBE.setGESTION_V(Funciones.isNullColumn(cursor,"GESTION_V",""));
+                    visitaDetBE.setGESTION_C(Funciones.isNullColumn(cursor,"GESTION_C",""));
+                    visitaDetBE.setRESULTADO_V(Funciones.isNullColumn(cursor,"RESULTADO_V",""));
+                    visitaDetBE.setRESULTADO_C(Funciones.isNullColumn(cursor,"RESULTADO_C",""));
+                    visitaDetBE.setOBJECION_V(Funciones.isNullColumn(cursor,"OBJECION_V",""));
+                    visitaDetBE.setOBJECION_C(Funciones.isNullColumn(cursor,"OBJECION_C",""));
+                    visitaDetBE.setOBJECION_O(Funciones.isNullColumn(cursor,"OBJECION_O",""));
+                    visitaDetBE.setC_VENDEDOR(Funciones.isNullColumn(cursor,"C_VENDEDOR",""));
+                    visitaDetBE.setC_USUARIO(Funciones.isNullColumn(cursor,"C_USUARIO",""));
+                    visitaDetBE.setC_PERFIL(Funciones.isNullColumn(cursor,"C_PERFIL",""));
+                    visitaDetBE.setC_CPU(Funciones.isNullColumn(cursor,"C_CPU",""));
+                    visitaDetBE.setF_REGISTRO(Funciones.isNullColumn(cursor,"F_REGISTRO",""));
+                    visitaDetBE.setC_USUARIO_MOD(Funciones.isNullColumn(cursor,"C_USUARIO_MOD",""));
+                    visitaDetBE.setC_PERFIL_MOD(Funciones.isNullColumn(cursor,"C_PERFIL_MOD",""));
+                    visitaDetBE.setF_MODIFICA(Funciones.isNullColumn(cursor,"F_MODIFICA",""));
+                    visitaDetBE.setC_CPU_MOD(Funciones.isNullColumn(cursor,"C_CPU_MOD",""));
+                    visitaDetBE.setGESTION_O(Funciones.isNullColumn(cursor,"GESTION_O",""));
+                    visitaDetBE.setOBSERVACION(Funciones.isNullColumn(cursor,"OBSERVACION",""));
+                    visitaDetBE.setM_PEDIDO(Funciones.isNullColumn(cursor,"M_PEDIDO",0));
+                    visitaDetBE.setM_COBRANZA(Funciones.isNullColumn(cursor,"M_COBRANZA",0));
+                    visitaDetBE.setNUEVO_DIA_VISITA(Funciones.isNullColumn(cursor,"NUEVO_DIA_VISITA",""));
+                    visitaDetBE.setM_FACTURADO(Funciones.isNullColumn(cursor,"M_FACTURADO",0));
+                    visitaDetBE.setNUEVO_DIA_COBRANZA(Funciones.isNullColumn(cursor,"NUEVO_DIA_COBRANZA",""));
+
+
+
+                    lst.add(visitaDetBE);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+    }
+
 
 
 

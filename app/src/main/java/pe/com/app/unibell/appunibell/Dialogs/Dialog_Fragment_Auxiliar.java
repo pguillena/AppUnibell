@@ -106,6 +106,15 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
         tba_edttitulo = (EditText) view.findViewById(R.id.tba_edttitulo);
 
         switch(iTabla) {
+            case 45:
+                tba_lbltitulo.setText("¿Por qué no se vendió?");
+                break;
+            case 44:
+                tba_lbltitulo.setText("¿Por qué no se cobro?");
+                break;
+            case 52:
+                tba_lbltitulo.setText("Seleccione una objeción");
+                break;
             case 14:
                 tba_lbltitulo.setText("Seleccione una forma de pago");
                 break;
@@ -331,7 +340,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
 
         //AUXILIARES
         if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600 && iTabla!=700&& iTabla!=800) {
-            new LoadAuxiliaresSQLite_AsyncTask().execute(iTabla.toString());
+            new LoadAuxiliaresSQLite_AsyncTask().execute(iTabla.toString(), iRol.toString());
         }
 
     }
@@ -409,7 +418,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
                 dataBaseHelper.createDataBase();
                 dataBaseHelper.openDataBase();
 
-                tablas_auxiliaresDAO.getAll(p[0]);
+                tablas_auxiliaresDAO.getAll(p[0], p[1]);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

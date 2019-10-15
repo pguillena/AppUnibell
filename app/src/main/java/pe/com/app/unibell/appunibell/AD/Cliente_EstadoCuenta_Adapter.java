@@ -112,7 +112,7 @@ public class Cliente_EstadoCuenta_Adapter extends ArrayAdapter<FactCobBE> implem
         mainHolder.cp_itemSaldo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                notifyDataSetChanged();
+
                 notifyDataSetChanged();
                 try {
                     sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);

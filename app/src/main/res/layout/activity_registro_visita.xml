@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/label_login_titulo_unibell"
+    >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/dw_top"
+            android:paddingLeft="@dimen/pad_20dp"
+            android:paddingBottom="@dimen/pad_10dp"
+            >
+            <TextView
+                android:id="@+id/lblTituloVisita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cliente"
+                android:fontFamily="@font/sf_pro_display_light"
+                android:textSize="14dp"
+                android:textColor="@color/label_blanco_login_unibell"
+                />
+
+            <TextView
+                android:id="@+id/txtNombreClienteVisita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Elvis Galindo León"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textSize="18dp"
+                android:textColor="@color/label_blanco_login_unibell"
+                />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/pad_20dp"
+            android:paddingLeft="@dimen/pad_20dp"
+            android:paddingBottom="@dimen/pad_20dp"
+        >
+        <TextView
+            android:id="@+id/lblHoraInicio"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Hora inicio"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_marginTop="@dimen/pad_10dp"
+            />
+        <TextView
+            android:id="@+id/lblHoraFin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hora fin"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_toRightOf="@id/lblHoraInicio"
+            android:layout_marginTop="@dimen/pad_10dp"
+            />
+
+            <TextView
+                android:id="@+id/txtHoraInicio"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_light"
+                android:textColor="@color/label_color_menu"
+                android:layout_below="@id/lblHoraInicio"
+                />
+
+            <TextView
+                android:id="@+id/txtHoraFin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_light"
+                android:textColor="@color/label_color_menu"
+                android:layout_below="@id/lblHoraFin"
+                android:layout_toRightOf="@id/txtHoraInicio"
+
+                />
+
+
+            <TextView
+                android:id="@+id/lblGestion"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Gestión"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_below="@id/txtHoraInicio"
+                />
+
+
+            <CheckBox
+                android:id="@+id/chkVenta"
+                android:layout_width="150dp"
+                android:text="Venta"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lblGestion"/>
+
+            <CheckBox
+                android:id="@+id/chkCobranza"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Cobranza"
+                android:layout_below="@id/chkVenta"/>
+
+
+            <CheckBox
+                android:id="@+id/chkOtros"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Otros"
+                android:layout_below="@id/chkCobranza"/>
+
+
+            <TextView
+                android:id="@+id/lblResultado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Resultado"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_toRightOf="@id/lblGestion"
+                android:layout_below="@id/txtHoraFin"
+                />
+
+
+            <CheckBox
+                android:id="@+id/chkResultadoVenta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Venta"
+                android:layout_toRightOf="@id/chkVenta"
+                android:layout_below="@id/lblResultado"/>
+
+
+            <CheckBox
+                android:id="@+id/chkResultadoCobranza"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cobranza"
+                android:layout_toRightOf="@id/chkCobranza"
+                android:layout_below="@id/chkResultadoVenta"/>
+
+            <TextView
+                android:id="@+id/lblObjecionVenta"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Objeción de venta"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_below="@id/chkOtros"
+                />
+
+            <TextView
+                android:id="@+id/ddlObjecionVenta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="¿Por qué no se vendió?"
+                android:textSize="16dp"
+                style="@style/SkyTextViewStyleSpinnerUnibell"
+                android:paddingLeft="@dimen/pad_20dp"
+                android:tag="0"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_below="@id/lblObjecionVenta"
+                />
+
+            <TextView
+                android:id="@+id/lblObjecionCobro"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Objeción de cobro"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_below="@id/ddlObjecionVenta"
+                />
+
+            <TextView
+                android:id="@+id/ddlObjecionCobranza"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="¿Por qué no se cobró?"
+                android:textSize="16dp"
+                style="@style/SkyTextViewStyleSpinnerUnibell"
+                android:paddingLeft="@dimen/pad_20dp"
+                android:tag="0"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_below="@id/lblObjecionCobro"
+                />
+
+
+
+            <TextView
+                android:id="@+id/lblObjecionOtros"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Objeción otros"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_below="@id/ddlObjecionCobranza"
+                />
+
+
+
+            <TextView
+                android:id="@+id/ddlObjecionOtros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Otros"
+                android:textSize="16dp"
+                style="@style/SkyTextViewStyleSpinnerUnibell"
+                android:paddingLeft="@dimen/pad_20dp"
+                android:tag="0"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_below="@id/lblObjecionOtros"
+                />
+        </RelativeLayout>
+
+
+</LinearLayout>
+

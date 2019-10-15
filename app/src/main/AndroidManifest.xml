@@ -129,6 +129,9 @@
             android:name=".Clientes.Activity_EstadoCuenta"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Clientes.Activity_Regitro_Visita"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Cobranza.Activity_Cobranza_Recibo"
             android:screenOrientation="portrait" />
         <activity
