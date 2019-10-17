@@ -38,12 +38,19 @@
 
         </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:paddingRight="@dimen/pad_20dp"
             android:paddingLeft="@dimen/pad_20dp"
             android:paddingBottom="@dimen/pad_20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
         >
         <TextView
             android:id="@+id/lblHoraInicio"
@@ -89,6 +96,15 @@
 
                 />
 
+            <View
+                android:id="@+id/dvGestion"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Divider_color"
+                android:layout_below="@id/txtHoraFin"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_marginBottom="@dimen/pad_10dp"
+                />
 
             <TextView
                 android:id="@+id/lblGestion"
@@ -98,8 +114,7 @@
                 android:textSize="16dp"
                 android:fontFamily="@font/sf_pro_display_medium"
                 android:textColor="@color/Button_login_unibell"
-                android:layout_marginTop="@dimen/pad_10dp"
-                android:layout_below="@id/txtHoraInicio"
+                android:layout_below="@id/dvGestion"
                 />
 
 
@@ -134,9 +149,9 @@
                 android:textSize="16dp"
                 android:fontFamily="@font/sf_pro_display_medium"
                 android:textColor="@color/Button_login_unibell"
-                android:layout_marginTop="@dimen/pad_10dp"
+
                 android:layout_toRightOf="@id/lblGestion"
-                android:layout_below="@id/txtHoraFin"
+                android:layout_below="@id/dvGestion"
                 />
 
 
@@ -157,6 +172,18 @@
                 android:layout_toRightOf="@id/chkCobranza"
                 android:layout_below="@id/chkResultadoVenta"/>
 
+
+
+            <View
+                android:id="@+id/dvObjecion"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Divider_color"
+                android:layout_below="@id/chkOtros"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_marginBottom="@dimen/pad_10dp"
+                />
+
             <TextView
                 android:id="@+id/lblObjecionVenta"
                 android:layout_width="150dp"
@@ -165,8 +192,7 @@
                 android:textSize="16dp"
                 android:fontFamily="@font/sf_pro_display_medium"
                 android:textColor="@color/Button_login_unibell"
-                android:layout_marginTop="@dimen/pad_10dp"
-                android:layout_below="@id/chkOtros"
+                android:layout_below="@id/dvObjecion"
                 />
 
             <TextView
@@ -235,8 +261,177 @@
                 android:layout_marginTop="@dimen/pad_10dp"
                 android:layout_below="@id/lblObjecionOtros"
                 />
+
+            <View
+                android:id="@+id/dvCambio"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Divider_color"
+                android:layout_below="@id/ddlObjecionOtros"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_marginBottom="@dimen/pad_10dp"
+                />
+
+            <TextView
+                android:id="@+id/lblOtros"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Otros"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_below="@id/dvCambio"
+                />
+
+            <EditText
+                android:id="@+id/txtOtros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ingrese otro motivo"
+                android:textSize="16dp"
+                android:padding="15dp"
+                style="@style/SkyTextViewStyleUnibell"
+                android:maxLines="1"
+                android:inputType="text"
+                android:layout_below="@id/lblOtros"
+                android:layout_marginTop="@dimen/pad_10dp"
+                />
+
+            <TextView
+                android:id="@+id/lblCambioOrden"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Cambio de orden"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_below="@id/txtOtros"
+                android:layout_marginTop="@dimen/pad_10dp"
+                />
+
+            <EditText
+                android:id="@+id/txtCambioOrden"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Colocar el número de orden deseado"
+                android:textSize="16dp"
+                android:padding="15dp"
+                style="@style/SkyTextViewStyleUnibell"
+                android:maxLines="1"
+                android:inputType="number"
+                android:imeOptions="actionNext"
+                android:layout_below="@id/lblCambioOrden"
+                android:layout_marginTop="@dimen/pad_10dp"
+                />
+
+
+
+
+            <TextView
+                android:id="@+id/lblCambioCuadrante"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Cambio de cuadrante"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_below="@id/txtCambioOrden"
+                android:layout_marginTop="@dimen/pad_10dp"
+                />
+
+            <EditText
+                android:id="@+id/txtCambioCuadrante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Colocar el código del cuadrante"
+                android:textSize="16dp"
+                android:padding="15dp"
+                style="@style/SkyTextViewStyleUnibell"
+                android:maxLines="1"
+                android:inputType="text"
+                android:imeOptions="actionNext"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_below="@id/lblCambioCuadrante"
+                />
+
+            <TextView
+                android:id="@+id/lblCambioDia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cambio día de visita"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_below="@id/txtCambioCuadrante"
+                />
+
+            <TextView
+                android:id="@+id/ddlCambioDia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Elegir nuevo día de visita"
+                android:textSize="16dp"
+                style="@style/SkyTextViewStyleSpinnerUnibell"
+                android:paddingLeft="@dimen/pad_20dp"
+                android:tag="0"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_below="@id/lblCambioDia"
+                />
+
+            <TextView
+                android:id="@+id/lblCambioFrecuencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cambio de frecuencia"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_below="@id/ddlCambioDia"
+                />
+
+            <TextView
+                android:id="@+id/ddlCambioFrecuencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Elegir la nueva frecuencia de visita"
+                android:textSize="16dp"
+                style="@style/SkyTextViewStyleSpinnerUnibell"
+                android:paddingLeft="@dimen/pad_20dp"
+                android:tag="0"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_below="@id/lblCambioFrecuencia"
+                />
+
+
+
         </RelativeLayout>
 
+    </ScrollView>
+
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/lyTotalesLiquidacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/btnGrabarVisita"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@color/Button_login_unibell"
+            android:text="Grabar visita"
+
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
 
 </LinearLayout>
 

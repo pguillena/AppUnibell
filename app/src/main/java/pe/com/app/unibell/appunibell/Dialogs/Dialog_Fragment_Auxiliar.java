@@ -106,6 +106,12 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
         tba_edttitulo = (EditText) view.findViewById(R.id.tba_edttitulo);
 
         switch(iTabla) {
+            case 23:
+                tba_lbltitulo.setText("Elegir nuevo día de visita");
+                break;
+            case 22:
+                tba_lbltitulo.setText("Elegir la nueva frecuencia de visita");
+                break;
             case 45:
                 tba_lbltitulo.setText("¿Por qué no se vendió?");
                 break;

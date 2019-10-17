@@ -56,6 +56,7 @@ import pe.com.app.unibell.appunibell.BL.UbigeoBL;
 import pe.com.app.unibell.appunibell.BL.Vem_Cobrador_ZonaBL;
 import pe.com.app.unibell.appunibell.BL.VisitaCabBL;
 import pe.com.app.unibell.appunibell.BL.VisitaDetBL;
+import pe.com.app.unibell.appunibell.BL.VisitaMovCambioBL;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.SincronizaDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Progress;
@@ -106,6 +107,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
     private Dialog_Fragment_Progress vem_visitaCabPG;
     private Dialog_Fragment_Progress vem_visitaDetPG;
     private Dialog_Fragment_Progress vem_cliente_vendedorPG;
+    private Dialog_Fragment_Progress vem_visitaMovCambioPG;
 
     private Dialog_Fragment_Progress ubigeoPG;
 
@@ -123,6 +125,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
     private Cliente_VendedorBL cliente_vendedorBL = new Cliente_VendedorBL();
     private VisitaCabBL visitaCabBL = new VisitaCabBL();
     private VisitaDetBL visitaDetBL = new VisitaDetBL();
+    private VisitaMovCambioBL visitaMovCambioBL = new VisitaMovCambioBL();
 
     private UbigeoBL ubigeoBL = new UbigeoBL();
 
@@ -301,35 +304,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                         } catch (Exception ex) {
                             new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar clientes.").Show();
                         }
-                try{
-                    new VisitaCab_Sincronizar_AsyncTask().execute(
-                            ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blvem_visita_cab + '/'
-                                    + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
-                                    + sharedSettings.getString("iID_LOCAL", "0")+ '/'
-                                    + sharedSettings.getString("iID_VENDEDOR", "0"));
-                } catch (Exception ex) {
-                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar visitas.").Show();
-                }
 
-                try{
-                    new VisitaDet_Sincronizar_AsyncTask().execute(
-                            ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blvem_visita_det + '/'
-                                    + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
-                                    + sharedSettings.getString("iID_LOCAL", "0")+ '/'
-                                    + sharedSettings.getString("iID_VENDEDOR", "0"));
-                } catch (Exception ex) {
-                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar visitas.").Show();
-                }
-
-                try{
-                    new ClienteVendedor_Sincronizar_AsyncTask().execute(
-                            ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blvem_cliente_vendedor + '/'
-                                    + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
-                                    + sharedSettings.getString("iID_LOCAL", "0")+ '/'
-                                    + sharedSettings.getString("iID_VENDEDOR", "0"));
-                } catch (Exception ex) {
-                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar visitas.").Show();
-                }
 
                 break;
 
@@ -524,7 +499,48 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 }
                 break;
 
+            case "RECORRIDO":
+                try{
+                    new VisitaCab_Sincronizar_AsyncTask().execute(
+                            ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blvem_visita_cab + '/'
+                                    + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                                    + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                                    + sharedSettings.getString("iID_VENDEDOR", "0"));
+                } catch (Exception ex) {
+                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar visita cab.").Show();
+                }
 
+                try{
+                    new VisitaDet_Sincronizar_AsyncTask().execute(
+                            ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blvem_visita_det + '/'
+                                    + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                                    + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                                    + sharedSettings.getString("iID_VENDEDOR", "0"));
+                } catch (Exception ex) {
+                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar det.").Show();
+                }
+
+                try{
+                    new VisitaMovCambio_Sincronizar_AsyncTask().execute(
+                            ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blvem_visita_movimiento_cambio + '/'
+                                    + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                                    + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                                    + sharedSettings.getString("iID_VENDEDOR", "0"));
+                } catch (Exception ex) {
+                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar visita mov cambio.").Show();
+                }
+
+
+                try{
+                    new ClienteVendedor_Sincronizar_AsyncTask().execute(
+                            ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blvem_cliente_vendedor + '/'
+                                    + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                                    + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                                    + sharedSettings.getString("iID_VENDEDOR", "0"));
+                } catch (Exception ex) {
+                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar cliente vendedor.").Show();
+                }
+                break;
 
 
         }
@@ -2115,6 +2131,45 @@ public class Activity_Sincronizar extends AppCompatActivity {
         }
     }
 
+    public class VisitaMovCambio_Sincronizar_AsyncTask extends AsyncTask<String, String, JSONObject> {
+        /*ASYNCTASK<Parametros, Progreso, Resultado>
+        DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
+        private volatile boolean running = true;
 
+        @Override
+        protected void onPreExecute() {
+            vem_visitaMovCambioPG = new Dialog_Fragment_Progress();
+            vem_visitaMovCambioPG.setMensaje("Sincronizando");
+            vem_visitaMovCambioPG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            return visitaMovCambioBL.getSincronizar(p[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            if (vem_visitaMovCambioPG != null && vem_visitaMovCambioPG.isVisible()) {
+                vem_visitaMovCambioPG.dismiss();
+            }
+            try {
+                if (result.getInt("status")!=1) {
+                    //MOSTRAMOS MESSAGE
+                    new ToastLibrary(Activity_Sincronizar.this, result.getString("message")+ ":Visitas").Show();
+                } else {
+                    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.visitaBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
+                    View sbView = snackbar.getView();
+                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.YELLOW);
+                    snackbar.show();
+                    Actualizar(sOPCION_SINCRONIZADA);
+                }
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 
 }

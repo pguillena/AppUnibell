@@ -135,7 +135,7 @@ public class Funciones {
     public String HoraActual() {
         String Resultado = "";
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat hora = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat hora = new SimpleDateFormat("hh:mm:ss a");
         Resultado = String.valueOf(hora.format(c.getTime()));
         return Resultado;
     }
@@ -261,9 +261,9 @@ public class Funciones {
 
 
     public static String isNull(String Valor){
-        String ivalor="0";
-        if (Valor.isEmpty()) {
-            ivalor = "0";
+        String ivalor="";
+        if (Valor == null || Valor.isEmpty() || Valor.trim().toUpperCase().equals("NULL")) {
+            ivalor = "";
         }else{
             ivalor = Valor;
         }
