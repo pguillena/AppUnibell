@@ -1,13 +1,13 @@
 package pe.com.app.unibell.appunibell.BE;
 
 public class S_Vem_CorrelativoBE {
-private String TIPO_COMPROBANTE;
+private Integer TIPO_COMPROBANTE;
 private Integer ID_CANAL;
 private String NRO_SERIE;
-private double NRO;
+private Integer NRO;
 private Integer ID_EMPRESA;
 private Integer ID_LOCAL;
-private double ESTADO;
+private Integer ESTADO;
 private String FECHA_REGISTRO;
 private String FECHA_MODIFICACION;
 private String USUARIO_REGISTRO;
@@ -16,14 +16,14 @@ private String PC_REGISTRO;
 private String PC_MODIFICACION;
 private String IP_REGISTRO;
 private String IP_MODIFICACION;
-private double AUTOMATICO;
-private double ID_USUARIO;
+private Integer AUTOMATICO;
+private Integer ID_USUARIO;
 
-    public String getTIPO_COMPROBANTE() {
+    public Integer getTIPO_COMPROBANTE() {
         return TIPO_COMPROBANTE;
     }
 
-    public void setTIPO_COMPROBANTE(String TIPO_COMPROBANTE) {
+    public void setTIPO_COMPROBANTE(Integer TIPO_COMPROBANTE) {
         this.TIPO_COMPROBANTE = TIPO_COMPROBANTE;
     }
 
@@ -43,11 +43,11 @@ private double ID_USUARIO;
         this.NRO_SERIE = NRO_SERIE;
     }
 
-    public double getNRO() {
+    public Integer getNRO() {
         return NRO;
     }
 
-    public void setNRO(double NRO) {
+    public void setNRO(Integer NRO) {
         this.NRO = NRO;
     }
 
@@ -71,7 +71,7 @@ private double ID_USUARIO;
         return ESTADO;
     }
 
-    public void setESTADO(double ESTADO) {
+    public void setESTADO(Integer ESTADO) {
         this.ESTADO = ESTADO;
     }
 
@@ -139,19 +139,19 @@ private double ID_USUARIO;
         this.IP_MODIFICACION = IP_MODIFICACION;
     }
 
-    public double getAUTOMATICO() {
+    public Integer getAUTOMATICO() {
         return AUTOMATICO;
     }
 
-    public void setAUTOMATICO(double AUTOMATICO) {
+    public void setAUTOMATICO(Integer AUTOMATICO) {
         this.AUTOMATICO = AUTOMATICO;
     }
 
-    public double getID_USUARIO() {
+    public Integer getID_USUARIO() {
         return ID_USUARIO;
     }
 
-    public void setID_USUARIO(double ID_USUARIO) {
+    public void setID_USUARIO(Integer ID_USUARIO) {
         this.ID_USUARIO = ID_USUARIO;
     }
 }

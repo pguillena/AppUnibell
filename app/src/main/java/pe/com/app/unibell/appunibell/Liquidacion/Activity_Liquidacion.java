@@ -1262,8 +1262,9 @@ public class Activity_Liquidacion extends AppCompatActivity
 
             txtProgressLoading.setVisibility(View.GONE);
             pbLiquidacion.setVisibility(View.GONE);
+            Cargar();
 
-            try {
+         /*   try {
                 if (result.getInt("status")!=1) {
                     Mensaje(result.getString("MSG").toString());
                 } else {
@@ -1272,7 +1273,7 @@ public class Activity_Liquidacion extends AppCompatActivity
                 }
             }catch(Exception ex){
                 ex.printStackTrace();
-            }
+            }*/
         }
     }
 

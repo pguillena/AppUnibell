@@ -206,7 +206,7 @@ public class Documentos_Cobra_CabBL {
                 if(!sID_EMPRESA.equals("null") && !sID_EMPRESA.equals("0")) {
                     String sID_LOCAL = jsonObjectItem.getString("ID_LOCAL");
                     String sID_VENDEDOR = jsonObjectItem.getString("ID_VENDEDOR");
-                    jsonObjectResult.accumulate("MSG", jsonObjectItem.getString("MSG"));
+                    //jsonObjectResult.accumulate("MSG", jsonObjectItem.getString("MSG"));
                     //SI NO SALTO LAS VALIDACIONES DE LA BD ENTONCES
                    this.PostSincronizarCobranza(sID_EMPRESA,sID_LOCAL,sID_VENDEDOR,"0","40025");
                 }

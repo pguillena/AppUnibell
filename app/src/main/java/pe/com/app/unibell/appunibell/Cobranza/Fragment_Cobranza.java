@@ -5,8 +5,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +21,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 import pe.com.app.unibell.appunibell.AD.Cobranza_Cabecera_Adapter;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Detalle_Adapter;
@@ -27,13 +32,16 @@ import pe.com.app.unibell.appunibell.AD.Cobranza_Detalle_Adapter_Edit;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_DetBE;
 import pe.com.app.unibell.appunibell.BE.FactCobBE;
+import pe.com.app.unibell.appunibell.BE.S_Vem_CorrelativoBE;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_DetBL;
+import pe.com.app.unibell.appunibell.BL.S_Vem_CorrelativoBL;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_DetDAO;
 import pe.com.app.unibell.appunibell.DAO.FactCobDAO;
 import pe.com.app.unibell.appunibell.DAO.Recibos_CcobranzaDAO;
+import pe.com.app.unibell.appunibell.DAO.S_Vem_CorrelativoDAO;
 import pe.com.app.unibell.appunibell.DAO.S_gem_TipoCambioDAO;
 import pe.com.app.unibell.appunibell.DAO.SistemaDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
@@ -41,6 +49,7 @@ import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Amortizar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Confirmar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Progress;
+import pe.com.app.unibell.appunibell.Main.Activity_Sincronizar;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Reportes.Activity_Cobranza_Recibo_Rep;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
@@ -81,6 +90,7 @@ public class Fragment_Cobranza extends Fragment implements
 
     private Documentos_Cobra_CabDAO documentos_cobra_cabDAO = new Documentos_Cobra_CabDAO();
     private Documentos_Cobra_DetDAO documentos_cobra_detDAO = new Documentos_Cobra_DetDAO();
+    private  S_Vem_CorrelativoDAO s_vem_correlativoDAO = new S_Vem_CorrelativoDAO();
     private Recibos_CcobranzaDAO recibos_ccobranzaDAO = new Recibos_CcobranzaDAO();
     private Documentos_Cobra_CabBL documentos_cobra_cabBL = new Documentos_Cobra_CabBL();
     private Documentos_Cobra_DetBL documentos_cobra_detBL = new Documentos_Cobra_DetBL();
@@ -445,13 +455,23 @@ public class Fragment_Cobranza extends Fragment implements
                     return;
                 }
 
-                if (cobranza_cabecera_adapter != null) {
+                 s_vem_correlativoDAO.getAll(490000, 0, Integer.valueOf(sharedSettings.getString("iID_EMPRESA", "0").toString()), Integer.valueOf(sharedSettings.getString("iID_LOCAL", "0").toString()),40001, 1);
+
+
+                if(s_vem_correlativoDAO.lst==null || s_vem_correlativoDAO.lst.size()==0)
+                {
+                    Toast.makeText(getActivity(),"No existe correlativo para los anticipos en el local actual", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+                if (cobranza_cabecera_adapter != null && s_vem_correlativoDAO.lst!=null && s_vem_correlativoDAO.lst.size()>0) {
                     factCobBE = new FactCobBE();
                     factCobBE.setID_COBRANZA(cobranza_cabecera_adapter.lst.get(iPocicionCab).getID_COBRANZA());
                     factCobBE.setCOD_CLIENTE(cobranza_cabecera_adapter.lst.get(iPocicionCab).getCOD_CLIENTE());
                     factCobBE.setTIPDOC("A1");
-                    factCobBE.setSERIE_NUM("1");
-                    factCobBE.setNUMERO(1);
+                    factCobBE.setSERIE_NUM(s_vem_correlativoDAO.lst.get(0).getNRO_SERIE());
+                    factCobBE.setNUMERO(s_vem_correlativoDAO.lst.get(0).getNRO()+1);
                     factCobBE.setFECHA(funciones.FechaActual());
                     factCobBE.setF_VENCTO(funciones.FechaActual());
                     factCobBE.setF_ACEPTACION(funciones.FechaActual());
@@ -506,8 +526,9 @@ public class Fragment_Cobranza extends Fragment implements
                     documentos_cobra_detBE.setFPAGO(cobranza_cabecera_adapter.lst.get(iPocicionCab).getFPAGO());
                     //Datos del detalle de la consulta faccob
                     documentos_cobra_detBE.setTIPDOC("A1");
-                    documentos_cobra_detBE.setSERIE_NUM("1");
-                    documentos_cobra_detBE.setNUMERO("1");
+                    documentos_cobra_detBE.setSERIE_NUM(s_vem_correlativoDAO.lst.get(0).getNRO_SERIE());
+                    documentos_cobra_detBE.setNUMERO(String.valueOf(s_vem_correlativoDAO.lst.get(0).getNRO()+1));
+
                     documentos_cobra_detBE.setIMPORTE(cobranza_cabecera_adapter.lst.get(iPocicionCab).getSALDO());
                     documentos_cobra_detBE.setMONEDA("S");
                     //Saldo que se descuenta mientras se va descontando

@@ -1884,6 +1884,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
             }
         }
     }
+
     public class s_vem_correlativoBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
@@ -1924,6 +1925,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
             }
         }
     }
+
     public class vem_cobrador_zonaBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/

@@ -27,7 +27,7 @@ public class S_Vem_CorrelativoBL {
                 for(int i=0;i<jsonObjectRest.getJSONArray("datos").length();i++) {
                     JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(i);
                     s_vem_correlativoBE = new S_Vem_CorrelativoBE();
-                    s_vem_correlativoBE.setTIPO_COMPROBANTE(jsonObjectItem.getString("TIPO_COMPROBANTE"));
+                    s_vem_correlativoBE.setTIPO_COMPROBANTE(jsonObjectItem.getInt("TIPO_COMPROBANTE"));
                     s_vem_correlativoBE.setID_CANAL(jsonObjectItem.getInt("ID_CANAL"));
                     s_vem_correlativoBE.setNRO_SERIE(jsonObjectItem.getString("NRO_SERIE"));
                     s_vem_correlativoBE.setNRO(jsonObjectItem.getInt("NRO"));
