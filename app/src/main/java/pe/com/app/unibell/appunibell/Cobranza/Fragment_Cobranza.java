@@ -439,6 +439,12 @@ public class Fragment_Cobranza extends Fragment implements
     };
 
 
+
+
+
+
+
+
     View.OnClickListener OnClickList_co_lblanticipo = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -454,6 +460,8 @@ public class Fragment_Cobranza extends Fragment implements
                     Toast.makeText(getActivity(),"Ya Existe un aticipo ingresado para la cobranza.", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+
 
                  s_vem_correlativoDAO.getAll(490000, 0, Integer.valueOf(sharedSettings.getString("iID_EMPRESA", "0").toString()), Integer.valueOf(sharedSettings.getString("iID_LOCAL", "0").toString()),40001, 1);
 
@@ -921,13 +929,27 @@ public class Fragment_Cobranza extends Fragment implements
                     documentos_cobra_cabDAO.updateEstado(documentos_cobra_cabBE2);
                 }
 
-                //ENVIAMOS AL ORACLE CONTAMOS CON INTERNET
+                //ENVIAMOS AL ORACLE CONTAMOS CON INTERNET cyper200
                 if (funciones.isConnectingToInternet(getContext())) {
                     new InserCobranzaAsyncTask(
                             sharedSettings.getString("ID_COBRANZA", "0").toString(),
                             sharedSettings.getString("MAX_CODUNICO", "0").toString()
                     ).execute(ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_Insert);
                 }
+
+                //ABRIMOS EL RECIBO
+                editor_Shared.putString("iN_SERIE_RECIBO",sharedSettings.getString("cpserie", "0").toString());
+                editor_Shared.putString("iN_RECIBO", sharedSettings.getString("cpnumero", "0").toString());
+                editor_Shared.putString("IOPCION_REPORTE","1");
+                editor_Shared.commit();
+
+                Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Recibo_Rep.class);
+                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                getContext().startActivity(intent);
+                //FIN ABRIR EL RECIBO
+
+                comunicator.Finalizar();
+
             }
             //CONFIRMAMOS LA ELIMINACIÓN DE LA COBRANZA
             if (iAccion == 2) {
@@ -1396,18 +1418,7 @@ public class Fragment_Cobranza extends Fragment implements
                         Mensaje(result.getString("MSG").toString().trim());
                         return;
                     }
-                    //ABRIMOS EL RECIBO
-                    editor_Shared.putString("iN_SERIE_RECIBO",sharedSettings.getString("cpserie", "0").toString());
-                    editor_Shared.putString("iN_RECIBO", sharedSettings.getString("cpnumero", "0").toString());
-                    editor_Shared.putString("IOPCION_REPORTE","1");
-                    editor_Shared.commit();
 
-                    Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Recibo_Rep.class);
-                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-                    getContext().startActivity(intent);
-                    //FIN ABRIR EL RECIBO
-
-                    comunicator.Finalizar();
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -1438,6 +1449,8 @@ public class Fragment_Cobranza extends Fragment implements
             try {
                 if (result.getInt("status") == 0) {
                 } else {
+                    //cyper1000
+                    Mensaje("Se actualizaron correctamente los registros");
                     comunicator.Finalizar();
                 }
             } catch (Exception ex) {

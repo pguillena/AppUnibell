@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import java.sql.SQLException;
 
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
+import pe.com.app.unibell.appunibell.BL.S_Vem_CorrelativoBL;
 import pe.com.app.unibell.appunibell.Cobranza.Fragment_Cobranza;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
@@ -81,9 +82,10 @@ public class ServiceBackground extends Service {
                 if (lhoraActual24 > HORAINICIO && lhoraActual24 < HORAFIN) {
                     //Se ejecuta solo si tenemos plan de datos
                     if (funciones.isConnectingToInternet(getApplicationContext())) {
+                        new LoadGetGuardadaSQLite_AsyncTask().execute();
                         Toast toastCodigo = Toast.makeText(getApplicationContext(),"COBRANZA REGISTRADA ENVIADA AL ORACLE", Toast.LENGTH_SHORT);
                         toastCodigo.show();
-                        //new LoadGetGuardadaSQLite_AsyncTask().execute();
+
 
                         Log.i(ConstantsLibrary.DEBUG_TAG , "COBRANZA REGISTRADA ENVIADA AL ORACLE");
                         Log.e("FECHA", sfecha);
@@ -129,6 +131,12 @@ public class ServiceBackground extends Service {
                              CODUNC_LOCAL.toString()).execute(ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_Insert);
 
                 }
+
+                new s_vem_correlativoBL_Sincronizar().execute(
+                        ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_vem_correlativo + '/'
+                                + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                                + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                                + sharedSettings.getString("iID_VENDEDOR", "0"));
 
 
             } catch (Exception ex) {
@@ -178,7 +186,25 @@ public class ServiceBackground extends Service {
     }
 
 
+    public class s_vem_correlativoBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
+        /*ASYNCTASK<Parametros, Progreso, Resultado>
+        DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
+        private volatile boolean running = true;
 
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            return new S_Vem_CorrelativoBL().getSincronizar(p[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+
+        }
+    }
 
 }
 

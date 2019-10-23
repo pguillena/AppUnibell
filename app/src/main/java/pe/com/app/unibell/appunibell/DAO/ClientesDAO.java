@@ -434,7 +434,7 @@ public class ClientesDAO {
         try {
             String SQL=" SELECT COD_CLIENTE,NOMBRE,DIRECCION,CIUDAD,DISTRITO,PAIS, " +
                     " ZONA,VENDEDOR,COBRADOR,GIRO,TELEFONO,FAX, " +
-                    " FECHA_ING,COND_PAG,CALIFICACION,LIMITE_CRED,ESTADO,RUC " +
+                    " FECHA_ING,COND_PAG,CALIFICACION,LIMITE_CRED,ESTADO,RUC, I_CANC_ANTIGUO " +
                     " FROM CLIENTES  " +
                     " WHERE COD_CLIENTE = '" + COD_CLIENTE+"'";
 
@@ -462,6 +462,9 @@ public class ClientesDAO {
                     clientesBE.setLIMITE_CRED(Funciones.isNullColumn(cursor,"LIMITE_CRED",""));
                     clientesBE.setESTADO(Funciones.isNullColumn(cursor,"ESTADO",0));
                     clientesBE.setRUC(Funciones.isNullColumn(cursor,"RUC",""));
+                    clientesBE.setI_CANC_ANTIGUO(Funciones.isNullColumn(cursor,"I_CANC_ANTIGUO",""));
+
+
                     lst.add(clientesBE);
                 } while (cursor.moveToNext());
             }

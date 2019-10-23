@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.math.BigDecimal;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
@@ -498,6 +499,16 @@ public class Funciones {
 
         }
         return salida;
+    }
+
+    public String restar(String valor1,String valor2){
+        BigDecimal deci1=new BigDecimal (Double.parseDouble(valor1));
+        BigDecimal deci2=new BigDecimal (Double.parseDouble(valor2));
+        deci1=deci1.setScale(2,BigDecimal.ROUND_HALF_UP);
+        deci2=deci2.setScale(2,BigDecimal.ROUND_HALF_UP);
+        BigDecimal resultado=deci1.subtract(deci2);
+
+        return resultado.toString();
     }
 
 

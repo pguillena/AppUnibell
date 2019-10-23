@@ -799,7 +799,7 @@ public class Documentos_Cobra_CabDAO {
 
                 cv.put("N_TARJETA","");
             }
-            //DEPOCITO
+            //DEPOSITO
             if(fPago.equals("P") ) {
                 cv.put("CTACORRIENTE_BANCO",documentos_cobra_cabBE.getCTACORRIENTE_BANCO().toString());
                 cv.put("NRO_OPERACION",documentos_cobra_cabBE.getNRO_OPERACION().toString());

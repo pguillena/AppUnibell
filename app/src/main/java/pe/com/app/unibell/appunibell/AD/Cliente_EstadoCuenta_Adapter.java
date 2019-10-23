@@ -102,10 +102,18 @@ public class Cliente_EstadoCuenta_Adapter extends ArrayAdapter<FactCobBE> implem
         {
             mainHolder.cl_btnPDF.setVisibility(View.GONE);
         }
+        else
+        {
+            mainHolder.cl_btnPDF.setVisibility(View.VISIBLE);
+        }
 
         if(factCobBE.getURL_XML().toString().trim().equals(""))
         {
             mainHolder.cl_btnXML.setVisibility(View.GONE);
+        }
+        else
+        {
+            mainHolder.cl_btnXML.setVisibility(View.VISIBLE);
         }
 
 

@@ -2,14 +2,18 @@ package pe.com.app.unibell.appunibell.DAO;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_DetBE;
+import pe.com.app.unibell.appunibell.BE.DocuventBE;
 import pe.com.app.unibell.appunibell.BE.ParTablaBE;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 
 public class Documentos_Cobra_DetDAO {
     public ArrayList<Documentos_Cobra_DetBE> lst = null;
+    Funciones funciones = new Funciones();
 
     public void getByID_Cobranza(String pID_COBRANZA) {
         Cursor cursor = null;
@@ -247,7 +251,8 @@ public class Documentos_Cobra_DetDAO {
         String sMensaje="";
         Integer iError=0;
         //SALDO CABECERA,TOTAL COBRADO,SALDO CABECERA ACTUAL
-        Double dSALDOCAB=0.0,dCOBRANZA=0.0,dSALDOCABACT=0.0;
+        Double dSALDOCAB=0.0, dCOBRANZA=0.0,dSALDOCABACT=0.0;
+
         try {
             //OBTENEMOS EL SALDO DE LA CABECERA DE LA COBRANZA
             dSALDOCAB = SaldoCobranza_By_ID_Cobranza_Cabecera(documentos_cobra_detBE);
@@ -256,7 +261,10 @@ public class Documentos_Cobra_DetDAO {
 
             //ANTICIPO
             if(!documentos_cobra_detBE.getTIPDOC().toString().equals("A1")) {
-            dSALDOCABACT = (dSALDOCAB - (dCOBRANZA + Double.valueOf(documentos_cobra_detBE.getM_COBRANZA().toString())));
+            //dSALDOCABACT = (dSALDOCAB - (dCOBRANZA + Double.valueOf(documentos_cobra_detBE.getM_COBRANZA().toString())));
+
+                dSALDOCABACT = Double.valueOf(new Funciones().restar(new Funciones().restar(dSALDOCAB.toString() , dCOBRANZA.toString()), documentos_cobra_detBE.getM_COBRANZA().toString()));
+
             if (dSALDOCABACT < 0) {
                 sMensaje = "Valor a amortizar es mayor al saldo ingresado.";
                 iError = 1;

@@ -22,12 +22,16 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import java.util.List;
+
 import pe.com.app.unibell.appunibell.AD.Cabfcob_Adapter;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Cabecera_Adapter;
 import pe.com.app.unibell.appunibell.AD.CtaBnco_Adapter;
 import pe.com.app.unibell.appunibell.AD.ParTabla_Adapter;
+import pe.com.app.unibell.appunibell.BE.ClientesBE;
 import pe.com.app.unibell.appunibell.BL.Dpm_Packing_CabBL;
 import pe.com.app.unibell.appunibell.DAO.CabfcobDAO;
+import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.DAO.Dpm_Packing_CabDAO;
@@ -67,7 +71,7 @@ public class Activity_Cobranza_Agregar_Pago
     private S_gem_TipoCambioDAO s_gem_tipoCambioDAO = new S_gem_TipoCambioDAO();
     private Dpm_Packing_CabDAO dpm_packing_cabDAO = new Dpm_Packing_CabDAO();
     private S_Gem_VendedorDAO s_gem_vendedorDAO  = new S_Gem_VendedorDAO();
-
+    private ClientesDAO clienteDAO = new ClientesDAO();
     private Integer iAuxiliar = 0,iTabla=0;
     public Integer   iMinDate = 0;;
     private ParTablaDAO parTablaDAO = new ParTablaDAO();
@@ -131,6 +135,17 @@ public class Activity_Cobranza_Agregar_Pago
 
         rp_lblcliente.setText(new Funciones().LetraCapital(sharedSettings.getString("RAZON_SOCIAL", "").toString()));
         rp_lblcliente.setTag(sharedSettings.getString("CODIGO_ANTIGUO", "").toString());
+
+
+   /*
+         clienteDAO.getByCodCliente(rp_lblcliente.getTag().toString());
+         if(clienteDAO.lst != null && clienteDAO.lst.size()>0)
+         {
+             editor_Shared.putString("I_CANC_ANTIGUO", clienteDAO.lst.get(0).getI_CANC_ANTIGUO());
+             editor_Shared.commit();
+         }
+
+*/
 
         if(Double.valueOf(sharedSettings.getString("PAE", "0").toString())>0.0) {
             rp_txtmonto.setText(sharedSettings.getString("PAE", "").toString());

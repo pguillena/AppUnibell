@@ -522,13 +522,18 @@ public class Activity_Login extends AppCompatActivity
 
                 try {
 
-                    SincronizarTipoCambio();
+                    if (funciones.isConnectingToInternet(getApplicationContext())) {
+                        SincronizarTipoCambio();
 
                     new S_Sem_UsuarioBL_RecuperarUsuarioMD5().execute(
                             ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_rec_usuario + '/'
                                     + edtUserName.getText().toString().trim().toUpperCase()+ '/'
                                     + edtUserPass.getText().toString().trim());
-
+                    }
+                    else
+                    {
+                        new ToastLibrary(Activity_Login.this,"No tiene conexión a internet, por favor valide los datos móviles o conéctese a una red WiFi").Show();
+                    }
 
                 } catch (Exception ex) {
                     new ToastLibrary(Activity_Login.this,"Usuario o contraseña invalidos.").Show();

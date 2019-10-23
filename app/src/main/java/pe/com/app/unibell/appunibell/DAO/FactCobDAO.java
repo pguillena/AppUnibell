@@ -437,12 +437,16 @@ public class FactCobDAO {
                     lst.add(factCobBE);
                 } while (cursor.moveToNext());
             }
+
+
+
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             if (cursor != null)
                 cursor.close();
         }
+
     }
 
     public void getPagosBy(String sID_EMPRESA,String sID_LOCAL,String sID_COBRANZA,String sID_COBRADOR,String sCOD_CLIENTE,String sN_RECIBO,String sN_SERIE_RECIBO,String sFPAGO) {

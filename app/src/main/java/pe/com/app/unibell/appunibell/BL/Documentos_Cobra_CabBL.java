@@ -588,10 +588,10 @@ public class Documentos_Cobra_CabBL {
                             jsonObject1.accumulate("NUMERO",Funciones.isNullColumn(cursorDet,"NUMERO",0));
                             jsonObject1.accumulate("IMPORTE",Funciones.isNullColumn(cursorDet,"IMPORTE",0.0));
                             jsonObject1.accumulate("MONEDA",Funciones.isNullColumn(cursorDet,"MONEDA",""));
-                            jsonObject1.accumulate("SALDO",Funciones.isNullColumn(cursorDet,"SALDO",0));
+                            jsonObject1.accumulate("SALDO",Funciones.isNullColumn(cursorDet,"SALDO",0.0));
                             M_COBRANZA=Double.valueOf(Funciones.isNullColumn(cursorDet,"M_COBRANZA",0.0));
 
-                            jsonObject1.accumulate("M_COBRANZA",M_COBRANZA);
+                            jsonObject1.accumulate("M_COBRANZA",Funciones.isNullColumn(cursorDet,"M_COBRANZA",0.0));
                             jsonObject1.accumulate("ID_EMPRESA",Funciones.isNullColumn(cursorDet,"ID_EMPRESA",0));
                             jsonObject1.accumulate("ID_LOCAL",Funciones.isNullColumn(cursorDet,"ID_LOCAL",0));
                             jsonObject1.accumulate("ESTADO",Funciones.isNullColumn(cursorDet,"ESTADO",0));
@@ -606,7 +606,7 @@ public class Documentos_Cobra_CabBL {
                             jsonObject1.accumulate("ID_VENDEDOR ",Funciones.isNullColumn(cursorDet,"ID_VENDEDOR",0));
 
                             SALDO_INICIAL=Double.valueOf(Funciones.isNullColumn(cursorDet,"SALDO_INICIAL",0.0));
-                            jsonObject1.accumulate("SALDO_INICIAL",SALDO_INICIAL);
+                            jsonObject1.accumulate("SALDO_INICIAL ",Funciones.isNullColumn(cursorDet,"SALDO_INICIAL",0.0));
                             jsonObject1.accumulate("VOUCHER",Funciones.isNullColumn(cursorDet,"VOUCHER",0));
                             jsonArray.put(jsonObject1);
                         } while (cursorDet.moveToNext());
@@ -682,8 +682,8 @@ public class Documentos_Cobra_CabBL {
                     jsonObject.accumulate("FPAGO", Funciones.isNullColumn(cursor,"FPAGO",""));
                     jsonObject.accumulate("ID_COBRADOR", Funciones.isNullColumn(cursor,"ID_COBRADOR",""));
                     jsonObject.accumulate("FECHA", Funciones.isNullColumn(cursor,"FECHA",""));
-                    jsonObject.accumulate("M_COBRANZA", Funciones.isNullColumn(cursor,"M_COBRANZA",""));
-                    jsonObject.accumulate("M_COBRANZA_D", Funciones.isNullColumn(cursor,"M_COBRANZA_D",""));
+                    jsonObject.accumulate("M_COBRANZA", Funciones.isNullColumn(cursor,"M_COBRANZA","0"));
+                    jsonObject.accumulate("M_COBRANZA_D", Funciones.isNullColumn(cursor,"M_COBRANZA_D","0"));
                     jsonObject.accumulate("SALDO", Funciones.isNullColumn(cursor,"SALDO",""));
                     jsonObject.accumulate("NUMCHEQ", Funciones.isNullColumn(cursor,"NUMCHEQ",""));
                     jsonObject.accumulate("FECCHEQ", Funciones.isNullColumn(cursor,"FECCHEQ",""));
@@ -825,9 +825,9 @@ public class Documentos_Cobra_CabBL {
                     jsonObject.accumulate("FPAGO", Funciones.isNullColumn(cursor,"FPAGO",""));
                     jsonObject.accumulate("ID_COBRADOR", Funciones.isNullColumn(cursor,"ID_COBRADOR",""));
                     jsonObject.accumulate("FECHA", Funciones.isNullColumn(cursor,"FECHA",""));
-                    jsonObject.accumulate("M_COBRANZA", Funciones.isNullColumn(cursor,"M_COBRANZA",""));
-                    jsonObject.accumulate("M_COBRANZA_D", Funciones.isNullColumn(cursor,"M_COBRANZA_D",""));
-                    jsonObject.accumulate("SALDO", Funciones.isNullColumn(cursor,"SALDO",""));
+                    jsonObject.accumulate("M_COBRANZA", Funciones.isNullColumn(cursor,"M_COBRANZA",0.0));
+                    jsonObject.accumulate("M_COBRANZA_D", Funciones.isNullColumn(cursor,"M_COBRANZA_D",0.0));
+                    jsonObject.accumulate("SALDO", Funciones.isNullColumn(cursor,"SALDO",0.0));
                     jsonObject.accumulate("NUMCHEQ", Funciones.isNullColumn(cursor,"NUMCHEQ",""));
                     jsonObject.accumulate("FECCHEQ", Funciones.isNullColumn(cursor,"FECCHEQ",""));
                     jsonObject.accumulate("ID_BANCO", Funciones.isNullColumn(cursor,"ID_BANCO",""));
@@ -879,10 +879,10 @@ public class Documentos_Cobra_CabBL {
                             jsonObject1.accumulate("TIPDOC",Funciones.isNullColumn(cursorDet,"TIPDOC",""));
                             jsonObject1.accumulate("SERIE_NUM",Funciones.isNullColumn(cursorDet,"SERIE_NUM",""));
                             jsonObject1.accumulate("NUMERO",Funciones.isNullColumn(cursorDet,"NUMERO",0));
-                            jsonObject1.accumulate("IMPORTE",Funciones.isNullColumn(cursorDet,"IMPORTE",0));
+                            jsonObject1.accumulate("IMPORTE",Funciones.isNullColumn(cursorDet,"IMPORTE",0.0));
                             jsonObject1.accumulate("MONEDA",Funciones.isNullColumn(cursorDet,"MONEDA",""));
-                            jsonObject1.accumulate("SALDO",Funciones.isNullColumn(cursorDet,"SALDO",0));
-                            jsonObject1.accumulate("M_COBRANZA",Funciones.isNullColumn(cursorDet,"M_COBRANZA",0));
+                            jsonObject1.accumulate("SALDO",Funciones.isNullColumn(cursorDet,"SALDO",0.0));
+                            jsonObject1.accumulate("M_COBRANZA",Funciones.isNullColumn(cursorDet,"M_COBRANZA",0.0));
                             jsonObject1.accumulate("ID_EMPRESA",Funciones.isNullColumn(cursorDet,"ID_EMPRESA",0));
                             jsonObject1.accumulate("ID_LOCAL",Funciones.isNullColumn(cursorDet,"ID_LOCAL",0));
                             jsonObject1.accumulate("ESTADO",Funciones.isNullColumn(cursorDet,"ESTADO",0));
@@ -895,7 +895,7 @@ public class Documentos_Cobra_CabBL {
                             jsonObject1.accumulate("IP_REGISTRO",Funciones.isNullColumn(cursorDet,"IP_REGISTRO",""));
                             jsonObject1.accumulate("IP_MODIFICACION",Funciones.isNullColumn(cursorDet,"IP_MODIFICACION",""));
                             jsonObject1.accumulate("ID_VENDEDOR ",Funciones.isNullColumn(cursorDet,"ID_VENDEDOR",0));
-                            jsonObject1.accumulate("SALDO_INICIAL",Funciones.isNullColumn(cursorDet,"SALDO_INICIAL",0));
+                            jsonObject1.accumulate("SALDO_INICIAL",Funciones.isNullColumn(cursorDet,"SALDO_INICIAL",0.0));
                             jsonObject1.accumulate("VOUCHER",Funciones.isNullColumn(cursorDet,"VOUCHER",0));
                             jsonArray.put(jsonObject1);
                         } while (cursorDet.moveToNext());
@@ -966,8 +966,8 @@ public class Documentos_Cobra_CabBL {
                     jsonObject.accumulate("FPAGO", Funciones.isNullColumn(cursor,"FPAGO",""));
                     jsonObject.accumulate("ID_COBRADOR", Funciones.isNullColumn(cursor,"ID_COBRADOR",""));
                     jsonObject.accumulate("FECHA", Funciones.isNullColumn(cursor,"FECHA",""));
-                    jsonObject.accumulate("M_COBRANZA", Funciones.isNullColumn(cursor,"M_COBRANZA",""));
-                    jsonObject.accumulate("M_COBRANZA_D", Funciones.isNullColumn(cursor,"M_COBRANZA_D",""));
+                    jsonObject.accumulate("M_COBRANZA", Funciones.isNullColumn(cursor,"M_COBRANZA","0"));
+                    jsonObject.accumulate("M_COBRANZA_D", Funciones.isNullColumn(cursor,"M_COBRANZA_D","0"));
                     jsonObject.accumulate("SALDO", Funciones.isNullColumn(cursor,"SALDO",""));
                     jsonObject.accumulate("NUMCHEQ", Funciones.isNullColumn(cursor,"NUMCHEQ",""));
                     jsonObject.accumulate("FECCHEQ", Funciones.isNullColumn(cursor,"FECCHEQ",""));
@@ -1107,8 +1107,8 @@ public class Documentos_Cobra_CabBL {
                     jsonObject.accumulate("FPAGO", Funciones.isNullColumn(cursor,"FPAGO",""));
                     jsonObject.accumulate("ID_COBRADOR", Funciones.isNullColumn(cursor,"ID_COBRADOR",""));
                     jsonObject.accumulate("FECHA", Funciones.isNullColumn(cursor,"FECHA",""));
-                    jsonObject.accumulate("M_COBRANZA", Funciones.isNullColumn(cursor,"M_COBRANZA",""));
-                    jsonObject.accumulate("M_COBRANZA_D", Funciones.isNullColumn(cursor,"M_COBRANZA_D",""));
+                    jsonObject.accumulate("M_COBRANZA", Funciones.isNullColumn(cursor,"M_COBRANZA","0"));
+                    jsonObject.accumulate("M_COBRANZA_D", Funciones.isNullColumn(cursor,"M_COBRANZA_D","0"));
                     jsonObject.accumulate("SALDO", Funciones.isNullColumn(cursor,"SALDO",""));
                     jsonObject.accumulate("NUMCHEQ", Funciones.isNullColumn(cursor,"NUMCHEQ",""));
                     jsonObject.accumulate("FECCHEQ", Funciones.isNullColumn(cursor,"FECCHEQ",""));
