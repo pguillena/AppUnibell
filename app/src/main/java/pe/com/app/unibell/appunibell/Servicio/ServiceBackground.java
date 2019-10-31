@@ -83,6 +83,7 @@ public class ServiceBackground extends Service {
                     //Se ejecuta solo si tenemos plan de datos
                     if (funciones.isConnectingToInternet(getApplicationContext())) {
                         new LoadGetGuardadaSQLite_AsyncTask().execute();
+                        new AnularSQLite_AsyncTask().execute();
                         Toast toastCodigo = Toast.makeText(getApplicationContext(),"COBRANZA REGISTRADA ENVIADA AL ORACLE", Toast.LENGTH_SHORT);
                         toastCodigo.show();
 
@@ -106,7 +107,7 @@ public class ServiceBackground extends Service {
         @Override
         protected String doInBackground(String... p) {
             try {
-                documentos_cobra_cabDAO.getByGuardado();
+                documentos_cobra_cabDAO.getByGuardado("2");
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -205,6 +206,91 @@ public class ServiceBackground extends Service {
 
         }
     }
+
+    private class AnularSQLite_AsyncTask extends AsyncTask<String, String,String> {
+        @Override
+        protected String doInBackground(String... p) {
+            try {
+                documentos_cobra_cabDAO.getByGuardado("4"); //4 Pendiente de anular
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onPostExecute(String restResult) {
+            super.onPostExecute(restResult);
+            try {
+                Integer ID_COBRANZA=0;
+                Integer CODUNC_LOCAL=0;
+
+                for (int c = 0; c < documentos_cobra_cabDAO.lst.size(); c++) {
+
+                    String sURLCobranza_Cab = ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_Anula;
+
+                    new AnularAsyncTask(
+                            documentos_cobra_cabDAO.lst.get(c).getID_COBRANZA().toString(),
+                            documentos_cobra_cabDAO.lst.get(c).getCODUNC_LOCAL().toString()).execute(sURLCobranza_Cab);
+
+
+                }
+
+
+            } catch (Exception ex) {
+                //Toast.makeText(getApplication(),getResources().getString(R.string.msg_nohayregistros), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
+
+    private class AnularAsyncTask extends AsyncTask<String, String, JSONObject> {
+        private volatile boolean running = true;
+        private ProgressDialog progressDialog = null;
+        private String ID_COBRANZA,CODUNC_LOCAL;
+
+        public AnularAsyncTask(String ID_COBRANZA,String CODUNC_LOCAL) {
+            this.ID_COBRANZA=ID_COBRANZA;
+            this.CODUNC_LOCAL=CODUNC_LOCAL;
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+
+            return documentos_cobra_cabBL.AnulaRest("null", ID_COBRANZA,CODUNC_LOCAL,p[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            try {
+                if (result.getInt("status")==0) {
+                } else {
+                    //new ToastLibrary(getActivity(), result.getString("message")).Show();
+                    if(documentos_cobra_cabBL.lst.size()>0){
+                        /*
+                        editor_Shared.putString("PECNROPED",pedido_cabBL.lstPedido.get(0).getPECNROPED().toString());
+                        editor_Shared.putString("pREGISTRANDO","0");
+                        editor_Shared.commit();
+                        */
+                    }
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            finally {
+
+            }
+        }
+    }
+
+
+
+
 
 }
 

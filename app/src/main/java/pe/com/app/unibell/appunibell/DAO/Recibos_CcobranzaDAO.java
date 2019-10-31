@@ -66,7 +66,7 @@ public class Recibos_CcobranzaDAO {
                     "F_RECEPCION,F_DEVOLUCION,VIGENCIA,C_USUARIO,C_PERFIL," +
                     "C_CPU,FEC_REG,C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD," +
                     "C_CPU_MOD,OBSERVACION,C_ESTADO, AUTOMATICO, NUMERO  "+
-                    "FROM CCM_RECIBOS_COBRANZA WHERE VIGENCIA = 'A' AND N_SERIE=" + pN_SERIE + " AND C_RECEPTOR =" + iID_VENDEDOR ;
+                    "FROM CCM_RECIBOS_COBRANZA WHERE VIGENCIA = 'A' AND N_SERIE=" + pN_SERIE + " AND C_RECEPTOR = '" + new Funciones().AgregarCeros(iID_VENDEDOR,3)  +"'";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<Recibos_CcobranzaBE>();
@@ -113,7 +113,7 @@ public class Recibos_CcobranzaDAO {
                     " FROM(\n" +
                     " SELECT C.N_SERIE, C.N_NUMINI, C.N_NUMFIN\n" +
                     " FROM CCM_RECIBOS_COBRANZA C WHERE\n" +
-                    " C_RECEPTOR =" + iID_VENDEDOR + " AND C.F_DEVOLUCION='') V " +
+                    " C_RECEPTOR = '" + new Funciones().AgregarCeros(iID_VENDEDOR,3)  + "'" + " AND C.F_DEVOLUCION='') V " +
                     " WHERE V.N_SERIE=" + pN_SERIE + " AND " + pN_NUMERO + " BETWEEN V.N_NUMINI AND V.N_NUMFIN ";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
@@ -224,7 +224,9 @@ public class Recibos_CcobranzaDAO {
                     "F_RECEPCION,F_DEVOLUCION,VIGENCIA,C_USUARIO,C_PERFIL," +
                     "C_CPU,FEC_REG,C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD," +
                     "C_CPU_MOD,OBSERVACION,C_ESTADO, AUTOMATICO, NUMERO  "+
-                    "FROM CCM_RECIBOS_COBRANZA WHERE VIGENCIA = 'A' AND AUTOMATICO= 'S' AND C_RECEPTOR =" + iID_VENDEDOR ;
+                    "FROM CCM_RECIBOS_COBRANZA WHERE VIGENCIA = 'A' AND AUTOMATICO= 'S' AND C_RECEPTOR = '" + new Funciones().AgregarCeros(iID_VENDEDOR,3)  +"'";
+
+
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<Recibos_CcobranzaBE>();
@@ -267,10 +269,12 @@ public class Recibos_CcobranzaDAO {
         String sMensaje="";
         try{
 
+            String cReceptor = new  Funciones().AgregarCeros(documentos_cobra_cabBE.getID_COBRADOR().toString(),3);
+
             ContentValues cv_cab = new ContentValues();
             cv_cab.put("NUMERO",documentos_cobra_cabBE.getN_RECIBO());
             DataBaseHelper.myDataBase.update("CCM_RECIBOS_COBRANZA",cv_cab,"C_RECEPTOR = ? AND N_SERIE = ? AND AUTOMATICO = ?",
-                    new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRADOR()), String.valueOf(documentos_cobra_cabBE.getN_SERIE_RECIBO()),"S"});
+                    new String[]{String.valueOf(cReceptor), String.valueOf(documentos_cobra_cabBE.getN_SERIE_RECIBO()),"S"});
 
             sMensaje="";
         }catch (Exception ex){

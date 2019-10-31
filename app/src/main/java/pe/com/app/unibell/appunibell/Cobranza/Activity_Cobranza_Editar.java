@@ -11,8 +11,11 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Cabecera_Adapter;
+import pe.com.app.unibell.appunibell.AD.ParTabla_Adapter;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
+import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
+import pe.com.app.unibell.appunibell.DAO.ParTablaDAO;
 import pe.com.app.unibell.appunibell.DAO.Recibos_CcobranzaDAO;
 import pe.com.app.unibell.appunibell.DAO.S_gem_TipoCambioDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
@@ -29,7 +32,7 @@ public class Activity_Cobranza_Editar
 
     private EditText ch_lblnumero;
     private TextView ch_lbl1,ch_lbl2,ch_lbl3,ch_lblbanco,ch_lblfpago;
-    private TextView ch_btnregistrar,ch_lblfplanilla;
+    private TextView ch_btnregistrar,ch_lblfplanilla, txtFechaRecibo;
 
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
@@ -41,10 +44,12 @@ public class Activity_Cobranza_Editar
     private Recibos_CcobranzaDAO recibos_ccobranzaDAO = new Recibos_CcobranzaDAO();
     private S_gem_TipoCambioDAO s_gem_tipoCambioDAO = new S_gem_TipoCambioDAO();
     private Documentos_Cobra_CabDAO documentos_cobra_cabDAO=new Documentos_Cobra_CabDAO();
-
+    private ParTablaDAO parTablaDAO = new ParTablaDAO();
+            private ParTabla_Adapter parTabla_adapter = null;
+            public Integer   iMinDate = 0;;
     private Integer iAuxiliar = 0,iTabla=0;
     private  String EDITAR_TPAGO="";
-
+    private  int iFecha=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +68,7 @@ public class Activity_Cobranza_Editar
         ch_lblnumero = (EditText)findViewById(R.id.ch_lblnumero);
         ch_lblfplanilla = (TextView) findViewById(R.id.ch_lblfplanilla);
         ch_btnregistrar = (TextView) findViewById(R.id.ch_btnregistrar);
+        txtFechaRecibo = (TextView) findViewById(R.id.txtFechaRecibo);
 
 
         sharedSettings = getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
@@ -96,17 +102,20 @@ public class Activity_Cobranza_Editar
         ch_lblbanco.setText(sharedSettings.getString("sBANCODESC", "").toString());
         ch_lblnumero.setText(sNNUMERO);
         ch_lblfplanilla.setText(sharedSettings.getString("sFECHA_DEPOSITO", "").toString());
+        txtFechaRecibo.setText(sharedSettings.getString("sFECHA_RECIBO", "").toString());
 
         //EVENTOS
         ch_lblbanco.setOnClickListener(OnClickList_ch_lblbanco);
         ch_lblfplanilla.setOnClickListener(OnClickList_ch_lblfplanilla);
         ch_btnregistrar.setOnClickListener(OnClickListener_rp_btnregistrar);
+        txtFechaRecibo.setOnClickListener(OnClickList_txtFechaRecibo);
 
     }
 
         View.OnClickListener OnClickList_ch_lblfplanilla = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                iFecha = 1;
                 try {
                     dialogFragmentFecha = new Dialogo_Fragment_Fecha();
                     dialogFragmentFecha.show(getFragmentManager(), "");
@@ -114,6 +123,39 @@ public class Activity_Cobranza_Editar
                 }
             }
         };
+
+
+            View.OnClickListener OnClickList_txtFechaRecibo = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        iFecha=2;
+                        DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
+                        dataBaseHelper.createDataBase();
+                        dataBaseHelper.openDataBase();
+                        parTablaDAO.getByGroup("120000", "120025");
+
+                        parTabla_adapter = new ParTabla_Adapter(getApplicationContext(), 0, parTablaDAO.lst);
+                        parTabla_adapter.notifyDataSetChanged();
+
+                        if(parTabla_adapter!=null){
+
+                            for (int i = 0; i<parTabla_adapter.getCount(); i++) {
+                                iMinDate =Integer.parseInt(parTabla_adapter.getItem(i).getVALORSUNAT());
+                            }
+                        }
+
+
+                        dialogFragmentFecha = new Dialogo_Fragment_Fecha();
+                        ((Dialogo_Fragment_Fecha) dialogFragmentFecha).iMinDate = iMinDate;
+                        dialogFragmentFecha.show(getFragmentManager(), "");
+                    } catch (Exception e) {
+                    }
+                }
+            };
+
+
+
 
             View.OnClickListener OnClickList_rp_lblfpago = new View.OnClickListener() {
         @Override
@@ -185,6 +227,9 @@ public class Activity_Cobranza_Editar
 
                 Documentos_Cobra_CabBE documentos_cobra_cabBE2 = new Documentos_Cobra_CabBE();
                 documentos_cobra_cabBE2.setFPAGO(sFPAGO);
+
+                documentos_cobra_cabBE2.setFECHA(txtFechaRecibo.getText().toString());
+
                 //TARJETAS DE CRÉDITO
                 if (sFPAGO.equals("D") || sFPAGO.equals("V") || sFPAGO.equals("M") || sFPAGO.equals("S") || sFPAGO.equals("I")|| sFPAGO.equals("H")) {
                     documentos_cobra_cabBE2.setFECHA_DEPOSITO(ch_lblfplanilla.getText().toString());
@@ -206,6 +251,10 @@ public class Activity_Cobranza_Editar
                 }
 
                 documentos_cobra_cabBE2.setID_COBRANZA(Integer.valueOf(sharedSettings.getString("ID_COBRANZA", "0").toString()));
+
+                documentos_cobra_cabBE2.setN_RECIBO(sharedSettings.getString("N_RECIBO", "0"));
+                documentos_cobra_cabBE2.setN_SERIE_RECIBO(sharedSettings.getString("N_SERIE_RECIBO", "0"));
+
                 documentos_cobra_cabDAO.updateDeposito(documentos_cobra_cabBE2);
 
                 setResult(RESULT_OK, data);
@@ -248,7 +297,16 @@ public class Activity_Cobranza_Editar
 
     @Override
     public void setearFecha(String fecha) {
-        ch_lblfplanilla.setText(fecha);
+
+        if(iFecha == 1)
+        {
+            ch_lblfplanilla.setText(fecha);
+        }
+        else if (iFecha == 2)
+        {
+            txtFechaRecibo.setText(fecha);
+        }
+
     }
 
 

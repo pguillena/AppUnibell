@@ -264,6 +264,10 @@ public class Activity_Login_Local extends AppCompatActivity
         @Override
         public void onClick(View v) {
             if (Validar()==false){return;}
+
+            editor_Shared.putString("USUARIO_LOGUEADO","1");
+            editor_Shared.commit();
+
             Intent intent = new Intent(getApplication(), MainActivity.class);
             startActivity(intent);
         }

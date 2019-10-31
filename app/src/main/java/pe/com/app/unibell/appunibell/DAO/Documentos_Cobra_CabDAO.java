@@ -113,7 +113,7 @@ public class Documentos_Cobra_CabDAO {
     }
 
 
-    public void getByGuardado() {
+    public void getByGuardado(String sGuardado) {
         Cursor cursor = null;
         Documentos_Cobra_CabBE documentos_cobra_cabBE = null;
         try {
@@ -130,7 +130,7 @@ public class Documentos_Cobra_CabDAO {
                     " INNER JOIN TABLAS_AUXILIARES T ON T.CODIGO=C.FPAGO AND T.TIPO='14'" +
                     " LEFT JOIN CTABNCO B1 ON B1.CODIGO=C.ID_BANCO "+
                     " LEFT JOIN CTABNCO B2 ON B2.CODIGO=C.CTACORRIENTE_BANCO "+
-                    " WHERE C.GUARDADO=2";
+                    " WHERE C.GUARDADO= "+sGuardado;
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<Documentos_Cobra_CabBE>();
@@ -194,7 +194,8 @@ public class Documentos_Cobra_CabDAO {
     }
 
 
- public void getLiquidacionBy(String iID_EMPRESA,String iID_LOCAL,String iFECHA,String iID_COBRADOR,String iESTADO,String iN_PLANILLA,String iC_PACKING) {
+
+    public void getLiquidacionBy(String iID_EMPRESA,String iID_LOCAL,String iFECHA,String iID_COBRADOR,String iESTADO,String iN_PLANILLA,String iC_PACKING) {
         Cursor cursor = null;
         Documentos_Cobra_CabBE documentos_cobra_cabBE = null;
         try {
@@ -251,7 +252,7 @@ public class Documentos_Cobra_CabDAO {
                              "WHERE (C.ID_COBRADOR ="+ iID_COBRADOR + " OR ( " + iID_COBRADOR + " IN(8719,15737) AND C.C_PACKING>0) )\n" +
                              " AND (  substr(C.FECHA,7,4) || substr(C.FECHA,4,2) || substr(C.FECHA,1,2)  BETWEEN '"+ iFECHA +"' AND '" + iFECHA +"'" + " OR '" + iFECHA + "' = '' )" +
                               "AND (C.ESTADO =" +  iESTADO + " OR " +  iESTADO + "= 0)\n" +
-                                 "AND C.ESTADO <> 40002 \n" +
+                                // "AND C.ESTADO <> 40002 \n" +
                                  "AND (C.C_PACKING ="+  iC_PACKING + " OR " + iC_PACKING + "= 0)\n" +
                                  "AND C.ID_EMPRESA =" +  iID_EMPRESA + "\n" +
                                  "AND C.ID_LOCAL =" +  iID_LOCAL + "\n" +
@@ -372,6 +373,7 @@ public class Documentos_Cobra_CabDAO {
                             "  AND C.N_RECIBO =" +  iNUMERO_RECIBO+
                             "  AND C.ID_LOCAL =" +  iID_LOCAL +
                             "  AND C.ID_EMPRESA=" +  iID_EMPRESA +
+                            "  AND C.ESTADO <> 40002 " +
                             "  AND C.N_RECIBO>0 ";
 
 
@@ -696,10 +698,12 @@ public class Documentos_Cobra_CabDAO {
                     new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRANZA())});
 
 
+            String cReceptor = new  Funciones().AgregarCeros(documentos_cobra_cabBE.getID_COBRADOR().toString(),3);
+
             ContentValues cv_recibo = new ContentValues();
             cv_recibo.put("NUMERO",documentos_cobra_cabBE.getN_RECIBO());
             DataBaseHelper.myDataBase.update("CCM_RECIBOS_COBRANZA",cv_recibo,"C_RECEPTOR = ? AND N_SERIE = ? AND AUTOMATICO = ?",
-                    new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRADOR()), String.valueOf(documentos_cobra_cabBE.getN_SERIE_RECIBO()),"S"});
+                    new String[]{String.valueOf(cReceptor), String.valueOf(documentos_cobra_cabBE.getN_SERIE_RECIBO()),"S"});
 
 
             sMensaje="";
@@ -715,6 +719,12 @@ public class Documentos_Cobra_CabDAO {
         String sMensaje="",sFormaPago=documentos_cobra_cabBE.getFPAGO().trim();
         try{
             ContentValues cv = new ContentValues();
+            ContentValues cvcabecera = new ContentValues();
+
+            cvcabecera.put("FECHA",documentos_cobra_cabBE.getFECHA());
+            cvcabecera.put("N_SERIE_RECIBO",documentos_cobra_cabBE.getN_SERIE_RECIBO());
+            cvcabecera.put("N_RECIBO",documentos_cobra_cabBE.getN_RECIBO());
+
             ////TARJETAS DE CRÉDITO
             if(sFormaPago.equals("D") || sFormaPago.equals("V") || sFormaPago.equals("M")  || sFormaPago.equals("S")  || sFormaPago.equals("I") || sFormaPago.equals("H")  ) {
                 cv.put("FECHA_DEPOSITO",documentos_cobra_cabBE.getFECHA_DEPOSITO());
@@ -761,6 +771,12 @@ public class Documentos_Cobra_CabDAO {
 
             DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_CAB",cv,"ID_COBRANZA = ?",
                     new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRANZA())});
+
+            DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_CAB",cvcabecera,"N_SERIE_RECIBO=? AND N_RECIBO=?",
+                    new String[]{
+                            documentos_cobra_cabBE.getN_SERIE_RECIBO().toString(),
+                            documentos_cobra_cabBE.getN_RECIBO().toString()});
+
             sMensaje="";
         }catch (Exception ex){
             sMensaje="Error:" + ex.getMessage().toString();
@@ -1037,11 +1053,11 @@ public class Documentos_Cobra_CabDAO {
                         sURLCobranza_Cab);
             }
 
-
+            //CYPER666
             ContentValues cv = new ContentValues();
 
             cv.put("ESTADO","40002");
-            cv.put("GUARDADO",documentos_cobra_cabBE.getGUARDADO());
+            cv.put("GUARDADO","4");
 
             DataBaseHelper.myDataBase.beginTransaction();
             DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_CAB",cv,"ID_COBRANZA = ?",

@@ -137,7 +137,7 @@ public class Activity_Cobranza_Agregar_Pago
         rp_lblcliente.setTag(sharedSettings.getString("CODIGO_ANTIGUO", "").toString());
 
 
-   /*
+
          clienteDAO.getByCodCliente(rp_lblcliente.getTag().toString());
          if(clienteDAO.lst != null && clienteDAO.lst.size()>0)
          {
@@ -145,7 +145,7 @@ public class Activity_Cobranza_Agregar_Pago
              editor_Shared.commit();
          }
 
-*/
+
 
         if(Double.valueOf(sharedSettings.getString("PAE", "0").toString())>0.0) {
             rp_txtmonto.setText(sharedSettings.getString("PAE", "").toString());

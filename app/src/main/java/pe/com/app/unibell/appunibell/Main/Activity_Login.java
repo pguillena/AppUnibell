@@ -190,6 +190,13 @@ public class Activity_Login extends AppCompatActivity
 
             edtUserName.setText(sharedSettings.getString("USUARIO",""));
 
+
+            if(sharedSettings.getString("USUARIO_LOGUEADO","0").equals("1")) {
+                Intent intent = new Intent(getApplication(), MainActivity.class);
+                startActivity(intent);
+            }
+
+
             //SincronizarTipoCambio();
 
         } catch (Exception e) {

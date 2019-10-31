@@ -90,6 +90,10 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
 
                 txtEstado.setText("APROBADO");
             }
+            else if(parametros.getString("txtEstado").equals("40002")){
+
+                txtEstado.setText("ANULADO");
+            }
         }
         else {
             txtEstado.setTag("40003");

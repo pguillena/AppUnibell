@@ -98,6 +98,7 @@ public class Fragment_Cobranza extends Fragment implements
 
     private FactCobDAO factCobDAO = new FactCobDAO();
     private SistemaDAO sistemaDAO = new SistemaDAO();
+    private Documentos_Cobra_DetDAO documentos_Cobra_DetDAO2 = new Documentos_Cobra_DetDAO();
 
     public Comunicator comunicator;
     private Integer MAX_CODUNICO = 0;
@@ -303,6 +304,8 @@ public class Fragment_Cobranza extends Fragment implements
 
                  String fPago = cobranza_cabecera_adapter.getItem(iPocicionCab).getFPAGO().toString();
 
+                editor_Shared.putString("sFECHA_RECIBO", cobranza_cabecera_adapter.getItem(iPocicionCab).getFECHA().toString());
+
                 //TARJETAS DE CREDITO
                 if (fPago.equals("D") || fPago.equals("V") || fPago.equals("M") || fPago.equals("S") || fPago.equals("I")|| fPago.equals("H")) {
                     //co_txtnro.setText(cobranza_cabecera_adapter.getItem(iPocicionCab).getN_TARJETA().toString());
@@ -336,6 +339,11 @@ public class Fragment_Cobranza extends Fragment implements
 
                 editor_Shared.putString("SALDO_CABECERA",cobranza_cabecera_adapter.getItem(iPocicionCab).getSALDO().toString());
                 editor_Shared.putString("EDITAR_TPAGO",EDITAR_TPAGO.toString().trim());
+
+                editor_Shared.putString("N_RECIBO",cobranza_cabecera_adapter.getItem(iPocicionCab).getN_RECIBO().toString());
+                editor_Shared.putString("N_SERIE_RECIBO",cobranza_cabecera_adapter.getItem(iPocicionCab).getN_SERIE_RECIBO().toString());
+
+
                 editor_Shared.commit();
 
                 cobranza_cabecera_adapter.notifyDataSetChanged();
@@ -368,6 +376,8 @@ public class Fragment_Cobranza extends Fragment implements
 
             String fPago = cobranza_cabecera_adapter.getItem(iPocicionCab).getFPAGO().toString();
 
+            editor_Shared.putString("sFECHA_RECIBO", cobranza_cabecera_adapter.getItem(iPocicionCab).getFECHA().toString());
+
             //TARJETAS DE CREDITO
             if (fPago.equals("D") || fPago.equals("V") || fPago.equals("M") || fPago.equals("S") || fPago.equals("I")|| fPago.equals("H")) {
                 //co_txtnro.setText(cobranza_cabecera_adapter.getItem(iPocicionCab).getN_TARJETA().toString());
@@ -399,6 +409,11 @@ public class Fragment_Cobranza extends Fragment implements
             }
 
             editor_Shared.putString("EDITAR_TPAGO",EDITAR_TPAGO.toString().trim());
+
+
+            editor_Shared.putString("N_RECIBO",cobranza_cabecera_adapter.getItem(iPocicionCab).getN_RECIBO().toString());
+            editor_Shared.putString("N_SERIE_RECIBO",cobranza_cabecera_adapter.getItem(iPocicionCab).getN_SERIE_RECIBO().toString());
+
             editor_Shared.commit();
 
             cobranza_cabecera_adapter.notifyDataSetChanged();
@@ -804,7 +819,8 @@ public class Fragment_Cobranza extends Fragment implements
             //Cargamos las cobranzas temporales anexadas a la cabecera de la cobranza
             new LoadCobranzaTemporalSQLite_AsyncTask().execute(
                     sharedSettings.getString("MAX_CODUNICO", "0").toString(),
-                    sharedSettings.getString("ID_COBRANZA", "0").toString()
+                    sharedSettings.getString("ID_COBRANZA", "0").toString(),
+                    sharedSettings.getString("CODIGO_ANTIGUO", "").toString()
             );
         } catch (Exception ex) {
 
@@ -1195,7 +1211,9 @@ public class Fragment_Cobranza extends Fragment implements
         @Override
         protected String doInBackground(String... p) {
             try {
+                //cyper100
                 factCobDAO.getCobranzaTemp(p[0], p[1]);
+                documentos_Cobra_DetDAO2.getByMontosRegistrados(p[2], p[1]);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -1209,6 +1227,50 @@ public class Fragment_Cobranza extends Fragment implements
         @Override
         protected void onPostExecute(String restResult) {
             super.onPostExecute(restResult);
+
+            if(factCobDAO.lst!=null && factCobDAO.lst.size()>0 && documentos_Cobra_DetDAO2.lst!=null && documentos_Cobra_DetDAO2.lst.size()>0)
+            {
+                for (int i = 0; i < documentos_Cobra_DetDAO2.lst.size(); i++ )
+                {
+                    Documentos_Cobra_DetBE  item = documentos_Cobra_DetDAO2.lst.get(i);
+
+                    for (int j = 0; j < factCobDAO.lst.size(); j++ )
+                    {
+                        FactCobBE  item2 = factCobDAO.lst.get(j);
+
+                        if (item.getTIPDOC().equals(item2.getTIPDOC()) && item.getSERIE_NUM().equals(item2.getSERIE_NUM()) && item.getNUMERO().equals(item2.getNUMERO().toString()))
+                        {
+                            if(factCobDAO.lst.get(j).getSALDO()>0) {
+                                factCobDAO.lst.get(j).setSALDO(Double.valueOf(funciones.restar(factCobDAO.lst.get(j).getSALDO().toString(), item.getM_COBRANZA().toString())));
+                            }
+                            else
+                            {
+                                factCobDAO.lst.get(j).setSALDO(0.0);
+                            }
+                        }
+
+                    }
+
+                }
+            }
+
+            //Cobranza por antiguedad
+/*
+            if(sharedSettings.getString("I_CANC_ANTIGUO", "N").toString().equals("S"))
+            {
+                if(factCobDAO.lst!=null && factCobDAO.lst.size()>0)
+                {
+                  for(int i = 0; i < factCobDAO.lst.size(); i++)
+                  {
+
+                  }
+                }
+            }
+*/
+            //Fin cobranza por antiguedad
+
+
+
             try {
                 cobranza_detalle_adapter = new Cobranza_Detalle_Adapter(getActivity(), 0, factCobDAO.lst);
                 cobranza_detalle_adapter.notifyDataSetChanged();
@@ -1445,8 +1507,11 @@ public class Fragment_Cobranza extends Fragment implements
 
         @Override
         protected void onPostExecute(JSONObject result) {
+            String mensaje="";
             //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
             try {
+                mensaje = result.getString("message");
+
                 if (result.getInt("status") == 0) {
                 } else {
                     //cyper1000
@@ -1454,7 +1519,8 @@ public class Fragment_Cobranza extends Fragment implements
                     comunicator.Finalizar();
                 }
             } catch (Exception ex) {
-                ex.printStackTrace();
+                //ex.printStackTrace();
+                Mensaje(mensaje);
             } finally {
 
             }

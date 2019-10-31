@@ -1,5 +1,6 @@
 package pe.com.app.unibell.appunibell.BL;
 
+import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
@@ -790,7 +791,7 @@ public class Documentos_Cobra_CabBL {
             e.printStackTrace();
             try {
                 jsonObjectResult.accumulate("status", false);
-                jsonObjectResult.accumulate("message", e.getMessage());
+                jsonObjectResult.accumulate("message", jsonObjectRest.getString("message"));
             } catch (JSONException ex) {
                 ex.printStackTrace();
             }
@@ -1078,6 +1079,21 @@ public class Documentos_Cobra_CabBL {
     }
 
 
+    private void ActualizaEstadoGuardadoCobranzaByID(String ID_COBRANZA){
+        try{
+            ContentValues cv2 = new ContentValues();
+            cv2.put("GUARDADO", 2); //ENVIADO Y SINCRONIZADO
+            DataBaseHelper.myDataBase.beginTransaction();
+            DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_CAB", cv2, "ID_COBRANZA = ?", new String[]{String.valueOf(ID_COBRANZA)});
+            DataBaseHelper.myDataBase.setTransactionSuccessful();
+            DataBaseHelper.myDataBase.endTransaction();
+
+        }catch (Exception ex){
+            DataBaseHelper.myDataBase.endTransaction();
+        }
+    }
+
+
 
     public JSONObject AnulaRest(String motivoAnulacion, String ID_COBRANZA,String CODUNC_LOCAL,String newURL){
         JSONObject jsonObjectRest =null;
@@ -1158,8 +1174,8 @@ public class Documentos_Cobra_CabBL {
                         jsonObjectResult.accumulate("iID_COBRANZA",sID_COBRANZA);
                         jsonObjectResult.accumulate("iID_COBRANZA_ORACLE", sID_COBRANZA_ORACLE);
 
-                        //SI ELEIMINO EN EL ORACLE ENTONCES ANULA LA COBRANZA LOCAL
-                        //EliminarCobranzaByID(sID_COBRANZA);
+                        //ACTUALIZO EL ESTADO EN EL SQLLITE PARA QUE NO SE ENVIE DE NUEVO.
+                        ActualizaEstadoGuardadoCobranzaByID(sID_COBRANZA);
 
                     }
                 } while (cursor.moveToNext());

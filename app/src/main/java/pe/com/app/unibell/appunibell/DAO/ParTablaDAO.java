@@ -20,7 +20,7 @@ public class ParTablaDAO {
                 SQL = "SELECT IDTABLA,DESCRIPCION,ABREVIADO,VALOR1,VALOR2," +
                         "VALOR3,INDICADOR1,INDICADOR2,INDICADOR3,VALORSUNAT," +
                         "GRUPO,ESTADO,SEMUESTRA,GRUPO_SUPERIOR " +
-                        "FROM ParTabla where grupo='40000' and idtabla in ('40003','40005','40007') " +
+                        "FROM ParTabla where grupo='40000' and idtabla in ('40003','40005','40007','40002') " +
                         " and semuestra =1 and estado='40001' ORDER BY IDTABLA";
             }
 

@@ -504,4 +504,46 @@ public class Documentos_Cobra_DetDAO {
         return sMensaje;
     }
 
+
+
+    public void getByMontosRegistrados(String pCodCliente, String pIdCobranza) {
+        Cursor cursor = null;
+        Documentos_Cobra_DetBE documentos_cobra_detBE = null;
+        String SQL="";
+        try {
+
+            SQL="SELECT D.TIPDOC, D.SERIE_NUM, D.NUMERO, SUM(D.M_COBRANZA) AS M_COBRANZA \n" +
+                    "  FROM S_CCM_DOCUMENTOS_COBRA_CAB C \n" +
+                    " INNER JOIN S_CCM_DOCUMENTOS_COBRA_DET D \n" +
+                    "    ON (C.ID_COBRANZA = D.ID_COBRANZA) \n" +
+                    " WHERE  C.ESTADO IN (40003, 40007) \n" +
+                    "   AND C.COD_CLIENTE = '"+pCodCliente+"' \n" +
+                    "   AND D.TIPDOC IN('01','03') \n" +
+                    "   AND C.ID_COBRANZA <> "+pIdCobranza+" \n" +
+                    " GROUP BY D.TIPDOC, D.SERIE_NUM, D.NUMERO";
+
+            cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
+            lst = new ArrayList<Documentos_Cobra_DetBE>();
+            lst.clear();
+            if (cursor.moveToFirst()) {
+                do {
+                    documentos_cobra_detBE = new Documentos_Cobra_DetBE();
+                    documentos_cobra_detBE.setTIPDOC(Funciones.isNullColumn(cursor,"TIPDOC",""));
+                    documentos_cobra_detBE.setSERIE_NUM(Funciones.isNullColumn(cursor,"SERIE_NUM",""));
+                    documentos_cobra_detBE.setNUMERO(Funciones.isNullColumn(cursor,"NUMERO",""));
+                    documentos_cobra_detBE.setM_COBRANZA(Funciones.isNullColumn(cursor,"M_COBRANZA",0.0));
+                    lst.add(documentos_cobra_detBE);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+    }
+
+
+
+
 }

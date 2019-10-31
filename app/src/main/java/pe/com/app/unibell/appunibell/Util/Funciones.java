@@ -512,4 +512,24 @@ public class Funciones {
     }
 
 
+    static public  String AgregarCeros(String string, int largo)
+    {
+        String ceros = "";
+
+        int cantidad = largo - string.length();
+
+        if (cantidad >= 1)
+        {
+            for(int i=0;i<cantidad;i++)
+            {
+                ceros += "0";
+            }
+
+            return (ceros + string);
+        }
+        else
+            return string;
+    }
+
+
 }

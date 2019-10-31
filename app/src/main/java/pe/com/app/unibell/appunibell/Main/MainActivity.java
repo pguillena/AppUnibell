@@ -268,6 +268,8 @@ protected void onCreate(Bundle savedInstanceState) {
 
             case "SMNU_CERRAR":
                 finish();
+                editor_Shared.putString("USUARIO_LOGUEADO","0");
+                editor_Shared.commit();
                 Intent SMNU_CERRAR = new Intent(getApplication(), Activity_Login.class);
                 startActivity(SMNU_CERRAR);
                 OcultarDrawel();
