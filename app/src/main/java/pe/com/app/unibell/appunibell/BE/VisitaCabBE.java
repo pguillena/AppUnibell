@@ -31,5 +31,4 @@ public class VisitaCabBE {
         return F_VISITA;
     }
 
-    //subir
 }

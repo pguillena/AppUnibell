@@ -196,7 +196,18 @@ public class Activity_Liquidacion extends AppCompatActivity
                     int CantidadSeleccionado = 0;
 
                     if (cobranza_liquidacion_adapter.lst.get(position).getCHKMARCADO()) {
-                        cobranza_liquidacion_adapter.lst.get(position).setCHKMARCADO(!cobranza_liquidacion_adapter.lst.get(position).getCHKMARCADO());
+
+
+                        boolean estadoBol = cobranza_liquidacion_adapter.lst.get(position).getCHKMARCADO();
+
+                        for (int i = 0; i < cobranza_liquidacion_adapter.getCount(); i++) {
+                            if (cobranza_liquidacion_adapter.lst.get(i).getRECIBO().equals(cobranza_liquidacion_adapter.lst.get(position).getRECIBO().toString())) {
+                                cobranza_liquidacion_adapter.lst.get(i).setCHKMARCADO(!estadoBol);
+                            }
+                        }
+
+
+                        //cobranza_liquidacion_adapter.lst.get(position).setCHKMARCADO(!cobranza_liquidacion_adapter.lst.get(position).getCHKMARCADO());
                         cobranza_liquidacion_adapter.notifyDataSetChanged();
                     } else {
                         for (int i = 0; i < cobranza_liquidacion_adapter.getCount(); i++) {
@@ -206,7 +217,16 @@ public class Activity_Liquidacion extends AppCompatActivity
                         }
 
                         if (CantidadSeleccionado > 0) {
-                            cobranza_liquidacion_adapter.lst.get(position).setCHKMARCADO(!cobranza_liquidacion_adapter.lst.get(position).getCHKMARCADO());
+                           // cobranza_liquidacion_adapter.lst.get(position).setCHKMARCADO(!cobranza_liquidacion_adapter.lst.get(position).getCHKMARCADO());
+
+                            boolean estadoBol = cobranza_liquidacion_adapter.lst.get(position).getCHKMARCADO();
+
+                            for (int i = 0; i < cobranza_liquidacion_adapter.getCount(); i++) {
+                                if (cobranza_liquidacion_adapter.lst.get(i).getRECIBO().equals(cobranza_liquidacion_adapter.lst.get(position).getRECIBO().toString())) {
+                                    cobranza_liquidacion_adapter.lst.get(i).setCHKMARCADO(!estadoBol);
+                                }
+                            }
+
                             cobranza_liquidacion_adapter.notifyDataSetChanged();
                         }
 
@@ -293,7 +313,14 @@ public class Activity_Liquidacion extends AppCompatActivity
             {
                 if(!cobranza_liquidacion_adapter.lst.get(position).getESTADO_CONCILIADO().toString().equals("40025")) //ESTADO DIFERENTE DE CONCILIADO
                 {
-                    cobranza_liquidacion_adapter.lst.get(position).setCHKMARCADO(!cobranza_liquidacion_adapter.lst.get(position).getCHKMARCADO());
+                    boolean estadoBol = cobranza_liquidacion_adapter.lst.get(position).getCHKMARCADO();
+
+                    for (int i = 0; i < cobranza_liquidacion_adapter.getCount(); i++) {
+                        if (cobranza_liquidacion_adapter.lst.get(i).getRECIBO().equals(cobranza_liquidacion_adapter.lst.get(position).getRECIBO().toString())) {
+                            cobranza_liquidacion_adapter.lst.get(i).setCHKMARCADO(!estadoBol);
+                        }
+                    }
+
                     cobranza_liquidacion_adapter.notifyDataSetChanged();
                 }
                 else

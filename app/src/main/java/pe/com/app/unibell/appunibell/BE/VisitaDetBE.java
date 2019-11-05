@@ -378,5 +378,4 @@ public class VisitaDetBE {
         return VISITADO;
     }
 
-    //cambio para subir
 }
