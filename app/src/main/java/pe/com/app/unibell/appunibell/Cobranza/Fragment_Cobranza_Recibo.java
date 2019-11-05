@@ -1,22 +1,11 @@
 package pe.com.app.unibell.appunibell.Cobranza;
 
-import android.Manifest;
+
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.StrictMode;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,27 +14,11 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.tool.xml.XMLWorkerHelper;
-
-import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.UUID;
 
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Recibo_Adapter;
 import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
@@ -53,8 +26,6 @@ import pe.com.app.unibell.appunibell.Dialogs.Dialogo_Fragment_Fecha;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.AsyncTask_Recibo;
 import pe.com.app.unibell.appunibell.Util.Funciones;
-import pe.com.app.unibell.appunibell.Util.ItextLibrary;
-import pe.com.app.unibell.appunibell.Util.ToastLibrary;
 
 public class Fragment_Cobranza_Recibo extends Fragment
         implements  Dialogo_Fragment_Fecha.NoticeDialogoListener,

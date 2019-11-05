@@ -1,50 +1,36 @@
 package pe.com.app.unibell.appunibell.Clientes;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.support.v7.widget.Toolbar;
-
 import java.util.ArrayList;
-
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.MenuItemCompat;
 import pe.com.app.unibell.appunibell.AD.Clientes_Adapter;
 import pe.com.app.unibell.appunibell.BE.ClientesBE;
-import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranzas;
 import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
-import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
-import pe.com.app.unibell.appunibell.DAO.VisitaDetDAO;
 import pe.com.app.unibell.appunibell.R;
 
-public class Activity_clientes extends AppCompatActivity  {
+public class Activity_clientes extends AppCompatActivity {
 
-   public String hdfCodigoCliente="", hdfRazonSocial="", hdfRUC="", hdfDNI="", hdfGrupo="", hdfCPacking="0";
-   private TextView cl_lblregistros, txtPAE, TxtNroPacking;
+    public String hdfCodigoCliente="", hdfRazonSocial="", hdfRUC="", hdfDNI="", hdfGrupo="", hdfCPacking="0";
+    private TextView cl_lblregistros, txtPAE, TxtNroPacking;
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
     private ListView  cl_lvclientes;
@@ -52,11 +38,11 @@ public class Activity_clientes extends AppCompatActivity  {
     private ClientesDAO clientesDAO = new ClientesDAO();
     private TextView cl_codbar;
     private Typeface script;
-    int request_code = 1;
-    int colorOjito=0;
+    private int request_code = 1;
+    private int colorOjito=0;
 
 
-    LinearLayout lyPlanillaDespacho;
+    private LinearLayout lyPlanillaDespacho;
 
 
     @Override
@@ -64,6 +50,7 @@ public class Activity_clientes extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clientes_list);
         try {
+
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle("Listado de clientes");
@@ -84,10 +71,7 @@ public class Activity_clientes extends AppCompatActivity  {
 
             lyPlanillaDespacho.setVisibility(View.GONE);
             txtPAE.setVisibility(View.GONE);
-            BuscarCliente();
-
-
-
+            //BuscarCliente();
         } catch (Exception ex) {
 
         }
@@ -129,7 +113,6 @@ public class Activity_clientes extends AppCompatActivity  {
     private void BuscarCliente() {
         try {
         Intent intent = new Intent(Activity_clientes.this, Activity_FiltroClientes.class);
-
         intent.putExtra("txtRazonSocial",hdfRazonSocial);
         intent.putExtra("txtRUC",hdfRUC);
         intent.putExtra("txtDNI",hdfDNI);

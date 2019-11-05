@@ -3,18 +3,15 @@ package pe.com.app.unibell.appunibell.Flujo_Seguimiento;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import org.json.JSONObject;
-
+import androidx.fragment.app.Fragment;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Flujo3_Seguimiento_Adapter;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_MovBL;
-import pe.com.app.unibell.appunibell.Planilla.Activity_FlujoSeguimiento;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
 import pe.com.app.unibell.appunibell.Util.ToastLibrary;

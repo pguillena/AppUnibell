@@ -13,10 +13,12 @@ import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 
+import androidx.appcompat.widget.AppCompatEditText;
+
 /**
  * Created by rgalvez on 10/10/2016.
  */
-public class ShowableEditText extends android.support.v7.widget.AppCompatEditText {
+public class ShowableEditText extends AppCompatEditText {
     private Drawable mLeftDrawable, mRightDrawable;
     private boolean isHasFocus;
 

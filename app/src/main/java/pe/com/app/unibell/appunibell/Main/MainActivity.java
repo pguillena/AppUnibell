@@ -11,12 +11,6 @@ import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.os.Parcelable;
 import android.os.SystemClock;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -30,9 +24,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
+import com.google.android.material.navigation.NavigationView;
 import java.util.Random;
-
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import pe.com.app.unibell.appunibell.AD.Menu_Adapter;
 import pe.com.app.unibell.appunibell.BL.MenuStringBL;
 import pe.com.app.unibell.appunibell.Clientes.Activity_MigrarCliente;
@@ -40,7 +38,6 @@ import pe.com.app.unibell.appunibell.Clientes.Activity_Visita_Cliente;
 import pe.com.app.unibell.appunibell.Clientes.Activity_clientes;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.Menu_StringDAO;
-import pe.com.app.unibell.appunibell.Flujo_Seguimiento.Activity_Flujo_Seguimiento;
 import pe.com.app.unibell.appunibell.Liquidacion.Activity_Liquidacion;
 import pe.com.app.unibell.appunibell.Planilla.Activity_AprobacionPlanilla;
 import pe.com.app.unibell.appunibell.R;
@@ -48,7 +45,7 @@ import pe.com.app.unibell.appunibell.Reportes.Activity_Reportes;
 import pe.com.app.unibell.appunibell.Servicio.AlarmReceiver;
 import pe.com.app.unibell.appunibell.Util.Globals;
 
-public class MainActivity  extends AppCompatActivity{
+public class MainActivity  extends AppCompatActivity {
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
     private Menu_StringDAO menu_stringDAO = new Menu_StringDAO();
@@ -69,7 +66,7 @@ public class MainActivity  extends AppCompatActivity{
     private static String DB_NAME = "REST_POS_BD.sqlite";
     private Button sp_img1, btnsincronizar, btncobranzas,btnliquidacion,btnaplanilla,btnreportes, btnMigrarCliente;
     //DIEZ MINUTOS
-    private Integer iTiempoEjecuta=2;
+    private Integer iTiempoEjecuta=5;
 
     // Variables que almacenarán el tiempo inicial y el número de tazas
     // acumuladas.
@@ -93,25 +90,20 @@ protected void onCreate(Bundle savedInstanceState) {
         numTazas = 0;
         brewTime = 1;
         working = false;
-
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Cobranzas");
-        //getSupportActionBar().setSubtitle("COBRANZAS");
-
-
          try{
              sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
              editor_Shared= getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
-             DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
+            DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
             dataBaseHelper.createDataBase();
             dataBaseHelper.openDataBase();
+
          } catch (Exception e) {
              e.printStackTrace();
          }
-
-        //username=(TextView) findViewById(R.id.username);
         llMenu = (LinearLayout) findViewById(R.id.llMenu);
         mnu_lvmenu = (ListView) findViewById(R.id.mnu_lvmenu);
 
@@ -119,16 +111,16 @@ protected void onCreate(Bundle savedInstanceState) {
         btncobranzas=(Button) findViewById(R.id.btncobranzas);
         btnliquidacion=(Button) findViewById(R.id.btnliquidacion);
         btnaplanilla=(Button) findViewById(R.id.btnaplanilla);
-            btnreportes=(Button) findViewById(R.id.btnreportes);
-            btnMigrarCliente=(Button) findViewById(R.id.btnMigrarCliente);
+        btnreportes=(Button) findViewById(R.id.btnreportes);
+        btnMigrarCliente=(Button) findViewById(R.id.btnMigrarCliente);
 
         lo_txtempresa=(TextView) findViewById(R.id.lo_txtempresa);
         lo_txtlocal=(TextView) findViewById(R.id.lo_txtlocal);
-            lblNombreUsuario = (TextView)findViewById(R.id.lblNombreUsuario);
-            lblNombreUsuario2 = (TextView)findViewById(R.id.lblNombreUsuario2);
+        lblNombreUsuario = (TextView)findViewById(R.id.lblNombreUsuario);
+        lblNombreUsuario2 = (TextView)findViewById(R.id.lblNombreUsuario2);
 
-            lblNombreUsuario.setText(sharedSettings.getString("NOMBRE_COMPLETO", "").toString());
-            lblNombreUsuario2.setText(sharedSettings.getString("NOMBRE_COMPLETO", "").toString());
+        lblNombreUsuario.setText(sharedSettings.getString("NOMBRE_COMPLETO", "").toString());
+        lblNombreUsuario2.setText(sharedSettings.getString("NOMBRE_COMPLETO", "").toString());
         lo_txtempresa.setText(sharedSettings.getString("NOM_EMPRESA", "").toString());
         lo_txtlocal.setText(sharedSettings.getString("NOM_LOCAL", "").toString());
 
@@ -141,16 +133,13 @@ protected void onCreate(Bundle savedInstanceState) {
         btncobranzas.setOnClickListener(OnClickListenercl_btncobranzas);
         btnliquidacion.setOnClickListener(OnClickListenercl_btnliquidacion);
         btnaplanilla.setOnClickListener(OnClickListenercl_btnaplanilla);
-            btnreportes.setOnClickListener(OnClickListenercl_btnreportes);
-            btnMigrarCliente.setOnClickListener(OnClickListenercl_btnMigrarCliente);
+        btnreportes.setOnClickListener(OnClickListenercl_btnreportes);
+        btnMigrarCliente.setOnClickListener(OnClickListenercl_btnMigrarCliente);
 
-
-
-            btnaplanilla.setVisibility(View.GONE);
-            btncobranzas.setVisibility(View.GONE);
-            btnreportes.setVisibility(View.GONE);
-            btnliquidacion.setVisibility(View.GONE);
-          //  btnMigrarCliente.setVisibility(View.GONE);
+        btnaplanilla.setVisibility(View.GONE);
+        btncobranzas.setVisibility(View.GONE);
+        btnreportes.setVisibility(View.GONE);
+        btnliquidacion.setVisibility(View.GONE);
 
        //EJECUTA EL SERVICIO
         Intent alarm = new Intent(MainActivity.this, AlarmReceiver.class);
@@ -163,6 +152,7 @@ protected void onCreate(Bundle savedInstanceState) {
             int iRandom = random.nextInt(999 - 100) + 100;
             editor_Shared.putInt("random",iRandom);
             editor_Shared.putString("tarea_gps", "1");
+            editor_Shared.putString("vtiempotracking", iTiempoEjecuta.toString());
             editor_Shared.commit();
         }
 
@@ -174,12 +164,10 @@ protected void onCreate(Bundle savedInstanceState) {
         int orientation = getResources().getConfiguration().orientation;
 
         dllp.width = display.getWidth();
-
-
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.app_name, R.string.app_name) {
 
-            @Override
+        @Override
         public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
                 }
@@ -206,14 +194,6 @@ protected void onCreate(Bundle savedInstanceState) {
                  btnsincronizar.setEnabled(true);
                  OcultarDrawel();
                  break;
-
-/*            case "SMNU_CLIENTES":
-                Intent SMNU_CLIENTES = new Intent(getApplication(), Activity_clientes.class);
-                startActivity(SMNU_CLIENTES);
-                btncobranzas.setEnabled(true);
-                 OcultarDrawel();
-                 break;
-*/
             case "SMNU_COBRANZAS":
                 Intent SMNU_COBRANZAS = new Intent(getApplication(), Activity_clientes.class);
                 startActivity(SMNU_COBRANZAS);
@@ -221,7 +201,6 @@ protected void onCreate(Bundle savedInstanceState) {
                 btncobranzas.setVisibility(View.VISIBLE);
                 OcultarDrawel();
                 break;
-
             case "SMNU_LINQCOBRANZA":
                 Intent SMNU_LINQCOBRANZA = new Intent(getApplication(), Activity_Liquidacion.class);
                 startActivity(SMNU_LINQCOBRANZA);
@@ -229,13 +208,6 @@ protected void onCreate(Bundle savedInstanceState) {
                 btnliquidacion.setVisibility(View.VISIBLE);
                 OcultarDrawel();
                  break;
-
-          /*  case "SMNU_FLUJOSEGUIMIENTO":
-                Intent SMNU_FLUJOSEGUIMIENTO = new Intent(getApplication(), Activity_FlujoSeguimiento.class);
-                startActivity(SMNU_FLUJOSEGUIMIENTO);
-                 OcultarDrawel();
-                 break;*/
-
             case "SMNU_APROBACIONPLA":
                 Intent SMNU_APROBACIONPLA = new Intent(getApplication(), Activity_AprobacionPlanilla.class);
                 startActivity(SMNU_APROBACIONPLA);
@@ -243,7 +215,6 @@ protected void onCreate(Bundle savedInstanceState) {
                 btnaplanilla.setVisibility(View.VISIBLE);
                 OcultarDrawel();
                 break;
-
             case "SMNU_REPORTES":
                 Intent SMNU_REPORTES = new Intent(getApplication(), Activity_Reportes.class);
                 startActivity(SMNU_REPORTES);
@@ -251,21 +222,17 @@ protected void onCreate(Bundle savedInstanceState) {
                 btnreportes.setVisibility(View.VISIBLE);
                 OcultarDrawel();
                  break;
-
              case "SMNU_RECORRIDO":
                  Intent SMNU_RECORRIDO = new Intent(getApplication(), Activity_Visita_Cliente.class);
                  startActivity(SMNU_RECORRIDO);
                  OcultarDrawel();
                  break;
-
             case "SMNU_ACERCADE":
                 OcultarDrawel();
                 break;
-
              case "SMNU_CAMBIO":
                  finish();
                  break;
-
             case "SMNU_CERRAR":
                 finish();
                 editor_Shared.putString("USUARIO_LOGUEADO","0");
@@ -277,12 +244,10 @@ protected void onCreate(Bundle savedInstanceState) {
         }
         }
         });
-
         } catch (Exception ex) {
         ex.printStackTrace();
         }
         }
-
 
     View.OnClickListener OnClickListenercl_btnsincronizar = new View.OnClickListener() {
         @Override
@@ -290,7 +255,6 @@ protected void onCreate(Bundle savedInstanceState) {
             try {
                 Intent SMNU_SINCRONIZAR = new Intent(getApplication(), Activity_Sincronizar.class);
                 startActivity(SMNU_SINCRONIZAR);
-
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -303,7 +267,6 @@ protected void onCreate(Bundle savedInstanceState) {
             try {
                 Intent SMNU_CLIENTES = new Intent(getApplication(), Activity_clientes.class);
                 startActivity(SMNU_CLIENTES);
-
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -316,7 +279,6 @@ protected void onCreate(Bundle savedInstanceState) {
             try {
                 Intent SMNU_LINQCOBRANZA = new Intent(getApplication(), Activity_Liquidacion.class);
                 startActivity(SMNU_LINQCOBRANZA);
-
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

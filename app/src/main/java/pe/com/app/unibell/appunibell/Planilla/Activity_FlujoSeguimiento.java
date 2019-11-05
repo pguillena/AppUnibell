@@ -3,18 +3,16 @@ package pe.com.app.unibell.appunibell.Planilla;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
-
+import com.google.android.material.tabs.TabLayout;
 import org.json.JSONObject;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Flujo1_Seguimiento_Adapter;
 import pe.com.app.unibell.appunibell.AD.Cobranza_FlujoResumen_Seguimiento_Adapter;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Flujo2_Seguimiento_Adapter;
@@ -40,7 +38,7 @@ public class Activity_FlujoSeguimiento extends AppCompatActivity {
     private Documentos_Cobra_CabBL documentos_cobra_cabBL = new Documentos_Cobra_CabBL();
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
-    ViewPager mViewPager;
+    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

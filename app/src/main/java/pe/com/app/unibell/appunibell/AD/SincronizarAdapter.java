@@ -1,9 +1,6 @@
 package pe.com.app.unibell.appunibell.AD;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.core.content.ContextCompat;
 import pe.com.app.unibell.appunibell.BE.SincronizarBE;
 import pe.com.app.unibell.appunibell.Main.Activity_Sincronizar;
 import pe.com.app.unibell.appunibell.R;

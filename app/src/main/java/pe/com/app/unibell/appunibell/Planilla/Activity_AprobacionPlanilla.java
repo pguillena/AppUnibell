@@ -1,44 +1,22 @@
 package pe.com.app.unibell.appunibell.Planilla;
 
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import org.json.JSONObject;
-
-import pe.com.app.unibell.appunibell.AD.Clientes_Adapter;
-import pe.com.app.unibell.appunibell.AD.Cobranza_Aprobacion_Planilla_Adapter;
-import pe.com.app.unibell.appunibell.AD.Cobranza_Liquidacion_Adapter;
-import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_MovBL;
-import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranzas;
-import pe.com.app.unibell.appunibell.Cobranza.Fragment_Cobranza;
-import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentTransaction;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
-import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;
-import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Confirmar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialogo_Fragment_Fecha;
-import pe.com.app.unibell.appunibell.Main.Activity_Sincronizar;
 import pe.com.app.unibell.appunibell.R;
-import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
-import pe.com.app.unibell.appunibell.Util.ToastLibrary;
 
 public class Activity_AprobacionPlanilla extends AppCompatActivity
            implements Fragment_AprobacionPlanilla.Comunicator{
@@ -151,14 +129,14 @@ public class Activity_AprobacionPlanilla extends AppCompatActivity
     public void FechaInicio() {
         iFecha=1;
         dialogFragmentFecha = new Dialogo_Fragment_Fecha();
-        dialogFragmentFecha.show(getFragmentManager(), "");
+        dialogFragmentFecha.show(getSupportFragmentManager(), "");
     }
 
     @Override
     public void FechaFin() {
         iFecha=2;
         dialogFragmentFecha = new Dialogo_Fragment_Fecha();
-        dialogFragmentFecha.show(getFragmentManager(), "");
+        dialogFragmentFecha.show(getSupportFragmentManager(), "");
     }
 
     @Override

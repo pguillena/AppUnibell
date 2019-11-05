@@ -1,6 +1,6 @@
 package pe.com.app.unibell.appunibell.DAO;
 
-import android.arch.core.util.Function;
+
 import android.database.Cursor;
 
 import java.util.ArrayList;

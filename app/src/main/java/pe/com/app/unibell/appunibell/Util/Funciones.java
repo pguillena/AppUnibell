@@ -1,13 +1,22 @@
 package pe.com.app.unibell.appunibell.Util;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
+import android.os.PowerManager;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -35,12 +44,81 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import androidx.core.app.ActivityCompat;
 import pe.com.app.unibell.appunibell.R;
+
+import static android.Manifest.permission.READ_PHONE_STATE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.content.Context.POWER_SERVICE;
 
 /**
  * Created by RENAN on 18/08/2016.
  */
 public class Funciones {
+
+    public boolean ValidacionPermisos(Context context) {
+        Boolean iValor=true;
+        Integer iAlmacen=1,iTelefono=1;
+        //CAMARAS
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            //ALMACENAMIENTO-PDF,EXCEL,TEXT,WORD, ETC...
+            int hasWriteContactsPermission_Almacen = 0;
+            hasWriteContactsPermission_Almacen = context.checkSelfPermission(WRITE_EXTERNAL_STORAGE);
+            if (hasWriteContactsPermission_Almacen != PackageManager.PERMISSION_GRANTED) {
+                iAlmacen=0;
+            }
+            //TELEFONO
+            int hasWriteContactsPermission_Telefono = 0;
+            hasWriteContactsPermission_Telefono = context.checkSelfPermission(READ_PHONE_STATE);
+
+            if (hasWriteContactsPermission_Telefono != PackageManager.PERMISSION_GRANTED) {
+                iTelefono=0;
+            }
+        }
+        if(iAlmacen==0 || iTelefono==0){
+            iValor=false;
+            Recomendacion(context);
+        }
+        return iValor;
+    }
+
+    private void Recomendacion(final Context context){
+        AlertDialog.Builder dialogo=new AlertDialog.Builder(context);
+        dialogo.setTitle("Permisos Desactivados");
+        dialogo.setMessage("Debe aceptar los permisos para el correcto funcionamiento de la App");
+        dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    ActivityCompat.requestPermissions((Activity) context, new String[]{
+                            WRITE_EXTERNAL_STORAGE,
+                            READ_PHONE_STATE
+                            //  SEND_SMS
+                    },100);
+
+                }
+            }
+        });
+        dialogo.show();
+    }
+
+    public Boolean Valid_InactivaOptimatBateria(Context context){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Intent intent = new Intent();
+            String packageName = context.getPackageName();
+            PowerManager pm = (PowerManager) context.getSystemService(POWER_SERVICE);
+            if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+                intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                intent.setData(Uri.parse("package:" + packageName));
+                context.startActivity(intent);
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
     public String FormatDolar(String valor) {
         String Resultado;
         Locale ES_PE =new Locale("es","pe"); //Español Perú

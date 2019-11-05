@@ -2,28 +2,14 @@ package pe.com.app.unibell.appunibell.Reportes;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.text.InputType;
-import android.text.TextUtils;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import org.json.JSONObject;
-
+import androidx.appcompat.app.AppCompatActivity;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Reporte_Adapter;
 import pe.com.app.unibell.appunibell.BL.Cobranzas_ReporteBL;
 import pe.com.app.unibell.appunibell.R;
-import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
-import pe.com.app.unibell.appunibell.Util.Funciones;
-import pe.com.app.unibell.appunibell.Util.ToastLibrary;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 

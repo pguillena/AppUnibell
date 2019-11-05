@@ -28,7 +28,7 @@
         android:textColor="@color/label_login_unibell"
         />
 
-      <android.support.v7.widget.AppCompatAutoCompleteTextView
+      <androidx.appcompat.widget.AppCompatAutoCompleteTextView
           android:id="@+id/cl_txtcliente"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"

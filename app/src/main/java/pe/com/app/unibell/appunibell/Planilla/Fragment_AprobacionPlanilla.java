@@ -1,36 +1,31 @@
 package pe.com.app.unibell.appunibell.Planilla;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import org.json.JSONObject;
+
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Aprobacion_Planilla_Adapter;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_MovBL;
-import pe.com.app.unibell.appunibell.Cobranza.Fragment_Cobranza;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Confirmar;
-import pe.com.app.unibell.appunibell.Liquidacion.Activity_Liquidacion;
-import pe.com.app.unibell.appunibell.Liquidacion.Activity_Totales_Liquidacion;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
 import pe.com.app.unibell.appunibell.Util.Funciones;

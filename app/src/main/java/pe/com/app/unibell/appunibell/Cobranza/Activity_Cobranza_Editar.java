@@ -1,15 +1,17 @@
 package pe.com.app.unibell.appunibell.Cobranza;
 
-import android.app.DialogFragment;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Cabecera_Adapter;
 import pe.com.app.unibell.appunibell.AD.ParTabla_Adapter;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
@@ -118,7 +120,7 @@ public class Activity_Cobranza_Editar
                 iFecha = 1;
                 try {
                     dialogFragmentFecha = new Dialogo_Fragment_Fecha();
-                    dialogFragmentFecha.show(getFragmentManager(), "");
+                    dialogFragmentFecha.show(getSupportFragmentManager(), "");
                 } catch (Exception e) {
                 }
             }
@@ -148,7 +150,7 @@ public class Activity_Cobranza_Editar
 
                         dialogFragmentFecha = new Dialogo_Fragment_Fecha();
                         ((Dialogo_Fragment_Fecha) dialogFragmentFecha).iMinDate = iMinDate;
-                        dialogFragmentFecha.show(getFragmentManager(), "");
+                        dialogFragmentFecha.show(getSupportFragmentManager(), "");
                     } catch (Exception e) {
                     }
                 }

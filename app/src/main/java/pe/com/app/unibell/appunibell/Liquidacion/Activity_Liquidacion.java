@@ -1,6 +1,6 @@
 package pe.com.app.unibell.appunibell.Liquidacion;
 
-import android.app.DialogFragment;
+
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -13,33 +13,25 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.AdapterViewAnimator;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -56,17 +48,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.ByteArrayOutputStream;
-import java.util.Arrays;
 
-import pe.com.app.unibell.appunibell.AD.Clientes_Adapter;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
+import androidx.fragment.app.DialogFragment;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Liquidacion_Adapter;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_MovBE;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_MovBL;
-import pe.com.app.unibell.appunibell.Clientes.Activity_FiltroClientes;
-import pe.com.app.unibell.appunibell.Clientes.Activity_clientes;
-import pe.com.app.unibell.appunibell.Cobranza.Fragment_Cobranza;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
@@ -376,7 +366,7 @@ public class Activity_Liquidacion extends AppCompatActivity
             iOpcionFecha = 3;//EnviarPlanilla
             try {
                 dialogFragmentFecha = new Dialogo_Fragment_Fecha();
-                dialogFragmentFecha.show(getFragmentManager(), "");
+                //dialogFragmentFecha.show(getFragmentManager(), "");
 
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -926,7 +916,7 @@ public class Activity_Liquidacion extends AppCompatActivity
             try {
                 iOpcionFecha=2;
                 dialogFragmentFecha = new Dialogo_Fragment_Fecha();
-                dialogFragmentFecha.show(getFragmentManager(), "");
+                dialogFragmentFecha.show(getSupportFragmentManager(), "");
 
             } catch (Exception ex) {
                 ex.printStackTrace();

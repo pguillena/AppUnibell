@@ -3,12 +3,17 @@ package pe.com.app.unibell.appunibell.Dialogs;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
+
 import android.os.Bundle;
+
+
 import android.widget.DatePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import androidx.fragment.app.DialogFragment;
+
 
 /**
  * Created by RENAN on 18/08/2016.

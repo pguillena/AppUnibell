@@ -4,17 +4,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import pe.com.app.unibell.appunibell.AD.Clientes_Adapter;
 import pe.com.app.unibell.appunibell.BE.ClientesBE;
 import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
@@ -24,7 +22,8 @@ import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 
 
-public class Activity_Filtro_Visita extends AppCompatActivity implements Dialog_Fragment_Auxiliar.Dialog_Fragment_AuxiliarListener,
+public class Activity_Filtro_Visita
+        extends AppCompatActivity implements Dialog_Fragment_Auxiliar.Dialog_Fragment_AuxiliarListener,
         Dialogo_Fragment_Fecha.NoticeDialogoListener {
 
     private SharedPreferences sharedSettings;
@@ -136,7 +135,7 @@ public class Activity_Filtro_Visita extends AppCompatActivity implements Dialog_
         public void onClick(View v) {
             try {
                 dialogFragmentFecha = new Dialogo_Fragment_Fecha();
-                dialogFragmentFecha.show(getFragmentManager(), "");
+                dialogFragmentFecha.show(getSupportFragmentManager(), "");
 
             } catch (Exception ex) {
                 ex.printStackTrace();

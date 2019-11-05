@@ -1,18 +1,11 @@
 package pe.com.app.unibell.appunibell.Reportes;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
-
-import pe.com.app.unibell.appunibell.AD.Cobranza_Reporte_Adapter;
-import pe.com.app.unibell.appunibell.BL.Cobranzas_ReporteBL;
+import androidx.appcompat.app.AppCompatActivity;
 import pe.com.app.unibell.appunibell.R;
-
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class Activity_Reportes_Resumen extends AppCompatActivity {
 

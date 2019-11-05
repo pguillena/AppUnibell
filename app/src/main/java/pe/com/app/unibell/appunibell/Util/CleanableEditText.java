@@ -12,10 +12,12 @@ import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 
+import androidx.appcompat.widget.AppCompatEditText;
+
 /**
  * Created by rgalvez on 10/10/2016.
  */
-public class CleanableEditText extends android.support.v7.widget.AppCompatEditText {
+public class CleanableEditText extends AppCompatEditText {
     private Drawable mRightDrawable;
     private boolean isHasFocus;
 

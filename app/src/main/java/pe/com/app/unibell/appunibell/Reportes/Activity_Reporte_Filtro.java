@@ -1,12 +1,9 @@
 package pe.com.app.unibell.appunibell.Reportes;
 
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -14,9 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
+import androidx.fragment.app.DialogFragment;
 import pe.com.app.unibell.appunibell.AD.Clientes_Adapter;
 import pe.com.app.unibell.appunibell.BE.ClientesBE;
 import pe.com.app.unibell.appunibell.Clientes.Activity_FiltroClientes;
@@ -126,7 +125,7 @@ public class Activity_Reporte_Filtro extends AppCompatActivity
             try {
                 iFiltroFecha=1;
                 dialogFragmentFecha = new Dialogo_Fragment_Fecha();
-                dialogFragmentFecha.show(getFragmentManager(), "");
+                dialogFragmentFecha.show(getSupportFragmentManager(), "");
             } catch (Exception e) {
             }
         }
@@ -138,7 +137,7 @@ public class Activity_Reporte_Filtro extends AppCompatActivity
             try {
                 iFiltroFecha=2;
                 dialogFragmentFecha = new Dialogo_Fragment_Fecha();
-                dialogFragmentFecha.show(getFragmentManager(), "");
+                dialogFragmentFecha.show(getSupportFragmentManager(), "");
             } catch (Exception e) {
             }
         }

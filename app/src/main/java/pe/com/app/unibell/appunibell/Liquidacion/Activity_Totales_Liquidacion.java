@@ -1,11 +1,11 @@
 package pe.com.app.unibell.appunibell.Liquidacion;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
 import pe.com.app.unibell.appunibell.AD.Totales_Liquidacion_Adapter;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
 import pe.com.app.unibell.appunibell.R;

@@ -1,13 +1,14 @@
 package pe.com.app.unibell.appunibell.Cobranza;
 
-import android.app.DialogFragment;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentTransaction;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialogo_Fragment_Fecha;
 import pe.com.app.unibell.appunibell.R;
@@ -21,6 +22,7 @@ public class Activity_Cobranza_Recibo extends AppCompatActivity
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
     private DialogFragment dialogFragmentFecha;
+
 
     public String getiFragmentRecibo() {
         return iFragmentRecibo;
@@ -93,7 +95,7 @@ public class Activity_Cobranza_Recibo extends AppCompatActivity
     @Override
     public void Fecha() {
         dialogFragmentFecha = new Dialogo_Fragment_Fecha();
-        dialogFragmentFecha.show(getFragmentManager(), "");
+        dialogFragmentFecha.show(getSupportFragmentManager(), "");
     }
 
     @Override

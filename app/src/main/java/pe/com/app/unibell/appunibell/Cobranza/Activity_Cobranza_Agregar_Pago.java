@@ -1,18 +1,9 @@
 package pe.com.app.unibell.appunibell.Cobranza;
 
-import android.app.DialogFragment;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.StateListDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -20,16 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.ToggleButton;
-
-import java.util.List;
-
-import pe.com.app.unibell.appunibell.AD.Cabfcob_Adapter;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Cabecera_Adapter;
 import pe.com.app.unibell.appunibell.AD.CtaBnco_Adapter;
 import pe.com.app.unibell.appunibell.AD.ParTabla_Adapter;
-import pe.com.app.unibell.appunibell.BE.ClientesBE;
-import pe.com.app.unibell.appunibell.BL.Dpm_Packing_CabBL;
 import pe.com.app.unibell.appunibell.DAO.CabfcobDAO;
 import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
@@ -45,8 +31,6 @@ import pe.com.app.unibell.appunibell.Dialogs.Dialogo_Fragment_Fecha;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.Globals;
-
-import static android.graphics.Color.YELLOW;
 
 public class Activity_Cobranza_Agregar_Pago
         extends AppCompatActivity
@@ -313,7 +297,7 @@ public class Activity_Cobranza_Agregar_Pago
 
                 dialogFragmentFecha = new Dialogo_Fragment_Fecha();
                 ((Dialogo_Fragment_Fecha) dialogFragmentFecha).iMinDate = iMinDate;
-                dialogFragmentFecha.show(getFragmentManager(), "");
+                dialogFragmentFecha.show(getSupportFragmentManager(), "");
             } catch (Exception e) {
             }
         }

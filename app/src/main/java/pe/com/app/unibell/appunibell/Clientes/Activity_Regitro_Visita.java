@@ -2,17 +2,13 @@ package pe.com.app.unibell.appunibell.Clientes;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import java.util.ArrayList;
-
-import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranzas;
+import androidx.appcompat.app.AppCompatActivity;
 import pe.com.app.unibell.appunibell.DAO.VisitaDetDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;

@@ -1,27 +1,19 @@
 package pe.com.app.unibell.appunibell.Flujo_Seguimiento;
 
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
-import android.text.InputType;
-import android.text.TextUtils;
+import androidx.viewpager.widget.ViewPager;
+import com.google.android.material.tabs.TabLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 
@@ -88,6 +80,7 @@ public class Activity_Flujo_Seguimiento  extends AppCompatActivity {
     }
 
     private void setToolbar() {
+        /*
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
@@ -97,7 +90,13 @@ public class Activity_Flujo_Seguimiento  extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
             ab.setTitle("Planilla N° "+sharedSettings.getString("SERIE_PLANILLA","0").toString()+"-" +sharedSettings.getString("N_PLANILLA","0").toString() );
         }
+        */
+
+
+
+
     }
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
@@ -116,7 +115,7 @@ public class Activity_Flujo_Seguimiento  extends AppCompatActivity {
             return mFragments.size();
         }
 
-        public void addFragment(android.support.v4.app.Fragment fragment, String title) {
+        public void addFragment(Fragment fragment, String title) {
             mFragments.add(fragment);
             mFragmentTitles.add(title);
         }

@@ -1,35 +1,27 @@
 package pe.com.app.unibell.appunibell.Reportes;
 
-import android.arch.core.util.Function;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
-
 import org.json.JSONObject;
-
-import pe.com.app.unibell.appunibell.AD.Clientes_Adapter;
-import pe.com.app.unibell.appunibell.AD.Cobranza_Aprobacion_Planilla_Adapter;
+import androidx.appcompat.app.AppCompatActivity;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Reporte_Adapter;
 import pe.com.app.unibell.appunibell.BL.Cobranzas_ReporteBL;
-import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
-import pe.com.app.unibell.appunibell.Planilla.Fragment_AprobacionPlanilla;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.ToastLibrary;
-import pe.com.app.unibell.appunibell.Util.UtilLibrary;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Activity_Reportes extends AppCompatActivity {
 
@@ -61,32 +53,30 @@ public class Activity_Reportes extends AppCompatActivity {
    private Double lbltotalpost=0.0;
    private Double lbltotalgeneral=0.0;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cobranza_reportes);
 
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Reporte de cobranzas");
 
-
         sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
         editor_Shared=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF),MODE_PRIVATE).edit();
 
-
         cr_lsdetalle=(ListView)findViewById(R.id.cr_lsdetalle);
-        cr_fabbuscar=(FloatingActionButton)findViewById(R.id.cr_fabbuscar);
+       // cr_fabbuscar=(FloatingActionButton)findViewById(R.id.cr_fabbuscar);
         cr_btnverdetalle=(TextView)findViewById(R.id.cr_btnverdetalle);
         cr_lbltotalg=(TextView)findViewById(R.id.cr_lbltotalg);
 
-        cr_btnverdetalle.setOnClickListener(OnClickListener_cr_btnverdetalle);
-        cr_fabbuscar.setOnClickListener(OnClickListener_cr_fabbuscar);
+        //cr_btnverdetalle.setOnClickListener(OnClickListener_cr_btnverdetalle);
+        //cr_fabbuscar.setOnClickListener(OnClickListener_cr_fabbuscar);
 
-        Cargar();
+       Cargar();
     }
+
 
     View.OnClickListener OnClickListener_cr_btnverdetalle = new View.OnClickListener() {
         @Override
@@ -178,14 +168,14 @@ public class Activity_Reportes extends AppCompatActivity {
         }
     };
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mnu_filtro_list, menu);
         final MenuItem ic_action_refresh = menu.findItem(R.id.ic_action_refresh);
         final MenuItem ic_action_buscar = menu.findItem(R.id.ic_action_buscar);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(ic_action_buscar);
+        final SearchView searchView = (SearchView)ic_action_buscar.getActionView();
         searchView.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
-
         searchView.setQueryHint("Ingrese dato a buscar");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -218,6 +208,7 @@ public class Activity_Reportes extends AppCompatActivity {
     }
 
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -231,8 +222,6 @@ public class Activity_Reportes extends AppCompatActivity {
 
             }
     }
-
-
 
     public void Cargar(){
         try{
@@ -282,9 +271,8 @@ public class Activity_Reportes extends AppCompatActivity {
         }
     }
 
-
     public class Load_AsyncTask extends AsyncTask<String, String, JSONObject> {
-        /*DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
+
         private volatile boolean running = true;
 
         @Override
@@ -306,7 +294,7 @@ public class Activity_Reportes extends AppCompatActivity {
         protected void onPostExecute(JSONObject result) {
             try {
                 if (result.getInt("status")!=1) {
-                    //MOSTRAMOS MESSAGE
+
                     new ToastLibrary(Activity_Reportes.this, result.getString("message")).Show();
                 } else {
                     cobranza_reporte_adapter = new Cobranza_Reporte_Adapter(Activity_Reportes.this, 0, cobranzas_reporteBL.lst);

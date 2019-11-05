@@ -1,15 +1,11 @@
 package pe.com.app.unibell.appunibell.Reportes;
 
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.WindowManager;
-
 import java.util.UUID;
-
+import androidx.appcompat.app.AppCompatActivity;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.AsyncTask_Recibo;
 

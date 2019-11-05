@@ -26,9 +26,7 @@
             android:fontFamily="@font/sf_pro_display_bold"
             />
 
-
         <TextView
-
             android:id="@+id/txtPAE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,16 +73,15 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:context="com.android_examples.fababovelistview_android_examplescom.MainActivityUnibell">
+        android:layout_height="match_parent">
 
 
 
     <ListView
-            android:id="@+id/cl_lvclientes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbarStyle="insideInset"
+        android:id="@+id/cl_lvclientes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbarStyle="insideInset"
         android:divider="@null"
         android:dividerHeight="20dp"
         android:layout_marginTop="@dimen/pad_10dp"
@@ -93,7 +90,7 @@
         android:layout_marginRight="@dimen/pad_20dp"
             />
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -4,36 +4,35 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import com.google.android.material.snackbar.Snackbar;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import androidx.appcompat.app.AppCompatActivity;
 import pe.com.app.unibell.appunibell.BL.ClientesBL;
 import pe.com.app.unibell.appunibell.BL.DocuventBL;
 import pe.com.app.unibell.appunibell.BL.FactCobBL;
-import pe.com.app.unibell.appunibell.BL.S_Gem_ClienteBL;
-import pe.com.app.unibell.appunibell.BL.S_Gem_Cliente_Codigo_AntBL;
 import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Confirmar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Progress;
-import pe.com.app.unibell.appunibell.Main.Activity_Sincronizar;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
 import pe.com.app.unibell.appunibell.Util.ToastLibrary;
 
-public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_Fragment_Confirmar.Dialog_Fragment_ConfirmarListener,  Dialog_Fragment_Aceptar.DialogFragmentAceptarListener {
+
+
+public class Activity_MigrarCliente extends AppCompatActivity
+        implements Dialog_Fragment_Confirmar.Dialog_Fragment_ConfirmarListener,
+        Dialog_Fragment_Aceptar.DialogFragmentAceptarListener {
 
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
-    private  EditText plb_txtcodClienteMigrar;
-    private  Button plb_btnmigrar;
+    private EditText plb_txtcodClienteMigrar;
+    private Button plb_btnmigrar;
     private Dialog_Fragment_Confirmar dialog_fragment_confirmar = null;
     private Integer iAccion = 0;
     private ClientesDAO clientesDAO;
@@ -103,7 +102,7 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
     private void Migrar(String codCliente) {
 
         try{
-            new Activity_MigrarCliente.Cliente_Sincronizar_AsyncTask().execute(
+            new Cliente_Sincronizar_AsyncTask().execute(
                     ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blclientes_migrar_cliente + '/'
                             + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
                             + sharedSettings.getString("iID_LOCAL", "0")+ '/'
@@ -114,7 +113,7 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
 
 
         try{
-            new Activity_MigrarCliente.DocuventBL_Sincronizar().execute(
+            new DocuventBL_Sincronizar().execute(
                     ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocuventxcodigo + '/'
                             + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
                             + sharedSettings.getString("iID_LOCAL", "0")+ '/'
@@ -125,7 +124,7 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
 
 
         try{
-            new Activity_MigrarCliente.FactCobBL_Sincronizar().execute(
+            new FactCobBL_Sincronizar().execute(
                     ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blfactcobxcodigo+ '/'
                             + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
                             + sharedSettings.getString("iID_LOCAL", "0")+ '/'
@@ -182,7 +181,7 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.clientesBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                 }
@@ -221,9 +220,10 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
                     //MOSTRAMOS MESSAGE
                     new ToastLibrary(Activity_MigrarCliente.this, result.getString("message")+ ":FactCob").Show();
                 } else {
+
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.factCobBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                 }
@@ -264,7 +264,7 @@ public class Activity_MigrarCliente extends AppCompatActivity implements Dialog_
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.docuventBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                 }

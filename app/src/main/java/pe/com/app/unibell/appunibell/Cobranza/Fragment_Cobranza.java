@@ -8,8 +8,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +24,8 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+
+import androidx.fragment.app.Fragment;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Cabecera_Adapter;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Detalle_Adapter;
 import pe.com.app.unibell.appunibell.AD.Cobranza_Detalle_Adapter_Edit;
@@ -475,12 +475,7 @@ public class Fragment_Cobranza extends Fragment implements
                     Toast.makeText(getActivity(),"Ya Existe un aticipo ingresado para la cobranza.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-
-
                  s_vem_correlativoDAO.getAll(490000, 0, Integer.valueOf(sharedSettings.getString("iID_EMPRESA", "0").toString()), Integer.valueOf(sharedSettings.getString("iID_LOCAL", "0").toString()),40001, 1);
-
-
                 if(s_vem_correlativoDAO.lst==null || s_vem_correlativoDAO.lst.size()==0)
                 {
                     Toast.makeText(getActivity(),"No existe correlativo para los anticipos en el local actual", Toast.LENGTH_SHORT).show();
@@ -759,7 +754,6 @@ public class Fragment_Cobranza extends Fragment implements
                 documentos_cobra_cabBE.setCTACORRIENTE_BANCO(cpbancoctacte);
                 documentos_cobra_cabBE.setFECHA_DEPOSITO("");
                 documentos_cobra_cabBE.setN_TARJETA("");
-
             }
 
             documentos_cobra_cabBE.setID_MOV_BANCO_ABONO(0);

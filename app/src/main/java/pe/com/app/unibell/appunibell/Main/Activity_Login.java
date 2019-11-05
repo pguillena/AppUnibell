@@ -10,10 +10,6 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -27,9 +23,14 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import pe.com.app.unibell.appunibell.BL.PreferenciasBL;
 import pe.com.app.unibell.appunibell.BL.S_Gem_PersonaBL;
 import pe.com.app.unibell.appunibell.BL.S_Gem_VendedorBL;
@@ -125,6 +126,11 @@ public class Activity_Login extends AppCompatActivity
                 dataBaseHelper.createDataBase();
                 dataBaseHelper.openDataBase();
 
+                //Validamos Permisos de Almace/(Creación de PDF)
+                funciones.ValidacionPermisos(Activity_Login.this);
+                //Inactivar Optimización de la bateria para ejecutar procesos en Background
+                funciones.Valid_InactivaOptimatBateria(Activity_Login.this);
+
                 pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
@@ -155,6 +161,7 @@ public class Activity_Login extends AppCompatActivity
                 versionCode="0";
             }
 
+            /*
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -169,8 +176,7 @@ public class Activity_Login extends AppCompatActivity
 
                 }
             }
-
-
+            */
             btLogin=(Button) findViewById(R.id.btLogin);
             edtUserName=(EditText)findViewById(R.id.LogEdtUserName);
             edtUserPass=(EditText)findViewById(R.id.LogEdtUserPass);
@@ -181,15 +187,12 @@ public class Activity_Login extends AppCompatActivity
             addTextChangedListener(edtUserPass, R.drawable.borderradiusbutton, R.drawable.borderradiusbutton_inactivo);
 
             //edtUserName.setTextAppearance(getApplication(), R.style.SkyTextViewStyle);
-
             btnSincronizarLogin = (Button)findViewById(R.id.btnSincronizarLogin);
             btnInfoLogin = (Button)findViewById(R.id.btnInfoLogin);
             btLogin.setOnClickListener(OnClickList_btLogin);
             btnSincronizarLogin.setOnClickListener(OnClickListener_btnSincronizarLogin);
             btnInfoLogin.setOnClickListener(OnClickListener_btnInfoLogin);
-
             edtUserName.setText(sharedSettings.getString("USUARIO",""));
-
 
             if(sharedSettings.getString("USUARIO_LOGUEADO","0").equals("1")) {
                 Intent intent = new Intent(getApplication(), MainActivity.class);
@@ -406,7 +409,7 @@ public class Activity_Login extends AppCompatActivity
         } catch (Exception ex) {
             new ToastLibrary(Activity_Login.this,"Error al sincronizar Empresas.").Show();
         }
-
+/*
 
         try {
             new S_Sem_LocalBL_Sincronizar().execute(
@@ -489,6 +492,7 @@ public class Activity_Login extends AppCompatActivity
         }
 
         SincronizarTipoCambio();
+        */
     }
 
     private void SincronizarTipoCambio() {
@@ -523,6 +527,16 @@ public class Activity_Login extends AppCompatActivity
         @Override
         public void onClick(View v) {
             if (Validar()==false){return;}
+            /*
+             //Validamos Permisos de Almace/(Creación de PDF)
+            if(funciones.ValidacionPermisos(Activity_Login.this)==false){
+                return;
+            }
+            //Inactivar Optimización de la bateria para ejecutar procesos en Background
+            if(funciones.Valid_InactivaOptimatBateria(Activity_Login.this)==false){
+                return;
+            }
+             */
             if (edtUserName.getText().toString().trim().length() == 0 || edtUserPass.getText().toString().trim().length() ==0) {
                 new ToastLibrary(Activity_Login.this,"Ingrese Usuario y Password.").Show();
             }else{
@@ -675,7 +689,7 @@ public class Activity_Login extends AppCompatActivity
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sem_usuarioBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     //Actualizar(sOPCION_SINCRONIZADA);
@@ -719,7 +733,7 @@ public class Activity_Login extends AppCompatActivity
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sem_empresaBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
 
@@ -759,7 +773,7 @@ public class Activity_Login extends AppCompatActivity
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sem_localBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                 }
@@ -798,7 +812,7 @@ public class Activity_Login extends AppCompatActivity
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sea_accesosBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
 
@@ -838,7 +852,7 @@ public class Activity_Login extends AppCompatActivity
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sea_usuario_accionBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                 }
@@ -877,7 +891,7 @@ public class Activity_Login extends AppCompatActivity
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sem_menuBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                 }
@@ -916,7 +930,7 @@ public class Activity_Login extends AppCompatActivity
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sem_perfilBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
 
@@ -956,7 +970,7 @@ public class Activity_Login extends AppCompatActivity
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sea_usuario_localBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                 }
@@ -1030,7 +1044,7 @@ public class Activity_Login extends AppCompatActivity
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_gem_vendedorBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                 }
@@ -1070,7 +1084,7 @@ public class Activity_Login extends AppCompatActivity
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.S_gem_TipoCambioBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                 }
@@ -1079,14 +1093,6 @@ public class Activity_Login extends AppCompatActivity
             }
         }
     }
-
-
-
-
-
-
-
-
 
     @Override
     protected void onStart() {

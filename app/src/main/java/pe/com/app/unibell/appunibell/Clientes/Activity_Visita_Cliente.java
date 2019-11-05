@@ -3,10 +3,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -14,14 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ListView;
-import android.widget.Toast;
-
-
+import androidx.appcompat.widget.SearchView;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import pe.com.app.unibell.appunibell.AD.Cliente_Visita_Adapter;
-import pe.com.app.unibell.appunibell.AD.Clientes_Adapter;
-import pe.com.app.unibell.appunibell.BE.ClientesBE;
 import pe.com.app.unibell.appunibell.BE.VisitaDetBE;
 import pe.com.app.unibell.appunibell.DAO.VisitaDetDAO;
 import pe.com.app.unibell.appunibell.R;

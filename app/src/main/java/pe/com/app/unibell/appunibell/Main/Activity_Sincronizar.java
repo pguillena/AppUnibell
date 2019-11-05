@@ -4,8 +4,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
@@ -13,8 +11,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import androidx.appcompat.app.AppCompatActivity;
 import pe.com.app.unibell.appunibell.AD.SincronizarAdapter;
 import pe.com.app.unibell.appunibell.BE.SincronizarBE;
 import pe.com.app.unibell.appunibell.BL.CabfcobBL;
@@ -621,7 +623,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.cabfcobBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -661,7 +663,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.clientesBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -703,7 +705,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.ctaBncoBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -743,7 +745,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.documentos_Cobra_CabBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -783,7 +785,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.documentos_Cobra_DetBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -823,7 +825,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.documentos_Cobra_MovBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -863,7 +865,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.factCobBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -904,7 +906,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.gem_bancoBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -944,7 +946,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.mvendedorBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -984,7 +986,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.parTablaBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1024,7 +1026,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.recibos_ccobranzaBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1064,7 +1066,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_gem_clienteBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1105,7 +1107,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_gem_persona_direccionBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1145,7 +1147,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_gem_personaBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1185,7 +1187,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_gem_vendedorBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1226,7 +1228,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                     Actualizar(sOPCION_SINCRONIZADA);
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sea_accesosBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
 
@@ -1266,7 +1268,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sea_usuario_accionBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1306,7 +1308,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sea_usuario_localBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1346,7 +1348,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sem_empresaBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1386,7 +1388,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sem_localBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1426,7 +1428,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sem_perfilBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1466,7 +1468,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_sem_usuarioBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1506,7 +1508,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.sucursalesBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1546,7 +1548,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.tablas_auxiliaresBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1586,7 +1588,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_gem_clientes_codigo_antBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1627,7 +1629,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_gea_vendedor_clienteBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1667,7 +1669,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_gem_vendedor_codigo_antBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1707,7 +1709,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.docuventBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1749,7 +1751,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.dpm_packing_cabBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1790,7 +1792,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.dpm_personal_transporteBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1834,7 +1836,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.dpm_packing_detBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1874,7 +1876,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_gea_vendedor_supervisorBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1915,7 +1917,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.s_vem_correlativoBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1956,7 +1958,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.vem_cobrador_zonaBL) + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -1998,7 +2000,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.cliente_vendedorBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -2039,7 +2041,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.ubigeoBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -2081,7 +2083,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.visitaBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -2122,7 +2124,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.visitaBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);
@@ -2163,7 +2165,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), getResources().getString(R.string.visitaBL)  + result.getString("message") , Snackbar.LENGTH_LONG);
                     View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = (TextView) sbView.findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     snackbar.show();
                     Actualizar(sOPCION_SINCRONIZADA);

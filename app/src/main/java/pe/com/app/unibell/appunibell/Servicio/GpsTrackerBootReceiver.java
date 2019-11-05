@@ -19,7 +19,7 @@ public class GpsTrackerBootReceiver extends BroadcastReceiver {
 
         int tarea_gps=Integer.valueOf(sharedPreferences.getString("tarea_gps", "0"));
         //10
-        int vtiempotracking = Integer.valueOf(sharedPreferences.getString("vtiempotracking", "10"));
+        int vtiempotracking = Integer.valueOf(sharedPreferences.getString("vtiempotracking", "5"));
 
         //if (tarea_gps == 0) {
             Intent alarm = new Intent(context, AlarmReceiver.class);
