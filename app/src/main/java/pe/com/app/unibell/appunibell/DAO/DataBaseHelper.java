@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class DataBaseHelper extends SQLiteOpenHelper {
     //The Android's default system path of your application database.
     private static String DB_PATH = "";
-    private static String DB_NAME = "UNIBELLBD1.sqlite";
+    private static String DB_NAME = "UBBD.sqlite";
     public  static SQLiteDatabase myDataBase;
     private final Context myContext;
     /**

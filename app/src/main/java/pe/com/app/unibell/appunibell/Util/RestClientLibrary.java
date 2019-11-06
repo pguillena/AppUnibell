@@ -1,5 +1,8 @@
 package pe.com.app.unibell.appunibell.Util;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
@@ -20,6 +23,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import pe.com.app.unibell.appunibell.Main.Activity_Login;
+
 /**
  * Created by rgalvez on 15/11/2016.
  */
@@ -34,13 +39,19 @@ public class RestClientLibrary {
         setupHttpClient();
     }
     private void setupHttpClient() {
-        //CREACION HTTPARAMS PARA SETEAR TIEMPO DE ESPERA PARA CONECTAR AL SERVICIO
-        HttpParams httpParams = new BasicHttpParams();
-        HttpProtocolParams.setVersion(httpParams, HttpVersion.HTTP_1_1);
-        HttpProtocolParams.setContentCharset(httpParams,"UTF-8");
-        HttpConnectionParams.setConnectionTimeout(httpParams, CONNECTION_TIMEOUT);
-        HttpConnectionParams.setSoTimeout(httpParams, SOCKET_TIMEOUT);
-        httpClient = new DefaultHttpClient(httpParams);
+        try {
+            //CREACION HTTPARAMS PARA SETEAR TIEMPO DE ESPERA PARA CONECTAR AL SERVICIO
+            HttpParams httpParams = new BasicHttpParams();
+            HttpProtocolParams.setVersion(httpParams, HttpVersion.HTTP_1_1);
+            HttpProtocolParams.setContentCharset(httpParams, "UTF-8");
+            HttpConnectionParams.setConnectionTimeout(httpParams, CONNECTION_TIMEOUT);
+            HttpConnectionParams.setSoTimeout(httpParams, SOCKET_TIMEOUT);
+            httpClient = new DefaultHttpClient(httpParams);
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.e("LOGGGG",e.getMessage());
+        }
+
     }
     public String get(String newURL) {
         String strResult="";

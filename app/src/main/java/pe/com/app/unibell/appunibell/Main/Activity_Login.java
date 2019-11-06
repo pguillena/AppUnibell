@@ -409,7 +409,7 @@ public class Activity_Login extends AppCompatActivity
         } catch (Exception ex) {
             new ToastLibrary(Activity_Login.this,"Error al sincronizar Empresas.").Show();
         }
-/*
+
 
         try {
             new S_Sem_LocalBL_Sincronizar().execute(
@@ -492,7 +492,7 @@ public class Activity_Login extends AppCompatActivity
         }
 
         SincronizarTipoCambio();
-        */
+
     }
 
     private void SincronizarTipoCambio() {

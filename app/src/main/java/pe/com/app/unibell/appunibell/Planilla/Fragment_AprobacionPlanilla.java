@@ -15,7 +15,9 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.getbase.floatingactionbutton.FloatingActionButton;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.json.JSONObject;
 
 import androidx.fragment.app.DialogFragment;
