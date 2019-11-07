@@ -44,15 +44,16 @@ public class Activity_Cobranzas
         setContentView(R.layout.activity_cobranza_registro);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         getSupportActionBar().setTitle("Registro de cobranza");
         //getSupportActionBar().setSubtitle("PROCESO DE COBRANZA");
 
         try {
+
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             Fragment_Cobranza fragment = new Fragment_Cobranza();
             ft.add(R.id.contenedor, fragment,"Fragment_Cobranza");
             ft.commit();
+
 
             sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
             editor_Shared= getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
