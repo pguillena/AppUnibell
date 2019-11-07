@@ -251,11 +251,11 @@ public class ClientesDAO {
                    " A.ID_CLIENTE, A.RAZON_SOCIAL,A.ID_CANAL," +
                    "  IFNULL(CA.CODIGO_ANTIGUO,'') AS CODIGO_ANTIGUO,0 AS M_PAE,A.I_CANC_ANTIGUO" +
                    " FROM S_GEM_CLIENTE A " +
-                   " INNER JOIN S_GEA_VENDEDOR_CLIENTE J ON(A.ID_CLIENTE = J.ID_CLIENTE)" +
+                   //" INNER JOIN S_GEA_VENDEDOR_CLIENTE J ON(A.ID_CLIENTE = J.ID_CLIENTE)" +
                    " INNER JOIN S_GEM_CLIENTE_CODIGO_ANT CA" +
                    " ON(A.ID_CLIENTE=CA.ID_CLIENTE AND CA.FLAG_VIGENCIA=1)" +
-                   " WHERE (J.ID_VENDEDOR =" + iID_VENDEDOR + " OR " + iID_VENDEDOR + "=0"  +  " OR " +  iID_VENDEDOR + "= 306)" +
-                   " AND IFNULL(A.RUC,'') LIKE '%" + iRUC + "%'" +
+                   //" WHERE (J.ID_VENDEDOR =" + iID_VENDEDOR + " OR " + iID_VENDEDOR + "=0"  +  " OR " +  iID_VENDEDOR + "= 306)" +
+                   " WHERE IFNULL(A.RUC,'') LIKE '%" + iRUC + "%'" +
                    " AND IFNULL(A.DNI,'') LIKE '%" + iDNI + "%'" +
                    " AND IFNULL(A.RAZON_SOCIAL,' ') LIKE '%" + iRAZON_SOCIAL + "%' " +
                    " AND UPPER(IFNULL(CA.CODIGO_ANTIGUO,' ')) LIKE '%'||UPPER('" + iCODIGO_ANTIGUO +  "') ||'%'" +

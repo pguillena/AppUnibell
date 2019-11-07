@@ -557,8 +557,8 @@ public class Fragment_Cobranza extends Fragment implements
                     documentos_cobra_detBE.setID_LOCAL(Integer.valueOf(sharedSettings.getString("iID_LOCAL", "").toString()));
                     //Nace con estado registrado
                     documentos_cobra_detBE.setESTADO(40003);
-                    documentos_cobra_detBE.setFECHA_REGISTRO(funciones.FechaActual());
-                    documentos_cobra_detBE.setFECHA_MODIFICACION(funciones.FechaActual());
+                    documentos_cobra_detBE.setFECHA_REGISTRO(funciones.FechaActualNow());
+                    documentos_cobra_detBE.setFECHA_MODIFICACION(funciones.FechaActualNow());
                     documentos_cobra_detBE.setUSUARIO_REGISTRO(sharedSettings.getString("USUARIO", "").toString());
                     documentos_cobra_detBE.setUSUARIO_MODIFICACION(sharedSettings.getString("USUARIO", "").toString());
                     documentos_cobra_detBE.setPC_REGISTRO(sharedSettings.getString("NOMBRE_TELEFONO", "").toString());
@@ -727,8 +727,8 @@ public class Fragment_Cobranza extends Fragment implements
             documentos_cobra_cabBE.setID_LOCAL(Integer.valueOf(sharedSettings.getString("iID_LOCAL", "").toString()));
             //Nace con estado Registrado tipo entero
             documentos_cobra_cabBE.setESTADO("40003");
-            documentos_cobra_cabBE.setFECHA_REGISTRO(funciones.FechaActual());
-            documentos_cobra_cabBE.setFECHA_MODIFICACION(funciones.FechaActual());
+            documentos_cobra_cabBE.setFECHA_REGISTRO(funciones.FechaActualNow());
+            documentos_cobra_cabBE.setFECHA_MODIFICACION(funciones.FechaActualNow());
             documentos_cobra_cabBE.setUSUARIO_REGISTRO(sharedSettings.getString("USUARIO", "").toString());
             documentos_cobra_cabBE.setUSUARIO_MODIFICACION(sharedSettings.getString("USUARIO", "").toString());
             //Registrar IMEI
@@ -842,8 +842,8 @@ public class Fragment_Cobranza extends Fragment implements
             documentos_cobra_detBE.setID_LOCAL(Integer.valueOf(sharedSettings.getString("iID_LOCAL", "").toString()));
             //Nace con estado registrado
             documentos_cobra_detBE.setESTADO(40003);
-            documentos_cobra_detBE.setFECHA_REGISTRO(funciones.FechaActual());
-            documentos_cobra_detBE.setFECHA_MODIFICACION(funciones.FechaActual());
+            documentos_cobra_detBE.setFECHA_REGISTRO(funciones.FechaActualNow());
+            documentos_cobra_detBE.setFECHA_MODIFICACION(funciones.FechaActualNow());
             documentos_cobra_detBE.setUSUARIO_REGISTRO(sharedSettings.getString("USUARIO", "").toString());
             documentos_cobra_detBE.setUSUARIO_MODIFICACION(sharedSettings.getString("USUARIO", "").toString());
             documentos_cobra_detBE.setPC_REGISTRO(sharedSettings.getString("NOMBRE_TELEFONO", "").toString());

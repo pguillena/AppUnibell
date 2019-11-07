@@ -61,12 +61,16 @@ public class Recibos_CcobranzaDAO {
     public void getByRangoRecibos(String iID_VENDEDOR,String pN_SERIE,String pN_NUMERO) {
         Cursor cursor = null;
         Recibos_CcobranzaBE recibos_ccobranzaBE = null;
+        String codigoVendedor="";
         try {
+
+            codigoVendedor =  retornarCodigoVendedorAntiguo(iID_VENDEDOR);
+
             String SQL="SELECT N_SERIE,N_NUMINI,N_NUMFIN,C_TIPO_REC,C_RECEPTOR," +
                     "F_RECEPCION,F_DEVOLUCION,VIGENCIA,C_USUARIO,C_PERFIL," +
                     "C_CPU,FEC_REG,C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD," +
                     "C_CPU_MOD,OBSERVACION,C_ESTADO, AUTOMATICO, NUMERO  "+
-                    "FROM CCM_RECIBOS_COBRANZA WHERE VIGENCIA = 'A' AND N_SERIE=" + pN_SERIE + " AND C_RECEPTOR = '" + new Funciones().AgregarCeros(iID_VENDEDOR,3)  +"'";
+                    "FROM CCM_RECIBOS_COBRANZA WHERE VIGENCIA = 'A' AND N_SERIE=" + pN_SERIE + " AND C_RECEPTOR = '" + codigoVendedor +"'";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<Recibos_CcobranzaBE>();
@@ -108,12 +112,16 @@ public class Recibos_CcobranzaDAO {
     public Integer getValidar(String iID_VENDEDOR,String pN_SERIE,String pN_NUMERO) {
         Cursor cursor = null;
         Integer Ivalor=0;
+        String codigoVendedor="";
         try {
+
+            codigoVendedor =  retornarCodigoVendedorAntiguo(iID_VENDEDOR);
+
             String SQL="SELECT COUNT(*) AS iVALIDA_NRO_RECIBO\n" +
                     " FROM(\n" +
                     " SELECT C.N_SERIE, C.N_NUMINI, C.N_NUMFIN\n" +
                     " FROM CCM_RECIBOS_COBRANZA C WHERE\n" +
-                    " C_RECEPTOR = '" + new Funciones().AgregarCeros(iID_VENDEDOR,3)  + "'" + " AND C.F_DEVOLUCION='') V " +
+                    " C_RECEPTOR = '" + codigoVendedor  + "'" + " AND C.F_DEVOLUCION='') V " +
                     " WHERE V.N_SERIE=" + pN_SERIE + " AND " + pN_NUMERO + " BETWEEN V.N_NUMINI AND V.N_NUMFIN ";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
@@ -219,12 +227,16 @@ public class Recibos_CcobranzaDAO {
     public void getReciboAutomaticoCorrelativo(String iID_VENDEDOR) {
         Cursor cursor = null;
         Recibos_CcobranzaBE recibos_ccobranzaBE = null;
+        String codigoVendedor = "";
         try {
+
+            codigoVendedor =  retornarCodigoVendedorAntiguo(iID_VENDEDOR);
+
             String SQL="SELECT N_SERIE,N_NUMINI,N_NUMFIN,C_TIPO_REC,C_RECEPTOR," +
                     "F_RECEPCION,F_DEVOLUCION,VIGENCIA,C_USUARIO,C_PERFIL," +
                     "C_CPU,FEC_REG,C_USUARIO_MOD,C_PERFIL_MOD,FEC_MOD," +
                     "C_CPU_MOD,OBSERVACION,C_ESTADO, AUTOMATICO, NUMERO  "+
-                    "FROM CCM_RECIBOS_COBRANZA WHERE VIGENCIA = 'A' AND AUTOMATICO= 'S' AND C_RECEPTOR = '" + new Funciones().AgregarCeros(iID_VENDEDOR,3)  +"'";
+                    "FROM CCM_RECIBOS_COBRANZA WHERE VIGENCIA = 'A' AND AUTOMATICO= 'S' AND C_RECEPTOR = '" + codigoVendedor  +"'";
 
 
 
@@ -267,14 +279,16 @@ public class Recibos_CcobranzaDAO {
 
     public String updateNumeroCorrelativo(Documentos_Cobra_CabBE documentos_cobra_cabBE){
         String sMensaje="";
+        String codigoVendedor = "";
+
         try{
 
-            String cReceptor = new  Funciones().AgregarCeros(documentos_cobra_cabBE.getID_COBRADOR().toString(),3);
+            codigoVendedor =  retornarCodigoVendedorAntiguo(documentos_cobra_cabBE.getID_COBRADOR().toString());
 
             ContentValues cv_cab = new ContentValues();
             cv_cab.put("NUMERO",documentos_cobra_cabBE.getN_RECIBO());
             DataBaseHelper.myDataBase.update("CCM_RECIBOS_COBRANZA",cv_cab,"C_RECEPTOR = ? AND N_SERIE = ? AND AUTOMATICO = ?",
-                    new String[]{String.valueOf(cReceptor), String.valueOf(documentos_cobra_cabBE.getN_SERIE_RECIBO()),"S"});
+                    new String[]{String.valueOf(codigoVendedor), String.valueOf(documentos_cobra_cabBE.getN_SERIE_RECIBO()),"S"});
 
             sMensaje="";
         }catch (Exception ex){
@@ -283,5 +297,28 @@ public class Recibos_CcobranzaDAO {
         }
         return sMensaje;
     }
+
+    public String retornarCodigoVendedorAntiguo(String idVendedor){
+        Cursor cursorValida = null;
+        String codigoVendedor = "";
+
+        try{
+
+            String SQL_CODIGO="SELECT CODIGO_ANTIGUO  FROM S_GEM_VENDEDOR_CODIGO_ANT WHERE FLAG_VIGENCIA>0 AND ID_VENDEDOR = " + idVendedor;
+
+            cursorValida= DataBaseHelper.myDataBase.rawQuery(SQL_CODIGO, null);
+            if (cursorValida.moveToFirst()) {
+                do {
+                    codigoVendedor =  Funciones.isNullColumn(cursorValida,"CODIGO_ANTIGUO","");
+                } while (cursorValida.moveToNext());
+            }
+
+        }catch (Exception ex){
+            codigoVendedor="Error:" + ex.getMessage().toString();
+            ex.printStackTrace();
+        }
+        return codigoVendedor;
+    }
+
 
 }

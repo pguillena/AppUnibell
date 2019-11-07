@@ -71,7 +71,7 @@ public class Activity_clientes extends AppCompatActivity {
 
             lyPlanillaDespacho.setVisibility(View.GONE);
             txtPAE.setVisibility(View.GONE);
-            //BuscarCliente();
+            BuscarCliente();
         } catch (Exception ex) {
 
         }
