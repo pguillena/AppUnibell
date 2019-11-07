@@ -698,7 +698,7 @@ public class Documentos_Cobra_CabDAO {
                     new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRANZA())});
 
 
-            String cReceptor = new  Funciones().AgregarCeros(documentos_cobra_cabBE.getID_COBRADOR().toString(),3);
+            String cReceptor = new Recibos_CcobranzaDAO().retornarCodigoVendedorAntiguo(documentos_cobra_cabBE.getID_COBRADOR().toString());
 
             ContentValues cv_recibo = new ContentValues();
             cv_recibo.put("NUMERO",documentos_cobra_cabBE.getN_RECIBO());
