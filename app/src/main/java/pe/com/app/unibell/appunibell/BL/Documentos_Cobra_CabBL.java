@@ -904,6 +904,7 @@ public class Documentos_Cobra_CabBL {
                     }
                     String aux = new RestClientLibrary().post(newURL,jsonObject);
                     jsonObjectRest = new JSONObject(aux);
+                    jsonObjectResult = new JSONObject();
                     jsonObjectResult.accumulate("status", String.valueOf(jsonObjectRest.getInt("status")));
                     jsonObjectResult.accumulate("message", jsonObjectRest.getString("message"));
 

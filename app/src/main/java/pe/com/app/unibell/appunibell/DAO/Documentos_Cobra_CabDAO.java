@@ -195,7 +195,7 @@ public class Documentos_Cobra_CabDAO {
 
 
 
-    public void getLiquidacionBy(String iID_EMPRESA,String iID_LOCAL,String iFECHA,String iID_COBRADOR,String iESTADO,String iN_PLANILLA,String iC_PACKING) {
+    public void getLiquidacionBy(String iID_EMPRESA,String iID_LOCAL,String iFECHA,String iID_COBRADOR,String iESTADO,String iN_PLANILLA,String iC_PACKING, String iFPAGO) {
         Cursor cursor = null;
         Documentos_Cobra_CabBE documentos_cobra_cabBE = null;
         try {
@@ -257,6 +257,7 @@ public class Documentos_Cobra_CabDAO {
                                  "AND C.ID_EMPRESA =" +  iID_EMPRESA + "\n" +
                                  "AND C.ID_LOCAL =" +  iID_LOCAL + "\n" +
                                  "AND (C.N_PLANILLA ="+ iN_PLANILLA + " OR " + iN_PLANILLA + "=0) \n" +
+                                 "AND (C.FPAGO = '" + iFPAGO + "' OR '" + iFPAGO + "' = 'XXX') \n" +
                                  "AND C.GUARDADO IN(2,3) " +
                                  "ORDER BY C.C_PACKING ASC, C.N_RECIBO ASC";
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
@@ -704,8 +705,8 @@ public class Documentos_Cobra_CabDAO {
 
             ContentValues cv_recibo = new ContentValues();
             cv_recibo.put("NUMERO",documentos_cobra_cabBE.getN_RECIBO());
-            DataBaseHelper.myDataBase.update("CCM_RECIBOS_COBRANZA",cv_recibo,"C_RECEPTOR = ? AND N_SERIE = ? AND AUTOMATICO = ?",
-                    new String[]{String.valueOf(cReceptor), String.valueOf(documentos_cobra_cabBE.getN_SERIE_RECIBO()),"S"});
+            DataBaseHelper.myDataBase.update("CCM_RECIBOS_COBRANZA",cv_recibo,"C_RECEPTOR = ? AND N_SERIE = ? AND AUTOMATICO = ? AND NUMERO < ?",
+                    new String[]{String.valueOf(cReceptor), String.valueOf(documentos_cobra_cabBE.getN_SERIE_RECIBO()),"S", String.valueOf(documentos_cobra_cabBE.getN_RECIBO())});
 
 
             sMensaje="";
@@ -931,7 +932,7 @@ public class Documentos_Cobra_CabDAO {
         return sMensaje;
     }
 
-    public void getDepositosBy(String iID_EMPRESA,String iID_LOCAL,String iFECHA,String iID_COBRADOR,String iESTADO,String iN_PLANILLA,String iC_PACKING) {
+    public void getDepositosBy(String iID_EMPRESA,String iID_LOCAL,String iFECHA,String iID_COBRADOR,String iESTADO,String iN_PLANILLA,String iC_PACKING, String iFPAGO) {
         Cursor cursor = null;
         Documentos_Cobra_CabBE documentos_cobra_cabBE = null;
         try {
@@ -955,6 +956,7 @@ public class Documentos_Cobra_CabDAO {
                             "AND C.ID_LOCAL =" +  iID_LOCAL + "\n" +
                             "AND (C.N_PLANILLA ="+ iN_PLANILLA + " OR " + iN_PLANILLA + "=0) \n" +
                             "AND C.GUARDADO IN(2,3) \n" +
+                            "AND (C.FPAGO = '" + iFPAGO + "' OR '" + iFPAGO + "' = 'XXX') \n" +
                             " AND C.FPAGO = 'P' " + //SOLO DEPOSITOS
                             " GROUP BY C.NRO_OPERACION ";
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);

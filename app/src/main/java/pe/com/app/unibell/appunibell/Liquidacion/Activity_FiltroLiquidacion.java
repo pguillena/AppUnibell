@@ -19,7 +19,7 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
         Dialogo_Fragment_Fecha.NoticeDialogoListener {
 
     private SharedPreferences sharedSettings;
-    private TextView txtEstado, txtFechaFiltro, lblBuscarLiquidacion4;
+    private TextView txtEstado, txtFechaFiltro, lblBuscarLiquidacion4, txtFormaPagoFiltroLiquidacion;
     private EditText txtNroPlanilla, txtCpacking;
     private Button btnBuscarLiquidacion;
     private Integer iTabla=0;
@@ -27,6 +27,7 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
     private Dialog_Fragment_Auxiliar dialog_fragment_auxiliar = null;
     private Integer iOpcionFecha=0,iOpcionHora=0;
     private DialogFragment dialogFragmentFecha;
+    private String vplb_lblfpago="XXX";
     Funciones funciones = new Funciones();
 
 
@@ -47,7 +48,7 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
         txtNroPlanilla = (EditText)findViewById(R.id.lq_txtfplan);
         txtCpacking = (EditText)findViewById(R.id.lq_txtpaking);
         lblBuscarLiquidacion4 = (TextView)findViewById(R.id.lblBuscarLiquidacion4);
-
+        txtFormaPagoFiltroLiquidacion  = (TextView)findViewById(R.id.txtFormaPagoFiltroLiquidacion);
 
         funciones.addTextChangedListener(txtEstado, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
         funciones.addTextChangedListener(txtFechaFiltro, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
@@ -66,6 +67,7 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
 
 
         txtEstado.setOnClickListener(OnClickListener_txtEstado);
+        txtFormaPagoFiltroLiquidacion.setOnClickListener(OnClickListener_txtFormaPagoFiltroLiquidacion);
 
         Bundle   parametros = getIntent().getExtras();
 
@@ -102,6 +104,23 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
         btnBuscarLiquidacion.setOnClickListener(OnClickListener_btnBuscarLiquidacion);
 
     }
+
+
+    View.OnClickListener OnClickListener_txtFormaPagoFiltroLiquidacion = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            try {
+                iAuxiliar = 2;
+                iTabla = 14;
+                dialog_fragment_auxiliar = new Dialog_Fragment_Auxiliar();
+                dialog_fragment_auxiliar.setAuxiliarDialogfragmentListener(Activity_FiltroLiquidacion.this, iTabla, 0);
+                dialog_fragment_auxiliar.show(getSupportFragmentManager(), dialog_fragment_auxiliar.TAG);
+            } catch (Exception e) {
+            }
+        }
+    };
+
+
 
     View.OnClickListener OnClickListener_txtFechaFiltro = new View.OnClickListener() {
         @Override
@@ -145,12 +164,19 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
             try {
 
                 // TODO Auto-generated method stub
+                if(txtFormaPagoFiltroLiquidacion.getText().toString().trim().equals("")) {
+                    vplb_lblfpago = "XXX";
+                }else{
+                    vplb_lblfpago=  txtFormaPagoFiltroLiquidacion.getTag().toString();
+                }
+
 
                 Intent data = new Intent();
                 data.putExtra("txtNroPlanilla", txtNroPlanilla.getText().toString());
                 data.putExtra("txtCpacking", txtCpacking.getText().toString());
                 data.putExtra("lq_txtfestado",txtEstado.getTag().toString().trim());
                 data.putExtra("lq_txtffechaFiltro", txtFechaFiltro.getText().toString());
+                data.putExtra("lq_txtfpagoFiltro", vplb_lblfpago);
 
                 setResult(RESULT_OK, data);
                 finish();
@@ -173,6 +199,10 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
             case 1:
                 txtEstado.setTag(sharedSettings.getString("ICODTABAUX", "").toString());
                 txtEstado.setText(sharedSettings.getString("IDESTABAUX", "").toString());
+                break;
+            case 2:
+                txtFormaPagoFiltroLiquidacion.setTag(sharedSettings.getString("ICODTABAUX", "").toString().toUpperCase());
+                txtFormaPagoFiltroLiquidacion.setText(sharedSettings.getString("IDESTABAUX", "").toString().toUpperCase());
                 break;
             //FORMA DE PAGO
             /*case 2:

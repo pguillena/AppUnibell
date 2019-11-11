@@ -94,6 +94,7 @@ public class Cobranza_Reporte_Adapter extends ArrayAdapter<CobranzaReporteBE> im
                     editor_Shared.putString("REP_SER_RECIBO",SERIE.trim());
                     editor_Shared.putString("REP_NUM_RECIBO",NUMERO.trim());
                     editor_Shared.putString("IOPCION_REPORTE","0");
+                    editor_Shared.putString("CODIGO_ANTIGUO",cobranzaReporteBE.getCOD_CLIENTE().toString());
                     editor_Shared.commit();
 
                     Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Recibo_Rep.class);
@@ -162,6 +163,7 @@ public class Cobranza_Reporte_Adapter extends ArrayAdapter<CobranzaReporteBE> im
                     editor_Shared.putString("rep_moneda", cobranzaReporteBE.getMONEDA().toString());
                     editor_Shared.putString("rep_recibo", cobranzaReporteBE.getRECIBO().toString());
                     editor_Shared.putString("rep_planilla", cobranzaReporteBE.getPLANILLA().toString());
+                    editor_Shared.putString("CODIGO_ANTIGUO", cobranzaReporteBE.getCOD_CLIENTE().toString());
                     editor_Shared.commit();
 
                     Intent intent = new Intent(getContext().getApplicationContext(), Activity_Reportes_Detalle.class);

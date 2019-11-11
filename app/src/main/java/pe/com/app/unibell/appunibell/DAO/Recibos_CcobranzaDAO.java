@@ -287,8 +287,8 @@ public class Recibos_CcobranzaDAO {
 
             ContentValues cv_cab = new ContentValues();
             cv_cab.put("NUMERO",documentos_cobra_cabBE.getN_RECIBO());
-            DataBaseHelper.myDataBase.update("CCM_RECIBOS_COBRANZA",cv_cab,"C_RECEPTOR = ? AND N_SERIE = ? AND AUTOMATICO = ?",
-                    new String[]{String.valueOf(codigoVendedor), String.valueOf(documentos_cobra_cabBE.getN_SERIE_RECIBO()),"S"});
+            DataBaseHelper.myDataBase.update("CCM_RECIBOS_COBRANZA",cv_cab,"C_RECEPTOR = ? AND N_SERIE = ? AND AUTOMATICO = ? AND NUMERO < ?",
+                    new String[]{String.valueOf(codigoVendedor), String.valueOf(documentos_cobra_cabBE.getN_SERIE_RECIBO()),"S", String.valueOf(documentos_cobra_cabBE.getN_RECIBO())});
 
             sMensaje="";
         }catch (Exception ex){

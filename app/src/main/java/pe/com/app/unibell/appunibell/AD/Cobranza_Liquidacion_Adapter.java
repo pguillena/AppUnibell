@@ -102,6 +102,7 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
 
                 editor_Shared.putString("REP_SER_RECIBO", documentos_cobra_cabBE.getN_SERIE_RECIBO().toString());
                 editor_Shared.putString("REP_NUM_RECIBO", documentos_cobra_cabBE.getN_RECIBO().toString());
+                editor_Shared.putString("CODIGO_ANTIGUO", documentos_cobra_cabBE.getCOD_CLIENTE().toString());
                 editor_Shared.putString("IOPCION_REPORTE","0");
                 editor_Shared.commit();
 
@@ -350,7 +351,9 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
                                    documentos_cobra_cabBE.getCOD_CLIENTE().toString()+
                                    documentos_cobra_cabBE.getN_RECIBO().toString()+
                                    documentos_cobra_cabBE.getPLANILLA().toString()+
-                                   documentos_cobra_cabBE.getFPAGODESC().toString());
+                            documentos_cobra_cabBE.getFPAGODESC().toString()+
+                            documentos_cobra_cabBE.getM_COBRANZA().toString()
+                            );
                     Boolean bfind = true;
                     for(String s : SSA){
                         if(!todo.contains(s)){

@@ -53,6 +53,29 @@
                 />
 
 
+
+    <TextView
+        android:id="@+id/lblBuscarLiquidacionFormaPago"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Estado"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
+        android:textSize="14dp"
+        android:textColor="@color/label_login_unibell"
+        />
+
+    <TextView
+        android:id="@+id/txtFormaPagoFiltroLiquidacion"
+        style="@style/SkyTextViewStyleSpinnerUnibellBusqueda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Elija una forma de pago"
+        android:textSize="16dp"
+        android:paddingLeft="15dp"
+        />
+
+
     <TextView
         android:id="@+id/lblBuscarLiquidacion3"
         android:layout_width="match_parent"

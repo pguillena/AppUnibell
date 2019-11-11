@@ -125,7 +125,7 @@ public class Activity_Liquidacion extends AppCompatActivity
     private Integer iValor=0;
     int request_code = 1;
     int contadorChecks = 0;
-    private String sNroPlanilla, sCPacking, sEstado="40003", sFecha;
+    private String sNroPlanilla, sCPacking, sEstado="40003", sFecha, sFormaPago;
     private String lq_lblmontoc,lq_lblmontov,lq_lblmontoe,lq_lblmontob, lq_lblmontop;
     private EditText txtPackingEnvio;
     private TextView txtProgressLoading;
@@ -487,6 +487,7 @@ public class Activity_Liquidacion extends AppCompatActivity
                 sNroPlanilla =  parametros.getString("txtNroPlanilla");
                 sCPacking =  parametros.getString("txtCpacking");
                 sEstado =  parametros.getString("lq_txtfestado");
+                sFormaPago =  parametros.getString("lq_txtfpagoFiltro");
                 Cargar();
             }
 
@@ -866,6 +867,11 @@ public class Activity_Liquidacion extends AppCompatActivity
             }
 
 
+            if(sFormaPago == null || sFormaPago.equals("") ||sFormaPago.equals("0"))
+            {
+                sFormaPago = "XXX";
+            }
+
             new LoadLiquidacionSQLite_AsyncTask().execute(
                     sharedSettings.getString("iID_EMPRESA", "0").toString(),
                     sharedSettings.getString("iID_LOCAL", "0").toString(),
@@ -873,7 +879,8 @@ public class Activity_Liquidacion extends AppCompatActivity
                     sharedSettings.getString("iID_VENDEDOR", "0").toString(),
                     sEstado,
                     sNroPlanilla,
-                    sCPacking
+                    sCPacking,
+                    sFormaPago
             );
 
 
@@ -1184,8 +1191,8 @@ public class Activity_Liquidacion extends AppCompatActivity
         @Override
         protected String doInBackground(String... p) {
             try {
-                documentos_cobra_cabDAO.getLiquidacionBy(p[0],p[1],p[2],p[3],p[4],p[5],p[6]);
-                documentos_cobra_cabDAO2.getDepositosBy(p[0],p[1],p[2],p[3],p[4],p[5],p[6]);
+                documentos_cobra_cabDAO.getLiquidacionBy(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]);
+                documentos_cobra_cabDAO2.getDepositosBy(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -1260,8 +1267,9 @@ public class Activity_Liquidacion extends AppCompatActivity
         @Override
         protected void onPreExecute() {
 
-            txtProgressLoading.setVisibility(View.VISIBLE);
-            pbLiquidacion.setVisibility(View.VISIBLE);
+
+
+            MostrarLoading("Conciliando",true);
         }
 
         @Override
@@ -1278,8 +1286,8 @@ public class Activity_Liquidacion extends AppCompatActivity
         @Override
         protected void onPostExecute(JSONObject result) {
 
-            txtProgressLoading.setVisibility(View.GONE);
-            pbLiquidacion.setVisibility(View.GONE);
+            MostrarLoading("",false);
+
             Cargar();
 
          /*   try {
@@ -1301,7 +1309,10 @@ public class Activity_Liquidacion extends AppCompatActivity
 
         @Override
         protected void onPreExecute() {
+
+            MostrarLoading("Enviando",true);
         }
+
 
         @Override
         protected JSONObject doInBackground(String... p) {
@@ -1316,6 +1327,8 @@ public class Activity_Liquidacion extends AppCompatActivity
 
         @Override
         protected void onPostExecute(JSONObject result) {
+
+            MostrarLoading("",false);
             try {
                 if (result.getInt("status")!=1) {
                     //MOSTRAMOS MESSAGE
@@ -1357,17 +1370,28 @@ public class Activity_Liquidacion extends AppCompatActivity
         }
 
         @Override
+        protected void onPreExecute() {
+
+            MostrarLoading("Asignando",true);
+        }
+
+        @Override
         protected JSONObject doInBackground(String... p) {
             return documentos_cobra_cabBL.UpdateRest(ID_COBRANZA,TIPO_EVENTO,p[0]);
         }
 
         @Override
         protected void onPostExecute(JSONObject result) {
+
+
+
             //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
             try {
                 if (result.getInt("status")==0) {
-                } else {
+                    new ToastLibrary(Activity_Liquidacion.this, "Ocurrio un error al momento de reasignar los registros, intentelo nuevamente").Show();
 
+                } else {
+                    new ToastLibrary(Activity_Liquidacion.this, "Asignacion exitosa").Show();
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -1375,7 +1399,28 @@ public class Activity_Liquidacion extends AppCompatActivity
             finally {
 
             }
+
+
+            MostrarLoading("",false);
         }
+    }
+
+    private void MostrarLoading(String texto, boolean mostrar) {
+
+        if(mostrar) {
+            txtProgressLoading.setText(texto);
+            txtProgressLoading.setVisibility(View.VISIBLE);
+            pbLiquidacion.setVisibility(View.VISIBLE);
+            lq_lsdetalle.setVisibility(View.GONE);
+        }
+        else
+        {
+            txtProgressLoading.setText("");
+            txtProgressLoading.setVisibility(View.GONE);
+            pbLiquidacion.setVisibility(View.GONE);
+            lq_lsdetalle.setVisibility(View.VISIBLE);
+        }
+
     }
 
 

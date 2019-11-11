@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.io.StringReader;
 
 
+import pe.com.app.unibell.appunibell.BL.FactCobBL;
 import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Progress;
 import pe.com.app.unibell.appunibell.R;
@@ -54,6 +55,7 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
 
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
+    private FactCobBL factCobBL = new FactCobBL();
 
     @Override
     protected void onPreExecute() {
@@ -117,8 +119,20 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                 String iID_LOCAL= sharedSettings.getString("iID_LOCAL", "0").toString();
                 String iN_SERIE_RECIBO= sharedSettings.getString("REP_SER_RECIBO", "0").toString();
                 String iN_RECIBO= sharedSettings.getString("REP_NUM_RECIBO", "").toString();
+                String iCOD_CLIENTE = sharedSettings.getString("CODIGO_ANTIGUO", "").toString();
 
                 documentos_cobra_cabDAO.getReciboElectronico(iID_EMPRESA,iID_LOCAL,iN_SERIE_RECIBO,iN_RECIBO);
+
+                String consultaFactCobRest =  ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blfactcob_estado_cuenta + "/" +
+                        iCOD_CLIENTE + "/" +
+                        "XXX/" +
+                        "XXX/" +
+                        "XXX/" +
+                        "1/" +
+                        iID_EMPRESA;
+
+                factCobBL.getEstadoCuenta(consultaFactCobRest);
+
                 CONTENIDO=GeneraRecibo();
 
                 worker.parseXHtml(pdfWriter, document, new StringReader(CONTENIDO));
@@ -204,10 +218,20 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
             double totalSoles = 0.0;
             double totalDolares = 0.0;
 
+            Double totalDeudor = 0.0;
+
+            if(factCobBL.lst!=null && factCobBL.lst.size()>0)
+            {
+                for(int y = 0; y<factCobBL.lst.size(); y++)
+                {
+                    totalDeudor = funciones.sumar(totalDeudor, factCobBL.lst.get(y).getSALDO());
+                }
+            }
+
             for (int j = 0; j < documentos_cobra_cabDAO.lst.size(); j++) {
 
-                totalSoles += documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA();
-                totalDolares += documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA_D();
+                totalSoles = funciones.sumar(totalSoles, documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA());
+                totalDolares = funciones.sumar(totalDolares, documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA_D());
             }
 
 
@@ -247,11 +271,14 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                     {
                         htmlSolesCabecera = "<td width='5%'><b>CLIENTE</b></td><td><b>:</b></td><td width='60%'>"+ documentos_cobra_cabDAO.lst.get(0).getCOD_CLIENTE().toString() +" - "+ documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString()+" </td><td width='15%'><b>TIPO CAMBIO</b></td><td><b>:</b></td><td width='15%'> S/ "+ funciones.FormatDecimal(String.valueOf(documentos_cobra_cabDAO.lst.get(0).getT_CAMBIO_TIENDA()).trim().replace(",","")) +"</td></tr> ";
                         htmlSolesTitulo = "<td width='6%'  align='center' style='font-size:10px;font-weight:bold'>CAMBIO</td>";
+
                     }
                     else if(totalSoles>0)
                     {
-                        htmlSolesCabecera =   "<td width='5%'><b>CLIENTE</b></td><td><b>:</b></td><td width='60%'>"+ documentos_cobra_cabDAO.lst.get(0).getCOD_CLIENTE().toString() +" - "+ documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString()+" </td><td width='15%'><b></b></td><td><b></b></td><td width='15%'></td></tr> ";
+
+                        htmlSolesCabecera =   "<td width='5%'><b>CLIENTE</b></td><td><b>:</b></td><td width='60%'>"+ documentos_cobra_cabDAO.lst.get(0).getCOD_CLIENTE().toString() +" - "+ documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString()+" </td><td width='15%'><b>DEUDA TOTAL</b></td><td><b>:</b></td><td width='15%'> S/ "+ funciones.FormatDecimal(totalDeudor.toString())  +"</td></tr> ";
                         htmlSolesTitulo = "";
+
                     }
 
                 htmToCab2 =

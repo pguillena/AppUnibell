@@ -923,6 +923,7 @@ public class Fragment_Cobranza extends Fragment implements
 
         editor_Shared.putString("REP_SER_RECIBO", cobranza_cabecera_adapter.lst.get(0).getN_SERIE_RECIBO());
         editor_Shared.putString("REP_NUM_RECIBO", cobranza_cabecera_adapter.lst.get(0).getN_RECIBO());
+        editor_Shared.putString("CODIGO_ANTIGUO", cobranza_cabecera_adapter.lst.get(0).getCOD_CLIENTE());
         editor_Shared.commit();
 
 
