@@ -270,39 +270,39 @@ public class AsyncTask_EstadoCuenta extends AsyncTask<String,String,Boolean> {
                 for (int j = 0; j < factCobBL.lst.size(); j++) {
                     String htmlDetCabfcob="";
                     if(factCobBL.lst.get(j).getMONEDA().equals("S")) {
-                        dCobranza += factCobBL.lst.get(j).getSALDO();
+                        dCobranza = funciones.sumar(dCobranza ,factCobBL.lst.get(j).getSALDO());
                         Simbolo = "S/ ";
                     }
                     else if(factCobBL.lst.get(j).getMONEDA().equals("D"))
                     {
-                        dCobranzaDolares +=factCobBL.lst.get(j).getSALDO();
+                        dCobranzaDolares  = funciones.sumar(dCobranzaDolares, factCobBL.lst.get(j).getSALDO());
                         Simbolo = "$ ";
                     }
 
                     if (factCobBL.lst.get(j).getTIPDOC().equals("03"))
                     {
-                        dTotalBoleta +=factCobBL.lst.get(j).getSALDO();
+                        dTotalBoleta = funciones.sumar(dTotalBoleta, factCobBL.lst.get(j).getSALDO());
                     }
                     else if(factCobBL.lst.get(j).getTIPDOC().equals("01"))
                     {
-                        dTotalFactura +=factCobBL.lst.get(j).getSALDO();
+                        dTotalFactura = funciones.sumar( dTotalFactura, factCobBL.lst.get(j).getSALDO());
                     }
                     else if(factCobBL.lst.get(j).getTIPDOC().equals("07"))
                     {
-                        dTotalNC +=factCobBL.lst.get(j).getSALDO();
+                        dTotalNC = funciones.sumar(dTotalNC,  factCobBL.lst.get(j).getSALDO());
                     }
                     else if(factCobBL.lst.get(j).getTIPDOC().equals("08"))
                     {
-                        dTotalND +=factCobBL.lst.get(j).getSALDO();
+                        dTotalND = funciones.sumar(dTotalND, factCobBL.lst.get(j).getSALDO());
                     }
 
                     if(factCobBL.lst.get(j).getDIAS()>0)
                     {
-                        dTotalVencido+=factCobBL.lst.get(j).getSALDO();
+                        dTotalVencido  =funciones.sumar( dTotalVencido, factCobBL.lst.get(j).getSALDO());
                     }
                     else
                     {
-                        dTotalPorVencer+= factCobBL.lst.get(j).getSALDO();
+                        dTotalPorVencer  =funciones.sumar( dTotalPorVencer, factCobBL.lst.get(j).getSALDO());
                     }
 
 

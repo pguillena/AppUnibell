@@ -70,6 +70,7 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
             mainHolder.ivMarkerConciliado = (ImageView) view.findViewById(R.id.ivMarkerConciliado);
             mainHolder.lyItemLiquidacion = (LinearLayout) view.findViewById(R.id.lyItemLiquidacion);
             mainHolder.lyFondoBtnEditar = (LinearLayout) view.findViewById(R.id.lyFondoBtnEditar);
+            mainHolder.cl_col3 = (TextView) view.findViewById(R.id.cl_col3);
 
             mainHolder.txtFechaLiquidacion = (TextView) view.findViewById(R.id.txtFechaLiquidacion);
             mainHolder.cl_itemchk = (CheckBox) view.findViewById(R.id.cl_itemchk);
@@ -193,12 +194,15 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
         holder.txtFechaLiquidacion.setText(documentos_cobra_cabBE.getFECHA_RECIBO());
 
 
+
+
         if (documentos_cobra_cabBE.getFPAGO().toString().equals("E"))
         {
             holder.cl_itemFormaPago.setText( funciones.LetraCapital(documentos_cobra_cabBE.getFPAGODESC().toString()));
         }
         else {
-            holder.cl_itemFormaPago.setText(funciones.LetraCapital(documentos_cobra_cabBE.getFPAGODESC().toString() )+ " " + funciones.LetraCapital(documentos_cobra_cabBE.getENTIDAD().toString()) + " " + documentos_cobra_cabBE.getCONSTANCIA().toString());
+            holder.cl_col3.setText("Forma de Pago" + " (" +documentos_cobra_cabBE.getFPAGODESC().toString() +")");
+            holder.cl_itemFormaPago.setText(funciones.LetraCapital(documentos_cobra_cabBE.getENTIDAD().toString()) + "\n" + documentos_cobra_cabBE.getCONSTANCIA().toString()  + "\n" + documentos_cobra_cabBE.getFECHA().toString());
         }
 
         holder.cl_itemDocumentos.setText(funciones.LetraCapital(documentos_cobra_cabBE.getTIPODOC().toString()) +" "+documentos_cobra_cabBE.getNUMERO().toString());
@@ -302,7 +306,7 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
 
     static class MainHolder {
         //TextView lc_item1,lc_item2,lc_item3,lc_item4,lc_item5,lc_item6,lc_item7,lc_item8,lc_item9,lc_item10,lc_item11;
-        TextView cl_itemCliente, cl_itemDocumentos, cl_itemMonto, cl_itemFormaPago, cl_itemRecibo, cl_itemPlanilla, txtFechaLiquidacion, txtcPacking;
+        TextView cl_itemCliente, cl_itemDocumentos, cl_itemMonto, cl_itemFormaPago, cl_itemRecibo, cl_itemPlanilla, txtFechaLiquidacion, txtcPacking, cl_col3;
         TextView cl_lblPlanilla, cl_lblRecibo, lblcPacking;
         LinearLayout lyRecibo;
         Button cl_btn;

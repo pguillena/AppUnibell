@@ -591,14 +591,14 @@ public class Funciones {
 
 
 
-    public String sumar(String valor1,String valor2){
-        BigDecimal deci1=new BigDecimal (Double.parseDouble(valor1));
-        BigDecimal deci2=new BigDecimal (Double.parseDouble(valor2));
+    public Double sumar(Double valor1,Double valor2){
+        BigDecimal deci1=new BigDecimal (Double.parseDouble(valor1.toString()));
+        BigDecimal deci2=new BigDecimal (Double.parseDouble(valor2.toString()));
         deci1=deci1.setScale(2,BigDecimal.ROUND_HALF_UP);
         deci2=deci2.setScale(2,BigDecimal.ROUND_HALF_UP);
         BigDecimal resultado=deci1.add(deci2);
 
-        return resultado.toString();
+        return Double.parseDouble(resultado.toString());
     }
 
     static public  String AgregarCeros(String string, int largo)
