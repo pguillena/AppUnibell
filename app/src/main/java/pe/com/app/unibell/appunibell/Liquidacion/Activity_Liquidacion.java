@@ -394,7 +394,7 @@ public class Activity_Liquidacion extends AppCompatActivity
             iOpcionFecha = 3;//EnviarPlanilla
             try {
                 dialogFragmentFecha = new Dialogo_Fragment_Fecha();
-                //dialogFragmentFecha.show(getFragmentManager(), "");
+                dialogFragmentFecha.show(getSupportFragmentManager(), "");
 
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -1325,6 +1325,9 @@ public class Activity_Liquidacion extends AppCompatActivity
 
                     if(result.getString("N_PLANILLA").toString()!= null && !result.getString("N_PLANILLA").toString().equals("0"))
                     {
+                        //Se comento porque demora mucho en generar la planilla y a veces no la genera correctamente.
+
+                      /*
                         editor_Shared.putString("REP_N_PLANILLA",result.getString("N_PLANILLA").toString());
                         editor_Shared.putString("IOPCION_REPORTE", "0");
                         editor_Shared.commit();
@@ -1332,6 +1335,7 @@ public class Activity_Liquidacion extends AppCompatActivity
                         Intent intent = new Intent(getApplicationContext(), Activity_Cobranza_Liquidacion_Rep.class);
                         intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
+                      */
                     }
 
                     Cargar();

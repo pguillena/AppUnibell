@@ -146,6 +146,51 @@ public class CabfcobBL {
         return jsonObjectResult;
     }
 
+    public JSONObject getDocumentRest(String newURL) {
+        CabfcobBE cabfcobBE = null;
+        JSONObject jsonObjectRest =null;
+        JSONObject jsonObjectResult = new JSONObject();
+        try {
+            lst=new ArrayList<CabfcobBE>();
+            lst.clear();
+            String aux = new RestClientLibrary().get(newURL);
+            jsonObjectRest = new JSONObject(aux);
+            //EVALUAMOS EL STATUS
+            if (jsonObjectRest.getInt("status")!=1) {
+            } else{
+                for(int i=0;i<jsonObjectRest.getJSONArray("datos").length();i++) {
+                    JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(i);
+                    cabfcobBE = new CabfcobBE();
+                    cabfcobBE.setTIPDOC(jsonObjectItem.getString("TIPDOC"));
+                    cabfcobBE.setSERIE_NUM(jsonObjectItem.getString("SERIE_NUM"));
+                    cabfcobBE.setNUMERO(jsonObjectItem.getString("NUMERO"));
+                    cabfcobBE.setFECHA(jsonObjectItem.getString("FECHA"));
+                    cabfcobBE.setCOBRADOR(jsonObjectItem.getString("COBRADOR"));
+                    cabfcobBE.setN_SERIE_RECIBO_COBRA(jsonObjectItem.getString("N_SERIE_RECIBO_COBRA"));
+                    cabfcobBE.setN_RECIBO_COBRA(jsonObjectItem.optInt("N_RECIBO_COBRA",0));
+                    cabfcobBE.setIMPORTE(jsonObjectItem.getDouble("IMPORTE"));
+                    cabfcobBE.setCONCEPTO(jsonObjectItem.getString("CONCEPTO"));
+                    cabfcobBE.setMONEDA(jsonObjectItem.getString("MONEDA"));
+
+
+                    lst.add(cabfcobBE);
+                }
+            }
+            //CREAMOS UN JSON PARA MOSTRAR EL STATUS Y MESSAGE
+            jsonObjectResult.accumulate("status", jsonObjectRest.getInt("status"));
+            jsonObjectResult.accumulate("message", jsonObjectRest.getString("message"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                jsonObjectResult.accumulate("status", 0);
+                jsonObjectResult.accumulate("message", e.getMessage());
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return jsonObjectResult;
+    }
+
 
 
 

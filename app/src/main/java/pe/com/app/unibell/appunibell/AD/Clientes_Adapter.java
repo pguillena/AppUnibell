@@ -16,12 +16,16 @@ import android.widget.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import pe.com.app.unibell.appunibell.BE.ClientesBE;
 import pe.com.app.unibell.appunibell.Clientes.Activity_EstadoCuenta;
 import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranza_Recibo;
 import pe.com.app.unibell.appunibell.Cobranza.Activity_Cobranzas;
 import pe.com.app.unibell.appunibell.R;
+import pe.com.app.unibell.appunibell.Reportes.Activity_Estado_Cuenta_Rep;
+import pe.com.app.unibell.appunibell.Util.AsyncTask_EstadoCuenta;
+import pe.com.app.unibell.appunibell.Util.AsyncTask_Recibo;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -56,6 +60,7 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
             mainHolder.cl_btn1 = (Button)convertView.findViewById(R.id.cl_btn1);
             mainHolder.cl_btn2 = (Button)convertView.findViewById(R.id.cl_btn2);
             mainHolder.cl_btn3 = (TextView) convertView.findViewById(R.id.cl_btn3);
+            mainHolder.cl_btnEstadoCuenta = (TextView) convertView.findViewById(R.id.cl_btnEstadoCuenta);
 
 
             convertView.setTag(mainHolder);
@@ -83,6 +88,10 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
         mainHolder.cl_btn1.setTag(position);
         mainHolder.cl_btn2.setTag(position);
         mainHolder.cl_btn3.setTag(position);
+        mainHolder.cl_btnEstadoCuenta.setTag(position);
+
+
+
 
         mainHolder.cl_btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,27 +144,62 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
             @Override
             public void onClick(View v) {
                 try {
-                notifyDataSetChanged();
-                sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
-                editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+                    notifyDataSetChanged();
+                    sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
+                    editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
 
-                editor_Shared.putString("CODIGO_ANTIGUO", clienteBE.getCODIGO_ANTIGUO().toString());
-                editor_Shared.putString("RAZON_SOCIAL", clienteBE.getRAZON_SOCIAL().toString());
-                editor_Shared.commit();
+                    editor_Shared.putString("CODIGO_ANTIGUO", clienteBE.getCODIGO_ANTIGUO().toString());
+                    editor_Shared.putString("RAZON_SOCIAL", clienteBE.getRAZON_SOCIAL().toString());
+                    editor_Shared.commit();
 
-                Intent intent = new Intent(getContext().getApplicationContext(), Activity_EstadoCuenta.class);
-                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-                getContext().startActivity(intent);
-            }catch (Exception ex) {
-            }
+                    Intent intent = new Intent(getContext().getApplicationContext(), Activity_EstadoCuenta.class);
+                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
+                }catch (Exception ex) {
+                }
 
             }
         });
+
+        mainHolder.cl_btnEstadoCuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    notifyDataSetChanged();
+                    sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
+                    editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+
+                    editor_Shared.putString("CODIGO_ANTIGUO", clienteBE.getCODIGO_ANTIGUO().toString());
+                    editor_Shared.putString("RAZON_SOCIAL", clienteBE.getRAZON_SOCIAL().toString());
+                    editor_Shared.commit();
+
+
+                    try {
+                        Intent intent = new Intent(getContext().getApplicationContext(), Activity_Estado_Cuenta_Rep.class);
+                        intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                        getContext().startActivity(intent);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+                }catch (Exception ex) {
+                }
+
+            }
+        });
+
+
         return convertView;
     }
 
+
+
+
+
+
     static class MainHolder {
-        TextView cl_item2,cl_item3,cl_btn3, cl_col3;
+        TextView cl_item2,cl_item3,cl_btn3, cl_col3, cl_btnEstadoCuenta;
         Button cl_btn1,cl_btn2;
         LinearLayout cl_ln1,cl_ln2,cl_ln3;
 

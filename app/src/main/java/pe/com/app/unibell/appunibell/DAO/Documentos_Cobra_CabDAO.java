@@ -351,6 +351,7 @@ public class Documentos_Cobra_CabDAO {
                             "               END FECHA,\n" +
                             " CASE   WHEN D.MONEDA IN('D') THEN 'S' ELSE  D.MONEDA END AS MONEDA ,\n" +
                             " CASE   WHEN D.MONEDA IN('S') THEN D.M_COBRANZA ELSE  D.M_COBRANZA* C.T_CAMBIO_TIENDA END AS M_COBRANZA,\n" +
+                            " C.M_COBRANZA_D,  " +
                             "        C.N_SERIE_RECIBO || '-' || C.N_RECIBO AS RECIBO,\n C.N_SERIE_RECIBO,C.N_RECIBO," +
                             " CASE \n" +
                             "       WHEN C.N_PLANILLA IN(0) THEN '' ELSE  C.SERIE_PLANILLA || '-'|| C.N_PLANILLA  END AS PLANILLA,\n" +
@@ -401,6 +402,7 @@ public class Documentos_Cobra_CabDAO {
                     documentos_cobra_cabBE.setFECHA(Funciones.isNullColumn(cursor,"FECHA",""));
                     documentos_cobra_cabBE.setMONEDA(Funciones.isNullColumn(cursor,"MONEDA",""));
                     documentos_cobra_cabBE.setM_COBRANZA(Funciones.isNullColumn(cursor,"M_COBRANZA",0.0));
+                    documentos_cobra_cabBE.setM_COBRANZA_D(Funciones.isNullColumn(cursor,"M_COBRANZA_D",0.0));
                     documentos_cobra_cabBE.setRECIBO(Funciones.isNullColumn(cursor,"RECIBO",""));
                     documentos_cobra_cabBE.setPLANILLA(Funciones.isNullColumn(cursor,"PLANILLA","0"));
                     documentos_cobra_cabBE.setNOMCOBRADOR(Funciones.isNullColumn(cursor,"COBRADOR",""));

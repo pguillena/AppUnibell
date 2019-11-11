@@ -258,7 +258,7 @@ public class Documentos_Cobra_CabBL {
                     jsonObjectResult.accumulate("MSG", jsonObjectItem.getString("MSG"));
                     jsonObjectResult.accumulate("N_PLANILLA", sNPlanilla);
                     //SI NO SALTO LAS VALIDACIONES DE LA BD ENTONCES
-                    this.PostSincronizarCobranza(sID_EMPRESA,sID_LOCAL,sID_VENDEDOR,"0","40007");
+                    this.PostSincronizarCobranza(sID_EMPRESA,sID_LOCAL,sID_VENDEDOR,"0","40005");
                 }
             }
             //CREAMOS UN JSON PARA MOSTRAR EL STATUS Y MESSAGE

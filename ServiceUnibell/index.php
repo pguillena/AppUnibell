@@ -163,6 +163,7 @@ $app->get('/Query/User/Rol/:codusu', 'bluser:SelectRolByCodUsu');
 //Para Sincronizar
  
 $app->get('/blcabfcob/:p1/:p2/:p3', 'blcabfcob:SelectAll');
+$app->get('/blcabfcob_x_Documento/:p1/:p2/:p3/:p4/:p5', 'blcabfcob:SelectFactCobXDocumento');
 $app->get('/blclientes/:p1/:p2/:p3', 'blclientes:SelectAll');
 $app->get('/blclientesxcodigo/:p1/:p2/:p3', 'blclientes:SelectAllxCod');
 $app->get('/blclientes_migrar_cliente/:p1/:p2/:p3', 'blclientes:MigrarClienteCompleto');
@@ -221,6 +222,7 @@ $app->get('/blsucursales/:p1/:p2/:p3', 'blsucursales:SelectAll');
 $app->get('/bltablas_auxiliares/:p1/:p2', 'bltablas_auxiliares:SelectAll');
 $app->get('/blfactcob/:p1/:p2/:p3', 'blfactcob:SelectAll');
 $app->get('/blfactcobxcodigo/:p1/:p2/:p3', 'blfactcob:SelectAllxCod');
+$app->get('/blfactcob_estado_cuenta/:p1/:p2/:p3/:p4/:p5/:p6', 'blfactcob:EstadoCuenta');
 $app->get('/blctabnco_empresa_local/:p1/:p2', 'blctabnco_empresa_local:SelectAll');
 
 $app->get('/bls_rec_usuario/:p1/:p2', 'bls_sem_usuario:RecuperarUsuarioMD5');

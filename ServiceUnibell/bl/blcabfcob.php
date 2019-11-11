@@ -39,6 +39,38 @@ class blcabfcob {
             echo '{"status": 0, "message":"'. fnCleaner($e->getMessage()) .'"}';
         }
     }
+
+
+        public function SelectFactCobXDocumento($p1,$p2,$p3,$p4,$p5){
+            $this->response->header("Content-type", "application/json");
+            try{
+                $cnn = getConnectionOracle();
+                $stmt = oci_parse($cnn,"begin PKG_MS_COBRANZA.LISTAR_CABFCOB_X_DOC(:p1,:p2,:p3,:p4,:p5,:data); end;");
+                $curs = oci_new_cursor($cnn);
+                //Send parameters variable  value  lenght
+                oci_bind_by_name($stmt, ':p1', $p1);
+                oci_bind_by_name($stmt, ':p2', $p2);
+                oci_bind_by_name($stmt, ':p3', $p3);
+                oci_bind_by_name($stmt, ':p4', $p4);
+                oci_bind_by_name($stmt, ':p5', $p5);
+                //Bind Cursor     put -1
+                oci_bind_by_name($stmt, ':data', $curs, -1, OCI_B_CURSOR);
+                //Execute Statement
+                oci_execute($stmt);
+                oci_execute($curs);
+                $pila=array();
+                $cont=0;
+                 if($obj = oci_fetch_object($curs)){
+                     do{
+                         array_push($pila, $obj);
+                         $cont++;
+                     } while($obj = \oci_fetch_object($curs));
+                 }
+                echo '{"status": 1, "message":"' . $cont . ' Registro(s) Encontrado(s)", "datos":' . json_encode($pila) . '}';
+            } catch (Exception $e) {
+                echo '{"status": 0, "message":"'. fnCleaner($e->getMessage()) .'"}';
+            }
+        }
     
 
 }

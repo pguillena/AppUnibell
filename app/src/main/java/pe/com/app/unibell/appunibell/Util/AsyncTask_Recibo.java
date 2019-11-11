@@ -157,6 +157,7 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
         String sHTML="";
         try{
             String htmToCab1="",htmToCab2="",htmToDet="",sResumen="",htmPie="";
+            String htmlSolesCabecera="", htmlSolesTitulo="", htmlSolesDet="", htmlSolesFooter="";
 
             Bitmap bitMap=null;
 
@@ -200,8 +201,17 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
 
             String sdPath = mFile1.getAbsolutePath().toString()+"/"+fileName;
 
+            double totalSoles = 0.0;
+            double totalDolares = 0.0;
 
-            if(documentos_cobra_cabDAO.lst!=null && documentos_cobra_cabDAO.lst.size()>0) {
+            for (int j = 0; j < documentos_cobra_cabDAO.lst.size(); j++) {
+
+                totalSoles += documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA();
+                totalDolares += documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA_D();
+            }
+
+
+                if(documentos_cobra_cabDAO.lst!=null && documentos_cobra_cabDAO.lst.size()>0) {
                 String Splanilla = "";
 
                 if(!documentos_cobra_cabDAO.lst.get(0).getPLANILLA().equals("") && !documentos_cobra_cabDAO.lst.get(0).getPLANILLA().trim().equals("-"))
@@ -233,6 +243,17 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                         "<tr><td colspan='3'> <hr style='color: #b52e31;' size='10'/></td></tr>"+
                         "</table>";
 
+                    if (totalDolares > 0)
+                    {
+                        htmlSolesCabecera = "<td width='5%'><b>CLIENTE</b></td><td><b>:</b></td><td width='60%'>"+ documentos_cobra_cabDAO.lst.get(0).getCOD_CLIENTE().toString() +" - "+ documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString()+" </td><td width='15%'><b>TIPO CAMBIO</b></td><td><b>:</b></td><td width='15%'> S/ "+ funciones.FormatDecimal(String.valueOf(documentos_cobra_cabDAO.lst.get(0).getT_CAMBIO_TIENDA()).trim().replace(",","")) +"</td></tr> ";
+                        htmlSolesTitulo = "<td width='6%'  align='center' style='font-size:10px;font-weight:bold'>CAMBIO</td>";
+                    }
+                    else if(totalSoles>0)
+                    {
+                        htmlSolesCabecera =   "<td width='5%'><b>CLIENTE</b></td><td><b>:</b></td><td width='60%'>"+ documentos_cobra_cabDAO.lst.get(0).getCOD_CLIENTE().toString() +" - "+ documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString()+" </td><td width='15%'><b></b></td><td><b></b></td><td width='15%'></td></tr> ";
+                        htmlSolesTitulo = "";
+                    }
+
                 htmToCab2 =
                         "<html>" +
                                 "<head>" +
@@ -243,7 +264,7 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                                 "<td width='5%' ><b>COBRADOR</b></td><td><b>:</b></td><td width='60%'>"+ documentos_cobra_cabDAO.lst.get(0).getNOMCOBRADOR().toString() +" </td><td width='15%'><b>FECHA</b></td><td><b>:</b></td><td width='15%'>"+documentos_cobra_cabDAO.lst.get(0).getFECHA_RECIBO().toString()+"</td></tr> "+
                                 "<tr width='100%'>" +
                                 //"<td width='80%'><b>CLIENTE:</b>" + documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString() + "</td><td width='20%'><b>TIPO CAMBIO:</b>" + documentos_cobra_cabDAO.lst.get(0).getT_CAMBIO_TIENDA().toString() + "</td></tr>" +
-                                "<td width='5%'><b>CLIENTE</b></td><td><b>:</b></td><td width='60%'>"+ documentos_cobra_cabDAO.lst.get(0).getCOD_CLIENTE().toString() +" - "+ documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString()+" </td><td width='15%'><b>TIPO CAMBIO</b></td><td><b>:</b></td><td width='15%'> S/ "+ funciones.FormatDecimal(String.valueOf(documentos_cobra_cabDAO.lst.get(0).getT_CAMBIO_TIENDA()).trim().replace(",","")) +"</td></tr> "+
+                                htmlSolesCabecera+
                                 "</table>" +
                                 "<table width='100%' border='0.01'  cellpadding='5px' bordercolor='666633'>" +
                                 "<tr><td width='2%' align='center' style='font-size:10px;font-weight:bold' >N°</td>" +
@@ -256,7 +277,7 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                                 "<td width='7%'  align='center' style='font-size:10px;font-weight:bold' >FECHA</td>" +
                                 "<td width='7%'  align='center' style='font-size:10px;font-weight:bold'>DEUDA</td>" +
                                 "<td width='7%'  align='center' style='font-size:10px;font-weight:bold'>ABONO</td>" +
-                                "<td width='6%'  align='center' style='font-size:10px;font-weight:bold'>CAMBIO</td>" +
+                                htmlSolesTitulo+
                                 "<td width='6%'  align='center' style='font-size:10px;font-weight:bold'>SALDO</td>" +
                                 "</tr>";
 
@@ -268,6 +289,14 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                     Double cobranzaDolares = documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA() / Double.valueOf(documentos_cobra_cabDAO.lst.get(j).getT_CAMBIO_TIENDA());
                     dCobranzaDolares +=cobranzaDolares;
 
+
+                    if(!htmlSolesTitulo.equals(""))
+                    {
+                        htmlSolesDet = "<td width='6%'  style='font-size:10px' align='right'>" + "$ " + funciones.FormatDecimal(cobranzaDolares.toString()) + "</td>" ;
+                    }
+                    else {
+                        htmlSolesDet ="";
+                    }
                     htmToDet = htmToDet + "" +
                             "<tr><td width='2%' style='font-size:10px' align='left' >" + (j+1) + "</td>" +
                             "<td width='24%' style='font-size:10px'>" + documentos_cobra_cabDAO.lst.get(j).getVENDEDOR().toString() + "</td>" +
@@ -279,18 +308,29 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                             "<td width='7%'  style='font-size:10px' align='center'>" + documentos_cobra_cabDAO.lst.get(j).getFECHA().toString() + "</td>" +
                             "<td width='7%'  style='font-size:10px' align='right'>" + "S/ " + funciones.FormatDecimal(documentos_cobra_cabDAO.lst.get(j).getSALDO_INICIAL().toString()) + "</td>" +
                             "<td width='7%'  style='font-size:10px' align='right'>" + "S/ " +funciones.FormatDecimal(documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA().toString()) + "</td>" +
-                            "<td width='6%'  style='font-size:10px' align='right'>" + "$ " + funciones.FormatDecimal(cobranzaDolares.toString()) + "</td>" +
+                            htmlSolesDet+
                             "<td width='6%'  style='font-size:10px' align='right'>" + "S/ "+ documentos_cobra_cabDAO.lst.get(j).getSALDO().toString() + "</td>" +
                             "</tr>";
                 }
+
+                    if(!htmlSolesTitulo.equals(""))
+                    {
+                        htmlSolesFooter = "<td width='6%' style='font-size:12px;font-weight:bold' align='right'>" + "$ "  + funciones.FormatDecimal(dCobranzaDolares.toString()) + "</td>";
+                    }
+                    else {
+                        htmlSolesFooter ="";
+                    }
+
                 htmToDet = htmToDet + "<tr>" +
                         "<td colspan='9' style='font-weight:bold' align='right' >TOTAL RECIBO</td>" +
                         "<td width='7%' style='font-size:12px;font-weight:bold' align='right'>" + "S/ " + funciones.FormatDecimal(dCobranza.toString()) + "</td>" +
-                        "<td width='6%' style='font-size:12px;font-weight:bold' align='right'>" + "$ "  + funciones.FormatDecimal(dCobranzaDolares.toString()) + "</td>" + "</tr></table>";
+                        htmlSolesFooter+
+                        "</tr></table>";
 
                 sResumen =
                         "<table width='100%' cellpadding='4px' >" +
-                                "<tr><td colspan='3'> <br /><br /></td></tr>" +
+                               "<tr><td colspan='3'> <br /><br /></td></tr>" +
+                              /*
                                 "<tr width='100%'>" +
                                 "<td width='40%' style='font-weight:bold;' align='center'>_________________________________________</td>" +
                                 "<td width='20%' style='font-weight:bold;'></td>" +
@@ -299,7 +339,7 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                                 "<td width='40%' style='font-weight:bold;' align='center'>"+  documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString() +"</td>" +
                                 "<td width='20%' style='font-weight:bold;'></td>" +
                                 "<td width='40%' style='font-weight:bold;' align='center'>"+  documentos_cobra_cabDAO.lst.get(0).getNOMCOBRADOR().toString() +"</td></tr>" +
-
+                              */
                                 "<tr><td align='left' style='font-size: 10px'><b>Usuario: </b>"+ sharedSettings.getString("USUARIO", "").toString() +"</td><td></td><td align='right' style='font-size: 10px'><b> Fecha Impresión:</b> " + funciones.FechaActualNow() + "</td></tr>" +
                                 "</table>";
 

@@ -12,22 +12,23 @@
     >
 
     <TextView
-        android:id="@+id/cl_col1"
+        android:id="@+id/cl_btn3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Código"
         android:textSize="16dp"
         android:textColor="@color/Button_login_unibell"
         android:fontFamily="@font/sf_pro_display_medium"
+        android:drawableRight="@drawable/chevron_right"
         />
 
     <TextView
-        android:id="@+id/cl_btn3"
+        android:id="@+id/cl_btnEstadoCuenta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CODIGO"
         android:textSize="16dp"
-        android:drawableRight="@drawable/chevron_right"
+        android:drawableRight="@drawable/file_download_outline"
         android:focusable="false"
         android:textColor="@color/label_color_menu"
         android:fontFamily="@font/sf_pro_display_bold"
