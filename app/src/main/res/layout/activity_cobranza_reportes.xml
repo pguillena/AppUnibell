@@ -7,6 +7,28 @@
     android:orientation="vertical"
     android:background="@color/background_main_unibell"
     >
+
+    <TextView
+        android:id="@+id/txtProgressLoadingReporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cargando datos"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:textColor="@color/Button_login_unibell"
+        android:visibility="gone"
+        />
+
+    <ProgressBar
+        android:id="@+id/pbReporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminate="true"
+        android:visibility="gone"
+        />
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -26,7 +48,7 @@
             android:padding="10dp"
             android:listSelector="@color/list_seleccion"/>
 
-       <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/cr_fabbuscar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,7 +57,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:clickable="true"
-            android:src="@drawable/filtro_small" />-->
+            android:src="@drawable/filtro_small"/>
 
 
     </RelativeLayout>

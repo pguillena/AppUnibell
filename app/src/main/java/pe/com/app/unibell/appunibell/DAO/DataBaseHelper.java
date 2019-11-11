@@ -12,15 +12,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
 
-import pe.com.app.unibell.appunibell.R;
-
 /**
  * Created by RENAN on 18/08/2016.
  */
 public class DataBaseHelper extends SQLiteOpenHelper {
     //The Android's default system path of your application database.
     private static String DB_PATH = "";
-    private static String DB_NAME = "UBBD.sqlite";
+    private static String DB_NAME = "UNIBELLBD.sqlite";
     public  static SQLiteDatabase myDataBase;
     private final Context myContext;
     /**
@@ -31,7 +29,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
      */
     public DataBaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
-        DB_PATH="/data/data/"+ context.getPackageName()+"/databases/";
+        DB_PATH="/data/data/"+context.getPackageName()+"/databases/";
         this.myContext = context;
     }
 
@@ -48,9 +46,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         } else {
             //By calling this method and empty database will be created into the default system path
             //of your application so we are gonna be able to overwrite that database with our database.
-
             db_Read=this.getReadableDatabase();
             db_Read.close();
+
             try {
                 copyDataBase();
             } catch (IOException e) {

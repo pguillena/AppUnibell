@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import androidx.appcompat.widget.SearchView;
+
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import org.json.JSONObject;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,6 +55,9 @@ public class Activity_Reportes extends AppCompatActivity {
    private Double lbltotalpost=0.0;
    private Double lbltotalgeneral=0.0;
 
+    private TextView txtProgressLoadingReporte;
+    private ProgressBar pbReporte;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,14 +72,17 @@ public class Activity_Reportes extends AppCompatActivity {
         editor_Shared=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF),MODE_PRIVATE).edit();
 
         cr_lsdetalle=(ListView)findViewById(R.id.cr_lsdetalle);
-       // cr_fabbuscar=(FloatingActionButton)findViewById(R.id.cr_fabbuscar);
+        cr_fabbuscar=(FloatingActionButton)findViewById(R.id.cr_fabbuscar);
         cr_btnverdetalle=(TextView)findViewById(R.id.cr_btnverdetalle);
         cr_lbltotalg=(TextView)findViewById(R.id.cr_lbltotalg);
 
-        //cr_btnverdetalle.setOnClickListener(OnClickListener_cr_btnverdetalle);
-        //cr_fabbuscar.setOnClickListener(OnClickListener_cr_fabbuscar);
+        cr_btnverdetalle.setOnClickListener(OnClickListener_cr_btnverdetalle);
+        cr_fabbuscar.setOnClickListener(OnClickListener_cr_fabbuscar);
 
-       Cargar();
+        txtProgressLoadingReporte=(TextView)findViewById(R.id.txtProgressLoadingReporte);
+        pbReporte = (ProgressBar)findViewById(R.id.pbReporte);
+
+       //Cargar();
     }
 
 
@@ -277,6 +285,8 @@ public class Activity_Reportes extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
+            txtProgressLoadingReporte.setVisibility(View.VISIBLE);
+            pbReporte.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -292,6 +302,11 @@ public class Activity_Reportes extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject result) {
+
+
+            txtProgressLoadingReporte.setVisibility(View.GONE);
+            pbReporte.setVisibility(View.GONE);
+
             try {
                 if (result.getInt("status")!=1) {
 

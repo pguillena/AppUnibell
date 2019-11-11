@@ -112,9 +112,6 @@ public class Activity_Reporte_Filtro extends AppCompatActivity
         funciones.addTextChangedListener(plb_lbltipodoc, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
         funciones.addTextChangedListener(plb_lblmoneda, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
 
-
-
-
         AutoComplete();
 
     }
@@ -279,7 +276,18 @@ public class Activity_Reporte_Filtro extends AppCompatActivity
                 if(plb_txtcliente.getText().toString().trim().equals("")) {
                     vplb_txtcliente = "0";
                 }else{
-                    vplb_txtcliente= plb_txtcliente.getTag().toString();
+                    vplb_txtcliente= plb_txtcliente.getText().toString();
+
+                    for (int i=0; i<clientesDAO.lst.size(); i++)
+                    {
+                        if(clientesDAO.lst.get(i).getRAZON_SOCIAL().toUpperCase().equals(vplb_txtcliente.toUpperCase()))
+                        {
+                            vsplb_txtcodigo =  clientesDAO.lst.get(i).getCODIGO_ANTIGUO().toString();
+                            break;
+                        }
+
+                    }
+
                 }
 
                 if(plb_txtnumero.getText().toString().trim().equals("")) {
@@ -294,6 +302,12 @@ public class Activity_Reporte_Filtro extends AppCompatActivity
                 if(!plb_lblfin.getText().toString().trim().equals("")){
                     vplb_lblfin=plb_lblfin.getText().toString();
                 }
+
+
+
+
+
+
 
                 Intent data = new Intent();
                 editor_Shared.putString("plb_txtcodigo",vsplb_txtcodigo);

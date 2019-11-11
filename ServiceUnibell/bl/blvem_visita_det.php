@@ -39,7 +39,6 @@ class blvem_visita_det {
             echo '{"status": 0, "message":"'. fnCleaner($e->getMessage()) .'"}';
         }
     }
-
-
+    
 
 }

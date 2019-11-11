@@ -184,6 +184,8 @@ public class ClientesDAO {
         }
 
         iRAZON_SOCIAL  = iRAZON_SOCIAL.trim();
+      String[]  iRAZON_SOCIAL2  = iRAZON_SOCIAL.trim().split("'");
+        iRAZON_SOCIAL = iRAZON_SOCIAL2[0];
 
         Integer iIngreso=0;
         ClientesBE clientesBE = null;

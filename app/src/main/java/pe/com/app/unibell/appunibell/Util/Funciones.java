@@ -590,6 +590,17 @@ public class Funciones {
     }
 
 
+
+    public String sumar(String valor1,String valor2){
+        BigDecimal deci1=new BigDecimal (Double.parseDouble(valor1));
+        BigDecimal deci2=new BigDecimal (Double.parseDouble(valor2));
+        deci1=deci1.setScale(2,BigDecimal.ROUND_HALF_UP);
+        deci2=deci2.setScale(2,BigDecimal.ROUND_HALF_UP);
+        BigDecimal resultado=deci1.add(deci2);
+
+        return resultado.toString();
+    }
+
     static public  String AgregarCeros(String string, int largo)
     {
         String ceros = "";

@@ -98,6 +98,5 @@ class blclientes {
                     echo '{"status": 0, "message":"'. fnCleaner($e->getMessage()) .'"}';
                 }
             }
-			  
 
 }

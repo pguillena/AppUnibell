@@ -9,6 +9,7 @@ public interface ConstantsLibrary {
         //REMOTO
         public static final String RESTFUL_URL ="http://181.65.215.174/ServiceUnibell";
         public static final String blcabfcob = "/blcabfcob";
+        public static final String blcabfcob_x_Documento = "/blcabfcob_x_Documento";
         public static final String blcliente = "/blclientes";
         public static final String blclientesxcodigo = "/blclientesxcodigo";
         public static final String blclientes_migrar_cliente = "/blclientes_migrar_cliente";
@@ -92,6 +93,9 @@ public interface ConstantsLibrary {
         public static final String blvem_visita_det = "/blvem_visita_det";
         public static final String blubigeo = "/blubigeo";
         public static final String blvem_visita_movimiento_cambio = "/blvem_visita_movimiento_cambio";
+
+        //Reporte de estado de cuenta
+        public static final String blfactcob_estado_cuenta = "/blfactcob_estado_cuenta";
 
 
 

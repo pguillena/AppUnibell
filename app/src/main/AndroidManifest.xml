@@ -172,6 +172,11 @@
             />
 
         <activity
+            android:name=".Reportes.Activity_Estado_Cuenta_Rep"
+            android:screenOrientation="portrait"
+            />
+
+        <activity
             android:name=".Reportes.Activity_Cobranza_Liquidacion_Rep"
             android:screenOrientation="portrait"
             />
