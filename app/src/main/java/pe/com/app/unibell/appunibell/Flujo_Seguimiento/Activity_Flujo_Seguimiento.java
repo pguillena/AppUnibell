@@ -1,9 +1,11 @@
 package pe.com.app.unibell.appunibell.Flujo_Seguimiento;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import android.view.Menu;
@@ -18,7 +20,6 @@ import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 
 public class Activity_Flujo_Seguimiento  extends AppCompatActivity {
-
     private static final int REQUEST_CODE_1=1;
     private ViewPager mViewPager;
 
@@ -61,6 +62,7 @@ public class Activity_Flujo_Seguimiento  extends AppCompatActivity {
         setContentView(R.layout.activity_flujo_seguimiento);
         sharedSettings = this.getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
 
+
         setToolbar(); // Añadir la toolbar
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -68,6 +70,7 @@ public class Activity_Flujo_Seguimiento  extends AppCompatActivity {
 
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(mViewPager);
+
 
     }
 
@@ -80,7 +83,6 @@ public class Activity_Flujo_Seguimiento  extends AppCompatActivity {
     }
 
     private void setToolbar() {
-        /*
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
@@ -90,10 +92,6 @@ public class Activity_Flujo_Seguimiento  extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
             ab.setTitle("Planilla N° "+sharedSettings.getString("SERIE_PLANILLA","0").toString()+"-" +sharedSettings.getString("N_PLANILLA","0").toString() );
         }
-        */
-
-
-
 
     }
 

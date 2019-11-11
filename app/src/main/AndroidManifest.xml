@@ -26,7 +26,18 @@
         android:roundIcon="@drawable/favicon"
         android:theme="@style/AppTheme"
         android:supportsRtl="true"
-    >
+      >
+       <!-- -->
+        <activity
+            android:name=".Main.Activity_Login"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="true"/>
@@ -83,15 +94,7 @@
             android:name=".Clientes.Activity_Filtro_Visita"
             android:screenOrientation="portrait" />
 
-        <activity
-            android:name=".Main.Activity_Login"
-            android:theme="@style/SplashTheme"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
 
         <activity
             android:name=".Main.Activity_Login_Local"
@@ -140,9 +143,11 @@
         <activity
             android:name=".Cobranza.Activity_Cobranza_Recibo"
             android:screenOrientation="portrait" />
-        <activity
+
+      <activity
             android:name=".Planilla.Activity_FlujoSeguimiento"
             android:screenOrientation="portrait" />
+
 
         <activity
             android:name=".Cobranza.Activity_Cobranza_Agregar_Pago"
@@ -154,7 +159,7 @@
             android:screenOrientation="portrait"
             />
 
-        <activity
+       <activity
             android:theme="@style/TrickTab"
             android:name=".Flujo_Seguimiento.Activity_Flujo_Seguimiento"
             android:screenOrientation="portrait"
