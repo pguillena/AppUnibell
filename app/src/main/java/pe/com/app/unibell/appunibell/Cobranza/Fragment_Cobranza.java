@@ -1236,7 +1236,7 @@ public class Fragment_Cobranza extends Fragment implements
                         if (item.getTIPDOC().equals(item2.getTIPDOC()) && item.getSERIE_NUM().equals(item2.getSERIE_NUM()) && item.getNUMERO().equals(item2.getNUMERO().toString()))
                         {
                             if(factCobDAO.lst.get(j).getSALDO()>0) {
-                                factCobDAO.lst.get(j).setSALDO(Double.valueOf(funciones.restar(factCobDAO.lst.get(j).getSALDO().toString(), item.getM_COBRANZA().toString())));
+                                factCobDAO.lst.get(j).setSALDO(Double.valueOf(funciones.restar(factCobDAO.lst.get(j).getSALDO(), item.getM_COBRANZA())));
                             }
                             else
                             {

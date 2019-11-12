@@ -16,6 +16,8 @@ import pe.com.app.unibell.appunibell.BL.ClientesBL;
 import pe.com.app.unibell.appunibell.BL.DocuventBL;
 import pe.com.app.unibell.appunibell.BL.FactCobBL;
 import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
+import pe.com.app.unibell.appunibell.DAO.DocuventDAO;
+import pe.com.app.unibell.appunibell.DAO.FactCobDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Confirmar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Progress;
@@ -36,6 +38,9 @@ public class Activity_MigrarCliente extends AppCompatActivity
     private Dialog_Fragment_Confirmar dialog_fragment_confirmar = null;
     private Integer iAccion = 0;
     private ClientesDAO clientesDAO;
+    private DocuventDAO docuventDAO;
+    private FactCobDAO factCobDAO;
+
     private Dialog_Fragment_Aceptar log_dialogaceptar;
     private Dialog_Fragment_Progress clientesPG;
     private Dialog_Fragment_Progress factCobPG;
@@ -83,7 +88,7 @@ public class Activity_MigrarCliente extends AppCompatActivity
         if(iAccion==1)
         {
             clientesDAO = new ClientesDAO();
-            clientesDAO.getByCodCliente(plb_txtcodClienteMigrar.getText().toString().toUpperCase());
+            clientesDAO.getByCodCliente(plb_txtcodClienteMigrar.getText().toString().toUpperCase().trim());
 
             if(clientesDAO.lst!=null && clientesDAO.lst.size()>0)
             {
@@ -91,7 +96,7 @@ public class Activity_MigrarCliente extends AppCompatActivity
             }
             else
             {
-              Migrar(plb_txtcodClienteMigrar.getText().toString().trim().toUpperCase());
+              Migrar(plb_txtcodClienteMigrar.getText().toString().trim().toUpperCase().trim());
             }
 
         }
@@ -112,28 +117,39 @@ public class Activity_MigrarCliente extends AppCompatActivity
         }
 
 
-        try{
-            new DocuventBL_Sincronizar().execute(
-                    ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocuventxcodigo + '/'
-                            + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
-                            + sharedSettings.getString("iID_LOCAL", "0")+ '/'
-                            + codCliente);
-        } catch (Exception ex) {
-            new ToastLibrary(this,"Error al Sincronizar Docuvent.").Show();
+
+        docuventDAO = new DocuventDAO();
+        docuventDAO.getAll(codCliente);
+
+        if(docuventDAO.lst==null || docuventDAO.lst.size()==0) {
+            try {
+                new DocuventBL_Sincronizar().execute(
+                        ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocuventxcodigo + '/'
+                                + sharedSettings.getString("iID_EMPRESA", "0") + '/'
+                                + sharedSettings.getString("iID_LOCAL", "0") + '/'
+                                + codCliente);
+            } catch (Exception ex) {
+                new ToastLibrary(this, "Error al Sincronizar Docuvent.").Show();
+            }
         }
 
 
-        try{
-            new FactCobBL_Sincronizar().execute(
-                    ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blfactcobxcodigo+ '/'
-                            + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
-                            + sharedSettings.getString("iID_LOCAL", "0")+ '/'
-                            + codCliente);
-        } catch (Exception ex) {
-            new ToastLibrary(this,"Error al Sincronizar Facturas por cobrar.").Show();
+        factCobDAO = new FactCobDAO();
+        factCobDAO.getEstadoCuentaCliente(codCliente,"XXX","XXX","XXX","");
+
+        if(factCobDAO.lst==null || factCobDAO.lst.size()==0) {
+
+            try {
+                new FactCobBL_Sincronizar().execute(
+                        ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blfactcobxcodigo + '/'
+                                + sharedSettings.getString("iID_EMPRESA", "0") + '/'
+                                + sharedSettings.getString("iID_LOCAL", "0") + '/'
+                                + codCliente);
+            } catch (Exception ex) {
+                new ToastLibrary(this, "Error al Sincronizar Facturas por cobrar.").Show();
+            }
+
         }
-
-
 
 
 

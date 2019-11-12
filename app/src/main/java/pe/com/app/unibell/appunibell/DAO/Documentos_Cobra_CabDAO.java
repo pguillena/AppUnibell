@@ -418,6 +418,12 @@ public class Documentos_Cobra_CabDAO {
                     documentos_cobra_cabBE.setN_RECIBO(Funciones.isNullColumn(cursor,"N_RECIBO",""));
 
 
+                    if(documentos_cobra_cabBE.getSALDO_INICIAL() == documentos_cobra_cabBE.getSALDO())
+                    {
+
+                        documentos_cobra_cabBE.setSALDO(new Funciones().restar(documentos_cobra_cabBE.getSALDO_INICIAL() , documentos_cobra_cabBE.getM_COBRANZA())) ;
+                    }
+
                     lst.add(documentos_cobra_cabBE);
                 } while (cursor.moveToNext());
             }
@@ -945,7 +951,7 @@ public class Documentos_Cobra_CabDAO {
 
             String SQL=
                     "SELECT \n" +
-                            "C.NRO_OPERACION, SUM(C.M_COBRANZA) AS M_COBRANZA,  SUM(C.M_COBRANZA_D) AS M_COBRANZA_D \n"+
+                            "C.NRO_OPERACION, C.FECHA_DEPOSITO, SUM(C.M_COBRANZA) AS M_COBRANZA,  SUM(C.M_COBRANZA_D) AS M_COBRANZA_D \n"+
                             "FROM S_CCM_DOCUMENTOS_COBRA_CAB C \n" +
                             "WHERE (C.ID_COBRADOR ="+ iID_COBRADOR + " OR ( " + iID_COBRADOR + " IN(8719,15737) AND C.C_PACKING>0) )\n" +
                             " AND (  substr(C.FECHA,7,4) || substr(C.FECHA,4,2) || substr(C.FECHA,1,2)  BETWEEN '"+ iFECHA +"' AND '" + iFECHA +"'" + " OR '" + iFECHA + "' = '' )" +
@@ -958,7 +964,7 @@ public class Documentos_Cobra_CabDAO {
                             "AND C.GUARDADO IN(2,3) \n" +
                             "AND (C.FPAGO = '" + iFPAGO + "' OR '" + iFPAGO + "' = 'XXX') \n" +
                             " AND C.FPAGO = 'P' " + //SOLO DEPOSITOS
-                            " GROUP BY C.NRO_OPERACION ";
+                            " GROUP BY C.NRO_OPERACION, C.FECHA_DEPOSITO";
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<Documentos_Cobra_CabBE>();
             lst.clear();
@@ -966,6 +972,7 @@ public class Documentos_Cobra_CabDAO {
                 do {
                     documentos_cobra_cabBE = new Documentos_Cobra_CabBE();
                     documentos_cobra_cabBE.setNRO_OPERACION (Funciones.isNullColumn(cursor,"NRO_OPERACION",""));
+                    documentos_cobra_cabBE.setFECHA_DEPOSITO(Funciones.isNullColumn(cursor,"FECHA_DEPOSITO",""));
                     documentos_cobra_cabBE.setM_COBRANZA(Funciones.isNullColumn(cursor,"M_COBRANZA",0.0));
                     documentos_cobra_cabBE.setM_COBRANZA_D(Funciones.isNullColumn(cursor,"M_COBRANZA_D",0.0));
                     lst.add(documentos_cobra_cabBE);

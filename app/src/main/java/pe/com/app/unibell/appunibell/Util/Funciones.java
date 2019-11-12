@@ -579,14 +579,14 @@ public class Funciones {
         return salida;
     }
 
-    public String restar(String valor1,String valor2){
-        BigDecimal deci1=new BigDecimal (Double.parseDouble(valor1));
-        BigDecimal deci2=new BigDecimal (Double.parseDouble(valor2));
+    public Double restar(Double valor1,Double valor2){
+        BigDecimal deci1=new BigDecimal (Double.parseDouble(valor1.toString()));
+        BigDecimal deci2=new BigDecimal (Double.parseDouble(valor2.toString()));
         deci1=deci1.setScale(2,BigDecimal.ROUND_HALF_UP);
         deci2=deci2.setScale(2,BigDecimal.ROUND_HALF_UP);
         BigDecimal resultado=deci1.subtract(deci2);
 
-        return resultado.toString();
+        return Double.parseDouble(resultado.toString());
     }
 
 
@@ -620,5 +620,13 @@ public class Funciones {
             return string;
     }
 
+    public String getVersionActual(Context ctx){
+        try {
+            return ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
 
 }

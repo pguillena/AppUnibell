@@ -83,14 +83,27 @@
 
         <TextView
             android:id="@+id/lblNroOperacion"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:text="N° Operacion"
+            android:text="N° operación"
             android:textSize="16dp"
             android:fontFamily="@font/sf_pro_display_bold"
             android:textColor="@color/Button_login_unibell"
             android:layout_below="@id/dv2"
             android:layout_alignParentLeft="true"
+            />
+
+
+        <TextView
+            android:id="@+id/lblFechaOperacionItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_below="@id/dv2"
+            android:layout_toRightOf="@id/lblNroOperacion"
             />
 
         <TextView

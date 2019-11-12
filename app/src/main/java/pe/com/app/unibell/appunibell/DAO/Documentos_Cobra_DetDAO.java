@@ -263,7 +263,7 @@ public class Documentos_Cobra_DetDAO {
             if(!documentos_cobra_detBE.getTIPDOC().toString().equals("A1")) {
             //dSALDOCABACT = (dSALDOCAB - (dCOBRANZA + Double.valueOf(documentos_cobra_detBE.getM_COBRANZA().toString())));
 
-                dSALDOCABACT = Double.valueOf(new Funciones().restar(new Funciones().restar(dSALDOCAB.toString() , dCOBRANZA.toString()), documentos_cobra_detBE.getM_COBRANZA().toString()));
+                dSALDOCABACT = Double.valueOf(new Funciones().restar(new Funciones().restar(dSALDOCAB , dCOBRANZA), documentos_cobra_detBE.getM_COBRANZA()));
 
             if (dSALDOCABACT < 0) {
                 sMensaje = "Valor a amortizar es mayor al saldo ingresado.";
@@ -307,7 +307,7 @@ public class Documentos_Cobra_DetDAO {
                 DataBaseHelper.myDataBase.insert("S_CCM_DOCUMENTOS_COBRA_DET", null, cv);
 
                 Double dM_COBRANZA = Double.valueOf(documentos_cobra_detBE.getM_COBRANZA().toString());
-                Double dSALDO=Saldo_By_Documento_Temporal(documentos_cobra_detBE)- dM_COBRANZA;
+                Double dSALDO= funciones.restar( Saldo_By_Documento_Temporal(documentos_cobra_detBE), dM_COBRANZA);
 
                 //ACTUALIZAMOS EL SALDO EN EL DETALLE
                 //SI ES DIFERENTE A ANTICIPO

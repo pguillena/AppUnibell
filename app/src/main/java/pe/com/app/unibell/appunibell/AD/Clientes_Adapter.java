@@ -171,6 +171,7 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
 
                     editor_Shared.putString("CODIGO_ANTIGUO", clienteBE.getCODIGO_ANTIGUO().toString());
                     editor_Shared.putString("RAZON_SOCIAL", clienteBE.getRAZON_SOCIAL().toString());
+                    editor_Shared.putString("IOPCION_REPORTE", "0");
                     editor_Shared.commit();
 
 

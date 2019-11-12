@@ -75,7 +75,7 @@ public class Totales_Liquidacion_Adapter  extends ArrayAdapter<Documentos_Cobra_
     }
 
     static class MainHolder {
-        TextView txtNroOperacionItem, txtMontoDepositoItem;
+        TextView txtNroOperacionItem, txtMontoDepositoItem, txtFechaOperacionItem;
     }
 
     @Override
@@ -86,6 +86,7 @@ public class Totales_Liquidacion_Adapter  extends ArrayAdapter<Documentos_Cobra_
             mainHolder = new Totales_Liquidacion_Adapter.MainHolder();
             mainHolder.txtNroOperacionItem = (TextView) convertView.findViewById(R.id.txtNroOperacionItem);
             mainHolder.txtMontoDepositoItem = (TextView) convertView.findViewById(R.id.txtMontoDepositoItem);
+            mainHolder.txtFechaOperacionItem = (TextView) convertView.findViewById(R.id.txtFechaOperacionItem);
             convertView.setTag(mainHolder);
         } else {
             mainHolder = (Totales_Liquidacion_Adapter.MainHolder) convertView.getTag();
@@ -93,6 +94,7 @@ public class Totales_Liquidacion_Adapter  extends ArrayAdapter<Documentos_Cobra_
         final Documentos_Cobra_CabBE documentos_cobra_cabBE = getItem(position);
 
         mainHolder.txtNroOperacionItem.setText(documentos_cobra_cabBE.getNRO_OPERACION().toString());
+        mainHolder.txtFechaOperacionItem.setText(documentos_cobra_cabBE.getFECHA_DEPOSITO().toString());
 
         if(Double.valueOf(documentos_cobra_cabBE.getM_COBRANZA().toString())>0.0) {
             mainHolder.txtMontoDepositoItem.setText("S/ " +funciones.FormatDecimal(documentos_cobra_cabBE.getM_COBRANZA().toString().trim().replace(",","")));

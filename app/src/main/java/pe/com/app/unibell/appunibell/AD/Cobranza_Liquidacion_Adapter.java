@@ -196,6 +196,7 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
 
 
 
+        holder.cl_col3.setText("Forma de Pago");
 
         if (documentos_cobra_cabBE.getFPAGO().toString().equals("E"))
         {
@@ -352,7 +353,9 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
                                    documentos_cobra_cabBE.getN_RECIBO().toString()+
                                    documentos_cobra_cabBE.getPLANILLA().toString()+
                             documentos_cobra_cabBE.getFPAGODESC().toString()+
-                            documentos_cobra_cabBE.getM_COBRANZA().toString()
+                            documentos_cobra_cabBE.getM_COBRANZA().toString()+
+                            documentos_cobra_cabBE.getTIPODOC().toString()+
+                            documentos_cobra_cabBE.getNUMERO().toString()
                             );
                     Boolean bfind = true;
                     for(String s : SSA){

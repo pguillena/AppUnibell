@@ -43,6 +43,7 @@ import pe.com.app.unibell.appunibell.Planilla.Activity_AprobacionPlanilla;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Reportes.Activity_Reportes;
 import pe.com.app.unibell.appunibell.Servicio.AlarmReceiver;
+import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.Globals;
 
 public class MainActivity  extends AppCompatActivity {
@@ -73,7 +74,7 @@ public class MainActivity  extends AppCompatActivity {
     private int brewTime, numTazas;
     // TextViews que mostrarán el tiempo restante y el número de tazas
     // acumuladas.
-    private TextView tvTime, tvNumTazas, lo_txtempresa, lo_txtlocal, lblNombreUsuario, lblNombreUsuario2;
+    private TextView tvTime, tvNumTazas, lo_txtempresa, lo_txtlocal, lblNombreUsuario, lblNombreUsuario2, txtVersion;
     // Botón para iniciar y parar el contador.
     // Variable que indicará si la aplicación está o no en marcha.
     private boolean working;
@@ -117,12 +118,16 @@ protected void onCreate(Bundle savedInstanceState) {
         lo_txtempresa=(TextView) findViewById(R.id.lo_txtempresa);
         lo_txtlocal=(TextView) findViewById(R.id.lo_txtlocal);
         lblNombreUsuario = (TextView)findViewById(R.id.lblNombreUsuario);
-        lblNombreUsuario2 = (TextView)findViewById(R.id.lblNombreUsuario2);
+            lblNombreUsuario2 = (TextView)findViewById(R.id.lblNombreUsuario2);
+            txtVersion = (TextView)findViewById(R.id.txtVersion);
 
         lblNombreUsuario.setText(sharedSettings.getString("NOMBRE_COMPLETO", "").toString());
         lblNombreUsuario2.setText(sharedSettings.getString("NOMBRE_COMPLETO", "").toString());
         lo_txtempresa.setText(sharedSettings.getString("NOM_EMPRESA", "").toString());
         lo_txtlocal.setText(sharedSettings.getString("NOM_LOCAL", "").toString());
+
+
+            txtVersion.setText("v"+new Funciones().getVersionActual(getApplicationContext()));
 
         btnsincronizar.setEnabled(false);
         btncobranzas.setEnabled(false);
@@ -528,6 +533,11 @@ private class LoadMenuSQLite_AsyncTask extends AsyncTask<String, String,String> 
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
+
+
+
 
 
 }

@@ -5,11 +5,19 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.sql.SQLException;
 
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
@@ -33,7 +41,7 @@ public class ServiceBackground extends Service {
     private Integer HORAINICIO,HORAFIN;
     private Documentos_Cobra_CabDAO documentos_cobra_cabDAO = new Documentos_Cobra_CabDAO();
     private Documentos_Cobra_CabBL documentos_cobra_cabBL = new Documentos_Cobra_CabBL();
-
+    private String currentVersion;
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -44,8 +52,8 @@ public class ServiceBackground extends Service {
         this.context = this;
         this.isRunning = false;
         this.backgroundThread = new Thread(myTask);
-        this.HORAINICIO=800;
-        this.HORAFIN=2000;
+        this.HORAINICIO=600;
+        this.HORAFIN=2350;
         sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
         editor_Shared= getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
         try {
@@ -82,8 +90,15 @@ public class ServiceBackground extends Service {
                 if (lhoraActual24 > HORAINICIO && lhoraActual24 < HORAFIN) {
                     //Se ejecuta solo si tenemos plan de datos
                     if (funciones.isConnectingToInternet(getApplicationContext())) {
+
+                        currentVersion = new Funciones().getVersionActual(getApplicationContext());
                         new LoadGetGuardadaSQLite_AsyncTask().execute();
                         new AnularSQLite_AsyncTask().execute();
+
+                        if(lhoraActual24>2000 && lhoraActual24<600) {
+                            new updateApplication().execute();
+                        }
+
                         Toast toastCodigo = Toast.makeText(getApplicationContext(),"COBRANZA REGISTRADA ENVIADA AL ORACLE", Toast.LENGTH_SHORT);
                         toastCodigo.show();
 
@@ -146,7 +161,6 @@ public class ServiceBackground extends Service {
         }
     }
 
-
     private class InserCobranzaAsyncTask extends AsyncTask<String, String, JSONObject> {
         private volatile boolean running = true;
         private ProgressDialog progressDialog = null;
@@ -185,7 +199,6 @@ public class ServiceBackground extends Service {
             }
         }
     }
-
 
     public class s_vem_correlativoBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
@@ -246,8 +259,6 @@ public class ServiceBackground extends Service {
         }
     }
 
-
-
     private class AnularAsyncTask extends AsyncTask<String, String, JSONObject> {
         private volatile boolean running = true;
         private ProgressDialog progressDialog = null;
@@ -288,8 +299,110 @@ public class ServiceBackground extends Service {
         }
     }
 
+    private  class updateApplication extends AsyncTask<Void, String, String> {
 
+        @Override
+        protected String doInBackground(Void... voids) {
+            String newVersion = null;
+            try {
+                //Document document = Jsoup.connect("https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName()  + "&hl=en")
+                Document document = Jsoup.connect("https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName())
+                        .timeout(30000)
+                        .referrer("http://www.google.com")
+                        .get();
+                if (document != null) {
+                    Log.d("updateAndroid", "Document: " + document);
+                    Elements element = document.getElementsContainingOwnText("Current Version");
+                    for (Element ele : element) {
+                        if (ele.siblingElements() != null) {
+                            Elements sibElemets = ele.siblingElements();
+                            for (Element sibElemet : sibElemets) {
+                                newVersion = sibElemet.text();
+                            }
+                        }
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return newVersion;
 
+        }
+
+        @Override
+        protected void onPostExecute(String onlineVersion) {
+            super.onPostExecute(onlineVersion);
+            Log.d("updateAndroid", "Current version: " + currentVersion + " PlayStore version: " + onlineVersion);
+            if (onlineVersion != null && !onlineVersion.isEmpty()) {
+                if(isUpdateRequired(currentVersion, onlineVersion)){
+                    Log.d("updateAndroid", "Update is required!!! Current version: " + currentVersion + " PlayStore version: " + onlineVersion);
+                    openPlayStore(getApplicationContext()); //Open PlayStore
+                }else{
+                    Log.d("updateAndroid", "Update is NOT required!");
+                }
+            }
+
+        }
+
+        private void openPlayStore(Context ctx){
+            final String appPackageName = ctx.getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
+        }
+
+        public boolean isUpdateRequired(String versionActual, String versionNueva) {
+            boolean result = false;
+            int[] versiones = new int[6];
+            int i = 0, anterior = 0, orden = 0;
+            if(versionActual != null && versionNueva != null){
+                try{
+                    for(i = 0; i < 6; i++){
+                        versiones[i] = 0;
+                    }
+                    i = 0;
+                    do{
+                        i = versionActual.indexOf('.', anterior);
+                        if(i > 0){
+                            versiones[orden] = Integer.parseInt(versionActual.substring(anterior, i));
+                        }else{
+                            versiones[orden] = Integer.parseInt(versionActual.substring(anterior));
+                        }
+                        anterior = i + 1;
+                        orden++;
+                    }while(i != -1);
+                    anterior = 0;
+                    orden = 3;
+                    i = 0;
+                    do{
+                        i = versionNueva.indexOf('.', anterior);
+                        if(i > 0){
+                            versiones[orden] = Integer.parseInt(versionNueva.substring(anterior, i));
+                        }else{
+                            versiones[orden] = Integer.parseInt(versionNueva.substring(anterior));
+                        }
+                        anterior = i + 1;
+                        orden++;
+                    }while(i != -1 && orden < 6);
+                    if(versiones[0] < versiones[3]){
+                        result = true;
+                    }else if(versiones[1] < versiones[4] && versiones[0] == versiones[3]){
+                        result = true;
+                    }else if(versiones[2] < versiones[5] && versiones[0] == versiones[3] && versiones[1] == versiones[4]){
+                        result = true;
+                    }
+                }catch (NumberFormatException e){
+                    Log.e("updateApp", "NFE " + e.getMessage() + " parsing versionAct " + versionActual + " and versionNew " + versionNueva);
+                }catch (Exception e){
+                    Log.e("updateApp", "Ex " + e.getMessage() + " parsing versionAct " + versionActual + " and versionNew " + versionNueva);
+                }
+            }
+            return result;
+        }
+
+    }
 
 
 }

@@ -4,7 +4,7 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import pe.com.app.unibell.appunibell.BE.DocuventBE;
 import pe.com.app.unibell.appunibell.Util.Funciones;
-public class DocuventDAO {
+    public class DocuventDAO {
     public ArrayList<DocuventBE> lst = null;
 
     public void getAll(String pCODIGO) {
@@ -21,7 +21,7 @@ public class DocuventDAO {
                     "SER_DOC_REF,NRO_DOC_REF,FLG_IMPR,UBICACION,NOMBRE,DIRECCION,\n" +
                     "ESTADO1,F_ANO_COMISION,F_MES_COMISION,C_SUC_EMP,I_DI,VNUMREGOPE,\n" +
                     "NC_TIP_REF,NC_SER_REF,NC_NRO_REF,M_PORC_PERC,M_PERCEPCION,PERIODO_PLE,\n" +
-                    "I_FE,ID_LOCAL FROM DOCUVENT";
+                    "I_FE,ID_LOCAL FROM DOCUVENT WHERE COD_CLIENTE = '"+pCODIGO +"'";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<DocuventBE>();

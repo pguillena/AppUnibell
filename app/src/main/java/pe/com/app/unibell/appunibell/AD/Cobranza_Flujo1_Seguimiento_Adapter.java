@@ -81,6 +81,32 @@ public class Cobranza_Flujo1_Seguimiento_Adapter extends ArrayAdapter<Documentos
         mainHolder.fj_item10.setText(documentos_cobra_cabBE.getRECIBO());
 
 
+
+        mainHolder.fj_item10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                String[] serieYnumeroRecibo = documentos_cobra_cabBE.getRECIBO().split("-");
+
+
+                sharedSettings = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
+                editor_Shared = getContext().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+
+                editor_Shared.putString("REP_SER_RECIBO", serieYnumeroRecibo[0]);
+                editor_Shared.putString("REP_NUM_RECIBO", serieYnumeroRecibo[1]);
+                editor_Shared.putString("CODIGO_ANTIGUO", documentos_cobra_cabBE.getCOD_CLIENTE().toString());
+                editor_Shared.putString("IOPCION_REPORTE","0");
+                editor_Shared.commit();
+
+                Intent intent = new Intent(getContext().getApplicationContext(), Activity_Cobranza_Recibo_Rep.class);
+                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                getContext().startActivity(intent);
+
+            }});
+
+
+
         if(documentos_cobra_cabBE.getCODIGO_FPAGO().equals("P"))
         {
             mainHolder.fj_item8Label.setText("N° Operación");
