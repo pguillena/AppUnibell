@@ -1,5 +1,6 @@
 package pe.com.app.unibell.appunibell.Main;
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -17,7 +18,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+
 import pe.com.app.unibell.appunibell.AD.SincronizarAdapter;
+import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
 import pe.com.app.unibell.appunibell.BE.SincronizarBE;
 import pe.com.app.unibell.appunibell.BL.CabfcobBL;
 import pe.com.app.unibell.appunibell.BL.Cliente_VendedorBL;
@@ -60,9 +65,11 @@ import pe.com.app.unibell.appunibell.BL.VisitaCabBL;
 import pe.com.app.unibell.appunibell.BL.VisitaDetBL;
 import pe.com.app.unibell.appunibell.BL.VisitaMovCambioBL;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
+import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.DAO.SincronizaDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Progress;
 import pe.com.app.unibell.appunibell.R;
+import pe.com.app.unibell.appunibell.Servicio.ServiceBackground;
 import pe.com.app.unibell.appunibell.Util.Constants;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
 import pe.com.app.unibell.appunibell.Util.Funciones;
@@ -133,6 +140,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
 
     private CtaBncoBL ctaBncoBL = new CtaBncoBL();
     private Documentos_Cobra_CabBL documentos_cobra_cabBL = new Documentos_Cobra_CabBL();
+    private Documentos_Cobra_CabBL documentos_cobra_cabBL2 = new Documentos_Cobra_CabBL();
     private Documentos_Cobra_DetBL documentos_cobra_detBL = new Documentos_Cobra_DetBL();
     private Documentos_Cobra_MovBL documentos_cobra_movBL = new Documentos_Cobra_MovBL();
     private FactCobBL factCobBL = new FactCobBL();
@@ -166,6 +174,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
     private S_Vem_CorrelativoBL s_vem_correlativoBL = new S_Vem_CorrelativoBL();
     private Vem_Cobrador_ZonaBL vem_cobrador_zonaBL = new Vem_Cobrador_ZonaBL();
     private S_gem_TipoCambioBL s_gem_tipoCambioBL = new S_gem_TipoCambioBL();
+    private Documentos_Cobra_CabDAO documentos_cobra_cabDAO2 = new Documentos_Cobra_CabDAO();
 
      private String sOPCION_SINCRONIZADA="";
     private Integer indexPosition=0;
@@ -395,6 +404,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
 
                 break;
             case "DOCUMENTOS":
+
                 try{
                 new Documentos_Cobra_CabBL_Sincronizar().execute(
                         ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab + '/'
@@ -755,6 +765,9 @@ public class Activity_Sincronizar extends AppCompatActivity {
             }
         }
     }
+
+
+
     public class Documentos_Cobra_DetBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
@@ -2175,5 +2188,105 @@ public class Activity_Sincronizar extends AppCompatActivity {
             }
         }
     }
+
+
+
+    private class LoadGetGuardadaSQLite_AsyncTask extends AsyncTask<String, String,String> {
+        @Override
+        protected String doInBackground(String... p) {
+            try {
+                documentos_cobra_cabDAO2.getTodo();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPreExecute() {
+
+            documentos_cobra_cabPG = new Dialog_Fragment_Progress();
+            documentos_cobra_cabPG.setMensaje("Enviando documentos de cobranza al servidor");
+            documentos_cobra_cabPG.show(getFragmentManager(), Dialog_Fragment_Progress.TAG);
+        }
+
+        @Override
+        protected void onPostExecute(String restResult) {
+            super.onPostExecute(restResult);
+            try {
+                Integer ID_COBRANZA=0;
+                Integer CODUNC_LOCAL=0;
+
+                //Revalido si en realidad se inserto
+                ArrayList<Documentos_Cobra_CabBE> listaRevalida =    documentos_cobra_cabDAO2.lst;
+
+                if(listaRevalida!=null && listaRevalida.size()>0)
+                {
+                    for (int c = 0; c < listaRevalida.size(); c++) {
+                        ID_COBRANZA=listaRevalida.get(c).getID_COBRANZA();
+                        CODUNC_LOCAL=listaRevalida.get(c).getCODUNC_LOCAL();
+
+                        new Activity_Sincronizar.InserCobranzaValidaAsyncTask(
+                                ID_COBRANZA.toString(),
+                                CODUNC_LOCAL.toString()).execute(ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_Insert_Revalida);
+
+                    }
+                }
+                //Fin Revalidacion
+
+
+            } catch (Exception ex) {
+                //Toast.makeText(getApplication(),getResources().getString(R.string.msg_nohayregistros), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private class InserCobranzaValidaAsyncTask extends AsyncTask<String, String, JSONObject> {
+        private volatile boolean running = true;
+        private ProgressDialog progressDialog = null;
+        private String ID_COBRANZA,CODUNC_LOCAL;
+
+        public InserCobranzaValidaAsyncTask(String ID_COBRANZA,String CODUNC_LOCAL) {
+            this.ID_COBRANZA=ID_COBRANZA;
+            this.CODUNC_LOCAL=CODUNC_LOCAL;
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            return documentos_cobra_cabBL2.InsertRestValida(ID_COBRANZA,CODUNC_LOCAL,p[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+
+            if (documentos_cobra_cabPG != null && documentos_cobra_cabPG.isVisible()) {
+                documentos_cobra_cabPG.dismiss();
+            }
+
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            try {
+                if (result.getInt("status")==0) {
+                } else {
+                    //new ToastLibrary(getActivity(), result.getString("message")).Show();
+                    if(documentos_cobra_cabBL2.lst.size()>0){
+                        /*
+                        editor_Shared.putString("PECNROPED",pedido_cabBL.lstPedido.get(0).getPECNROPED().toString());
+                        editor_Shared.putString("pREGISTRANDO","0");
+                        editor_Shared.commit();
+                        */
+                    }
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            finally {
+
+            }
+        }
+    }
+
+
+
+
+
 
 }

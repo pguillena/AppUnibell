@@ -191,6 +191,7 @@ $app->get('/bldocumentos_cobra_mov_flujo3/:p1/:p2/:p3/:p4/:p5/:p6/:p7', 'bldocum
 $app->get('/planilla_doccobramov/:p1/:p2/:p3/:p4/:p5/:p6/:p7/:p8/:p9/:p10/:p11/:p12/:p13/:p14/:p15/:p16/:p17/:p18/:p19', 'bldocumentos_cobra_mov:SelectAPlailla'); 
 
 $app->post('/cobranza_insert', 'bldocumentos_cobra_cab:InsertCobranza');
+$app->post('/cobranza_insert_revalida', 'bldocumentos_cobra_cab:InsertCobranzaRevalida');
 $app->post('/cobranza_insert_update', 'bldocumentos_cobra_cab:InsertUpdateCobranza');
 $app->post('/cobranza_update', 'bldocumentos_cobra_cab:UpdateCobranza');
 $app->post('/cobranza_delete', 'bldocumentos_cobra_cab:DeleteCobranza');

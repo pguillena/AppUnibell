@@ -67,7 +67,7 @@ public class MainActivity  extends AppCompatActivity {
     private static String DB_NAME = "REST_POS_BD.sqlite";
     private Button sp_img1, btnsincronizar, btncobranzas,btnliquidacion,btnaplanilla,btnreportes, btnMigrarCliente;
     //DIEZ MINUTOS
-    private Integer iTiempoEjecuta=5;
+    private Integer iTiempoEjecuta=2;
 
     // Variables que almacenarán el tiempo inicial y el número de tazas
     // acumuladas.

@@ -125,7 +125,7 @@ public class Activity_Liquidacion extends AppCompatActivity
     private Integer iValor=0;
     int request_code = 1;
     int contadorChecks = 0;
-    private String sNroPlanilla, sCPacking, sEstado="40003", sFecha, sFormaPago;
+    private String sNroPlanilla, sCPacking, sEstado="40003", sFecha, sFormaPago, sRazonSocialCliente;
     private String lq_lblmontoc,lq_lblmontov,lq_lblmontoe,lq_lblmontob, lq_lblmontop;
     private EditText txtPackingEnvio;
     private TextView txtProgressLoading;
@@ -488,6 +488,8 @@ public class Activity_Liquidacion extends AppCompatActivity
                 sCPacking =  parametros.getString("txtCpacking");
                 sEstado =  parametros.getString("lq_txtfestado");
                 sFormaPago =  parametros.getString("lq_txtfpagoFiltro");
+                sRazonSocialCliente = parametros.getString("txtClienteFiltroLiquidacion");
+
                 Cargar();
             }
 
@@ -872,6 +874,11 @@ public class Activity_Liquidacion extends AppCompatActivity
                 sFormaPago = "XXX";
             }
 
+            if(sRazonSocialCliente==null || sRazonSocialCliente.equals("") || sRazonSocialCliente.equals("0"))
+            {
+                sRazonSocialCliente = "XXX";
+            }
+
             new LoadLiquidacionSQLite_AsyncTask().execute(
                     sharedSettings.getString("iID_EMPRESA", "0").toString(),
                     sharedSettings.getString("iID_LOCAL", "0").toString(),
@@ -880,7 +887,8 @@ public class Activity_Liquidacion extends AppCompatActivity
                     sEstado,
                     sNroPlanilla,
                     sCPacking,
-                    sFormaPago
+                    sFormaPago,
+                    sRazonSocialCliente
             );
 
 
@@ -1191,8 +1199,8 @@ public class Activity_Liquidacion extends AppCompatActivity
         @Override
         protected String doInBackground(String... p) {
             try {
-                documentos_cobra_cabDAO.getLiquidacionBy(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]);
-                documentos_cobra_cabDAO2.getDepositosBy(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]);
+                documentos_cobra_cabDAO.getLiquidacionBy(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
+                documentos_cobra_cabDAO2.getDepositosBy(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

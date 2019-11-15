@@ -68,7 +68,7 @@ public class CtaBncoDAO {
                         " inner join ctabnco_empresa_local el"+
                         " on (a.codigo = el.codigo and el.id_empresa =" +  iid_empresa + " and el.id_local = " + iid_local +")" +
                         " where el.id_empresa =" + iid_empresa + " and el.id_local =" + iid_local + " " +
-                        " and a.codigo <> '32' Order by el.descripcion ";
+                        " and a.codigo <> '32' Order by A.BANCO ASC ";
             }
             if(scodfpago.trim().equalsIgnoreCase("V") ||
                     scodfpago.trim().equalsIgnoreCase("D")||

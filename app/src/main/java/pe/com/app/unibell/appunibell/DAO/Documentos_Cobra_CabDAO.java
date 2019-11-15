@@ -193,9 +193,7 @@ public class Documentos_Cobra_CabDAO {
         }
     }
 
-
-
-    public void getLiquidacionBy(String iID_EMPRESA,String iID_LOCAL,String iFECHA,String iID_COBRADOR,String iESTADO,String iN_PLANILLA,String iC_PACKING, String iFPAGO) {
+    public void getLiquidacionBy(String iID_EMPRESA,String iID_LOCAL,String iFECHA,String iID_COBRADOR,String iESTADO,String iN_PLANILLA,String iC_PACKING, String iFPAGO, String sRazonSocial) {
         Cursor cursor = null;
         Documentos_Cobra_CabBE documentos_cobra_cabBE = null;
         try {
@@ -258,6 +256,7 @@ public class Documentos_Cobra_CabDAO {
                                  "AND C.ID_LOCAL =" +  iID_LOCAL + "\n" +
                                  "AND (C.N_PLANILLA ="+ iN_PLANILLA + " OR " + iN_PLANILLA + "=0) \n" +
                                  "AND (C.FPAGO = '" + iFPAGO + "' OR '" + iFPAGO + "' = 'XXX') \n" +
+                                 "AND (S.NOMBRE LIKE '%"+ sRazonSocial +"%' OR '" + sRazonSocial + "' = 'XXX')"+
                                  "AND C.GUARDADO IN(2,3) " +
                                  "ORDER BY C.C_PACKING ASC, C.N_RECIBO ASC";
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
@@ -938,7 +937,7 @@ public class Documentos_Cobra_CabDAO {
         return sMensaje;
     }
 
-    public void getDepositosBy(String iID_EMPRESA,String iID_LOCAL,String iFECHA,String iID_COBRADOR,String iESTADO,String iN_PLANILLA,String iC_PACKING, String iFPAGO) {
+    public void getDepositosBy(String iID_EMPRESA,String iID_LOCAL,String iFECHA,String iID_COBRADOR,String iESTADO,String iN_PLANILLA,String iC_PACKING, String iFPAGO, String sRazonSocial) {
         Cursor cursor = null;
         Documentos_Cobra_CabBE documentos_cobra_cabBE = null;
         try {
@@ -951,7 +950,7 @@ public class Documentos_Cobra_CabDAO {
 
             String SQL=
                     "SELECT \n" +
-                            "C.NRO_OPERACION, C.FECHA_DEPOSITO, SUM(C.M_COBRANZA) AS M_COBRANZA,  SUM(C.M_COBRANZA_D) AS M_COBRANZA_D \n"+
+                            "C.NRO_OPERACION, C.FECHA_DEPOSITO, C.ESTADO_CONCILIADO, SUM(C.M_COBRANZA) AS M_COBRANZA,  SUM(C.M_COBRANZA_D) AS M_COBRANZA_D \n"+
                             "FROM S_CCM_DOCUMENTOS_COBRA_CAB C \n" +
                             "WHERE (C.ID_COBRADOR ="+ iID_COBRADOR + " OR ( " + iID_COBRADOR + " IN(8719,15737) AND C.C_PACKING>0) )\n" +
                             " AND (  substr(C.FECHA,7,4) || substr(C.FECHA,4,2) || substr(C.FECHA,1,2)  BETWEEN '"+ iFECHA +"' AND '" + iFECHA +"'" + " OR '" + iFECHA + "' = '' )" +
@@ -964,7 +963,7 @@ public class Documentos_Cobra_CabDAO {
                             "AND C.GUARDADO IN(2,3) \n" +
                             "AND (C.FPAGO = '" + iFPAGO + "' OR '" + iFPAGO + "' = 'XXX') \n" +
                             " AND C.FPAGO = 'P' " + //SOLO DEPOSITOS
-                            " GROUP BY C.NRO_OPERACION, C.FECHA_DEPOSITO";
+                            " GROUP BY C.NRO_OPERACION, C.FECHA_DEPOSITO, C.ESTADO_CONCILIADO";
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<Documentos_Cobra_CabBE>();
             lst.clear();
@@ -975,6 +974,7 @@ public class Documentos_Cobra_CabDAO {
                     documentos_cobra_cabBE.setFECHA_DEPOSITO(Funciones.isNullColumn(cursor,"FECHA_DEPOSITO",""));
                     documentos_cobra_cabBE.setM_COBRANZA(Funciones.isNullColumn(cursor,"M_COBRANZA",0.0));
                     documentos_cobra_cabBE.setM_COBRANZA_D(Funciones.isNullColumn(cursor,"M_COBRANZA_D",0.0));
+                    documentos_cobra_cabBE.setESTADO_CONCILIADO(Funciones.isNullColumn(cursor,"ESTADO_CONCILIADO",""));
                     lst.add(documentos_cobra_cabBE);
                 } while (cursor.moveToNext());
             }
@@ -1091,6 +1091,169 @@ public class Documentos_Cobra_CabDAO {
         return sMensaje;
     }
 
+    public void getByEstado(String sEstado) {
+        Cursor cursor = null;
+        Documentos_Cobra_CabBE documentos_cobra_cabBE = null;
+        try {
+            String SQL="SELECT ID_COBRANZA,COD_CLIENTE,N_RECIBO,N_SERIE_RECIBO,FPAGO," +
+                    "ID_COBRADOR,FECHA,M_COBRANZA,M_COBRANZA_D,SALDO," +
+                    "NUMCHEQ,FECCHEQ,ID_BANCO,CTACORRIENTE_BANCO,NRO_OPERACION," +
+                    "FECHA_DEPOSITO,COMENTARIO,C.ID_EMPRESA,C.ID_LOCAL,ESTADO," +
+                    "FECHA_REGISTRO,FECHA_MODIFICACION,USUARIO_REGISTRO,USUARIO_MODIFICACION,PC_REGISTRO," +
+                    "PC_MODIFICACION,IP_REGISTRO,IP_MODIFICACION,ITEM,ESTADO_CONCILIADO," +
+                    "SERIE_PLANILLA,N_PLANILLA,C_PACKING,ID_MOV_BANCO,ESTADO_PROCESO, C.GUARDADO, " +
+                    "T_CAMBIO_TIENDA,N_TARJETA,ID_MOV_BANCO_ABONO,FECHA_DEPOSITO_ABONO,LOTE,FLAG_COBRANZA,CODUNC_LOCAL, " +
+                    " T.DESCRIPCION AS FPAGODESC,IFNULL(B1.DESCRIPCION,B2.DESCRIPCION) BANCODESC "+
+                    " FROM S_CCM_DOCUMENTOS_COBRA_CAB C" +
+                    " INNER JOIN TABLAS_AUXILIARES T ON T.CODIGO=C.FPAGO AND T.TIPO='14'" +
+                    " LEFT JOIN CTABNCO B1 ON B1.CODIGO=C.ID_BANCO "+
+                    " LEFT JOIN CTABNCO B2 ON B2.CODIGO=C.CTACORRIENTE_BANCO " +
+                    " WHERE C.ESTADO= "+sEstado +
+                    " ORDER BY C.N_RECIBO ASC ";
+
+
+            cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
+            lst = new ArrayList<Documentos_Cobra_CabBE>();
+            lst.clear();
+            if (cursor.moveToFirst()) {
+                do {
+                    documentos_cobra_cabBE = new Documentos_Cobra_CabBE();
+                    documentos_cobra_cabBE.setID_COBRANZA(Funciones.isNullColumn(cursor,"ID_COBRANZA",0));
+                    documentos_cobra_cabBE.setCOD_CLIENTE(Funciones.isNullColumn(cursor,"COD_CLIENTE",""));
+                    documentos_cobra_cabBE.setN_RECIBO(Funciones.isNullColumn(cursor,"N_RECIBO",""));
+                    documentos_cobra_cabBE.setN_SERIE_RECIBO(Funciones.isNullColumn(cursor,"N_SERIE_RECIBO",""));
+                    documentos_cobra_cabBE.setFPAGO(Funciones.isNullColumn(cursor,"FPAGO",""));
+                    documentos_cobra_cabBE.setID_COBRADOR(Funciones.isNullColumn(cursor,"ID_COBRADOR",0));
+                    documentos_cobra_cabBE.setFECHA(Funciones.isNullColumn(cursor,"FECHA",""));
+                    documentos_cobra_cabBE.setM_COBRANZA(Funciones.isNullColumn(cursor,"M_COBRANZA",0.0));
+                    documentos_cobra_cabBE.setM_COBRANZA_D(Funciones.isNullColumn(cursor,"M_COBRANZA_D",0.0));
+                    documentos_cobra_cabBE.setSALDO(Funciones.isNullColumn(cursor,"SALDO",0.0));
+                    documentos_cobra_cabBE.setNUMCHEQ(Funciones.isNullColumn(cursor,"NUMCHEQ",""));
+                    documentos_cobra_cabBE.setFECCHEQ(Funciones.isNullColumn(cursor,"FECCHEQ",""));
+                    documentos_cobra_cabBE.setID_BANCO(Funciones.isNullColumn(cursor,"ID_BANCO",0));
+                    documentos_cobra_cabBE.setCTACORRIENTE_BANCO(Funciones.isNullColumn(cursor,"CTACORRIENTE_BANCO",""));
+                    documentos_cobra_cabBE.setNRO_OPERACION(Funciones.isNullColumn(cursor,"NRO_OPERACION",""));
+                    documentos_cobra_cabBE.setFECHA_DEPOSITO(Funciones.isNullColumn(cursor,"FECHA_DEPOSITO",""));
+                    documentos_cobra_cabBE.setCOMENTARIO(Funciones.isNullColumn(cursor,"COMENTARIO",""));
+                    documentos_cobra_cabBE.setID_EMPRESA(Funciones.isNullColumn(cursor,"ID_EMPRESA",0));
+                    documentos_cobra_cabBE.setID_LOCAL(Funciones.isNullColumn(cursor,"ID_LOCAL",0));
+                    documentos_cobra_cabBE.setESTADO(Funciones.isNullColumn(cursor,"ESTADO",""));
+                    documentos_cobra_cabBE.setFECHA_REGISTRO(Funciones.isNullColumn(cursor,"FECHA_REGISTRO",""));
+                    documentos_cobra_cabBE.setFECHA_MODIFICACION(Funciones.isNullColumn(cursor,"FECHA_MODIFICACION",""));
+                    documentos_cobra_cabBE.setUSUARIO_REGISTRO(Funciones.isNullColumn(cursor,"USUARIO_REGISTRO",""));
+                    documentos_cobra_cabBE.setUSUARIO_MODIFICACION(Funciones.isNullColumn(cursor,"USUARIO_MODIFICACION",""));
+                    documentos_cobra_cabBE.setPC_REGISTRO(Funciones.isNullColumn(cursor,"PC_REGISTRO",""));
+                    documentos_cobra_cabBE.setPC_MODIFICACION(Funciones.isNullColumn(cursor,"PC_MODIFICACION",""));
+                    documentos_cobra_cabBE.setIP_REGISTRO(Funciones.isNullColumn(cursor,"IP_REGISTRO",""));
+                    documentos_cobra_cabBE.setIP_MODIFICACION(Funciones.isNullColumn(cursor,"IP_MODIFICACION",""));
+                    documentos_cobra_cabBE.setITEM(Funciones.isNullColumn(cursor,"ITEM",""));
+                    documentos_cobra_cabBE.setESTADO_CONCILIADO(Funciones.isNullColumn(cursor,"ESTADO_CONCILIADO",""));
+                    documentos_cobra_cabBE.setSERIE_PLANILLA(Funciones.isNullColumn(cursor,"SERIE_PLANILLA",""));
+                    documentos_cobra_cabBE.setN_PLANILLA(Funciones.isNullColumn(cursor,"N_PLANILLA",""));
+                    documentos_cobra_cabBE.setC_PACKING(Funciones.isNullColumn(cursor,"C_PACKING",""));
+                    documentos_cobra_cabBE.setID_MOV_BANCO(Funciones.isNullColumn(cursor,"ID_MOV_BANCO",""));
+                    documentos_cobra_cabBE.setESTADO_PROCESO(Funciones.isNullColumn(cursor,"ESTADO_PROCESO",""));
+                    documentos_cobra_cabBE.setT_CAMBIO_TIENDA(Funciones.isNullColumn(cursor,"T_CAMBIO_TIENDA",""));
+                    documentos_cobra_cabBE.setN_TARJETA(Funciones.isNullColumn(cursor,"N_TARJETA",""));
+                    documentos_cobra_cabBE.setID_MOV_BANCO_ABONO(Funciones.isNullColumn(cursor,"ID_MOV_BANCO_ABONO",0));
+                    documentos_cobra_cabBE.setFECHA_DEPOSITO_ABONO(Funciones.isNullColumn(cursor,"FECHA_DEPOSITO_ABONO",""));
+                    documentos_cobra_cabBE.setLOTE(Funciones.isNullColumn(cursor,"LOTE",""));
+                    documentos_cobra_cabBE.setFLAG_COBRANZA(Funciones.isNullColumn(cursor,"FLAG_COBRANZA",""));
+                    documentos_cobra_cabBE.setCODUNC_LOCAL(Funciones.isNullColumn(cursor,"CODUNC_LOCAL",0));
+                    documentos_cobra_cabBE.setFPAGODESC(Funciones.isNullColumn(cursor,"FPAGODESC",""));
+                    documentos_cobra_cabBE.setBANCODESC(Funciones.isNullColumn(cursor,"BANCODESC",""));
+                    documentos_cobra_cabBE.setGUARDADO(Funciones.isNullColumn(cursor,"GUARDADO",9999));
+                    lst.add(documentos_cobra_cabBE);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+    }
+
+    public void getTodo() {
+        Cursor cursor = null;
+        Documentos_Cobra_CabBE documentos_cobra_cabBE = null;
+        try {
+            String SQL="SELECT ID_COBRANZA,COD_CLIENTE,N_RECIBO,N_SERIE_RECIBO,FPAGO," +
+                    "ID_COBRADOR,FECHA,M_COBRANZA,M_COBRANZA_D,SALDO," +
+                    "NUMCHEQ,FECCHEQ,ID_BANCO,CTACORRIENTE_BANCO,NRO_OPERACION," +
+                    "FECHA_DEPOSITO,COMENTARIO,C.ID_EMPRESA,C.ID_LOCAL,ESTADO," +
+                    "FECHA_REGISTRO,FECHA_MODIFICACION,USUARIO_REGISTRO,USUARIO_MODIFICACION,PC_REGISTRO," +
+                    "PC_MODIFICACION,IP_REGISTRO,IP_MODIFICACION,ITEM,ESTADO_CONCILIADO," +
+                    "SERIE_PLANILLA,N_PLANILLA,C_PACKING,ID_MOV_BANCO,ESTADO_PROCESO, C.GUARDADO, " +
+                    "T_CAMBIO_TIENDA,N_TARJETA,ID_MOV_BANCO_ABONO,FECHA_DEPOSITO_ABONO,LOTE,FLAG_COBRANZA,CODUNC_LOCAL, " +
+                    " T.DESCRIPCION AS FPAGODESC,IFNULL(B1.DESCRIPCION,B2.DESCRIPCION) BANCODESC "+
+                    " FROM S_CCM_DOCUMENTOS_COBRA_CAB C" +
+                    " INNER JOIN TABLAS_AUXILIARES T ON T.CODIGO=C.FPAGO AND T.TIPO='14'" +
+                    " LEFT JOIN CTABNCO B1 ON B1.CODIGO=C.ID_BANCO "+
+                    " LEFT JOIN CTABNCO B2 ON B2.CODIGO=C.CTACORRIENTE_BANCO " +
+                    " ORDER BY C.N_RECIBO ASC ";
+
+            cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
+            lst = new ArrayList<Documentos_Cobra_CabBE>();
+            lst.clear();
+            if (cursor.moveToFirst()) {
+                do {
+                    documentos_cobra_cabBE = new Documentos_Cobra_CabBE();
+                    documentos_cobra_cabBE.setID_COBRANZA(Funciones.isNullColumn(cursor,"ID_COBRANZA",0));
+                    documentos_cobra_cabBE.setCOD_CLIENTE(Funciones.isNullColumn(cursor,"COD_CLIENTE",""));
+                    documentos_cobra_cabBE.setN_RECIBO(Funciones.isNullColumn(cursor,"N_RECIBO",""));
+                    documentos_cobra_cabBE.setN_SERIE_RECIBO(Funciones.isNullColumn(cursor,"N_SERIE_RECIBO",""));
+                    documentos_cobra_cabBE.setFPAGO(Funciones.isNullColumn(cursor,"FPAGO",""));
+                    documentos_cobra_cabBE.setID_COBRADOR(Funciones.isNullColumn(cursor,"ID_COBRADOR",0));
+                    documentos_cobra_cabBE.setFECHA(Funciones.isNullColumn(cursor,"FECHA",""));
+                    documentos_cobra_cabBE.setM_COBRANZA(Funciones.isNullColumn(cursor,"M_COBRANZA",0.0));
+                    documentos_cobra_cabBE.setM_COBRANZA_D(Funciones.isNullColumn(cursor,"M_COBRANZA_D",0.0));
+                    documentos_cobra_cabBE.setSALDO(Funciones.isNullColumn(cursor,"SALDO",0.0));
+                    documentos_cobra_cabBE.setNUMCHEQ(Funciones.isNullColumn(cursor,"NUMCHEQ",""));
+                    documentos_cobra_cabBE.setFECCHEQ(Funciones.isNullColumn(cursor,"FECCHEQ",""));
+                    documentos_cobra_cabBE.setID_BANCO(Funciones.isNullColumn(cursor,"ID_BANCO",0));
+                    documentos_cobra_cabBE.setCTACORRIENTE_BANCO(Funciones.isNullColumn(cursor,"CTACORRIENTE_BANCO",""));
+                    documentos_cobra_cabBE.setNRO_OPERACION(Funciones.isNullColumn(cursor,"NRO_OPERACION",""));
+                    documentos_cobra_cabBE.setFECHA_DEPOSITO(Funciones.isNullColumn(cursor,"FECHA_DEPOSITO",""));
+                    documentos_cobra_cabBE.setCOMENTARIO(Funciones.isNullColumn(cursor,"COMENTARIO",""));
+                    documentos_cobra_cabBE.setID_EMPRESA(Funciones.isNullColumn(cursor,"ID_EMPRESA",0));
+                    documentos_cobra_cabBE.setID_LOCAL(Funciones.isNullColumn(cursor,"ID_LOCAL",0));
+                    documentos_cobra_cabBE.setESTADO(Funciones.isNullColumn(cursor,"ESTADO",""));
+                    documentos_cobra_cabBE.setFECHA_REGISTRO(Funciones.isNullColumn(cursor,"FECHA_REGISTRO",""));
+                    documentos_cobra_cabBE.setFECHA_MODIFICACION(Funciones.isNullColumn(cursor,"FECHA_MODIFICACION",""));
+                    documentos_cobra_cabBE.setUSUARIO_REGISTRO(Funciones.isNullColumn(cursor,"USUARIO_REGISTRO",""));
+                    documentos_cobra_cabBE.setUSUARIO_MODIFICACION(Funciones.isNullColumn(cursor,"USUARIO_MODIFICACION",""));
+                    documentos_cobra_cabBE.setPC_REGISTRO(Funciones.isNullColumn(cursor,"PC_REGISTRO",""));
+                    documentos_cobra_cabBE.setPC_MODIFICACION(Funciones.isNullColumn(cursor,"PC_MODIFICACION",""));
+                    documentos_cobra_cabBE.setIP_REGISTRO(Funciones.isNullColumn(cursor,"IP_REGISTRO",""));
+                    documentos_cobra_cabBE.setIP_MODIFICACION(Funciones.isNullColumn(cursor,"IP_MODIFICACION",""));
+                    documentos_cobra_cabBE.setITEM(Funciones.isNullColumn(cursor,"ITEM",""));
+                    documentos_cobra_cabBE.setESTADO_CONCILIADO(Funciones.isNullColumn(cursor,"ESTADO_CONCILIADO",""));
+                    documentos_cobra_cabBE.setSERIE_PLANILLA(Funciones.isNullColumn(cursor,"SERIE_PLANILLA",""));
+                    documentos_cobra_cabBE.setN_PLANILLA(Funciones.isNullColumn(cursor,"N_PLANILLA",""));
+                    documentos_cobra_cabBE.setC_PACKING(Funciones.isNullColumn(cursor,"C_PACKING",""));
+                    documentos_cobra_cabBE.setID_MOV_BANCO(Funciones.isNullColumn(cursor,"ID_MOV_BANCO",""));
+                    documentos_cobra_cabBE.setESTADO_PROCESO(Funciones.isNullColumn(cursor,"ESTADO_PROCESO",""));
+                    documentos_cobra_cabBE.setT_CAMBIO_TIENDA(Funciones.isNullColumn(cursor,"T_CAMBIO_TIENDA",""));
+                    documentos_cobra_cabBE.setN_TARJETA(Funciones.isNullColumn(cursor,"N_TARJETA",""));
+                    documentos_cobra_cabBE.setID_MOV_BANCO_ABONO(Funciones.isNullColumn(cursor,"ID_MOV_BANCO_ABONO",0));
+                    documentos_cobra_cabBE.setFECHA_DEPOSITO_ABONO(Funciones.isNullColumn(cursor,"FECHA_DEPOSITO_ABONO",""));
+                    documentos_cobra_cabBE.setLOTE(Funciones.isNullColumn(cursor,"LOTE",""));
+                    documentos_cobra_cabBE.setFLAG_COBRANZA(Funciones.isNullColumn(cursor,"FLAG_COBRANZA",""));
+                    documentos_cobra_cabBE.setCODUNC_LOCAL(Funciones.isNullColumn(cursor,"CODUNC_LOCAL",0));
+                    documentos_cobra_cabBE.setFPAGODESC(Funciones.isNullColumn(cursor,"FPAGODESC",""));
+                    documentos_cobra_cabBE.setBANCODESC(Funciones.isNullColumn(cursor,"BANCODESC",""));
+                    documentos_cobra_cabBE.setGUARDADO(Funciones.isNullColumn(cursor,"GUARDADO",9999));
+                    lst.add(documentos_cobra_cabBE);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+    }
 
 }
 

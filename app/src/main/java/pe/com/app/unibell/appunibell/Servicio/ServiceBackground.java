@@ -19,7 +19,9 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
 import pe.com.app.unibell.appunibell.BL.S_Vem_CorrelativoBL;
 import pe.com.app.unibell.appunibell.Cobranza.Fragment_Cobranza;
@@ -91,13 +93,25 @@ public class ServiceBackground extends Service {
                     //Se ejecuta solo si tenemos plan de datos
                     if (funciones.isConnectingToInternet(getApplicationContext())) {
 
-                        currentVersion = new Funciones().getVersionActual(getApplicationContext());
+                        currentVersion = funciones.getVersionActual(getApplicationContext());
                         new LoadGetGuardadaSQLite_AsyncTask().execute();
                         new AnularSQLite_AsyncTask().execute();
 
-                        if(lhoraActual24>2000 && lhoraActual24<600) {
-                            new updateApplication().execute();
-                        }
+                       /* if(lhoraActual24>200 && lhoraActual24<230  || lhoraActual24>600 && lhoraActual24<630) {
+
+                            editor_Shared.putString("VERSION_PLAYSTORE", "");
+                            editor_Shared.commit();
+                        }*/
+                        String online = sharedSettings.getString("VERSION_PLAYSTORE", "").toString()+funciones.FechaActual();
+                        String local = currentVersion+funciones.FechaActual();
+
+
+                        if (!(sharedSettings.getString("VERSION_PLAYSTORE", "").toString()).equals(currentVersion+funciones.FechaActual()))
+                            {
+                                new updateApplication().execute();
+                            }
+
+
 
                         Toast toastCodigo = Toast.makeText(getApplicationContext(),"COBRANZA REGISTRADA ENVIADA AL ORACLE", Toast.LENGTH_SHORT);
                         toastCodigo.show();
@@ -136,6 +150,7 @@ public class ServiceBackground extends Service {
         protected void onPostExecute(String restResult) {
             super.onPostExecute(restResult);
             try {
+
                Integer ID_COBRANZA=0;
                 Integer CODUNC_LOCAL=0;
 
@@ -147,6 +162,7 @@ public class ServiceBackground extends Service {
                              CODUNC_LOCAL.toString()).execute(ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_Insert);
 
                 }
+
 
                 new s_vem_correlativoBL_Sincronizar().execute(
                         ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_vem_correlativo + '/'
@@ -334,6 +350,8 @@ public class ServiceBackground extends Service {
             super.onPostExecute(onlineVersion);
             Log.d("updateAndroid", "Current version: " + currentVersion + " PlayStore version: " + onlineVersion);
             if (onlineVersion != null && !onlineVersion.isEmpty()) {
+                editor_Shared.putString("VERSION_PLAYSTORE", onlineVersion+funciones.FechaActual());
+                editor_Shared.commit();
                 if(isUpdateRequired(currentVersion, onlineVersion)){
                     Log.d("updateAndroid", "Update is required!!! Current version: " + currentVersion + " PlayStore version: " + onlineVersion);
                     openPlayStore(getApplicationContext()); //Open PlayStore
@@ -402,7 +420,13 @@ public class ServiceBackground extends Service {
             return result;
         }
 
+
+
+
+
     }
+
+
 
 
 }

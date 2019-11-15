@@ -33,6 +33,31 @@
 
 
     <TextView
+        android:id="@+id/lblRazonSocialFiltroLiquidacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Razón social"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
+        android:textSize="14dp"
+        android:textColor="@color/label_login_unibell"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/txtClienteFiltroLiquidacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:hint="Ejm: Estilista E.I.R.L"
+        android:padding="15dp"
+        style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+        android:maxLines="1"
+        android:inputType="text"
+        android:imeOptions="actionNext"
+        />
+
+    <TextView
         android:id="@+id/lblBuscarLiquidacion2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,7 +83,7 @@
         android:id="@+id/lblBuscarLiquidacionFormaPago"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Estado"
+        android:text="Forma de pago"
         android:paddingLeft="15dp"
         android:paddingTop="20dp"
         android:textSize="14dp"
@@ -96,7 +121,6 @@
         android:textSize="16dp"
         android:padding="15dp"
         style="@style/SkyTextViewStyleUnibellBusquedaCliente"
-
         android:maxLines="1"
         android:inputType="number"
         />

@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+
 import java.util.ArrayList;
 import java.util.List;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
@@ -94,6 +97,18 @@ public class Totales_Liquidacion_Adapter  extends ArrayAdapter<Documentos_Cobra_
         final Documentos_Cobra_CabBE documentos_cobra_cabBE = getItem(position);
 
         mainHolder.txtNroOperacionItem.setText(documentos_cobra_cabBE.getNRO_OPERACION().toString());
+
+
+        if (documentos_cobra_cabBE.getESTADO_CONCILIADO().equals("40025"))
+        {
+            mainHolder.txtNroOperacionItem.setCompoundDrawablesWithIntrinsicBounds(null,null,ContextCompat.getDrawable(getContext(), R.drawable.alpha_c_circle_outline_activo),null);
+        }
+        else
+        {
+            mainHolder.txtNroOperacionItem.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
+        }
+
+
         mainHolder.txtFechaOperacionItem.setText(documentos_cobra_cabBE.getFECHA_DEPOSITO().toString());
 
         if(Double.valueOf(documentos_cobra_cabBE.getM_COBRANZA().toString())>0.0) {

@@ -14,6 +14,7 @@
         android:fontFamily="@font/sf_pro_display_regular"
         android:textColor="@color/Button_login_unibell"
         android:layout_alignParentLeft="true"
+        android:drawableRight="@drawable/alpha_c_circle_outline_activo"
         />
 
     <TextView
@@ -25,6 +26,7 @@
         android:fontFamily="@font/sf_pro_display_regular"
         android:textColor="@color/Button_login_unibell"
         android:layout_toRightOf="@id/txtNroOperacionItem"
+        android:paddingLeft="@dimen/pad_10dp"
         />
 
     <TextView

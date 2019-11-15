@@ -1195,5 +1195,155 @@ public class Documentos_Cobra_CabBL {
     }
 
 
+    public JSONObject InsertRestValida(String ID_COBRANZA,String CODUNC_LOCAL,String newURL){
+        JSONObject jsonObjectRest =null;
+        JSONObject jsonObjectResult = new JSONObject();
+        String SQL=
+                "SELECT ID_COBRANZA,COD_CLIENTE,N_RECIBO,N_SERIE_RECIBO,FPAGO,ID_COBRADOR," +
+                        "FECHA,M_COBRANZA,M_COBRANZA_D,SALDO,NUMCHEQ,FECCHEQ," +
+                        "ID_BANCO,CTACORRIENTE_BANCO,NRO_OPERACION,FECHA_DEPOSITO,COMENTARIO,ID_EMPRESA," +
+                        "ID_LOCAL,ESTADO,FECHA_REGISTRO,FECHA_MODIFICACION,USUARIO_REGISTRO,USUARIO_MODIFICACION," +
+                        "PC_REGISTRO,PC_MODIFICACION,IP_REGISTRO,IP_MODIFICACION,ITEM,ESTADO_CONCILIADO," +
+                        "SERIE_PLANILLA,N_PLANILLA,C_PACKING,ID_MOV_BANCO,ESTADO_PROCESO,T_CAMBIO_TIENDA," +
+                        "N_TARJETA,ID_MOV_BANCO_ABONO,FECHA_DEPOSITO_ABONO,LOTE,FLAG_COBRANZA " +
+                        "FROM  S_CCM_DOCUMENTOS_COBRA_CAB WHERE ID_COBRANZA = " + ID_COBRANZA;
+
+        Cursor cursor = null;
+        cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
+        try {
+            JSONObject jsonObject = new JSONObject();
+            if (cursor.moveToFirst()) {
+                do {
+                    jsonObject = new JSONObject();
+                    jsonObject.accumulate("ID_COBRANZA", Funciones.isNullColumn(cursor,"ID_COBRANZA","0"));
+                    jsonObject.accumulate("COD_CLIENTE", Funciones.isNullColumn(cursor,"COD_CLIENTE",""));
+                    jsonObject.accumulate("N_RECIBO", Funciones.isNullColumn(cursor,"N_RECIBO",""));
+                    jsonObject.accumulate("N_SERIE_RECIBO", Funciones.isNullColumn(cursor,"N_SERIE_RECIBO",""));
+                    jsonObject.accumulate("FPAGO", Funciones.isNullColumn(cursor,"FPAGO",""));
+                    jsonObject.accumulate("ID_COBRADOR", Funciones.isNullColumn(cursor,"ID_COBRADOR","0"));
+                    jsonObject.accumulate("FECHA", Funciones.isNullColumn(cursor,"FECHA",""));
+                    jsonObject.accumulate("M_COBRANZA", Funciones.isNullColumn(cursor,"M_COBRANZA","0"));
+                    jsonObject.accumulate("M_COBRANZA_D", Funciones.isNullColumn(cursor,"M_COBRANZA_D","0"));
+                    jsonObject.accumulate("SALDO", Funciones.isNullColumn(cursor,"SALDO",""));
+                    jsonObject.accumulate("NUMCHEQ", Funciones.isNullColumn(cursor,"NUMCHEQ",""));
+                    jsonObject.accumulate("FECCHEQ", Funciones.isNullColumn(cursor,"FECCHEQ",""));
+                    jsonObject.accumulate("ID_BANCO", Funciones.isNullColumn(cursor,"ID_BANCO","0"));
+                    jsonObject.accumulate("CTACORRIENTE_BANCO", Funciones.isNullColumn(cursor,"CTACORRIENTE_BANCO","0"));
+                    jsonObject.accumulate("NRO_OPERACION", Funciones.isNullColumn(cursor,"NRO_OPERACION",""));
+                    jsonObject.accumulate("FECHA_DEPOSITO", Funciones.isNullColumn(cursor,"FECHA_DEPOSITO",""));
+                    jsonObject.accumulate("COMENTARIO", Funciones.isNullColumn(cursor,"COMENTARIO",""));
+                    jsonObject.accumulate("ID_EMPRESA", Funciones.isNullColumn(cursor,"ID_EMPRESA","0"));
+                    jsonObject.accumulate("ID_LOCAL", Funciones.isNullColumn(cursor,"ID_LOCAL","0"));
+                    jsonObject.accumulate("ESTADO", Funciones.isNullColumn(cursor,"ESTADO",""));
+                    jsonObject.accumulate("FECHA_REGISTRO", Funciones.isNullColumn(cursor,"FECHA_REGISTRO",""));
+                    jsonObject.accumulate("FECHA_MODIFICACION", Funciones.isNullColumn(cursor,"FECHA_MODIFICACION",""));
+                    jsonObject.accumulate("USUARIO_REGISTRO", Funciones.isNullColumn(cursor,"USUARIO_REGISTRO",""));
+                    jsonObject.accumulate("USUARIO_MODIFICACION", Funciones.isNullColumn(cursor,"USUARIO_MODIFICACION",""));
+                    jsonObject.accumulate("PC_REGISTRO", Funciones.isNullColumn(cursor,"PC_REGISTRO",""));
+                    jsonObject.accumulate("PC_MODIFICACION", Funciones.isNullColumn(cursor,"PC_MODIFICACION",""));
+                    jsonObject.accumulate("IP_REGISTRO", Funciones.isNullColumn(cursor,"IP_REGISTRO",""));
+                    jsonObject.accumulate("IP_MODIFICACION", Funciones.isNullColumn(cursor,"IP_MODIFICACION",""));
+                    jsonObject.accumulate("ITEM", Funciones.isNullColumn(cursor,"ITEM",""));
+                    jsonObject.accumulate("ESTADO_CONCILIADO", Funciones.isNullColumn(cursor,"ESTADO_CONCILIADO",""));
+                    jsonObject.accumulate("SERIE_PLANILLA", Funciones.isNullColumn(cursor,"SERIE_PLANILLA",""));
+                    jsonObject.accumulate("N_PLANILLA", Funciones.isNullColumn(cursor,"N_PLANILLA",""));
+                    jsonObject.accumulate("C_PACKING", Funciones.isNullColumn(cursor,"C_PACKING",""));
+                    jsonObject.accumulate("ID_MOV_BANCO", Funciones.isNullColumn(cursor,"ID_MOV_BANCO",""));
+                    jsonObject.accumulate("ESTADO_PROCESO", Funciones.isNullColumn(cursor,"ESTADO_PROCESO",""));
+                    jsonObject.accumulate("T_CAMBIO_TIENDA", Funciones.isNullColumn(cursor,"T_CAMBIO_TIENDA",""));
+                    jsonObject.accumulate("N_TARJETA", Funciones.isNullColumn(cursor,"N_TARJETA",""));
+                    jsonObject.accumulate("ID_MOV_BANCO_ABONO", Funciones.isNullColumn(cursor,"ID_MOV_BANCO_ABONO",""));
+                    jsonObject.accumulate("FECHA_DEPOSITO_ABONO", Funciones.isNullColumn(cursor,"FECHA_DEPOSITO_ABONO",""));
+                    jsonObject.accumulate("LOTE", Funciones.isNullColumn(cursor,"LOTE",""));
+                    jsonObject.accumulate("FLAG_COBRANZA", Funciones.isNullColumn(cursor,"FLAG_COBRANZA",""));
+                    String SQL2=
+                            "SELECT ID_COBRANZA,FPAGO,TIPDOC,SERIE_NUM,NUMERO,IMPORTE," +
+                                    "MONEDA,SALDO,M_COBRANZA,ID_EMPRESA,ID_LOCAL,ESTADO," +
+                                    "FECHA_REGISTRO,FECHA_MODIFICACION,USUARIO_REGISTRO,USUARIO_MODIFICACION,PC_REGISTRO,PC_MODIFICACION," +
+                                    "IP_REGISTRO,IP_MODIFICACION,ID_VENDEDOR ,SALDO_INICIAL " +
+                                    "FROM  S_CCM_DOCUMENTOS_COBRA_DET WHERE ESTADO<>'-1' AND  ID_COBRANZA="+Funciones.isNullColumn(cursor,"ID_COBRANZA","0");
+
+                    JSONArray jsonArray= new JSONArray();
+                    Cursor cursorDet = null;
+                    cursorDet= DataBaseHelper.myDataBase.rawQuery(SQL2, null);
+                    Double M_COBRANZA=0.0,SALDO_INICIAL=0.0;
+                    if (cursorDet.moveToFirst()) {
+                        do {
+                            JSONObject jsonObject1 = new JSONObject();
+                            jsonObject1.accumulate("ID_COBRANZA ",Funciones.isNullColumn(cursorDet,"ID_COBRANZA",0));
+                            jsonObject1.accumulate("FPAGO",Funciones.isNullColumn(cursorDet,"FPAGO",""));
+                            jsonObject1.accumulate("TIPDOC",Funciones.isNullColumn(cursorDet,"TIPDOC",""));
+                            jsonObject1.accumulate("SERIE_NUM",Funciones.isNullColumn(cursorDet,"SERIE_NUM",""));
+                            jsonObject1.accumulate("NUMERO",Funciones.isNullColumn(cursorDet,"NUMERO",0));
+                            jsonObject1.accumulate("IMPORTE",Funciones.isNullColumn(cursorDet,"IMPORTE",0.0));
+                            jsonObject1.accumulate("MONEDA",Funciones.isNullColumn(cursorDet,"MONEDA",""));
+                            jsonObject1.accumulate("SALDO",Funciones.isNullColumn(cursorDet,"SALDO",0.0));
+                            M_COBRANZA=Double.valueOf(Funciones.isNullColumn(cursorDet,"M_COBRANZA",0.0));
+
+                            jsonObject1.accumulate("M_COBRANZA",Funciones.isNullColumn(cursorDet,"M_COBRANZA",0.0));
+                            jsonObject1.accumulate("ID_EMPRESA",Funciones.isNullColumn(cursorDet,"ID_EMPRESA",0));
+                            jsonObject1.accumulate("ID_LOCAL",Funciones.isNullColumn(cursorDet,"ID_LOCAL",0));
+                            jsonObject1.accumulate("ESTADO",Funciones.isNullColumn(cursorDet,"ESTADO",0));
+                            jsonObject1.accumulate("FECHA_REGISTRO",Funciones.isNullColumn(cursorDet,"FECHA_REGISTRO",""));
+                            jsonObject1.accumulate("FECHA_MODIFICACION",Funciones.isNullColumn(cursorDet,"FECHA_MODIFICACION",""));
+                            jsonObject1.accumulate("USUARIO_REGISTRO",Funciones.isNullColumn(cursorDet,"USUARIO_REGISTRO",""));
+                            jsonObject1.accumulate("USUARIO_MODIFICACION",Funciones.isNullColumn(cursorDet,"USUARIO_MODIFICACION",""));
+                            jsonObject1.accumulate("PC_REGISTRO",Funciones.isNullColumn(cursorDet,"PC_REGISTRO",""));
+                            jsonObject1.accumulate("PC_MODIFICACION",Funciones.isNullColumn(cursorDet,"PC_MODIFICACION",""));
+                            jsonObject1.accumulate("IP_REGISTRO",Funciones.isNullColumn(cursorDet,"IP_REGISTRO",""));
+                            jsonObject1.accumulate("IP_MODIFICACION",Funciones.isNullColumn(cursorDet,"IP_MODIFICACION",""));
+                            jsonObject1.accumulate("ID_VENDEDOR ",Funciones.isNullColumn(cursorDet,"ID_VENDEDOR",0));
+
+                            SALDO_INICIAL=Double.valueOf(Funciones.isNullColumn(cursorDet,"SALDO_INICIAL",0.0));
+                            jsonObject1.accumulate("SALDO_INICIAL ",Funciones.isNullColumn(cursorDet,"SALDO_INICIAL",0.0));
+                            jsonObject1.accumulate("VOUCHER",Funciones.isNullColumn(cursorDet,"VOUCHER",0));
+                            jsonArray.put(jsonObject1);
+                        } while (cursorDet.moveToNext());
+                        jsonObject.accumulate("detalle",jsonArray);
+                    }
+                    String aux = new RestClientLibrary().post(newURL,jsonObject);
+                    jsonObjectRest = new JSONObject(aux);
+                    jsonObjectResult.accumulate("status", String.valueOf(jsonObjectRest.getString("status").trim()));
+                    jsonObjectResult.accumulate("message", jsonObjectRest.getString("message"));
+
+                    if (jsonObjectRest.getString("status").trim().equals("0")) {
+                    } else {
+                        JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(0);
+                        //OBTENEMOS LOS VALORES ENVIADOS Y DE RETORNO
+                        String sID_EMPRESA= jsonObjectItem.getString("ID_EMPRESA");
+                        if(!sID_EMPRESA.equals("null") && !sID_EMPRESA.equals("0")){
+                            String sID_LOCAL=jsonObjectItem.getString("ID_LOCAL");
+                            String sID_VENDEDOR= jsonObjectItem.getString("ID_VENDEDOR");
+                            String sID_COBRANZA_LOCAL= jsonObjectItem.getString("ID_COBRANZA");
+                            String sID_COBRANZA_ORACLE=jsonObjectItem.getString("ID_COBRANZA_ORACLE");
+                            String MSG=jsonObjectItem.getString("MSG");
+                            jsonObjectResult.accumulate("MSG",MSG);
+
+                            //SI NO SALTO LAS VALIDACIONES DE LA BD ENTONCES
+                            if(MSG.toString().trim().equals("-")){
+                                //ELIMINAMOS LA COBRANZA LOCAL
+                                this.EliminarCobranzaByID(sID_COBRANZA_LOCAL);
+                                //VOLVEMOS A SINCRONIZAR LA COBRANZA SOLO CON sID_COBRANZA_ORACLE
+                                this.PostSincronizarCobranza(sID_EMPRESA,sID_LOCAL,sID_VENDEDOR,sID_COBRANZA_ORACLE,"0");
+                            }
+                        }
+
+                    }
+                } while (cursor.moveToNext());
+            }
+            //Eliminar(ID_COBRANZA);
+        }catch(Exception e){
+            e.printStackTrace();
+            try {
+                jsonObjectResult.accumulate("status", "1");
+                jsonObjectResult.accumulate("message", e.getMessage());
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return jsonObjectResult;
+    }
+
+
 
 }
