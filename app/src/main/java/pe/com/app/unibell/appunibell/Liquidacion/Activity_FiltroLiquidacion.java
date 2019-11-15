@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import pe.com.app.unibell.appunibell.AD.Clientes_Adapter;
 import pe.com.app.unibell.appunibell.BE.ClientesBE;
 import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
+import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
+import pe.com.app.unibell.appunibell.DAO.Tablas_AuxiliaresDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialogo_Fragment_Fecha;
 import pe.com.app.unibell.appunibell.R;
@@ -43,6 +45,7 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
     private ClientesDAO clientesDAO = new ClientesDAO();
     private Clientes_Adapter clientes_adapter = null;
     private ArrayList<String> RazonSocialArray;
+    private  Tablas_AuxiliaresDAO tablas_auxiliaresDAO = new Tablas_AuxiliaresDAO();
 
 
     @Override
@@ -89,7 +92,7 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
 
         if(parametros !=null){
 
-            txtEstado.setTag(parametros.getString("txtEstado"));
+           txtEstado.setTag(parametros.getString("txtEstado"));
 
             if(parametros.getString("txtEstado").equals("40003")){
 
@@ -108,6 +111,17 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
 
                 txtEstado.setText("ANULADO");
             }
+
+            txtFechaFiltro.setText(parametros.getString("txtFechaFiltro"));
+            txtNroPlanilla.setText(parametros.getString("txtNroPlanilla"));
+            txtCpacking.setText(parametros.getString("txtCpacking"));
+            txtClienteFiltroLiquidacion.setText(parametros.getString("txtClienteFiltroLiquidacion"));
+            //txtFormaPagoFiltroLiquidacion.setTag(parametros.getString("txtFormaPagoFiltroLiquidacion"));
+            CargarFiltroDefault("14", "0", parametros.getString("txtFormaPagoFiltroLiquidacion"), txtFormaPagoFiltroLiquidacion);
+
+
+
+
         }
         else {
             txtEstado.setTag("40003");
@@ -119,6 +133,23 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
         btnBuscarLiquidacion = (Button)findViewById(R.id.lq_lblbuscar);
         btnBuscarLiquidacion.setOnClickListener(OnClickListener_btnBuscarLiquidacion);
         AutoComplete();
+    }
+
+    private void CargarFiltroDefault(String tipo, String rol, String dato, TextView txtView) {
+
+        tablas_auxiliaresDAO.getAll(tipo,rol);
+
+        if(tablas_auxiliaresDAO.lst!=null && tablas_auxiliaresDAO.lst.size()>0)
+        {
+            for(int i =0; i< tablas_auxiliaresDAO.lst.size(); i++)
+            {
+                if(tablas_auxiliaresDAO.lst.get(i).getCODIGO().equals(dato))
+                {
+                    txtView.setText(tablas_auxiliaresDAO.lst.get(i).getDESCRIPCION());
+                    txtView.setTag(tablas_auxiliaresDAO.lst.get(i).getCODIGO());
+                }
+            }
+        }
     }
 
 

@@ -246,15 +246,18 @@ public class Activity_Liquidacion extends AppCompatActivity
 
     private void CambiarNumeroCheck() {
         contadorChecks=0;
+        double montoTotalSeleccionado = 0.0;
         for (int i = 0; i < cobranza_liquidacion_adapter.getCount(); i++) {
             if (cobranza_liquidacion_adapter.lst.get(i).getCHKMARCADO()) {
                 contadorChecks = contadorChecks + 1;
+
+                montoTotalSeleccionado = funciones.sumar(montoTotalSeleccionado,cobranza_liquidacion_adapter.lst.get(i).getM_COBRANZA());
             }
         }
 
         if (contadorChecks>0)
         {
-            lq_chktodos.setText(""+contadorChecks);
+            lq_chktodos.setText(""+contadorChecks + "   S/ " + montoTotalSeleccionado);
         }
         else
         {
@@ -458,6 +461,15 @@ public class Activity_Liquidacion extends AppCompatActivity
 
         Intent intent = new Intent(Activity_Liquidacion.this, Activity_FiltroLiquidacion.class);
         intent.putExtra("txtEstado",sEstado);
+        intent.putExtra("txtFechaFiltro",lq_txtffecha);
+        intent.putExtra("txtNroPlanilla",sNroPlanilla);
+        intent.putExtra("txtCpacking",sCPacking);
+        intent.putExtra("txtFormaPagoFiltroLiquidacion",sFormaPago);
+        if(sRazonSocialCliente.equals("XXX"))
+        {
+            sRazonSocialCliente = "";
+        }
+        intent.putExtra("txtClienteFiltroLiquidacion",sRazonSocialCliente);
         startActivityForResult(intent,request_code);
     }
 

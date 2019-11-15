@@ -53,6 +53,7 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = null;
         if (convertView == null || !(convertView.getTag() instanceof MainHolder)) {
+            //view = LayoutInflater.from(getContext()).inflate(R.layout.item_cobranza_liquidacion_resumen, parent, false);
             view = LayoutInflater.from(getContext()).inflate(R.layout.item_cobranza_liquidacion, parent, false);
             final MainHolder mainHolder = new MainHolder();
             mainHolder.cl_btn = (Button) view.findViewById(R.id.cl_btn);
@@ -196,14 +197,15 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
 
 
 
-        holder.cl_col3.setText("Forma de Pago");
+        //holder.cl_col3.setText("Forma de Pago");
+        holder.cl_col3.setText(documentos_cobra_cabBE.getFPAGODESC().toString());
 
         if (documentos_cobra_cabBE.getFPAGO().toString().equals("E"))
         {
             holder.cl_itemFormaPago.setText( funciones.LetraCapital(documentos_cobra_cabBE.getFPAGODESC().toString()));
         }
         else {
-            holder.cl_col3.setText("Forma de Pago" + " (" +documentos_cobra_cabBE.getFPAGODESC().toString() +")");
+            //holder.cl_col3.setText(documentos_cobra_cabBE.getFPAGODESC().toString());
             holder.cl_itemFormaPago.setText(funciones.LetraCapital(documentos_cobra_cabBE.getENTIDAD().toString()) + "\n" + documentos_cobra_cabBE.getCONSTANCIA().toString()  + "\n" + documentos_cobra_cabBE.getFECHA().toString());
         }
 

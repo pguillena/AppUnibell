@@ -53,7 +53,7 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
         if (convertView == null || !(convertView.getTag() instanceof MainHolder)) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_clientes, parent, false);
             mainHolder = new MainHolder();
-            mainHolder.cl_item2 = (TextView) convertView.findViewById(R.id.cl_item2);
+            //mainHolder.cl_item2 = (TextView) convertView.findViewById(R.id.cl_item2);
             mainHolder.cl_item3 = (TextView) convertView.findViewById(R.id.cl_item3);
             mainHolder.cl_col3 = (TextView) convertView.findViewById(R.id.cl_col3);
 
@@ -68,7 +68,8 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
             mainHolder = (MainHolder) convertView.getTag();
         }
         final ClientesBE clienteBE = getItem(position);
-        mainHolder.cl_item2.setText( new Funciones().LetraCapital( clienteBE.getRAZON_SOCIAL().toString().trim()));
+        //mainHolder.cl_item2.setText( new Funciones().LetraCapital( clienteBE.getRAZON_SOCIAL().toString().trim()));
+        mainHolder.cl_btnEstadoCuenta.setText( new Funciones().LetraCapital( clienteBE.getRAZON_SOCIAL().toString().trim()));
 
         if(Double.valueOf(clienteBE.getM_PAE()) > 0.0 ) {
             mainHolder.cl_item3.setText(clienteBE.getM_PAE().toString().trim());
@@ -200,7 +201,7 @@ public class Clientes_Adapter extends ArrayAdapter<ClientesBE> implements Filter
 
 
     static class MainHolder {
-        TextView cl_item2,cl_item3,cl_btn3, cl_col3, cl_btnEstadoCuenta;
+        TextView cl_item3,cl_btn3, cl_col3, cl_btnEstadoCuenta;
         Button cl_btn1,cl_btn2;
         LinearLayout cl_ln1,cl_ln2,cl_ln3;
 

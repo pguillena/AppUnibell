@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:text="Código"
         android:textSize="16dp"
+        android:paddingBottom="@dimen/pad_10dp"
         android:textColor="@color/Button_login_unibell"
         android:fontFamily="@font/sf_pro_display_medium"
         android:drawableRight="@drawable/chevron_right"
@@ -30,30 +31,10 @@
         android:textSize="16dp"
         android:drawableRight="@drawable/file_download_outline"
         android:focusable="false"
+        android:paddingBottom="@dimen/pad_10dp"
         android:textColor="@color/label_color_menu"
-        android:fontFamily="@font/sf_pro_display_bold"
-        />
-
-    <TextView
-        android:id="@+id/cl_col2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cliente"
-        android:textSize="16dp"
-        android:layout_marginTop="10dp"
         android:fontFamily="@font/sf_pro_display_medium"
-        android:textColor="@color/Button_login_unibell"
         />
-    <TextView
-        android:id="@+id/cl_item2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CLIENTE"
-        android:textSize="16dp"
-        android:fontFamily="@font/sf_pro_display_light"
-        android:textColor="@color/label_color_menu"
-        />
-
 
     <TextView
         android:id="@+id/cl_col3"

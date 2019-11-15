@@ -952,16 +952,18 @@ public class Documentos_Cobra_CabDAO {
                     "SELECT \n" +
                             "C.NRO_OPERACION, C.FECHA_DEPOSITO, C.ESTADO_CONCILIADO, SUM(C.M_COBRANZA) AS M_COBRANZA,  SUM(C.M_COBRANZA_D) AS M_COBRANZA_D \n"+
                             "FROM S_CCM_DOCUMENTOS_COBRA_CAB C \n" +
+                            " INNER JOIN CLIENTES S ON (C.COD_CLIENTE = S.COD_CLIENTE) \n"+
                             "WHERE (C.ID_COBRADOR ="+ iID_COBRADOR + " OR ( " + iID_COBRADOR + " IN(8719,15737) AND C.C_PACKING>0) )\n" +
                             " AND (  substr(C.FECHA,7,4) || substr(C.FECHA,4,2) || substr(C.FECHA,1,2)  BETWEEN '"+ iFECHA +"' AND '" + iFECHA +"'" + " OR '" + iFECHA + "' = '' )" +
                             "AND (C.ESTADO =" +  iESTADO + " OR " +  iESTADO + "= 0)\n" +
-                            "AND C.ESTADO <> 40002 \n" +
+                            // "AND C.ESTADO <> 40002 \n" +
                             "AND (C.C_PACKING ="+  iC_PACKING + " OR " + iC_PACKING + "= 0)\n" +
                             "AND C.ID_EMPRESA =" +  iID_EMPRESA + "\n" +
                             "AND C.ID_LOCAL =" +  iID_LOCAL + "\n" +
                             "AND (C.N_PLANILLA ="+ iN_PLANILLA + " OR " + iN_PLANILLA + "=0) \n" +
-                            "AND C.GUARDADO IN(2,3) \n" +
                             "AND (C.FPAGO = '" + iFPAGO + "' OR '" + iFPAGO + "' = 'XXX') \n" +
+                            "AND (S.NOMBRE LIKE '%"+ sRazonSocial +"%' OR '" + sRazonSocial + "' = 'XXX')"+
+                            "AND C.GUARDADO IN(2,3) " +
                             " AND C.FPAGO = 'P' " + //SOLO DEPOSITOS
                             " GROUP BY C.NRO_OPERACION, C.FECHA_DEPOSITO, C.ESTADO_CONCILIADO";
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);

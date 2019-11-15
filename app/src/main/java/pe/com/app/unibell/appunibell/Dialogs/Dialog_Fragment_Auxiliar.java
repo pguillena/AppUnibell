@@ -166,6 +166,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
         tba_edttitulo.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before,int count) {
 
+
                 if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=700&& iTabla!=800) {
                     if(tab_lvauxiliar.getAdapter()!=null) {
                         Tablas_Auxiliares_Adapter ca = (Tablas_Auxiliares_Adapter) tab_lvauxiliar.getAdapter();
