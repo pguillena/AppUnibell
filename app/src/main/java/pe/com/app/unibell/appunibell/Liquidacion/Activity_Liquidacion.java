@@ -1286,9 +1286,6 @@ public class Activity_Liquidacion extends AppCompatActivity
 
         @Override
         protected void onPreExecute() {
-
-
-
             MostrarLoading("Conciliando",true);
         }
 
@@ -1307,19 +1304,20 @@ public class Activity_Liquidacion extends AppCompatActivity
         protected void onPostExecute(JSONObject result) {
 
             MostrarLoading("",false);
-
             Cargar();
-
-         /*   try {
-                if (result.getInt("status")!=1) {
-                    Mensaje(result.getString("MSG").toString());
-                } else {
-                    Mensaje(result.getString("MSG").toString());
-                    Cargar();
-                }
+            try {
+                Mensaje(result.getString("MSG").toString());
             }catch(Exception ex){
-                ex.printStackTrace();
-            }*/
+                if(ex.getMessage().equals("No value for MSG"))
+                {
+                    Mensaje("El servidor se encuentra ocupado, por favor inténtelo en unos minutos");
+                }
+                else
+                {
+                    Mensaje(ex.getMessage());
+                }
+
+            }
         }
     }
 

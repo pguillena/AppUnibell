@@ -73,6 +73,7 @@ public class Activity_FiltroLiquidacion extends AppCompatActivity implements Dia
         funciones.addTextChangedListener(txtNroPlanilla, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
         funciones.addTextChangedListener(txtCpacking, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
         funciones.addTextChangedListener(txtClienteFiltroLiquidacion, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
+        funciones.addTextChangedListener(txtFormaPagoFiltroLiquidacion, R.drawable.borderradius_busqueda_cliente_activo, R.drawable.borderradius_busqueda_cliente);
 
 
         lblBuscarLiquidacion4.setVisibility(View.GONE);

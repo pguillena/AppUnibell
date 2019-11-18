@@ -17,6 +17,7 @@ import pe.com.app.unibell.appunibell.AD.Cobranza_Flujo1_Seguimiento_Adapter;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
+import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.ToastLibrary;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -116,7 +117,7 @@ public class Fragment_Detalle extends Fragment {
                     double montoTotalPlanillaDolares = 0.0;
                     for (int i = 0; i<documentos_cobra_cabBL.lst.size();i++)
                     {
-                        montoTotalPlanillaSoles = montoTotalPlanillaSoles + documentos_cobra_cabBL.lst.get(i).getM_COBRANZA() ;
+                        montoTotalPlanillaSoles = new Funciones().sumar(montoTotalPlanillaSoles , documentos_cobra_cabBL.lst.get(i).getM_COBRANZA());
 
                     }
 

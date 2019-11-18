@@ -116,7 +116,7 @@ public class Totales_Liquidacion_Adapter  extends ArrayAdapter<Documentos_Cobra_
         }
 
         if(Double.valueOf(documentos_cobra_cabBE.getM_COBRANZA_D().toString())>0.0) {
-            mainHolder.txtMontoDepositoItem.setText("U$D " +funciones.FormatDecimal(documentos_cobra_cabBE.getM_COBRANZA().toString().trim().replace(",","")));
+            mainHolder.txtMontoDepositoItem.setText("U$D " +funciones.FormatDecimal(documentos_cobra_cabBE.getM_COBRANZA_D().toString().trim().replace(",","")));
         }
 
         return convertView;

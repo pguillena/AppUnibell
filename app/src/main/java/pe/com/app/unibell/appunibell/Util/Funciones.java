@@ -178,7 +178,7 @@ public class Funciones {
 
     public static String ObtienMsqOracle(String s) {
         String searchString="|";
-        String substring="";
+        String substring=s;
         Integer starIndex,endIndex;
         if(s.contains(searchString)){
             starIndex=s.indexOf(searchString);

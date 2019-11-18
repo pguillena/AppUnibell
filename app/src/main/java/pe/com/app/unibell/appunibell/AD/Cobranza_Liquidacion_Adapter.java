@@ -263,11 +263,21 @@ public class Cobranza_Liquidacion_Adapter extends ArrayAdapter<Documentos_Cobra_
             */
         }
 
+
+
+
         if(lstFiltrado.get(position).getCHKMARCADO()==true) {
             holder.lyItemLiquidacion.setBackgroundResource(R.drawable.borderradius_activo);
         }else{
             holder.lyItemLiquidacion.setBackgroundResource(R.drawable.borderradius_sin_borde);
+
+            if(lstFiltrado.get(position).getESTADO_CONCILIADO().equals("40025"))
+            {
+                holder.lyItemLiquidacion.setBackgroundResource(R.drawable.borderradius_conciliado);
+            }
         }
+
+
 
 
 

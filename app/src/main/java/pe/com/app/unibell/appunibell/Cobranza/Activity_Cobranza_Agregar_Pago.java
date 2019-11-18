@@ -363,7 +363,7 @@ public class Activity_Cobranza_Agregar_Pago
         String sMoneda = "S", sDescripcionMoneda = "soles";
 
         if(rp_swmoneda.isChecked()) {
-            sMoneda = "$";
+            sMoneda = "D";
             sDescripcionMoneda = "Dolares";
         }else{
             sMoneda = "S";
