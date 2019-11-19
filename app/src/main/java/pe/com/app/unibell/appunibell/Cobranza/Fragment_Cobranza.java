@@ -834,8 +834,7 @@ public class Fragment_Cobranza extends Fragment implements
             documentos_cobra_detBE.setNUMERO(factCobBE.getNUMERO().toString());
             documentos_cobra_detBE.setIMPORTE(Double.valueOf(factCobBE.getIMPORTE().toString()));
             documentos_cobra_detBE.setMONEDA(factCobBE.getMONEDA().toString());
-            //Saldo que se descuenta mientras se va descontando
-            documentos_cobra_detBE.setSALDO(factCobBE.getSALDO());
+
             //Monto que se esta amortizando(Al aplicar se copia al campo de cobranazas y se quita el boton)
             documentos_cobra_detBE.setM_COBRANZA(factCobBE.getVAMORTIZADO());
             documentos_cobra_detBE.setID_EMPRESA(Integer.valueOf(sharedSettings.getString("iID_EMPRESA", "").toString()));
@@ -857,6 +856,8 @@ public class Fragment_Cobranza extends Fragment implements
             documentos_cobra_detBE.setCODUNC_LOCAL(Integer.valueOf(sharedSettings.getString("MAX_CODUNICO", "0").toString()));
             documentos_cobra_detBE.setGUARDADO(0);
             documentos_cobra_detBE.setSINCRONIZADO(0);
+            //Saldo que se descuenta mientras se va descontando
+            documentos_cobra_detBE.setSALDO( funciones.restar(documentos_cobra_detBE.getSALDO_INICIAL(), documentos_cobra_detBE.getM_COBRANZA()));
 
             new Inser_DetalleAsyncTask(documentos_cobra_detBE).execute();
         } catch (Exception e) {
