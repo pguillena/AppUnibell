@@ -108,7 +108,7 @@ public class Activity_Cobranza_Agregar_Pago
             rp_lblfplanilla.setText(sharedSettings.getString("cpfplanilla", "").toString());
 
             rp_txtserie.setEnabled(false);
-            rp_txtnumero.setEnabled(false);
+           //rp_txtnumero.setEnabled(false);
             rp_lblfplanilla.setEnabled(false);
         }
 
@@ -189,7 +189,7 @@ public class Activity_Cobranza_Agregar_Pago
          rp_txtserie.setText(recibos_ccobranzaDAO.lst.get(0).getN_SERIE().toString());
          rp_txtnumero.setText(String.valueOf(recibos_ccobranzaDAO.lst.get(0).getNUMERO()+1));
          rp_txtserie.setEnabled(false);
-         rp_txtnumero.setEnabled(false);
+        // rp_txtnumero.setEnabled(false);
      }
 
 

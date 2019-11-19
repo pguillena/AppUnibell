@@ -408,6 +408,8 @@ public class Fragment_Cobranza extends Fragment implements
                 editor_Shared.putString("sFECHA_DEPOSITO", cobranza_cabecera_adapter.getItem(iPocicionCab).getFECCHEQ().toString());
             }
 
+
+
             editor_Shared.putString("EDITAR_TPAGO",EDITAR_TPAGO.toString().trim());
 
 
@@ -429,6 +431,12 @@ public class Fragment_Cobranza extends Fragment implements
             //Editamos le acobranza
             if(EDITAR_TPAGO.equals("TARJETA") || EDITAR_TPAGO.equals("DEPOSITO") || EDITAR_TPAGO.equals("CHEQUE")){
                 comunicator.CobranzaEditar();
+            }
+            else
+            {
+                if (fPago.equals("E")) {
+                Mensaje("No se puede editar un efectivo, si desea cambiar la forma de pago, por favor, ir a la opción reasignar de liquidación");
+                }
             }
 
         } catch (Exception ex) {

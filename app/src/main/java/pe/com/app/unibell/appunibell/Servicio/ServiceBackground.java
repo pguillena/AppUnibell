@@ -2,10 +2,13 @@ package pe.com.app.unibell.appunibell.Servicio;
 
 import android.app.ProgressDialog;
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
@@ -20,6 +23,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
@@ -95,7 +99,7 @@ public class ServiceBackground extends Service {
 
                         currentVersion = funciones.getVersionActual(getApplicationContext());
                         new LoadGetGuardadaSQLite_AsyncTask().execute();
-                        new AnularSQLite_AsyncTask().execute();
+
 
                        /* if(lhoraActual24>200 && lhoraActual24<230  || lhoraActual24>600 && lhoraActual24<630) {
 
@@ -170,6 +174,8 @@ public class ServiceBackground extends Service {
                                 + sharedSettings.getString("iID_LOCAL", "0")+ '/'
                                 + sharedSettings.getString("iID_VENDEDOR", "0"));
 
+              //ANULAMOS
+                new AnularSQLite_AsyncTask().execute();
 
             } catch (Exception ex) {
                 //Toast.makeText(getApplication(),getResources().getString(R.string.msg_nohayregistros), Toast.LENGTH_LONG).show();
@@ -354,30 +360,38 @@ public class ServiceBackground extends Service {
                 editor_Shared.commit();
                 if(isUpdateRequired(currentVersion, onlineVersion)){
                     Log.d("updateAndroid", "Update is required!!! Current version: " + currentVersion + " PlayStore version: " + onlineVersion);
-                    openPlayStore(getApplicationContext()); //Open PlayStore
+                    openAppRating(getApplicationContext()); //Open PlayStore
                 }else{
                     Log.d("updateAndroid", "Update is NOT required!");
                 }
+
+
+
+
             }
 
         }
-
+/*
         private void openPlayStore(Context ctx){
+
             final String appPackageName = ctx.getPackageName();
             try {
+               // startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
             } catch (android.content.ActivityNotFoundException anfe) {
+
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
             }
         }
+*/
 
         public boolean isUpdateRequired(String versionActual, String versionNueva) {
             boolean result = false;
-            int[] versiones = new int[6];
+            int[] versiones = new int[8];
             int i = 0, anterior = 0, orden = 0;
             if(versionActual != null && versionNueva != null){
                 try{
-                    for(i = 0; i < 6; i++){
+                    for(i = 0; i < 8; i++){
                         versiones[i] = 0;
                     }
                     i = 0;
@@ -392,7 +406,7 @@ public class ServiceBackground extends Service {
                         orden++;
                     }while(i != -1);
                     anterior = 0;
-                    orden = 3;
+                    orden = 4;
                     i = 0;
                     do{
                         i = versionNueva.indexOf('.', anterior);
@@ -403,12 +417,14 @@ public class ServiceBackground extends Service {
                         }
                         anterior = i + 1;
                         orden++;
-                    }while(i != -1 && orden < 6);
-                    if(versiones[0] < versiones[3]){
+                    }while(i != -1 && orden < 8);
+                    if(versiones[0] < versiones[4]){
                         result = true;
-                    }else if(versiones[1] < versiones[4] && versiones[0] == versiones[3]){
+                    }else if(versiones[1] < versiones[5] && versiones[0] == versiones[4]){
                         result = true;
-                    }else if(versiones[2] < versiones[5] && versiones[0] == versiones[3] && versiones[1] == versiones[4]){
+                    }else if(versiones[2] < versiones[6] && versiones[0] == versiones[4] && versiones[1] == versiones[5]){
+                        result = true;
+                    }else if(versiones[3] < versiones[7] && versiones[2] == versiones[6] && versiones[0] == versiones[4] && versiones[1] == versiones[5]){
                         result = true;
                     }
                 }catch (NumberFormatException e){
@@ -421,7 +437,50 @@ public class ServiceBackground extends Service {
         }
 
 
+        public void openAppRating(Context context) {
+            // you can also use BuildConfig.APPLICATION_ID
+            String appId = context.getPackageName();
+            Intent rateIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=" + appId));
+            boolean marketFound = false;
 
+            // find all applications able to handle our rateIntent
+            final List<ResolveInfo> otherApps = context.getPackageManager()
+                    .queryIntentActivities(rateIntent, 0);
+            for (ResolveInfo otherApp: otherApps) {
+                // look for Google Play application
+                if (otherApp.activityInfo.applicationInfo.packageName
+                        .equals("com.android.vending")) {
+
+                    ActivityInfo otherAppActivity = otherApp.activityInfo;
+                    ComponentName componentName = new ComponentName(
+                            otherAppActivity.applicationInfo.packageName,
+                            otherAppActivity.name
+                    );
+                    // make sure it does NOT open in the stack of your activity
+                    rateIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    // task reparenting if needed
+                    rateIntent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    // if the Google Play was already open in a search result
+                    //  this make sure it still go to the app page you requested
+                    rateIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    // this make sure only the Google Play app is allowed to
+                    // intercept the intent
+                    rateIntent.setComponent(componentName);
+                    context.startActivity(rateIntent);
+                    marketFound = true;
+                    break;
+
+                }
+            }
+
+            // if GP not present on device, open web browser
+            if (!marketFound) {
+                Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com/store/apps/details?id="+appId));
+                context.startActivity(webIntent);
+            }
+        }
 
 
     }
