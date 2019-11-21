@@ -37,6 +37,7 @@ import pe.com.app.unibell.appunibell.Clientes.Activity_MigrarCliente;
 import pe.com.app.unibell.appunibell.Clientes.Activity_Visita_Cliente;
 import pe.com.app.unibell.appunibell.Clientes.Activity_clientes;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
+import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.DAO.Menu_StringDAO;
 import pe.com.app.unibell.appunibell.Liquidacion.Activity_Liquidacion;
 import pe.com.app.unibell.appunibell.Planilla.Activity_AprobacionPlanilla;
@@ -97,6 +98,9 @@ protected void onCreate(Bundle savedInstanceState) {
          try{
              sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
              editor_Shared= getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE).edit();
+
+            //Eliminando la data que nunca se guardo
+             new Documentos_Cobra_CabDAO().deleteTemp();
 
             DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
             dataBaseHelper.createDataBase();

@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import pe.com.app.unibell.appunibell.AD.Clientes_Adapter;
 import pe.com.app.unibell.appunibell.BE.ClientesBE;
 import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
+import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 
@@ -46,6 +47,9 @@ public class Activity_FiltroClientes extends AppCompatActivity {
         sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
         sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
 
+
+        //Eliminando la data que nunca se guardo
+        new Documentos_Cobra_CabDAO().deleteTemp();
 
         txtRUC = (EditText)findViewById(R.id.cl_txtruc);
         txtCodigoCliente = (EditText)findViewById(R.id.cl_txtcodigo);

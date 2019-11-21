@@ -596,13 +596,16 @@ public class Fragment_Cobranza extends Fragment implements
             String sFPago = "";
             Integer vID_Cobranza = 0;
             for (int j = 0; j < documentos_cobra_cabDAO.lst.size(); j++) {
-                Documentos_Cobra_CabBE documentos_cobra_cabBE2 = new Documentos_Cobra_CabBE();
+
+ /*               Documentos_Cobra_CabBE documentos_cobra_cabBE2 = new Documentos_Cobra_CabBE();
                 documentos_cobra_cabBE2.setGUARDADO(2);
                 documentos_cobra_cabBE2.setID_COBRANZA(cobranza_cabecera_adapter.lst.get(j).getID_COBRANZA());
                 documentos_cobra_cabBE2.setN_RECIBO(cobranza_cabecera_adapter.lst.get(j).getN_RECIBO());
                 documentos_cobra_cabBE2.setID_COBRADOR(cobranza_cabecera_adapter.lst.get(j).getID_COBRADOR());
                 documentos_cobra_cabBE2.setN_SERIE_RECIBO(cobranza_cabecera_adapter.lst.get(j).getN_SERIE_RECIBO());
                 documentos_cobra_cabDAO.updateEstado(documentos_cobra_cabBE2);
+*/
+
 
                 vID_Cobranza = cobranza_cabecera_adapter.lst.get(j).getID_COBRANZA();
                 sFPago = cobranza_cabecera_adapter.lst.get(j).getFPAGO().trim();
@@ -979,6 +982,17 @@ public class Fragment_Cobranza extends Fragment implements
 
             //CONFIRMAMOS LA ACTUALIZACIÓN DE LA COBRANZA
             if (iAccion == 3) {
+
+                for (int j = 0; j < documentos_cobra_cabDAO.lst.size(); j++) {
+                    Documentos_Cobra_CabBE documentos_cobra_cabBE2 = new Documentos_Cobra_CabBE();
+                    documentos_cobra_cabBE2.setGUARDADO(2);
+                    documentos_cobra_cabBE2.setID_COBRANZA(cobranza_cabecera_adapter.lst.get(j).getID_COBRANZA());
+                    documentos_cobra_cabBE2.setID_COBRADOR(cobranza_cabecera_adapter.lst.get(j).getID_COBRADOR());
+                    documentos_cobra_cabBE2.setN_RECIBO(cobranza_cabecera_adapter.lst.get(j).getN_RECIBO());
+                    documentos_cobra_cabBE2.setN_SERIE_RECIBO(cobranza_cabecera_adapter.lst.get(j).getN_SERIE_RECIBO());
+                    documentos_cobra_cabDAO.updateEstado(documentos_cobra_cabBE2);
+                }
+
                 new Inser_UpdateCobranzaAsyncTask(
                         sharedSettings.getString("ID_COBRANZA", "0").toString(),
                         sharedSettings.getString("MAX_CODUNICO", "0").toString()

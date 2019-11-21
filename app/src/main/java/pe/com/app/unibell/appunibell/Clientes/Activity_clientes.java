@@ -25,6 +25,7 @@ import androidx.core.view.MenuItemCompat;
 import pe.com.app.unibell.appunibell.AD.Clientes_Adapter;
 import pe.com.app.unibell.appunibell.BE.ClientesBE;
 import pe.com.app.unibell.appunibell.DAO.ClientesDAO;
+import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.R;
 
 public class Activity_clientes extends AppCompatActivity {
@@ -58,6 +59,9 @@ public class Activity_clientes extends AppCompatActivity {
 
             sharedSettings=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), MODE_PRIVATE);
             editor_Shared=getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF),MODE_PRIVATE).edit();
+
+//Eliminando la data que nunca se guardo
+            new Documentos_Cobra_CabDAO().deleteTemp();
 
             cl_lblregistros=(TextView) findViewById(R.id.cl_lblregistros);
             cl_lvclientes=(ListView)findViewById(R.id.cl_lvclientes);
