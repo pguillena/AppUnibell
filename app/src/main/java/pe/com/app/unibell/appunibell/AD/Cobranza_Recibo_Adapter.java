@@ -52,6 +52,7 @@ public class Cobranza_Recibo_Adapter  extends ArrayAdapter<Documentos_Cobra_CabB
             mainHolder.rc_item4 = (TextView) convertView.findViewById(R.id.rc_item4);
             mainHolder.rc_item5 = (TextView) convertView.findViewById(R.id.rc_item5);
             mainHolder.rc_itemPlanilla = (TextView) convertView.findViewById(R.id.rc_itemPlanilla);
+            mainHolder.fj_item6Label = (TextView) convertView.findViewById(R.id.fj_item6Label);
 
             mainHolder.cl_btneditar = (Button) convertView.findViewById(R.id.cl_btneditar);
             convertView.setTag(mainHolder);
@@ -69,7 +70,17 @@ public class Cobranza_Recibo_Adapter  extends ArrayAdapter<Documentos_Cobra_CabB
         }
         mainHolder.rc_item5.setText(funciones.LetraCapital( documentos_cobra_cabBE.getESTADODESC().toString() ));
 
-        mainHolder.rc_itemPlanilla.setText(documentos_cobra_cabBE.getSERIE_PLANILLA().toString() + "-" +  documentos_cobra_cabBE.getN_PLANILLA().toString());
+        mainHolder.rc_itemPlanilla.setVisibility(View.GONE);
+        mainHolder.fj_item6Label.setVisibility(View.GONE);
+
+        if(!documentos_cobra_cabBE.getN_PLANILLA().equals("0"))
+        {
+            mainHolder.rc_itemPlanilla.setText(documentos_cobra_cabBE.getSERIE_PLANILLA().toString() + "-" +  documentos_cobra_cabBE.getN_PLANILLA().toString());
+            mainHolder.rc_itemPlanilla.setVisibility(View.VISIBLE);
+            mainHolder.fj_item6Label.setVisibility(View.VISIBLE);
+        }
+
+
 
 
         if(!documentos_cobra_cabBE.getESTADO().toString().trim().equals("40003")) {
@@ -165,7 +176,7 @@ public class Cobranza_Recibo_Adapter  extends ArrayAdapter<Documentos_Cobra_CabB
     }
 
     static class MainHolder {
-        TextView rc_item1,rc_item2,rc_item3,rc_item4,rc_item5, rc_itemPlanilla;
+        TextView rc_item1,rc_item2,rc_item3,rc_item4,rc_item5, rc_itemPlanilla, fj_item6Label;
         Button cl_btneditar;
 
     }

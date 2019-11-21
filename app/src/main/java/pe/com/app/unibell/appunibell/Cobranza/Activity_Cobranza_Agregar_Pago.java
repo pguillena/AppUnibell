@@ -343,6 +343,10 @@ public class Activity_Cobranza_Agregar_Pago
                 editor_Shared.putString("cpbancoctacte",rp_lblbancoctacte.getTag().toString());
                 editor_Shared.putString("cpmonto", rp_txtmonto.getText().toString());
                 editor_Shared.putString("cptipocambio",rp_txttipocambio.getText().toString());
+                editor_Shared.putString("N_RECIBO",rp_txtnumero.getText().toString());
+                editor_Shared.putString("N_SERIE_RECIBO",rp_txtserie.getText().toString());
+
+
                 if(rp_swmoneda.isChecked()) {
                     editor_Shared.putString("cpmoneda", "$");
                 }else{

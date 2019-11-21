@@ -36,6 +36,24 @@ public class Documentos_Cobra_DetBE {
     private Integer GUARDADO;
     private Integer SINCRONIZADO;
 
+    private String N_SERIE_RECIBO;
+    private String N_RECIBO;
+
+    public void setN_SERIE_RECIBO(String n_SERIE_RECIBO) {
+        N_SERIE_RECIBO = n_SERIE_RECIBO;
+    }
+
+    public void setN_RECIBO(String n_RECIBO) {
+        N_RECIBO = n_RECIBO;
+    }
+
+    public String getN_SERIE_RECIBO() {
+        return N_SERIE_RECIBO;
+    }
+
+    public String getN_RECIBO() {
+        return N_RECIBO;
+    }
 
     public Integer getID_COBRANZA() {
         return ID_COBRANZA;

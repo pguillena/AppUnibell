@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import java.util.ArrayList;
+
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_DetBL;
@@ -465,8 +466,9 @@ public class Documentos_Cobra_CabDAO {
                     " AND (A.COD_CLIENTE ='"+ sCOD_CLIENTE+ "' OR '" + sCOD_CLIENTE +"'='XXX')\n" +
                     " AND A.ID_EMPRESA =" + sID_EMPRESA +"\n" +
                     " AND A.ID_LOCAL =" + sID_LOCAL + "\n" +
-                    " AND (substr(A.FECHA,7,4) || substr(A.FECHA,4,2) || substr(A.FECHA,1,2) ='" + sFECHA +"' OR '" + sFECHA + "'= '')\n" +
-                    " AND A.ESTADO <> 40002";
+                    " AND (substr(A.FECHA,7,4) || substr(A.FECHA,4,2) || substr(A.FECHA,1,2) ='" + sFECHA +"' OR '" + sFECHA + "'= '') \n " +
+                    " ORDER BY A.N_RECIBO DESC  ";
+                  //  " AND A.ESTADO <> 40002";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQLRECIBOS, null);
             lst = new ArrayList<Documentos_Cobra_CabBE>();
@@ -1066,23 +1068,67 @@ public class Documentos_Cobra_CabDAO {
                         sURLCobranza_Cab);
             }
 
+
+            String SQL_ANULAR = "SELECT ID_COBRANZA FROM S_CCM_DOCUMENTOS_COBRA_CAB WHERE " +
+                                "      N_RECIBO       = " + documentos_cobra_cabBE.getN_RECIBO() +
+                                " AND  N_SERIE_RECIBO = " + documentos_cobra_cabBE.getN_SERIE_RECIBO();
+
+
+            Cursor cursorAnula = null;
+            cursorAnula= DataBaseHelper.myDataBase.rawQuery(SQL_ANULAR, null);
+            ArrayList<String> listaIdCobranza = new ArrayList<String>();
+
+                if (cursorAnula.moveToFirst()) {
+                    do {
+                        listaIdCobranza.add(Funciones.isNullColumn(cursorAnula,"ID_COBRANZA","0"));
+                    } while (cursorAnula.moveToNext());
+                }
+
             //CYPER666
             ContentValues cv = new ContentValues();
 
-            cv.put("ESTADO","40002");
-            cv.put("GUARDADO","4");
-
-            DataBaseHelper.myDataBase.beginTransaction();
-            DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_CAB",cv,"ID_COBRANZA = ?",
-                    new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRANZA())});
-
+            cv.put("ESTADO", "40002");
+            cv.put("GUARDADO", "4");
             ContentValues cv2 = new ContentValues();
-            cv2.put("ESTADO","40002");
-            DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_DET",cv2,"ID_COBRANZA = ?",
-                    new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRANZA())});
+            cv2.put("ESTADO", "40002");
 
-            DataBaseHelper.myDataBase.setTransactionSuccessful();
-            DataBaseHelper.myDataBase.endTransaction();
+                if(listaIdCobranza!=null && listaIdCobranza.size()>0) {
+
+                    for (int i = 0; i<listaIdCobranza.size(); i++) {
+
+                        DataBaseHelper.myDataBase.beginTransaction();
+
+                        DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_CAB", cv, "ID_COBRANZA = ?",
+                                new String[]{listaIdCobranza.get(i)});
+
+                        DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_DET", cv2, "ID_COBRANZA = ?",
+                                new String[]{listaIdCobranza.get(i)});
+
+                        DataBaseHelper.myDataBase.setTransactionSuccessful();
+                        DataBaseHelper.myDataBase.endTransaction();
+
+                    }
+                }
+                else
+                {
+
+                    DataBaseHelper.myDataBase.beginTransaction();
+
+                    DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_CAB",cv,"ID_COBRANZA = ?",
+                            new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRANZA())});
+
+                    cv2.put("ESTADO","40002");
+                    DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_DET",cv2,"ID_COBRANZA = ?",
+                            new String[]{String.valueOf(documentos_cobra_cabBE.getID_COBRANZA())});
+
+                    DataBaseHelper.myDataBase.setTransactionSuccessful();
+                    DataBaseHelper.myDataBase.endTransaction();
+
+
+                }
+
+
+
 
             sMensaje="";
         }catch (Exception ex){

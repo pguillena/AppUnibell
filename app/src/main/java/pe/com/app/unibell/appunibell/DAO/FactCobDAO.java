@@ -353,7 +353,10 @@ public class FactCobDAO {
                     "  A.F_ACEPTACION, A.F_TRANSFE, A.ANO, A.MES, A.LIBRO, A.VOUCHER,\n" +
                     "  A.ITEM, A.TIPO_REFERENCIA, A.SERIE_REF, A.NRO_REFERENCIA, A.CONCEPTO, A.SISTEMA_ORIGEN,\n" +
                     "  A.VENDED, A.BANCO, A.L_AGENCIA, A.L_REFBCO, A.L_CONDLE, A.MONEDA,\n" +
-                    "  A.IMPORTE, A.TCAM_IMP, A.SALDO, A.TCAM_SAL, A.NUMERO_CANJE, A.ESTADO,\n" +
+                    "  A.IMPORTE, A.TCAM_IMP, " +
+                    " A.SALDO, " +
+                    //" (SELECT SUM(T.SALDO) FROM FACTCOB T WHERE  T.TIPDOC = A.TIPDOC AND  T.SERIE_NUM = A.SERIE_NUM AND T.NUMERO = A.NUMERO) AS SALDO, " +
+                    " A.TCAM_SAL, A.NUMERO_CANJE, A.ESTADO,\n" +
                     "  A.CTACTBLE, A.F_RECEPCION, A.C_USUARIO, A.C_PERFIL, A.C_CPU, A.FEC_REG,\n" +
                     "  A.C_USUARIO_MOD, A.C_PERFIL_MOD, A.FEC_MOD, A.C_CPU_MOD, A.N_SERIE_RECIBO_COBRA, A.N_RECIBO_COBRA,\n" +
                     "  A.ANO_PROVISION,A.MES_CSTGO,A.ANO_CSTGO,A.LIBRO_CSTGO,A.VOUCHER_CSTGO,"+

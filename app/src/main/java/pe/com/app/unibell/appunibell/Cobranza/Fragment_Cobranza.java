@@ -22,6 +22,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -352,6 +353,7 @@ public class Fragment_Cobranza extends Fragment implements
                 if (sharedSettings.getString("COBRANZA_EVENTO", "0").toString().trim().equals("1")) {
                     CargarDetalleEdit();
                 } else {
+                    //CYPER1000
                     CargarTemporal();
                 }
 
@@ -842,7 +844,8 @@ public class Fragment_Cobranza extends Fragment implements
             documentos_cobra_detBE.setNUMERO(factCobBE.getNUMERO().toString());
             documentos_cobra_detBE.setIMPORTE(Double.valueOf(factCobBE.getIMPORTE().toString()));
             documentos_cobra_detBE.setMONEDA(factCobBE.getMONEDA().toString());
-
+            //Saldo que se descuenta mientras se va descontando
+            documentos_cobra_detBE.setSALDO(factCobBE.getSALDO());
             //Monto que se esta amortizando(Al aplicar se copia al campo de cobranazas y se quita el boton)
             documentos_cobra_detBE.setM_COBRANZA(factCobBE.getVAMORTIZADO());
             documentos_cobra_detBE.setID_EMPRESA(Integer.valueOf(sharedSettings.getString("iID_EMPRESA", "").toString()));
@@ -864,8 +867,6 @@ public class Fragment_Cobranza extends Fragment implements
             documentos_cobra_detBE.setCODUNC_LOCAL(Integer.valueOf(sharedSettings.getString("MAX_CODUNICO", "0").toString()));
             documentos_cobra_detBE.setGUARDADO(0);
             documentos_cobra_detBE.setSINCRONIZADO(0);
-            //Saldo que se descuenta mientras se va descontando
-            documentos_cobra_detBE.setSALDO( funciones.restar(documentos_cobra_detBE.getSALDO_INICIAL(), documentos_cobra_detBE.getM_COBRANZA()));
 
             new Inser_DetalleAsyncTask(documentos_cobra_detBE).execute();
         } catch (Exception e) {
@@ -1161,6 +1162,10 @@ public class Fragment_Cobranza extends Fragment implements
                     factCobBE.setCODUNC_LOCAL(Integer.valueOf(sharedSettings.getString("MAX_CODUNICO", "0").toString()));
                     new Inser_TemporalAsyncTask(factCobBE).execute();
                 }
+
+    //CAMBIO CYPER
+                CargarTemporal();
+
             } catch (Exception ex) {
                 //Toast.makeText(getApplication(),getResources().getString(R.string.msg_nohayregistros), Toast.LENGTH_LONG).show();
             }
@@ -1203,7 +1208,8 @@ public class Fragment_Cobranza extends Fragment implements
                     new ToastLibrary(getActivity(), result.toString()).Show();
                 } else {
                     //Cargamos el Temporal FactCOb amarrado a la Cabecera de la cobranza.
-                    CargarTemporal();
+                    //comentado cyper
+                   // CargarTemporal();
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -1244,12 +1250,16 @@ public class Fragment_Cobranza extends Fragment implements
 
                         if (item.getTIPDOC().equals(item2.getTIPDOC()) && item.getSERIE_NUM().equals(item2.getSERIE_NUM()) && item.getNUMERO().equals(item2.getNUMERO().toString()))
                         {
+                            if(!sharedSettings.getString("N_RECIBO","0").toString().equals(item.getN_RECIBO()))
+                            {
+
                             if(factCobDAO.lst.get(j).getSALDO()>0) {
                                 factCobDAO.lst.get(j).setSALDO(Double.valueOf(funciones.restar(factCobDAO.lst.get(j).getSALDO(), item.getM_COBRANZA())));
                             }
                             else
                             {
                                 factCobDAO.lst.get(j).setSALDO(0.0);
+                            }
                             }
                         }
 
@@ -1259,18 +1269,33 @@ public class Fragment_Cobranza extends Fragment implements
             }
 
             //Cobranza por antiguedad
-/*
+
             if(sharedSettings.getString("I_CANC_ANTIGUO", "N").toString().equals("S"))
             {
                 if(factCobDAO.lst!=null && factCobDAO.lst.size()>0)
                 {
+                    ArrayList<FactCobBE> listaDetalle = new ArrayList<FactCobBE>();
+                    listaDetalle.clear();
+                    String fechaVcto = "";
+                 double saldoCabecera =  Double.parseDouble(sharedSettings.getString("SALDO_CABECERA", "0.00"));
+
                   for(int i = 0; i < factCobDAO.lst.size(); i++)
                   {
+                    if((saldoCabecera>0 && factCobDAO.lst.get(i).getSALDO()>0.0) || fechaVcto.equals(factCobDAO.lst.get(i).getF_VENCTO()) || factCobDAO.lst.get(i).getCOND_PAG().equals("001") || factCobDAO.lst.get(i).getCOBRANZA()>0.0)
+                    {
+                        saldoCabecera = funciones.restar(saldoCabecera, factCobDAO.lst.get(i).getSALDO());
+                        fechaVcto = factCobDAO.lst.get(i).getF_VENCTO();
+                        listaDetalle.add(factCobDAO.lst.get(i));
+                    }
 
                   }
+
+                    factCobDAO.lst = listaDetalle;
                 }
+
+
             }
-*/
+
             //Fin cobranza por antiguedad
 
 
@@ -1478,7 +1503,7 @@ public class Fragment_Cobranza extends Fragment implements
             //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
             try {
                 if (result.getInt("status") == 0) {
-                    Mensaje("Error al enviar los registros.");
+                    Mensaje("Error al ENVIAR los registros.");
                 } else {
                     if (!result.getString("MSG").toString().trim().equals("-")) {
                         Mensaje(result.getString("MSG").toString().trim());

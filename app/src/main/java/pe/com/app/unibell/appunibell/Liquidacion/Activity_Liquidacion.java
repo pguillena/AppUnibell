@@ -1167,11 +1167,13 @@ public class Activity_Liquidacion extends AppCompatActivity
 
 
             if(documentos_cobra_cabDAO.lst!=null && documentos_cobra_cabDAO.lst.size()>0)
-            { String fpago;
+            { String fpago, fechaRecibo;
                 for(int i=0; i<documentos_cobra_cabDAO.lst.size(); i++)
                 {
                     fpago = documentos_cobra_cabDAO.lst.get(i).getCODIGO_FPAGO();
-                    if(fpago.equals("P") || fpago.equals("V") || fpago.equals("D") || fpago.equals("M") || fpago.equals("I") || fpago.equals("H") || fpago.equals("S"))
+                    fechaRecibo = documentos_cobra_cabDAO.lst.get(i).getFECHA_RECIBO();
+
+                    if(fechaRecibo.equals(lq_txtffecha.toString()) && ( fpago.equals("P") || fpago.equals("V") || fpago.equals("D") || fpago.equals("M") || fpago.equals("I") || fpago.equals("H") || fpago.equals("S")))
                     {
                         if(!documentos_cobra_cabDAO.lst.get(i).getESTADO_CONCILIADO().equals("40025"))
                         {
@@ -1308,13 +1310,11 @@ public class Activity_Liquidacion extends AppCompatActivity
             try {
                 Mensaje(result.getString("MSG").toString());
             }catch(Exception ex){
-                if(ex.getMessage().equals("No value for MSG"))
-                {
-                    Mensaje("El servidor se encuentra ocupado, por favor inténtelo en unos minutos");
-                }
-                else
+                if(!ex.getMessage().equals("No value for MSG"))
                 {
                     Mensaje(ex.getMessage());
+                    //Mensaje("El servidor se encuentra ocupado, por favor inténtelo en unos minutos");
+                   // Mensaje("No se encontraron documentos pendientes de conciliar");
                 }
 
             }

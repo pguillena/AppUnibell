@@ -386,7 +386,16 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
 
     private void DocumentoCreado(String sOpcion,String phat){
         try {
-            String to="galvezbr@gmail.com",cc="rgalvez_b@hotmail.com",asunto="Adjunto el Recibo 12333",mensaje="Mensaje de Prueba...";
+
+             String to="percy.guillen@unibell.com.pe",cc="pguillena@gmail.com";
+             String asunto="",mensaje="";
+
+             if(documentos_cobra_cabDAO.lst!=null && documentos_cobra_cabDAO.lst.size() > 0)
+             {
+                 asunto = documentos_cobra_cabDAO.lst.get(0).getRECIBO().toString();
+                 mensaje = documentos_cobra_cabDAO.lst.get(0).getRECIBO().toString();
+             }
+
             File file = new File(phat);
             //ABRIMOS EL DOCUMENTO
             if(sOpcion.equals("0")){
