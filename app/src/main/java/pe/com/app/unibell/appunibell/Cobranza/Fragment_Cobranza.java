@@ -1266,8 +1266,8 @@ public class Fragment_Cobranza extends Fragment implements
                         {
                             if(!sharedSettings.getString("N_RECIBO","0").toString().equals(item.getN_RECIBO()))
                             {
-
-                            if(factCobDAO.lst.get(j).getSALDO()>0) {
+                            if(factCobDAO.lst.get(j).getSALDO()>0)
+                            {
                                 factCobDAO.lst.get(j).setSALDO(Double.valueOf(funciones.restar(factCobDAO.lst.get(j).getSALDO(), item.getM_COBRANZA())));
                             }
                             else
@@ -1276,9 +1276,7 @@ public class Fragment_Cobranza extends Fragment implements
                             }
                             }
                         }
-
                     }
-
                 }
             }
 
