@@ -269,14 +269,14 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
 
                     if (totalDolares > 0)
                     {
-                        htmlSolesCabecera = "<td width='5%'><b>CLIENTE</b></td><td><b>:</b></td><td width='60%'>"+ documentos_cobra_cabDAO.lst.get(0).getCOD_CLIENTE().toString() +" - "+ documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString()+" </td><td width='15%'><b>TIPO CAMBIO</b></td><td><b>:</b></td><td width='15%'> S/ "+ funciones.FormatDecimal(String.valueOf(documentos_cobra_cabDAO.lst.get(0).getT_CAMBIO_TIENDA()).trim().replace(",","")) +"</td></tr> ";
+                        htmlSolesCabecera = "<td width='3%'><b>CLIENTE</b></td><td><b>:</b></td><td width='50%'>"+ documentos_cobra_cabDAO.lst.get(0).getCOD_CLIENTE().toString() +" - "+ documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString()+" </td><td width='13%'><b>TIPO CAMBIO</b></td><td><b>:</b></td><td width='28%'> S/ "+ funciones.FormatDecimal(String.valueOf(documentos_cobra_cabDAO.lst.get(0).getT_CAMBIO_TIENDA()).trim().replace(",","")) +"</td></tr> ";
                         htmlSolesTitulo = "<td width='6%'  align='center' style='font-size:10px;font-weight:bold'>CAMBIO</td>";
 
                     }
                     else if(totalSoles>0)
                     {
 
-                        htmlSolesCabecera =   "<td width='5%'><b>CLIENTE</b></td><td><b>:</b></td><td width='60%'>"+ documentos_cobra_cabDAO.lst.get(0).getCOD_CLIENTE().toString() +" - "+ documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString()+" </td><td width='15%'><b>DEUDA TOTAL</b></td><td><b>:</b></td><td width='15%'> S/ "+ funciones.FormatDecimal(totalDeudor.toString())  +"</td></tr> ";
+                        htmlSolesCabecera =   "<td width='3%'><b>CLIENTE</b></td><td><b>:</b></td><td width='50%'>"+ documentos_cobra_cabDAO.lst.get(0).getCOD_CLIENTE().toString() +" - "+ documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString()+" </td><td width='13%'><b>DEUDA TOTAL</b></td><td><b>:</b></td><td width='28%'> "+ funciones.FormatDecimal(totalDeudor.toString())+ " - " +  funciones.FormatDecimal(String.valueOf(totalSoles))  + " = <b>S/ "+  funciones.FormatDecimal(funciones.restar(totalDeudor, totalSoles).toString()) +  "</b></td></tr> ";
                         htmlSolesTitulo = "";
 
                     }
@@ -288,7 +288,7 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                                 "<table width='100%' cellpadding='4px'>" +
                                 "<tr width='100%'>" +
                                 // "<td width='80%'  style='font-weight:bold'><b>COBRADOR:</b>" + documentos_cobra_cabDAO.lst.get(0).getNOMCOBRADOR().toString() + "</td><td width='20%'><b>FECHA:</b>" + documentos_cobra_cabDAO.lst.get(0).getFECHA().toString() + "</td></tr>" +
-                                "<td width='5%' ><b>COBRADOR</b></td><td><b>:</b></td><td width='60%'>"+ documentos_cobra_cabDAO.lst.get(0).getNOMCOBRADOR().toString() +" </td><td width='15%'><b>FECHA</b></td><td><b>:</b></td><td width='15%'>"+documentos_cobra_cabDAO.lst.get(0).getFECHA_RECIBO().toString()+"</td></tr> "+
+                                "<td width='3%' ><b>COBRADOR</b></td><td><b>:</b></td><td width='50%'>"+ documentos_cobra_cabDAO.lst.get(0).getNOMCOBRADOR().toString() +" </td><td width='13%'><b>FECHA</b></td><td><b>:</b></td><td width='28%'>"+documentos_cobra_cabDAO.lst.get(0).getFECHA_RECIBO().toString()+"</td></tr> "+
                                 "<tr width='100%'>" +
                                 //"<td width='80%'><b>CLIENTE:</b>" + documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString() + "</td><td width='20%'><b>TIPO CAMBIO:</b>" + documentos_cobra_cabDAO.lst.get(0).getT_CAMBIO_TIENDA().toString() + "</td></tr>" +
                                 htmlSolesCabecera+
