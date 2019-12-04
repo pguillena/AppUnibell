@@ -1514,8 +1514,20 @@ public class Fragment_Cobranza extends Fragment implements
         protected void onPostExecute(JSONObject result) {
             //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
             try {
-                if (result.getInt("status") == 0) {
-                    Mensaje("Error al ENVIAR los registros.");
+                if (result.getString("status").equals("0") || result.getString("status").equals("false")) {
+
+                    if (result.getString("status").equals("false") && result.getString("message").contains("reset"))
+                    {
+                        Mensaje("Error, verifique su conexion a internet.");
+                        return;
+                    }
+                    else
+                    {
+                        Mensaje("Error al ENVIAR los registros.");
+                        return;
+                    }
+
+
                 } else {
                     if (!result.getString("MSG").toString().trim().equals("-")) {
                         Mensaje(result.getString("MSG").toString().trim());

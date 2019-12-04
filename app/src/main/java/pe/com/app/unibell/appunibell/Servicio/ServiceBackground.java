@@ -99,23 +99,20 @@ public class ServiceBackground extends Service {
 
                         currentVersion = funciones.getVersionActual(getApplicationContext());
                         new LoadGetGuardadaSQLite_AsyncTask().execute();
+                        //ANULAMOS
+                        new AnularSQLite_AsyncTask().execute();
 
+                        if(lhoraActual24>2000  && lhoraActual24<700) {
 
-                       /* if(lhoraActual24>200 && lhoraActual24<230  || lhoraActual24>600 && lhoraActual24<630) {
-
-                            editor_Shared.putString("VERSION_PLAYSTORE", "");
-                            editor_Shared.commit();
-                        }*/
                         String online = sharedSettings.getString("VERSION_PLAYSTORE", "").toString()+funciones.FechaActual();
                         String local = currentVersion+funciones.FechaActual();
-
 
                         if (!(sharedSettings.getString("VERSION_PLAYSTORE", "").toString()).equals(currentVersion+funciones.FechaActual()))
                             {
                                 new updateApplication().execute();
                             }
 
-
+                        }
 
                         Toast toastCodigo = Toast.makeText(getApplicationContext(),"COBRANZA REGISTRADA ENVIADA AL ORACLE", Toast.LENGTH_SHORT);
                         toastCodigo.show();
@@ -174,8 +171,7 @@ public class ServiceBackground extends Service {
                                 + sharedSettings.getString("iID_LOCAL", "0")+ '/'
                                 + sharedSettings.getString("iID_VENDEDOR", "0"));
 
-              //ANULAMOS
-                new AnularSQLite_AsyncTask().execute();
+
 
             } catch (Exception ex) {
                 //Toast.makeText(getApplication(),getResources().getString(R.string.msg_nohayregistros), Toast.LENGTH_LONG).show();

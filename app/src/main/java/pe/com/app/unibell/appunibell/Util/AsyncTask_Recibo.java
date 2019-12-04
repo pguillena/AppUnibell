@@ -275,8 +275,14 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                     }
                     else if(totalSoles>0)
                     {
-
-                        htmlSolesCabecera =   "<td width='3%'><b>CLIENTE</b></td><td><b>:</b></td><td width='50%'>"+ documentos_cobra_cabDAO.lst.get(0).getCOD_CLIENTE().toString() +" - "+ documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString()+" </td><td width='13%'><b>DEUDA TOTAL</b></td><td><b>:</b></td><td width='28%'> "+ funciones.FormatDecimal(totalDeudor.toString())+ " - " +  funciones.FormatDecimal(String.valueOf(totalSoles))  + " = <b>S/ "+  funciones.FormatDecimal(funciones.restar(totalDeudor, totalSoles).toString()) +  "</b></td></tr> ";
+                        if(totalDeudor>0.0)
+                        {
+                            htmlSolesCabecera =   "<td width='3%'><b>CLIENTE</b></td><td><b>:</b></td><td width='50%'>"+ documentos_cobra_cabDAO.lst.get(0).getCOD_CLIENTE().toString() +" - "+ documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString()+" </td><td width='13%'><b>DEUDA TOTAL</b></td><td><b>:</b></td><td width='28%'> "+ funciones.FormatDecimal(totalDeudor.toString())+ " - " +  funciones.FormatDecimal(String.valueOf(totalSoles))  + " = <b>S/ "+  funciones.FormatDecimal(funciones.restar(totalDeudor, totalSoles).toString()) +  "</b></td></tr> ";
+                        }
+                        else
+                        {
+                            htmlSolesCabecera =   "<td width='3%'><b>CLIENTE</b></td><td><b>:</b></td><td width='50%'>"+ documentos_cobra_cabDAO.lst.get(0).getCOD_CLIENTE().toString() +" - "+ documentos_cobra_cabDAO.lst.get(0).getRAZON_SOCIAL().toString()+" </td><td width='13%'></td><td></td><td width='28%'> </td></tr> ";
+                        }
                         htmlSolesTitulo = "";
 
                     }
@@ -325,6 +331,15 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
 
 
 
+                    Double saldoCalculado = documentos_cobra_cabDAO.lst.get(j).getSALDO();
+
+                    if (documentos_cobra_cabDAO.lst.get(j).getSALDO_INICIAL().toString().equals(documentos_cobra_cabDAO.lst.get(j).getSALDO().toString()))
+                    {
+                        saldoCalculado =   funciones.restar(documentos_cobra_cabDAO.lst.get(j).getSALDO_INICIAL(), documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA());
+
+                    }
+
+
                     htmToDet = htmToDet + "" +
                             "<tr><td width='2%' style='font-size:10px' align='left' >" + (j+1) + "</td>" +
                             "<td width='24%' style='font-size:10px'>" + documentos_cobra_cabDAO.lst.get(j).getVENDEDOR().toString() + "</td>" +
@@ -337,7 +352,7 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
                             "<td width='7%'  style='font-size:10px' align='right'>" + "S/ " + funciones.FormatDecimal(documentos_cobra_cabDAO.lst.get(j).getSALDO_INICIAL().toString()) + "</td>" +
                             "<td width='7%'  style='font-size:10px' align='right'>" + "S/ " + funciones.FormatDecimal(documentos_cobra_cabDAO.lst.get(j).getM_COBRANZA().toString()) + "</td>" +
                             htmlSolesDet+
-                            "<td width='6%'  style='font-size:10px' align='right'>" + "S/ "+ documentos_cobra_cabDAO.lst.get(j).getSALDO().toString() + "</td>" +
+                            "<td width='6%'  style='font-size:10px' align='right'>" + "S/ "+ saldoCalculado.toString() + "</td>" +
                             "</tr>";
                 }
 
@@ -377,7 +392,7 @@ public class AsyncTask_Recibo extends AsyncTask<String,String,Boolean> {
 
                 sHTML = htmToCab2 + htmToDet + sResumen + htmPie;
             }else{
-                sHTML="<html><body>NO SE PUDO CARGAR EL REPORTE</body></html>";
+                sHTML="<html><body>NO SE PUDO CARGAR EL REPORTE, POR FAVOR VALIDE SU CONEXION A INTERNET</body></html>";
             }
         }catch (Exception e){
         }

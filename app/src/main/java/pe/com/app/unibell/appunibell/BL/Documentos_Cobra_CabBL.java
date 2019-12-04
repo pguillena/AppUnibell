@@ -618,7 +618,7 @@ public class Documentos_Cobra_CabBL {
                     jsonObjectResult.accumulate("status", String.valueOf(jsonObjectRest.getString("status").trim()));
                     jsonObjectResult.accumulate("message", jsonObjectRest.getString("message"));
 
-                    if (jsonObjectRest.getString("status").trim().equals("0")) {
+                    if (jsonObjectRest.getString("status").trim().equals("0") || jsonObjectRest.getString("status").trim().equals("false")) {
                     } else {
                         JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(0);
                         //OBTENEMOS LOS VALORES ENVIADOS Y DE RETORNO
