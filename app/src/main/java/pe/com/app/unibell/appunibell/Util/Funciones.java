@@ -310,6 +310,7 @@ public class Funciones {
     public static boolean isConnectingToInternet(Context _context) {
         ConnectivityManager connectivity = (ConnectivityManager) _context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
+
         if (connectivity != null) {
             NetworkInfo[] info = connectivity.getAllNetworkInfo();
             if (info != null)
