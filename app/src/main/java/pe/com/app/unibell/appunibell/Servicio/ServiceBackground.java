@@ -99,20 +99,6 @@ public class ServiceBackground extends Service {
 
                         currentVersion = funciones.getVersionActual(getApplicationContext());
                         new LoadGetGuardadaSQLite_AsyncTask().execute();
-                        //ANULAMOS
-                        new AnularSQLite_AsyncTask().execute();
-
-                        if(lhoraActual24>2000  && lhoraActual24<700) {
-
-                        String online = sharedSettings.getString("VERSION_PLAYSTORE", "").toString()+funciones.FechaActual();
-                        String local = currentVersion+funciones.FechaActual();
-
-                        if (!(sharedSettings.getString("VERSION_PLAYSTORE", "").toString()).equals(currentVersion+funciones.FechaActual()))
-                            {
-                                new updateApplication().execute();
-                            }
-
-                        }
 
                         Toast toastCodigo = Toast.makeText(getApplicationContext(),"COBRANZA REGISTRADA ENVIADA AL ORACLE", Toast.LENGTH_SHORT);
                         toastCodigo.show();
@@ -122,6 +108,33 @@ public class ServiceBackground extends Service {
                         Log.e("FECHA", sfecha);
                         Log.e("HORA", shora);
                         //Toast.makeText(this.context, "GUARDO COORDENADAS", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                    if (funciones.isConnectingToInternet(getApplicationContext())) {
+
+                        //ANULAMOS
+                        new AnularSQLite_AsyncTask().execute();
+
+                        Toast toastCodigo = Toast.makeText(getApplicationContext(),"SE ACTUALIZARON LOS ANULADOS", Toast.LENGTH_SHORT);
+                        toastCodigo.show();
+
+                    }
+
+                    if (funciones.isConnectingToInternet(getApplicationContext())) {
+
+                        if(lhoraActual24>2000  && lhoraActual24<700) {
+
+                            String online = sharedSettings.getString("VERSION_PLAYSTORE", "").toString()+funciones.FechaActual();
+                            String local = currentVersion+funciones.FechaActual();
+
+                            if (!(sharedSettings.getString("VERSION_PLAYSTORE", "").toString()).equals(currentVersion+funciones.FechaActual()))
+                            {
+                                new updateApplication().execute();
+                            }
+
+                        }
+
                     }
                 }
                 this.backgroundThread.start();
@@ -164,12 +177,15 @@ public class ServiceBackground extends Service {
 
                 }
 
+/*
+                        new s_vem_correlativoBL_Sincronizar().execute(
+                                ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_vem_correlativo + '/'
+                                        + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                                        + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                                        + sharedSettings.getString("iID_VENDEDOR", "0"));
 
-                new s_vem_correlativoBL_Sincronizar().execute(
-                        ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_vem_correlativo + '/'
-                                + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
-                                + sharedSettings.getString("iID_LOCAL", "0")+ '/'
-                                + sharedSettings.getString("iID_VENDEDOR", "0"));
+*/
+
 
 
 

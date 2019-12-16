@@ -267,16 +267,6 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 }
 
                 try{
-                new s_vem_correlativoBL_Sincronizar().execute(
-                        ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_vem_correlativo + '/'
-                                + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
-                                + sharedSettings.getString("iID_LOCAL", "0")+ '/'
-                                + sharedSettings.getString("iID_VENDEDOR", "0"));
-                } catch (Exception ex) {
-                        new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar correlativos.").Show();
-                   }
-
-                try{
                     new Ubigeo_Sincronizar_AsyncTask().execute(
                             ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blubigeo);
                 } catch (Exception ex) {
@@ -509,6 +499,17 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } catch (Exception ex) {
                     new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar Movimientos.").Show();
                 }
+
+                try{
+                    new s_vem_correlativoBL_Sincronizar().execute(
+                            ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_vem_correlativo + '/'
+                                    + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                                    + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                                    + sharedSettings.getString("iID_VENDEDOR", "0"));
+                } catch (Exception ex) {
+                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar correlativos.").Show();
+                }
+
                 break;
 
             case "RECORRIDO":
