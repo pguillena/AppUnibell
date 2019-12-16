@@ -58,12 +58,14 @@ import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_CabBE;
 import pe.com.app.unibell.appunibell.BE.Documentos_Cobra_MovBE;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_CabBL;
 import pe.com.app.unibell.appunibell.BL.Documentos_Cobra_MovBL;
+import pe.com.app.unibell.appunibell.Cobranza.Fragment_Cobranza;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Confirmar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialogo_Fragment_Fecha;
+import pe.com.app.unibell.appunibell.Main.Activity_Sincronizar;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Reportes.Activity_Cobranza_Liquidacion_Rep;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
@@ -130,7 +132,7 @@ public class Activity_Liquidacion extends AppCompatActivity
     private EditText txtPackingEnvio;
     private TextView txtProgressLoading;
     private ProgressBar pbLiquidacion;
-
+    private Integer iValidarSincro=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1449,8 +1451,46 @@ public class Activity_Liquidacion extends AppCompatActivity
         log_dialogaceptar.show(getSupportFragmentManager(), Dialog_Fragment_Aceptar.TAG);
     }
 
+    //PENDIENTES DE SINCRONIZAR
+    private class LoadGetGuardadaSQLite_AsyncTask extends AsyncTask<String, String,String> {
+        @Override
+        protected String doInBackground(String... p) {
+            try {
+                documentos_cobra_cabDAO.getByGuardado("2");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onPostExecute(String restResult) {
+            super.onPostExecute(restResult);
+            try {
+                if(documentos_cobra_cabDAO.lst.size()>0){
+                    iValidarSincro=10;
+                    Mensaje("Existe Documentos pendientes por sincronizar");
+                }
+
+            } catch (Exception ex) {
+                //Toast.makeText(getApplication(),getResources().getString(R.string.msg_nohayregistros), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
+
+
     @Override
     public void onAceptar() {
+        if(iValidarSincro==10){
+            Intent SMNU_SINCRONIZAR = new Intent(getApplication(), Activity_Sincronizar.class);
+            startActivity(SMNU_SINCRONIZAR);
+            iValidarSincro=0;
+        }
     }
 
     @Override

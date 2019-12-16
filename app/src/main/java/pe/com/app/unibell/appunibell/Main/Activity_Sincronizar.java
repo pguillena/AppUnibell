@@ -80,6 +80,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
     private GridView sin_lvprocesos;
     private SincronizarAdapter sincronizarAdapter = null;
     private SincronizaDAO sincronizaDAO = new SincronizaDAO();
+    private Documentos_Cobra_CabDAO documentos_cobra_cabDAO = new Documentos_Cobra_CabDAO();
     private SincronizarBE sincronizarBE=null;
     private SharedPreferences sharedSettings;
     private SharedPreferences.Editor editor_Shared;
@@ -394,6 +395,12 @@ public class Activity_Sincronizar extends AppCompatActivity {
 
                 break;
             case "DOCUMENTOS":
+                try{
+                new LoadGetGuardadaSQLite_AsyncTask().execute();
+                } catch (Exception ex) {
+                    new ToastLibrary(Activity_Sincronizar.this,"Error al Sincronizar Documentos Cab.").Show();
+                }
+
 
                 try{
                 new Documentos_Cobra_CabBL_Sincronizar().execute(
@@ -1817,9 +1824,6 @@ public class Activity_Sincronizar extends AppCompatActivity {
         }
     }
 
-
-
-
     public class dpm_packing_detBL_Sincronizar extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
@@ -1983,7 +1987,6 @@ public class Activity_Sincronizar extends AppCompatActivity {
         }
     }
 
-
     public class ClienteVendedor_Sincronizar_AsyncTask extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
         DECLARACION DE VARIABLES PRIVADAS EN LA CLASE ASYNTASK*/
@@ -2065,7 +2068,6 @@ public class Activity_Sincronizar extends AppCompatActivity {
             }
         }
     }
-
 
     public class VisitaCab_Sincronizar_AsyncTask extends AsyncTask<String, String, JSONObject> {
         /*ASYNCTASK<Parametros, Progreso, Resultado>
@@ -2189,9 +2191,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
             }
         }
     }
-
-
-
+/*
     private class LoadGetGuardadaSQLite_AsyncTask extends AsyncTask<String, String,String> {
         @Override
         protected String doInBackground(String... p) {
@@ -2241,6 +2241,7 @@ public class Activity_Sincronizar extends AppCompatActivity {
         }
     }
 
+    */
     private class InserCobranzaValidaAsyncTask extends AsyncTask<String, String, JSONObject> {
         private volatile boolean running = true;
         private ProgressDialog progressDialog = null;
@@ -2269,6 +2270,91 @@ public class Activity_Sincronizar extends AppCompatActivity {
                 } else {
                     //new ToastLibrary(getActivity(), result.getString("message")).Show();
                     if(documentos_cobra_cabBL2.lst.size()>0){
+                        /*
+                        editor_Shared.putString("PECNROPED",pedido_cabBL.lstPedido.get(0).getPECNROPED().toString());
+                        editor_Shared.putString("pREGISTRANDO","0");
+                        editor_Shared.commit();
+                        */
+                    }
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            finally {
+
+            }
+        }
+    }
+
+ //ENVIAMOS LA DATA PENDIENTES
+
+    private class LoadGetGuardadaSQLite_AsyncTask extends AsyncTask<String, String,String> {
+        @Override
+        protected String doInBackground(String... p) {
+            try {
+                documentos_cobra_cabDAO.getByGuardado("2");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onPostExecute(String restResult) {
+            super.onPostExecute(restResult);
+            try {
+
+                Integer ID_COBRANZA=0;
+                Integer CODUNC_LOCAL=0;
+                for (int c = 0; c < documentos_cobra_cabDAO.lst.size(); c++) {
+                    ID_COBRANZA=documentos_cobra_cabDAO.lst.get(c).getID_COBRANZA();
+                    CODUNC_LOCAL=documentos_cobra_cabDAO.lst.get(c).getCODUNC_LOCAL();
+                    new InserCobranzaAsyncTask(
+                            ID_COBRANZA.toString(),
+                            CODUNC_LOCAL.toString()).execute(ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_Insert);
+
+                }
+
+                new s_vem_correlativoBL_Sincronizar().execute(
+                        ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_vem_correlativo + '/'
+                                + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                                + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                                + sharedSettings.getString("iID_VENDEDOR", "0"));
+
+
+
+            } catch (Exception ex) {
+                //Toast.makeText(getApplication(),getResources().getString(R.string.msg_nohayregistros), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private class InserCobranzaAsyncTask extends AsyncTask<String, String, JSONObject> {
+        private volatile boolean running = true;
+        private ProgressDialog progressDialog = null;
+        private String ID_COBRANZA,CODUNC_LOCAL;
+
+        public InserCobranzaAsyncTask(String ID_COBRANZA,String CODUNC_LOCAL) {
+            this.ID_COBRANZA=ID_COBRANZA;
+            this.CODUNC_LOCAL=CODUNC_LOCAL;
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            return documentos_cobra_cabBL.InsertRest(ID_COBRANZA,CODUNC_LOCAL,p[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            try {
+                if (result.getInt("status")==0) {
+                } else {
+                    //new ToastLibrary(getActivity(), result.getString("message")).Show();
+                    if(documentos_cobra_cabBL.lst.size()>0){
                         /*
                         editor_Shared.putString("PECNROPED",pedido_cabBL.lstPedido.get(0).getPECNROPED().toString());
                         editor_Shared.putString("pREGISTRANDO","0");
