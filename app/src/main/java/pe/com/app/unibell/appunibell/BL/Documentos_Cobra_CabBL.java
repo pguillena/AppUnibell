@@ -633,10 +633,11 @@ public class Documentos_Cobra_CabBL {
 
                             //SI NO SALTO LAS VALIDACIONES DE LA BD ENTONCES
                             if(MSG.toString().trim().equals("-")){
-                                //ELIMINAMOS LA COBRANZA LOCAL
-                                this.EliminarCobranzaByID(sID_COBRANZA_LOCAL);
                                 //VOLVEMOS A SINCRONIZAR LA COBRANZA SOLO CON sID_COBRANZA_ORACLE
                                 this.PostSincronizarCobranza(sID_EMPRESA,sID_LOCAL,sID_VENDEDOR,sID_COBRANZA_ORACLE,"0");
+                                //ELIMINAMOS LA COBRANZA LOCAL
+                                this.EliminarCobranzaByID(sID_COBRANZA_LOCAL);
+
                             }
                         }
 

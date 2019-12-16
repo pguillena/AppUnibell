@@ -1543,6 +1543,7 @@ public class Fragment_Cobranza extends Fragment implements
         }
     }
 
+    //PROCESO QUE ENVIA AL ORACLE
     private class Inser_UpdateCobranzaAsyncTask extends AsyncTask<String, String, JSONObject> {
         private volatile boolean running = true;
         private ProgressDialog progressDialog = null;

@@ -44,6 +44,7 @@ dependencies {
     implementation files('libs/xmlworker-5.5.6.jar')
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'org.jsoup:jsoup:1.11.3'
-
+    implementation 'me.dm7.barcodescanner:zbar:1.9.13'
+    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
 
 }

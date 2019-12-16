@@ -299,6 +299,29 @@
                     android:fontFamily="@font/sf_pro_display_regular"
                     />
 
+                <Button
+                    android:id="@+id/btnbarcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Intentario"
+                    android:drawableLeft="@drawable/account_arrow_left_outline"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/pad_20dp"
+                    android:background="@drawable/borderradius_menu_unibell"
+                    android:textColor="@color/label_color_menu"
+                    android:layout_marginLeft="@dimen/pad_20dp"
+                    android:layout_marginRight="@dimen/pad_20dp"
+                    android:layout_marginTop="@dimen/pad_20dp"
+                    android:gravity="left|center_vertical"
+                    android:drawablePadding="@dimen/pad_20dp"
+                    android:textAllCaps="false"
+                    android:paddingLeft="@dimen/pad_20dp"
+                    android:paddingTop="@dimen/pad_20dp"
+                    android:paddingBottom="@dimen/pad_20dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    />
+
+
 
             </LinearLayout>
 

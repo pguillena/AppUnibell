@@ -26,7 +26,7 @@ public class Documentos_Cobra_CabDAO {
         String SQLCONDICION="";
         try {
             if(sEvento.trim().equals("0")) {
-                SQLCONDICION = " WHERE CODUNC_LOCAL=" + iPARAMETRO + " ORDER BY ID_COBRANZA DESC";
+                     SQLCONDICION = " WHERE CODUNC_LOCAL=" + iPARAMETRO + " ORDER BY ID_COBRANZA DESC";
             }else{
                 if(sN_SERIE_RECIBO.equals("") || sN_RECIBO.equals("")) {
                     SQLCONDICION = " WHERE ID_COBRANZA=" + iPARAMETRO + " ORDER BY ID_COBRANZA DESC";

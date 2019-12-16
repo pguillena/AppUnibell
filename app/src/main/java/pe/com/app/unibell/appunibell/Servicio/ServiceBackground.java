@@ -34,6 +34,7 @@ import pe.com.app.unibell.appunibell.DAO.Documentos_Cobra_CabDAO;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
 import pe.com.app.unibell.appunibell.Util.Funciones;
+import pe.com.app.unibell.appunibell.Util.ToastLibrary;
 
 public class ServiceBackground extends Service {
     private boolean isRunning;
@@ -111,16 +112,15 @@ public class ServiceBackground extends Service {
                             {
                                 new updateApplication().execute();
                             }
-
                         }
 
                         Toast toastCodigo = Toast.makeText(getApplicationContext(),"COBRANZA REGISTRADA ENVIADA AL ORACLE", Toast.LENGTH_SHORT);
                         toastCodigo.show();
 
-
                         Log.i(ConstantsLibrary.DEBUG_TAG , "COBRANZA REGISTRADA ENVIADA AL ORACLE");
                         Log.e("FECHA", sfecha);
                         Log.e("HORA", shora);
+
                         //Toast.makeText(this.context, "GUARDO COORDENADAS", Toast.LENGTH_SHORT).show();
                     }
                 }

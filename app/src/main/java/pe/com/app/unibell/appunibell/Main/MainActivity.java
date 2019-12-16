@@ -6,8 +6,10 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Parcelable;
 import android.os.SystemClock;
@@ -28,6 +30,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.Random;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -43,9 +46,11 @@ import pe.com.app.unibell.appunibell.Liquidacion.Activity_Liquidacion;
 import pe.com.app.unibell.appunibell.Planilla.Activity_AprobacionPlanilla;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Reportes.Activity_Reportes;
+import pe.com.app.unibell.appunibell.ScannerBarcode.Activity_ScannerBarcode;
 import pe.com.app.unibell.appunibell.Servicio.AlarmReceiver;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.Globals;
+import pe.com.app.unibell.appunibell.Util.ToastLibrary;
 
 public class MainActivity  extends AppCompatActivity {
     private SharedPreferences sharedSettings;
@@ -63,10 +68,10 @@ public class MainActivity  extends AppCompatActivity {
     private Integer iCountOrdenes=0;
     private ListView mnu_lvmenu;
     private MenuStringBL menuStringBL = new MenuStringBL();
-    private static final int REQUEST_CODE_1=1;
+    private static final int REQUEST_CODE_1=1,REQUEST_CODE_100=100;
     private Integer  SMNU_ORDLIST=0,SMNU_OLOCAL=0;
     private static String DB_NAME = "REST_POS_BD.sqlite";
-    private Button sp_img1, btnsincronizar, btncobranzas,btnliquidacion,btnaplanilla,btnreportes, btnMigrarCliente;
+    private Button sp_img1, btnsincronizar, btncobranzas,btnliquidacion,btnaplanilla,btnreportes, btnMigrarCliente,btnbarcode;
     //DIEZ MINUTOS
     private Integer iTiempoEjecuta=5;
 
@@ -118,12 +123,13 @@ protected void onCreate(Bundle savedInstanceState) {
         btnaplanilla=(Button) findViewById(R.id.btnaplanilla);
         btnreportes=(Button) findViewById(R.id.btnreportes);
         btnMigrarCliente=(Button) findViewById(R.id.btnMigrarCliente);
+        btnbarcode=(Button) findViewById(R.id.btnbarcode);
 
         lo_txtempresa=(TextView) findViewById(R.id.lo_txtempresa);
         lo_txtlocal=(TextView) findViewById(R.id.lo_txtlocal);
         lblNombreUsuario = (TextView)findViewById(R.id.lblNombreUsuario);
-            lblNombreUsuario2 = (TextView)findViewById(R.id.lblNombreUsuario2);
-            txtVersion = (TextView)findViewById(R.id.txtVersion);
+        lblNombreUsuario2 = (TextView)findViewById(R.id.lblNombreUsuario2);
+        txtVersion = (TextView)findViewById(R.id.txtVersion);
 
         lblNombreUsuario.setText(sharedSettings.getString("NOMBRE_COMPLETO", "").toString());
         lblNombreUsuario2.setText(sharedSettings.getString("NOMBRE_COMPLETO", "").toString());
@@ -131,7 +137,7 @@ protected void onCreate(Bundle savedInstanceState) {
         lo_txtlocal.setText(sharedSettings.getString("NOM_LOCAL", "").toString());
 
 
-            txtVersion.setText("v"+new Funciones().getVersionActual(getApplicationContext()));
+        txtVersion.setText("v"+new Funciones().getVersionActual(getApplicationContext()));
 
         btnsincronizar.setEnabled(false);
         btncobranzas.setEnabled(false);
@@ -144,6 +150,7 @@ protected void onCreate(Bundle savedInstanceState) {
         btnaplanilla.setOnClickListener(OnClickListenercl_btnaplanilla);
         btnreportes.setOnClickListener(OnClickListenercl_btnreportes);
         btnMigrarCliente.setOnClickListener(OnClickListenercl_btnMigrarCliente);
+            btnbarcode.setOnClickListener(OnClickListenercl_btnbarcode);
 
         btnaplanilla.setVisibility(View.GONE);
         btncobranzas.setVisibility(View.GONE);
@@ -256,7 +263,9 @@ protected void onCreate(Bundle savedInstanceState) {
         } catch (Exception ex) {
         ex.printStackTrace();
         }
-        }
+
+
+ }
 
     View.OnClickListener OnClickListenercl_btnsincronizar = new View.OnClickListener() {
         @Override
@@ -334,6 +343,15 @@ protected void onCreate(Bundle savedInstanceState) {
         }
     };
 
+    View.OnClickListener OnClickListenercl_btnbarcode = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            //INTEGRACION DE CÓDIGO DE BARRA
+            Intent SMNU_INVENTARIO = new Intent(getApplication(), Activity_ScannerBarcode.class);
+            startActivityForResult(SMNU_INVENTARIO,REQUEST_CODE_100);
+        }
+    };
+
     private void Activar(Boolean valor){
         iActivado=valor;
         }
@@ -372,17 +390,29 @@ protected void onCreate(Bundle savedInstanceState) {
                 sharedSettings.getString("C_PERFIL", "").toString());
    }
 
-@Override
-protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+
+      //Se deactiva para que no vuelva a cargar --rgalvez 16-12-2019
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
         switch(requestCode){
         case REQUEST_CODE_1:
-        Cargar();
+          // Cargar();
         break;
+            case REQUEST_CODE_100:
+                new ToastLibrary(this,
+                    "TIPO.CÓDIGO:" + sharedSettings.getString("iCODIGO_TIPO", "").toString() + "\n" +
+                            "CÓDIGO:" + sharedSettings.getString("iCODIGO_IDEN", "").toString()).Show();
+
+                Intent SMNU_INVENTARIO = new Intent(getApplication(), Activity_ScannerBarcode.class);
+                startActivityForResult(SMNU_INVENTARIO,REQUEST_CODE_100);
+            break;
+
         }
         }
         }
+
 
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
