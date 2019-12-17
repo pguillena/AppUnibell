@@ -113,7 +113,6 @@ public class Documentos_Cobra_CabDAO {
         }
     }
 
-
     public void getByGuardado(String sGuardado) {
         Cursor cursor = null;
         Documentos_Cobra_CabBE documentos_cobra_cabBE = null;
