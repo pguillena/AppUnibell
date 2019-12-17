@@ -15,6 +15,7 @@ require 'bl/blfactcob.php';
 require 'bl/blgem_banco.php';
 require 'bl/blmvendedor.php';
 require 'bl/blpartabla.php';
+require 'bl/blmarticulos.php';
 require 'bl/blrecibos_ccobranza.php';
 require 'bl/bls_gem_cliente.php';
 require 'bl/bls_gem_persona_direccion.php';
@@ -244,6 +245,7 @@ $app->get('/blvem_cliente_vendedor/:p1/:p2/:p3', 'blvem_cliente_vendedor:SelectA
 $app->get('/blvem_visita_cab/:p1/:p2/:p3', 'blvem_visita_cab:SelectAll');
 $app->get('/blvem_visita_det/:p1/:p2/:p3', 'blvem_visita_det:SelectAll');
 $app->get('/blubigeo', 'blubigeo:SelectAll');
+$app->get('/blmarticulos', 'blmarticulos:SelectAll');
 $app->get('/blvem_visita_movimiento_cambio/:p1/:p2/:p3', 'blvem_visita_movimiento_cambio:SelectAll');
 
 $app->get('/hello', function(){

@@ -78,7 +78,7 @@ public class Activity_ScannerBarcode extends AppCompatActivity
                 }
             }, 2000);
 
-            mp = MediaPlayer.create(Activity_ScannerBarcode.this, R.raw.ok);
+            mp = MediaPlayer.create(Activity_ScannerBarcode.this, R.raw.barcode);
             mp.start();
 
             Intent intent = new Intent();

@@ -93,6 +93,7 @@ public interface ConstantsLibrary {
         public static final String blvem_visita_cab = "/blvem_visita_cab";
         public static final String blvem_visita_det = "/blvem_visita_det";
         public static final String blubigeo = "/blubigeo";
+        public static final String blmarticulos = "/blmarticulos";
         public static final String blvem_visita_movimiento_cambio = "/blvem_visita_movimiento_cambio";
 
         //Reporte de estado de cuenta

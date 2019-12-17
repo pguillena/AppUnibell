@@ -481,7 +481,7 @@ public class Documentos_Cobra_CabBL {
                     stmt.bindString(31,jsonObjectItem.getString("FECHA_DEPOSITO_ABONO"));
                     stmt.bindString(32,jsonObjectItem.getString("LOTE"));
                     stmt.bindString(33,jsonObjectItem.getString("FLAG_COBRANZA"));
-                    stmt.bindString(34,"2");
+                    stmt.bindString(34,"5");
                     stmt.bindString(35,"1");
                     stmt.execute();
                     stmt.clearBindings();
@@ -633,10 +633,17 @@ public class Documentos_Cobra_CabBL {
 
                             //SI NO SALTO LAS VALIDACIONES DE LA BD ENTONCES
                             if(MSG.toString().trim().equals("-")){
-                                //VOLVEMOS A SINCRONIZAR LA COBRANZA SOLO CON sID_COBRANZA_ORACLE
-                                this.PostSincronizarCobranza(sID_EMPRESA,sID_LOCAL,sID_VENDEDOR,sID_COBRANZA_ORACLE,"0");
-                                //ELIMINAMOS LA COBRANZA LOCAL
-                                this.EliminarCobranzaByID(sID_COBRANZA_LOCAL);
+
+                                if (!sID_COBRANZA_ORACLE.equals("0") && !sID_COBRANZA_ORACLE.equals("")) {
+                                    //ELIMINAMOS LA COBRANZA LOCAL
+                                    this.EliminarCobranzaByID(sID_COBRANZA_LOCAL);
+
+                                    //VOLVEMOS A SINCRONIZAR LA COBRANZA SOLO CON sID_COBRANZA_ORACLE
+                                    this.PostSincronizarCobranza(sID_EMPRESA,sID_LOCAL,sID_VENDEDOR,sID_COBRANZA_ORACLE,"0");
+                                }
+
+
+
 
                             }
                         }
@@ -1084,7 +1091,7 @@ public class Documentos_Cobra_CabBL {
     private void ActualizaEstadoGuardadoCobranzaByID(String ID_COBRANZA){
         try{
             ContentValues cv2 = new ContentValues();
-            cv2.put("GUARDADO", 2); //ENVIADO Y SINCRONIZADO
+            cv2.put("GUARDADO", 5); //ENVIADO Y SINCRONIZADO
             DataBaseHelper.myDataBase.beginTransaction();
             DataBaseHelper.myDataBase.update("S_CCM_DOCUMENTOS_COBRA_CAB", cv2, "ID_COBRANZA = ?", new String[]{String.valueOf(ID_COBRANZA)});
             DataBaseHelper.myDataBase.setTransactionSuccessful();

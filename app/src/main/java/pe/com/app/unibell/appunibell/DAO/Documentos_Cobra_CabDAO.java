@@ -258,7 +258,7 @@ public class Documentos_Cobra_CabDAO {
                                  "AND (C.N_PLANILLA ="+ iN_PLANILLA + " OR " + iN_PLANILLA + "=0) \n" +
                                  "AND (C.FPAGO = '" + iFPAGO + "' OR '" + iFPAGO + "' = 'XXX') \n" +
                                  "AND (S.NOMBRE LIKE '%"+ sRazonSocial +"%' OR '" + sRazonSocial + "' = 'XXX')"+
-                                 "AND C.GUARDADO IN(2,3) " +
+                                 "AND C.GUARDADO IN(2,3, 5) " +
                                  "ORDER BY C.C_PACKING ASC, C.N_RECIBO ASC";
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<Documentos_Cobra_CabBE>();
@@ -965,7 +965,7 @@ public class Documentos_Cobra_CabDAO {
                             "AND (C.N_PLANILLA ="+ iN_PLANILLA + " OR " + iN_PLANILLA + "=0) \n" +
                             "AND (C.FPAGO = '" + iFPAGO + "' OR '" + iFPAGO + "' = 'XXX') \n" +
                             "AND (S.NOMBRE LIKE '%"+ sRazonSocial +"%' OR '" + sRazonSocial + "' = 'XXX')"+
-                            "AND C.GUARDADO IN(2,3) " +
+                            "AND C.GUARDADO IN(2,3, 5) " +
                             " AND C.FPAGO = 'P' " + //SOLO DEPOSITOS
                             " GROUP BY C.NRO_OPERACION, C.FECHA_DEPOSITO, C.ESTADO_CONCILIADO";
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
@@ -1210,7 +1210,7 @@ public class Documentos_Cobra_CabDAO {
                     documentos_cobra_cabBE.setCODUNC_LOCAL(Funciones.isNullColumn(cursor,"CODUNC_LOCAL",0));
                     documentos_cobra_cabBE.setFPAGODESC(Funciones.isNullColumn(cursor,"FPAGODESC",""));
                     documentos_cobra_cabBE.setBANCODESC(Funciones.isNullColumn(cursor,"BANCODESC",""));
-                    documentos_cobra_cabBE.setGUARDADO(Funciones.isNullColumn(cursor,"GUARDADO",9999));
+                    documentos_cobra_cabBE.setGUARDADO(Funciones.isNullColumn(cursor,"GUARDADO",5));
                     lst.add(documentos_cobra_cabBE);
                 } while (cursor.moveToNext());
             }

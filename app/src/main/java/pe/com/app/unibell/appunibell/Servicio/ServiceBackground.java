@@ -95,35 +95,54 @@ public class ServiceBackground extends Service {
                 lhoraActual24 = Integer.parseInt(funciones.HoraActual24().trim().replace(":", ""));
                 //Toast.makeText(this.context, "EJECUTO EL SERVICIO", Toast.LENGTH_SHORT).show();
                 if (lhoraActual24 > HORAINICIO && lhoraActual24 < HORAFIN) {
+
                     //Se ejecuta solo si tenemos plan de datos
                     if (funciones.isConnectingToInternet(getApplicationContext())) {
 
                         currentVersion = funciones.getVersionActual(getApplicationContext());
                         new LoadGetGuardadaSQLite_AsyncTask().execute();
+
+                        Toast toastCodigo = Toast.makeText(getApplicationContext(), "COBRANZA REGISTRADA ENVIADA AL ORACLE", Toast.LENGTH_SHORT);
+                        toastCodigo.show();
+
+                        Log.i(ConstantsLibrary.DEBUG_TAG, "COBRANZA REGISTRADA ENVIADA AL ORACLE");
+                        Log.e("FECHA", sfecha);
+                        Log.e("HORA", shora);
+                    }
+                        //Toast.makeText(this.context, "GUARDO COORDENADAS", Toast.LENGTH_SHORT).show();
+
+
+                    //Se ejecuta solo si tenemos plan de datos
+                    if (funciones.isConnectingToInternet(getApplicationContext())) {
                         //ANULAMOS
                         new AnularSQLite_AsyncTask().execute();
+                    }
+                        //Se ejecuta solo si tenemos plan de datos
+                        if (funciones.isConnectingToInternet(getApplicationContext()))
+                        {
+                            new s_vem_correlativoBL_Sincronizar().execute(
+                                    ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_vem_correlativo + '/'
+                                            + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
+                                            + sharedSettings.getString("iID_LOCAL", "0")+ '/'
+                                            + sharedSettings.getString("iID_VENDEDOR", "0"));
+
+                        }
+
+                    //Se ejecuta solo si tenemos plan de datos
+                    if (funciones.isConnectingToInternet(getApplicationContext())) {
 
                         if(lhoraActual24>2000  && lhoraActual24<700) {
 
-                        String online = sharedSettings.getString("VERSION_PLAYSTORE", "").toString()+funciones.FechaActual();
-                        String local = currentVersion+funciones.FechaActual();
+                            String online = sharedSettings.getString("VERSION_PLAYSTORE", "").toString() + funciones.FechaActual();
+                            String local = currentVersion + funciones.FechaActual();
 
-                        if (!(sharedSettings.getString("VERSION_PLAYSTORE", "").toString()).equals(currentVersion+funciones.FechaActual()))
-                            {
+                            if (!(sharedSettings.getString("VERSION_PLAYSTORE", "").toString()).equals(currentVersion + funciones.FechaActual())) {
                                 new updateApplication().execute();
                             }
                         }
-
-                        Toast toastCodigo = Toast.makeText(getApplicationContext(),"COBRANZA REGISTRADA ENVIADA AL ORACLE", Toast.LENGTH_SHORT);
-                        toastCodigo.show();
-
-                        Log.i(ConstantsLibrary.DEBUG_TAG , "COBRANZA REGISTRADA ENVIADA AL ORACLE");
-                        Log.e("FECHA", sfecha);
-                        Log.e("HORA", shora);
-
-                        //Toast.makeText(this.context, "GUARDO COORDENADAS", Toast.LENGTH_SHORT).show();
                     }
-                }
+
+                    }
                 this.backgroundThread.start();
             }
         }catch(Exception e){
@@ -165,11 +184,7 @@ public class ServiceBackground extends Service {
                 }
 
 
-                new s_vem_correlativoBL_Sincronizar().execute(
-                        ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bls_vem_correlativo + '/'
-                                + sharedSettings.getString("iID_EMPRESA", "0")+ '/'
-                                + sharedSettings.getString("iID_LOCAL", "0")+ '/'
-                                + sharedSettings.getString("iID_VENDEDOR", "0"));
+
 
 
 

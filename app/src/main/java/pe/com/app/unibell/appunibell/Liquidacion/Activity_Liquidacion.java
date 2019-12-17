@@ -64,6 +64,7 @@ import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Aceptar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Auxiliar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialog_Fragment_Confirmar;
 import pe.com.app.unibell.appunibell.Dialogs.Dialogo_Fragment_Fecha;
+import pe.com.app.unibell.appunibell.Main.Activity_Sincronizar;
 import pe.com.app.unibell.appunibell.R;
 import pe.com.app.unibell.appunibell.Reportes.Activity_Cobranza_Liquidacion_Rep;
 import pe.com.app.unibell.appunibell.Util.ConstantsLibrary;
@@ -173,6 +174,8 @@ public class Activity_Liquidacion extends AppCompatActivity
             dataBaseHelper.createDataBase();
             dataBaseHelper.openDataBase();
 
+            new LoadGetGuardadaSQLite_AsyncTask().execute();
+
             Cargar();
 
             txtPackingEnvio.setVisibility(View.GONE);
@@ -181,6 +184,7 @@ public class Activity_Liquidacion extends AppCompatActivity
             {
                 txtPackingEnvio.setVisibility(View.VISIBLE);
             }
+
 
 
         } catch (Exception ex) {
@@ -1465,5 +1469,88 @@ public class Activity_Liquidacion extends AppCompatActivity
         super.onRestart();
         Cargar();
     }
+
+
+    private class LoadGetGuardadaSQLite_AsyncTask extends AsyncTask<String, String,String> {
+        @Override
+        protected String doInBackground(String... p) {
+            try {
+                documentos_cobra_cabDAO.getByGuardado("2");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onPostExecute(String restResult) {
+            super.onPostExecute(restResult);
+            try {
+
+                Integer ID_COBRANZA=0;
+                Integer CODUNC_LOCAL=0;
+
+                for (int c = 0; c < documentos_cobra_cabDAO.lst.size(); c++) {
+                    ID_COBRANZA=documentos_cobra_cabDAO.lst.get(c).getID_COBRANZA();
+                    CODUNC_LOCAL=documentos_cobra_cabDAO.lst.get(c).getCODUNC_LOCAL();
+                    new InserCobranzaAsyncTask(
+                            ID_COBRANZA.toString(),
+                            CODUNC_LOCAL.toString()).execute(ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.bldocumentos_cobra_cab_Insert);
+
+                }
+
+
+
+            } catch (Exception ex) {
+                //Toast.makeText(getApplication(),getResources().getString(R.string.msg_nohayregistros), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private class InserCobranzaAsyncTask extends AsyncTask<String, String, JSONObject> {
+        private volatile boolean running = true;
+        private ProgressDialog progressDialog = null;
+        private String ID_COBRANZA,CODUNC_LOCAL;
+
+        public InserCobranzaAsyncTask(String ID_COBRANZA,String CODUNC_LOCAL) {
+            this.ID_COBRANZA=ID_COBRANZA;
+            this.CODUNC_LOCAL=CODUNC_LOCAL;
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... p) {
+            return documentos_cobra_cabBL.InsertRest(ID_COBRANZA,CODUNC_LOCAL,p[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            //SI PROGRESSDIALOG ES VISIBLE LO CERRAMOS
+            try {
+                if (result.getInt("status")==0) {
+                } else {
+                    //new ToastLibrary(getActivity(), result.getString("message")).Show();
+                    if(documentos_cobra_cabBL.lst.size()>0){
+                        /*
+                        editor_Shared.putString("PECNROPED",pedido_cabBL.lstPedido.get(0).getPECNROPED().toString());
+                        editor_Shared.putString("pREGISTRANDO","0");
+                        editor_Shared.commit();
+                        */
+                    }
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            finally {
+
+            }
+        }
+    }
+
+
+
+
 
 }
