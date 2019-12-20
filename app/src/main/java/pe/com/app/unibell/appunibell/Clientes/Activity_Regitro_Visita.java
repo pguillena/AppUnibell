@@ -281,6 +281,11 @@ public class Activity_Regitro_Visita  extends AppCompatActivity
     }
 
     @Override
+    public void onConfirmacionNO() {
+
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);

@@ -13,6 +13,7 @@
     <string name="buscar">Buscar</string>
     <string name="refresh">Refresh</string>
     <string name="sincronizar">Sincronizar</string>
+    <string name="flash">Flash</string>
 
     <string name="cabfcobBL">Detalle de pagos Sincronizados,</string>
     <string name="clientesBL">Clientes Sincronizados,</string>

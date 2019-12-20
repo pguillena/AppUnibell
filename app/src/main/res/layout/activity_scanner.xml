@@ -1,35 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+    <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
-    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/lyTotalesLiquidacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+
+        <Button
+            android:id="@+id/btnNuevoConteo"
+            android:text="NUEVO CONTEO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ubell_color1"
+            android:textColor="@color/background"
+            />
+
+
+
+    </LinearLayout>
+
+
+
+
         <FrameLayout
             android:id="@+id/content_frame"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-        <LinearLayout
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:background="#222"
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/pad_5dp"
+        >
+
+        <Button
+            android:id="@+id/btnNuevaUbicacion"
+            android:text="NUEVA UBICACIÓN"
             android:layout_width="match_parent"
-            android:layout_height="100dp">
-            <Button
-                android:text="Flash"
-                android:layout_weight="1"
-                android:onClick="toggleFlash"
+            android:layout_height="wrap_content"
+            android:background="@color/ubell_color1"
+            android:textColor="@color/background"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/pad_5dp"
+            android:layout_marginBottom="@dimen/pad_5dp"
+            >
+
+
+            <TextView
+                android:id="@+id/lblUbicacionScan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/ubell_color1"
-                android:textColor="@color/background"
+                android:text="UBICACION"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_alignParentLeft="true"
                 />
-        </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtUbicacionScan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_bold"
+
+                android:textColor="@color/Button_login_unibell"
+                android:layout_alignParentRight="true"
+                />
+
+
+
+            <View
+                android:id="@+id/dv2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Button_login_unibell"
+                android:layout_below="@id/lblUbicacionScan"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_marginBottom="@dimen/pad_10dp"
+                />
+
+
+            <TextView
+                android:id="@+id/lblTotalXArticulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_below="@id/dv2"
+                />
+
+            <TextView
+                android:id="@+id/txtTotalXArticulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_bold"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/dv2"
+                />
+
+            <View
+                android:id="@+id/dv1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Button_login_unibell"
+                android:layout_below="@id/lblTotalXArticulo"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:layout_marginBottom="@dimen/pad_10dp"
+                />
+
+
+
+            <TextView
+                android:id="@+id/lblTotalArticulos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TOTAL ESCANEADOS"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_below="@id/dv1"
+                android:layout_alignParentLeft="true"
+                />
+
+            <TextView
+                android:id="@+id/txtTotalArticulos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="16dp"
+                android:fontFamily="@font/sf_pro_display_bold"
+                android:textColor="@color/Button_login_unibell"
+                android:layout_below="@id/dv1"
+                android:layout_alignParentRight="true"
+                />
+
+        </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/label_blanco_login_unibell"
+        android:orientation="horizontal"
+
+        >
+
+
+
+        <Button
+            android:id="@+id/btnScanearPorCodigo"
+            android:text="POR CODIGO"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/ubell_color1"
+            android:textColor="@color/background"
+            android:layout_marginRight="@dimen/pad_5dp"
+            />
+
+
+
+
+        <Button
+            android:id="@+id/btnScanearPorCantidad"
+            android:text="POR CANTIDAD"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/ubell_color1"
+            android:textColor="@color/background"
+            />
+
+
+
     </LinearLayout>
+
+
+
+
 </LinearLayout>
+
+
+
+
+
+
+

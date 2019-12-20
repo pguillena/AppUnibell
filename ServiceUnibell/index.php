@@ -48,6 +48,7 @@ require 'bl/blvem_visita_cab.php';
 require 'bl/blvem_visita_det.php';
 require 'bl/blubigeo.php';
 require 'bl/blvem_visita_movimiento_cambio.php';
+require 'bl/bls_inv_inventario.php';
 
 \Slim\Slim::registerAutoloader();
 
@@ -247,6 +248,7 @@ $app->get('/blvem_visita_det/:p1/:p2/:p3', 'blvem_visita_det:SelectAll');
 $app->get('/blubigeo', 'blubigeo:SelectAll');
 $app->get('/blmarticulos', 'blmarticulos:SelectAll');
 $app->get('/blvem_visita_movimiento_cambio/:p1/:p2/:p3', 'blvem_visita_movimiento_cambio:SelectAll');
+$app->post('/inventario_insert', 'bls_inv_inventario:InsertInventario');
 
 $app->get('/hello', function(){
 echo "hola";

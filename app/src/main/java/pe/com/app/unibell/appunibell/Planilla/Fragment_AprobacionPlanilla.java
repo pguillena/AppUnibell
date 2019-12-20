@@ -312,6 +312,10 @@ public class Fragment_AprobacionPlanilla extends Fragment
 
     }
 
+    @Override
+    public void onConfirmacionNO() {
+
+    }
 
 
     public class Load_AsyncTask extends AsyncTask<String, String, JSONObject> {

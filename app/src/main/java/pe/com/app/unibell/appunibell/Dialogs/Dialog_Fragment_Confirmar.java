@@ -26,7 +26,7 @@ public class Dialog_Fragment_Confirmar extends DialogFragment {
 
     public interface Dialog_Fragment_ConfirmarListener {
         void onConfirmacionSI();
-        //void onConfirmacionNO();
+        void onConfirmacionNO();
     }
 
     public void setmConfirmarDialogfragmentListener(Dialog_Fragment_ConfirmarListener mDialog_Fragment_ConfirmarListener, String sMensaje) {
@@ -69,7 +69,7 @@ public class Dialog_Fragment_Confirmar extends DialogFragment {
         @Override
         public void onClick(View v) {
             if (mDialog_Fragment_ConfirmarListener != null) {
-                //mDialog_Fragment_ConfirmarListener.onConfirmacionNO();
+                mDialog_Fragment_ConfirmarListener.onConfirmacionNO();
             }
             dismissAllowingStateLoss();
         }

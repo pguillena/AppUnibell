@@ -99,6 +99,10 @@ public interface ConstantsLibrary {
         //Reporte de estado de cuenta
         public static final String blfactcob_estado_cuenta = "/blfactcob_estado_cuenta";
 
+        //Inventario
+
+        public static final String blinventario_insert = "/inventario_insert";
+
 
 
 }

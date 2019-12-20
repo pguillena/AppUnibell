@@ -1004,6 +1004,11 @@ public class Fragment_Cobranza extends Fragment implements
     }
 
     @Override
+    public void onConfirmacionNO() {
+
+    }
+
+    @Override
     public void onAceptar() {
     }
 

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/pad_5dp"
+    android:paddingRight="@dimen/pad_5dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/itemUbicacion"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:text="A.1.1"
+            android:textColor="@color/black"
+            android:textSize="10dp"
+            android:gravity="center|left"
+            />
+
+        <TextView
+            android:id="@+id/itemCodigoBarra"
+            android:text="FAMILY SHAMPOO REFLEX TODO TIPO DE CABELLO X 4000 ML"
+            android:textColor="@color/black"
+            android:textSize="10dp"
+            android:gravity="center|left"
+            android:paddingLeft="@dimen/pad_5dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            />
+        <TextView
+            android:id="@+id/itemCantidad"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="Cantidad"
+            android:textColor="@color/black"
+            android:textSize="10dp"
+            android:gravity="center|right"
+          android:layout_marginRight="@dimen/pad_5dp"
+            />
+
+
+        <Button
+            android:id="@+id/itemBtnEditar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:focusable="false"
+            android:gravity="center"
+            android:background="@drawable/file_document_edit"
+            />
+
+        <Button
+            android:id="@+id/itemBtnBorrar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:focusable="false"
+            android:gravity="center"
+            android:background="@drawable/close_circle_rojo"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

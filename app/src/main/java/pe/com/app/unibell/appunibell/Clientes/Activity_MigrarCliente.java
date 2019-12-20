@@ -102,6 +102,10 @@ public class Activity_MigrarCliente extends AppCompatActivity
         }
     }
 
+    @Override
+    public void onConfirmacionNO() {
+
+    }
 
 
     private void Migrar(String codCliente) {

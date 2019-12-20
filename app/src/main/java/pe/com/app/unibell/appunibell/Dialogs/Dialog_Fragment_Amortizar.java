@@ -21,6 +21,7 @@ import pe.com.app.unibell.appunibell.Util.Funciones;
 import static android.content.Context.MODE_PRIVATE;
 
 public class Dialog_Fragment_Amortizar extends DialogFragment {
+
     public final static String TAG = "Dialog_Fragment_Amortizar";
     private TextView am_lbldocumento,am_lblsaldo,am_lblcancelar,am_lblconfirmar;
     private EditText am_lblmonto;

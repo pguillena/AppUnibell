@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
      <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -200,7 +201,17 @@
 
         <activity
             android:name=".ScannerBarcode.Activity_ScannerBarcode"
-            android:screenOrientation="portrait" />
+            android:parentActivityName=".Main.MainActivity"
+            android:screenOrientation="portrait"
+           />
+
+
+        <activity
+            android:name=".ScannerBarcode.Activity_Scanner"
+            android:screenOrientation="portrait"
+          />
+
+
 
 
 

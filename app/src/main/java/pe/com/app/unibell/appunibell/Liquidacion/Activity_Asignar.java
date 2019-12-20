@@ -188,5 +188,10 @@ public class Activity_Asignar extends AppCompatActivity
         }
     }
 
+    @Override
+    public void onConfirmacionNO() {
+
+    }
+
 
 }

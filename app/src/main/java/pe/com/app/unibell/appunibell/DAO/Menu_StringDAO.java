@@ -129,6 +129,7 @@ public class Menu_StringDAO {
                     " AND B.ESTADO = 40001\n" +
                     " AND A.TIPO_FORMULARIO = 360003 " +
                     " AND C.VISIBLE <> '0'" +
+                    " OR A.FORMULARIO = 'SMNU_CERRAR'" +
                     " order by A.ORDEN ";
             lisMenu = new ArrayList<Menu_StringBE>();
             lisMenu.clear();

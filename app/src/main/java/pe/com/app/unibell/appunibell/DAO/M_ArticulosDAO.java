@@ -12,7 +12,7 @@ public class M_ArticulosDAO {
         Cursor cursor = null;
         M_ARTICULOSBE marticulosBE = null;
         try {
-            String SQL="SELECT COD_ART, DESCRIPCION, C_ARTICULO, TP_ART  FROM M_ARTICULOS WHERE C_ARTICULO = '" + pCodigoBarras + "' AND TP_ART = '" + pTipo +"'";
+            String SQL="SELECT COD_ART, DESCRIPCION, C_ARTICULO, TP_ART  FROM M_ARTICULOS WHERE C_ARTICULO = '" + pCodigoBarras + "' AND (TP_ART = '" + pTipo +"' OR '"+ pTipo +"' = 'XXX')";
 
             cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
             lst = new ArrayList<M_ARTICULOSBE>();

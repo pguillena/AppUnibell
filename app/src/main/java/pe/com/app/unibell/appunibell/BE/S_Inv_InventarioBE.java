@@ -2,8 +2,11 @@ package pe.com.app.unibell.appunibell.BE;
 
 public class S_Inv_InventarioBE {
 
+    private Integer CONTEO;
     private String CODIGO_BARRA;
     private String UBICACION;
+    private Integer MES;
+    private Integer ANIO;
     private Integer CANTIDAD;
     private String COD_ART;
     private String DESCRIPCION;
@@ -17,6 +20,29 @@ public class S_Inv_InventarioBE {
     private String IP_REGISTRO;
     private String IP_MODIFICACION;
 
+    public void setCONTEO(Integer CONTEO) {
+        this.CONTEO = CONTEO;
+    }
+
+    public void setMES(Integer MES) {
+        this.MES = MES;
+    }
+
+    public void setANIO(Integer ANIO) {
+        this.ANIO = ANIO;
+    }
+
+    public Integer getCONTEO() {
+        return CONTEO;
+    }
+
+    public Integer getMES() {
+        return MES;
+    }
+
+    public Integer getANIO() {
+        return ANIO;
+    }
 
     public void setCODIGO_BARRA(String CODIGO_BARRA) {
         this.CODIGO_BARRA = CODIGO_BARRA;

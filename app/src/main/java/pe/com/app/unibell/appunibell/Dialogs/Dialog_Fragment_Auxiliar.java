@@ -25,13 +25,16 @@ import pe.com.app.unibell.appunibell.AD.ParTabla_Adapter;
 import pe.com.app.unibell.appunibell.AD.S_Gem_Vendedor_Adapter;
 import pe.com.app.unibell.appunibell.AD.S_Sem_Empresa_Adapter;
 import pe.com.app.unibell.appunibell.AD.S_Sem_Local_Adapter;
+import pe.com.app.unibell.appunibell.AD.Scanner_Adapter;
 import pe.com.app.unibell.appunibell.AD.Tablas_Auxiliares_Adapter;
+import pe.com.app.unibell.appunibell.AD.Ubicacion_Adapter;
 import pe.com.app.unibell.appunibell.AD.Ubigeo_Adapter;
 import pe.com.app.unibell.appunibell.DAO.CtaBncoDAO;
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.DAO.ParTablaDAO;
 import pe.com.app.unibell.appunibell.DAO.S_Gem_VendedorDAO;
 import pe.com.app.unibell.appunibell.DAO.S_Gem_Vendedor_Codigo_antDAO;
+import pe.com.app.unibell.appunibell.DAO.S_Inv_InventarioDAO;
 import pe.com.app.unibell.appunibell.DAO.S_Sem_EmpresaDAO;
 import pe.com.app.unibell.appunibell.DAO.S_Sem_LocalDAO;
 import pe.com.app.unibell.appunibell.DAO.Tablas_AuxiliaresDAO;
@@ -49,6 +52,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
     private UbigeoDAO ubigeoDAO = new UbigeoDAO();
     private ParTablaDAO parTablaDAO = new ParTablaDAO();
     private CtaBncoDAO ctaBncoDAO = new CtaBncoDAO();
+    private S_Inv_InventarioDAO inventarioDAO = new S_Inv_InventarioDAO();
 
     private S_Sem_EmpresaDAO s_sem_empresaDAO = new S_Sem_EmpresaDAO();
     private S_Sem_LocalDAO s_sem_localDAO = new S_Sem_LocalDAO();
@@ -57,6 +61,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
     private S_Sem_Local_Adapter s_sem_local_adapter = null;
     private S_Gem_Vendedor_Adapter s_gem_vendedor_adapter = null;
     private Ubigeo_Adapter ubigeo_adapter = null;
+    private Ubicacion_Adapter ubicacion_adapter = null;
 
     WindowManager.LayoutParams lWindowParams;
 
@@ -150,6 +155,9 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
             case 800:
                 tba_lbltitulo.setText("Seleccione un distrito");
                 break;
+            case 900:
+                tba_lbltitulo.setText("Seleccione una ubicación");
+                break;
         }
         try {
             DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
@@ -167,7 +175,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
             public void onTextChanged(CharSequence s, int start, int before,int count) {
 
 
-                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=700&& iTabla!=800) {
+                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=700&& iTabla!=800&& iTabla!=900) {
                     if(tab_lvauxiliar.getAdapter()!=null) {
                         Tablas_Auxiliares_Adapter ca = (Tablas_Auxiliares_Adapter) tab_lvauxiliar.getAdapter();
                         ca.getFilter().filter(s.toString());
@@ -214,6 +222,13 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
                 if(!s.equals("") && iTabla==800) {
                     if(tab_lvauxiliar.getAdapter()!=null) {
                         Ubigeo_Adapter ca = (Ubigeo_Adapter) tab_lvauxiliar.getAdapter();
+                        ca.getFilter().filter(s.toString());
+                    }
+                }
+
+                if(!s.equals("") && iTabla==900) {
+                    if(tab_lvauxiliar.getAdapter()!=null) {
+                        Ubicacion_Adapter ca = (Ubicacion_Adapter) tab_lvauxiliar.getAdapter();
                         ca.getFilter().filter(s.toString());
                     }
                 }
@@ -271,9 +286,13 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
                     editor_Shared.putString("iNOM_UBIGEO", ubigeo_adapter.getItem(position).getNOMBRE());
                     editor_Shared.commit();
                 }
+                //UBICACION INVENTARIO
+                if(iTabla==900) {
+                    editor_Shared.putString("iUBICACION", ubicacion_adapter.getItem(position).getUBICACION().toString());
+                    editor_Shared.commit();
+                }
 
-
-                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600 && iTabla!=700&& iTabla!=800) {
+                if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600 && iTabla!=700 && iTabla!=800&& iTabla!=900) {
                     editor_Shared.putString("ICODTABAUX", tablas_auxiliares_adapter.getItem(position).getCODIGO().toString());
                     editor_Shared.putString("IDESTABAUX", tablas_auxiliares_adapter.getItem(position).getDESCRIPCION());
                     editor_Shared.putString("COD_FPAGO", tablas_auxiliares_adapter.getItem(position).getCODIGO().toString());
@@ -344,10 +363,13 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
         if(iTabla==800) {
             new LoadUbigeoSQLite_AsyncTask().execute("0");
         }
-
+        //INVENTARIO
+        if(iTabla==900) {
+            new LoadInventarioSQLite_AsyncTask().execute();
+        }
 
         //AUXILIARES
-        if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600 && iTabla!=700&& iTabla!=800) {
+        if(iTabla!=100 && iTabla!=200 && iTabla!=300 && iTabla!=400 && iTabla!=500 && iTabla!=600 && iTabla!=700&& iTabla!=800&& iTabla!=900) {
             new LoadAuxiliaresSQLite_AsyncTask().execute(iTabla.toString(), iRol.toString());
         }
 
@@ -417,6 +439,40 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
             }
         }
     }
+
+
+    private class LoadInventarioSQLite_AsyncTask extends AsyncTask<String, String,String> {
+        @Override
+        protected String doInBackground(String... p) {
+            try {
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
+                dataBaseHelper.createDataBase();
+                dataBaseHelper.openDataBase();
+                inventarioDAO.getGroupUbicacion();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected void onPostExecute(String restResult) {
+            super.onPostExecute(restResult);
+            try {
+                ubicacion_adapter = new Ubicacion_Adapter(getContext(), 0, inventarioDAO.lst);
+                ubicacion_adapter.notifyDataSetChanged();
+                tab_lvauxiliar.setAdapter(ubicacion_adapter);
+            } catch (Exception ex) {
+            }
+        }
+    }
+
+
 
     private class LoadAuxiliaresSQLite_AsyncTask extends AsyncTask<String, String,String> {
         @Override

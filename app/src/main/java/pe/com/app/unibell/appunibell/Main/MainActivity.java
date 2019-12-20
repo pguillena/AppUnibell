@@ -155,7 +155,17 @@ protected void onCreate(Bundle savedInstanceState) {
         btnaplanilla.setVisibility(View.GONE);
         btncobranzas.setVisibility(View.GONE);
         btnreportes.setVisibility(View.GONE);
-        btnliquidacion.setVisibility(View.GONE);
+            btnliquidacion.setVisibility(View.GONE);
+
+            if(sharedSettings.getString("C_PERFIL", "").toString().equals("DESARROLLO"))
+            {
+                btnbarcode.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                btnbarcode.setVisibility(View.GONE);
+            }
+
 
        //EJECUTA EL SERVICIO
         Intent alarm = new Intent(MainActivity.this, AlarmReceiver.class);
@@ -401,9 +411,10 @@ protected void onCreate(Bundle savedInstanceState) {
           // Cargar();
         break;
             case REQUEST_CODE_100:
-                new ToastLibrary(this,
+                /*new ToastLibrary(this,
                     "TIPO.CÓDIGO:" + sharedSettings.getString("iCODIGO_TIPO", "").toString() + "\n" +
                             "CÓDIGO:" + sharedSettings.getString("iCODIGO_IDEN", "").toString()).Show();
+                */
 
                 Intent SMNU_INVENTARIO = new Intent(getApplication(), Activity_ScannerBarcode.class);
                 startActivityForResult(SMNU_INVENTARIO,REQUEST_CODE_100);
