@@ -65,12 +65,14 @@ public class Scanner_Adapter extends ArrayAdapter<S_Inv_InventarioBE> implements
         mainHolder.itemBtnEditar.setTag(position);
         mainHolder.itemBtnBorrar.setTag(position);
 
-        mainHolder.itemUbicacion.setText(inventarioBE.getUBICACION().toString());
+        mainHolder.itemUbicacion.setText(inventarioBE.getUBICACION().toString()+"\n"+inventarioBE.getCOD_ALM());
+
+
         mainHolder.itemCantidad.setText(inventarioBE.getCANTIDAD().toString());
 
         if(inventarioBE.getCOD_ART()!=null && !inventarioBE.equals("null") && !inventarioBE.getCOD_ART().equals(""))
         {
-            mainHolder.itemCodigoBarra.setText(inventarioBE.getCODIGO_BARRA().toString() + "\n" +  inventarioBE.getCOD_ART().toString()+ "\n" +  inventarioBE.getDESCRIPCION().toString());
+            mainHolder.itemCodigoBarra.setText(inventarioBE.getCOD_ART().toString()+ "\n" +  inventarioBE.getDESCRIPCION().toString());
         }
         else
         {
@@ -155,10 +157,10 @@ public class Scanner_Adapter extends ArrayAdapter<S_Inv_InventarioBE> implements
                 List<S_Inv_InventarioBE> localList = new ArrayList<>();
                 String[] SSA=constraint.toString().toUpperCase().split(" ");
                 for (S_Inv_InventarioBE documentos_cobra_cabBE : lst) {
-                    String todo = (documentos_cobra_cabBE.getCODIGO_BARRA().toString()+documentos_cobra_cabBE.getUBICACION()+documentos_cobra_cabBE.getCOD_ART()+documentos_cobra_cabBE.getDESCRIPCION());
+                    String todo = (documentos_cobra_cabBE.getCODIGO_BARRA().toString()+documentos_cobra_cabBE.getUBICACION().toUpperCase()+documentos_cobra_cabBE.getCOD_ART()+documentos_cobra_cabBE.getDESCRIPCION().toUpperCase());
                     Boolean bfind = true;
                     for(String s : SSA){
-                        if(!todo.contains(s)){
+                        if(!todo.contains(s.toUpperCase())){
                             bfind = false;
                         }
                     }

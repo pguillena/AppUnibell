@@ -139,10 +139,13 @@ protected void onCreate(Bundle savedInstanceState) {
 
         txtVersion.setText("v"+new Funciones().getVersionActual(getApplicationContext()));
 
-        btnsincronizar.setEnabled(false);
+        //btnsincronizar.setEnabled(false);
         btncobranzas.setEnabled(false);
         btnliquidacion.setEnabled(false);
-        btnaplanilla.setEnabled(false);
+            btnaplanilla.setEnabled(false);
+           // btnbarcode.setEnabled(false);
+
+           // btnbarcode.setVisibility(View.GONE);
 
         btnsincronizar.setOnClickListener(OnClickListenercl_btnsincronizar);
         btncobranzas.setOnClickListener(OnClickListenercl_btncobranzas);
@@ -156,7 +159,7 @@ protected void onCreate(Bundle savedInstanceState) {
         btncobranzas.setVisibility(View.GONE);
         btnreportes.setVisibility(View.GONE);
             btnliquidacion.setVisibility(View.GONE);
-
+/*
             if(sharedSettings.getString("C_PERFIL", "").toString().equals("DESARROLLO"))
             {
                 btnbarcode.setVisibility(View.VISIBLE);
@@ -166,7 +169,7 @@ protected void onCreate(Bundle savedInstanceState) {
                 btnbarcode.setVisibility(View.GONE);
             }
 
-
+*/
        //EJECUTA EL SERVICIO
         Intent alarm = new Intent(MainActivity.this, AlarmReceiver.class);
         boolean alarmRunning = (PendingIntent.getBroadcast(MainActivity.this, 0, alarm, PendingIntent.FLAG_NO_CREATE) != null);
@@ -251,6 +254,13 @@ protected void onCreate(Bundle savedInstanceState) {
              case "SMNU_RECORRIDO":
                  Intent SMNU_RECORRIDO = new Intent(getApplication(), Activity_Visita_Cliente.class);
                  startActivity(SMNU_RECORRIDO);
+                 OcultarDrawel();
+                 break;
+             case "SMNU_INVENTARIO":
+                 Intent SMNU_INVENTARIO = new Intent(getApplication(), Activity_ScannerBarcode.class);
+                 startActivity(SMNU_INVENTARIO);
+                 btnbarcode.setEnabled(true);
+                 btnbarcode.setVisibility(View.VISIBLE);
                  OcultarDrawel();
                  break;
             case "SMNU_ACERCADE":
@@ -490,6 +500,10 @@ private class LoadMenuSQLite_AsyncTask extends AsyncTask<String, String,String> 
                     case "SMNU_REPORTES":
                         btnreportes.setEnabled(true);
                         btnreportes.setVisibility(View.VISIBLE);
+                        break;
+                    case "SMNU_INVENTARIO":
+                        btnbarcode.setEnabled(true);
+                        btnbarcode.setVisibility(View.VISIBLE);
                         break;
                     case "SMNU_APROBACIONPLA":
                         btnaplanilla.setEnabled(true);

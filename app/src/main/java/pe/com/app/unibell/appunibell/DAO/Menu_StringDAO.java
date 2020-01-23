@@ -290,6 +290,20 @@ public class Menu_StringDAO {
                             menu_stringBE.setRUTA_ICONO("@drawable/logout_small");
                             lisMenu.add(menu_stringBE);
                             break;
+
+                        case "SMNU_INVENTARIO":
+                            menu_stringBE = new Menu_StringBE();
+                            menu_stringBE.setIDCORREL(11);
+                            menu_stringBE.setMNUNOM("SMNU_INVENTARIO");
+                            menu_stringBE.setMNUDES(Funciones.isNullColumn(cursor,"NOMBRE_MENU",""));
+                            menu_stringBE.setMNUCHEK(0);
+                            menu_stringBE.setMNUACTI(1);
+                            menu_stringBE.setMENUEST(1);
+                            menu_stringBE.setMNUORDEN(1);
+                            menu_stringBE.setMNUPERMISO(true);
+                            menu_stringBE.setRUTA_ICONO("@drawable/logout_small");
+                            lisMenu.add(menu_stringBE);
+                            break;
                     }
 
                 } while (cursor.moveToNext());

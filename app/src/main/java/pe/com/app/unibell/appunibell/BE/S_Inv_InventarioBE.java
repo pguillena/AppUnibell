@@ -19,6 +19,16 @@ public class S_Inv_InventarioBE {
     private String PC_MODIFICACION;
     private String IP_REGISTRO;
     private String IP_MODIFICACION;
+    private String COD_ALM;
+
+
+    public void setCOD_ALM(String COD_ALM) {
+        this.COD_ALM = COD_ALM;
+    }
+
+    public String getCOD_ALM() {
+        return COD_ALM;
+    }
 
     public void setCONTEO(Integer CONTEO) {
         this.CONTEO = CONTEO;

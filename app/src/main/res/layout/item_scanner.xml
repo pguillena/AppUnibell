@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/LinearLayout1" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
     android:paddingLeft="@dimen/pad_5dp"
     android:paddingRight="@dimen/pad_5dp"
@@ -16,7 +15,7 @@
         <TextView
             android:id="@+id/itemUbicacion"
             android:layout_width="30dp"
-            android:layout_height="match_parent"
+            android:layout_height="fill_parent"
             android:text="A.1.1"
             android:textColor="@color/black"
             android:textSize="10dp"
@@ -30,15 +29,14 @@
             android:textSize="10dp"
             android:gravity="center|left"
             android:paddingLeft="@dimen/pad_5dp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="240dp"
+            android:layout_height="fill_parent"
 
             />
         <TextView
             android:id="@+id/itemCantidad"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
+            android:layout_width="40dp"
+            android:layout_height="fill_parent"
             android:text="Cantidad"
             android:textColor="@color/black"
             android:textSize="10dp"

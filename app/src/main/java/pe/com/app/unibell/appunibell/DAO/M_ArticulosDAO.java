@@ -7,6 +7,33 @@ import pe.com.app.unibell.appunibell.Util.Funciones;
 public class M_ArticulosDAO {
 
     public ArrayList<M_ARTICULOSBE> lst = null;
+    public void getAllByCodArt(String pCodArt) {
+        Cursor cursor = null;
+        M_ARTICULOSBE marticulosBE = null;
+        try {
+            String SQL="SELECT COD_ART, DESCRIPCION, C_ARTICULO  FROM M_ARTICULOS WHERE (COD_ART = '" + pCodArt + "' OR '" + pCodArt +"' = 'XXX')";
+
+            cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
+            lst = new ArrayList<M_ARTICULOSBE>();
+            lst.clear();
+            if (cursor.moveToFirst()) {
+                do {
+                    marticulosBE = new M_ARTICULOSBE();
+                    marticulosBE.setCOD_ART(Funciones.isNullColumn(cursor,"COD_ART",""));
+                    marticulosBE.setDESCRIPCION(Funciones.isNullColumn(cursor,"DESCRIPCION",""));
+                    marticulosBE.setC_ARTICULO(Funciones.isNullColumn(cursor,"C_ARTICULO",""));
+
+                    lst.add(marticulosBE);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+    }
+
 
     public void getAllByCodigoBarras(String pCodigoBarras, String pTipo) {
         Cursor cursor = null;

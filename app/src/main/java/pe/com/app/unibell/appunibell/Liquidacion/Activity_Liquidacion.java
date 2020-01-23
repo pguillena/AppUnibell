@@ -100,6 +100,7 @@ public class Activity_Liquidacion extends AppCompatActivity
     private Funciones funciones=new Funciones();
     private Documentos_Cobra_CabDAO documentos_cobra_cabDAO = new Documentos_Cobra_CabDAO();
     private Documentos_Cobra_CabDAO documentos_cobra_cabDAO2 = new Documentos_Cobra_CabDAO();
+    private Documentos_Cobra_CabDAO documentos_cobra_cabDAO3 = new Documentos_Cobra_CabDAO();
     private Documentos_Cobra_MovBL documentos_cobra_movBL = new Documentos_Cobra_MovBL();
     private Documentos_Cobra_CabBL documentos_cobra_cabBL = new Documentos_Cobra_CabBL();
 
@@ -488,6 +489,7 @@ public class Activity_Liquidacion extends AppCompatActivity
         intent.putExtra("txtMontoBancarizado", lq_lblmontob);
         intent.putExtra("txtMontoDeposito", lq_lblmontop);
         intent.putExtra("listaDepositos", documentos_cobra_cabDAO2.lst);
+        intent.putExtra("listaTarjetas", documentos_cobra_cabDAO3.lst);
         startActivity(intent);
     }
 
@@ -1224,6 +1226,7 @@ public class Activity_Liquidacion extends AppCompatActivity
             try {
                 documentos_cobra_cabDAO.getLiquidacionBy(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
                 documentos_cobra_cabDAO2.getDepositosBy(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
+                documentos_cobra_cabDAO3.getTarjetasBy(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

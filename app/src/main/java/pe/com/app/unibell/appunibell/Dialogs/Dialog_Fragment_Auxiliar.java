@@ -289,6 +289,7 @@ public class Dialog_Fragment_Auxiliar extends DialogFragment {
                 //UBICACION INVENTARIO
                 if(iTabla==900) {
                     editor_Shared.putString("iUBICACION", ubicacion_adapter.getItem(position).getUBICACION().toString());
+                    editor_Shared.putString("iCOD_ALM", ubicacion_adapter.getItem(position).getCOD_ALM().toString());
                     editor_Shared.commit();
                 }
 

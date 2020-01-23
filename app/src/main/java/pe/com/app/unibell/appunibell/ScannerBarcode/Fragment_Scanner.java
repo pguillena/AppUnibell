@@ -16,7 +16,9 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,6 +85,8 @@ public class Fragment_Scanner extends Fragment implements
     private Dialog_Fragment_Aceptar log_dialogaceptar;
     private Funciones funciones = new Funciones();
     private S_Inv_InventarioBE inventarioBE;
+    private LinearLayout lyEnviando;
+    private RelativeLayout rlyCabeceraLiquidacion ;
     public Comunicator comunicator;
     Integer iAccion = 0;
 
@@ -118,6 +122,16 @@ public class Fragment_Scanner extends Fragment implements
         Cargar();
     }
 
+    @Override
+    public void onCodigoSI(Integer Cantidad, String CodArt) {
+
+    }
+
+    @Override
+    public void onCodigoNO() {
+
+    }
+
 
     public interface Comunicator {
 
@@ -144,10 +158,18 @@ public class Fragment_Scanner extends Fragment implements
             sharedSettings = getActivity().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), getActivity().MODE_PRIVATE);
             editor_Shared = getActivity().getSharedPreferences(String.valueOf(R.string.UNIBELL_PREF), getActivity().MODE_PRIVATE).edit();
 
+
+
             DataBaseHelper dataBaseHelper = new DataBaseHelper(getActivity());
             dataBaseHelper.createDataBase();
             dataBaseHelper.openDataBase();
             listScan=(ListView)view.findViewById(R.id.listScan);
+            rlyCabeceraLiquidacion=(RelativeLayout) view.findViewById(R.id.rlyCabeceraLiquidacion);
+            lyEnviando=(LinearLayout)view.findViewById(R.id.lyEnviando);
+
+            rlyCabeceraLiquidacion.setVisibility(View.VISIBLE);
+            lyEnviando.setVisibility(View.GONE);
+
             Cargar();
 
         } catch (Exception ex) {
@@ -163,12 +185,26 @@ public class Fragment_Scanner extends Fragment implements
         private ProgressDialog progressDialog = null;
 
         @Override
+        protected void onPreExecute() {
+            rlyCabeceraLiquidacion.setVisibility(View.GONE);
+            lyEnviando.setVisibility(View.VISIBLE);
+
+        }
+
+
+
+        @Override
         protected JSONObject doInBackground(String... p) {
+
             return new S_Inv_InventarioBL().InsertRest(p[0]);
         }
 
         @Override
         protected void onPostExecute(JSONObject result) {
+
+            rlyCabeceraLiquidacion.setVisibility(View.VISIBLE);
+            lyEnviando.setVisibility(View.GONE);
+
             try {
 
                 if (result.getString("status").equals("0") || result.getString("status").equals("false")) {
@@ -180,7 +216,7 @@ public class Fragment_Scanner extends Fragment implements
                     }
                     else
                     {
-                        Mensaje("Error al ENVIAR los registros.");
+                        Mensaje(result.getString("message"));
                         return;
                     }
 

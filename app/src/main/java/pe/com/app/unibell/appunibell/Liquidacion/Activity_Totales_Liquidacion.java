@@ -26,7 +26,10 @@ public class Activity_Totales_Liquidacion  extends AppCompatActivity {
         TextView txtMontoBancarizado =(TextView)findViewById(R.id.txtMontoBancarizado);
         TextView txtMontoTotalGeneral =(TextView)findViewById(R.id.txtMontoTotalGeneral);
         ListView lstDepositosLiquidacion =(ListView)findViewById(R.id.lstDepositosLiquidacion);
+        ListView lstTarjetasLiquidacion =(ListView)findViewById(R.id.lstTarjetasLiquidacion);
+
         ArrayList<Documentos_Cobra_CabBE> listaDepositos = (ArrayList<Documentos_Cobra_CabBE> ) getIntent().getSerializableExtra("listaDepositos");
+        ArrayList<Documentos_Cobra_CabBE> listaTarjetas = (ArrayList<Documentos_Cobra_CabBE> ) getIntent().getSerializableExtra("listaTarjetas");
 
 
         //MEDIMOS LA PANTALLA
@@ -52,20 +55,25 @@ public class Activity_Totales_Liquidacion  extends AppCompatActivity {
             lstDepositosLiquidacion.setAdapter(totales_liquidacion_adapter);
 
             if (listaDepositos.size()>6){
-                lstDepositosLiquidacion.getLayoutParams().height=alto/3;
+                lstDepositosLiquidacion.getLayoutParams().height=alto/5;
 
             }
 
         }
 
 
+        if(listaTarjetas!=null && listaTarjetas.size()>0){
+            totales_liquidacion_adapter = new Totales_Liquidacion_Adapter(getBaseContext(), 0, listaTarjetas);
+            totales_liquidacion_adapter.notifyDataSetChanged();
+            lstTarjetasLiquidacion.setAdapter(totales_liquidacion_adapter);
 
+            if (listaTarjetas.size()>6){
+                lstTarjetasLiquidacion.getLayoutParams().height=alto/5;
 
+            }
 
-
-
+        }
 
     }
-
 
         }

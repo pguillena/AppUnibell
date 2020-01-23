@@ -48,14 +48,72 @@
 
 
         <TextView
+            android:id="@+id/lblNTarjeta"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="N° tarjeta"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_below="@id/dv1"
+            android:layout_alignParentLeft="true"
+            />
+
+
+        <TextView
+            android:id="@+id/lblFechaTarjetaItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_below="@id/dv1"
+            android:layout_toRightOf="@id/lblNTarjeta"
+            />
+
+        <TextView
+            android:id="@+id/lblMontoTarjetaItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monto"
+            android:textSize="16dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textColor="@color/Button_login_unibell"
+            android:layout_below="@id/dv1"
+            android:layout_alignParentRight="true"
+            />
+
+
+
+
+
+
+
+
+
+
+        <ListView
+            android:id="@+id/lstTarjetasLiquidacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lblNTarjeta"
+            android:layout_marginTop="@dimen/pad_10dp"
+            android:layout_marginBottom="@dimen/pad_10dp"
+            android:divider="@null"
+            android:dividerHeight="10dp"
+            />
+
+
+        <TextView
             android:id="@+id/lblMontoTarjeta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Monto tarjetas"
             android:textSize="16dp"
-            android:fontFamily="@font/sf_pro_display_regular"
+            android:fontFamily="@font/sf_pro_display_bold"
             android:textColor="@color/Button_login_unibell"
-            android:layout_below="@id/dv1"
+            android:layout_below="@id/lstTarjetasLiquidacion"
             android:layout_alignParentLeft="true"
             />
 
@@ -65,11 +123,13 @@
             android:layout_height="wrap_content"
             android:text="S/ 153"
             android:textSize="16dp"
-            android:fontFamily="@font/sf_pro_display_light"
+            android:fontFamily="@font/sf_pro_display_bold"
             android:textColor="@color/label_color_menu"
-            android:layout_below="@id/dv1"
+            android:layout_below="@id/lstTarjetasLiquidacion"
             android:layout_alignParentRight="true"
             />
+
+
 
         <View
             android:id="@+id/dv2"

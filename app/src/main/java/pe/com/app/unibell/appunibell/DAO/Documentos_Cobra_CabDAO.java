@@ -989,6 +989,59 @@ public class Documentos_Cobra_CabDAO {
         }
     }
 
+    public void getTarjetasBy(String iID_EMPRESA,String iID_LOCAL,String iFECHA,String iID_COBRADOR,String iESTADO,String iN_PLANILLA,String iC_PACKING, String iFPAGO, String sRazonSocial) {
+        Cursor cursor = null;
+        Documentos_Cobra_CabBE documentos_cobra_cabBE = null;
+        try {
+            if ( iC_PACKING == null || iC_PACKING.toString().equals("")) {
+                iC_PACKING="0";
+            }
+            if (iN_PLANILLA  == null || iN_PLANILLA.toString().equals("")) {
+                iN_PLANILLA="0";
+            }
+
+            String SQL=
+                    "SELECT \n" +
+                            "C.N_TARJETA, C.FECHA_DEPOSITO, C.ESTADO_CONCILIADO, SUM(C.M_COBRANZA) AS M_COBRANZA,  SUM(C.M_COBRANZA_D) AS M_COBRANZA_D \n"+
+                            "FROM S_CCM_DOCUMENTOS_COBRA_CAB C \n" +
+                            " INNER JOIN CLIENTES S ON (C.COD_CLIENTE = S.COD_CLIENTE) \n"+
+                            "WHERE (C.ID_COBRADOR ="+ iID_COBRADOR + " OR ( " + iID_COBRADOR + " IN(8719,15737) AND C.C_PACKING>0) )\n" +
+                            " AND (  substr(C.FECHA,7,4) || substr(C.FECHA,4,2) || substr(C.FECHA,1,2)  BETWEEN '"+ iFECHA +"' AND '" + iFECHA +"'" + " OR '" + iFECHA + "' = '' )" +
+                            "AND (C.ESTADO =" +  iESTADO + " OR " +  iESTADO + "= 0)\n" +
+                            // "AND C.ESTADO <> 40002 \n" +
+                            "AND (C.C_PACKING ="+  iC_PACKING + " OR " + iC_PACKING + "= 0)\n" +
+                            "AND C.ID_EMPRESA =" +  iID_EMPRESA + "\n" +
+                            "AND C.ID_LOCAL =" +  iID_LOCAL + "\n" +
+                            "AND (C.N_PLANILLA ="+ iN_PLANILLA + " OR " + iN_PLANILLA + "=0) \n" +
+                            "AND (C.FPAGO = '" + iFPAGO + "' OR '" + iFPAGO + "' = 'XXX') \n" +
+                            "AND (S.NOMBRE LIKE '%"+ sRazonSocial +"%' OR '" + sRazonSocial + "' = 'XXX')"+
+                            "AND C.GUARDADO IN(2,3, 5) " +
+                            " AND C.FPAGO IN('V','D','M','I','H','S')" + //SOLO TARJETAS
+                            " GROUP BY C.N_TARJETA, C.FECHA_DEPOSITO, C.ESTADO_CONCILIADO";
+            cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
+            lst = new ArrayList<Documentos_Cobra_CabBE>();
+            lst.clear();
+            if (cursor.moveToFirst()) {
+                do {
+                    documentos_cobra_cabBE = new Documentos_Cobra_CabBE();
+                    documentos_cobra_cabBE.setNRO_OPERACION ("****"+Funciones.isNullColumn(cursor,"N_TARJETA",""));
+                    documentos_cobra_cabBE.setFECHA_DEPOSITO(Funciones.isNullColumn(cursor,"FECHA_DEPOSITO",""));
+                    documentos_cobra_cabBE.setM_COBRANZA(Funciones.isNullColumn(cursor,"M_COBRANZA",0.0));
+                    documentos_cobra_cabBE.setM_COBRANZA_D(Funciones.isNullColumn(cursor,"M_COBRANZA_D",0.0));
+                    documentos_cobra_cabBE.setESTADO_CONCILIADO(Funciones.isNullColumn(cursor,"ESTADO_CONCILIADO",""));
+                    lst.add(documentos_cobra_cabBE);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+    }
+
+
+
     public void getByRecibo(String pSerie, String pNumero, String iID_EMPRESA)
     {
         Cursor cursor = null;

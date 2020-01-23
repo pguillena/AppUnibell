@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
+
 import pe.com.app.unibell.appunibell.DAO.DataBaseHelper;
 import pe.com.app.unibell.appunibell.Util.Funciones;
 import pe.com.app.unibell.appunibell.Util.RestClientLibrary;
@@ -15,11 +17,15 @@ public class S_Inv_InventarioBL {
     public JSONObject InsertRest(String newURL){
         JSONObject jsonObjectRest =null;
         JSONObject jsonObjectResult = new JSONObject();
+        String sMensaje= "";
+        String sConteo = "";
+
         String SQL=
                 "SELECT CONTEO, CODIGO_BARRA, UBICACION, MES, ANIO, CANTIDAD, COD_ART, DESCRIPCION, ESTADO, " +
                         "FECHA_REGISTRO, FECHA_MODIFICACION, USUARIO_REGISTRO, USUARIO_MODIFICACION, " +
-                        "PC_REGISTRO, PC_MODIFICACION, IP_REGISTRO, IP_MODIFICACION " +
-                        "FROM S_INV_INVENTARIO";
+                        "PC_REGISTRO, PC_MODIFICACION, IP_REGISTRO, IP_MODIFICACION, COD_ALM " +
+                        " FROM S_INV_INVENTARIO " +
+                        " WHERE ESTADO <> 40013";
 
         Cursor cursor = null;
         cursor= DataBaseHelper.myDataBase.rawQuery(SQL, null);
@@ -28,6 +34,9 @@ public class S_Inv_InventarioBL {
             if (cursor.moveToFirst()) {
                 do {
                     jsonObject = new JSONObject();
+
+
+
                     jsonObject.accumulate("CONTEO", Funciones.isNullColumn(cursor,"CONTEO",""));
                     jsonObject.accumulate("CODIGO_BARRA", Funciones.isNullColumn(cursor,"CODIGO_BARRA",""));
                     jsonObject.accumulate("UBICACION", Funciones.isNullColumn(cursor,"UBICACION",""));
@@ -35,7 +44,8 @@ public class S_Inv_InventarioBL {
                     jsonObject.accumulate("ANIO", Funciones.isNullColumn(cursor,"ANIO",""));
                     jsonObject.accumulate("CANTIDAD", Funciones.isNullColumn(cursor,"CANTIDAD",""));
                     jsonObject.accumulate("COD_ART", Funciones.isNullColumn(cursor,"COD_ART",""));
-                    jsonObject.accumulate("DESCRIPCION", Funciones.isNullColumn(cursor,"DESCRIPCION",""));
+                   // jsonObject.accumulate("DESCRIPCION", Funciones.isNullColumn(cursor,"DESCRIPCION",""));
+                    jsonObject.accumulate("DESCRIPCION",  URLEncoder.encode(Funciones.isNullColumn(cursor,"DESCRIPCION",""), "UTF-8"));
                     jsonObject.accumulate("ESTADO", Funciones.isNullColumn(cursor,"ESTADO",""));
                     jsonObject.accumulate("FECHA_REGISTRO", Funciones.isNullColumn(cursor,"FECHA_REGISTRO",""));
                     jsonObject.accumulate("FECHA_MODIFICACION", Funciones.isNullColumn(cursor,"FECHA_MODIFICACION",""));
@@ -45,6 +55,7 @@ public class S_Inv_InventarioBL {
                     jsonObject.accumulate("PC_MODIFICACION", Funciones.isNullColumn(cursor,"PC_MODIFICACION",""));
                     jsonObject.accumulate("IP_REGISTRO", Funciones.isNullColumn(cursor,"IP_REGISTRO",""));
                     jsonObject.accumulate("IP_MODIFICACION", Funciones.isNullColumn(cursor,"IP_MODIFICACION",""));
+                    jsonObject.accumulate("COD_ALM", Funciones.isNullColumn(cursor,"COD_ALM",""));
 
                     String aux = new RestClientLibrary().post(newURL,jsonObject);
 
@@ -53,30 +64,20 @@ public class S_Inv_InventarioBL {
                     jsonObjectResult.accumulate("message", jsonObjectRest.getString("message"));
 
                     if (jsonObjectRest.getString("status").trim().equals("0") || jsonObjectRest.getString("status").trim().equals("false")) {
+                        sMensaje =  jsonObjectRest.getString("message").trim();
+                       // JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(0);
+                        break;
                     } else {
 
                         JSONObject jsonObjectItem = jsonObjectRest.getJSONArray("datos").getJSONObject(0);
-                        String sMensaje= jsonObjectItem.getString("MSG");
-                        jsonObjectResult.accumulate("MSG",sMensaje);
+                         sMensaje = jsonObjectItem.getString("MSG");
+                         sConteo  = jsonObjectItem.getString("CONTEO");
 
-                      /*  if(!sID_EMPRESA.equals("null") && !sID_EMPRESA.equals("0")){
-                            String sID_LOCAL=jsonObjectItem.getString("ID_LOCAL");
-                            String sID_VENDEDOR= jsonObjectItem.getString("ID_VENDEDOR");
-                            String sID_COBRANZA_LOCAL= jsonObjectItem.getString("ID_COBRANZA");
-                            String sID_COBRANZA_ORACLE=jsonObjectItem.getString("ID_COBRANZA_ORACLE");
-                            String MSG=jsonObjectItem.getString("MSG");
-                            jsonObjectResult.accumulate("MSG",MSG);
-
-                            //SI NO SALTO LAS VALIDACIONES DE LA BD ENTONCES
-                            if(MSG.toString().trim().equals("-")){
-
-
-
-                            }
-                        }
-*/
                     }
-                } while (cursor.moveToNext());
+                }
+                while(cursor.moveToNext());
+                jsonObjectResult.accumulate("MSG",sMensaje);
+                jsonObjectResult.accumulate("CONTEO",sConteo);
             }
         }catch(Exception e){
             e.printStackTrace();

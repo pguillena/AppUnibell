@@ -57,7 +57,7 @@ public class Activity_ScannerBarcode extends AppCompatActivity
     private S_Inv_InventarioBE inventarioBE;
     private M_ARTICULOSBE marticulosBE;
     private TextView txtTotalArticulos, txtTotalXArticulo, lblTotalXArticulo, lblUbicacionScan, txtUbicacionScan;
-    private Button btnScanearPorCantidad, btnScanearPorCodigo, btnNuevaUbicacion, btnNuevoConteo;
+    private Button btnScanearPorCantidad, btnScanearPorCodigo, btnNuevaUbicacion, btnNuevoConteo, btnScanearPorUnidad;
     private Dialog_Fragment_Scanner dialog_fragment_scanner = null;
     private Dialog_Fragment_Confirmar dialog_fragment_confirmar;
 
@@ -103,6 +103,7 @@ public class Activity_ScannerBarcode extends AppCompatActivity
 
             btnScanearPorCantidad = (Button)findViewById(R.id.btnScanearPorCantidad);
             btnScanearPorCodigo = (Button)findViewById(R.id.btnScanearPorCodigo);
+            btnScanearPorUnidad = (Button)findViewById(R.id.btnScanearPorUnidad);
 
 
             btnNuevaUbicacion = (Button)findViewById(R.id.btnNuevaUbicacion);
@@ -111,15 +112,18 @@ public class Activity_ScannerBarcode extends AppCompatActivity
 
             btnScanearPorCantidad.setOnClickListener(OnClickListener_btnScanearPorCantidad);
             btnScanearPorCodigo.setOnClickListener(OnClickListener_btnScanearPorCodigo);
+            btnScanearPorUnidad.setOnClickListener(OnClickListener_btnScanearPorUnidad);
 
             btnNuevaUbicacion.setOnClickListener(OnClickListener_btnNuevaUbicacion);
             txtTotalXArticulo.setOnClickListener(OnClickListener_txtTotalXArticulo);
+            lblTotalXArticulo.setOnClickListener(OnClickListener_txtTotalXArticulo);
             txtUbicacionScan.setOnClickListener(OnClickListener_txtUbicacionScan);
+            lblUbicacionScan.setOnClickListener(OnClickListener_txtUbicacionScan);
             btnNuevoConteo.setOnClickListener(OnClickListener_btnNuevoConteo);
 
 
             ValidaTipoScanedo();
-            Cargar(sharedSettings.getString("iCONTEO", "0").toString(),sharedSettings.getString("iCODIGO_BARRA", "").toString(),  sharedSettings.getString("iUBICACION", "").toString(), funciones.Month(funciones.FechaActual()), funciones.Year(funciones.FechaActual()));
+            Cargar(sharedSettings.getString("iCONTEO", "0").toString(),sharedSettings.getString("iCOD_ART", "").toString(),  sharedSettings.getString("iUBICACION", "").toString(), funciones.Month(funciones.FechaActual()), funciones.Year(funciones.FechaActual()));
 
 
             if(Integer.parseInt(sharedSettings.getString("iCONTEO", "0").toString())>0){
@@ -157,7 +161,7 @@ public class Activity_ScannerBarcode extends AppCompatActivity
         @Override
         public void onClick(View view) {
 
-            inventarioDAO.getAll(sharedSettings.getString("iCONTEO", "0").toString(), sharedSettings.getString("iCODIGO_BARRA", "").toString(),sharedSettings.getString("iUBICACION", "").toString(), funciones.Month(funciones.FechaActual()), funciones.Year(funciones.FechaActual()));;
+            inventarioDAO.getAll(sharedSettings.getString("iCONTEO", "0").toString(), sharedSettings.getString("iCOD_ART", "").toString(),sharedSettings.getString("iUBICACION", "").toString(), funciones.Month(funciones.FechaActual()), funciones.Year(funciones.FechaActual()));;
             if(inventarioDAO.lst!=null && inventarioDAO.lst.size()>0)
             {    mScannerView.stopCamera();
                 inventarioBE =inventarioDAO.lst.get(0);
@@ -198,6 +202,13 @@ public class Activity_ScannerBarcode extends AppCompatActivity
     dialog_fragment_scanner.isCancelable();
 }
 
+    public void CargarxCodigo(){
+        mScannerView.stopCamera();
+        dialog_fragment_scanner = new Dialog_Fragment_Scanner();
+        dialog_fragment_scanner.setCantidadDialogfragmentListener(Activity_ScannerBarcode.this);
+        dialog_fragment_scanner.show(getSupportFragmentManager(), dialog_fragment_scanner.TAG);
+        dialog_fragment_scanner.isCancelable();
+    }
 
 
     View.OnClickListener OnClickListener_btnScanearPorCantidad = new View.OnClickListener() {
@@ -236,7 +247,7 @@ public class Activity_ScannerBarcode extends AppCompatActivity
         }
         else
         {
-            String sMensaje = "¿Desea cerrar el conteo actual?\nConteo:"+ sharedSettings.getString("iCONTEO", "").toString() +" \nEsta acción no podra ser revertida.";
+            String sMensaje = "¿Desea cerrar el conteo actual?\nConteo N°: "+ sharedSettings.getString("iCONTEO", "").toString() +" \nEsta acción no podra ser revertida.";
             dialog_fragment_confirmar = new Dialog_Fragment_Confirmar();
             dialog_fragment_confirmar.setmConfirmarDialogfragmentListener(Activity_ScannerBarcode.this, sMensaje);
             dialog_fragment_confirmar.show(getSupportFragmentManager(), dialog_fragment_confirmar.TAG);
@@ -251,10 +262,18 @@ public class Activity_ScannerBarcode extends AppCompatActivity
         {
             btnScanearPorCantidad.setBackgroundResource(R.color.Button_login_unibell);
             btnScanearPorCodigo.setBackgroundResource(R.color.Button_login_disable_unibell);
+            btnScanearPorUnidad.setBackgroundResource(R.color.Button_login_disable_unibell);
         }
-        else {
+        else  if (sharedSettings.getString("iTIPO_SCAN", "").toString().equals("UNIDAD")) {
+            btnScanearPorCodigo.setBackgroundResource(R.color.Button_login_disable_unibell);
+            btnScanearPorCantidad.setBackgroundResource(R.color.Button_login_disable_unibell);
+            btnScanearPorUnidad.setBackgroundResource(R.color.Button_login_unibell);
+        }
+        else   if (sharedSettings.getString("iTIPO_SCAN", "").toString().equals("CODIGO"))
+        {
             btnScanearPorCodigo.setBackgroundResource(R.color.Button_login_unibell);
             btnScanearPorCantidad.setBackgroundResource(R.color.Button_login_disable_unibell);
+            btnScanearPorUnidad.setBackgroundResource(R.color.Button_login_disable_unibell);
         }
 
 
@@ -265,14 +284,47 @@ public class Activity_ScannerBarcode extends AppCompatActivity
 
         @Override
         public void onClick(View view) {
+
+
+            if(sharedSettings.getString("iCONTEO", "").toString().trim().equals("") || sharedSettings.getString("iCONTEO", "").toString().trim().equals("null"))
+            {
+                NuevoConteo();
+                return;
+            }
+
+            if(sharedSettings.getString("iUBICACION", "").toString().trim().equals("") || sharedSettings.getString("iUBICACION", "").toString().trim().equals("null"))
+            {
+                new ToastLibrary(Activity_ScannerBarcode.this, "Debe ingresar una ubicación" ).Show();
+                return;
+            }
+
+
             editor_Shared.putString("iTIPO_SCAN", "CODIGO");
             editor_Shared.commit();
             ValidaTipoScanedo();
-            new ToastLibrary(Activity_ScannerBarcode.this, "MODO ESCANEO POR CODIGO" ).Show();
+           // new ToastLibrary(Activity_ScannerBarcode.this, "MODO ESCANEO POR CODIGO" ).Show();
+
+            editor_Shared.putString("iACCION_INVENTARIO", "CODIGO");
+            editor_Shared.commit();
+            CargarxCodigo();
+        }
+
+    };
+
+    View.OnClickListener OnClickListener_btnScanearPorUnidad = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View view) {
+            editor_Shared.putString("iTIPO_SCAN", "UNIDAD");
+            editor_Shared.commit();
+            ValidaTipoScanedo();
+            new ToastLibrary(Activity_ScannerBarcode.this, "MODO ESCANEO POR UNIDAD" ).Show();
 
         }
 
     };
+
+
 
 
     @Override
@@ -311,7 +363,8 @@ public class Activity_ScannerBarcode extends AppCompatActivity
             inventarioBE = new S_Inv_InventarioBE();
             inventarioBE.setCONTEO( Integer.valueOf(sharedSettings.getString("iCONTEO", "0").toString()));
             inventarioBE.setCODIGO_BARRA(rawResult.getContents().trim());
-            inventarioBE.setUBICACION(sharedSettings.getString("iUBICACION", "").toString());
+                inventarioBE.setUBICACION(sharedSettings.getString("iUBICACION", "").toString());
+                inventarioBE.setCOD_ALM(sharedSettings.getString("iCOD_ALM", "").toString());
                 inventarioBE.setMES( Integer.valueOf(funciones.Month(funciones.FechaActual())));
                 inventarioBE.setANIO( Integer.valueOf(funciones.Year(funciones.FechaActual())));
             inventarioBE.setCANTIDAD(1);
@@ -333,7 +386,8 @@ public class Activity_ScannerBarcode extends AppCompatActivity
                 inventarioBE.setDESCRIPCION(marticulosDAO.lst.get(0).getDESCRIPCION());
 
 
-            editor_Shared.putString("iCODIGO_BARRA", inventarioBE.getCODIGO_BARRA());
+                editor_Shared.putString("iCODIGO_BARRA", inventarioBE.getCODIGO_BARRA());
+                editor_Shared.putString("iCOD_ART", inventarioBE.getCOD_ART());
             editor_Shared.putString("iUBICACION", inventarioBE.getUBICACION());
             editor_Shared.commit();
 
@@ -344,12 +398,18 @@ public class Activity_ScannerBarcode extends AppCompatActivity
 
                 CargarCantidad(inventarioBE);
             }
-            else
+            else  if (sharedSettings.getString("iTIPO_SCAN", "").toString().equals("UNIDAD"))
             {
                 inventarioDAO.grabar(inventarioBE);
                 Intent intent = new Intent();
                 setResult(RESULT_OK, intent);
                 finish();
+            }
+            else
+            {
+                new ToastLibrary(this, "Debe elegir un modo de escaneo").Show();
+                mp = MediaPlayer.create(Activity_ScannerBarcode.this, R.raw.no);
+                mp.start();
             }
 
             }
@@ -362,29 +422,30 @@ public class Activity_ScannerBarcode extends AppCompatActivity
 
             }
 
+
         } catch (IllegalStateException e) {
             new ToastLibrary(this, e.getMessage()).Show();
         }
     }
 
-    private void Cargar(String conteo, String codigo, String ubicacion, String mes, String anio ) {
+    private void Cargar(String conteo, String codArt, String ubicacion, String mes, String anio ) {
 
         lblTotalXArticulo.setText("");
         txtUbicacionScan.setText("");
         txtTotalArticulos.setText("");
         txtTotalXArticulo.setText("");
 
-        inventarioDAO.getAll(conteo, codigo,ubicacion, mes, anio);
+        inventarioDAO.getAll(conteo, codArt,ubicacion, mes, anio);
         inventarioDAO2.getAll(conteo,"XXX",ubicacion, mes, anio);
 
         if(inventarioDAO!=null && inventarioDAO.lst.size()>0)
         {
-            lblTotalXArticulo.setText(inventarioDAO.lst.get(0).getCODIGO_BARRA());
+            lblTotalXArticulo.setText(inventarioDAO.lst.get(0).getCOD_ART());
             txtTotalXArticulo.setText(inventarioDAO.lst.get(0).getCANTIDAD().toString());
             txtUbicacionScan.setText(inventarioDAO.lst.get(0).getUBICACION());
             if (!inventarioDAO.lst.get(0).getDESCRIPCION().equals(""))
             {
-                lblTotalXArticulo.setText(inventarioDAO.lst.get(0).getCODIGO_BARRA() +"\n"+inventarioDAO.lst.get(0).getDESCRIPCION());
+                lblTotalXArticulo.setText(inventarioDAO.lst.get(0).getCOD_ART() +"\n"+inventarioDAO.lst.get(0).getDESCRIPCION());
             }
         }
         else
@@ -475,8 +536,61 @@ public class Activity_ScannerBarcode extends AppCompatActivity
         objBE.setPC_MODIFICACION(sharedSettings.getString("NOMBRE_TELEFONO", "").toString());
         objBE.setIP_MODIFICACION(sharedSettings.getString("sIMEI", "").toString());
         new S_Inv_InventarioDAO().update(objBE);
-        Cargar(objBE.getCONTEO().toString(), objBE.getCODIGO_BARRA(), objBE.getUBICACION(), objBE.getMES().toString(), objBE.getANIO().toString());
+        Cargar(objBE.getCONTEO().toString(), objBE.getCOD_ART(), objBE.getUBICACION(), objBE.getMES().toString(), objBE.getANIO().toString());
 
+    }
+
+    @Override
+    public void onCodigoSI(Integer Cantidad, String CodArt) {
+        marticulosDAO.getAllByCodArt(CodArt);
+
+        if(marticulosDAO.lst!=null && marticulosDAO.lst.size()>0) {
+            inventarioBE = new S_Inv_InventarioBE();
+            inventarioBE.setCOD_ART(CodArt);
+            inventarioBE.setCONTEO(Integer.valueOf(sharedSettings.getString("iCONTEO", "0").toString()));
+            inventarioBE.setCODIGO_BARRA(marticulosDAO.lst.get(0).getC_ARTICULO());
+            inventarioBE.setUBICACION(sharedSettings.getString("iUBICACION", "").toString());
+            inventarioBE.setCOD_ALM(sharedSettings.getString("iCOD_ALM", "").toString());
+            inventarioBE.setMES(Integer.valueOf(funciones.Month(funciones.FechaActual())));
+            inventarioBE.setANIO(Integer.valueOf(funciones.Year(funciones.FechaActual())));
+            inventarioBE.setCANTIDAD(Cantidad);
+            inventarioBE.setESTADO(40003);
+            inventarioBE.setFECHA_REGISTRO(funciones.FechaActualNow());
+            inventarioBE.setFECHA_MODIFICACION(funciones.FechaActualNow());
+            inventarioBE.setUSUARIO_REGISTRO(sharedSettings.getString("USUARIO", "").toString());
+            inventarioBE.setUSUARIO_MODIFICACION(sharedSettings.getString("USUARIO", "").toString());
+            inventarioBE.setPC_REGISTRO(sharedSettings.getString("NOMBRE_TELEFONO", "").toString());
+            inventarioBE.setPC_MODIFICACION(sharedSettings.getString("NOMBRE_TELEFONO", "").toString());
+            inventarioBE.setIP_REGISTRO(sharedSettings.getString("sIMEI", "").toString());
+            inventarioBE.setIP_MODIFICACION(sharedSettings.getString("sIMEI", "").toString());
+            inventarioBE.setDESCRIPCION(marticulosDAO.lst.get(0).getDESCRIPCION());
+
+            editor_Shared.putString("iCODIGO_BARRA", inventarioBE.getCODIGO_BARRA());
+            editor_Shared.putString("iCOD_ART", inventarioBE.getCOD_ART());
+            editor_Shared.putString("iUBICACION", inventarioBE.getUBICACION());
+            editor_Shared.commit();
+
+            mp = MediaPlayer.create(Activity_ScannerBarcode.this, R.raw.barcode);
+            mp.start();
+
+            inventarioDAO.grabar(inventarioBE);
+            Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+        else
+        {
+            Toast toastCodigo = Toast.makeText(getApplicationContext(),"El codigo ingresado no existe", Toast.LENGTH_SHORT);
+            toastCodigo.show();
+
+        }
+
+        ValidaEscaneoXCodigo();
+    }
+
+    @Override
+    public void onCodigoNO() {
+        ValidaEscaneoXCodigo();
     }
 
 
@@ -558,20 +672,37 @@ public class Activity_ScannerBarcode extends AppCompatActivity
     @Override
     public void onConfirmacionSI() {
 
-        new InsertInventarioAsyncTask().execute(ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blinventario_insert);
+        if(!sharedSettings.getString("iCONTEO", "0").toString().equals("0")){
 
-        inventarioDAO.getMaxConteo(funciones.Month(funciones.FechaActual()), funciones.Year(funciones.FechaActual()));
+            if (funciones.isConnectingToInternet(getApplicationContext())) {
+                String Confirmacion = inventarioDAO.updateEstadoxConteo(Integer.valueOf(sharedSettings.getString("iCONTEO", "").toString()), sharedSettings.getString("USUARIO", "").toString(), 40006);
 
-        if(inventarioDAO.lst!=null && inventarioDAO.lst.size()>0)
-        {
-            editor_Shared.putString("iCONTEO",String.valueOf (inventarioDAO.lst.get(0).getCONTEO()+1));
-            editor_Shared.commit();
-
-            if(Integer.parseInt(sharedSettings.getString("iCONTEO", "0").toString())>0){
-                btnNuevoConteo.setText("NUEVO CONTEO (" + sharedSettings.getString("iCONTEO", "0").toString()+")");
+                if (Confirmacion.equals("OK")) {
+                    new InsertInventarioAsyncTask().execute(ConstantsLibrary.RESTFUL_URL + ConstantsLibrary.blinventario_insert);
+                }
             }
-            NuevaUbicacion();
+            else {
+                Toast toastCodigo = Toast.makeText(getApplicationContext(),"No cuenta con internet, por favor verifique su plan de datos, o conectese a una red WIFI", Toast.LENGTH_SHORT);
+                toastCodigo.show();
+                return;
+
+            }
+
         }
+
+
+
+            inventarioDAO.getMaxConteo(funciones.Month(funciones.FechaActual()), funciones.Year(funciones.FechaActual()));
+
+            if (inventarioDAO.lst != null && inventarioDAO.lst.size() > 0) {
+                editor_Shared.putString("iCONTEO", String.valueOf(inventarioDAO.lst.get(0).getCONTEO() + 1));
+                editor_Shared.commit();
+
+                if (Integer.parseInt(sharedSettings.getString("iCONTEO", "0").toString()) > 0) {
+                    btnNuevoConteo.setText("NUEVO CONTEO (" + sharedSettings.getString("iCONTEO", "0").toString() + ")");
+                }
+                NuevaUbicacion();
+            }
 
 
     }
@@ -579,7 +710,18 @@ public class Activity_ScannerBarcode extends AppCompatActivity
     @Override
     public void onConfirmacionNO() {
 
+
         mScannerView.startCamera();
+    }
+
+    private void ValidaEscaneoXCodigo() {
+
+        if (sharedSettings.getString("iTIPO_SCAN", "").toString().equals("CODIGO"))
+        {
+            editor_Shared.putString("iTIPO_SCAN", "UNIDAD");
+            editor_Shared.commit();
+            ValidaTipoScanedo();
+        }
     }
 
 
@@ -616,6 +758,7 @@ public class Activity_ScannerBarcode extends AppCompatActivity
 
                 } else {
                     if (!result.getString("MSG").toString().trim().equals("-")) {
+                        inventarioDAO.updateEstadoxConteo( Integer.valueOf(result.getString("CONTEO").toString()), sharedSettings.getString("USUARIO", "").toString(), 40013);
                         Toast toastCodigo = Toast.makeText(getApplicationContext(),result.getString("MSG").toString().trim(), Toast.LENGTH_SHORT);
                         toastCodigo.show();
                         return;

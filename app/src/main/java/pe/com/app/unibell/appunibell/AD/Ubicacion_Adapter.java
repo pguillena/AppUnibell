@@ -45,7 +45,7 @@ public class Ubicacion_Adapter  extends ArrayAdapter<S_Inv_InventarioBE> impleme
             mainHolder = (Ubicacion_Adapter.MainHolder) convertView.getTag();
         }
         final S_Inv_InventarioBE inventarioBE = getItem(position);
-        mainHolder.dfa_item1.setText(inventarioBE.getUBICACION());
+        mainHolder.dfa_item1.setText(inventarioBE.getCOD_ALM());
         mainHolder.dfa_item2.setText(inventarioBE.getUBICACION());
         return convertView;
     }

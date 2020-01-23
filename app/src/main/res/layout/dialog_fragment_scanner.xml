@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_main_unibell"
     >
     <LinearLayout
         android:id="@+id/am_ln1"
@@ -31,68 +32,290 @@
         android:orientation="vertical"
         >
 
-
         <LinearLayout
-            android:id="@+id/am_ln5"
+            android:id="@+id/lyArticulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/am_ln4"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+
 
             <TextView
-                android:id="@+id/lblCantidadScan"
-                android:layout_width="wrap_content"
+                android:id="@+id/lblCodigoBarra"
+                android:text="Codigo barra"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Ingrese cantidad"
-                android:textSize="20dp" />
+                android:paddingLeft="15dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_login_unibell"
+                />
 
-            <EditText
-                android:id="@+id/edtcantidadScan"
-                android:layout_width="140dp"
+
+
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/edtCodigoBarra"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:textSize="16dp"
+                android:hint="Ejm: 7752999001591"
+                android:padding="15dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:hint="0"
-                android:inputType="number"
-                android:maxLength="10"
-                android:textSize="20dp"
-                android:selectAllOnFocus="true"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/lblUbicacionScan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Ingrese ubicación"
-                android:textSize="20dp" />
-
-            <EditText
-                android:id="@+id/edtUbicacionScan"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLength="10"
-                android:textSize="20dp"
+                style="@style/SkyTextViewStyleUnibellBusquedaCliente"
                 android:inputType="textCapCharacters"
-                android:selectAllOnFocus="true"
                 android:maxLines="1"
-                android:textStyle="bold" />
+                android:selectAllOnFocus="true"
+                android:imeOptions="actionNext"
+                />
+
+
+
+            <TextView
+                android:id="@+id/lblArticulo"
+                android:text="Codigo articulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_login_unibell"
+                android:layout_marginTop="10dp"
+                />
+
+
+
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/edtCodArt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:hint="Ejm: BAOIL3"
+                android:padding="15dp"
+                android:layout_weight="1"
+                style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+                android:inputType="textCapCharacters"
+                android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:imeOptions="actionNext"
+                />
+
 
 
 
         </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/lyLblMaster"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/lblMaster"
+            android:text="Master"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:textSize="14dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/label_login_unibell"
+
+            />
+
+        <TextView
+            android:id="@+id/lblMasterCantidad"
+            android:text="Cantidad x master"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:textSize="14dp"
+            android:textColor="@color/label_login_unibell"
+            android:layout_toRightOf="@id/lblMaster"
+            android:layout_marginLeft="5dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/lyEdtMaster"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+
+
+
+            <EditText
+                android:id="@+id/edtMaster"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:hint="Ejm: 2"
+                android:padding="15dp"
+                style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+                android:inputType="number"
+                android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:layout_marginRight="5dp"
+                android:imeOptions="actionNext" />
+
+
+
+            <EditText
+                android:id="@+id/edtMasterCantidad"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:hint="Ejm: 12"
+                android:padding="15dp"
+                style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+                android:inputType="number"
+                android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:layout_marginLeft="5dp"
+                android:imeOptions="actionNext" />
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lblCantidadScan"
+                android:text="Cantidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_login_unibell"
+                />
+
+            <EditText
+                android:id="@+id/edtcantidadScan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:hint="Ejm: 100"
+                android:padding="15dp"
+                android:layout_weight="1"
+                style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+                android:inputType="number"
+                android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:imeOptions="actionNext" />
+
+            <TextView
+                android:id="@+id/lblTotalCantidadxArticulo"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/pad_16dp"
+                android:textStyle="bold"
+                android:textColor="@color/label_login_unibell"
+                android:textAlignment="textEnd"
+                android:layout_marginEnd="@dimen/pad_10dp"
+                />
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/lblCodAlmScan"
+                android:text="Almacen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:textSize="14dp"
+                android:textColor="@color/label_login_unibell"
+                />
+
+            <EditText
+                android:id="@+id/edtCodAlmScan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:hint="Ejm: 801"
+                android:padding="15dp"
+                android:layout_weight="1"
+                style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+                android:inputType="textCapCharacters"
+                android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:imeOptions="actionNext" />
+
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/lblUbicacionScan"
+            android:text="Ubicación"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:textSize="14dp"
+            android:textColor="@color/label_login_unibell"
+            />
+
+        <EditText
+            android:id="@+id/edtUbicacionScan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:hint="Ejm: A.1.2"
+            android:padding="15dp"
+            android:layout_weight="1"
+            style="@style/SkyTextViewStyleUnibellBusquedaCliente"
+            android:inputType="textCapCharacters"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:imeOptions="actionNext" />
+
+
+    </LinearLayout>
+
+
 
         <LinearLayout
             android:id="@+id/am_ln6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="15dp"
             android:layout_below="@+id/am_ln5"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
